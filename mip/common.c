@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.47 2004/04/29 16:30:49 ragge Exp $	*/
+/*	$Id: common.c,v 1.48 2004/05/09 18:26:57 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -361,6 +361,7 @@ struct dopest {
 	{ STARG, "STARG", UTYPE, },
 	{ STCALL, "STCALL", BITYPE|CALLFLG, },
 	{ USTCALL, "USTCALL", UTYPE|CALLFLG, },
+	{ ADDROF, "U&", UTYPE, },
 
 	{ -1,	"",	0 },
 };

@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.83 2003/09/12 15:14:01 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.84 2004/05/09 18:26:58 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -255,7 +255,7 @@ extern	NODE
 	*clocal(NODE *),
 	*ccopy(NODE *),
 	*btsize(TWORD, union dimfun *, struct suedef *),
-	*tempnode(int nr, TWORD type, union dimfun *df, struct suedef *sue),
+	*tempnode(int *, TWORD type, union dimfun *df, struct suedef *sue),
 	*doacall(NODE *f, NODE *a);
 OFFSZ	tsize(TWORD, union dimfun *, struct suedef *),
 	psize(NODE *);
@@ -335,9 +335,6 @@ void myp2tree(NODE *);
 #define	RSEQ		(MAXOP+25)
 
 #define	UNASG		(-(PLUSEQ-PLUS))+
-
-/* Other specials */
-#define	ADDROF		(MAXOP+26)
 
 #define coptype(o)	(cdope(o)&TYFLG)
 #define clogop(o)	(cdope(o)&LOGFLG)

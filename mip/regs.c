@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.16 2004/05/06 18:15:40 ragge Exp $	*/
+/*	$Id: regs.c,v 1.17 2004/05/09 18:26:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -408,6 +408,12 @@ alloregs(NODE *p, int wantreg)
 
 	case R_LREG: /* Left in register */
 		regc = alloregs(p->n_left, wantreg);
+		break;
+
+	case R_LREG+R_RRGHT: /* Left in register */
+		regc = alloregs(p->n_left, wantreg);
+		freeregs(regc);
+		MKREGC(regc,0,0);
 		break;
 
 	case R_LREG+R_PREF+R_RESC:
