@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.42 2003/08/09 09:47:33 ragge Exp $	*/
+/*	$Id: reader.c,v 1.43 2003/08/09 13:15:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -462,6 +462,8 @@ order(NODE *p, int cook)
 		case ER:
 		case LS:
 		case RS:
+			if (!istnode(p->n_left))
+				order(p->n_left, INTAREG|INTBREG);
 			p->n_op = ASG o;
 			goto again;
 			}
