@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.33 2004/06/22 07:55:03 ragge Exp $	*/
+/*	$Id: table.c,v 1.34 2004/06/23 08:41:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -235,6 +235,14 @@ struct optab table[] = {
 	SBREG|STBREG,	TLDOUBLE|TDOUBLE|TFLOAT,
 		NBREG,	RESC1,
 		"	fildl AL\n", },
+
+/* convert long long (in register) to floating */
+{ SCONV,	INTBREG,
+	SAREG|STAREG,	TLONGLONG,
+	SBREG|STBREG,	TLDOUBLE|TDOUBLE|TFLOAT,
+		NTEMP|NBREG,	RESC1,
+		"	pushl UL\n	pushl AL\n"
+		"	fildq (%esp)\n	addl $8,%esp\n", },
 
 /* convert int (in register) to double */
 { SCONV,	INTBREG,
