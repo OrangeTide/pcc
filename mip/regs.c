@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.42 2005/03/19 09:32:35 ragge Exp $	*/
+/*	$Id: regs.c,v 1.43 2005/04/03 14:58:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1278,6 +1278,33 @@ printf("Coalescing node %d into %d\n", b, a);
 /*
  * Do register allocation for trees by graph-coloring.
  */
+#ifdef NEW_READER
+int
+ngenregs(struct interpass *ip, struct interpass *ie)
+{
+	NODE *p;
+
+	for (;;ip = DLIST_NEXT(ip, qelem)) {
+		if (ip->type != IP_NODE)
+			continue;
+		p = ip->ip_node;
+		if (rdebug)
+			fwalk(p, e2print, 0);
+		interfere(p, NULL); /* Create interference graph */
+		pinterfere(p);
+		simplify(p);
+		coalesce(p);
+#if 0
+		freeze(p);
+		pspill(p);
+		assign(p);
+		aspill(p);
+#endif
+		if (ip == ie)
+			return 0;
+	}
+}
+#else
 void
 ngenregs(NODE *p)
 {
@@ -1294,3 +1321,4 @@ ngenregs(NODE *p)
 	aspill(p);
 #endif
 }
+#endif

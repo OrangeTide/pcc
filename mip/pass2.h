@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.60 2005/04/02 14:48:17 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.61 2005/04/03 14:58:52 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -216,7 +216,11 @@ void geninsn(NODE *, int cookie);
 void adrput(FILE *, NODE *);
 void comperr(char *str, ...);
 void genregs(NODE *p);
+#ifdef NEW_READER
+int ngenregs(struct interpass *, struct interpass *);
+#else
 void ngenregs(NODE *p);
+#endif
 NODE *store(NODE *);
 void mygenregs(NODE *);
 void gencall(NODE *, NODE *prev);
@@ -322,7 +326,7 @@ void freeregs(regcode regc);
 int mayuse(int reg, TWORD type);
 void mktailopt(struct interpass *, struct interpass *);
 #ifdef NEW_READER
-void Ocompile(struct interpass *);
+void emit(struct interpass *);
 #endif
 
 struct basicblock {
