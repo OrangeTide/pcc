@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.2 2005/01/09 14:29:25 ragge Exp $	*/
+/*	$Id: order.c,v 1.3 2005/01/13 16:10:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -158,6 +158,12 @@ regalloc(NODE *p, struct optab *q, int wantreg)
 
 /*
  * Splitup a function call and give away its arguments first.
+ * Calling convention used ("normal" in IAR syntax) is:
+ * - 1-byte parameters in R0L if possible, otherwise in R0H.
+ * - 2-byte pointers in A0.
+ * - 2-byte non-pointers in R0 if no byte-size arguments are found in
+ *   in the first 6 bytes of parameters, otherwise R2 or at last A0.
+ * - 4-byte parameters in R2R0.
  */
 void
 gencall(NODE *p, NODE *prev)

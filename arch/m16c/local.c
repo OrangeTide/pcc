@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.3 2005/01/12 22:50:16 ragge Exp $	*/
+/*	$Id: local.c,v 1.4 2005/01/13 16:10:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -82,16 +82,6 @@ clocal(NODE *p)
 			break;
 
 			}
-		break;
-
-	case FUNARG:
-		/* Args smaller than int are given as int */
-		if (p->n_type != CHAR && p->n_type != UCHAR) 
-			break;
-		p->n_left = block(SCONV, p->n_left, NIL, INT, 0, MKSUE(INT));
-		p->n_type = INT;
-		p->n_sue = MKSUE(INT);
-		p->n_rval = SZINT;
 		break;
 
 	case PMCONV:

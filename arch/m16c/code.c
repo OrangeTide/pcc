@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.2 2005/01/12 22:50:16 ragge Exp $	*/
+/*	$Id: code.c,v 1.3 2005/01/13 16:10:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -105,11 +105,13 @@ bfcode(struct symtab **a, int n)
 
 	send_passt(IP_LOCCTR, PROG);
 	defnam(cftnsp);
-	if (cftnsp->stype != STRTY+FTN && cftnsp->stype != UNIONTY+FTN)
+	if (cftnsp->stype == STRTY+FTN || cftnsp->stype == UNIONTY+FTN) {
+		/* Function returns struct, adjust arg offset */
+		for (i = 0; i < n; i++)
+			a[i]->soffset += SZPOINT;
 		return;
-	/* Function returns struct, adjust arg offset */
-	for (i = 0; i < n; i++)
-		a[i]->soffset += SZPOINT;
+	}
+	
 }
 
 
@@ -119,6 +121,7 @@ bfcode(struct symtab **a, int n)
 void
 bccode()
 {
+printf("bccode\n");
 	SETOFF(autooff, SZINT);
 }
 
