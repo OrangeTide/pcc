@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.101 2004/05/10 21:35:58 ragge Exp $	*/
+/*	$Id: trees.c,v 1.102 2004/05/13 19:33:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1225,6 +1225,9 @@ block(int o, NODE *l, NODE *r, TWORD t, union dimfun *d, struct suedef *sue)
 	p->n_qual = 0;
 	p->n_df = d;
 	p->n_sue = sue;
+#if !defined(MULTIPASS)
+	p->n_rall = p->n_su = 0;
+#endif
 	return(p);
 	}
 

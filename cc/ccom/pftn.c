@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.106 2004/05/09 18:26:58 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.107 2004/05/13 19:33:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2515,10 +2515,14 @@ fixclass(int class, TWORD type)
 		return( class );
 
 	case REGISTER:
-		if( blevel == 0 ) uerror( "illegal register declaration" );
-		else if( regvar >= MINRVAR && cisreg( type ) ) return( class );
-		if( blevel == 1 ) return( PARAM );
-		else return( AUTO );
+		if (blevel == 0)
+			uerror( "illegal register declaration" );
+		else if (regvar >= MINRVAR && cisreg(type) && !Oflag)
+			return(class);
+		if (blevel == 1)
+			return(PARAM);
+		else
+			return(AUTO);
 
 	case AUTO:
 		if( blevel < 2 ) uerror( "illegal ULABEL class" );
