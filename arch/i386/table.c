@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.34 2004/06/23 08:41:42 ragge Exp $	*/
+/*	$Id: table.c,v 1.35 2004/06/24 08:13:45 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -116,13 +116,13 @@ struct optab table[] = {
 		NASL|NAREG,	RESC1,
 		"	movswl ZL,A1\n", },
 
-/* convert float/double to long long XXX - may this fail? */
+/* convert float/double (in register) to long long */
 { SCONV,	INTAREG,
 	SBREG|STBREG,	TDOUBLE|TFLOAT,
-	SNAME|SOREG,	TLL,
+	SAREG|STAREG,	TLONGLONG,
 		NAREG,	RESC1,
 		"	subl $8,%esp\n	fistpq (%esp)\n"
-		"	popl %eax\n	popl %edx\n", },
+		"	popl AL\n	popl UL\n", },
 
 /* convert float/double to (u) int/short/char. XXX should use NTEMP here */
 { SCONV,	INTAREG,
