@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.29 2003/07/07 14:57:15 ragge Exp $	*/
+/*	$Id: common.c,v 1.30 2003/07/07 20:27:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -406,20 +406,12 @@ tprint(TWORD t)
 
 /*
  * Return a number for internal labels.
- * If multipass, the lowest digit will be the pass number, otherwise
- * it's just a sequential number.
  */
 int 
 getlab()
 {
         static int crslab = 10;
-#if defined(PASS1)
-	return (crslab++ * 10)+1;
-#elif defined(PASS2)
-	return (crslab++ * 10)+2;
-#else
 	return crslab++;
-#endif
 }
 
 /*

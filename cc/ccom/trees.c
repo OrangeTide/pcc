@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.53 2003/07/07 18:37:09 ragge Exp $	*/
+/*	$Id: trees.c,v 1.54 2003/07/07 20:27:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1644,8 +1644,6 @@ send_passt(int type, ...)
 	va_end(ap);
 	if (isinlining)
 		inline_addarg(ip);
-	else if (Oflag)
-		topt_compile(ip);
 	else
 		pass2_compile(ip);
 }
