@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.30 2004/06/19 09:14:28 ragge Exp $	*/
+/*	$Id: regs.c,v 1.31 2004/06/21 12:41:45 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -759,6 +759,16 @@ alloregs(NODE *p, int wantreg)
 		regc2 = alloregs(p->n_right, NOPREF);
 		regc = alloregs(p->n_left, wantreg);
 		p->n_left = checkreg(&regc, wantreg, p->n_left);
+		freeregs(regc2);
+		break;
+
+	case R_DOR+R_RREG+R_LREG+R_PREF+R_RRGHT:
+		/* l+r in reg, reclaim right */
+		regc = alloregs(p->n_right, wantreg);
+		regc2 = alloregs(p->n_left, NOPREF);
+		if ((p->n_rall = findfree(sreg)) < 0)
+			comperr("alloregs out of regs2");
+		rallset = 1;
 		freeregs(regc2);
 		break;
 

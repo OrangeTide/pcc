@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.3 2004/05/16 11:08:03 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.4 2004/06/21 12:41:45 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -42,6 +42,7 @@ static struct kw {
 	{ "__asm__", NULL, C_ASM },
 	{ "__signed", NULL, 0 },
 	{ "__inline", NULL, C_FUNSPEC },
+	{ "__const", NULL, 0 },
 	{ NULL, NULL, 0 },
 };
 
@@ -75,6 +76,9 @@ gcc_keyword(YYSTYPE *yl)
 	case 1: /* __signed */
 		yl->nodep = mkty((TWORD)SIGNED, 0, MKSUE(SIGNED));
 		return C_TYPE;
+	case 3: /* __const */
+		yl->nodep = block(QUALIFIER, NIL, NIL, CON, 0, 0);
+		return C_QUALIFIER;
 	}
 	cerror("gcc_keyword");
 	return 0;
