@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.78 2003/08/12 09:36:17 ragge Exp $	*/
+/*	$Id: trees.c,v 1.79 2003/08/14 07:54:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -682,7 +682,7 @@ chkpun(NODE *p)
 	/* check for enumerations */
 	if (t1==ENUMTY || t2==ENUMTY) {
 		if( clogop( p->n_op ) && p->n_op != EQ && p->n_op != NE ) {
-			uerror( "comparison of enums" );
+			werror( "comparison of enums" );
 			return;
 			}
 		if (t1==ENUMTY && t2==ENUMTY) {
