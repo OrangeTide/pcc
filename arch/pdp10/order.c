@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.40 2003/09/07 15:04:28 ragge Exp $	*/
+/*	$Id: order.c,v 1.41 2003/09/08 08:28:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -355,6 +355,8 @@ setbin(NODE *p)
 //	TWORD pt;
 	register int ro, rt;
 
+fwalk(p, e2print, 0);
+cerror("setbin");
 	rt = p->n_right->n_type;
 	ro = p->n_right->n_op;
 
