@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.41 2004/05/16 09:34:34 ragge Exp $	*/
+/*	$Id: scan.l,v 1.42 2004/05/20 13:26:19 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -233,6 +233,7 @@ esccon(char **sptr)
 	case 'r': val = '\r'; break;
 	case 't': val = '\t'; break;
 	case 'v': val = '\v'; break;
+	case '\"': val = '\"'; break;
 	case 'x': val = strtol(wr, &wr, 16); break;
 	case '0': case '1': case '2': case '3': case '4': 
 	case '5': case '6': case '7': case '8': case '9': 

@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.2 2003/08/06 20:08:48 ragge Exp $	*/
+/*	$Id: code.c,v 1.3 2004/05/20 13:26:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -158,10 +158,10 @@ genswitch(struct swents **p, int n)
 	for (i = 1; i <= n; ++i) {
 		/* already in 1 */
 		s = (isinlining ? permalloc(40) : tmpalloc(40));
-		sprintf(s, "	cmpl $%lld,%%eax\n", p[i]->sval);
+		sprintf(s, "	cmpl $%lld,%%eax", p[i]->sval);
 		send_passt(IP_ASM, s);
 		s = (isinlining ? permalloc(40) : tmpalloc(40));
-		sprintf(s, "	je " LABFMT "\n", p[i]->slab);
+		sprintf(s, "	je " LABFMT, p[i]->slab);
 		send_passt(IP_ASM, s);
 	}
 	if (p[0]->slab > 0)

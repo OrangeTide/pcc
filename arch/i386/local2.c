@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.15 2004/05/18 14:29:37 ragge Exp $	*/
+/*	$Id: local2.c,v 1.16 2004/05/20 13:26:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -254,10 +254,12 @@ zzzcode(NODE *p, int c)
 		r = getlr(p, c);
 		if (r->n_op != REG)
 			adrput(stdout, r);
-		else if (p->n_type == SHORT || p->n_type == USHORT)
+		else if (r->n_type == SHORT || r->n_type == USHORT)
 			printf("%%%cx", rnames[r->n_rval][2]);
-		else
+		else if (r->n_type == CHAR || r->n_type == UCHAR)
 			printf("%%%cl", rnames[r->n_rval][2]);
+		else
+			printf("%s", rnames[r->n_rval]);
 		break;
 
 	default:
