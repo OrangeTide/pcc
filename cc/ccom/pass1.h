@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.77 2003/08/22 14:53:42 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.78 2003/09/04 07:47:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -253,8 +253,8 @@ extern	NODE
 	*optim(NODE *),
 	*clocal(NODE *),
 	*ccopy(NODE *),
+	*tempnode(int nr, TWORD type, union dimfun *df, struct suedef *sue),
 	*doacall(NODE *f, NODE *a);
-
 OFFSZ	tsize(TWORD, union dimfun *, struct suedef *),
 	psize(NODE *);
 NODE *	typenode(NODE *new);
