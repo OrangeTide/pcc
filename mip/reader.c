@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.109 2005/01/09 14:28:54 ragge Exp $	*/
+/*	$Id: reader.c,v 1.110 2005/01/10 16:49:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1404,6 +1404,9 @@ if (f2debug) printf("findleaf: ixp %d\n", ixp[i]);
 if (f2debug) printf("findleaf got types\n");
 		if ((shl = tshape(p, q->rshape)) != SRDIR)
 			continue; /* shape must match */
+
+		if ((q->visit & cookie) == 0)
+			continue; /* wrong registers */
 
 if (f2debug) printf("findleaf got shapes %d\n", shl);
 
