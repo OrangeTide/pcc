@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.88 2004/06/19 09:14:27 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.89 2004/09/19 09:40:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -296,6 +296,10 @@ void lcommdec(struct symtab *);
 void fincode(NODE *, int);
 int falloc(struct symtab *p, int w, int new, NODE *pty);
 TWORD ctype(TWORD);  
+void init_begin(NODE *tn, NODE *p);
+void init_val(NODE *p);
+void init_elem(NODE *p);
+void init_end(void);
 
 void p1print(char *fmt, ...);
 char *copst(int);
@@ -332,7 +336,7 @@ char *gcc_findname(struct symtab *sp);
 #define	OROR		(MAXOP+12)
 #define	NOT		(MAXOP+13)
 #define	CAST		(MAXOP+14)
-#define	STRING		(MAXOP+15)
+/* #define	STRING		(MAXOP+15) */
 
 /* The following must be in the same order as their NOASG counterparts */
 #define	PLUSEQ		(MAXOP+16)

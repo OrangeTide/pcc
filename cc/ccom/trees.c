@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.116 2004/09/05 11:44:14 ragge Exp $	*/
+/*	$Id: trees.c,v 1.117 2004/09/19 09:40:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -322,19 +322,6 @@ buildtree(int o, NODE *l, NODE *r)
 				p->n_type = ENUMTY;
 				p->n_op = ICON;
 			}
-			break;
-
-		case STRING:
-			p->n_op = NAME;
-#ifdef CHAR_UNSIGNED
-			p->n_type = UCHAR+ARY;
-			p->n_sue = MKSUE(UCHAR);
-#else
-			p->n_type = CHAR+ARY;
-			p->n_sue = MKSUE(CHAR);
-#endif
-			p->n_lval = 0;
-			p->n_sp = NULL;
 			break;
 
 		case STREF:
@@ -1344,7 +1331,6 @@ opact(NODE *p)
 	switch( o ){
 
 	case NAME :
-	case STRING :
 	case ICON :
 	case FCON :
 	case CALL :
@@ -2147,8 +2133,12 @@ p2tree(NODE *p)
 	case STASG:
 		/* STASG used for stack array init */
 		if (p->n_type == CHAR+ARY) {
-			p->n_stsize = tsize(ARY+CHAR, p->n_left->n_df,
+			int size1 = tsize(ARY+CHAR, p->n_left->n_df,
 			    p->n_left->n_sue)/SZCHAR;
+			p->n_stsize = tsize(ARY+CHAR, p->n_right->n_df,
+			    p->n_right->n_sue)/SZCHAR;
+			if (size1 < p->n_stsize)
+				p->n_stsize = size1;
 			p->n_stalign = talign(ARY+CHAR,
 			    p->n_left->n_sue)/SZCHAR;
 			break;
@@ -2286,7 +2276,6 @@ copst(int op)
 	SNAM(OROR,||)
 	SNAM(NOT,!)
 	SNAM(CAST,CAST)
-	SNAM(STRING,STRING)
 	SNAM(PLUSEQ,+=)
 	SNAM(MINUSEQ,-=)
 	SNAM(MULEQ,*=)
@@ -2315,7 +2304,6 @@ cdope(int op)
 	case DOT:
 	case ELLIPSIS:
 	case TYPE:
-	case STRING:
 		return LTYPE;
 	case COMOP:
 	case QUEST:
