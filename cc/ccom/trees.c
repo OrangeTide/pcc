@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.115 2004/06/21 11:16:34 ragge Exp $	*/
+/*	$Id: trees.c,v 1.116 2004/09/05 11:44:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2144,12 +2144,22 @@ p2tree(NODE *p)
 			p->n_name = "";
 		break;
 
-	case STARG:
 	case STASG:
+		/* STASG used for stack array init */
+		if (p->n_type == CHAR+ARY) {
+			p->n_stsize = tsize(ARY+CHAR, p->n_left->n_df,
+			    p->n_left->n_sue)/SZCHAR;
+			p->n_stalign = talign(ARY+CHAR,
+			    p->n_left->n_sue)/SZCHAR;
+			break;
+		}
+		/* FALLTHROUGH */
+	case STARG:
 	case STCALL:
 	case USTCALL:
 		/* set up size parameters */
-		p->n_stsize = (tsize(STRTY,p->n_left->n_df,p->n_left->n_sue)+SZCHAR-1)/SZCHAR;
+		p->n_stsize = (tsize(STRTY, p->n_left->n_df,
+		    p->n_left->n_sue)+SZCHAR-1)/SZCHAR;
 		p->n_stalign = talign(STRTY,p->n_left->n_sue)/SZCHAR;
 		break;
 
