@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.25 2004/12/02 21:32:25 ragge Exp $	*/
+/*	$Id: cc.c,v 1.26 2004/12/19 19:43:58 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -129,8 +129,8 @@ char *endfiles[] = ENDFILES;
 char *cppmdadd[] = CPPMDADD;
 
 int
-main(argc, argv)
-char *argv[]; {
+main(int argc, char *argv[])
+{
 	char *t, *u;
 	char *savetsp;
 	char *assource;
