@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.5 2005/01/14 15:46:19 ragge Exp $	*/
+/*	$Id: local.c,v 1.6 2005/01/29 12:13:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -266,6 +266,8 @@ ninval(NODE *p)
 		inval(p->n_lval & 0xffffffff);
 		inval(p->n_lval >> 32);
 		break;
+	case LONG:
+	case ULONG:
 	case INT:
 	case UNSIGNED:
 		printf("\t.long 0x%x", (int)p->n_lval);
@@ -279,6 +281,7 @@ ninval(NODE *p)
 		printf("\n");
 		break;
 	default:
+		fwalk(p, eprint, 0);
 		cerror("ninval");
 	}
 }
