@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.80 2003/09/12 15:14:11 ragge Exp $	*/
+/*	$Id: local2.c,v 1.81 2003/11/12 12:13:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1081,10 +1081,10 @@ adrput(NODE *p)
 		}
 		if (p->n_lval < 0 && p->n_rval == FPREG && offarg) {
 			p->n_lval -= offarg-2; acon(p); p->n_lval += offarg-2;
-		} else
+		} else if (p->n_lval != 0)
 			acon(p);
 		if (p->n_name[0] != '\0')
-			printf("+%s", p->n_name);
+			printf("%s%s", p->n_lval ? "+" : "", p->n_name);
 		if (p->n_lval > 0 && p->n_rval == FPREG && offlab)
 			printf("+" LABFMT, offlab);
 		if (p->n_lval < 0 && p->n_rval == FPREG && offarg)
