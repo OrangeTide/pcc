@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.4 2004/12/13 16:09:26 ragge Exp $
+#	$Id: Makefile.in,v 1.5 2005/02/18 16:48:59 ragge Exp $
 #
 # Makefile.in for ccom
 #
@@ -59,6 +59,10 @@ external.h external.c: mkext.c $(MDIR)/table.c
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -DMKEXT -o mkext mkext.c \
 	$(MDIR)/table.c common.c
 	./mkext
+
+trees.c: pass2.h
+
+pass2.h: external.h
 
 cgram.c: cgram.y
 	$(YACC) $(YFLAGS) -d $<

@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.137 2005/02/05 14:39:07 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.138 2005/02/18 16:48:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -505,13 +505,18 @@ ftnend()
 {
 	extern struct savbc *savbc;
 	extern struct swdef *swpole;
+	char *c;
 
 	if (retlab != NOLAB && nerrors == 0) { /* inside a real function */
 		plabel(retlab);
 		efcode(); /* struct return handled here */
 		branch(retlab = getlab());
-		send_passt(IP_EPILOG, minrvar, maxautooff,
-		    cftnsp->sname, cftnsp->stype, retlab);
+		c = cftnsp->sname;
+#ifdef GCC_COMPAT
+		c = gcc_findname(cftnsp);
+#endif
+		send_passt(IP_EPILOG, minrvar, maxautooff, c,
+		    cftnsp->stype, cftnsp->sclass == EXTDEF, retlab);
 	}
 
 	tcheck();
@@ -547,6 +552,7 @@ dclargs()
 	union arglist *al, *al2, *alb;
 	struct params *a;
 	struct symtab *p, **parr = NULL; /* XXX gcc */
+	char *c;
 	int i;
 
 	argoff = ARGINIT;
@@ -609,12 +615,14 @@ dclargs()
 		intcompare = 0;
 	}
 done:	cendarg();
-	setloc1(PROG);
-	defalign(ALINT);
-	defnam(cftnsp);
 	ftnno = getlab();
 	retlab = getlab();
-	send_passt(IP_PROLOG, -1, -1, cftnsp->sname, cftnsp->stype, retlab);
+	c = cftnsp->sname;
+#ifdef GCC_COMPAT
+	c = gcc_findname(cftnsp);
+#endif
+	send_passt(IP_PROLOG, -1, -1, c, cftnsp->stype, 
+	    cftnsp->sclass == EXTDEF, retlab);
 	plabel(getlab()); /* after prolog, used in optimization */
 	bfcode(parr, nparams);
 	lparam = NULL;

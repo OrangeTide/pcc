@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.53 2005/02/13 14:50:26 pj Exp $	*/
+/*	$Id: main.c,v 1.54 2005/02/18 16:48:59 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -34,7 +34,6 @@
 
 #include "pass1.h"
 #include "pass2.h"
-#include "external.h"
 
 int sflag, Oflag, nflag;
 int lflag, odebug, rdebug, radebug, vdebug, s2debug, udebug, x2debug;
