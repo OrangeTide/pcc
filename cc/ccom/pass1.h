@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.84 2004/05/09 18:26:58 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.85 2004/05/16 09:34:34 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -91,6 +91,9 @@ extern	char *scnames(int);
 #define	SDYNARRAY	00200
 #define	SLABEL		00400
 #define	STNODE		01000
+#ifdef GCC_COMPAT
+#define	SRENAME		02000	/* Node is renamed */
+#endif
 
 #ifndef FIXDEF
 #define FIXDEF(p)
@@ -296,6 +299,13 @@ void p1print(char *fmt, ...);
 char *copst(int);
 int cdope(int);
 void myp2tree(NODE *);
+
+#ifdef GCC_COMPAT
+void gcc_init(void);
+int gcc_keyword(YYSTYPE *);
+void gcc_rename(struct symtab *sp, char *newname);
+char *gcc_findname(char *oldname);
+#endif
 
 #ifndef CHARCAST
 /* to make character constants into character connstants */

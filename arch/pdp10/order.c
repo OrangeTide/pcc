@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.57 2004/05/15 08:06:17 ragge Exp $	*/
+/*	$Id: order.c,v 1.58 2004/05/16 09:34:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -142,25 +142,6 @@ setbin(NODE *p)
 		}
 	}
 	return 0;
-}
-
-/* structure assignment */
-int
-setstr(NODE *p)
-{
-#if 0
-	if( p->n_right->n_op != REG ){
-		order( p->n_right, INTAREG );
-		return(1);
-		}
-	p = p->n_left;
-	if( p->n_op != NAME && p->n_op != OREG ){
-		if( p->n_op != UMUL ) cerror( "bad setstr" );
-		order( p->n_left, INTAREG );
-		return( 1 );
-		}
-#endif
-	return( 0 );
 }
 
 /* setup for assignment operator */

@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.41 2004/05/15 12:14:43 ragge Exp $	*/
+/*	$Id: main.c,v 1.42 2004/05/16 09:34:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -191,6 +191,9 @@ main(int argc, char *argv[])
 
 	mkdope();
 	lineno = 1;
+#ifdef GCC_COMPAT
+	gcc_init();
+#endif
 
 	/* dimension table initialization */
 

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.12 2004/05/15 13:43:49 ragge Exp $	*/
+/*	$Id: local2.c,v 1.13 2004/05/16 09:34:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -467,7 +467,10 @@ adrput(FILE *io, NODE *p)
 	switch (p->n_op) {
 
 	case NAME:
-		comperr("adrput NAME");
+		if (p->n_name[0] != '\0')
+			fputs(p->n_name, io);
+		if (p->n_lval != 0)
+			fprintf(io, "+" CONFMT, p->n_lval);
 		return;
 
 	case OREG:
