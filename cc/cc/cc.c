@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.18 2004/06/22 12:12:45 ragge Exp $	*/
+/*	$Id: cc.c,v 1.19 2004/06/24 08:13:12 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -265,7 +265,7 @@ diuc:			*pv++ = argv[i];
 		errorx("no input files", "", 8);
 	if (outfile && (cflag || sflag) && nc > 1)
 		errorx("-o given with -c || -S and more than one file", "", 8);
-	if (outfile && strcmp(outfile, clist[0]) == 0)
+	if (outfile && clist[0] && strcmp(outfile, clist[0]) == 0)
 		errorx("output file will be clobbered", "", 8);
 
 	if (gflag) Oflag = 0;
