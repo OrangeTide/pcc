@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.29 2004/06/22 07:55:03 ragge Exp $	*/
+/*	$Id: local2.c,v 1.30 2004/06/22 12:12:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -880,7 +880,7 @@ myoptim(struct interpass *ip)
 
 struct hardops hardops[] = {
 	{ MUL, LONGLONG, "__muldi3" },
-	{ MUL, ULONGLONG, "__umuldi3" },
+	{ MUL, ULONGLONG, "__muldi3" },
 	{ DIV, LONGLONG, "__divdi3" },
 	{ DIV, ULONGLONG, "__udivdi3" },
 	{ MOD, LONGLONG, "__moddi3" },
