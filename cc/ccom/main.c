@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.9 2002/09/30 17:34:57 ragge Exp $	*/
+/*	$Id: main.c,v 1.10 2002/11/06 20:49:07 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -34,6 +34,7 @@
 #include "pass2.h"
 
 int lflag, odebug, rdebug, radebug, vdebug, sdebug, udebug, x2debug;
+int xdebug;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
 
