@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.83 2003/08/23 12:25:46 ragge Exp $	*/
+/*	$Id: trees.c,v 1.84 2003/08/25 11:08:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2001,6 +2001,7 @@ ecode(NODE *p)
 	if (nerrors)	
 		return;
 
+	p = optim(p);
 	walkf(p, prtdcon);
 #ifdef PCC_DEBUG
 	if (xdebug) {
