@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.3 2004/12/30 15:40:16 ragge Exp $
+#	$Id: Makefile.in,v 1.4 2005/02/18 16:52:39 ragge Exp $
 #
 # Makefile.in for cpp
 #
@@ -39,7 +39,7 @@ ${DEST}: $(OBJS) $(HEADERS)
 
 $(OBJS): $(HEADERS)
 
-tests: 
+test:
 	./cpp < tests/test1 > tests/run1
 	cmp tests/run1 tests/res1
 	./cpp < tests/test2 > tests/run2
