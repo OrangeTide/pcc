@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.32 2004/10/03 15:56:51 ragge Exp $	*/
+/*	$Id: local2.c,v 1.33 2004/12/11 09:13:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -140,7 +140,7 @@ static char *loctbl[] =
 void
 setlocc(int locctr)
 {
-	static int lastloc;
+	static int lastloc = -1;
 
 	if (locctr == lastloc)
 		return;
