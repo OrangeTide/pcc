@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.19 2005/04/02 12:09:35 ragge Exp $	*/
+/*	$Id: local2.c,v 1.20 2005/04/04 16:48:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -64,10 +64,9 @@ prologue(struct interpass_prolog *ipp)
 	if (ipp->ipp_vis)	
 		printf("	PUBLIC %s\n", ipp->ipp_name);
 	printf("%s:\n", ipp->ipp_name); 
-printf("maxautooff %d ipp_autos %d\n", p2maxautooff, ipp->ipp_autos);
 	if (Oflag) {
 		/* Optimizer running, save space on stack */
-		addto = (ipp->ipp_autos - AUTOINIT)/SZCHAR;
+		addto = (p2maxautooff - AUTOINIT)/SZCHAR;
 		printf("	enter #%d\n", addto);
 	} else {
 		/* non-optimized code, jump to epilogue for code generation */
@@ -89,7 +88,6 @@ eoftn(struct interpass_prolog *ipp)
 		comperr("fix eoftn register savings %x", ipp->ipp_regs);
 #endif
 
-printf("2maxautooff %d ipp_autos %d\n", p2maxautooff, ipp->ipp_autos);
 	if (Oflag == 0)
 		addto = (p2maxautooff - AUTOINIT)/SZCHAR;
 

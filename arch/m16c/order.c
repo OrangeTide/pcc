@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.11 2005/03/02 15:34:36 ragge Exp $	*/
+/*	$Id: order.c,v 1.12 2005/04/04 16:48:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -496,6 +496,7 @@ mayuse(int reg, TWORD type)
 	return 1;  /* Everything is OK */
 }
 
+#ifdef TAILCALL
 void
 mktailopt(struct interpass *ip1, struct interpass *ip2)
 {
@@ -530,3 +531,4 @@ mktailopt(struct interpass *ip1, struct interpass *ip2)
 	}
 	pass2_compile(ip2);
 }
+#endif
