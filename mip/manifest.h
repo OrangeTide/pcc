@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.36 2003/11/13 15:59:46 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.37 2004/05/10 21:35:58 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -119,8 +119,8 @@
 #define ISPTR(x)	(((x)&TMASK)==PTR)
 #define ISFTN(x)	(((x)&TMASK)==FTN)	/* is x a function type? */
 #define ISARY(x)	(((x)&TMASK)==ARY)	/* is x an array type? */
-#define	ISCON(x)	(((x)&TMASK)==CON)	/* is x const? */
-#define	ISVOL(x)	(((x)&TMASK)==VOL)	/* is x volatile? */
+#define	ISCON(x)	(((x)&CON)==CON)	/* is x const? */
+#define	ISVOL(x)	(((x)&VOL)==VOL)	/* is x volatile? */
 #define INCREF(x)	((((x)&~BTMASK)<<TSHIFT)|PTR|((x)&BTMASK))
 #define INCQAL(x)	((((x)&~BTMASK)<<TSHIFT)|((x)&BTMASK))
 #define DECREF(x)	((((x)>>TSHIFT)&~BTMASK)|((x)&BTMASK))
