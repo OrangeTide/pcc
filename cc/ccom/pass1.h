@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.99 2004/12/30 10:35:16 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.100 2005/01/12 22:49:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -300,6 +300,8 @@ void inval(CONSZ);
 void ninval(NODE *);
 void defnam(struct symtab *);
 void plabel(int lab);
+void bjobcode(void);
+void ejobcode(int);
 
 void p1print(char *fmt, ...);
 char *copst(int);
