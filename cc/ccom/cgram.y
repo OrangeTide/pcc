@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.113 2003/08/03 10:49:39 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.114 2003/08/03 15:00:37 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -690,14 +690,15 @@ label:		   C_NAME ':' { deflabel($1); reached = 1; }
 		|  C_DEFAULT ':' { reached = 1; adddef(); flostat |= FDEF; }
 		;
 
-doprefix:	C_DO
-			={  savebc();
-			    if( !reached ) werror( "loop not entered at top");
-			    brklab = getlab();
-			    contlab = getlab();
-			    send_passt(IP_DEFLAB,  $$ = getlab() );
-			    reached = 1;
-			    }
+doprefix:	C_DO {
+			savebc();
+			if (!reached)
+				werror("loop not entered at top");
+			brklab = getlab();
+			contlab = getlab();
+			send_passt(IP_DEFLAB,  $$ = getlab());
+			reached = 1;
+		}
 		;
 ifprefix:	C_IF '(' e ')' {
 			ecomp(buildtree(CBRANCH, buildtree(NOT, $3, NIL),

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.34 2003/08/03 10:49:39 ragge Exp $	*/
+/*	$Id: reader.c,v 1.35 2003/08/03 15:00:37 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -71,6 +71,8 @@ cktree(NODE *p)
 {
 	if (p->n_op > MAXOP)
 		cerror("op %d slipped through", p->n_op);
+	if (p->n_op == CBRANCH && !logop(p->n_left->n_op))
+		cerror("not logop branch");
 }
 #endif
 
@@ -653,6 +655,7 @@ cbranch(NODE *p, int false)
 		return;
 
 	case ICON:
+cerror("cbran2");
 		if (p->n_type != FLOAT && p->n_type != DOUBLE) {
 			if ((p->n_lval != 0) || (p->n_name[0] != 0))
 				cbgen(0, false, 'I');
@@ -662,6 +665,7 @@ cbranch(NODE *p, int false)
 		/* fall through to default with other strange constants */
 
 	default:
+cerror("cbran");
 		/* get condition codes */
 		codgen(p, FORCC);
 		cbgen(NE, false, 'I');
