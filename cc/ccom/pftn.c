@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.87 2003/07/07 20:39:44 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.88 2003/07/29 09:16:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -82,7 +82,6 @@ int retlab = NOLAB;	/* return label for subroutine */
 int brklab;
 int contlab;
 int flostat;
-int retstat;
 
 struct params;
 
@@ -515,7 +514,6 @@ ftnend()
 		send_passt(IP_EPILOG, minrvar, maxautooff, retlab);
 	}
 
-	retstat = 0;
 	tcheck();
 	brklab = contlab = retlab = NOLAB;
 	flostat = 0;

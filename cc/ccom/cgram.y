@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.108 2003/07/07 20:39:44 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.109 2003/07/29 09:16:18 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -647,7 +647,6 @@ statement:	   e ';' { ecomp( $1 ); }
 			goto rch;
 		}
 		|  C_RETURN  ';' {
-			retstat |= NRETVAL;
 			branch(retlab);
 			if (cftnsp->stype != VOID && cftnsp->stype != VOID+FTN)
 				uerror("return value required");
@@ -664,10 +663,11 @@ statement:	   e ';' { ecomp( $1 ); }
 			temp->n_type = DECREF(temp->n_type);
 			temp = buildtree(RETURN, temp, $2);
 
-			/* now, we have the type of the RHS correct */
+			if (temp->n_type == VOID)
+				ecomp(temp->n_right);
+			else
+				ecomp(buildtree(FORCE, temp->n_right, NIL));
 			nfree(temp->n_left);
-			ecomp(buildtree(FORCE, temp->n_right, NIL));
-			retstat |= RETVAL;
 			nfree(temp);
 			branch(retlab);
 			reached = 0;
@@ -1142,8 +1142,6 @@ fend(void)
 {
 	if (blevel)
 		cerror("function level error");
-	if (reached)
-		retstat |= NRETVAL;
 	ftnend();
 	fun_inline = 0;
 	cftnsp = NULL;
