@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.31 2003/07/30 13:25:56 ragge Exp $	*/
+/*	$Id: reader.c,v 1.32 2003/07/30 17:56:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -44,6 +44,7 @@ int nrecur;
 int lflag;
 int x2debug;
 int udebug = 0;
+int ftnno;
 
 OFFSZ tmpoff;  /* offset for first temporary, in bits for current block */
 OFFSZ maxoff;  /* maximum temporary offset over all blocks in current ftn, in bits */

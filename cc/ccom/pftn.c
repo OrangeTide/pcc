@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.90 2003/07/30 11:48:33 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.91 2003/07/30 17:56:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -82,6 +82,9 @@ int retlab = NOLAB;	/* return label for subroutine */
 int brklab;
 int contlab;
 int flostat;
+int instruct, blevel;
+OFFSZ inoff;
+int reached;
 
 struct params;
 
@@ -2597,3 +2600,41 @@ defnam(struct symtab *p)
 	else
 		send_passt(IP_DEFNAM, p->sname, p->sclass == EXTDEF);
 }
+
+
+#ifdef PCC_DEBUG
+static char *
+ccnames[] = { /* names of storage classes */
+	"SNULL",
+	"AUTO",
+	"EXTERN",
+	"STATIC",
+	"REGISTER",
+	"EXTDEF",
+	"LABEL",
+	"ULABEL",
+	"MOS",
+	"PARAM",
+	"STNAME",
+	"MOU",
+	"UNAME",
+	"TYPEDEF",
+	"FORTRAN",
+	"ENAME",
+	"MOE",
+	"UFORTRAN",
+	"USTATIC",
+	};
+
+char *
+scnames(int c)
+{
+	/* return the name for storage class c */
+	static char buf[12];
+	if( c&FIELD ){
+		sprintf( buf, "FIELD[%d]", c&FLDSIZ );
+		return( buf );
+		}
+	return( ccnames[c] );
+	}
+#endif

@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.33 2003/07/07 15:38:27 ragge Exp $	*/
+/*	$Id: scan.l,v 1.34 2003/07/30 17:56:25 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -371,8 +371,8 @@ charcon(void)
 
 	if (i == 0)
 		uerror("empty character constant");
-	if (i > (SZINT/SZCHAR) || ( (pflag)&&i>1))
-		uerror("too many characters in character constant");
+	if (i > (SZINT/SZCHAR) || (i>1))
+		werror("too many characters in character constant");
 	return mkcnode(INT, (int)lastcon);
 }
 

@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.63 2003/07/30 14:11:55 ragge Exp $	*/
+/*	$Id: trees.c,v 1.64 2003/07/30 17:56:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -261,7 +261,7 @@ buildtree(int o, NODE *l, NODE *r)
 			}
 		}
 
-	if ((actions&PUN) && (o!=CAST||cflag))
+	if ((actions&PUN) && (o!=CAST))
 		chkpun(p);
 
 	if( actions & (TYPL|TYPR) ){

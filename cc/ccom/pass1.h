@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.72 2003/07/30 17:38:53 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.73 2003/07/30 17:56:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -168,9 +168,6 @@ extern	int oldstyle;
 
 extern	int lineno, nerrors;
 
-extern	CONSZ lastcon;
-extern	double dcon;
-
 extern	char *ftitle;
 extern	struct symtab *cftnsp;
 extern	int btdim[];
@@ -200,7 +197,7 @@ extern	int isinlining;
 
 extern	struct symtab *spname;
 
-extern	int cflag, pflag, sdebug;
+extern	int sdebug;
 
 /* various labels */
 extern	int brklab;
