@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.44 2003/08/15 16:19:37 ragge Exp $	*/
+/*	$Id: reader.c,v 1.45 2003/08/16 14:58:06 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -910,6 +910,7 @@ cvtemps(struct interpass *epil)
 {
 	struct interpass *ip;
 
+	SETOFF(epil->ip_auto, ALINT);
 	maxautooff = autooff = epil->ip_auto;
 	SIMPLEQ_FOREACH(ip, &ipole, sqelem) {
 		if (ip->type != IP_NODE)
