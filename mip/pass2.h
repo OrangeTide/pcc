@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.59 2005/04/02 07:56:17 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.60 2005/04/02 14:48:17 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -321,6 +321,9 @@ regcode getregs(int wantreg, int nreg, int breg);
 void freeregs(regcode regc);
 int mayuse(int reg, TWORD type);
 void mktailopt(struct interpass *, struct interpass *);
+#ifdef NEW_READER
+void Ocompile(struct interpass *);
+#endif
 
 struct basicblock {
 	DLIST_ENTRY(basicblock) bbelem;
