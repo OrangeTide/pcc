@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.59 2003/08/18 22:01:26 ragge Exp $	*/
+/*	$Id: table.c,v 1.60 2003/08/20 09:40:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -339,27 +339,36 @@ struct optab table[] = {
 		0,	RLEFT,
 		"	ZF AL,ZG\n", },
 
+/*
+ * char/short additions below are special
+ */
+/* Add one to a pointer */
 { ASG PLUS,	INAREG|INTAREG|FOREFF,
 	SAREG|STAREG|SOREG|SNAME,	TPTRTO|TCHAR|TUCHAR|TSHORT|TUSHORT,
 	SONE,	TANY,
 		0,	RLEFT,
 		"	ibp AL\n", },
 
-/* Add to char/short pointer. XXX - should be able to remove the movem */
+/* add a constant to a short pointer */
 { ASG PLUS,	INAREG|INTAREG|FOREFF,
-	SAREG|STAREG|SOREG|SNAME,	TPTRTO|TCHAR|TUCHAR|TSHORT|TUSHORT,
-	SAREG|STAREG,			TWORD,
-		0,	RRIGHT,
-		"	adjbp AR,AL\n"
-		"	movem AR,AL\n", },
+	SAREG|STAREG,	TPTRTO|TSHORT|TUSHORT,
+	SCON,	TANY,
+		0,	RLEFT,
+		"Zh", },
 
-/* Add to char/short pointer. XXX - should be able to remove the movem */
+/* add a constant to a char pointer */
 { ASG PLUS,	INAREG|INTAREG|FOREFF,
-	SAREG|STAREG|SOREG|SNAME,	TPTRTO|TCHAR|TUCHAR|TSHORT|TUSHORT,
-	SAREG|STAREG|SOREG|SNAME,	TWORD,
-		NAREG,	RESC1,
-		"	move A1,AR\n"
-		"	adjbp A1,AL\n", },
+	SAREG|STAREG,	TPTRTO|TCHAR|TUCHAR,
+	SCON,		TWORD,
+		0,	RLEFT,
+		"ZX", },
+
+/* Add a value to a char/short pointer */
+{ ASG PLUS,	INAREG|INTAREG,
+	SAREG|STAREG|SNAME|SOREG,	TPTRTO|TCHAR|TUCHAR|TSHORT|TUSHORT,
+	SAREG|STAREG,	TWORD,
+		0,	RRIGHT,
+		"	adjbp AR,AL\n", },
 
 /* Sub from char/short pointer. XXX - subject to fix */
 { ASG MINUS,	INAREG|INTAREG|FOREFF,
@@ -404,12 +413,6 @@ struct optab table[] = {
 		"	adjbp A1,AL\n"
 		"	movem A1,AL\n", },
 
-{ ASG PLUS,	INAREG|INTAREG|FOREFF,
-	SAREG|STAREG,	TPTRTO|TCHAR|TUCHAR,
-	SCON,		TWORD,
-		0,	RLEFT,
-		"ZX", },
-
 { ASG PLUS,	INAREG|FOREFF,
 	SAREG|STAREG,	TWORD,
 	SCON,		TPTRTO|TSTRUCT,
@@ -433,14 +436,6 @@ struct optab table[] = {
 	SAREG|STAREG|SNAME|SOREG,	TDOUBLE,
 		0,	RLEFT,
 		"	dfsb AL,AR\n", },
-
-/* Add a value to a char/short pointer */
-{ PLUS,	INAREG|INTAREG|FOREFF,
-	SAREG|STAREG|SNAME|SOREG,	TPTRTO|TCHAR|TUCHAR|TSHORT|TUSHORT,
-	SAREG|STAREG|SNAME|SOREG,	TWORD,
-		NAREG,	RESC1,
-		"	move A1,AR\n"
-		"	adjbp A1,AL\n", },
 
 { PLUS,	INTAREG|FOREFF,
 	SAREG|STAREG,	TPTRTO|TCHAR|TUCHAR,

@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.54 2003/08/18 12:36:47 ragge Exp $	*/
+/*	$Id: local.c,v 1.55 2003/08/20 09:40:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -101,7 +101,7 @@ clocal(NODE *p)
 		 * Handle frame pointer directly without conversion,
 		 * for efficiency.
 		 */
-		if (l->n_op == REG && l->n_rval == FPREG) {
+		if (l->n_op == REG && l->n_rval == 0) {
 rmpc:			l->n_type = p->n_type;
 			l->n_df = p->n_df;
 			l->n_sue = p->n_sue;
@@ -185,7 +185,7 @@ rmpc:			l->n_type = p->n_type;
 		l = p->n_left;
 
 		if ((p->n_type & TMASK) == 0 && (l->n_type & TMASK) == 0 &&
-		    btdim[BTYPE(p->n_type)] == btdim[BTYPE(l->n_type)]) {
+		    btdim[p->n_type] == btdim[l->n_type]) {
 			if (p->n_type != FLOAT && p->n_type != DOUBLE &&
 			     l->n_type != FLOAT && l->n_type != DOUBLE) {
 				nfree(p);

@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.30 2003/08/16 12:25:46 ragge Exp $	*/
+/*	$Id: order.c,v 1.31 2003/08/20 09:40:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -278,13 +278,21 @@ rallo(NODE *p, int down)
 void
 offstar(NODE *p)
 {
+	NODE *q;
+
 	if (x2debug)
 		printf("offstar(%p)\n", p);
 
 	if( p->n_op == PLUS || p->n_op == MINUS ){
 		if( p->n_right->n_op == ICON ){
-			p = p->n_left;
-			order(p, INTAREG|INAREG);
+			q = p->n_left;
+			if (q->n_op == PCONV && q->n_left->n_op == REG) {
+				q->n_left->n_type = q->n_type;
+				q->n_left->n_qual = q->n_qual;
+				p->n_left = q->n_left;
+				nfree(q);
+			} else
+				order(p, INTAREG|INAREG);
 			return;
 		}
 	}
