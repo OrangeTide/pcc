@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.46 2003/08/21 17:33:33 ragge Exp $	*/
+/*	$Id: reader.c,v 1.47 2003/08/23 12:25:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -75,6 +75,8 @@ cktree(NODE *p)
 		cerror("op %d slipped through", p->n_op);
 	if (p->n_op == CBRANCH && !logop(p->n_left->n_op))
 		cerror("not logop branch");
+	if ((dope[p->n_op] & ASGOPFLG) && p->n_op != RETURN)
+		cerror("asgop %d slipped through", p->n_op);
 }
 #endif
 
@@ -328,6 +330,13 @@ order(NODE *p, int cook)
 	switch (m = p->n_op) {
 
 	default:
+#ifdef notyet
+		if ((cookie & (INTAREG|INTBREG)) && optype(m) == LTYPE) {
+			/*
+			 * Search for an ASSIGN op instead of OPLTYPE.
+			 */
+		}
+#endif
 		/* look for op in table */
 		for (;;) {
 			if ((m = match(p, cookie)) == MDONE)
