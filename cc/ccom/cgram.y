@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.116 2003/08/05 09:27:55 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.117 2003/08/22 14:53:42 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -820,8 +820,8 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 		|  '-' term { $$ = buildtree(UNARY MINUS, $2, NIL ); }
 		|  C_UNOP term ={ $$ = buildtree( $1, $2, NIL ); }
 		|  C_INCOP term {
-			$$ = buildtree( $1==INCR ? ASG PLUS : ASG MINUS,
-			    $2, bcon(1)  );
+			$$ = buildtree(ASSIGN, ccopy($2),
+			    buildtree($1 == INCR ? PLUS : MINUS, $2, bcon(1)));
 		}
 		|  C_SIZEOF term { $$ = doszof($2); got_type = 0; }
 		|  '(' cast_type ')' term  %prec C_INCOP {

@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.81 2003/08/18 09:04:07 ragge Exp $	*/
+/*	$Id: trees.c,v 1.82 2003/08/22 14:53:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2058,3 +2058,25 @@ cdope(int op)
 	}
 	return 0; /* XXX gcc */
 }
+
+/* 
+ * make a fresh copy of p
+ */
+NODE *
+ccopy(NODE *p) 
+{  
+	NODE *q;
+
+	q = talloc();
+	*q = *p;
+
+	switch (coptype(q->n_op)) {
+	case BITYPE:
+		q->n_right = ccopy(p->n_right);
+	case UTYPE: 
+		q->n_left = ccopy(p->n_left);
+	}
+
+	return(q);
+}
+
