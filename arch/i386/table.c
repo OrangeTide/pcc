@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.42 2005/01/07 09:36:51 ragge Exp $	*/
+/*	$Id: table.c,v 1.43 2005/01/13 15:26:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -332,26 +332,26 @@ struct optab table[] = {
  * Subroutine calls.
  */
 
-{ UCALL,	INTAREG,
+{ UCALL,	INTAREG|FOREFF,
 	SCON,	TANY,
 	SANY,	TANY,
 		NAREG|NASL,	RESC1,	/* should be 0 */
 		"	call CL\nZC", },
 
-{ UCALL,	INTAREG,
+{ UCALL,	INTAREG|FOREFF,
 	SAREG|STAREG,	TANY,
 	SANY,	TANY,
 		NAREG|NASL,	RESC1,	/* should be 0 */
 		"	call *AL\nZC", },
 
 /* struct return */
-{ USTCALL,	INTAREG,
+{ USTCALL,	INTAREG|FOREFF,
 	SCON,	TANY,
 	SANY,	TANY,
 		NAREG|NASL,	RESC1,	/* should be 0 */
 		"	call CL\nZC", },
 
-{ USTCALL,	INTAREG,
+{ USTCALL,	INTAREG|FOREFF,
 	SNAME|SAREG|STAREG,	TANY,
 	SANY,	TANY,
 		NAREG|NASL,	RESC1,	/* should be 0 */
