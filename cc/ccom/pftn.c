@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.129 2004/12/30 10:35:16 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.130 2005/01/02 17:55:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1420,6 +1420,8 @@ typenode(NODE *p)
 			if (p->n_type == CHAR)
 				p->n_type = UCHAR;
 #endif
+			if (p->n_type == SIGNED)
+				p->n_type = INT;
 uni:			p->n_lval = class;
 			p->n_qual = qual >> TSHIFT;
 			return p;
