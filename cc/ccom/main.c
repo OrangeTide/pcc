@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.23 2003/07/03 18:10:04 ragge Exp $	*/
+/*	$Id: main.c,v 1.24 2003/07/03 20:52:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -189,8 +189,6 @@ main(int argc, char *argv[])
 	setrew();
 #endif
 	lineno = 1;
-
-	tinit();
 
 	/* dimension table initialization */
 
