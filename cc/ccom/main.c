@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.51 2005/01/16 13:59:17 pj Exp $	*/
+/*	$Id: main.c,v 1.52 2005/02/08 20:19:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -182,6 +182,8 @@ main(int argc, char *argv[])
 				xssaflag++;
 			else if (strcmp(optarg, "tailcall") == 0)
 				xtailcallflag++;
+			else if (strcmp(optarg, "newreg") == 0)
+				xnewreg++;
 			else
 				usage();
 			break;
