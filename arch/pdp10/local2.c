@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.61 2003/08/12 09:36:17 ragge Exp $	*/
+/*	$Id: local2.c,v 1.62 2003/08/14 08:29:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -249,6 +249,22 @@ tlen(p) NODE *p;
 			return SZPOINT/SZCHAR;
 		}
 }
+
+#if 0
+static char *
+ccbranches[] = {
+	"jumpe",	/* jumpe */
+	"jumpn",	/* jumpn */
+	"jumple",	/* jumple */
+	"jumpl",	/* jumpl */
+	"jumpge",	/* jumpge */
+	"jumpg",	/* jumpg */
+	"jumple",	/* jumple (jlequ) */
+	"jumpl",	/* jumpl (jlssu) */
+	"jumpge",	/* jumpge (jgequ) */
+	"jumpg",	/* jumpg (jgtru) */
+};
+#endif
 
 static char *
 binskip[] = {

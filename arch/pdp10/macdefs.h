@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.17 2003/08/04 14:11:59 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.18 2003/08/14 08:29:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -150,4 +150,8 @@ typedef long long OFFSZ;
 #define MYCANON(p) mycanon(p)
 #define	MYOPTIM
 
-#define special(a, b)	0
+/*
+ * Special shapes used in code generation.
+ */
+#define special(a, b)   0
+
