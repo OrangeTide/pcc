@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.106 2004/05/20 13:26:19 ragge Exp $	*/
+/*	$Id: trees.c,v 1.107 2004/05/29 07:53:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -507,6 +507,23 @@ buildtree(int o, NODE *l, NODE *r)
 	return(p);
 
 	}
+
+/*
+ * Do a conditional branch.
+ */
+void
+cbranch(NODE *p, NODE *q)
+{
+	p = buildtree(CBRANCH, p, q);
+	if (p->n_left->n_op == ICON) {
+		if (p->n_left->n_lval != 0)
+			branch(q->n_lval); /* branch always */
+		tfree(p);
+		tfree(q);
+		return;
+	}
+	ecomp(p);
+}
 
 NODE *
 strargs( p ) register NODE *p;  { /* rewrite structure flavored arguments */
@@ -2124,12 +2141,16 @@ storearg(NODE *p)
 		p->n_left = p->n_right;
 		p->n_sue = MKSUE(p->n_type & BTMASK);
 		p->n_rval = tsz;
+		p = clocal(p); /* deal with arg types */
+		tsz = p->n_rval;
 		send_passt(IP_NODE, p);
 		return storearg(np) + tsz;
 	} else {
 		p = block(FUNARG, p, NIL, p->n_type, 0,
 		    MKSUE(p->n_type & BTMASK));
 		p->n_rval = tsz;
+		p = clocal(p); /* deal with arg types */
+		tsz = p->n_rval;
 		send_passt(IP_NODE, p);
 		return tsz;
 	}

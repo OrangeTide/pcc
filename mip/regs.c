@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.23 2004/05/26 18:17:58 ragge Exp $	*/
+/*	$Id: regs.c,v 1.24 2004/05/29 07:53:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -429,6 +429,14 @@ alloregs(NODE *p, int wantreg)
 
 	switch (cword) {
 	case 0: /* No registers, ignore */
+		MKREGC(regc,0,0);
+		break;
+
+	case R_PREF:
+		regc = getregs(wantreg, sreg);
+		p->n_rall = REGNUM(regc);
+		rallset = 1;
+		freeregs(regc);
 		MKREGC(regc,0,0);
 		break;
 

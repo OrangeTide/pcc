@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.86 2004/05/16 11:08:03 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.87 2004/05/29 07:53:27 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -290,6 +290,7 @@ int talign(unsigned int, struct suedef *);
 void bfcode(struct symtab **, int);
 int chkftn(union arglist *, union arglist *);
 void branch(int);
+void cbranch(NODE *p, NODE *q);
 void commdec(struct symtab *);
 void lcommdec(struct symtab *);
 void fincode(NODE *, int);

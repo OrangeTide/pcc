@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.108 2004/05/16 11:08:04 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.109 2004/05/29 07:53:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -259,7 +259,8 @@ defid(NODE *q, int class)
 			++dsym;
 			++ddef;
 		} else if (ISFTN(temp)) {
-			if (!oldstyle && chkftn(dsym->dfun, ddef->dfun))
+			if (!oldstyle && ddef->dfun != NULL &&
+			    chkftn(dsym->dfun, ddef->dfun))
 				uerror("declaration doesn't match prototype");
 			dsym++, ddef++;
 		}
@@ -2375,6 +2376,9 @@ chk2(TWORD type, union dimfun *dsym, union dimfun *ddef)
 	return 0;
 }
 
+/*
+ * Compare two function argument lists to see if they match.
+ */
 int
 chkftn(union arglist *usym, union arglist *udef)
 {

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.98 2004/05/26 18:17:58 ragge Exp $	*/
+/*	$Id: reader.c,v 1.99 2004/05/29 07:53:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -825,6 +825,8 @@ rewrite(NODE *p, int rewrite)
 		p->n_rval = p->n_rall + szty(p->n_type);
 	else if (rewrite & RESC3)
 		p->n_rval = p->n_rall + 2*szty(p->n_type);
+	else if (p->n_su == DORIGHT)
+		p->n_rval = l->n_rval; /* XXX special */
 	if (optype(o) != LTYPE)
 		tfree(l);
 	if (optype(o) == BITYPE)
