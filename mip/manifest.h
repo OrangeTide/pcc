@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.32 2003/08/02 11:22:44 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.33 2003/08/03 21:15:59 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -125,7 +125,7 @@
 #define INCQAL(x)	((((x)&~BTMASK)<<TSHIFT)|((x)&BTMASK))
 #define DECREF(x)	((((x)>>TSHIFT)&~BTMASK)|((x)&BTMASK))
 #define DECQAL(x)	((((x)>>TSHIFT)&~BTMASK)|((x)&BTMASK))
-#define SETOFF(x,y)	if ((x)%(y) != 0) (x) = (((x)/(y) + 1) * (y))
+#define SETOFF(x,y)	{ if ((x)%(y) != 0) (x) = (((x)/(y) + 1) * (y)); }
 		/* advance x to a multiple of y */
 #define NOFIT(x,y,z)	(((x)%(z) + (y)) > (z))
 		/* can y bits be added to x without overflowing z */
