@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.47 2003/07/30 14:53:05 ragge Exp $	*/
+/*	$Id: table.c,v 1.48 2003/08/03 10:49:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -661,6 +661,12 @@ struct optab table[] = {
 		"ZZ", },
 
 /* Can check anything by just comparing if EQ/NE */
+{ OPLOG,	FORCC,
+	SAREG|STAREG,	TSWORD|TPOINT,
+	SZERO,	TSWORD|TPOINT,
+		0, 	RESCC,
+		"	jumpZe AL,LC # bu\n", },
+
 { EQ,		FORCC,
 	SAREG|STAREG,	TWORD|TPOINT,
 	SAREG|STAREG|SOREG|SNAME|SCON,	TWORD|TPOINT,

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.53 2003/07/30 17:38:25 ragge Exp $	*/
+/*	$Id: local2.c,v 1.54 2003/08/03 10:49:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -827,6 +827,24 @@ printcon(NODE *p)
 		printf("+%s", p->n_name);
 }
 
+static void
+putcond(NODE *p)
+{               
+	char *c;
+
+	switch (p->n_op) {
+	case EQ: c = "e"; break;
+	case NE: c = "n"; break;
+	case LE: c = "le"; break;
+	case LT: c = "l"; break;
+	case GT: c = "g"; break;
+	case GE: c = "ge"; break;
+	default:
+		cerror("putcond");
+	}
+	printf("%s", c);
+}
+
 void
 zzzcode(NODE *p, int c)
 {
@@ -1000,6 +1018,10 @@ zzzcode(NODE *p, int c)
 
 	case 'd':
 		printcon(p);
+		break;
+
+	case 'e':
+		putcond(p);
 		break;
 
 	default:
