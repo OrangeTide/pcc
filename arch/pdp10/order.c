@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.36 2003/09/02 08:13:51 ragge Exp $	*/
+/*	$Id: order.c,v 1.37 2003/09/02 12:36:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -213,12 +213,6 @@ sucomp(NODE *p)
 		return;
 
 	case MUL:
-#if 0
-		if (ISLONGLONG(p->n_type)) {
-			p->n_su = sul + sur + 4;
-			return;
-		}
-#endif
 	case DIV:
 	case MOD:
 		/* DIV/MOD/MUL insns require register pairs */

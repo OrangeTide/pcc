@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.74 2003/09/02 08:13:51 ragge Exp $	*/
+/*	$Id: local2.c,v 1.75 2003/09/02 12:36:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -816,12 +816,14 @@ zzzcode(NODE *p, int c)
 		printf("%s", rnames[p->n_right->n_rval]);
 		break;
 
+#if 0
 	case '1': /* double upput */
 		p = getlr(p, '1');
 		p->n_rval += 2;
 		adrput(p);
 		p->n_rval -= 2;
 		break;
+#endif
 
 	case 'i': /* Write instruction for short load from name */
 		l = getlr(p, 'L');
