@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.24 2004/12/30 10:36:29 ragge Exp $	*/
+/*	$Id: local.c,v 1.25 2005/01/02 17:57:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -148,6 +148,11 @@ clocal(NODE *p)
 
 	case SCONV:
 		l = p->n_left;
+
+		if (p->n_type == l->n_type) {
+			nfree(p);
+			return l;
+		}
 
 		if ((p->n_type & TMASK) == 0 && (l->n_type & TMASK) == 0 &&
 		    btdim[p->n_type] == btdim[l->n_type]) {
