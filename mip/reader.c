@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.110 2005/01/10 16:49:37 ragge Exp $	*/
+/*	$Id: reader.c,v 1.111 2005/01/11 14:27:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -262,7 +262,6 @@ deluseless(NODE *p)
 	return NULL;
 }
 
-static void newblock(int myreg, int aoff);
 static void epilogue(int regs, int autos, int retlab);
 
 void
@@ -310,9 +309,6 @@ pass2_compile(struct interpass *ip)
 	case IP_PROLOG:
 		prologue(ip->ip_regs, ip->ip_auto, ip->ip_retl);
 		break;
-	case IP_NEWBLK:
-		newblock(ip->ip_regs, ip->ip_auto);
-		break;
 	case IP_EPILOG:
 		epilogue(ip->ip_regs, ip->ip_auto, ip->ip_retl);
 		break;
@@ -328,12 +324,6 @@ pass2_compile(struct interpass *ip)
 	default:
 		cerror("pass2_compile %d", ip->type);
 	}
-}
-
-static void
-newblock(int myreg, int aoff)
-{
-	setregs();
 }
 
 static void

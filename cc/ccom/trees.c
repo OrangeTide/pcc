@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.123 2004/12/30 10:35:17 ragge Exp $	*/
+/*	$Id: trees.c,v 1.124 2005/01/11 14:27:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2223,7 +2223,6 @@ send_passt(int type, ...)
 		setloc1(PROG);
 		/* FALLTHROUGH */
 	case IP_PROLOG:
-	case IP_NEWBLK:
 		ip->ip_regs = va_arg(ap, int);
 		ip->ip_auto = va_arg(ap, int);
 		ip->ip_retl = va_arg(ap, int);

@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.47 2005/01/09 14:28:53 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.48 2005/01/11 14:27:08 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -142,11 +142,8 @@
 #define MUSTDO		010000	/* force register requirements */
 #define NOPREF		020000	/* no preference for register assignment */
 
-/* register allocation */
-extern	int rstatus[];		/* register status info */
-
-#define isbreg(r)	(rstatus[r]&SBREG)
-#define istreg(r)	(rstatus[r]&(STBREG|STAREG))
+#define	isbreg(r)	(REGBIT(r) & BREGS)
+#define	istreg(r)	(REGBIT(r) & (TAREGS|TBREGS))
 #define istnode(p)	(p->n_op==REG && istreg(p->n_rval))
 
 #define TBUSY		01000
@@ -274,6 +271,12 @@ extern	char *opst[];	/* a vector containing names for ops */
 #define TBSH		6
 #define TBLIDX(idx)	((idx) >> TBSH)
 #define MKIDX(tbl,mod)	(((tbl) << TBSH) | (mod))
+
+#ifndef	BREGS
+#define	BREGS	0
+#define	TBREGS	0
+#endif
+#define	REGBIT(x) (1 << (x))
 
 /* hardops definitions */
 struct hardops {

@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.48 2005/01/02 13:16:45 pj Exp $	*/
+/*	$Id: main.c,v 1.49 2005/01/11 14:27:08 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -34,6 +34,7 @@
 
 #include "pass1.h"
 #include "pass2.h"
+#include "external.h"
 
 int sflag, Oflag, nflag;
 int lflag, odebug, rdebug, radebug, vdebug, s2debug, udebug, x2debug;
@@ -199,6 +200,7 @@ main(int argc, char *argv[])
 		}
 
 	mkdope();
+	fregs = FREGS;	/* number of free registers */
 	lineno = 1;
 #ifdef GCC_COMPAT
 	gcc_init();
