@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.28 2003/06/09 15:55:57 ragge Exp $	*/
+/*	$Id: scan.l,v 1.29 2003/06/19 21:16:24 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -123,13 +123,13 @@ L?'(\\.|[^\\'])+'	{ charcon(); return(C_ICON); }
 {D}+"."{D}*({E})?{FS}?	{ return floatcon(); }
 
 L?\"(\\.|[^\\"])*\"	{	char *c = yytext;
-				int i;
+				int i = yyleng-2;
 
 				if (*c++ == 'L')
-					c++;
-				c[(i = strlen(c))-1] = 0; /* last " */
-				yylval.strp = tmpalloc(i);
-				memcpy(yylval.strp, c, i);
+					c++, i--;
+				c[i] = 0; /* last " */
+				yylval.stri.str = c;
+				yylval.stri.len = i;
 				return(C_STRING);
 			}
 
