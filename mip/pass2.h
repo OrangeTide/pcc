@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.57 2005/03/09 19:42:21 pj Exp $	*/
+/*	$Id: pass2.h,v 1.58 2005/03/09 20:57:11 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -367,3 +367,7 @@ struct cfgnode {
 	struct basicblock *bblock;
 };
 
+/*
+ * C compiler second pass extra defines.
+ */
+#define PHI (MAXOP + 1) /* Used in SSA trees */
