@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.88 2004/05/04 21:15:39 ragge Exp $	*/
+/*	$Id: table.c,v 1.89 2004/05/05 06:33:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1109,22 +1109,22 @@ struct optab table[] = {
 
 { OPLTYPE,	INAREG|INTAREG,
 	SOREG,		TSHORT|TUSHORT|TCHAR|TUCHAR,
-	SANY,		TANY,
 	SOREG,		TSHORT|TUSHORT|TCHAR|TUCHAR,
+	SANY,		TANY,
 		NAREG|NASR,	RESC1,
 		"ZU", },
 
 { OPLTYPE,	INAREG|INTAREG,
 	SNAME,	TUCHAR,
-	SANY,	TANY,
 	SNAME,	TUCHAR,
+	SANY,	TANY,
 		NAREG|NASR,	RESC1,
 		"	ldb A1,[ .long AL ]\n" },
 
 { OPLTYPE,	INAREG|INTAREG,
 	SNAME,	TCHAR,
-	SANY,	TANY,
 	SNAME,	TCHAR,
+	SANY,	TANY,
 		NAREG|NASR,	RESC1,
 		"	ldb A1,[ .long AL ]\n"
 		"	ash A1,033\n"
@@ -1151,7 +1151,7 @@ struct optab table[] = {
 	SAREG|STAREG|SNAME|SOREG,	TWORD,
 	SANY,	TWORD,
 	SAREG|STAREG|SNAME|SOREG,	TWORD,
-		NAREG|NASR,	RESC1,
+		NAREG|NASL,	RESC1,
 		"	movn A1,AL\n", },
 
 { UMINUS,	INAREG|INTAREG|FOREFF,
@@ -1240,3 +1240,5 @@ struct optab table[] = {
 
 { FREE,	FREE, FREE, FREE, FREE,	FREE, FREE, FREE, FREE, FREE, "help; I'm in trouble\n" },
 };
+
+int tablesize = sizeof(table)/sizeof(table[0]);
