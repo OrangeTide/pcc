@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.46 2003/09/09 11:17:21 ragge Exp $	*/
+/*	$Id: order.c,v 1.47 2003/09/09 11:22:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -383,8 +383,7 @@ setasg(NODE *p)
 	 */
 	if (!canaddr(r)) {
 		if (r->n_op == UNARY MUL) {
-			order(r, INTAREG);
-		/*	offstar(r->n_left); */
+			offstar(r->n_left);
 		} else
 			order(r, INAREG|INBREG);
 		return(1);
