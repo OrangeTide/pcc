@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.5 2004/06/21 08:19:46 ragge Exp $	*/
+/*	$Id: code.c,v 1.6 2004/12/20 18:27:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -44,6 +44,23 @@ defalign(int n)
 	sprintf(s, "	.align %d\n", n);
 	send_passt(IP_ASM, s);
 }
+
+/*
+ * define the current location as the name p->sname
+ */
+void
+defnam(struct symtab *p)
+{
+	char *c = p->sname;
+
+#ifdef GCC_COMPAT
+	c = gcc_findname(p);
+#endif
+	if (p->sclass == EXTDEF)
+		printf("	.globl %s\n", c);
+	printf("%s:\n", c);
+}
+
 
 /*
  * code for the end of a function

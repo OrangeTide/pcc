@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.40 2004/12/02 21:33:50 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.41 2004/12/20 18:27:10 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -170,12 +170,10 @@
 /*
  * Location counters
  */
-#define PROG		0		/* program segment */
-#define DATA		1		/* read-write data segment */
-#define RDATA		2		/* read-only data segment */
-#define ADATA		3		/* read-write array data segment */
-#define STRNG		4		/* read-only string segment */
-#define STAB		5		/* symbol table segment */
+#define PROG		0		/* (ro) program segment */
+#define DATA		1		/* (rw) data segment */
+#define RDATA		2		/* (ro) data segment */
+#define STRNG		3		/* (ro) string segment */
 
 
 /*

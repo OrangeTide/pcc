@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.33 2004/12/11 09:13:41 ragge Exp $	*/
+/*	$Id: local2.c,v 1.34 2004/12/20 18:27:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -41,15 +41,6 @@ lineid(int l, char *fn)
 {
 	/* identify line l and file fn */
 	printf("#	line %d, file %s\n", l, fn);
-}
-
-void
-defname(char *name, int visib)
-{
-	printf("	.align 4\n");
-	if (visib)
-		printf("	.globl %s\n", name);
-	printf("%s:\n", name);
 }
 
 void
@@ -135,7 +126,7 @@ eoftn(int regs, int autos, int retlab)
 }
 
 static char *loctbl[] =
-    { "text", "data", "section .rodata", "data", "text", "stab" };
+    { "text", "data", "section .rodata", "section .rodata" };
 
 void
 setlocc(int locctr)

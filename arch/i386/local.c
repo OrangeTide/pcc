@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.21 2004/12/13 16:09:26 ragge Exp $	*/
+/*	$Id: local.c,v 1.22 2004/12/20 18:27:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -470,3 +470,13 @@ lcommdec(struct symtab *q)
 	else
 		printf("	.lcomm " LABFMT ",0%o\n", q->soffset, off);
 }
+
+/*
+ * print a (non-prog) label.
+ */
+void
+deflab1(int label)
+{
+	printf(LABFMT ":\n", label);
+}
+
