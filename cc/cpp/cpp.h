@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.4 2004/08/29 12:19:34 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.5 2004/09/02 21:33:33 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -44,7 +44,14 @@
 
 typedef unsigned char usch;
 extern FILE *obuf;
+#if 0
+#ifdef OLD
+extern char *yytext;
+#else
 extern usch *yytext;
+#endif
+#endif
+extern usch yystr[];
 extern usch *stringbuf;
 
 extern	int	trulvl;
