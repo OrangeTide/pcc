@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.24 2003/07/03 20:52:27 ragge Exp $	*/
+/*	$Id: main.c,v 1.25 2003/07/05 09:00:11 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -35,6 +35,9 @@
 
 int sflag, Oflag, nflag;
 int lflag, odebug, rdebug, radebug, vdebug, s2debug, udebug, x2debug;
+#if !defined(MULTIPASS) || defined(PASST)
+int iTflag, oTflag;
+#endif
 int xdebug, mdebug, sdebug;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
@@ -100,7 +103,7 @@ main(int argc, char *argv[])
 	extern char *release;
 
 	offsz = caloff();
-	while ((ch = getopt(argc, argv, "VlwX:Z:W:sO")) != -1)
+	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:")) != -1)
 		switch (ch) {
 #if !defined(MULTIPASS) || defined(PASS1)
 		case 'X':
@@ -119,6 +122,19 @@ main(int argc, char *argv[])
 				case 'n': ++nflag; break;
 				default:
 					errx(1, "unknown X flag '%c'",
+					    optarg[-1]);
+				}
+#endif
+			break;
+#if !defined(MULTIPASS) || defined(PASST)
+		case 'T':
+			while (*optarg)
+				switch (*optarg++) {
+				case 'i': ++iTflag; break;
+				case 'o': ++oTflag; break;
+				case 'n': ++nflag; break;
+				default:
+					errx(1, "unknown T flag '%c'",
 					    optarg[-1]);
 				}
 #endif
