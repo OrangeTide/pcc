@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.10 2005/01/31 15:08:56 ragge Exp $	*/
+/*	$Id: order.c,v 1.11 2005/03/02 15:34:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -245,6 +245,7 @@ gencall(NODE *p, NODE *prev)
 
 	switch (o) {
 	case CALL:
+		/* swap arguments on some hardop-converted insns */
 		/* Normal call, just push args and be done with it */
 		p->n_op = UCALL;
 //printf("call\n");

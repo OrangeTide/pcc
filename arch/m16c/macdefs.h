@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.10 2005/01/29 16:06:46 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.11 2005/03/02 15:34:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -150,7 +150,7 @@ typedef long long OFFSZ;
 #define	BREGS	(REGBIT(A0)|REGBIT(A1))
 #define	TBREGS	(REGBIT(A0))
 
-#define MYREADER(p)
+#define MYREADER(p) myreader(p)
 #define	MYP2TREE(p) myp2tree(p)
 
 #if 0
