@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.17 2004/10/02 08:01:15 ragge Exp $	*/
+/*	$Id: local.c,v 1.18 2004/10/02 14:54:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -108,6 +108,8 @@ clocal(NODE *p)
 				break;
 			if (l->n_right->n_op == ICON) {
 				r = l->n_left->n_left;
+				/* Type must be correct */
+				r->n_type = l->n_left->n_type;
 				nfree(l->n_left);
 				l->n_left = r;
 			}
