@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.33 2004/12/20 14:14:37 pj Exp $	*/
+/*	$Id: cc.c,v 1.34 2004/12/20 14:15:45 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -92,7 +92,6 @@ void idexit(int);
 char *gettmp();
 # define CHSPACE 1000
 char	ts[CHSPACE+50];
-char	*tsp = ts;
 char	*av[MAXAV];
 char	*clist[MAXFIL];
 char	*llist[MAXLIB];
@@ -128,7 +127,6 @@ int
 main(int argc, char *argv[])
 {
 	char *t, *u;
-	char *savetsp;
 	char *assource;
 	char **pv, *ptemp[MAXOPT], **pvt;
 	int nc, nl, i, j, c, f20, nxo, na;
@@ -315,7 +313,6 @@ main(int argc, char *argv[])
 		}
 		if (pflag)
 			tmp4 = setsuf(clist[i], 'i');
-		savetsp = tsp;
 		na = 0;
 		av[na++] = "cpp";
 		av[na++] = "-D__PCC__=" MKS(PCC_MAJOR);
@@ -351,7 +348,6 @@ main(int argc, char *argv[])
 		if (gflag)
 			av[na++] = "-g";
 		av[na++] = tmp4;
-		tsp = savetsp;
 		if (pflag || exfail)
 			{
 			cflag++;
