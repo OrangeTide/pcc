@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.81 2004/05/02 10:19:11 ragge Exp $	*/
+/*	$Id: reader.c,v 1.82 2004/05/02 21:41:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -511,9 +511,23 @@ sw:		switch (rv & LMASK) {
 		p->n_su = rv;
 		break;
 
+	case UMUL:
+		/*
+		 * If we end up here with an UMUL, try to fold it into
+		 * an OREG anyway.
+		 */
+		if ((cookie & INTAREG) == 0)
+			comperr("bad umul!");
+		offstar(p->n_left);
+		p->n_op = OREG;
+		if ((rv = findleaf(p, cookie)) < 0)
+			comperr("bad findleaf"); /* XXX */
+		p->n_op = UMUL;
+		p->n_su = rv | LOREG;
+		break;
+
 	case PCONV:
 	case SCONV:
-	case UMUL:
 	case INIT:
 	case GOTO:
 	case FUNARG:
