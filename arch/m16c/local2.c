@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.16 2005/03/02 15:34:36 ragge Exp $	*/
+/*	$Id: local2.c,v 1.17 2005/03/03 09:19:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -143,12 +143,12 @@ hopcode(int f, int o)
 
 char *
 rnames[] = {  /* keyed to register number tokens */
-	"R0", "R2", "R1", "R3", "A0", "A1", "FB", "SP",
+	"R0", "R2", "A0", "R1", "R3", "A1", "FB", "SP",
 };
 
 int rstatus[] = {
-	STAREG|SAREG, STAREG|SAREG, SAREG, SAREG,
-	STBREG|SBREG, SBREG, 0, 0,
+	STAREG|SAREG, STAREG|SAREG, STBREG|SBREG, SAREG, SAREG,
+	SBREG, 0, 0,
 };
 
 /*
@@ -266,6 +266,10 @@ zzzcode(NODE *p, int c)
 
 	case 'F': /* long comparisions */
 		twollcomp(p);
+		break;
+
+	case 'G':
+		printf("R0R2");
 		break;
 
 	default:
