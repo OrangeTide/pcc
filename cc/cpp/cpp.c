@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.12 2004/08/28 15:08:47 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.13 2004/08/28 15:19:57 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -250,17 +250,17 @@ main(int argc, char **argv)
 		 * Manually move in the predefined macros.
 		 */
 		nl = lookup("__TIME__", ENTER);
-		savch('"');  n[19] = 0; savstr(&n[11]); savch('"');
+		savch(0); savch('"');  n[19] = 0; savstr(&n[11]); savch('"');
 		savch(OBJCT);
 		nl->value = stringbuf-1;
 
 		nl = lookup("__DATE__", ENTER);
-		savch('"'); n[24] = n[11] = 0; savstr(&n[4]); savstr(&n[20]);
-		savch('"'); savch(OBJCT);
+		savch(0); savch('"'); n[24] = n[11] = 0; savstr(&n[4]);
+		savstr(&n[20]); savch('"'); savch(OBJCT);
 		nl->value = stringbuf-1;
 
 		nl = lookup("__STDC__", ENTER);
-		savch('1'); savch(OBJCT);
+		savch(0); savch('1'); savch(OBJCT);
 		nl->value = stringbuf-1;
 	}
 
