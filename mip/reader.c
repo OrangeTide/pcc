@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.116 2005/02/05 14:39:07 ragge Exp $	*/
+/*	$Id: reader.c,v 1.117 2005/02/05 15:55:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -114,7 +114,7 @@ cktree(NODE *p)
 		cerror("not logop branch");
 	if ((dope[p->n_op] & ASGOPFLG) && p->n_op != RETURN)
 		cerror("asgop %d slipped through", p->n_op);
-	if (p->n_op ==CALL || p->n_op == ADDROF)
+	if (p->n_op ==CALL)
 		cerror("non-UCALL node");
 }
 #endif

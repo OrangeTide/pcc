@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.129 2005/02/05 14:39:08 ragge Exp $	*/
+/*	$Id: trees.c,v 1.130 2005/02/05 15:55:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -383,6 +383,7 @@ buildtree(int o, NODE *l, NODE *r)
 				nfree(p);
 				p = l->n_left;
 				nfree(l);
+			case TEMP:
 			case NAME:
 				p->n_type = INCREF(l->n_type);
 				p->n_qual = INCQAL(l->n_qual);
