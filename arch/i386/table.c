@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.17 2004/05/25 15:52:36 ragge Exp $	*/
+/*	$Id: table.c,v 1.18 2004/05/26 18:17:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -86,6 +86,13 @@ struct optab table[] = {
 	SAREG|STAREG,	TWORD,
 		NASL|NAREG,	RESC1,
 		"	movzwl ZL,A1\n", },
+
+/* convert int to long long */
+{ SCONV,	INTAREG,
+	SAREG|STAREG,	TWORD,
+	SAREG|STAREG,	TLONGLONG,
+		NSPECIAL|NAREG|NASL,	RESC1,
+		"	cltd\n", },
 
 /* convert int to unsigned long long */
 { SCONV,	INTAREG,
@@ -238,19 +245,19 @@ struct optab table[] = {
 		"	movb ZR,ZL\n", },
 
 /*
- * DIV/MUL 
+ * DIV/MOD/MUL 
  */
 { DIV,	INTAREG,
-	STAREG,		TWORD|TPOINT,
-	SNAME|SOREG,	TWORD|TPOINT,
-		0,	RLEFT,
+	STAREG,				TWORD|TPOINT,
+	STAREG|SAREG|SNAME|SOREG,	TWORD|TPOINT,
+		NSPECIAL,		RLEFT,
 		"	cltd\n	idivl AR\n", },
 
-{ DIV,	INTAREG,
-	STAREG,		TWORD|TPOINT,
-	SCON,		TWORD|TPOINT,
-		0,	RLEFT,
-		"	movl AR,%ecx\n	cltd\n	idivl %ecx\n", },
+{ MOD,	INTAREG,
+	STAREG,				TWORD|TPOINT,
+	STAREG|SAREG|SNAME|SOREG,	TWORD|TPOINT,
+		NSPECIAL|NAREG,		RESC1,
+		"	cltd\n	idivl AR\n", },
 
 { MUL,	INTAREG,
 	STAREG,		TWORD|TPOINT,

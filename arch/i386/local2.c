@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.17 2004/05/25 15:52:36 ragge Exp $	*/
+/*	$Id: local2.c,v 1.18 2004/05/26 18:17:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -709,5 +709,6 @@ struct hardops hardops[] = {
 	{ DIV, ULONGLONG, "__udivdi3" },
 	{ MOD, LONGLONG, "__moddi3" },
 	{ MOD, ULONGLONG, "__umoddi3" },
+	{ STASG, PTR+STRTY, "memcpy" },
 	{ 0 },
 };
