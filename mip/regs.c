@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.37 2005/01/20 21:24:14 ragge Exp $	*/
+/*	$Id: regs.c,v 1.38 2005/01/31 15:08:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -128,7 +128,7 @@ movenode(NODE *p, int reg)
 	q->n_type = p->n_type;
 	q->n_rval = q->n_rall = reg;
 	q->n_left = p;
-	if ((q->n_su = finduni(q, 0)) == -1)
+	if ((q->n_su = finduni(q, INTAREG|INTBREG)) == -1)
 		comperr("movenode failed, subnode=%p", p);
 	q->n_su |= LREG;
 	return q;
