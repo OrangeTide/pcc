@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.35 2003/08/16 12:25:46 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.36 2003/11/13 15:59:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -188,6 +188,8 @@ void *permalloc(int size);
 void *tmpalloc(int size);
 void tmpfree(void);
 char *newstring(char *, int len);
+
+void tprint(FILE *, TWORD, TWORD);
 
 /* pass t communication subroutines */
 void topt_compile(struct interpass *);
