@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.8 2003/07/03 13:53:52 ragge Exp $	*/
+/*	$Id: node.h,v 1.9 2003/07/06 18:12:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -89,8 +89,13 @@ typedef struct node {
 #define	n_sp	n_f.n_u.n_r._sp
 #define	n_fcon	n_f._fcon
 #define	n_dcon	n_f._dcon
+#ifdef notyet
 #define	n_lcon	n_f._lcon
 #define	n_llcon	n_f._llcon
+#else
+#define	n_lcon	n_f.n_u.n_l._lval
+#define	n_llcon	n_f.n_u.n_l._lval
+#endif
 
 /*
  * Node types.
