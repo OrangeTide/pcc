@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.125 2004/12/11 09:12:36 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.126 2004/12/12 13:13:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1721,8 +1721,11 @@ tyreduce(NODE *p, struct tylnk **tylkp, int *ntdim)
 		} else {
 			dim.ddim = p->n_right->n_lval;
 			nfree(p->n_right);
+#ifdef notdef
+	/* XXX - check dimensions at usage time */
 			if (dim.ddim == 0 && p->n_left->n_op == LB)
 				uerror("null dimension");
+#endif
 		}
 		break;
 	}
@@ -1926,8 +1929,12 @@ chk2(TWORD type, union dimfun *dsym, union dimfun *ddef)
 	while (type > BTMASK) {
 		switch (type & TMASK) {
 		case ARY:
-			if ((dsym++)->ddim != (ddef++)->ddim)
+			/* may be declared without dimension */
+			if (dsym->ddim == 0)
+				dsym->ddim = ddef->ddim;
+			if (ddef->ddim && dsym->ddim != ddef->ddim)
 				return 1;
+			dsym++, ddef++;
 			break;
 		case FTN:
 			/* old-style function headers with function pointers
