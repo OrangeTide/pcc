@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.84 2003/12/15 22:02:56 ragge Exp $	*/
+/*	$Id: local2.c,v 1.85 2004/04/25 21:25:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1111,6 +1111,10 @@ adrput(FILE *fp, NODE *p)
 
 	case REG:
 		fputs(rnames[p->n_rval], fp);
+		return;
+
+	case MOVE: /* Specially generated node */
+		fputs(rnames[p->n_rall], fp);
 		return;
 
 	default:
