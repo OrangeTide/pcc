@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.105 2003/07/06 18:12:46 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.106 2003/07/07 17:51:38 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -648,32 +648,28 @@ statement:	   e ';' { ecomp( $1 ); }
 			flostat |= FCONT;
 			goto rch;
 		}
-		|  C_RETURN  ';'
-			={  retstat |= NRETVAL;
-			    branch( retlab );
+		|  C_RETURN  ';' {
+			retstat |= NRETVAL;
+			branch(retlab);
+			if (cftnsp->stype != VOID && cftnsp->stype != VOID+FTN)
+				uerror("return value required");
 			rch:
-			    if( !reached ) werror( "statement is not reached");
-			    reached = 0;
-			    }
+			if (!reached)
+				werror( "statement is not reached");
+			reached = 0;
+		}
 		|  C_RETURN e  ';' {
 			register NODE *temp;
 
 			spname = cftnsp;
 			temp = buildtree( NAME, NIL, NIL );
-			if ($2->n_type == UNDEF && temp->n_type == TVOID) {
-				ecomp($2);
-				retstat |= NRETVAL;
-			} else if ($2->n_type!=UNDEF && temp->n_type!=TVOID) {
-				temp->n_type = DECREF(temp->n_type);
-				temp = buildtree(RETURN, temp, $2);
-				/* now, we have the type of the RHS correct */
-				nfree(temp->n_left);
-				ecomp(buildtree(FORCE, temp->n_right, NIL));
-				retstat |= RETVAL;
-			} else if ($2->n_type == UNDEF) {
-				uerror("value of void expression taken");
-			} else
-				uerror("void function cannot return a value");
+			temp->n_type = DECREF(temp->n_type);
+			temp = buildtree(RETURN, temp, $2);
+
+			/* now, we have the type of the RHS correct */
+			nfree(temp->n_left);
+			ecomp(buildtree(FORCE, temp->n_right, NIL));
+			retstat |= RETVAL;
 			nfree(temp);
 			branch(retlab);
 			reached = 0;
