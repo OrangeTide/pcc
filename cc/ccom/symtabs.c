@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.8 2003/06/16 22:29:50 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.9 2003/06/19 14:09:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -190,9 +190,10 @@ lookup(char *key, int ttype)
 	 * The local symbols are kept in a simple linked list.
 	 * Check this list first.
 	 */
-	for (sym = tmpsyms[type]; sym; sym = sym->snext)
-		if (sym->sname == key)
-			return sym;
+	if (blevel > 0)
+		for (sym = tmpsyms[type]; sym; sym = sym->snext)
+			if (sym->sname == key)
+				return sym;
 
 	switch (numsyms[type]) {
 	case 0:
@@ -234,6 +235,12 @@ lookup(char *key, int ttype)
 	else if (ttype & SNOCREAT)
 		return NULL;
 
+#ifdef PCC_DEBUG
+	if (ddebug)
+		printf("	adding %s as %s at level %d\n",
+		    key, uselvl ? "temp" : "perm", blevel);
+#endif
+
 	/*
 	 * Insert into the linked list, if feasible.
 	 */
@@ -252,12 +259,6 @@ lookup(char *key, int ttype)
 	 */
 	if (ttype == (STEMP|SNORMAL))
 		ttype = SNORMAL;
-
-#ifdef PCC_DEBUG
-		if (ddebug)
-			printf("	adding %s as %s\n",
-			    key, ttype & STEMP ? "temp" : "perm");
-#endif
 
 	for (cix = 0; (ix & 1) == 0; ix >>= 1, cix++)
 		;
@@ -308,6 +309,10 @@ symclear(int level)
 {
 	int i;
 
+#ifdef PCC_DEBUG
+	if (ddebug)
+		printf("symclear(%d)\n", level);
+#endif
 	if (level < 1) {
 		for (i = 0; i < NSTYPES; i++)
 			tmpsyms[i] = 0;
