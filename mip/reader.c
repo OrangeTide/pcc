@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.73 2004/04/18 12:14:35 ragge Exp $	*/
+/*	$Id: reader.c,v 1.74 2004/04/20 15:49:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -653,8 +653,10 @@ gencode(NODE *p, int cookie)
 		if ((p->n_su & RMASK) == ROREG)
 			canon(p);
 	}
+#if 0
 	if (!allo(p, q))
 		comperr("failed register allocation, node %p", p);
+#endif
 	expand(p, cookie, q->cstring);
 	reclaim(p, q->rewrite, cookie);
 }
