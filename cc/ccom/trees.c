@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.88 2003/09/04 07:47:14 ragge Exp $	*/
+/*	$Id: trees.c,v 1.89 2003/09/04 20:46:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -311,6 +311,10 @@ buildtree(int o, NODE *l, NODE *r)
 				p->n_df = NULL;
 				p->n_type = ENUMTY;
 				p->n_op = ICON;
+			}
+			if (sp->sflags & STNODE) {
+				p->n_lval = sp->soffset;
+				p->n_op = TEMP;
 			}
 			break;
 
@@ -867,15 +871,27 @@ psize(NODE *p)
  * convert an operand of p
  * f is either CVTL or CVTR
  * operand has type int, and is converted by the size of the other side
+ * convert is called when an integer is to be added to a pointer, for
+ * example in arrays or structures.
  */
 NODE *
 convert(NODE *p, int f)
 {
 	NODE *q, *r, *s;
 
-	q = (f == CVTL) ? p->n_left : p->n_right;
-
-	s = bpsize(f == CVTL ? p->n_right : p->n_left);
+	if (f == CVTL) {
+		q = p->n_left;
+		s = p->n_right;
+	} else {
+		q = p->n_right;
+		s = p->n_left;
+	}
+	r = btsize(DECREF(s->n_type), s->n_df, s->n_sue);
+	s = bpsize(s);
+printf("convert: bpsize node %lld\n", s->n_lval);
+fwalk(p, eprint, 0);
+	if (r->n_op == ICON && r->n_lval != s->n_lval)
+		cerror("r->n_lval != s->n_lval: %lld != %lld", r->n_lval, s->n_lval);
 	r = block(PMCONV, q, s, INT, 0, MKSUE(INT));
 	r = clocal(r);
 	/*
