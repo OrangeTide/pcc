@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.30 2003/09/09 09:41:32 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.31 2003/11/12 12:13:11 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -208,6 +208,10 @@ int chkmatch(NODE *, int, int, int);
 int match(NODE *p, int cookie);
 int nmatch(NODE *p, int what);
 int special(NODE *, int);
+int setasg(NODE *, int);
+int setuni(NODE *, int);
+int sucomp(NODE *);
+void geninsn(NODE *, int cookie);
 
 extern	char *rnames[];
 
