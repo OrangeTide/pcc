@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.80 2003/08/16 12:25:46 ragge Exp $	*/
+/*	$Id: trees.c,v 1.81 2003/08/18 09:04:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -782,7 +782,7 @@ stref(NODE *p)
 	if (off != 0) {
 		p = block(PLUS, p, offcon(off, t, d, sue), t, d, sue);
 		p->n_qual = q;
-		p = clocal(p);
+		p = optim(p);
 	}
 
 	p = buildtree(UNARY MUL, p, NIL);

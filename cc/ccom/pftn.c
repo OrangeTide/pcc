@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.97 2003/08/14 07:54:34 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.98 2003/08/18 09:04:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1944,6 +1944,11 @@ typenode(NODE *p)
 			if (noun != UNDEF)
 				goto bad;
 			noun = p->n_type;
+			break;
+		case VOID:
+			if (noun != UNDEF || adj != INT)
+				goto bad;
+			adj = noun = VOID;
 			break;
 		default:
 			goto bad;
