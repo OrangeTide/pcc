@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.72 2003/08/03 21:15:59 ragge Exp $	*/
+/*	$Id: trees.c,v 1.73 2003/08/04 10:59:57 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1976,6 +1976,9 @@ send_passt(int type, ...)
 	case IP_DEFNAM:
 		ip->ip_name = va_arg(ap, char *);
 		ip->ip_vis = va_arg(ap, int);
+		break;
+	case IP_ASM:
+		ip->ip_asm = va_arg(ap, char *);
 		break;
 	default:
 		cerror("bad send_passt type %d", type);

@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.29 2003/07/30 16:18:44 ragge Exp $	*/
+/*	$Id: code.c,v 1.30 2003/08/04 10:59:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -145,17 +145,20 @@ void
 genswitch(struct swents **p, int n)
 {
 	int i;
+	char *s;
 
 	/* simple switch code */
 	for (i = 1; i <= n; ++i) {
 		/* already in 1 */
+		s = (isinlining ? permalloc(40) : tmpalloc(40));
 		if (p[i]->sval >= 0 && p[i]->sval <= 0777777)
-			printf("	cain 1,0%llo\n", p[i]->sval);
+			sprintf(s, "	cain 1,0%llo", p[i]->sval);
 		else if (p[i]->sval < 0)
-			printf("	camn 1,[ .long -0%llo ]\n", -p[i]->sval);
+			sprintf(s, "	camn 1,[ .long -0%llo ]", -p[i]->sval);
 		else
-			printf("	camn 1,[ .long 0%llo ]\n", p[i]->sval);
-		printf("	jrst L%d\n", p[i]->slab);
+			sprintf(s, "	camn 1,[ .long 0%llo ]", p[i]->sval);
+		send_passt(IP_ASM, s);
+		branch(p[i]->slab);
 	}
 	if (p[0]->slab > 0)
 		branch(p[0]->slab);

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.38 2003/08/04 09:15:03 ragge Exp $	*/
+/*	$Id: reader.c,v 1.39 2003/08/04 10:59:57 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -133,6 +133,9 @@ pass2_compile(struct interpass *ip)
 		break;
 	case IP_DEFNAM:
 		defname(ip->ip_name, ip->ip_vis);
+		break;
+	case IP_ASM:
+		printf("%s\n", ip->ip_asm);
 		break;
 	default:
 		cerror("pass2_compile %d", ip->type);

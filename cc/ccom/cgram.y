@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.114 2003/08/03 15:00:37 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.115 2003/08/04 10:59:56 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -682,7 +682,7 @@ statement:	   e ';' { ecomp( $1 ); }
 		|  label statement
 		;
 
-asmstatement:	   C_ASM '(' string ')' { puts($3.str); }
+asmstatement:	   C_ASM '(' string ')' { send_passt(IP_ASM, $3.str); }
 		;
 
 label:		   C_NAME ':' { deflabel($1); reached = 1; }
