@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.53 2003/08/16 12:25:46 ragge Exp $	*/
+/*	$Id: local.c,v 1.54 2003/08/18 12:36:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -304,17 +304,18 @@ rmpc:			l->n_type = p->n_type;
 		siz = p->n_sue->suesize/SZCHAR;
 		l = p->n_left;
 		r = p->n_right;
-		if (l->n_type == STRTY) {
+		if (l->n_type == STRTY || l->n_type == UNIONTY) {
 			if (l->n_op == UNARY MUL) {
 				p->n_left = l->n_left;
 				nfree(l);
 				l = p->n_left;
 			} else {
-				l = block(UNARY AND, l, NIL, INCREF(STRTY),
+				l = block(UNARY AND, l, NIL, INCREF(l->n_type),
 				    0, MKSUE(INT));
 			}
 		}
-		if (l->n_type != INCREF(STRTY) || r->n_type != INCREF(STRTY))
+		if ((l->n_type != (STRTY+PTR) && l->n_type != (UNIONTY+PTR)) ||
+		    (r->n_type != (STRTY+PTR) && r->n_type != (UNIONTY+PTR)))
 			cerror("bad stasg, l = %o, r = %o", l->n_type, r->n_type);
 		q = newfun("__structcpy", p->n_type);
 
