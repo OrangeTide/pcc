@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.42 2004/06/05 08:22:42 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.43 2004/06/08 21:07:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -300,5 +300,6 @@ extern int regblk[REGSZ];
 regcode regalloc(NODE *, struct optab *, int);
 regcode alloregs(NODE *p, int wantreg);
 NODE *movenode(NODE *p, int reg);
+regcode getregs(int wantreg, int nreg);
 void freeregs(regcode regc);
-
+int mayuse(int reg, TWORD type);

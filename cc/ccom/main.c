@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.42 2004/05/16 09:34:34 ragge Exp $	*/
+/*	$Id: main.c,v 1.43 2004/06/08 21:07:25 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -202,6 +202,7 @@ main(int argc, char *argv[])
 	btdim[INT] = SZINT;
 	btdim[FLOAT] = SZFLOAT;
 	btdim[DOUBLE] = SZDOUBLE;
+	btdim[LDOUBLE] = SZLDOUBLE;
 	btdim[LONG] = SZLONG;
 	btdim[LONGLONG] = SZLONGLONG;
 	btdim[SHORT] = SZSHORT;

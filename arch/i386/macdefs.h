@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.7 2004/05/25 15:52:36 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.8 2004/06/08 21:07:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -47,6 +47,7 @@
 #define SZINT		32
 #define SZFLOAT		32
 #define SZDOUBLE	64
+#define SZLDOUBLE	96
 #define SZLONG		32
 #define SZSHORT		16
 #define SZPOINT		32
@@ -59,6 +60,7 @@
 #define ALINT		32
 #define ALFLOAT		32
 #define ALDOUBLE	32
+#define ALLDOUBLE	32
 #define ALLONG		32
 #define ALLONGLONG	32
 #define ALSHORT		16

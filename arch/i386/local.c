@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.12 2004/06/05 08:22:42 ragge Exp $	*/
+/*	$Id: local.c,v 1.13 2004/06/08 21:07:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -242,9 +242,9 @@ cendarg()
 int
 cisreg(TWORD t)
 {
-	if (t == LONGLONG || t == ULONGLONG)
-		return 0; /* XXX - fix reg assignment in pftn.c */
-	return(1);
+	if (t == INT || t == UNSIGNED || t == LONG || t == ULONG)
+		return(1);
+	return 0; /* XXX - fix reg assignment in pftn.c */
 }
 
 /*
@@ -420,6 +420,7 @@ ctype(TWORD type)
 
 	case ULONG:
 		MODTYPE(type,UNSIGNED);
+
 	}
 	return (type);
 }

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.25 2004/06/05 08:22:42 ragge Exp $	*/
+/*	$Id: local2.c,v 1.26 2004/06/08 21:07:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -618,7 +618,7 @@ adrput(FILE *io, NODE *p)
 		return;
 
 	default:
-		comperr("illegal address, op %d", p->n_op);
+		comperr("illegal address, op %d, node %p", p->n_op, p);
 		return;
 
 	}
@@ -792,6 +792,10 @@ struct hardops hardops[] = {
 	{ DIV, ULONGLONG, "__udivdi3" },
 	{ MOD, LONGLONG, "__moddi3" },
 	{ MOD, ULONGLONG, "__umoddi3" },
+	{ RS, LONGLONG, "__ashrdi3" },
+	{ RS, ULONGLONG, "__lshrdi3" },
+	{ LS, LONGLONG, "__ashldi3" },
+	{ LS, ULONGLONG, "__ashldi3" },
 	{ STASG, PTR+STRTY, "memcpy" },
 	{ STASG, PTR+UNIONTY, "memcpy" },
 	{ 0 },
