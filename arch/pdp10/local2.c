@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.79 2003/09/12 14:53:42 ragge Exp $	*/
+/*	$Id: local2.c,v 1.80 2003/09/12 15:14:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1150,7 +1150,7 @@ gencall(NODE *p, int cookie)
 
 	temp = p->n_right ? argsize(p->n_right) : 0;
 
-	if (p->n_op == STCALL || p->n_op == UNARY STCALL) {
+	if (p->n_op == STCALL || p->n_op == USTCALL) {
 		/* set aside room for structure return */
 
 		temp1 = p->n_stsize > temp ? p->n_stsize : temp;
@@ -1176,7 +1176,7 @@ gencall(NODE *p, int cookie)
 		order(p1, INAREG);
 	}
 
-	p->n_op = UNARY CALL;
+	p->n_op = UCALL;
 	m = match(p, INTAREG|INTBREG);
 
 	/* Remove args (if any) from stack */

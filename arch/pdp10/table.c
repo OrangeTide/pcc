@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.78 2003/09/12 14:53:42 ragge Exp $	*/
+/*	$Id: table.c,v 1.79 2003/09/12 15:14:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -289,21 +289,21 @@ struct optab table[] = {
  * Subroutine calls.
  */
 
-{ UNARY CALL,	INTAREG,
+{ UCALL,	INTAREG,
 	SCON,	TANY,
 	SANY,	TWORD|TCHAR|TUCHAR|TSHORT|TUSHORT|TFLOAT|TDOUBLE|TLL|TPOINT,
 	SCON,	TANY,
 		NAREG|NASL,	RESC1,	/* should be 0 */
 		"	pushj 017,AL\n", },
 
-{ UNARY CALL,	INTAREG,
+{ UCALL,	INTAREG,
 	SAREG|STAREG,	TANY,
 	SANY,	TWORD|TCHAR|TUCHAR|TSHORT|TUSHORT|TFLOAT|TDOUBLE|TLL|TPOINT,
 	SAREG|STAREG,	TANY,
 		NAREG|NASL,	RESC1,	/* should be 0 */
 		"	pushj 017,(AL)\n", },
 
-{ UNARY CALL,	INTAREG,
+{ UCALL,	INTAREG,
 	SNAME|SOREG,	TANY,
 	SANY,	TWORD|TCHAR|TUCHAR|TSHORT|TUSHORT|TFLOAT|TDOUBLE|TLL|TPOINT,
 	SNAME|SOREG,	TANY,

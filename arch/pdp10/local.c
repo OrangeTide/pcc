@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.58 2003/09/12 14:53:42 ragge Exp $	*/
+/*	$Id: local.c,v 1.59 2003/09/12 15:14:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -279,7 +279,7 @@ rmpc:			l->n_type = p->n_type;
                 return(buildtree(o==PMCONV?MUL:DIV, p->n_left, p->n_right));
 
 	case RS:
-	case ASG RS:
+	case RSEQ:
 		/* convert >> to << with negative shift count */
 		/* Beware! constant shifts will be converted back in optim() */
 
@@ -293,7 +293,7 @@ rmpc:			l->n_type = p->n_type;
 		if (p->n_op == RS)
 			p->n_op = LS;
 		else
-			p->n_op = ASG LS;
+			p->n_op = LSEQ;
 		break;
 
 	case UMUL: /* Convert structure assignment to memcpy() */

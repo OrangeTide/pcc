@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.49 2003/09/12 14:53:42 ragge Exp $	*/
+/*	$Id: order.c,v 1.50 2003/09/12 15:14:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -141,8 +141,8 @@ sucomp(NODE *p)
 		return;
 	case UTYPE:
 		switch (o) {
-		case UNARY CALL:
-		case UNARY STCALL:
+		case UCALL:
+		case USTCALL:
 			p->n_su = fregs;  /* all regs needed */
 			return;
 		}
@@ -172,7 +172,6 @@ sucomp(NODE *p)
 	case INCR:
 	case DECR:
 	case MINUS:
-	case MINUSEQ:
 	case EQ:
 	case NE:
 	case LE:
