@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.63 2003/08/15 11:17:52 ragge Exp $	*/
+/*	$Id: local2.c,v 1.64 2003/08/15 13:19:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -558,7 +558,7 @@ signe:			if (issigned) {
 			}
 			return;
 		}
-		p->n_lval /= 2;
+		p->n_lval /= (ischar ? 4 : 2);
 	} else {
 		if (off != 0)
 			cerror("emitshort with off");
