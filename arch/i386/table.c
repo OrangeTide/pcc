@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.43 2005/01/13 15:26:15 ragge Exp $	*/
+/*	$Id: table.c,v 1.44 2005/01/23 15:35:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -93,7 +93,7 @@ struct optab table[] = {
 	SAREG|STAREG,	TCHAR,
 	SAREG|STAREG,	TSHORT,
 		NASL|NAREG,	RESC1,
-		"	movzbw ZL,Z1\n", },
+		"	movsbw ZL,Z1\n", },
 
 /* convert char to unsigned short. */
 { SCONV,	INTAREG,
