@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.12 2003/02/02 14:50:22 ragge Exp $	*/
+/*	$Id: main.c,v 1.13 2003/05/30 21:26:12 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -172,7 +172,6 @@ main(int argc, char *argv[])
 	lineno = 1;
 
 	tinit();
-	mkdope();
 
 	/* dimension table initialization */
 
