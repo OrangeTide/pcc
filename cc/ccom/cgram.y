@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.128 2004/05/29 07:53:27 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.129 2004/05/29 14:11:49 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -513,8 +513,9 @@ struct_declarator: declarator {
 				$3 = 1;
 			}
 			if ($1->n_op == NAME) {
-				$1->n_sp = getsymtab($1->n_name, SMOSNAME);
-				defid( tymerge($<nodep>0,$1), FIELD|$3 );
+				tymerge($<nodep>0, $1);
+				$1->n_sp = getsymtab((char *)$1->n_sp,SMOSNAME);
+				defid($1, FIELD|$3);
 				nfree($1);
 			} else
 				uerror("illegal declarator");

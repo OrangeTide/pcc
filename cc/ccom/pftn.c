@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.109 2004/05/29 07:53:27 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.110 2004/05/29 14:11:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -259,6 +259,9 @@ defid(NODE *q, int class)
 			++dsym;
 			++ddef;
 		} else if (ISFTN(temp)) {
+			/* add a late-defined prototype here */
+			if (cftnsp == NULL && dsym->dfun == NULL)
+				dsym->dfun = ddef->dfun;
 			if (!oldstyle && ddef->dfun != NULL &&
 			    chkftn(dsym->dfun, ddef->dfun))
 				uerror("declaration doesn't match prototype");
