@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.2 2003/08/06 20:08:48 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.3 2003/08/07 10:42:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -95,8 +95,8 @@ typedef long long OFFSZ;
 /*
  * Maximum and minimum register variables
  */
-#define MINRVAR	000		/* no register variables */
-#define MAXRVAR	000		/* no register variables */
+#define MINRVAR	100		/* no register variables */
+#define MAXRVAR	070		/* no register variables */
 
 #undef	PARAMS_UPWARD		/* stack grows upwards for parameters */
 #define BACKAUTO 		/* stack grows negatively for automatics */
