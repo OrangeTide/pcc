@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.5 2002/05/06 17:35:24 ragge Exp $	*/
+/*	$Id: scan.l,v 1.6 2002/05/10 16:01:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -89,7 +89,9 @@ static int floatcon(void);
 "short"			{ stwart = instruct;
 				yylval.nodep = mkty((TWORD)SHORT, 0, SHORT);
 			  return(TYPE); }
-"signed"		{ return(SIGNED); }
+"signed"		{ stwart = instruct; yylval.nodep =
+				mkty((TWORD)SIGNED, 0, SIGNED);
+			  return(TYPE); }
 "sizeof"		{ yylval.intval = SIZEOF; return(SIZEOF); }
 "static"		{ yylval.intval = STATIC; return(CLASS); }
 "struct"		{ stwart = INSTRUCT|SEENAME|TAGNAME;

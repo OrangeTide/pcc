@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.2 2002/05/09 12:13:08 ragge Exp $	*/
+/*	$Id: main.c,v 1.3 2002/05/10 16:01:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -33,7 +33,8 @@
 #include "pass1.h"
 #include "pass2.h"
 
-int Wstrict_prototypes;
+int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
+	Wimplicit_function_declaration;
 
 static struct sigvec fpe_sigvec;
 
@@ -41,6 +42,9 @@ static struct {
 	char *n; int *f;
 } flagstr[] = {
 	{ "strict-prototypes", &Wstrict_prototypes, },
+	{ "missing-prototypes", &Wmissing_prototypes, },
+	{ "implicit-int", &Wimplicit_int, },
+	{ "implicit-function-declaration", &Wimplicit_function_declaration, },
 	{ NULL, NULL, },
 };
 
@@ -54,12 +58,19 @@ usage(void)
 	exit(1);
 }
 
+/*
+ * "emulate" the gcc warning flags.
+ */
 static void
 Wflags(char *str)
 {
 	int i, found = 0, all;
 
-	all = strcmp(str, "all") == 0;
+	if (strcmp(str, "implicit") == 0) {
+		Wimplicit_int = Wimplicit_function_declaration = 1;
+		return;
+	}
+	all = strcmp(str, "W") == 0;
 	for (i = 0; flagstr[i].n; i++)
 		if (all || strcmp(flagstr[i].n, str) == 0) {
 			*flagstr[i].f = 1;
