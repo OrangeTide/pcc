@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.75 2003/09/09 11:17:21 ragge Exp $	*/
+/*	$Id: table.c,v 1.76 2003/09/09 11:50:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1189,22 +1189,11 @@ struct optab table[] = {
 
 { ASSIGN, DF(ASSIGN), },
 
-{ FLD, DF(FLD), },
-
 { OPLEAF, DF(NAME), },
-
-{ OPLOG,	FORCC,
-	SANY,	TANY,
-	SANY,	TANY,
-	SANY,	TANY,
-		REWRITE,	BITYPE,
-		"", },
 
 { INIT, DF(INIT), },
 
 { OPUNARY, DF(UNARY MINUS), },
-
-{ OPANY, DF(BITYPE), },
 
 { FREE,	FREE, FREE, FREE, FREE,	FREE, FREE, FREE, FREE, FREE, "help; I'm in trouble\n" },
 };
