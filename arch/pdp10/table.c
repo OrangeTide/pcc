@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.74 2003/09/08 08:28:20 ragge Exp $	*/
+/*	$Id: table.c,v 1.75 2003/09/09 11:17:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -883,6 +883,16 @@ struct optab table[] = {
 	SCC,	TANY,
 		0,	RNULL,
 		"	HELP HELP HELP\n", },
+
+#ifdef notyet
+/* Match tree shape for ildb */
+{ UNARY MUL,	INTAREG,
+	SANY,	TANY,
+	SILDB,	TUCHAR|TCHAR|TPTRTO,
+	0,	0,
+		NAREG,	RESC1,
+		"	ildb A1,ZA\n", },
+#endif
 
 { REG,	INTEMP,
 	SANY,	TANY,

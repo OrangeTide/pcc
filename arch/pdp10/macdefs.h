@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.21 2003/09/07 14:30:33 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.22 2003/09/09 11:17:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -157,4 +157,5 @@ typedef long long OFFSZ;
  */
 #define	SUSHCON	(SPECIAL|6)	/* unsigned short constant */
 #define	SNSHCON	(SPECIAL|7)	/* negative short constant */
+#define	SILDB	(SPECIAL|8)	/* use ildb here */
 
