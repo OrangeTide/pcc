@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.14 2003/08/01 13:12:03 ragge Exp $	*/
+/*	$Id: match.c,v 1.15 2003/08/05 21:45:17 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -487,7 +487,7 @@ expand(NODE *p, int cookie, char *cp)
 			continue;
 
 		case 'U': /* for upper half of address, only */
-			upput( getlr( p, *++cp ), SZLONG );
+			upput(getlr(p, *++cp), SZLONG);
 			continue;
 
 			}

@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.36 2003/08/03 17:11:23 ragge Exp $	*/
+/*	$Id: scan.l,v 1.37 2003/08/05 21:45:17 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -267,7 +267,7 @@ cvtdig(int radix)
 		if (*ch == 0)
 			break;
 		if ((*ch == 'l' || *ch == 'L') && numl < 2)
-			ntype++, numl++;
+			ntype+=2, numl++;
 		else if ((*ch == 'u' || *ch == 'U') && numu < 1)
 			ntype = ENUNSIGN(ntype), numu++;
 		else
