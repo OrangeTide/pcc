@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.6 2002/09/26 20:41:51 ragge Exp $	*/
+/*	$Id: main.c,v 1.7 2002/09/29 16:01:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -36,7 +36,7 @@
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
 
-int e2debug;
+int e2debug, t2debug;
 
 static struct sigvec fpe_sigvec;
 
@@ -141,7 +141,7 @@ main(int argc, char *argv[])
 			break;
 
 		case 't':  /* ttype calls */
-			++tdebug;
+			++t2debug;
 			break;
 
 		case 's':  /* shapes */
