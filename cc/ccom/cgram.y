@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.81 2003/06/09 15:55:56 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.82 2003/06/10 13:57:19 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -246,7 +246,7 @@ function_specifiers:
 type_specifier:	   C_TYPE { $$ = $1; }
 		|  C_TYPENAME { 
 			struct symtab *sp = lookup($1, 0);
-			$$ = mkty(sp->stype, sp->dimoff, sp->ssue);
+			$$ = mkty(sp->stype, sp->sdim, sp->ssue);
 			$$->n_sp = sp;
 		}
 		|  struct_dcl { $$ = $1; }
@@ -901,7 +901,7 @@ funct_idn:	   C_NAME  '(' {
 %%
 
 NODE *
-mkty(TWORD t, int d, struct suedef *sue)
+mkty(TWORD t, int *d, struct suedef *sue)
 {
 	return block(TYPE, NIL, NIL, t, d, sue);
 }
@@ -936,18 +936,6 @@ bdty(int op, ...)
 	va_end(ap);
 
 	return q;
-}
-
-/*
- * put n into the dimension table
- */
-void
-dstash(int n)
-{
-	if( curdim >= DIMTABSZ-1 ){
-		cerror( "dimension table overflow");
-		}
-	dimtab[ curdim++ ] = n;
 }
 
 static void

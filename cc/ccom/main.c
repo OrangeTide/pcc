@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.16 2003/06/08 18:26:50 ragge Exp $	*/
+/*	$Id: main.c,v 1.17 2003/06/10 13:57:19 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -40,6 +40,8 @@ int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
 
 int e2debug, t2debug;
+
+int btdim[24];
 
 static void prtstats(void);
 
@@ -179,24 +181,23 @@ main(int argc, char *argv[])
 
 	/* dimension table initialization */
 
-	dimtab[NULL] = 0;
-	dimtab[CHAR] = SZCHAR;
-	dimtab[INT] = SZINT;
-	dimtab[FLOAT] = SZFLOAT;
-	dimtab[DOUBLE] = SZDOUBLE;
-	dimtab[LONG] = SZLONG;
-	dimtab[LONGLONG] = SZLONGLONG;
-	dimtab[SHORT] = SZSHORT;
-	dimtab[UCHAR] = SZCHAR;
-	dimtab[USHORT] = SZSHORT;
-	dimtab[UNSIGNED] = SZINT;
-	dimtab[ULONG] = SZLONG;
-	dimtab[ULONGLONG] = SZLONGLONG;
-	dimtab[SIGNED] = SZINT;
-	dimtab[CONST] = SZINT;
-	dimtab[VOLATILE] = SZINT;
+	btdim[NULL] = 0;
+	btdim[CHAR] = SZCHAR;
+	btdim[INT] = SZINT;
+	btdim[FLOAT] = SZFLOAT;
+	btdim[DOUBLE] = SZDOUBLE;
+	btdim[LONG] = SZLONG;
+	btdim[LONGLONG] = SZLONGLONG;
+	btdim[SHORT] = SZSHORT;
+	btdim[UCHAR] = SZCHAR;
+	btdim[USHORT] = SZSHORT;
+	btdim[UNSIGNED] = SZINT;
+	btdim[ULONG] = SZLONG;
+	btdim[ULONGLONG] = SZLONGLONG;
+	btdim[SIGNED] = SZINT;
+	btdim[CONST] = SZINT;
+	btdim[VOLATILE] = SZINT;
 	/* starts past any of the above */
-	curdim = 24;	/* XXX - should be calculated from somewhere else */
 	reached = 1;
 
 	fpe_sigvec.sv_handler = fpe;
