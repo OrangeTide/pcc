@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.16 2003/08/25 11:08:55 ragge Exp $	*/
+/*	$Id: match.c,v 1.17 2003/08/25 13:50:57 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -40,30 +40,7 @@ void prttype(int t);
 
 int fldsz, fldshf;
 
-static int mamask[] = { /* masks for matching dope with shapes */
-	SIMPFLG,		/* OPSIMP */
-	SIMPFLG|ASGFLG,		/* ASG OPSIMP */
-	COMMFLG,	/* OPCOMM */
-	COMMFLG|ASGFLG,	/* ASG OPCOMM */
-	MULFLG,		/* OPMUL */
-	MULFLG|ASGFLG,	/* ASG OPMUL */
-	DIVFLG,		/* OPDIV */
-	DIVFLG|ASGFLG,	/* ASG OPDIV */
-	UTYPE,		/* OPUNARY */
-	TYFLG,		/* ASG OPUNARY is senseless */
-	LTYPE,		/* OPLEAF */
-	TYFLG,		/* ASG OPLEAF is senseless */
-	0,		/* OPANY */
-	ASGOPFLG|ASGFLG,	/* ASG OPANY */
-	LOGFLG,		/* OPLOG */
-	TYFLG,		/* ASG OPLOG is senseless */
-	FLOFLG,		/* OPFLOAT */
-	FLOFLG|ASGFLG,	/* ASG OPFLOAT */
-	SHFFLG,		/* OPSHFT */
-	SHFFLG|ASGFLG,	/* ASG OPSHIFT */
-	SPFLG,		/* OPLTYPE */
-	TYFLG,		/* ASG OPLTYPE is senseless */
-	};
+extern int mamask[];
 
 int s2debug = 0;
 
