@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.8 2004/06/08 21:07:24 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.9 2004/06/12 08:57:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -91,7 +91,6 @@ typedef long long OFFSZ;
 #define CONFMT	"%lld"		/* format for printing constants */
 #define LABFMT	".L%d"		/* format for printing labels */
 
-#undef	PARAMS_UPWARD		/* stack grows upwards for parameters */
 #define BACKAUTO 		/* stack grows negatively for automatics */
 #define BACKTEMP 		/* stack grows negatively for temporaries */
 

@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.42 2004/05/20 13:26:19 ragge Exp $	*/
+/*	$Id: scan.l,v 1.43 2004/06/12 08:57:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -354,7 +354,7 @@ control(int t)
 		if (wr == eptr)	/* Illegal string */
 			goto bad;
 		wr = eptr;
-		lineno = val;
+		lineno = val - 1;
 		while (*wr && *wr != '\"')
 			wr++;
 		if (*wr++ != '\"')
