@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.9 2005/01/17 21:26:23 ragge Exp $	*/
+/*	$Id: local2.c,v 1.10 2005/01/19 07:58:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -135,7 +135,7 @@ hopcode(int f, int o)
 		comperr("hopcode2: %d", o);
 		str = 0; /* XXX gcc */
 	}
-	printf("%s%c", str, f);
+	printf("%s.%c", str, f);
 }
 
 char *
