@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.23 2004/05/30 17:28:05 ragge Exp $	*/
+/*	$Id: local2.c,v 1.24 2004/05/30 21:07:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -382,7 +382,7 @@ zzzcode(NODE *p, int c)
 		 * Type is determined by op.
 		 */
 		r = getlr(p, c);
-		if (r->n_op != REG)
+		if (r->n_op != REG && r->n_op != MOVE)
 			adrput(stdout, r);
 		else if (r->n_type == SHORT || r->n_type == USHORT)
 			printf("%%%cx", rnames[r->n_rval][2]);
