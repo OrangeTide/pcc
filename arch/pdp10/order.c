@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.53 2003/11/13 16:00:00 ragge Exp $	*/
+/*	$Id: order.c,v 1.54 2003/12/15 22:02:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -63,6 +63,7 @@ autoincr(NODE *p)
 	return 0;
 }
 
+#if 0
 /*
  * Called from store().
  * If a subtree must be stored (running out of registers) setup correct
@@ -98,6 +99,7 @@ mkadrs(NODE *p)
 		}
 	}
 }
+#endif
 
 /* is it legal to make an OREG or NAME entry which has an
  * offset of off, (from a register of r), if the
