@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.37 2005/01/02 17:54:43 ragge Exp $	*/
+/*	$Id: cc.c,v 1.38 2005/02/19 13:44:02 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -58,6 +58,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <libgen.h>
+#include <errno.h>
 
 #include "ccconfig.h"
 /* C command */
