@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.7 2003/06/21 18:03:17 ragge Exp $	*/
+/*	$Id: node.h,v 1.8 2003/07/03 13:53:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -40,6 +40,7 @@ struct symtab;
 struct suedef;
 
 typedef struct node {
+	struct	node *next;
 	int	n_op;
 	int	n_rall;
 	TWORD	n_type;
@@ -201,7 +202,7 @@ typedef struct node {
 #define FORCE	72
 #define INIT	73
 #define	GOTO	74
-#define	LABEL	75
+#define	TYPE	75
 #define	RETURN	76
 #define LB	77
 #define CAST	78
