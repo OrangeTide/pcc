@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.1 2005/01/08 14:53:10 pj Exp $	*/
+/*	$Id: local.c,v 1.2 2005/01/09 13:28:04 pj Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -112,6 +112,15 @@ clocal(NODE *p)
 		nfree(p);
 		p = l;
 		break;
+
+	case SCONV:
+		l = p->n_left;
+		if (DEUNSIGN(p->n_type) == INT && DEUNSIGN(l->n_type) == INT) {
+			nfree(p);
+			return l;
+		}
+		break;
+		
 
 	}
 
