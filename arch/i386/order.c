@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.2 2003/08/06 20:08:48 ragge Exp $	*/
+/*	$Id: order.c,v 1.3 2003/08/09 09:47:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -316,6 +316,22 @@ setincr(NODE *p)
 int
 setbin(NODE *p)
 {
+	switch (p->n_op) {
+	case RS:
+	case LS:
+		/* Be sure left node is addressable */
+		if (!canaddr(p->n_left)) {
+			order(p->n_left, INAREG|INTAREG|INTEMP);
+			return 1;
+		}
+		/* Right node must be either a constand or a register */
+		if (p->n_right->n_op != REG && p->n_right->n_op != ICON) {
+			order(p->n_right, INAREG|INTAREG);
+			return 1;
+		}
+		break;
+	}
+#if 0
 	register int ro, rt;
 
 	rt = p->n_right->n_type;
@@ -380,6 +396,7 @@ setbin(NODE *p)
 	default:
 		break;
 	}
+#endif
 	return(0);
 }
 

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.41 2003/08/05 09:27:55 ragge Exp $	*/
+/*	$Id: reader.c,v 1.42 2003/08/09 09:47:33 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -332,7 +332,9 @@ order(NODE *p, int cook)
 
 	case CBRANCH:
 		p1->n_label = p2->n_lval;
+		o = p1->n_op;
 		codgen(p1, FORCC);
+		cbgen(o, p2->n_lval);
 		reclaim(p1, RNULL, 0);
 		nfree(p2);
 		nfree(p);
