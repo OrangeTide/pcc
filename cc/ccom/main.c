@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.31 2003/07/07 14:10:35 ragge Exp $	*/
+/*	$Id: main.c,v 1.32 2003/07/07 14:57:15 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -170,10 +170,6 @@ main(int argc, char *argv[])
 
 		case 's': /* Statistics */
 			++sflag;
-			break;
-
-		case 'w': /* shut up warnings */
-			++wflag;
 			break;
 
 		case 'W': /* Enable different warnings */

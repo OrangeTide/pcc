@@ -1,4 +1,4 @@
-/*	$NetBSD$	*/
+/*	$Id: pftn.c,v 1.85 2003/07/07 14:57:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.

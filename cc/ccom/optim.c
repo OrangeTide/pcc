@@ -1,4 +1,4 @@
-/*	$NetBSD$	*/
+/*	$Id: optim.c,v 1.11 2003/07/07 14:57:15 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
