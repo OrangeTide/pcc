@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.31 2004/12/20 13:49:29 pj Exp $	*/
+/*	$Id: cc.c,v 1.32 2004/12/20 14:12:51 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -308,12 +308,12 @@ main(int argc, char *argv[])
 		 */
 		if (nc>1)
 			printf("%s:\n", clist[i]);
+		assource = tmp3;
 		if (getsuf(clist[i])=='s') {
 			assource = clist[i];
 			if (!xflag)
 				goto assemble;
-		} else
-			assource = tmp3;
+		}
 		if (pflag)
 			tmp4 = setsuf(clist[i], 'i');
 		savetsp = tsp;
