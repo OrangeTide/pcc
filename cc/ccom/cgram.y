@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.101 2003/06/22 21:13:30 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.102 2003/06/23 18:50:10 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -411,7 +411,7 @@ declaration_list:  declaration
  */
 
 stmt_list:	   stmt_list statement
-		|  {  bccode(); topt_newblk(regvar, autooff); locctr(PROG); }
+		|  {  bccode(); send_passt(IP_NEWBLK, regvar, autooff); locctr(PROG); }
 		;
 
 /*
