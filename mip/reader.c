@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.113 2005/01/20 21:24:14 ragge Exp $	*/
+/*	$Id: reader.c,v 1.114 2005/01/21 15:24:10 pj Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -66,8 +66,6 @@
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
-
-#define	TAILCALL
 
 /*	some storage declarations */
 int nrecur;
@@ -273,7 +271,9 @@ void
 pass2_compile(struct interpass *ip)
 {
 	static int curlocc;
+#ifdef TAILCALL
 	NODE *p;
+#endif
 
 #ifdef TAILCALL
 	if (xtailcallflag) {
