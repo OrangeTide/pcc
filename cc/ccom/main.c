@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.39 2003/09/09 12:20:53 ragge Exp $	*/
+/*	$Id: main.c,v 1.40 2004/04/29 16:30:49 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -188,9 +188,6 @@ main(int argc, char *argv[])
 		}
 
 	mkdope();
-#if !defined(MULTIPASS) || defined(PASS2)
-	allo0();
-#endif
 	lineno = 1;
 
 	/* dimension table initialization */

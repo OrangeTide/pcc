@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.97 2003/12/15 22:02:06 ragge Exp $	*/
+/*	$Id: trees.c,v 1.98 2004/04/29 16:30:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2028,8 +2028,6 @@ p2tree(NODE *p)
 		p->n_stalign = talign(STRTY,p->n_left->n_sue)/SZCHAR;
 		break;
 
-	case REG:
-		rbusy( p->n_rval, p->n_type );
 	default:
 		p->n_name = "";
 		}

@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.46 2004/04/25 21:24:17 ragge Exp $	*/
+/*	$Id: common.c,v 1.47 2004/04/29 16:30:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -169,6 +169,28 @@ talloc()
 		printf("alloc node %p from memory\n", p);
 	return p;
 }
+
+/*
+ * make a fresh copy of p
+ */
+NODE *
+tcopy(NODE *p)
+{
+	NODE *q;
+
+	q = talloc();
+	*q = *p;
+
+	switch (optype(q->n_op)) {
+	case BITYPE:
+		q->n_right = tcopy(p->n_right);
+	case UTYPE:
+		q->n_left = tcopy(p->n_left);
+	}
+
+	return(q);
+}
+
 
 /*
  * ensure that all nodes have been freed
