@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.14 2004/05/05 20:26:18 ragge Exp $	*/
+/*	$Id: regs.c,v 1.15 2004/05/05 20:32:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -435,6 +435,13 @@ alloregs(NODE *p, int wantreg)
 	case R_DOR+R_RRGHT+R_RREG: /* Typical for ASSIGN node */
 	case R_RRGHT+R_RREG: /* Typical for ASSIGN node */
 		regc = alloregs(p->n_right, wantreg);
+		break;
+
+	case R_DOR+R_RREG+R_LREG:
+		regc2 = alloregs(p->n_left, NOPREF);
+		regc = alloregs(p->n_right, NOPREF);
+		freeregs(regc2);
+		freeregs(regc);
 		break;
 
 	case R_DOR+R_RREG+R_LREG+R_RRGHT:
