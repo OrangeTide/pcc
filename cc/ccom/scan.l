@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.19 2003/03/29 16:57:44 ragge Exp $	*/
+/*	$Id: scan.l,v 1.20 2003/05/29 15:17:43 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -125,8 +125,10 @@ static int floatcon(void);
 				    (stwart&(INSTRUCT|INUNION|FUNNYNAME)) ?
 				    SMOS : 0);
 				sp = &stab[id];
-				if( sp->sclass == TYPEDEF && !stwart ){
+				if (sp->sclass == TYPEDEF && !stwart &&
+				    got_type == 0) {
 					stwart = instruct;
+					got_type = 1;
 					yylval.nodep = mkty(sp->stype,
 					    sp->dimoff, sp->sizoff);
 					yylval.nodep->tn.rval = id;
