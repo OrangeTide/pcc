@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.13 2004/06/08 21:07:24 ragge Exp $	*/
+/*	$Id: local.c,v 1.14 2004/06/14 16:33:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -190,6 +190,7 @@ clocal(NODE *p)
 				break;
 			case VOID:
 				break;
+			case LDOUBLE:
 			case DOUBLE:
 			case FLOAT:
 				l->n_op = FCON;
@@ -332,7 +333,6 @@ incode(NODE *p, int sz)
 		printf("	.long 0x%llx\n", word);
 		word = inwd = 0;
 	}
-	tfree(p);
 }
 
 /* output code to initialize space of size sz to the value d */
@@ -343,12 +343,27 @@ void
 fincode(NODE *p, int sz)
 {
 	double d = p->n_dcon;
+	int c;
+	char *n;
 
-	if(!nerrors)
-		printf("	%s	0%c%.20e\n",
-		    sz == SZDOUBLE ? ".double" : ".float",
-		sz == SZDOUBLE ? 'd' : 'f', d);
 	inoff += sz;
+	if(nerrors)
+		return;
+	switch (sz) {
+	case SZLDOUBLE:
+		n = ".tfloat";
+		c = 't';
+		break;
+	case SZDOUBLE:
+		n = ".dfloat";
+		c = 'd';
+		break;
+	case SZFLOAT:
+		n = ".ffloat";
+		c = 'f';
+		break;
+	}
+	printf("	%s	0%c%.20e\n", n, c, d);
 }
 
 void
