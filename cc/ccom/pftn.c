@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.136 2005/01/29 16:05:27 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.137 2005/02/05 14:39:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1150,19 +1150,20 @@ int
 oalloc(struct symtab *p, int *poff )
 {
 	int al, off, tsz;
-	int noff;
+	int noff = 0;
 
-#if 0
-	if ((p->sclass == AUTO) || (Oflag && (p->sclass == REGISTER))) {
-		if (!ISARY(p->stype)) {
-			NODE *tn = tempnode(0, p->stype, p->sdf, p->ssue);
-			p->soffset = tn->n_lval;
-			p->sflags |= STNODE;
-			nfree(tn);
-			return 0;
-		}
+	/*
+	 * Only generate tempnodes if we are optimizing,
+	 * and only for integers, floats or pointers.
+	 */
+	if (Oflag && ((p->sclass == AUTO) || (p->sclass == REGISTER)) &&
+	    (p->stype < STRTY || ISPTR(p->stype))) {
+		NODE *tn = tempnode(&noff, p->stype, p->sdf, p->ssue);
+		p->soffset = tn->n_lval;
+		p->sflags |= STNODE;
+		nfree(tn);
+		return 0;
 	}
-#endif
 
 	al = talign(p->stype, p->ssue);
 	noff = off = *poff;

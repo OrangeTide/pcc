@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.51 2004/06/21 08:19:47 ragge Exp $	*/
+/*	$Id: common.c,v 1.52 2005/02/05 14:39:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -316,6 +316,7 @@ struct dopest {
 	{ NAME, "NAME", LTYPE, },
 	{ REG, "REG", LTYPE, },
 	{ OREG, "OREG", LTYPE, },
+	{ TEMP, "TEMP", LTYPE, },
 	{ MOVE, "MOVE", UTYPE, },
 	{ ICON, "ICON", LTYPE, },
 	{ FCON, "FCON", LTYPE, },

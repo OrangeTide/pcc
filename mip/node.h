@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.26 2004/06/14 16:33:31 ragge Exp $	*/
+/*	$Id: node.h,v 1.27 2005/02/05 14:39:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -106,8 +106,9 @@ typedef struct node {
 #define FCON	5
 #define REG	6
 #define OREG	7
-/* #define TEMP	8 */
+#define TEMP	8
 #define	MOVE	9	/* Special reg-reg move node */
+
 /*
  * Arithmetic nodes.
  */
