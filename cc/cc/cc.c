@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.22 2004/09/04 10:22:08 ragge Exp $	*/
+/*	$Id: cc.c,v 1.23 2004/10/16 07:49:49 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -129,8 +129,8 @@ int	Xflag;
 int	nostartfiles, Bstatic;
 int	nostdinc;
 
-char	*pass0 = "/lib/ccom";
-char	*passp = "/lib/cpp";
+char	*pass0 = LIBEXECDIR "/ccom";
+char	*passp = LIBEXECDIR "/cpp";
 char	*pref = "/usr/lib/crt0.o";
 char	*dynlinker = "/usr/libexec/ld.elf_so";
 char	*sysinc;
