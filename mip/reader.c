@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.61 2003/09/09 09:41:32 ragge Exp $	*/
+/*	$Id: reader.c,v 1.62 2003/09/09 12:20:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -1151,7 +1151,7 @@ if (f2debug) printf("findops tree:\n");
 if (f2debug) fwalk(p, e2print, 0);
 
 	ixp = qtable[p->n_op];
-	for (i = 0; ixp[i] != 0; i++) {
+	for (i = 0; ixp[i] >= 0; i++) {
 		q = &table[ixp[i]];
 
 if (f2debug) printf("findop: ixp %d\n", ixp[i]);
@@ -1299,7 +1299,7 @@ if (f2debug) printf("relops tree:\n");
 if (f2debug) fwalk(p, e2print, 0);
 
 	ixp = qtable[p->n_op];
-	for (i = 0; ixp[i] != 0; i++) {
+	for (i = 0; ixp[i] >= 0; i++) {
 		q = &table[ixp[i]];
 
 if (f2debug) printf("relops: ixp %d\n", ixp[i]);
