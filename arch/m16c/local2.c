@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.8 2005/01/14 15:46:19 ragge Exp $	*/
+/*	$Id: local2.c,v 1.9 2005/01/17 21:26:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -140,7 +140,7 @@ hopcode(int f, int o)
 
 char *
 rnames[] = {  /* keyed to register number tokens */
-	"R0", "R2", "R1", "R3", "A0", "A1", "FB", "USP",
+	"R0", "R2", "R1", "R3", "A0", "A1", "FB", "SP",
 };
 
 int rstatus[] = {
@@ -148,6 +148,9 @@ int rstatus[] = {
 	STBREG|SBREG, SBREG, 0, 0,
 };
 
+/*
+ * Return the size (in bytes) of some types.
+ */
 int
 tlen(p) NODE *p;
 {
@@ -156,27 +159,20 @@ tlen(p) NODE *p;
 		case UCHAR:
 			return(1);
 
-		case SHORT:
-		case USHORT:
-			return(SZSHORT/SZCHAR);
-
-		case DOUBLE:
-			return(SZDOUBLE/SZCHAR);
-
 		case INT:
 		case UNSIGNED:
+		case FLOAT:
+			return 2;
+
+		case DOUBLE:
 		case LONG:
 		case ULONG:
-			return(SZINT/SZCHAR);
-
-		case LONGLONG:
-		case ULONGLONG:
-			return SZLONGLONG/SZCHAR;
+			return 4;
 
 		default:
 			if (!ISPTR(p->n_type))
 				comperr("tlen type %d not pointer");
-			return SZPOINT/SZCHAR;
+			return SZPOINT/SZCHAR; /* XXX - ftn ptrs */
 		}
 }
 
@@ -191,6 +187,12 @@ zzzcode(NODE *p, int c)
 		p->n_lval = -p->n_lval;
 		adrput(stdout, p);
 		p->n_lval = -p->n_lval;
+		break;
+
+	case 'B':
+		if (p->n_rval)
+			printf("        add.b #%d,%s\n",
+			    p->n_rval, rnames[STKREG]);
 		break;
 
 	default:
