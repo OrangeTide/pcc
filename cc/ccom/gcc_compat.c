@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.1 2004/05/16 09:34:34 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.2 2004/05/16 09:46:49 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -32,6 +32,8 @@
 #ifdef GCC_COMPAT
 
 #include "pass1.h"
+
+#include <string.h>
 
 static struct kw {
 	char *name, *ptr;
