@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.52 2003/07/07 17:51:38 ragge Exp $	*/
+/*	$Id: trees.c,v 1.53 2003/07/07 18:37:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1634,7 +1634,6 @@ send_passt(int type, ...)
 	case IP_DEFLAB:
 		ip->ip_lbl = va_arg(ap, int);
 		break;
-	case IP_INIT:
 	case IP_DEFNAM:
 		ip->ip_name = va_arg(ap, char *);
 		ip->ip_vis = va_arg(ap, int);
