@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.38 2004/05/18 14:29:37 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.39 2004/05/25 15:52:37 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -265,3 +265,10 @@ extern	char *opst[];	/* a vector containing names for ops */
 #define TBLIDX(idx)	((idx) >> TBSH)
 #define MKIDX(tbl,mod)	(((tbl) << TBSH) | (mod))
 
+/* hardops definitions */
+struct hardops {
+	int op;		/* op to search for */
+	TWORD type;	/* type not handled */
+	char *fun;	/* function to call */
+};
+extern struct hardops hardops[];

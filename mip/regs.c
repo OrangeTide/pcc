@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.21 2004/05/18 14:29:37 ragge Exp $	*/
+/*	$Id: regs.c,v 1.22 2004/05/25 15:52:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -225,11 +225,14 @@ genregs(NODE *p)
 {
 	regcode regc;
 	int i;
+	int pref = NOPREF;
 
 	for (i = 0; i < REGSZ; i++)
 		regblk[i] = 0;
 	usedregs = 0;
-	regc = alloregs(p, NOPREF);
+	if (p->n_op == FORCE)
+		pref = RETREG;
+	regc = alloregs(p, pref);
 	/* Check that no unwanted registers are still allocated */
 	freeregs(regc);
 	for (i = 0; i < REGSZ; i++) {

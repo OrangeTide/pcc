@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.8 2004/05/18 14:29:37 ragge Exp $	*/
+/*	$Id: local.c,v 1.9 2004/05/25 15:52:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -223,11 +223,12 @@ cendarg()
 
 /*
  * is an automatic variable of type t OK for a register variable
- * Everything is trusted to be in register here.
  */
 int
 cisreg(TWORD t)
 {
+	if (t == LONGLONG || t == ULONGLONG)
+		return 0; /* XXX - fix reg assignment in pftn.c */
 	return(1);
 }
 
