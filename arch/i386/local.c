@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.4 2003/08/07 10:42:55 ragge Exp $	*/
+/*	$Id: local.c,v 1.5 2003/08/07 22:36:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -284,7 +284,7 @@ incode(NODE *p, int sz)
 
 	inwd += sz;
 	if (inoff % SZINT == 0) {
-		printf("	.long 0%llo\n", word);
+		printf("	.long 0x%llx\n", word);
 		word = inwd = 0;
 	}
 	tfree(p);

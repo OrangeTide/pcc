@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.2 2003/08/06 20:08:48 ragge Exp $	*/
+/*	$Id: table.c,v 1.3 2003/08/07 22:36:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -240,11 +240,6 @@ struct optab table[] = {
 /*
  * Store constant initializers.
  */
-{ INIT, FOREFF,
-	SCON,	TPTRTO|TCHAR|TUCHAR|TSHORT|TUSHORT,
-	SANY,	TPTRTO|TCHAR|TUCHAR|TSHORT|TUSHORT,
-		0,	RNOP,
-		"	.long Zd\n", },
 { INIT,	FOREFF,
 	SCON,	TANY,
 	SANY,	TWORD|TPOINT,
@@ -936,7 +931,7 @@ struct optab table[] = {
 	SANY,	TANY,
 	SCON,	TCHAR|TUCHAR|TPTRTO,
 		0,	RNULL,
-		"	pushl AR\n", },
+		"	pushl $AR\n", },
 
 { REG,	FORARG,
 	SANY,		TANY,
