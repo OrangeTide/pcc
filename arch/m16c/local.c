@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.6 2005/01/29 12:13:13 ragge Exp $	*/
+/*	$Id: local.c,v 1.7 2005/01/29 16:06:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -418,4 +418,37 @@ setloc1(int locc)
 		return;
 	lastloc = locc;
 	send_passt(IP_LOCCTR, locc);
+}
+
+/*
+ * special handling before tree is written out.
+ */
+void
+myp2tree(NODE *p)
+{
+	union dimfun *df;
+	union arglist *al;
+	int i;
+
+	switch (p->n_op) {
+	case CALL:
+	case STCALL:
+		/*
+		 * inform pass2 about varargs.
+		 * store first variadic argument number in n_stalign
+		 * in the CM node.
+		 */
+		if (p->n_right->n_op != CM)
+			break; /* nothing to care about */
+		df = p->n_left->n_df;
+		if (df && (al = df->dfun)) {
+			for (i = 0; i < 6; i++, al++) {
+				if (al->type == TELLIPSIS || al->type == TNULL)
+					break;
+			}
+			p->n_right->n_stalign = al->type == TELLIPSIS ? i : 0;
+		} else
+			p->n_right->n_stalign = 0;
+		break;
+	}
 }

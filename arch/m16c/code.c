@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.8 2005/01/29 12:13:13 ragge Exp $	*/
+/*	$Id: code.c,v 1.9 2005/01/29 16:06:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -112,8 +112,10 @@ argmove(struct symtab *s, int regno)
 	p = buildtree(NAME, NIL, NIL);
 	r = bcon(0);
 	r->n_op = REG;
-	r->n_type = s->stype;
 	r->n_rval = regno;
+	r->n_type = p->n_type;
+	r->n_sue = p->n_sue;
+	r->n_df = p->n_df;
 	ecode(buildtree(ASSIGN, p, r));
 }
 

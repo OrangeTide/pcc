@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.12 2005/01/29 12:13:13 ragge Exp $	*/
+/*	$Id: local2.c,v 1.13 2005/01/29 16:06:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -203,6 +203,12 @@ zzzcode(NODE *p, int c)
 			printf("%s", p->n_name);
 		break;
 
+	case 'D': /* copy function pointers */
+		expand(p, FOREFF, "	mov.w AR,A1\n	mov.w A1,AL\n");
+		p->n_type = CHAR;
+		expand(p, FOREFF, "	mov.b UR,A1\n	mov.b A1,UL\n");
+		break;
+
 	default:
 		comperr("bad zzzcode %c", c);
 	}
@@ -291,7 +297,7 @@ void
 upput(NODE *p, int size)
 {
 
-	size /= SZCHAR;
+	size /= SZINT;
 	switch (p->n_op) {
 	case REG:
 		fputs(rnames[p->n_rval + 1], stdout);
@@ -304,7 +310,7 @@ upput(NODE *p, int size)
 		p->n_lval -= size;
 		break;
 	case ICON:
-		fprintf(stdout, "$" CONFMT, p->n_lval >> 32);
+		fprintf(stdout, "#" CONFMT, p->n_lval >> 16);
 		break;
 	default:
 		comperr("upput bad op %d size %d", p->n_op, size);
@@ -418,3 +424,14 @@ struct hardops hardops[] = {
 	{ 0 },
 };
 
+int
+special(NODE *p, int shape)
+{
+	switch (shape) {
+	case SFTN:
+		if (ISPTR(p->n_type) && ISFTN(DECREF(p->n_type)))
+			return SRDIR;
+		break;
+	}
+	return SRNOPE;
+}

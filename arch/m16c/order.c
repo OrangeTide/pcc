@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.8 2005/01/29 12:13:14 ragge Exp $	*/
+/*	$Id: order.c,v 1.9 2005/01/29 16:06:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -340,6 +340,11 @@ storearg(NODE *p)
 	int nch, k, i, nn, rary[4];
 	int r0l, r0h, r2, a0, stk, sz;
 	TWORD t;
+	int maxrargs = 0;
+
+	if (p->n_op == CM)
+		maxrargs = p->n_stalign;
+printf("op %p maxrargs %d\n", p, maxrargs);
 
 	/* count the arguments */
 	for (i = 1, q = p; q->n_op == CM; q = q->n_left)
