@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.33 2003/09/01 12:08:19 ragge Exp $	*/
+/*	$Id: order.c,v 1.34 2003/09/01 12:20:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -697,4 +697,16 @@ argsize(NODE *p)
 		SETOFF(t, 1);
 		return(t + 1);
 	}
+}
+
+int
+special(NODE *p, int shape)
+{
+	switch (shape) {
+	case SUSHCON:
+		if (p->n_op == ICON && p->n_name[0] == '\0' &&
+		    (p->n_lval > 1 && p->n_lval <= 0777777))
+			return 1;
+	}
+	return 0;
 }

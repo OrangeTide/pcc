@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.64 2003/09/01 12:08:19 ragge Exp $	*/
+/*	$Id: table.c,v 1.65 2003/09/01 12:20:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -372,6 +372,14 @@ struct optab table[] = {
 		NDLEFT,	RLEFT,
 		"	addm AR,AL # foo \n", },
 
+/* Add a small constant to a register */
+{ PLUS,	FOREFF|INAREG|INTAREG,
+	SAREG|STAREG,	TCHAR|TUCHAR|TSHORT|TUSHORT|TWORD,
+	SUSHCON,	TWORD,
+	0,	0,	/* Unneccessary if dest is left */
+		NDLEFT,	RLEFT,
+		"	addi AL,AR\n", },
+
 /* Add long long to register */
 { PLUS,	INAREG|INTAREG|FOREFF,
 	SAREG|STAREG,			TLL,
@@ -422,6 +430,14 @@ struct optab table[] = {
 	0,	0,	/* Unneccessary if dest is left */
 		NDLEFT,	RLEFT,
 		"	sub AL,AR\n", },
+
+/* Subtract a small constant from reg */
+{ MINUS,	FOREFF|INAREG|INTAREG,
+	SAREG|STAREG,	TWORD|TPOINT,
+	SUSHCON,	TWORD|TPOINT,
+	0,	0,	/* Unneccessary if dest is left */
+		NDLEFT,	RLEFT,
+		"	subi AL,AR\n", },
 
 /* Subtract char/short/int word in memory from reg, save in memory */
 { MINUS,	FOREFF|INAREG|INTAREG,
