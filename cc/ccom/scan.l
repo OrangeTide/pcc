@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.29 2003/06/19 21:16:24 ragge Exp $	*/
+/*	$Id: scan.l,v 1.30 2003/06/21 18:47:59 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -190,6 +190,9 @@ L?\"(\\.|[^\\"])*\"	{	char *c = yytext;
 
 %%
 
+int lineno;
+char *ftitle;
+
 int
 yywrap(void)
 {
@@ -294,7 +297,6 @@ void
 control(int t)
 {
 	char *wr = yytext;
-	char *fr = ftitle;
 	char *eptr;
 	int val;
 
@@ -317,9 +319,13 @@ control(int t)
 			wr++;
 		if (*wr++ != '\"')
 			goto bad;
+		eptr = wr;
 		while (*wr && *wr != '\"')
-			*fr++ = *wr++;
-		*fr = 0;
+			wr++;
+		if (*wr != '\"')
+			goto bad;
+		*wr = 0;
+		ftitle = addstring(eptr);
 	}
 	return;
 bad:
