@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.12 2005/03/03 09:19:02 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.13 2005/03/17 17:24:02 pj Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -119,7 +119,7 @@ typedef long long OFFSZ;
 #define STOSTARG(p)
 #define genfcall(a,b)	gencall(a,b)
 
-#define szty(t) ((t) == LONG ? 2 : 1)
+#define szty(t) (((t) == LONG || (t) == ULONG) ? 2 : 1)
 
 /*
  * Register names.  These must match rnames[] and rstatus[] in local2.c.
