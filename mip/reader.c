@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.80 2004/05/01 11:00:38 ragge Exp $	*/
+/*	$Id: reader.c,v 1.81 2004/05/02 10:19:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -653,10 +653,16 @@ sucomp(NODE *p)
 			p->n_left = store(p->n_left);
 		return -1;
 	}
-	if (right > left)
+	if ((right+left) > fregs) {
+		/* Almost out of regs, traverse the highest SU first */
+		if (right > left)
+			p->n_su |= DORIGHT;
+	} else if (right && (q->needs & NASL) && (q->rewrite & RLEFT)) {
+		/* Make it easier to share regs */
 		p->n_su |= DORIGHT;
-	if (left && right && (q->needs & (NASL|NDLEFT)))
+	} else if (right > left) {
 		p->n_su |= DORIGHT;
+	}
 	if (right > nreg)
 		nreg = right;
 	if (left > nreg)
