@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.71 2003/09/02 14:26:25 ragge Exp $	*/
+/*	$Id: table.c,v 1.72 2003/09/02 14:37:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -683,22 +683,6 @@ struct optab table[] = {
 		REWRITE,	0,
 		"DIEDIEDIE", },
 
-#if 0
-{ ASG LS,	INTAREG|INAREG|FOREFF,
-	STAREG|SAREG,	TWORD,
-	SCON,		TWORD,
-	STAREG|SAREG,	TWORD,
-		0,	RLEFT,
-		"	ZF AL,ZH\n", },
-
-{ ASG RS,       INTAREG|INAREG|FOREFF,
-	STAREG|SAREG,	TULONGLONG,
-	SCON,		TANY,
-	STAREG|SAREG,	TULONGLONG,
-		0,	RLEFT,
-		"	ashc AL,-ZH\n", },
-#endif
-
 /*
  * The next rules takes care of assignments. "=".
  */
@@ -1174,8 +1158,6 @@ struct optab table[] = {
 
 { ASSIGN, DF(ASSIGN), },
 
-{ STASG, DF(STASG), },
-
 { FLD, DF(FLD), },
 
 { OPLEAF, DF(NAME), },
@@ -1190,8 +1172,6 @@ struct optab table[] = {
 { INIT, DF(INIT), },
 
 { OPUNARY, DF(UNARY MINUS), },
-
-{ ASG OPANY, DF(ASG PLUS), },
 
 { OPANY, DF(BITYPE), },
 
