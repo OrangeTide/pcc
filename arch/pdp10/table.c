@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.85 2004/05/02 12:57:50 ragge Exp $	*/
+/*	$Id: table.c,v 1.86 2004/05/02 21:41:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -907,10 +907,18 @@ struct optab table[] = {
 		REWRITE,	0,
 		"DIEDIEDIE", },
 
-/* read an indirect value into register */
+/* read an indirect long long value into register */
+{ UMUL,	INTAREG,
+	SAREG|STAREG,	TPTRTO|TLL,
+	SANY,		TLL,
+	0,	0,
+		NAREG|NASL,	RESC1,
+		"	dmove A1,(AL)\n", },
+
+/* read an indirect integer value into register */
 { UMUL,	INTAREG,
 	SAREG|STAREG,	TWORD|TPOINT,
-	SANY,	TANY,
+	SANY,		TWORD|TPOINT,
 	0,	0,
 		NAREG|NASL,	RESC1,
 		"	move A1,(AL)\n", },
@@ -931,22 +939,6 @@ struct optab table[] = {
 	0,	0,
 		NAREG,	RESC1,
 		"	ildb A1,ZA\n", },
-#endif
-
-#if 0
-{ REG,	INTEMP,
-	SANY,	TANY,
-	SAREG,	TDOUBLE|TLL,
-	SANY,	TANY,
-		2*NTEMP,	RESC1,
-		"	dmovem AR,A1\n", },
-
-{ REG,	INTEMP,
-	SANY,	TANY,
-	SAREG,	TANY,
-	SANY,	TANY,
-		NTEMP,	RESC1,
-		"	movem AR,A1\n", },
 #endif
 
 /* Match char/short pointers first, requires special handling */

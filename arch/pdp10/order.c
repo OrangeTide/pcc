@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.54 2003/12/15 22:02:56 ragge Exp $	*/
+/*	$Id: order.c,v 1.55 2004/05/02 21:41:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -293,27 +293,6 @@ offstar(NODE *p)
 			return;
 		}
 	}
-
-#if 0
-	if( p->n_op == PLUS || p->n_op == MINUS ){
-		if( p->n_right->n_op == ICON ){
-			q = p->n_left;
-			if (q->n_op == PCONV && q->n_left->n_op == REG) {
-				q->n_left->n_type = q->n_type;
-				q->n_left->n_qual = q->n_qual;
-				p->n_left = q->n_left;
-				nfree(q);
-			} else
-				order(q, INTAREG|INAREG);
-			return;
-		}
-	}
-
-	if (p->n_op == UMUL && !canaddr(p)) {
-		offstar(p->n_left);
-		return;
-	}
-#endif
 	geninsn(p, INTAREG|INAREG);
 }
 
