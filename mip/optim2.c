@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.12 2005/02/19 14:08:50 pj Exp $	*/
+/*	$Id: optim2.c,v 1.13 2005/02/19 15:40:22 pj Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -620,6 +620,8 @@ cfg_dfs(struct basicblock *bb, unsigned int parent, struct bblockinfo *bbinfo)
 	SLIST_FOREACH(cnode, &bb->children, cfgelem) {
 		cfg_dfs(cnode->bblock, bb->dfnum, bbinfo);
 	}
+	/* Don't bring in unreachable nodes in the future */
+	bbinfo->size = dfsnum;
 }
 
 static bittype *
