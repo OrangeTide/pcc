@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.5 2004/09/02 21:33:33 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.6 2004/09/04 08:29:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -63,7 +63,6 @@ extern	int	tflag;
 /* args for lookup() */
 #define FIND    0
 #define ENTER   1
-#define FORGET  3
 
 /* Symbol table entry  */
 struct symtab {
