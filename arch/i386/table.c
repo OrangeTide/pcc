@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.20 2004/05/29 17:24:07 ragge Exp $	*/
+/*	$Id: table.c,v 1.21 2004/05/30 07:50:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -269,11 +269,10 @@ struct optab table[] = {
 		0,	RRIGHT,
 		"	movb ZR,ZL\n", },
 
-/* Bit field assignment */
 { ASSIGN,	FOREFF|INTAREG,
-	SFLD,		ANY,
-	SAREG|STAREG,	TWORD,
-		NAREG,		RRIGHT,
+	SFLD,		TANY,
+	STAREG|SAREG,	TWORD,
+		0,	RRIGHT,
 		"ZE", },
 
 /* Not really an assign node */

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.20 2004/05/29 17:24:07 ragge Exp $	*/
+/*	$Id: local2.c,v 1.21 2004/05/30 07:50:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -349,13 +349,13 @@ canaddr(NODE *p)
 	return(0);
 }
 
+/*
+ * Does the bitfield shape match?
+ */
 int
 flshape(NODE *p)
 {
-	register int o = p->n_op;
-
-	return (o == REG || o == NAME || o == ICON ||
-		(o == OREG && (!R2TEST(p->n_rval) || tlen(p) == 1)));
+	return 1; /* Assume that all shapes match */
 }
 
 /* INTEMP shapes must not contain any temporary registers */

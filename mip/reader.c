@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.100 2004/05/29 14:11:49 ragge Exp $	*/
+/*	$Id: reader.c,v 1.101 2004/05/30 07:50:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1029,11 +1029,11 @@ void
 canon(p) NODE *p; {
 	/* put p in canonical form */
 
+	walkf(p, setleft);	/* ptrs at left node for arithmetic */
+	walkf(p, oreg2);	/* look for and create OREG nodes */
 #ifndef FIELDOPS
 	fwalk(p, ffld, 0);	/* look for field operators */
 # endif
-	walkf(p, setleft);	/* ptrs at left node for arithmetic */
-	walkf(p, oreg2);	/* look for and create OREG nodes */
 #ifdef MYCANON
 	MYCANON(p);		/* your own canonicalization routine(s) */
 #endif
