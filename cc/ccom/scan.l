@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.16 2003/01/26 22:35:57 ragge Exp $	*/
+/*	$Id: scan.l,v 1.17 2003/01/30 22:01:11 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -80,7 +80,7 @@ static int floatcon(void);
 "for"			{ yylval.intval = FOR; return(FOR); }
 "goto"			{ yylval.intval = GOTO; return(GOTO); }
 "if"			{ yylval.intval = IF; return(IF); }
-"inline"		{ ; }
+"inline"		{ return(FUNSPEC); }
 "int"			{ stwart = instruct;
 				yylval.nodep = mkty((TWORD)INT, 0, INT);
 			  return(TYPE); }
@@ -89,7 +89,6 @@ static int floatcon(void);
 			  return(TYPE); }
 "register"		{ yylval.intval = REGISTER; return(CLASS); }
 "restrict"		{ ; /* just ignore */ }
-"__restrict"		{ ; /* just ignore */ }
 "return"		{ yylval.intval = RETURN; return(RETURN); }
 "short"			{ stwart = instruct;
 				yylval.nodep = mkty((TWORD)SHORT, 0, SHORT);
