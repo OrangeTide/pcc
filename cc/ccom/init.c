@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.10 2005/02/20 11:59:00 ragge Exp $	*/
+/*	$Id: init.c,v 1.11 2005/02/20 14:29:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -323,8 +323,15 @@ doinit(NODE *p)
 		alen = pstk->in_prev->in_df->ddim;
 		if (alen && alen < len)
 			len = alen;
-		while (len-- > 0)
-			infld(*c++, SZCHAR), gotscal();
+		while (len-- > 0) {
+			if (*c == '\\') {
+				c++;
+				o = esccon(&c);
+			} else
+				o = *c++;
+			infld(o, SZCHAR);
+			gotscal();
+		}
 		if (alen && *c)
 			werror("too many chars in string");
 		irbrace();
