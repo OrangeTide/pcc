@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.75 2003/08/02 16:23:34 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.76 2003/08/06 20:08:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -176,6 +176,7 @@ extern	int autooff, argoff, strucoff;
 extern	int regvar;
 extern	int minrvar;
 extern	int brkflag;
+extern	int lastloc;
 typedef union {
 	int intval;
 	NODE *nodep;
