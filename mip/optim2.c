@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.15 2005/02/23 15:37:25 pj Exp $	*/
+/*	$Id: optim2.c,v 1.16 2005/02/23 15:39:34 pj Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -789,7 +789,7 @@ remunreach(void)
 			next = DLIST_NEXT(ctree, qelem);
 			
 			if (ctree->type == IP_NODE)
-				tfree(ctree->_un._p);
+				tfree(ctree->ip_node);
 			DLIST_REMOVE(ctree, qelem);
 		} while (ctree != bb->last);
 			
