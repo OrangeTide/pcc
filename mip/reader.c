@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.83 2004/05/03 15:42:38 ragge Exp $	*/
+/*	$Id: reader.c,v 1.84 2004/05/04 21:15:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -521,13 +521,14 @@ sw:		switch (rv & LMASK) {
 		 */
 		if ((cookie & INTAREG) == 0)
 			comperr("bad umul!");
-		offstar(p->n_left);
-		p->n_op = OREG;
-		if ((rv = findleaf(p, cookie)) < 0)
-			comperr("bad findleaf"); /* XXX */
-		p->n_op = UMUL;
-		p->n_su = rv | LOREG;
-		break;
+		if (offstar(p->n_left)) {
+			p->n_op = OREG;
+			if ((rv = findleaf(p, cookie)) < 0)
+				comperr("bad findleaf"); /* XXX */
+			p->n_op = UMUL;
+			p->n_su = rv | LOREG;
+			break;
+		}
 
 	case PCONV:
 	case SCONV:
@@ -575,10 +576,8 @@ sw:		switch (rv & LMASK) {
 	return;
 
 failed:
-#ifdef PCC_DEBUG
-	fwalk(p, e2print, 0);
-#endif
-	cerror("Cannot generate code for op %d\n", o);
+	comperr("Cannot generate code, node %p op %s", p, opst[p->n_op]);
+
 }
 
 /*

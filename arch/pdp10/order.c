@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.55 2004/05/02 21:41:46 ragge Exp $	*/
+/*	$Id: order.c,v 1.56 2004/05/04 21:15:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -276,7 +276,7 @@ rallo(NODE *p, int down)
 		rallo(p->n_right, down2);
 }
 
-void
+int
 offstar(NODE *p)
 {
 	NODE *q;
@@ -290,10 +290,11 @@ offstar(NODE *p)
 			if (q->n_op != REG)
 				geninsn(q, INTAREG|INAREG);
 			p->n_su = -1;
-			return;
+			return 1;
 		}
 	}
 	geninsn(p, INTAREG|INAREG);
+	return 0;
 }
 
 /*

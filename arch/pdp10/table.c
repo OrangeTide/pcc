@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.87 2004/05/02 22:12:51 ragge Exp $	*/
+/*	$Id: table.c,v 1.88 2004/05/04 21:15:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -330,13 +330,6 @@ struct optab table[] = {
 /*
  * INCR can be slightly optimized.
  */
-{ INCR,		FOREFF,
-	STAREG|SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TSHORT|TUSHORT|TPTRTO,
-	SONE,	TANY,
-	STAREG|SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TSHORT|TUSHORT|TPTRTO,
-		0,	0,
-		"	ibp AL\n", },
-
 { INCR,		INTAREG,
 	STAREG|SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TSHORT|TUSHORT|TPTRTO,
 	SONE,	TANY,
@@ -344,6 +337,16 @@ struct optab table[] = {
 		NAREG,	RESC1,
 		"	move A1,AL\n"
 		"	ibp AL\n", },
+
+#ifdef notyet
+/* Fix check of return value */
+{ INCR,		FOREFF,
+	STAREG|SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TSHORT|TUSHORT|TPTRTO,
+	SONE,	TANY,
+	STAREG|SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TSHORT|TUSHORT|TPTRTO,
+		0,	0,
+		"	ibp AL\n", },
+#endif
 
 /*
  * PLUS operators.
@@ -926,10 +929,18 @@ struct optab table[] = {
 /* read an indirect value into register */
 { UMUL,	INTAREG,
 	SOREG,	TWORD|TPOINT,
-	SANY,	TANY,
+	SANY,	TWORD|TPOINT,
 	0,	0,
 		NAREG,	RESC1,
 		"	move A1,@AL\n", },
+
+/* read an indirect value into register */
+{ UMUL,	INTAREG,
+	SAREG|STAREG|SOREG,	TCHAR|TUCHAR|TSHORT|TUSHORT|TPTRTO,
+	SANY,	TCHAR|TUCHAR|TSHORT|TUSHORT,
+	0,	0,
+		NAREG|NASL,	RESC1,
+		"	ldb A1,AL\n", },
 
 #ifdef notyet
 /* Match tree shape for ildb */
@@ -1184,6 +1195,13 @@ struct optab table[] = {
  */
 { FUNARG,	FOREFF,
 	SAREG|SNAME|SOREG,	TWORD|TPOINT|TFLOAT,
+	SANY,	TANY,
+	SANY,	TANY,
+		0,	RNULL,
+		"	push 017,AL\n", },
+
+{ FUNARG,	FOREFF,
+	SAREG|STAREG,	TCHAR|TUCHAR|TSHORT|TUSHORT,
 	SANY,	TANY,
 	SANY,	TANY,
 		0,	RNULL,
