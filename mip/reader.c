@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.111 2005/01/11 14:27:08 ragge Exp $	*/
+/*	$Id: reader.c,v 1.112 2005/01/13 15:26:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1457,6 +1457,7 @@ if (f2debug) printf("finduni got types\n");
 		if ((shl = tshape(l, q->lshape)) == SRNOPE)
 			continue; /* shape must match */
 
+if (f2debug) printf("finduni got shapes %d\n", shl);
 		if (q->rewrite & RLEFT) {
 			/* left node must be in a temp register */
 			if (l->n_op == REG && !istreg(l->n_rval))
@@ -1466,7 +1467,7 @@ if (f2debug) printf("finduni got types\n");
 		if ((cookie & q->visit) == 0)	/* check correct return value */
 			continue;		/* XXX - should check needs */
 
-if (f2debug) printf("finduni got shapes %d\n", shl);
+if (f2debug) printf("finduni got cookie\n");
 		if (q->needs & REWRITE)
 			break;	/* Done here */
 
