@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.114 2005/01/21 15:24:10 pj Exp $	*/
+/*	$Id: reader.c,v 1.115 2005/01/29 16:05:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1394,7 +1394,7 @@ if (f2debug) fwalk(r, e2print, 0);
 		if (q->needs & REWRITE)
 			break;	/* Done here */
 
-		if (lvl < (shl + shr))
+		if (lvl <= (shl + shr))
 			continue;
 		lvl = shl + shr;
 		

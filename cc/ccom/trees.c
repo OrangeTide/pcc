@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.127 2005/01/20 21:24:14 ragge Exp $	*/
+/*	$Id: trees.c,v 1.128 2005/01/29 16:05:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -120,8 +120,11 @@ buildtree(int o, NODE *l, NODE *r)
 	struct symtab **elem;
 
 #ifdef PCC_DEBUG
-	if (bdebug)
+	if (bdebug) {
 		printf("buildtree(%s, %p, %p)\n", copst(o), l, r);
+		if (l) fwalk(l, eprint, 0);
+		if (r) fwalk(r, eprint, 0);
+	}
 #endif
 	opty = coptype(o);
 

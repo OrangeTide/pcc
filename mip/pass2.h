@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.50 2005/01/21 15:41:34 pj Exp $	*/
+/*	$Id: pass2.h,v 1.51 2005/01/29 16:05:27 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -111,6 +111,7 @@
 #define	TLONGLONG	040000	/* long long */
 #define	TULONGLONG	0100000	/* unsigned long long */
 #define	TLDOUBLE	0200000	/* long double; exceeds 16 bit */
+#define	TFTN		0400000	/* function pointer; exceeds 16 bit */
 
 /* reclamation cookies */
 #define RNULL		0	/* clobber result */

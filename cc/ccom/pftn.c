@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.135 2005/01/29 12:11:47 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.136 2005/01/29 16:05:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -101,15 +101,6 @@ struct strsched {
 	int locctr;
 	struct symtab *sym;
 } *strpole;
-
-/*
- * Argument list member info when storing prototypes.
- */
-union arglist {
-	TWORD type;
-	union dimfun *df;
-	struct suedef *sue;
-};
 
 /*
  * Linked list stack while reading in structs.
@@ -548,8 +539,6 @@ ftnend()
 
 	tmpfree(); /* Release memory resources */
 }
-
-#define TNULL   INCREF(MOETY)   /* pointer to MOETY -- impossible type */
 
 void
 dclargs()
@@ -1536,8 +1525,6 @@ struct tylnk {
 };
 
 static void tyreduce(NODE *p, struct tylnk **, int *);
-
-#define TELLIPSIS INCREF(INCREF(MOETY))
 
 static void
 tylkadd(union dimfun dim, struct tylnk **tylkp, int *ntdim)
