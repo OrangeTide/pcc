@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.134 2005/01/20 21:24:14 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.135 2005/01/29 12:11:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1024,7 +1024,7 @@ tsize(TWORD ty, union dimfun *d, struct suedef *sue)
 		case FTN:
 			cerror( "compiler takes size of function");
 		case PTR:
-			return( SZPOINT * mult );
+			return( SZPOINT(ty) * mult );
 		case ARY:
 			mult *= d->ddim;
 			d++;
