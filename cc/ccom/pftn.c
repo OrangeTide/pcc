@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.98 2003/08/18 09:04:07 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.99 2003/09/03 16:37:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2244,7 +2244,11 @@ doacall(NODE *f, NODE *a)
 	 * Do some basic checks.
 	 */
 	if (f->n_df == NULL || (al = f->n_df[0].dfun) == NULL) {
-		werror("no prototype for function");
+		if (f->n_sp != NULL)
+			werror("no prototype for function '%s()'",
+			    f->n_sp->sname);
+		else
+			werror("no prototype for function pointer");
 		goto build;
 	}
 	if (al->type == VOID) {
