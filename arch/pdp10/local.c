@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.59 2003/09/12 15:14:11 ragge Exp $	*/
+/*	$Id: local.c,v 1.60 2004/05/02 12:57:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -267,6 +267,7 @@ rmpc:			l->n_type = p->n_type;
 				cerror("unknown type %d", m);
 			}
 			l->n_type = m;
+			l->n_sue = MKSUE(m);
 			nfree(p);
 			return l;
 		}

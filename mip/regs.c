@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.10 2004/05/02 10:19:12 ragge Exp $	*/
+/*	$Id: regs.c,v 1.11 2004/05/02 12:57:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -374,7 +374,12 @@ alloregs(NODE *p, int wantreg)
 	if (p->n_op == UCALL) {
 		if (findfree(fregs) < 0)
 			comperr("UCALL and not all regs free!");
-		regc = getregs(1, szty(p->n_type)); /* XXX return reg */
+		if (cword & R_LREG) {
+			regc = alloregs(p->n_left, NOPREF);
+			freeregs(regc);
+			/* Check that all regs are free? */
+		}
+		regc = getregs(1, szty(p->n_type)); /* XXX use return reg */
 		p->n_rall = 1;
 		return regc;
 	}
