@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.22 2003/05/31 10:34:47 ragge Exp $	*/
+/*	$Id: scan.l,v 1.23 2003/05/31 18:43:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -123,6 +123,11 @@ static int floatcon(void);
 				    /* member name for struct/union */
 				    (stwart&(INSTRUCT|INUNION|FUNNYNAME)) ?
 				    SMOS : 0);
+				if (stwart&TAGNAME) {
+					stwart = (stwart&SEENAME) ? instruct : 0;
+					yylval.intval = id;
+					return(C_NAME);
+				}
 				sp = &stab[id];
 				if (sp->sclass == TYPEDEF && !stwart &&
 				    got_type == 0) {
