@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.57 2003/09/08 08:27:33 ragge Exp $	*/
+/*	$Id: reader.c,v 1.58 2003/09/08 08:57:49 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -141,9 +141,9 @@ delay(NODE *p)
 				register NODE *q;
 				deltrees[deli++] = tcopy(p);
 				q = p->n_left;
-				p->n_right->n_op = FREE;  /* zap constant */
+				nfree(p->n_right); /* zap constant */
 				*p = *q;
-				q->n_op = FREE;
+				nfree(q);
 				return;
 				}
 			}
