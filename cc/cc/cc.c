@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.9 2004/05/15 15:52:30 ragge Exp $	*/
+/*	$Id: cc.c,v 1.10 2004/05/16 15:31:21 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -101,6 +101,7 @@ int	Oflag;
 int	proflag;
 int	noflflag;
 int	exfail;
+int	Xflag;
 char	*pass0 = "/lib/ccom";
 char	*passp = "/usr/libexec/cpp0";
 char	*pref = "/usr/lib/crt0.o";
@@ -121,6 +122,9 @@ char *argv[]; {
 		if(*argv[i] == '-') switch (argv[i][1]) {
 		default:
 			goto passa;
+		case 'X':
+			Xflag++;
+			break;
 		case 'W': /* Ignore W-flags */
 		case 'f': /* Ignore -ffreestanding */
 		case 'n': /* Ignore -nostdinc */
@@ -364,7 +368,7 @@ idexit(int arg)
 void
 dexit()
 {
-	if (!pflag) {
+	if (!pflag && !Xflag) {
 		cunlink(tmp1);
 		cunlink(tmp2);
 		if (sflag==0)

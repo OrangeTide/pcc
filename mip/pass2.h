@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.36 2004/05/15 13:44:09 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.37 2004/05/16 15:31:24 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -208,6 +208,8 @@ void comperr(char *str, ...);
 void genregs(NODE *p);
 
 char *prcook(int);
+
+void conput(FILE *, NODE *);
 
 extern	char *rnames[];
 
