@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.36 2004/12/30 15:23:13 ragge Exp $	*/
+/*	$Id: cc.c,v 1.37 2005/01/02 17:54:43 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -302,7 +302,7 @@ main(int argc, char *argv[])
 		/*
 		 * C preprocessor
 		 */
-		if (nc>1)
+		if (nc>1 && !Eflag)
 			printf("%s:\n", clist[i]);
 		assource = tmp3;
 		if (getsuf(clist[i])=='s') {
@@ -335,7 +335,7 @@ main(int argc, char *argv[])
 		if (callsys(passp, av))
 			{exfail++; eflag++;}
 		if (Eflag)
-			dexit(eflag);
+			continue;
 		if (xflag)
 			goto assemble;
 
@@ -399,6 +399,9 @@ main(int argc, char *argv[])
 		}
 		cunlink(tmp4);
 	}
+
+	if (Eflag)
+		dexit(eflag);
 
 	/*
 	 * Linker
