@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.14 2003/08/03 10:49:39 ragge Exp $	*/
+/*	$Id: node.h,v 1.15 2003/08/03 17:11:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -68,10 +68,7 @@ typedef struct node {
 				struct symtab *_sp;
 			} n_r;
 		} n_u;
-		float	_fcon;
 		double	_dcon;
-		long	_lcon;
-		long long _llcon;
 	} n_f;
 } NODE;
 
@@ -88,15 +85,7 @@ typedef struct node {
 #define	n_right	n_f.n_u.n_r._right
 #define	n_rval	n_f.n_u.n_r._rval
 #define	n_sp	n_f.n_u.n_r._sp
-#define	n_fcon	n_f._fcon
 #define	n_dcon	n_f._dcon
-#ifdef notyet
-#define	n_lcon	n_f._lcon
-#define	n_llcon	n_f._llcon
-#else
-#define	n_lcon	n_f.n_u.n_l._lval
-#define	n_llcon	n_f.n_u.n_l._lval
-#endif
 
 /*
  * Node types.
