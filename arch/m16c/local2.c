@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.17 2005/03/03 09:19:02 ragge Exp $	*/
+/*	$Id: local2.c,v 1.18 2005/03/17 17:34:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -81,8 +81,10 @@ prologue(struct interpass_prolog *ipp)
 void
 eoftn(struct interpass_prolog *ipp)
 {
+#if 0
 	if (ipp->ipp_regs != MINRVAR)
 		comperr("fix eoftn register savings %x", ipp->ipp_regs);
+#endif
 
 	if (Oflag == 0)
 		addto = (maxautooff - AUTOINIT)/SZCHAR;

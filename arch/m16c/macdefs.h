@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.13 2005/03/17 17:24:02 pj Exp $	*/
+/*	$Id: macdefs.h,v 1.14 2005/03/17 17:34:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -139,8 +139,8 @@ typedef long long OFFSZ;
 #define REGSZ	8	/* Number of registers */
 #define FPREG	FB	/* frame pointer */
 #define STKREG	SP	/* stack pointer */
-#define MINRVAR R3	/* first register variable */
-#define MAXRVAR R1	/* last register variable */
+#define MINRVAR R1	/* first register variable */
+#define MAXRVAR R2	/* last register variable */
 
 /*
  * Register types are described by bitmasks.
