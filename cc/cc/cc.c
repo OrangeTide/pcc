@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.32 2004/12/20 14:12:51 pj Exp $	*/
+/*	$Id: cc.c,v 1.33 2004/12/20 14:14:37 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -92,7 +92,6 @@ void idexit(int);
 char *gettmp();
 # define CHSPACE 1000
 char	ts[CHSPACE+50];
-char	*tsa = ts;
 char	*tsp = ts;
 char	*av[MAXAV];
 char	*clist[MAXFIL];
