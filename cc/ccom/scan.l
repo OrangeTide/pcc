@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.32 2003/07/07 13:53:04 ragge Exp $	*/
+/*	$Id: scan.l,v 1.33 2003/07/07 15:38:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -192,7 +192,7 @@ L?\"(\\.|[^\\"])*\"	{	char *c = yytext;
 %%
 
 int lineno;
-char *ftitle;
+char *ftitle = "<stdin>";
 
 int
 yywrap(void)
