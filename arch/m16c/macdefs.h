@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.14 2005/03/17 17:34:56 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.15 2005/03/21 16:11:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -52,7 +52,11 @@
 #define SZSHORT		16
 #define SZLONGLONG      32
 /* pointers are of different sizes on m16c */
+#ifdef notyet /* for far memory model */
 #define SZPOINT(t) 	(ISFTN(DECREF(t)) ? 24 : 16)
+#else
+#define	SZPOINT(t)	16
+#endif
 
 /*
  * Alignment constraints
