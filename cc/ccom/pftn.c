@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.94 2003/08/02 11:22:44 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.95 2003/08/02 16:23:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2601,6 +2601,7 @@ getsymtab(char *name, int flags)
 	s->sname = name;
 	s->snext = NULL;
 	s->stype = UNDEF;
+	s->squal = 0;
 	s->sclass = SNULL;
 	s->sflags = flags & SMASK;
 	s->soffset = 0;
