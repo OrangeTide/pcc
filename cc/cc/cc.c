@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.16 2004/06/21 08:19:47 ragge Exp $	*/
+/*	$Id: cc.c,v 1.17 2004/06/21 18:30:26 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -167,7 +167,8 @@ char *argv[]; {
 		case 'o':
 			if (++i < argc) {
 				outfile = argv[i];
-				if ((tt=getsuf(outfile))=='c'||tt=='o') {
+				if ((tt=getsuf(outfile))=='c'||
+				    (tt=='o' && !cflag)) {
 					error("Would overwrite %s", outfile);
 					exit(8);
 				}
