@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.35 2003/09/01 13:24:34 ragge Exp $	*/
+/*	$Id: order.c,v 1.36 2003/09/02 08:13:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -212,12 +212,15 @@ sucomp(NODE *p)
 		p->n_su = max( max( 1+sul, sur), fregs );
 		return;
 
-	case ASG MUL:
 	case MUL:
+#if 0
+		if (ISLONGLONG(p->n_type)) {
+			p->n_su = sul + sur + 4;
+			return;
+		}
+#endif
 	case DIV:
-	case ASG DIV:
 	case MOD:
-	case ASG MOD:
 		/* DIV/MOD/MUL insns require register pairs */
 		if (ISLONGLONG(p->n_type))
 			p->n_su = max(sul, sur) + 4;

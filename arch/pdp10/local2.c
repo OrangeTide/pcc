@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.73 2003/09/01 14:07:48 ragge Exp $	*/
+/*	$Id: local2.c,v 1.74 2003/09/02 08:13:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -746,12 +746,14 @@ zzzcode(NODE *p, int c)
 		}
 		break;
 
+	case 'P':
+		p = getlr(p, 'R');
+		/* FALLTHROUGH */
 	case 'O':
 		/*
 		 * Print long long expression.
 		 */
 		hval = gethval(p->n_lval);
-	c = (c & 0377777777777LL) | (hval & 0400000000000LL);
 		printf("[ .long 0%llo,0%llo", hval,
 		    (p->n_lval & 0377777777777LL) | (hval & 0400000000000LL));
 		if (p->n_name[0] != '\0')
