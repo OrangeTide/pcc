@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.5 2003/08/09 14:37:37 ragge Exp $	*/
+/*	$Id: table.c,v 1.6 2003/08/09 15:08:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -43,9 +43,9 @@ struct optab table[] = {
  * A bunch conversions of integral<->integral types
  */
 
-/* convert short/char to int. This is done when register is loaded */
+/* convert pointers to int. */
 { SCONV,	INTAREG,
-	STAREG,	TSHORT|TUSHORT|TCHAR|TUCHAR|TWORD,
+	STAREG,	TPOINT|TWORD,
 	SANY,	TWORD,
 		0,	RLEFT,
 		"", },

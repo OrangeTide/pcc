@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.5 2003/08/07 22:36:14 ragge Exp $	*/
+/*	$Id: local.c,v 1.6 2003/08/09 15:08:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -110,6 +110,12 @@ clocal(NODE *p)
 				nfree(p);
 				return l;
 			}
+		}
+
+		if ((p->n_type == INT || p->n_type == UNSIGNED) &&
+		    ISPTR(l->n_type)) {
+			nfree(p);
+			return l;
 		}
 
 		o = l->n_op;

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.7 2003/08/09 14:37:37 ragge Exp $	*/
+/*	$Id: local2.c,v 1.8 2003/08/09 15:08:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1303,23 +1303,6 @@ optim2(NODE *p)
 	/* XXX - should be done in MI code */
 	if (BTYPE(p->n_type) == VOID)
 		p->n_type = (p->n_type & ~BTMASK) | UCHAR;
-	if (op == MINUS) {
-		if ((p->n_left->n_type == (PTR|CHAR) ||
-		    p->n_left->n_type == (PTR|UCHAR)) &&
-		    (p->n_right->n_type == (PTR|CHAR) ||
-		    p->n_right->n_type == (PTR|UCHAR))) {
-			l = talloc();
-			l->n_op = SCONV;
-			l->n_type = INT;
-			l->n_left = p->n_right;
-			p->n_right = l;
-			l = talloc();
-			l->n_op = SCONV;
-			l->n_type = INT;
-			l->n_left = p->n_left;
-			p->n_left = l;
-		}
-	}
 }
 
 void

@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.4 2003/08/09 14:37:37 ragge Exp $	*/
+/*	$Id: order.c,v 1.5 2003/08/09 15:08:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -505,8 +505,12 @@ int
 setasop(NODE *p)
 {
 
+	if (x2debug)
+		printf("setasop(%p)\n", p);
+
 	switch (p->n_op) {
 	case ASG PLUS:
+	case ASG MINUS:
 		if (!canaddr(p->n_left)) {
 			order(p->n_left, INAREG|INTAREG|INTEMP);
 			return 1;
@@ -522,9 +526,6 @@ setasop(NODE *p)
 #if 0
 	NODE *n;
 	register int rt, ro, pt;
-
-	if (x2debug)
-		printf("setasop(%p)\n", p);
 
 	rt = p->n_right->n_type;
 	ro = p->n_right->n_op;
