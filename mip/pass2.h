@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.24 2003/08/09 09:47:33 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.25 2003/08/11 14:22:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -182,7 +182,7 @@ extern	int ftnno;
 
 extern	int nrecur;		/* flag to keep track of recursions */
 
-#define NRECUR  200
+#define NRECUR  400
 
 extern	NODE
 	*talloc(void),
