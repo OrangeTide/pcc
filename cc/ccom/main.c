@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.3 2002/05/10 16:01:27 ragge Exp $	*/
+/*	$Id: main.c,v 1.4 2002/05/10 20:04:53 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -195,13 +195,16 @@ main(int argc, char *argv[])
 	dimtab[FLOAT] = SZFLOAT;
 	dimtab[DOUBLE] = SZDOUBLE;
 	dimtab[LONG] = SZLONG;
+	dimtab[LONGLONG] = SZLONGLONG;
 	dimtab[SHORT] = SZSHORT;
 	dimtab[UCHAR] = SZCHAR;
 	dimtab[USHORT] = SZSHORT;
 	dimtab[UNSIGNED] = SZINT;
 	dimtab[ULONG] = SZLONG;
+	dimtab[ULONGLONG] = SZLONGLONG;
+	dimtab[SIGNED] = SZINT;
 	/* starts past any of the above */
-	curdim = 16;
+	curdim = 24;	/* XXX - should be calculated from somewhere else */
 	reached = 1;
 
 	fpe_sigvec.sv_handler = fpe;
