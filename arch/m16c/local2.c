@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.1 2005/01/08 14:53:10 pj Exp $	*/
+/*	$Id: local2.c,v 1.2 2005/01/09 13:27:54 pj Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -139,7 +139,6 @@ hopcode(int f, int o)
 	case PLUS:
 		str = "add";
 		break;
-#if 0
 	case MINUS:
 		str = "sub";
 		break;
@@ -152,7 +151,6 @@ hopcode(int f, int o)
 	case ER:
 		str = "xor";
 		break;
-#endif
 	default:
 		comperr("hopcode2: %d", o);
 		str = 0; /* XXX gcc */
