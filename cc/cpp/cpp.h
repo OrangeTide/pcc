@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.10 2005/03/19 09:34:05 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.11 2005/03/20 16:21:12 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -64,6 +64,13 @@ struct symtab {
 	usch *value;    
 };
 
+#ifdef _LP64
+#define	DEFALIGN long
+#else
+#define	DEFALIGN int
+#endif
+#define	ROUND(x) (((x)+sizeof(DEFALIGN)-1)& ~(sizeof(DEFALIGN)-1))
+
 /* buffer used internally */
 #ifndef CPPBUF
 #define CPPBUF  BUFSIZ
@@ -87,3 +94,5 @@ void setfile(char *);
 int yyparse(void);
 void yyerror(char *);
 void unpstr(usch *);
+usch *savstr(usch *str);
+void savch(int c);
