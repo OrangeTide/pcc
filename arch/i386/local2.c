@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.43 2005/02/23 15:37:37 ragge Exp $	*/
+/*	$Id: local2.c,v 1.44 2005/04/02 07:56:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -76,7 +76,7 @@ prologue(struct interpass_prolog *ipp)
 		 * We here know what register to save and how much to 
 		 * add to the stack.
 		 */
-		addto = (maxautooff - AUTOINIT)/SZCHAR;
+		addto = (p2maxautooff - AUTOINIT)/SZCHAR;
 		printf("	pushl %%ebp\n");
 		printf("	movl %%esp,%%ebp\n");
 		if (addto)
@@ -95,7 +95,7 @@ eoftn(struct interpass_prolog *ipp)
 	if (ipp->ipp_ip.ip_lbl == 0)
 		return; /* no code needs to be generated */
 
-	spoff = ipp->ipp_autos;
+	spoff = p2maxautooff;
 	if (spoff >= AUTOINIT)
 		spoff -= AUTOINIT;
 	spoff /= SZCHAR;
