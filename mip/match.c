@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.20 2003/09/09 12:20:53 ragge Exp $	*/
+/*	$Id: match.c,v 1.21 2003/09/09 12:30:15 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -39,8 +39,6 @@ int e2print(NODE *p, int down, int *a, int *b);
 void prttype(int t);
 
 int fldsz, fldshf;
-
-extern int mamask[];
 
 int s2debug = 0;
 

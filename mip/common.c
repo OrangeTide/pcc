@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.38 2003/09/01 12:08:03 ragge Exp $	*/
+/*	$Id: common.c,v 1.39 2003/09/09 12:30:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -227,35 +227,6 @@ nfree(NODE *p)
 		cerror("freeing blank node!");
 }
 #endif
-
-/*
- * masks for matching dope with shapes
- */
-int mamask[] = {
-	SIMPFLG,		/* OPSIMP */
-	SIMPFLG|ASGFLG,		/* ASG OPSIMP */
-	COMMFLG,	/* OPCOMM */
-	COMMFLG|ASGFLG, /* ASG OPCOMM */
-	MULFLG,		/* OPMUL */
-	MULFLG|ASGFLG,	/* ASG OPMUL */
-	DIVFLG,		/* OPDIV */
-	DIVFLG|ASGFLG,	/* ASG OPDIV */
-	UTYPE,		/* OPUNARY */
-	TYFLG,		/* ASG OPUNARY is senseless */
-	LTYPE,		/* OPLEAF */
-	TYFLG,		/* ASG OPLEAF is senseless */
-	0,		/* OPANY */
-	ASGOPFLG|ASGFLG,	/* ASG OPANY */
-	LOGFLG,		/* OPLOG */
-	TYFLG,		/* ASG OPLOG is senseless */
-	FLOFLG,		/* OPFLOAT */
-	FLOFLG|ASGFLG,	/* ASG OPFLOAT */
-	SHFFLG,		/* OPSHFT */
-	SHFFLG|ASGFLG,	/* ASG OPSHIFT */
-	SPFLG,		/* OPLTYPE */
-	TYFLG,		/* ASG OPLTYPE is senseless */
-	};
-
 
 #ifdef MKEXT
 #define coptype(o)	(dope[o]&TYFLG)
