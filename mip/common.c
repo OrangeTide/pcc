@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.30 2003/07/07 20:27:07 ragge Exp $	*/
+/*	$Id: common.c,v 1.31 2003/07/13 12:37:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -196,19 +196,17 @@ void
 nfree(NODE *p)
 {
 	extern int inlnodecnt, recovernodes;
-//	NODE *q;
+	NODE *q;
 
 	if (p != NULL) {
 		if (p->n_op == FREE)
 			cerror("freeing FREE node", p);
-#if 0
 		q = freelink;
 		while (q != NULL) {
 			if (q == p)
 				cerror("freeing free node %p", p);
 			q = q->next;
 		}
-#endif
 
 		if (nflag)
 			printf("freeing node %p\n", p);
@@ -275,6 +273,7 @@ struct dopest {
 	{ STRING, "STRING", LTYPE, },
 	{ REG, "REG", LTYPE, },
 	{ OREG, "OREG", LTYPE, },
+	{ TEMP, "TEMP", LTYPE, },
 	{ ICON, "ICON", LTYPE, },
 	{ FCON, "FCON", LTYPE, },
 	{ CCODES, "CCODES", LTYPE, },

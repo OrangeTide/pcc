@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.33 2003/07/07 20:27:07 ragge Exp $	*/
+/*	$Id: main.c,v 1.34 2003/07/13 12:37:29 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -163,7 +163,7 @@ main(int argc, char *argv[])
 			break;
 
 		case 'O': /* Optimize */
-//			Oflag++;
+			Oflag++;
 			break;
 
 		case 'g': /* Debugging */
