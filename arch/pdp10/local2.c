@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.78 2003/09/12 13:31:25 ragge Exp $	*/
+/*	$Id: local2.c,v 1.79 2003/09/12 14:53:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -858,8 +858,8 @@ canaddr(NODE *p)
 	int o = p->n_op;
 
 	if (o==NAME || o==REG || o==ICON || o==OREG ||
-	    (o==UNARY MUL && shumul(p->n_left)) ||
-	    (o==UNARY MUL && special(p->n_left, SILDB)))
+	    (o==UMUL && shumul(p->n_left)) ||
+	    (o==UMUL && special(p->n_left, SILDB)))
 		return(1);
 	return(0);
 }
@@ -895,9 +895,9 @@ shtemp(NODE *p)
 		}
 		return (!istreg(r));
 
-	case UNARY MUL:
+	case UMUL:
 		p = p->n_left;
-		return (p->n_op != UNARY MUL && shtemp(p));
+		return (p->n_op != UMUL && shtemp(p));
 	}
 
 	if (optype(p->n_op) != LTYPE)

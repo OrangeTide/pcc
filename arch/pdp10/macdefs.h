@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.22 2003/09/09 11:17:21 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.23 2003/09/12 14:53:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -144,7 +144,7 @@ typedef long long OFFSZ;
 
 #define	shltype(o, p) \
 	((o) == REG || (o) == NAME || (o) == ICON || \
-	 (o) == OREG || ((o) == UNARY MUL && shumul((p)->n_left)))
+	 (o) == OREG || ((o) == UMUL && shumul((p)->n_left)))
 
 #define MYREADER(p) myreader(p)
 #define MYCANON(p) mycanon(p)

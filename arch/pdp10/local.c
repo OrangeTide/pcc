@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.57 2003/09/12 14:33:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.58 2003/09/12 14:53:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -283,8 +283,8 @@ rmpc:			l->n_type = p->n_type;
 		/* convert >> to << with negative shift count */
 		/* Beware! constant shifts will be converted back in optim() */
 
-		if (p->n_right->n_op != UNARY MINUS) {
-			p->n_right = buildtree(UNARY MINUS, p->n_right, NIL);
+		if (p->n_right->n_op != UMINUS) {
+			p->n_right = buildtree(UMINUS, p->n_right, NIL);
 		} else {
 			r = p->n_right;
 			p->n_right = p->n_right->n_left;
@@ -296,7 +296,7 @@ rmpc:			l->n_type = p->n_type;
 			p->n_op = ASG LS;
 		break;
 
-	case UNARY MUL: /* Convert structure assignment to memcpy() */
+	case UMUL: /* Convert structure assignment to memcpy() */
 		if (p->n_left->n_op != STASG)
 			break;
 		oop = p;
@@ -305,7 +305,7 @@ rmpc:			l->n_type = p->n_type;
 		l = p->n_left;
 		r = p->n_right;
 		if (l->n_type == STRTY || l->n_type == UNIONTY) {
-			if (l->n_op == UNARY MUL) {
+			if (l->n_op == UMUL) {
 				p->n_left = l->n_left;
 				nfree(l);
 				l = p->n_left;
