@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.27 2003/08/25 11:08:56 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.28 2003/09/01 12:08:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -207,6 +207,7 @@ struct optab *nxtmatch(struct optab *);
 int chkmatch(NODE *, int, int, int);
 int match(NODE *p, int cookie);
 int nmatch(NODE *p, int what);
+int setnbin(NODE *p);
 
 extern	char *rnames[];
 
