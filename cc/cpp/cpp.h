@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.1 2004/08/21 09:58:46 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.2 2004/08/26 16:24:45 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -52,3 +52,5 @@ int yylex(void);
 void cunput(int);
 int curline(void);
 char *curfile(void);
+void setline(int);
+void setfile(char *);
