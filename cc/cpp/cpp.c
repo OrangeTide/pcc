@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.20 2005/01/02 17:54:25 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.21 2005/01/08 08:35:52 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -289,8 +289,14 @@ main(int argc, char **argv)
 				unpstr(nl->namep);
 				(void)yylex(); /* get yystr correct */
 				nl = 0; /* ignore */
-			} else
+			} else {
 				thisnl = NULL;
+				if (nl->value[0] == OBJCT) {
+					unpstr(nl->namep);
+					(void)yylex(); /* get yystr correct */
+					nl = 0;
+				}
+			}
 
 found:			if (nl == 0 || subst(yystr, nl, NULL) == 0) {
 				fputs(yystr, obuf);
