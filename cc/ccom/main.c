@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.35 2003/07/30 16:18:23 ragge Exp $	*/
+/*	$Id: main.c,v 1.36 2003/08/02 11:22:44 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -208,8 +208,6 @@ main(int argc, char *argv[])
 	btdim[UNSIGNED] = SZINT;
 	btdim[ULONG] = SZLONG;
 	btdim[ULONGLONG] = SZLONGLONG;
-	btdim[CONST] = SZINT;
-	btdim[VOLATILE] = SZINT;
 	/* starts past any of the above */
 	reached = 1;
 
