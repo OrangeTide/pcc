@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.29 2004/05/30 10:16:32 ragge Exp $	*/
+/*	$Id: match.c,v 1.30 2004/06/14 16:33:31 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -224,6 +224,8 @@ ttype(TWORD t, int tword)
 		return( tword & TFLOAT );
 	case DOUBLE:
 		return( tword & TDOUBLE );
+	case LDOUBLE:
+		return( tword & TLDOUBLE );
 	}
 
 	return(0);

@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.25 2004/05/10 21:35:58 ragge Exp $	*/
+/*	$Id: node.h,v 1.26 2004/06/14 16:33:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -71,7 +71,7 @@ typedef struct node {
 				struct symtab *_sp;
 			} n_r;
 		} n_u;
-		double	_dcon;
+		long double	_dcon;
 	} n_f;
 } NODE;
 
