@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.94 2003/06/19 16:17:53 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.95 2003/06/19 16:32:29 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1078,7 +1078,7 @@ swend(void)
 		swp[i] = swpole->ents;
 		swpole->ents = swpole->ents->next;
 	}
-	genswitch(swp, swpole->nents+1);
+	genswitch(swp, swpole->nents);
 
 	swpole = swpole->next;
 }
