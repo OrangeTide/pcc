@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.42 2005/02/19 11:15:09 pj Exp $	*/
+/*	$Id: local2.c,v 1.43 2005/02/23 15:37:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -91,6 +91,9 @@ void
 eoftn(struct interpass_prolog *ipp)
 {
 	int spoff, i;
+
+	if (ipp->ipp_ip.ip_lbl == 0)
+		return; /* no code needs to be generated */
 
 	spoff = ipp->ipp_autos;
 	if (spoff >= AUTOINIT)
