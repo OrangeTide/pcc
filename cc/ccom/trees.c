@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.74 2003/08/05 09:27:55 ragge Exp $	*/
+/*	$Id: trees.c,v 1.75 2003/08/06 13:01:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1139,6 +1139,15 @@ makety(NODE *p, TWORD t, TWORD q, union dimfun *d, struct suedef *sue)
 		p->n_df = d;
 		p->n_sue = sue;
 		p->n_qual = q;
+		return(p);
+	}
+
+	if ((p->n_type == FLOAT || p->n_type == DOUBLE || p->n_type == LDOUBLE)
+	    && (t == FLOAT || t == DOUBLE || t == LDOUBLE) && p->n_op == FCON) {
+		p->n_type = t;
+		p->n_qual = q;
+		p->n_df = d;
+		p->n_sue = sue;
 		return(p);
 	}
 
