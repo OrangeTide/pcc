@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.47 2003/09/09 11:22:21 ragge Exp $	*/
+/*	$Id: order.c,v 1.48 2003/09/12 13:31:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -213,6 +213,7 @@ sucomp(NODE *p)
 	case DIV:
 	case MOD:
 		/* DIV/MOD/MUL insns require register pairs */
+		/* XXX - force longlongs out to temp for now. */
 		if (ISLONGLONG(p->n_type))
 			p->n_su = max(sul, sur) + 4;
 		else
