@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.14 2003/06/06 19:39:56 ragge Exp $	*/
+/*	$Id: main.c,v 1.15 2003/06/07 10:16:30 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -220,9 +220,11 @@ void
 prtstats(void)
 {
 	extern int nametabs, namestrlen, tmpallocsize, permallocsize;
+	extern int lostmem;
 
 	fprintf(stderr, "Name table entries:		%d pcs\n", nametabs);
 	fprintf(stderr, "Name string size:		%d B\n", namestrlen);
 	fprintf(stderr, "Permanent allocated memory:	%d B\n", permallocsize);
 	fprintf(stderr, "Temporary allocated memory:	%d B\n", tmpallocsize);
+	fprintf(stderr, "Lost memory:			%d B\n", lostmem);
 }
