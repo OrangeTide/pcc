@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.28 2005/02/19 11:17:56 ragge Exp $	*/
+/*	$Id: local.c,v 1.29 2005/02/21 17:51:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -181,7 +181,8 @@ clocal(NODE *p)
 		if (o == ICON) {
 			CONSZ val = l->n_lval;
 
-			switch (m) {
+			if (!ISPTR(m)) /* Pointers don't need to be conv'd */
+			    switch (m) {
 			case CHAR:
 				l->n_lval = (char)val;
 				break;
