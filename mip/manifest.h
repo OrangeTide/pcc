@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.33 2003/08/03 21:15:59 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.34 2003/08/06 11:28:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -112,7 +112,7 @@
 #define MODTYPE(x,y)	x = ((x)&(~BTMASK))|(y)	/* set basic type of x to y */
 #define BTYPE(x)	((x)&BTMASK)		/* basic type of x */
 #define	ISLONGLONG(x)	((x) == LONGLONG || (x) == ULONGLONG)
-#define ISUNSIGNED(x)	(((x) & 1) == (UNSIGNED & 1))
+#define ISUNSIGNED(x)	(((x) <= ULONGLONG) && (((x) & 1) == (UNSIGNED & 1)))
 #define UNSIGNABLE(x)	(((x)<=ULONGLONG&&(x)>=CHAR) && !ISUNSIGNED(x))
 #define ENUNSIGN(x)	((x)+1)
 #define DEUNSIGN(x)	((x)-1)
