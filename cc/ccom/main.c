@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.47 2004/12/12 13:13:02 ragge Exp $	*/
+/*	$Id: main.c,v 1.48 2005/01/02 13:16:45 pj Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -43,6 +43,7 @@ int iTflag, oTflag;
 int xdebug, mdebug, sdebug, gflag;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
+int xssaflag;
 
 int e2debug, t2debug, f2debug;
 
@@ -100,7 +101,7 @@ main(int argc, char *argv[])
 
 	int ch;
 
-	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:g")) != -1)
+	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:gx:")) != -1)
 		switch (ch) {
 #if !defined(MULTIPASS) || defined(PASS1)
 		case 'X':
@@ -174,6 +175,14 @@ main(int argc, char *argv[])
 		case 'W': /* Enable different warnings */
 			Wflags(optarg);
 			break;
+
+		case 'x': /* Different optimizations */
+			if (strcmp(optarg, "ssa") == 0)
+				xssaflag++;
+			else
+				usage();
+			break;
+
 		case '?':
 		default:
 			usage();
