@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.17 2004/06/12 08:57:28 ragge Exp $	*/
+/*	$Id: order.c,v 1.18 2004/06/19 09:14:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -153,7 +153,7 @@ regalloc(NODE *p, struct optab *q, int wantreg)
 
 	if (q->op == SCONV && (q->rtype & TLONGLONG)) {
 		/*
-		 * Cast to longlong from char->int.
+		 * Cast to longlong from char->short->int.
 		 * cltd instruction; input in eax, out in eax+edx.
 		 */
 		if (regblk[EAX] & 1 || regblk[EDX] & 1)

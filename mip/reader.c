@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.103 2004/06/05 08:22:42 ragge Exp $	*/
+/*	$Id: reader.c,v 1.104 2004/06/19 09:14:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -93,6 +93,7 @@ int findleaf(NODE *p, int);
 int relops(NODE *p);
 int asgops(NODE *p, int);
 NODE *store(NODE *);
+void rcount(void);
 
 static void gencode(NODE *p, int cookie);
 
@@ -347,6 +348,7 @@ codgen(NODE *p, int cookie)
 {
 	int o;
 
+	rcount();
 	nodepole = p;
 	canon(p);  /* creats OREG from * if possible and does sucomp */
 #ifdef PCC_DEBUG

@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.49 2004/05/10 21:35:58 ragge Exp $	*/
+/*	$Id: common.c,v 1.50 2004/06/19 09:14:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -344,7 +344,7 @@ struct dopest {
 	{ NE, "!=", BITYPE|LOGFLG, },
 	{ LE, "<=", BITYPE|LOGFLG, },
 	{ LT, "<", BITYPE|LOGFLG, },
-	{ GE, ">", BITYPE|LOGFLG, },
+	{ GE, ">=", BITYPE|LOGFLG, },
 	{ GT, ">", BITYPE|LOGFLG, },
 	{ UGT, "UGT", BITYPE|LOGFLG, },
 	{ UGE, "UGE", BITYPE|LOGFLG, },
