@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.4 2005/01/10 20:58:10 ragge Exp $	*/
+/*	$Id: local2.c,v 1.5 2005/01/11 14:27:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -205,13 +205,6 @@ zzzcode(NODE *p, int c)
 	default:
 		comperr("bad zzzcode %c", c);
 	}
-}
-
-/* set up temporary registers */
-void
-setregs()
-{
-	fregs = 3;	/* 3 free regs on m16c (0-2) */
 }
 
 /*ARGSUSED*/
