@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.4 2002/05/10 20:04:53 ragge Exp $	*/
+/*	$Id: main.c,v 1.5 2002/05/11 13:00:09 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -203,6 +203,8 @@ main(int argc, char *argv[])
 	dimtab[ULONG] = SZLONG;
 	dimtab[ULONGLONG] = SZLONGLONG;
 	dimtab[SIGNED] = SZINT;
+	dimtab[CONST] = SZINT;
+	dimtab[VOLATILE] = SZINT;
 	/* starts past any of the above */
 	curdim = 24;	/* XXX - should be calculated from somewhere else */
 	reached = 1;
