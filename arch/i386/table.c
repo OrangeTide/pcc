@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.6 2003/08/09 15:08:59 ragge Exp $	*/
+/*	$Id: table.c,v 1.7 2003/08/09 20:30:01 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -360,13 +360,13 @@ struct optab table[] = {
  */
 { OPLTYPE,	INTAREG,
 	SANY,	TANY,
-	STAREG|SOREG|SNAME|SCON,	TWORD|TPOINT,
+	SAREG|STAREG|SOREG|SNAME|SCON,	TWORD|TPOINT,
 		NAREG,	RESC1,
 		"	movl AL,A1\n", },
 
 { OPLTYPE,	INTBREG,
 	SANY,	TANY,
-	STBREG|SOREG|SNAME|SCON,	TWORD|TPOINT,
+	SBREG|STBREG|SOREG|SNAME|SCON,	TWORD|TPOINT,
 		NBREG,	RESC1,
 		"	movl AL,A1\n", },
 
