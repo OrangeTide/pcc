@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.90 2004/10/02 07:59:32 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.91 2004/10/02 14:29:44 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -36,11 +36,6 @@
 #include <sys/types.h>
 
 #include "manifest.h"
-#ifdef PASS1
-#include "y.tab.h"
-#else
-#include "cgram.h"
-#endif
 
 #include "protos.h"
 
@@ -193,6 +188,12 @@ typedef union {
 	} stri;
 } YYSTYPE;
 extern	YYSTYPE yylval;
+
+#ifdef PASS1
+#include "y.tab.h"
+#else
+#include "cgram.h"
+#endif
 
 extern	OFFSZ inoff;
 
