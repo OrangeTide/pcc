@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.6 2003/06/11 14:42:26 ragge Exp $	*/
+/*	$Id: node.h,v 1.7 2003/06/21 18:03:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -201,7 +201,7 @@ typedef struct node {
 #define FORCE	72
 #define INIT	73
 #define	GOTO	74
-#define	TYPE	75
+#define	LABEL	75
 #define	RETURN	76
 #define LB	77
 #define CAST	78
