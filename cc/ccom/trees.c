@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.124 2005/01/11 14:27:08 ragge Exp $	*/
+/*	$Id: trees.c,v 1.125 2005/01/14 15:46:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1507,7 +1507,6 @@ moditype(TWORD ty)
 NODE *
 tempnode(int *nr, TWORD type, union dimfun *df, struct suedef *sue)
 {
-	int oalloc(struct symtab *p, int *poff);
 	NODE *p, *r;
 
 	if (*nr == 0) {

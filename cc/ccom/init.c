@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.8 2005/01/02 17:55:36 ragge Exp $	*/
+/*	$Id: init.c,v 1.9 2005/01/14 15:46:52 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -109,8 +109,6 @@ static int howinit;	/* store in read-only or read-write segment */
 #define RWINIT	1	/* Data is read-write */
 #define DOCOPY	2	/* must copy (initialized on stack) */
 #define SIMPLE	4	/* simple assignment for automatics */
-
-int oalloc(struct symtab *p, int *poff);
 
 static void instk(struct symtab *p, TWORD t, TWORD q, union dimfun *d,
     struct suedef *, OFFSZ off);

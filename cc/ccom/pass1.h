@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.100 2005/01/12 22:49:40 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.101 2005/01/14 15:46:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -264,6 +264,7 @@ NODE *	typenode(NODE *new);
 void	spalloc(NODE *, NODE *, OFFSZ);
 char	*exname(char *);
 
+int oalloc(struct symtab *p, int *poff);
 void deflabel(char *);
 void deflab1(int);
 void setloc1(int);
