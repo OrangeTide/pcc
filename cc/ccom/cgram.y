@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.134 2004/09/04 11:12:25 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.135 2004/10/02 14:29:14 pj Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -161,14 +161,14 @@
 %token <nodep>  C_TYPE C_QUALIFIER C_ICON C_FCON
 %token <strp>	C_NAME C_TYPENAME
 
-%%
-
 %{
 	static int fun_inline;	/* Reading an inline function */
 	int oldstyle;	/* Current function being defined */
 	int got_type;
 	int noretype;
 %}
+
+%%
 
 ext_def_list:	   ext_def_list external_def
 		| { ftnend(); }
