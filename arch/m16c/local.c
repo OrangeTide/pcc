@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.7 2005/01/29 16:06:46 ragge Exp $	*/
+/*	$Id: local.c,v 1.8 2005/02/28 16:10:55 pj Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -417,7 +417,6 @@ setloc1(int locc)
 	if (locc == lastloc)
 		return;
 	lastloc = locc;
-	send_passt(IP_LOCCTR, locc);
 }
 
 /*
