@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.13 2005/01/29 16:06:46 ragge Exp $	*/
+/*	$Id: local2.c,v 1.14 2005/01/31 15:08:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -429,8 +429,12 @@ special(NODE *p, int shape)
 {
 	switch (shape) {
 	case SFTN:
-		if (ISPTR(p->n_type) && ISFTN(DECREF(p->n_type)))
-			return SRDIR;
+		if (ISPTR(p->n_type) && ISFTN(DECREF(p->n_type))) {
+			if (p->n_op == NAME || p->n_op == OREG)
+				return SRDIR;
+			else
+				return SRREG;
+		}
 		break;
 	}
 	return SRNOPE;
