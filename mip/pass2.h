@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.34 2004/04/18 12:14:35 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.35 2004/05/15 08:06:17 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -133,8 +133,6 @@
 #define NBSR		000200
 #define NTEMP		000400
 #define NTMASK		001400
-#define	NDLEFT		002000	/* left leaf is destination */
-#define	NDRIGHT		004000	/* right leaf is destination */
 #define REWRITE		010000
 
 #define MUSTDO		010000	/* force register requirements */
@@ -142,11 +140,6 @@
 
 /* register allocation */
 extern	int rstatus[];		/* register status info */
-extern	int busy[];		/* register use info */
-extern	struct respref {
-	int	cform;
-	int	mform;
-} respref[];
 
 #define isbreg(r)	(rstatus[r]&SBREG)
 #define istreg(r)	(rstatus[r]&(STBREG|STAREG))
@@ -171,8 +164,6 @@ extern	struct optab {
 	int	ltype;
 	int	rshape;
 	int	rtype;
-	int	dshape;
-	int	dtype;
 	int	needs;
 	int	rewrite;
 	char	*cstring;
@@ -199,7 +190,6 @@ void prologue(int regs, int autos);
 void setlocc(int locctr);
 void defname(char *name, int visib);
 int e2print(NODE *p, int down, int *a, int *b);
-int canaddr(NODE *);
 void myoptim(struct interpass *);
 void cbgen(int op, int label);
 struct optab *nxtmatch(struct optab *);
