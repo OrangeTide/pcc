@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.19 2004/05/29 14:11:45 ragge Exp $	*/
+/*	$Id: local2.c,v 1.20 2004/05/29 17:24:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -548,7 +548,7 @@ adrput(FILE *io, NODE *p)
 
 	case MOVE:
 	case REG:
-		fputs(rnames[p->n_rval], stdout);
+		fprintf(io, "%s", rnames[p->n_rval]);
 		return;
 
 	default:
