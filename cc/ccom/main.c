@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.34 2003/07/13 12:37:29 ragge Exp $	*/
+/*	$Id: main.c,v 1.35 2003/07/30 16:18:23 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -97,7 +97,6 @@ main(int argc, char *argv[])
 {
 
 	int ch;
-	extern char *release;
 
 	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:")) != -1)
 		switch (ch) {
@@ -153,11 +152,6 @@ main(int argc, char *argv[])
 				}
 #endif
 			break;
-#if !defined(MULTIPASS)
-		case 'V':
-			warnx("Release: %s", release);
-			break;
-#endif
 		case 'l': /* linenos */
 			++lflag;
 			break;
