@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.7 2005/01/13 16:10:43 ragge Exp $	*/
+/*	$Id: local2.c,v 1.8 2005/01/14 15:46:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -333,7 +333,11 @@ adrput(FILE *io, NODE *p)
 
 	case MOVE:
 	case REG:
-		fprintf(io, "%s", rnames[p->n_rval]);
+		if (DEUNSIGN(p->n_type) == CHAR) {
+			fprintf(io, "R%c%c", p->n_rval < 2 ? '0' : '1',
+			    (p->n_rval & 1) ? 'H' : 'L');
+		} else
+			fprintf(io, "%s", rnames[p->n_rval]);
 		return;
 
 	default:
