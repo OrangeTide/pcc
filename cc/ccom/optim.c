@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.14 2003/08/18 09:04:07 ragge Exp $	*/
+/*	$Id: optim.c,v 1.15 2003/09/12 14:32:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -100,7 +100,7 @@ optim(NODE *p)
 		p->n_right = fortarg( p->n_right );
 		break;
 
-	case UNARY AND:
+	case ADDROF:
 		if( LO(p) != NAME ) cerror( "& error" );
 
 		if( !andable(p->n_left) ) return(p);

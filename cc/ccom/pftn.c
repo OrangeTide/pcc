@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.101 2003/09/07 13:30:37 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.102 2003/09/12 14:32:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1458,7 +1458,7 @@ doinit(NODE *p)
 	p->n_right = NIL;
 	p->n_left = optim( p->n_left );
 	o = p->n_left->n_op;
-	if( o == UNARY AND ){
+	if( o == ADDROF ){
 		NODE *l = p->n_left->n_left;
 		nfree(p->n_left);
 		p->n_left = l;

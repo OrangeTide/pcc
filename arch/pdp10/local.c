@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.56 2003/09/04 20:47:06 ragge Exp $	*/
+/*	$Id: local.c,v 1.57 2003/09/12 14:33:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -310,7 +310,7 @@ rmpc:			l->n_type = p->n_type;
 				nfree(l);
 				l = p->n_left;
 			} else {
-				l = block(UNARY AND, l, NIL, INCREF(l->n_type),
+				l = block(ADDROF, l, NIL, INCREF(l->n_type),
 				    0, MKSUE(INT));
 			}
 		}

@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.119 2003/09/03 10:04:36 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.120 2003/09/12 14:32:53 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -817,7 +817,7 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 #endif
 				$$ = $2;
 			} else
-				$$ = buildtree(UNARY AND, $2, NIL);
+				$$ = buildtree(ADDROF, $2, NIL);
 		}
 		|  '-' term { $$ = buildtree(UNARY MINUS, $2, NIL ); }
 		|  C_UNOP term ={ $$ = buildtree( $1, $2, NIL ); }
@@ -1178,7 +1178,7 @@ structref(NODE *p, int f, char *name)
 	NODE *r;
 
 	if (f == DOT)
-		p = buildtree(UNARY AND, p, NIL);
+		p = buildtree(ADDROF, p, NIL);
 	r = block(NAME, NIL, NIL, INT, 0, MKSUE(INT));
 	r->n_name = name;
 	return buildtree(STREF, p, r);

@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.80 2003/09/12 13:52:44 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.81 2003/09/12 14:32:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -321,6 +321,23 @@ void myp2tree(NODE *);
 #define	NOT		(MAXOP+13)
 #define	CAST		(MAXOP+14)
 #define	STRING		(MAXOP+15)
+
+/* The following must be in the same order as theie NOASG counterparts */
+
+#if 0
+#define	PLUSEQ		(MAXOP+16)
+#define	MINUSEQ		(MAXOP+17)
+#define	DIVEQ		(MAXOP+18)
+#define	MODEQ		(MAXOP+19)
+#define	MULEQ		(MAXOP+20)
+#define	ANDEQ		(MAXOP+21)
+#define	OREQ		(MAXOP+22)
+#define	EREQ		(MAXOP+23)
+#define	LSEQ		(MAXOP+24)
+#define	RSEQ		(MAXOP+25)
+#endif
+/* Other specials */
+#define	ADDROF		(MAXOP+26)
 
 #define coptype(o)	(cdope(o)&TYFLG)
 #define clogop(o)	(cdope(o)&LOGFLG)

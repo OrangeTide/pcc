@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.17 2003/09/12 13:52:44 ragge Exp $	*/
+/*	$Id: node.h,v 1.18 2003/09/12 14:32:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -131,7 +131,6 @@ typedef struct node {
  */
 #define AND	24
 #define ANDEQ	25
-#define	UAND	26
 #define OR	27
 #define OREQ	28
 #define ER	29
