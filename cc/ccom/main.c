@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.27 2003/07/06 14:19:12 ragge Exp $	*/
+/*	$Id: main.c,v 1.28 2003/07/06 21:01:46 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -47,8 +47,6 @@ int e2debug, t2debug;
 int btdim[24];
 
 static void prtstats(void);
-
-static struct sigvec fpe_sigvec;
 
 static struct {
 	char *n; int *f;
@@ -224,9 +222,6 @@ main(int argc, char *argv[])
 	btdim[VOLATILE] = SZINT;
 	/* starts past any of the above */
 	reached = 1;
-
-	fpe_sigvec.sv_handler = fpe;
-	(void) sigvec(SIGFPE, &fpe_sigvec, (struct sigvec *) NULL);
 
 	(void) yyparse();
 	yyaccpt();
