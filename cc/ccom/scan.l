@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.11 2002/12/06 22:55:53 ragge Exp $	*/
+/*	$Id: scan.l,v 1.12 2002/12/14 15:23:42 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -256,7 +256,7 @@ cvtdig(int radix)
 	char *eptr;
 
 	errno = 0;
-	lastcon = strtoul(yytext, &eptr, radix);
+	lastcon = strtoull(yytext, &eptr, radix);
 	if (errno == ERANGE) {
 		cerror("cvtdig sket sej\n");
 	}
