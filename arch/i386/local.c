@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.20 2004/12/02 21:33:50 ragge Exp $	*/
+/*	$Id: local.c,v 1.21 2004/12/13 16:09:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -340,6 +340,37 @@ spalloc(NODE *t, NODE *p, OFFSZ off)
 	sp->n_lval = 0;
 	sp->n_rval = STKREG;
 	ecomp(buildtree(PLUSEQ, sp, p));
+}
+
+/*
+ * print out a constant node
+ * mat be associated with a label
+ */
+void
+ninval(NODE *p)
+{
+	p = p->n_left;
+	switch (p->n_type) {
+	case LONGLONG:
+	case ULONGLONG:
+		inval(p->n_lval & 0xffffffff);
+		inval(p->n_lval >> 32);
+		break;
+	case INT:
+	case UNSIGNED:
+		printf("\t.long 0x%x", (int)p->n_lval);
+		if (p->n_sp != NULL) {
+			if (p->n_sp->sflags & SLABEL ||
+			    p->n_sp->sclass == ILABEL) {
+				printf("+" LABFMT, p->n_sp->soffset);
+			} else
+				printf("+%s", exname(p->n_sp->sname));
+		}
+		printf("\n");
+		break;
+	default:
+		cerror("ninval");
+	}
 }
 
 /*

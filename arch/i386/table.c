@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.37 2004/10/02 14:54:27 ragge Exp $	*/
+/*	$Id: table.c,v 1.38 2004/12/13 16:09:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -310,6 +310,7 @@ struct optab table[] = {
 		"	movzwl ZL,A1\n	pushl A1\n"
 		"	fildl (%esp)\n	addl $4,%esp\n", },
 
+#if 0
 /*
  * Store constant initializers.
  */
@@ -324,6 +325,7 @@ struct optab table[] = {
 	SANY,	TLL,
 		0,	RNOP,
 		"	.long ZI\n	.long CL\n", },
+#endif
 
 /*
  * Subroutine calls.
