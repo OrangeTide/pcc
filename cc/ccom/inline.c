@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.13 2003/07/07 20:27:07 ragge Exp $	*/
+/*	$Id: inline.c,v 1.14 2003/07/29 09:20:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -29,7 +29,6 @@
 
 #include "pass1.h"
 
-#include <stdlib.h>
 #include <stdarg.h>
 
 /*
@@ -54,23 +53,6 @@ static void
 tcnt(NODE *p)
 {
 	inlnodecnt++;
-}
-
-static NODE *
-treecpy(NODE *p)
-{
-	NODE *q;
-
-	q = talloc();
-	inlnodecnt++;
-	*q = *p;
-	switch (optype(q->n_op)) {
-	case BITYPE:
-		q->n_right = treecpy(p->n_right);
-	case UTYPE:
-		q->n_left = treecpy(p->n_left);
-	}
-	return q;
 }
 
 static struct istat *

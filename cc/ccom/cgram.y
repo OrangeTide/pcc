@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.109 2003/07/29 09:16:18 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.110 2003/07/29 09:20:18 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -137,7 +137,6 @@
 %left '[' '(' C_STROP
 %{
 # include "pass1.h"
-# include <string.h>
 # include <stdarg.h>
 %}
 
