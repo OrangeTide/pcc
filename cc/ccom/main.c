@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.20 2003/06/21 18:01:20 ragge Exp $	*/
+/*	$Id: main.c,v 1.21 2003/06/22 11:24:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -142,10 +142,11 @@ main(int argc, char *argv[])
 				}
 #endif
 			break;
+#if !defined(MULTIPASS)
 		case 'V':
 			warnx("Release: %s", release);
 			break;
-
+#endif
 		case 'l': /* linenos */
 			++lflag;
 			break;
