@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.34 2004/12/20 18:27:09 ragge Exp $	*/
+/*	$Id: local2.c,v 1.35 2004/12/30 10:36:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -123,21 +123,6 @@ eoftn(int regs, int autos, int retlab)
 		printf("	jmp " LABFMT "\n", ftlab2);
 	}
 	isoptim = 0;
-}
-
-static char *loctbl[] =
-    { "text", "data", "section .rodata", "section .rodata" };
-
-void
-setlocc(int locctr)
-{
-	static int lastloc = -1;
-
-	if (locctr == lastloc)
-		return;
-
-	lastloc = locctr;
-	printf("	.%s\n", loctbl[locctr]);
 }
 
 /*
