@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.62 2003/07/30 12:56:38 ragge Exp $	*/
+/*	$Id: trees.c,v 1.63 2003/07/30 14:11:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1059,8 +1059,15 @@ tymatch(p)  register NODE *p; {
 	if( ( t1 == CHAR || t1 == SHORT ) && o!= RETURN ) t1 = INT;
 	if( t2 == CHAR || t2 == SHORT ) t2 = INT;
 
+#if 0
 	if (t1 == DOUBLE || t1 == FLOAT || t2 == DOUBLE || t2 == FLOAT)
 		t = DOUBLE;
+#else
+	if (t1 == FLOAT && t2 == FLOAT)
+		t = FLOAT;
+	else if (t1 == DOUBLE || t2 == DOUBLE)
+		t = DOUBLE;
+#endif
 	else if (t1==LONG || t2==LONG)
 		t = LONG;
 	else if (t1==LONGLONG || t2 == LONGLONG)
