@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.121 2004/09/19 09:40:48 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.122 2004/10/02 07:59:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1040,6 +1040,7 @@ int idebug;
 NODE *
 strend(struct stri *si)
 {
+	extern int maystr;
 	struct symtab *s;
 	NODE *p;
 
@@ -1047,7 +1048,7 @@ strend(struct stri *si)
 	si->str = addstring(si->str);	/* enter string in string table */
 	s = lookup(si->str, SSTRING);	/* check for existance */
 
-	if (s->soffset == 0) { /* No string */
+	if (s->soffset == 0 && maystr == 0) { /* No string */
 		struct strsched *sc;
 		s->sclass = ILABEL;
 
@@ -1102,6 +1103,7 @@ strprint()
 	}
 }
 
+#if 0
 /*
  * simulate byte v appearing in a list of integer values
  */
@@ -1114,6 +1116,7 @@ putbyte(int v)
 	tfree( p );
 //	gotscal();
 }
+#endif
 
 /*
  * update the offset pointed to by poff; return the
