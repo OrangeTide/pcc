@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.3 2003/06/04 19:36:06 ragge Exp $	*/
+/*	$Id: node.h,v 1.4 2003/06/09 15:55:57 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -37,6 +37,7 @@ typedef unsigned int TWORD;
 #define NIL (NODE *)0
 
 struct symtab;
+struct suedef;
 
 typedef struct node {
 	int	n_op;
@@ -51,7 +52,7 @@ typedef struct node {
 	} n_5;
 	union {
 		int	_stalign;
-		int	_csiz;
+		struct	suedef *_sue;
 	} n_6;
 	union {
 		struct {
@@ -77,8 +78,8 @@ typedef struct node {
 #define	n_stsize n_5._stsize
 #define	n_cdim	n_5._cdim
 
-#define	n_csiz	n_6._csiz
 #define	n_stalign n_6._stalign
+#define	n_sue	n_6._sue
 
 #define	n_left	n_f.n_u.n_l._left
 #define	n_lval	n_f.n_u.n_l._lval
