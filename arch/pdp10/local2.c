@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.52 2003/07/30 16:18:44 ragge Exp $	*/
+/*	$Id: local2.c,v 1.53 2003/07/30 17:38:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1593,13 +1593,13 @@ optim2(NODE *p)
 		    ml == DOUBLE || ml == STRTY || ml == UNIONTY || 
 		    ml == ENUMTY || ml == UNSIGNED || ml == ULONG ||
 		    ml == ULONGLONG) && ISPTR(l->n_type)) {
-			ncopy(p, l);
+			*p = *l;
 			nfree(l);
 			op = p->n_op;
 		} else
 		if (ISPTR(DECREF(p->n_type)) &&
 		    (l->n_type == INCREF(STRTY))) {
-			ncopy(p, l);
+			*p = *l;
 			nfree(l);
 			op = p->n_op;
 		} else
@@ -1607,7 +1607,7 @@ optim2(NODE *p)
 		    (p->n_type == INCREF(INT) ||
 		    p->n_type == INCREF(STRTY) ||
 		    p->n_type == INCREF(UNSIGNED))) {
-			ncopy(p, l);
+			*p = *l;
 			nfree(l);
 			op = p->n_op;
 		}
@@ -1623,7 +1623,7 @@ optim2(NODE *p)
 			if (l->n_right->n_name[0] == '\0')
 				l->n_right->n_name = p->n_right->n_name;
 			nfree(p->n_right);
-			ncopy(p, l);
+			*p = *l;
 			nfree(l);
 		}
 	}
