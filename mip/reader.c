@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.50 2003/09/01 12:08:03 ragge Exp $	*/
+/*	$Id: reader.c,v 1.51 2003/09/01 14:08:05 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -327,6 +327,9 @@ order(NODE *p, int cook)
 
 	case PLUS:
 	case MINUS:
+	case AND:
+	case OR:
+	case ER:
 		{
 			struct optab *q;
 			int rv;
@@ -565,13 +568,13 @@ order(NODE *p, int cook)
 #if 0
 		case PLUS:
 		case MINUS:
+		case AND:
+		case OR:
+		case ER:
 #endif
 		case MUL:
 		case DIV:
 		case MOD:
-		case AND:
-		case OR:
-		case ER:
 		case LS:
 		case RS:
 			if (!istnode(p->n_left))
