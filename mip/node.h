@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.5 2003/06/10 13:57:19 ragge Exp $	*/
+/*	$Id: node.h,v 1.6 2003/06/11 14:42:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -48,7 +48,7 @@ typedef struct node {
 		char *	_name;
 		int	_label;
 		int	_stsize;
-		int	*_dim;
+		union	dimfun *_df;
 	} n_5;
 	union {
 		int	_stalign;
@@ -76,7 +76,7 @@ typedef struct node {
 #define	n_name	n_5._name
 #define	n_label	n_5._label
 #define	n_stsize n_5._stsize
-#define	n_dim	n_5._dim
+#define	n_df	n_5._df
 
 #define	n_stalign n_6._stalign
 #define	n_sue	n_6._sue
