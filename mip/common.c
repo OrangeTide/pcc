@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.35 2003/08/01 13:12:03 ragge Exp $	*/
+/*	$Id: common.c,v 1.36 2003/08/04 09:55:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -197,17 +197,21 @@ void
 nfree(NODE *p)
 {
 	extern int inlnodecnt, recovernodes;
+#ifdef PCC_DEBUG
 	NODE *q;
+#endif
 
 	if (p != NULL) {
 		if (p->n_op == FREE)
 			cerror("freeing FREE node", p);
+#ifdef PCC_DEBUG
 		q = freelink;
 		while (q != NULL) {
 			if (q == p)
 				cerror("freeing free node %p", p);
 			q = q->next;
 		}
+#endif
 
 		if (nflag)
 			printf("freeing node %p\n", p);
