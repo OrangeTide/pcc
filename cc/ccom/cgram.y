@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.84 2003/06/11 14:42:25 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.85 2003/06/11 14:48:23 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -965,6 +965,7 @@ savebc(void)
 	bc->swx = swx;
 	bc->next = savbc;
 	savbc = bc;
+	flostat = 0;
 }
 
 static void
