@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.97 2004/12/20 18:27:10 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.98 2004/12/20 19:02:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -271,6 +271,7 @@ char	*exname(char *);
 
 void deflabel(char *);
 void deflab1(int);
+void setloc1(int);
 void gotolabel(char *);
 int esccon(char **sptr);
 void inline_start(char *name);
@@ -303,33 +304,12 @@ TWORD ctype(TWORD);
 void inval(CONSZ);
 void ninval(NODE *);
 void defnam(struct symtab *);
+void plabel(int lab);
 
 void p1print(char *fmt, ...);
 char *copst(int);
 int cdope(int);
 void myp2tree(NODE *);
-
-void xlabel(int seg, int label);
-#define	plabel(x) xlabel(PROG, x)
-#define	dlabel(x) xlabel(DATA, x)
-#define	rlabel(x) xlabel(RDATA, x)
-#define	slabel(x) xlabel(STRNG, x)
-#define	clabel(x) xlabel(-1, x)
-
-#if 0 /* until cpp varargs is fixed */
-void xprint(int seg, char *fmt, ...);
-#define	pprint(x) xprint(PROG, x)
-#define	dprint(x) xprint(DATA, x)
-#define	rprint(x) xprint(RDATA, x)
-#define	sprint(x) xprint(STRNG, x)
-#define	cprint(x) xprint(-1, x)
-#else
-void pprint(char *fmt, ...);
-void dprint(char *fmt, ...);
-void rprint(char *fmt, ...);
-void sprint(char *fmt, ...);
-void cprint(char *fmt, ...);
-#endif
 
 #ifdef GCC_COMPAT
 void gcc_init(void);

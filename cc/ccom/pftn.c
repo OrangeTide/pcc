@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.127 2004/12/20 18:27:10 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.128 2004/12/20 19:02:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1100,8 +1100,8 @@ strprint()
 	int i, val;
 
 	while (strpole != NULL) {
-send_locctt()...
-		deflab1( strpole->sym->soffset);
+		setloc1(STRNG);
+		deflab1(strpole->sym->soffset);
 
 		i = 0;
 		wr = strpole->sym->sname;
