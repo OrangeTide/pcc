@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.125 2004/05/16 09:34:34 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.126 2004/05/16 11:08:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1109,7 +1109,7 @@ swend(void)
 }
 
 #ifdef GCC_COMPAT
-static char *renname; /* for renaming of variables */
+char *renname; /* for renaming of variables */
 #endif
 
 /*
@@ -1133,11 +1133,6 @@ init_declarator(NODE *tn, NODE *p, int assign)
 		} else {
 			nidcl(typ, class);
 		}
-#ifdef GCC_COMPAT
-		if (renname)
-			gcc_rename(typ->n_sp, renname);
-		renname = NULL;
-#endif
 	} else {
 		if (assign)
 			uerror("cannot initialise function");

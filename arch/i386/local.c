@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.6 2003/08/09 15:08:59 ragge Exp $	*/
+/*	$Id: local.c,v 1.7 2004/05/16 11:08:01 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -403,7 +403,11 @@ commdec(struct symtab *q)
 
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZINT-1))/SZINT;
+#ifdef GCC_COMPAT
+	printf("	.comm %s,0%o\n", gcc_findname(q), off);
+#else
 	printf("	.comm %s,0%o\n", exname(q->sname), off);
+#endif
 }
 
 /* make a local common declaration for id, if reasonable */
@@ -415,7 +419,11 @@ lcommdec(struct symtab *q)
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZINT-1))/SZINT;
 	if (q->slevel == 0)
+#ifdef GCC_COMPAT
+		printf("	.lcomm %s,0%o\n", gcc_findname(q), off);
+#else
 		printf("	.lcomm %s,0%o\n", exname(q->sname), off);
+#endif
 	else
 		printf("	.lcomm " LABFMT ",0%o\n", q->soffset, off);
 }

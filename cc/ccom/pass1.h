@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.85 2004/05/16 09:34:34 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.86 2004/05/16 11:08:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -304,7 +304,7 @@ void myp2tree(NODE *);
 void gcc_init(void);
 int gcc_keyword(YYSTYPE *);
 void gcc_rename(struct symtab *sp, char *newname);
-char *gcc_findname(char *oldname);
+char *gcc_findname(struct symtab *sp);
 #endif
 
 #ifndef CHARCAST

@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.103 2004/05/16 09:34:34 ragge Exp $	*/
+/*	$Id: trees.c,v 1.104 2004/05/16 11:08:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2045,12 +2045,10 @@ p2tree(NODE *p)
 				p->n_name = cp;
 			} else {
 #ifdef GCC_COMPAT
-				if (p->n_sp->sflags & SRENAME)
-					p->n_name =
-					   exname(gcc_findname(p->n_sp->sname));
-				else
+				p->n_name = gcc_findname(p->n_sp);
+#else
+				p->n_name = exname(p->n_sp->sname);
 #endif
-					p->n_name = exname(p->n_sp->sname);
 			}
 		} else
 			p->n_name = "";
