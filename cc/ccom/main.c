@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.29 2003/07/06 21:38:20 ragge Exp $	*/
+/*	$Id: main.c,v 1.30 2003/07/07 13:53:04 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -204,7 +204,7 @@ main(int argc, char *argv[])
 
 	/* dimension table initialization */
 
-	btdim[NULL] = 0;
+	btdim[VOID] = 0;
 	btdim[CHAR] = SZCHAR;
 	btdim[INT] = SZINT;
 	btdim[FLOAT] = SZFLOAT;
