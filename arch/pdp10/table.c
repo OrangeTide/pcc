@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.52 2003/08/06 14:37:31 ragge Exp $	*/
+/*	$Id: table.c,v 1.53 2003/08/06 15:06:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -773,14 +773,14 @@ struct optab table[] = {
 		"ZR", },
 
 { OPLOG,	FORCC,
-	SAREG|STAREG,	TWORD|TPOINT,
-	SAREG|STAREG|SOREG|SNAME|SCON,	TWORD|TPOINT,
+	SAREG|STAREG,	TWORD|TPOINT|TFLOAT,
+	SAREG|STAREG|SOREG|SNAME|SCON,	TWORD|TPOINT|TFLOAT,
 		0, 	RESCC,
 		"ZR", },
 
 { OPLOG,	FORCC,  
-	SAREG|STAREG,	TLL,
-	SAREG|STAREG|SOREG|SNAME,	TLL,
+	SAREG|STAREG,	TLL|TDOUBLE, /* XXX - does double work here? */
+	SAREG|STAREG|SOREG|SNAME,	TLL|TDOUBLE,
 		0,	RESCC,
 		"ZQ", },
 
