@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.101 2004/05/30 07:50:15 ragge Exp $	*/
+/*	$Id: reader.c,v 1.102 2004/05/30 10:16:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -556,7 +556,11 @@ sw:		switch (rv & LMASK) {
 			geninsn(p->n_left, INTAREG|INTBREG);
 			break;
 		case LOREG:
-			offstar(p->n_left->n_left);
+			if (p->n_left->n_op == FLD) {
+				offstar(p->n_left->n_left->n_left);
+				p->n_left->n_left->n_su = -1;
+			} else
+				offstar(p->n_left->n_left);
 			p->n_left->n_su = -1;
 			break;
 		case LTEMP:

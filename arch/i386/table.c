@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.21 2004/05/30 07:50:15 ragge Exp $	*/
+/*	$Id: table.c,v 1.22 2004/05/30 10:16:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -272,7 +272,13 @@ struct optab table[] = {
 { ASSIGN,	FOREFF|INTAREG,
 	SFLD,		TANY,
 	STAREG|SAREG,	TWORD,
-		0,	RRIGHT,
+		NAREG,	RRIGHT,
+		"ZE", },
+
+{ ASSIGN,	FOREFF|INTAREG,
+	SFLD,		TANY,
+	STAREG|SAREG|SNAME|SOREG|SCON,	TWORD,
+		NAREG,	0,
 		"ZE", },
 
 /* Not really an assign node */
