@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.56 2005/03/06 15:40:33 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.57 2005/03/09 19:42:21 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -232,7 +232,7 @@ extern	char *rnames[];
 extern	int lineno;
 extern	int fldshf, fldsz;
 extern	int lflag, x2debug, udebug, e2debug, odebug, mdebug;
-extern	int rdebug, radebug, t2debug, s2debug;
+extern	int rdebug, radebug, t2debug, s2debug, b2debug;
 #ifdef FORT
 extern	int Oflag;
 #endif
@@ -348,6 +348,18 @@ struct labelinfo {
 struct bblockinfo {
 	unsigned int size;
 	struct basicblock **arr;
+};
+
+struct varinfo {
+	struct pvarinfo **arr;
+	int size;
+	int low;
+};
+
+struct pvarinfo {
+	struct pvarinfo *next;
+	struct basicblock *bb;
+	NODE *top, *n;
 };
 
 struct cfgnode {

@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.56 2005/03/02 16:36:43 ragge Exp $	*/
+/*	$Id: main.c,v 1.57 2005/03/09 19:42:21 pj Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -44,7 +44,7 @@ int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
 int xssaflag, xtailcallflag, xnewreg;
 
-int e2debug, t2debug, f2debug;
+int e2debug, t2debug, f2debug, b2debug;
 
 int btdim[24];
 char *prgname;
@@ -146,6 +146,7 @@ main(int argc, char *argv[])
 				case 'o': ++odebug; break;
 				case 'r': ++rdebug; break;
 				case 'a': ++radebug; break;
+				case 'b': ++b2debug; break;
 				case 'm': ++mdebug; break;
 				case 'v': ++vdebug; break;
 				case 't': ++t2debug; break;
