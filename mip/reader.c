@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.65 2003/09/12 13:30:56 ragge Exp $	*/
+/*	$Id: reader.c,v 1.66 2003/09/12 13:52:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -719,10 +719,6 @@ store( p ) NODE *p; {
 		++callflag;
 		return;
 
-	case CBRANCH:   /* to prevent complicated expressions on the LHS from being stored */
-		constore( p->n_left );
-		return;
-
 		}
 
 	if (ty == UTYPE) {
@@ -741,17 +737,6 @@ store( p ) NODE *p; {
 	store( p->n_right );
 	store( p->n_left );
 	}
-
-/*
- * store conditional expressions
- * the point is, avoid storing expressions in conditional
- * conditional context, since the evaluation order is predetermined
- */
-void
-constore(NODE *p)
-{
-	store( p );
-}
 
 /* mark off calls below the current node */
 void

@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.79 2003/09/04 20:46:44 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.80 2003/09/12 13:52:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -319,6 +319,8 @@ void myp2tree(NODE *);
 #define	ANDAND		(MAXOP+11)
 #define	OROR		(MAXOP+12)
 #define	NOT		(MAXOP+13)
+#define	CAST		(MAXOP+14)
+#define	STRING		(MAXOP+15)
 
 #define coptype(o)	(cdope(o)&TYFLG)
 #define clogop(o)	(cdope(o)&LOGFLG)

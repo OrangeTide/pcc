@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.39 2003/09/09 12:30:15 ragge Exp $	*/
+/*	$Id: common.c,v 1.40 2003/09/12 13:52:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -285,7 +285,7 @@ struct dopest {
 	int dopeval;
 } indope[] = {
 	{ NAME, "NAME", LTYPE, },
-	{ STRING, "STRING", LTYPE, },
+/*	{ STRING, "STRING", LTYPE, }, */
 	{ REG, "REG", LTYPE, },
 	{ OREG, "OREG", LTYPE, },
 	{ TEMP, "TEMP", LTYPE, },
@@ -344,7 +344,7 @@ struct dopest {
 	{ PMCONV, "PMCONV", BITYPE, },
 	{ PVCONV, "PVCONV", BITYPE, },
 	{ RETURN, "RETURN", BITYPE|ASGFLG|ASGOPFLG, },
-	{ CAST, "CAST", BITYPE|ASGFLG|ASGOPFLG, },
+/*	{ CAST, "CAST", BITYPE|ASGFLG|ASGOPFLG, }, */
 	{ GOTO, "GOTO", UTYPE, },
 	{ STASG, "STASG", BITYPE|ASGFLG, },
 	{ STARG, "STARG", UTYPE, },

@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.16 2003/08/16 12:25:46 ragge Exp $	*/
+/*	$Id: node.h,v 1.17 2003/09/12 13:52:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -102,7 +102,6 @@ typedef struct node {
  * Value nodes.
  */
 #define NAME	2
-#define STRING	3
 #define ICON	4
 #define FCON	5
 #define REG	6
@@ -196,7 +195,6 @@ typedef struct node {
 #define INIT	73
 #define	GOTO	74
 #define	RETURN	76
-#define CAST	78
 #define STREF	79
 
 #define	MAXOP	79

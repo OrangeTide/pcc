@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.91 2003/09/07 14:13:35 ragge Exp $	*/
+/*	$Id: trees.c,v 1.92 2003/09/12 13:52:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2138,6 +2138,8 @@ copst(int op)
 	SNAM(ANDAND,&&)
 	SNAM(OROR,||)
 	SNAM(NOT,!)
+	SNAM(CAST,CAST)
+	SNAM(STRING,STRING)
 	default:
 		cerror("bad copst %d", op);
 	}
@@ -2156,6 +2158,7 @@ cdope(int op)
 	case DOT:
 	case ELLIPSIS:
 	case TYPE:
+	case STRING:
 		return LTYPE;
 	case COMOP:
 	case QUEST:
@@ -2167,6 +2170,8 @@ cdope(int op)
 		return BITYPE|LOGFLG;
 	case NOT:
 		return UTYPE|LOGFLG;
+	case CAST:
+		return BITYPE|ASGFLG|ASGOPFLG;
 	}
 	return 0; /* XXX gcc */
 }
