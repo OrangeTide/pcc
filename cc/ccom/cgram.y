@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.107 2003/07/07 18:15:06 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.108 2003/07/07 20:39:44 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -550,8 +550,7 @@ compoundstmt:	   begin declaration_list stmt_list '}' {
 			--blevel;
 			if( blevel == 1 )
 				blevel = 0;
-			clearst( blevel );
-			checkst( blevel );
+			symclear(blevel); /* Clean ut the symbol table */
 			autooff = savctx->contlab;
 			regvar = savctx->brklab;
 			savctx = savctx->next;
@@ -560,8 +559,7 @@ compoundstmt:	   begin declaration_list stmt_list '}' {
 			--blevel;
 			if( blevel == 1 )
 				blevel = 0;
-			clearst( blevel );
-			checkst( blevel );
+			symclear(blevel); /* Clean ut the symbol table */
 			autooff = savctx->contlab;
 			regvar = savctx->brklab;
 			savctx = savctx->next;
