@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.87 2004/05/06 18:15:39 ragge Exp $	*/
+/*	$Id: reader.c,v 1.88 2004/05/06 20:38:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -689,6 +689,10 @@ sucomp(NODE *p)
 	} else if (right > left) {
 		p->n_su |= DORIGHT;
 	}
+	/* If both in regs and equal size, return l+r */
+	if (left && left == right)
+		left += right; /* returned below */
+
 	if (right > nreg)
 		nreg = right;
 	if (left > nreg)
