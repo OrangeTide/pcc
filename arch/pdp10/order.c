@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.51 2003/11/12 12:13:58 ragge Exp $	*/
+/*	$Id: order.c,v 1.52 2003/11/12 16:42:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -356,6 +356,7 @@ setbin(NODE *p)
 int
 setstr(NODE *p)
 {
+#if 0
 	if( p->n_right->n_op != REG ){
 		order( p->n_right, INTAREG );
 		return(1);
@@ -366,6 +367,7 @@ setstr(NODE *p)
 		order( p->n_left, INTAREG );
 		return( 1 );
 		}
+#endif
 	return( 0 );
 }
 
@@ -467,14 +469,25 @@ genargs(NODE *p)
 		pasg->n_stalign = align;
 		pasg->n_left = p;
 
- 		order(pasg, FORARG);
+		q = talloc();
+		q->n_op = FUNARG;
+		q->n_type = p->n_type;
+		q->n_name = "";
+		q->n_left = p;
+		codgen(q, FOREFF);
+
 		if (offarg)
 			offarg += p->n_stsize/SZINT;
 		return;
 	}
 
 	/* ordinary case */
-	order(p, FORARG);
+	q = talloc();
+	q->n_op = FUNARG;
+	q->n_type = p->n_type;
+	q->n_name = "";
+	q->n_left = p;
+	codgen(q, FOREFF);
 	if (offarg)
 		offarg += szty(p->n_type);
 }

@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.80 2003/11/12 12:13:58 ragge Exp $	*/
+/*	$Id: table.c,v 1.81 2003/11/12 16:42:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1151,56 +1151,27 @@ struct optab table[] = {
 
 /*
  * Arguments to functions.
- * These three should be possible to convert to one!
  */
-{ REG,	FORARG,
-	SANY,	TANY,
+{ FUNARG,	FOREFF,
 	SAREG|SNAME|SOREG,	TWORD|TPOINT|TFLOAT,
 	SANY,	TANY,
-		0,	RNULL,
-		"	push 017,AR\n", },
-
-{ OREG,	FORARG,
-	SANY,	TANY,
-	SAREG|SNAME|SOREG,	TWORD,
 	SANY,	TANY,
 		0,	RNULL,
-		"	push 017,AR\n", },
+		"	push 017,AL\n", },
 
-{ NAME,	FORARG,
+{ FUNARG,	FOREFF,
+	SCON,	TCHAR|TUCHAR|TSHORT|TUSHORT|TPOINT|TWORD,
 	SANY,	TANY,
-	SAREG|SNAME|SOREG,	TWORD,
 	SANY,	TANY,
 		0,	RNULL,
-		"	push 017,AR\n", },
+		"	push 017,[ .long AL]\n", },
 
-{ ICON,	FORARG,
-	SANY,	TANY,
-	SCON,	TCHAR|TUCHAR|TPTRTO,
-	SANY,	TANY,
-		0,	RNULL,
-		"	push 017,[ .long AR]\n", },
-
-{ ICON,	FORARG,
-	SANY,	TANY,
-	SCON,	TSHORT|TUSHORT|TPTRTO,
-	SANY,	TANY,
-		0,	RNULL,
-		"	push 017,[ .long AR]\n", },
-
-{ ICON,	FORARG,
-	SANY,	TANY,
-	SCON,	TWORD,
-	SANY,	TANY,
-		0,	RNULL,
-		"	push 017,[ .long AR]\n", },
-
-{ REG,	FORARG,
-	SANY,		TANY,
+{ FUNARG,	FOREFF,
 	SAREG|STAREG,	TLL|TDOUBLE,
 	SANY,		TANY,
+	SANY,		TANY,
 		0,	RNULL,
-		"	push 017,AR\n	push 017,UR\n", },
+		"	push 017,AL\n	push 017,UL\n", },
 
 
 # define DF(x) FORREW,SANY,TANY,SANY,TANY,SANY,TANY,REWRITE,x,""

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.81 2003/11/12 12:13:58 ragge Exp $	*/
+/*	$Id: local2.c,v 1.82 2003/11/12 16:42:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -825,7 +825,6 @@ struct respref respref[] = {
 	{ INTAREG|INTBREG,	INTAREG|INTBREG, },
 	{ INAREG|INBREG,	INAREG|INBREG|SOREG|STARREG|STARNM|SNAME|SCON,},
 	{ INTEMP,	INTEMP, },
-	{ FORARG,	FORARG, },
 	{ INTEMP,	INTAREG|INAREG|INTBREG|INBREG|SOREG|STARREG|STARNM, },
 	{ 0,	0 },
 };
@@ -1173,7 +1172,8 @@ gencall(NODE *p, int cookie)
 	case NAME:
 		break;
 	default:
-		order(p1, INAREG);
+		cerror("order");
+//		order(p1, INAREG);
 	}
 
 	p->n_op = UCALL;
