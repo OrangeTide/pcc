@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.38 2003/08/16 12:25:46 ragge Exp $	*/
+/*	$Id: scan.l,v 1.39 2003/08/18 18:34:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -219,7 +219,7 @@ int
 esccon(char **sptr)
 {
 	char *wr = *sptr;
-	char val;
+	int val;
 
 	switch (*wr++) {
 	case 'a': val = '\a'; break;
