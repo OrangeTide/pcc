@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.9 2003/06/19 14:09:18 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.10 2003/06/19 14:38:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -317,9 +317,12 @@ symclear(int level)
 		for (i = 0; i < NSTYPES; i++)
 			tmpsyms[i] = 0;
 	} else
-		for (i = 0; i < NSTYPES; i++)
+		for (i = 0; i < NSTYPES; i++) {
+			if (i == SLBLNAME)
+				continue; /* function scope */
 			while (tmpsyms[i] != NULL && tmpsyms[i]->slevel > level)
 				tmpsyms[i] = tmpsyms[i]->snext;
+		}
 }
 
 struct symtab *
