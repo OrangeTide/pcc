@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.110 2004/05/29 14:11:49 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.111 2004/05/30 17:28:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2334,6 +2334,13 @@ incomp:					uerror("incompatible types for arg %d",
 			goto skip; /* some *f = void pointer */
 		if (apole->node->n_op == ICON && apole->node->n_lval == 0)
 			goto skip; /* Anything assigned a zero */
+
+		if ((type & ~BTMASK) == (arrt & ~BTMASK)) {
+			/* do not complain for intermixed char/uchar */
+			if ((BTYPE(type) == CHAR || BTYPE(type) == UCHAR) &&
+			    (BTYPE(arrt) == CHAR || BTYPE(arrt) == UCHAR))
+				goto skip;
+		}
 
 		werror("implicit conversion of argument %d due to prototype",
 		    argidx);

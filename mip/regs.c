@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.26 2004/05/30 10:16:32 ragge Exp $	*/
+/*	$Id: regs.c,v 1.27 2004/05/30 17:28:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -500,6 +500,24 @@ alloregs(NODE *p, int wantreg)
 		MKREGC(regc, n->n_rval, szty(n->n_type));
 		break;
 
+	case R_LREG+R_NASL+R_PREF:
+		/* left in a reg, alloc regs, no reclaim, may share left */
+		regc2 = alloregs(p->n_left, wantreg);
+		/* Check for sharing. XXX - fix common routine */
+		i = REGNUM(regc2);
+		freeregs(regc2);
+		regc = getregs(i, sreg);
+		p->n_rall = REGNUM(regc);
+		rallset = 1;
+		freeregs(regc);
+		MKREGC(regc, 0, 0); /* Nothing to reclaim */
+		break;
+
+	case R_LREG+R_NASL+R_RLEFT:
+		/* left in a reg, alloc regs, reclaim regs, may share left */
+		regc = alloregs(p->n_left, wantreg);
+		break;
+
 	case R_LREG+R_NASL+R_PREF+R_RESC:
 		/* left in a reg, alloc regs, reclaim regs, may share left */
 		regc2 = alloregs(p->n_left, wantreg);
@@ -523,6 +541,18 @@ alloregs(NODE *p, int wantreg)
 	case R_DOR+R_RREG+R_LREG:
 		regc = alloregs(p->n_right, NOPREF);
 		regc2 = alloregs(p->n_left, NOPREF);
+		freeregs(regc2);
+		freeregs(regc);
+		MKREGC(regc, 0, 0);
+		break;
+
+	case R_DOR+R_RREG+R_LREG+R_PREF:
+		regc = alloregs(p->n_right, NOPREF);
+		regc2 = alloregs(p->n_left, NOPREF);
+		regc3 = getregs(NOPREF, sreg);
+		p->n_rall = REGNUM(regc3);
+		rallset = 1;
+		freeregs(regc3);
 		freeregs(regc2);
 		freeregs(regc);
 		MKREGC(regc, 0, 0);

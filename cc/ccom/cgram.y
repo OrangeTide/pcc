@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.129 2004/05/29 14:11:49 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.130 2004/05/30 17:28:08 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -620,6 +620,8 @@ statement:	   e ';' { ecomp( $1 ); }
 				reached = 1;
 			if (reached)
 				cbranch($5, bcon($1));
+			else
+				tfree($5);
 			send_passt(IP_DEFLAB, brklab);
 			reached = 1;
 			resetbc(0);
