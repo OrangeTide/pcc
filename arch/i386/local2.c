@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.31 2004/10/02 08:01:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.32 2004/10/03 15:56:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -177,6 +177,7 @@ hopcode(int f, int o)
 		break;
 	default:
 		comperr("hopcode2: %d", o);
+		str = 0; /* XXX gcc */
 	}
 	printf("%s%c", str, f);
 }
@@ -255,6 +256,8 @@ twollcomp(NODE *p)
 		cb2 = GT;
 		break;
 	
+	default:
+		cb1 = cb2 = 0; /* XXX gcc */
 	}
 	if (p->n_op >= ULE)
 		cb1 += 4, cb2 += 4;

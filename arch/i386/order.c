@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.20 2004/10/02 08:01:15 ragge Exp $	*/
+/*	$Id: order.c,v 1.21 2004/10/03 15:56:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -329,8 +329,10 @@ gencall(NODE *p, NODE *prev)
 				n->n_type = INCREF(n->n_type);
 			} else
 				comperr("gencall stasg");
-		} else
+		} else {
 			comperr("gencall bad op %d", prev->n_op);
+			n = 0; /* XXX gcc */
+		}
 
 		/* Deal with standard arguments */
 		gencall(p->n_left, p);
