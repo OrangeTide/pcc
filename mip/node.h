@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.21 2003/09/12 15:20:35 ragge Exp $	*/
+/*	$Id: node.h,v 1.22 2003/11/12 16:42:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -183,5 +183,6 @@ typedef struct node {
 #define	GOTO	54
 #define	RETURN	55
 #define STREF	56
+#define	FUNARG	57
 
-#define	MAXOP	56
+#define	MAXOP	57
