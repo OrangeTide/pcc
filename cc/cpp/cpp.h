@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.9 2005/03/06 15:42:08 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.10 2005/03/19 09:34:05 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -45,13 +45,6 @@
 
 typedef unsigned char usch;
 extern FILE *obuf;
-#if 0
-#ifdef OLD
-extern char *yytext;
-#else
-extern usch *yytext;
-#endif
-#endif
 extern usch yystr[];
 extern usch *stringbuf;
 
@@ -76,6 +69,7 @@ struct symtab {
 #define CPPBUF  BUFSIZ
 #endif
 
+#define	NAMEMAX	64 /* max len of identifier */
 struct recur;	/* not used outside cpp.c */
 int subst(char *, struct symtab *, struct recur *);
 struct symtab *lookup(char *namep, int enterf);
