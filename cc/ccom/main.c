@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.19 2003/06/21 16:53:03 ragge Exp $	*/
+/*	$Id: main.c,v 1.20 2003/06/21 18:01:20 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -176,11 +176,11 @@ main(int argc, char *argv[])
 					err(1,"open output file '%s'", argv[1]);
 		}
 
+	mkdope();
 #if !defined(MULTIPASS) || defined(PASS2)
 	allo0();
 	setrew();
 #endif
-	mkdope();
 	lineno = 1;
 
 	tinit();
