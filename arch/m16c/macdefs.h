@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.1 2005/01/08 14:53:10 pj Exp $	*/
+/*	$Id: macdefs.h,v 1.2 2005/01/09 14:29:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -32,7 +32,7 @@
 #define makecc(val,i)   lastcon = (lastcon<<8)|((val<<8)>>8);
 
 #define ARGINIT		40	/* # bits above fp where arguments start */
-#define AUTOINIT	-8	/* # bits below fp where automatics start */
+#define AUTOINIT	8	/* # bits below fp where automatics start */
 
 /*
  * Convert (multi-)character constant to integer.
