@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.32 2004/06/21 12:41:43 ragge Exp $	*/
+/*	$Id: table.c,v 1.33 2004/06/22 07:55:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -215,12 +215,19 @@ struct optab table[] = {
 		NASL|NAREG,	RESC1,
 		"	movl AL,A1\n	xorl U1,U1\n", },
 
-/* convert long long (in memory) to double */
+/* convert long long (in memory) to floating */
 { SCONV,	INTBREG,
-	SOREG|SNAME,	TLL,
+	SOREG|SNAME,	TLONGLONG,
 	SBREG|STBREG,	TLDOUBLE|TDOUBLE|TFLOAT,
 		NBREG,	RESC1,
 		"	fildq AL\n", },
+
+/* convert unsigned long long to floating */
+{ SCONV,	INTBREG,
+	SAREG|STAREG,	TULONGLONG,
+	SBREG|STBREG,	TLDOUBLE|TDOUBLE|TFLOAT,
+		NBREG,	RESC1,
+		"ZJ", },
 
 /* convert int (in memory) to double */
 { SCONV,	INTBREG,
