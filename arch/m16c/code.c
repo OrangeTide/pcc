@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.9 2005/01/29 16:06:46 ragge Exp $	*/
+/*	$Id: code.c,v 1.10 2005/04/02 12:09:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -101,13 +101,10 @@ static void
 argmove(struct symtab *s, int regno)
 {
 	NODE *p, *r;
-	extern int maxautooff;
 
 	s->sclass = AUTO;
 	s->soffset = NOOFFSET;
 	oalloc(s, &autooff);
-	if (autooff > maxautooff)
-		maxautooff = autooff;
 	spname = s;
 	p = buildtree(NAME, NIL, NIL);
 	r = bcon(0);
