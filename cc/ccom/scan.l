@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.44 2004/06/22 07:55:04 ragge Exp $	*/
+/*	$Id: scan.l,v 1.45 2004/10/04 16:49:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -42,6 +42,7 @@ IS			(u|U|l|L)*
 #include <stdarg.h>
 
 #include "pass1.h"
+#include "cgram.h"
 
 static NODE *cvtdig(int radix);
 static NODE *charcon(void);
@@ -109,7 +110,8 @@ static NODE *floatcon(void);
 				int i;
 
 				yylval.strp = addname(yytext);
-				if ((i = gcc_keyword(&yylval)) != 0)
+				if ((i = gcc_keyword(yylval.strp,
+				    &yylval.nodep)) != 0)
 					return i;
 				s = lookup(yylval.strp, SNOCREAT);
 				if (s && got_type == 0 && s->sclass == TYPEDEF)

@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.92 2004/10/03 15:36:13 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.93 2004/10/04 16:49:28 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -196,12 +196,6 @@ struct stri {
 	int len;
 } stri;
 
-#ifdef PASS1
-#include "y.tab.h"
-#else
-#include "cgram.h"
-#endif
-
 extern	OFFSZ inoff;
 
 extern	int reached;
@@ -313,7 +307,7 @@ void myp2tree(NODE *);
 
 #ifdef GCC_COMPAT
 void gcc_init(void);
-int gcc_keyword(YYSTYPE *);
+int gcc_keyword(char *, NODE **);
 void gcc_rename(struct symtab *sp, char *newname);
 char *gcc_findname(struct symtab *sp);
 #endif
