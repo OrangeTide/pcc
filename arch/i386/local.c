@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.26 2005/01/31 15:09:26 ragge Exp $	*/
+/*	$Id: local.c,v 1.27 2005/02/18 16:50:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -496,11 +496,13 @@ deflab1(int label)
 	printf(LABFMT ":\n", label);
 }
 
+static char *loctbl[] = { "text", "data", "rodata", "rodata" };
+
 void
 setloc1(int locc)
 {
 	if (locc == lastloc)
 		return;
 	lastloc = locc;
-	send_passt(IP_LOCCTR, locc);
+	printf("	.%s\n", loctbl[locc]);
 }

@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.10 2005/01/31 15:09:26 ragge Exp $	*/
+/*	$Id: code.c,v 1.11 2005/02/18 16:50:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -31,22 +31,20 @@
 
 /*
  * cause the alignment to become a multiple of n
+ * never called for text segment.
  */
 void
 defalign(int n)
 {
-	char *s;
-
 	n /= SZCHAR;
-	if (lastloc == PROG || n == 1)
+	if (n == 1)
 		return;
-	s = (isinlining ? permalloc(40) : tmpalloc(40));
-	sprintf(s, ".align %d", n);
-	send_passt(IP_ASM, s);
+	printf("	.align %d\n", n);
 }
 
 /*
  * define the current location as the name p->sname
+ * never called for text segment.
  */
 void
 defnam(struct symtab *p)
