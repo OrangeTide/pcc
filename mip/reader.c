@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.54 2003/09/02 12:39:21 ragge Exp $	*/
+/*	$Id: reader.c,v 1.55 2003/09/02 14:27:43 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -333,6 +333,8 @@ order(NODE *p, int cook)
 	case DIV:
 	case MOD:
 	case MUL:
+	case LS:
+	case RS:
 		{
 			struct optab *q;
 			int rv;
@@ -591,8 +593,8 @@ order(NODE *p, int cook)
 	case BITYPE:
 		if( setbin( p ) ) goto again;
 		/* try to replace binary ops by =ops */
-		switch(o){
 #if 0
+		switch(o){
 		case PLUS:
 		case MINUS:
 		case AND:
@@ -601,7 +603,6 @@ order(NODE *p, int cook)
 		case DIV:
 		case MOD:
 		case MUL:
-#endif
 		case LS:
 		case RS:
 			if (!istnode(p->n_left))
@@ -609,6 +610,7 @@ order(NODE *p, int cook)
 			p->n_op = ASG o;
 			goto again;
 			}
+#endif
 		goto nomat;
 
 		}
