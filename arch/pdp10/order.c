@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.28 2003/08/05 21:45:17 ragge Exp $	*/
+/*	$Id: order.c,v 1.29 2003/08/12 09:36:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -444,14 +444,16 @@ void hardops(NODE *p);
 int
 setasop(NODE *p)
 {
-	NODE *n;
+	NODE *n, *r, *l;
 	register int rt, ro, pt;
 
 	if (x2debug)
 		printf("setasop(%p)\n", p);
 
-	rt = p->n_right->n_type;
-	ro = p->n_right->n_op;
+	r = p->n_right;
+	l = p->n_left;
+	rt = r->n_type;
+	ro = r->n_op;
 
 	/* For non-word pointers, ease for adjbp */
 	pt = BTYPE(p->n_type);
@@ -499,21 +501,25 @@ setasop(NODE *p)
 	}
 
 
-	p = p->n_left;
-	if (p->n_op == FLD)
-		p = p->n_left;
+	if (l->n_op == FLD)
+		l = l->n_left;
 
-	switch (p->n_op) {
+	switch (l->n_op) {
 	case REG:
 	case ICON:
+		return(0);
 	case NAME:
 	case OREG:
+		if (ro != REG && (p->n_op == ASG PLUS || p->n_op == ASG MUL)) {
+			order(r, INAREG|INBREG);
+			return(1);
+		}
 		return(0);
 
 	case UNARY MUL:
-		if (canaddr(p))
+		if (canaddr(l))
 			return(0);
-		offstar(p);
+		offstar(l);
 		return(1);
 
 	}

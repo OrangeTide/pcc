@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.60 2003/08/09 09:48:52 ragge Exp $	*/
+/*	$Id: local2.c,v 1.61 2003/08/12 09:36:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -249,20 +249,6 @@ tlen(p) NODE *p;
 			return SZPOINT/SZCHAR;
 		}
 }
-
-static char *
-ccbranches[] = {
-	"jumpe",	/* jumpe */
-	"jumpn",	/* jumpn */
-	"jumple",	/* jumple */
-	"jumpl",	/* jumpl */
-	"jumpge",	/* jumpge */
-	"jumpg",	/* jumpg */
-	"jumple",	/* jumple (jlequ) */
-	"jumpl",	/* jumpl (jlssu) */
-	"jumpge",	/* jumpge (jgequ) */
-	"jumpg",	/* jumpg (jgtru) */
-};
 
 static char *
 binskip[] = {
@@ -995,7 +981,7 @@ zzzcode(NODE *p, int c)
 	case 'N':  /* logical ops, turned into 0-1 */
 		/* use register given by register 1 */
 		cerror("ZN");
-		cbgen(0, m = getlab(), 'I');
+		cbgen(0, m = getlab());
 		deflab(p->n_label);
 		printf("	setz %s,\n", rnames[getlr(p, '1')->n_rval]);
 		deflab(m);
@@ -1448,7 +1434,7 @@ gencall(NODE *p, int cookie)
 
 /*   printf conditional and unconditional branches */
 void
-cbgen(int o,int lab,int mode )
+cbgen(int o,int lab)
 {
 #if 0
 	if (o != 0 && (o < EQ || o > GT))

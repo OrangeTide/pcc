@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.77 2003/08/06 20:08:48 ragge Exp $	*/
+/*	$Id: trees.c,v 1.78 2003/08/12 09:36:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1964,8 +1964,11 @@ send_passt(int type, ...)
 	int nloc;
 
 	va_start(ap, type);
-	if (type == IP_LOCCTR && (nloc = va_arg(ap, int) == lastloc))
-		return;
+	if (type == IP_LOCCTR) {
+		nloc = va_arg(ap, int);
+		if (nloc == lastloc)
+			return;
+	}
 	ip = isinlining ? permalloc(sizeof(*ip)) : tmpalloc(sizeof(*ip));
 	ip->type = type;
 	switch (type) {
