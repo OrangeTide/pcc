@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.9 2002/11/23 16:06:46 ragge Exp $	*/
+/*	$Id: scan.l,v 1.10 2002/12/03 22:00:02 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -258,13 +258,13 @@ cvtdig(int radix)
 	errno = 0;
 	lastcon = strtol(yytext, &eptr, radix);
 	if (errno == ERANGE) {
-		printf("cvtdig sket sej\n");
+		cerror("cvtdig sket sej\n");
 	}
 	v = lastcon & ~077777L;
 	if (v == 0 || v == ~077777L)
 		yylval.intval = 0;
 	else
-	yylval.intval = 1;
+		yylval.intval = 1;
 	if (*eptr == 'l' || *eptr == 'L')
 		yylval.intval = 1;
 }
