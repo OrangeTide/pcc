@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.118 2004/10/02 07:59:33 ragge Exp $	*/
+/*	$Id: trees.c,v 1.119 2004/10/03 13:31:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -114,7 +114,7 @@ buildtree(int o, NODE *l, NODE *r)
 	NODE *p, *q;
 	int actions;
 	int opty;
-	struct symtab *sp;
+	struct symtab *sp = NULL; /* XXX gcc */
 	NODE *lr, *ll;
 	char *name;
 	struct symtab **elem;
@@ -1318,7 +1318,7 @@ opact(NODE *p)
 {
 	int mt12, mt1, mt2, o;
 
-	mt12 = 0;
+	mt1 = mt2 = mt12 = 0;
 
 	switch (coptype(o = p->n_op)) {
 	case BITYPE:
@@ -2208,7 +2208,7 @@ send_passt(int type, ...)
 {
 	struct interpass *ip;
 	va_list ap;
-	int nloc;
+	int nloc = 0;
 
 	va_start(ap, type);
 	if (type == IP_LOCCTR) {
