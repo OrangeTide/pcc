@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.13 2004/08/28 15:19:57 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.14 2004/08/29 12:19:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -84,11 +84,6 @@
 
 static usch	sbf[SBSIZE];
 /* C command */
-
-/* buffer used internally */
-#ifndef CPPBUF
-#define	CPPBUF	BUFSIZ
-#endif
 
 int tflag;	/* traditional cpp syntax */
 #ifdef CPP_DEBUG
@@ -339,6 +334,11 @@ control()
 
 	if ((t = yylex()) == WSPACE)
 		t = yylex();
+	if (t == NL) {
+		/* Just ignore */
+		putc('\n', obuf);
+		return;
+	}
 	if (t != IDENT)
 		return error("bad control '%s'", yytext);
 
@@ -792,7 +792,7 @@ if (dflag)printf("subst\n");
 		cp = yytext;
 		while (*cp)
 			cp++;
-		while ((char *)cp > yytext)
+		while (cp > yytext)
 			cunput(*--cp);
 if (dflag)printf("c %d\n", c);
 		if (c == '(' ) {
