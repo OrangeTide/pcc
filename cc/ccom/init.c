@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.11 2005/02/20 14:29:35 ragge Exp $	*/
+/*	$Id: init.c,v 1.12 2005/04/02 07:56:17 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -491,15 +491,13 @@ endinit(void)
 		 */
 		/* Fixa: kopieringslängd char c[12] = "hhhh"; */
 		if (ISARY(t) && on == 0) {
-			extern  int autooff, maxautooff;
+			extern  int autooff;
 			
 			/*
 			 * adjust stack in case of open arrays.
 			 */
 			csym->soffset = NOOFFSET;
 			oalloc(csym, &autooff);
-			if (autooff > maxautooff)
-				maxautooff = autooff;
 		}
 		spname = csym;
 		if ((ISARY(t) || ISSOU(t)) && csym->sclass == AUTO) {

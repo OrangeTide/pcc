@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.140 2005/02/28 16:40:35 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.141 2005/04/02 07:56:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -72,7 +72,6 @@ struct symtab *cftnsp;
 static int strunem;		/* currently parsed member type */
 int arglistcnt, dimfuncnt;	/* statistics */
 int symtabcnt, suedefcnt;	/* statistics */
-int maxautooff;		/* the highest (lowest) offset for automatics */
 int regvar;		/* the next free register for register variables */
 int minrvar;		/* the smallest that regvar gets witing a function */
 int autooff,		/* the next unused automatic offset */
@@ -419,8 +418,6 @@ defid(NODE *q, int class)
 			dynalloc(p, &autooff);
 		else
 			oalloc(p, &autooff);
-		if (autooff > maxautooff)
-			maxautooff = autooff;
 		break;
 	case STATIC:
 	case EXTDEF:
@@ -515,7 +512,7 @@ ftnend()
 #ifdef GCC_COMPAT
 		c = gcc_findname(cftnsp);
 #endif
-		send_passt(IP_EPILOG, minrvar, maxautooff, c,
+		send_passt(IP_EPILOG, minrvar, 0, c,
 		    cftnsp->stype, cftnsp->sclass == EXTDEF, retlab);
 	}
 
@@ -532,7 +529,7 @@ ftnend()
 	}
 	savbc = NULL;
 	lparam = NULL;
-	maxautooff = autooff = AUTOINIT;
+	autooff = AUTOINIT;
 	minrvar = regvar = MAXRVAR;
 	reached = 1;
 
@@ -1226,9 +1223,6 @@ dynalloc(struct symtab *p, int *poff)
 	NODE *n, *nn, *tn, *pol;
 	TWORD t;
 	int i, no;
-
-	bccode(); /* Init code generation */
-	send_passt(IP_NEWBLK, regvar, autooff);
 
 	/*
 	 * The pointer to the array is stored in a TEMP node, which number

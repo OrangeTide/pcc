@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.133 2005/02/23 16:25:40 ragge Exp $	*/
+/*	$Id: trees.c,v 1.134 2005/04/02 07:56:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2206,6 +2206,9 @@ send_passt(int type, ...)
 		ipp->ipp_vis = va_arg(ap, int);
 		ip->ip_lbl = va_arg(ap, int);
 		ipp->ip_tmpnum = tvaloff+1;
+		break;
+	case IP_STKOFF:
+		ip->ip_off = va_arg(ap, int);
 		break;
 	case IP_DEFLAB:
 		ip->ip_lbl = va_arg(ap, int);

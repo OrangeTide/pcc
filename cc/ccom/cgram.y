@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.144 2005/01/11 14:27:08 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.145 2005/04/02 07:56:17 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -453,7 +453,7 @@ declaration_list:  declaration
  */
 
 stmt_list:	   stmt_list statement
-		|  { bccode(); }
+		|  { bccode(); send_passt(IP_STKOFF, autooff); }
 		;
 
 /*
@@ -618,6 +618,7 @@ compoundstmt:	   begin declaration_list stmt_list '}' {
 			autooff = savctx->contlab;
 			regvar = savctx->brklab;
 			savctx = savctx->next;
+			send_passt(IP_STKOFF, autooff);
 		}
 		|  begin stmt_list '}' {
 #ifdef STABS

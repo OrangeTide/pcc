@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.16 2005/02/23 15:39:34 pj Exp $	*/
+/*	$Id: optim2.c,v 1.17 2005/04/02 07:56:17 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -402,9 +402,6 @@ bblocks_build(struct labelinfo *labinfo, struct bblockinfo *bbinfo)
 
 	DLIST_FOREACH(ip, &ipole, qelem) {
 		/* Garbage, skip it */
-		if (ip->type == IP_NEWBLK)
-			continue;
-
 		if (leader) {
 			bb = tmpalloc(sizeof(struct basicblock));
 			bb->first = bb->last = ip;
