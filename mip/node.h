@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.15 2003/08/03 17:11:23 ragge Exp $	*/
+/*	$Id: node.h,v 1.16 2003/08/16 12:25:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -61,6 +61,9 @@ typedef struct node {
 			union {
 				struct node *_left;
 				CONSZ _lval;
+#ifdef SPECIAL_INTEGERS
+				SPECLVAL _slval;
+#endif
 			} n_l;
 			union {
 				struct node *_right;
@@ -82,6 +85,7 @@ typedef struct node {
 
 #define	n_left	n_f.n_u.n_l._left
 #define	n_lval	n_f.n_u.n_l._lval
+#define	n_slval	n_f.n_u.n_l._slval
 #define	n_right	n_f.n_u.n_r._right
 #define	n_rval	n_f.n_u.n_r._rval
 #define	n_sp	n_f.n_u.n_r._sp

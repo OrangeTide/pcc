@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.34 2003/08/06 11:28:46 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.35 2003/08/16 12:25:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -129,6 +129,10 @@
 		/* advance x to a multiple of y */
 #define NOFIT(x,y,z)	(((x)%(z) + (y)) > (z))
 		/* can y bits be added to x without overflowing z */
+
+#ifndef SPECIAL_INTEGERS
+#define	ASGLVAL(lval, val)
+#endif
 
 /*
  * Pack and unpack field descriptors (size and offset)
