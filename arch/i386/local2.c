@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.30 2004/06/22 12:12:36 ragge Exp $	*/
+/*	$Id: local2.c,v 1.31 2004/10/02 08:01:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -134,7 +134,8 @@ eoftn(int regs, int autos, int retlab)
 	isoptim = 0;
 }
 
-static char *loctbl[] = { "text", "data", "data", "text", "text", "stab" };
+static char *loctbl[] =
+    { "text", "data", "section .rodata", "data", "text", "stab" };
 
 void
 setlocc(int locctr)

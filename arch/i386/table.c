@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.35 2004/06/24 08:13:45 ragge Exp $	*/
+/*	$Id: table.c,v 1.36 2004/10/02 08:01:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -687,13 +687,13 @@ struct optab table[] = {
 	STAREG,				TUSHORT,
 	STAREG|SAREG|SNAME|SOREG,	TUSHORT,
 		3*NAREG|NASL|NSPECIAL,		RESC1,
-		"	xorl %edx,%edx\n	divw AR\n", },
+		"	xorl %edx,%edx\n	divw ZR\n", },
 
 { DIV,	INTAREG,
 	STAREG,				TUCHAR,
 	STAREG|SAREG|SNAME|SOREG,	TUCHAR,
 		3*NAREG|NASL|NSPECIAL,		RESC1,
-		"	xorl %ah,%ah\n	divb AR\n", },
+		"	xorb %ah,%ah\n	divb ZR\n", },
 
 { DIV,	INTBREG,
 	STBREG,		TDOUBLE,
@@ -723,20 +723,19 @@ struct optab table[] = {
 	STAREG,				TUSHORT,
 	STAREG|SAREG|SNAME|SOREG,	TUSHORT,
 		3*NAREG|NASL|NSPECIAL,		RESC1,
-		"	xorl %edx,%edx\n	divw AR\n", },
+		"	xorl %edx,%edx\n	divw ZR\n", },
 
 { MOD,	INTAREG,
 	STAREG,				TUCHAR,
 	STAREG|SAREG|SNAME|SOREG,	TUCHAR,
 		3*NAREG|NASL|NSPECIAL,		RESC1,
-		"	xorl %ah,%ah\n	divb AR\n", },
+		"	xorb %ah,%ah\n	divb ZR\n	movb %ah,%al\n", },
 
-/* XXX - fix this */
 { MUL,	INTAREG,
-	STAREG,		TCHAR|TUCHAR,
-	STAREG,		TCHAR|TUCHAR,
-		0,	RLEFT,
-		"	imulb ZR,ZL\n", },
+	STAREG,				TCHAR|TUCHAR,
+	STAREG|SAREG|SNAME|SOREG,	TCHAR|TUCHAR,
+		3*NAREG|NASL|NSPECIAL,	RESC1,
+		"	imulb ZR\n", },
 
 { MUL,	INTAREG,
 	STAREG,			TSHORT|TUSHORT,
