@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.93 2003/06/19 15:49:42 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.94 2003/06/19 16:17:53 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -491,7 +491,7 @@ struct_declarator_list:
 struct_declarator: declarator {
 			tymerge($<nodep>0, $1);
 			$1->n_sp = getsymtab((char *)$1->n_sp, SMOSNAME); /* XXX */
-			defid($1, $<nodep>0->n_su); 
+			defid($1, $<nodep>0->n_lval); 
 		}
 		|  ':' con_e {
 			if (!(instruct&INSTRUCT))
@@ -1090,7 +1090,7 @@ static void
 init_declarator(NODE *tn, NODE *p, int assign)
 {
 	struct symtab *s;
-	int class = tn->n_su;
+	int class = tn->n_lval;
 	NODE *typ;
 
 	typ = tymerge(tn, p);
@@ -1118,7 +1118,7 @@ static void
 fundef(NODE *tp, NODE *p)
 {
 	struct symtab *s;
-	int class = tp->n_su, oclass;
+	int class = tp->n_lval, oclass;
 
 	/* Enter function args before they are clobbered in tymerge() */
 	/* Typecheck against prototype will be done in defid(). */
