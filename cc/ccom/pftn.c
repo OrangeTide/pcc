@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.117 2004/06/23 08:41:42 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.118 2004/09/04 08:29:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1265,7 +1265,7 @@ strend(struct stri *si)
 		 * unwanted initializers
 		 */
 
-		lxarg = pstk->in_prev->in_prev != NULL ?
+		lxarg = pstk->in_prev != NULL ?
 		    pstk->in_prev->in_df->ddim : 0;
 		while (*wr != 0) {
 			if (*wr++ == '\\')
@@ -1276,7 +1276,7 @@ strend(struct stri *si)
 				putbyte(val);
 			else if (i == lxarg)
 				werror("non-null byte ignored in string"
-				    "initializer");
+				    " initializer");
 			i++;
 		}
 
