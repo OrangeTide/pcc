@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.8 2002/05/13 16:57:29 ragge Exp $	*/
+/*	$Id: scan.l,v 1.9 2002/11/23 16:06:46 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -61,9 +61,9 @@ static int floatcon(void);
 "char"			{ stwart = instruct;
 				yylval.nodep = mkty((TWORD)CHAR, 0, CHAR);
 			  return(TYPE); }
-"const"			{ /* stwart = instruct; */
-			/* 	yylval.nodep = mkty((TWORD)CONST, 0, CONST); */
-			  /* return(TYPE); */ }
+"const"			{ stwart = instruct; yylval.nodep =
+				block(QUALIFIER, NIL, NIL, CONST, 0, 0);
+			  return(QUALIFIER); }
 "continue"		{ yylval.intval = CONTINUE; return(CONTINUE); }
 "default"		{ yylval.intval = DEFAULT; return(DEFAULT); }
 "do"			{ yylval.intval = DO; return(DO); }
@@ -111,9 +111,9 @@ static int floatcon(void);
 "void"			{ stwart = instruct;
 				yylval.nodep = mkty((TWORD)UNDEF, 0, UNDEF);
 			  return(TYPE); }
-"volatile"		{ /* stwart = instruct; */
-			 /* yylval.nodep = mkty((TWORD)VOLATILE,0,VOLATILE); */
-			  /* return(TYPE); */ }
+"volatile"		{ stwart = instruct; yylval.nodep =
+				block(QUALIFIER, NIL, NIL, VOLATILE, 0, 0);
+			  return(QUALIFIER); }
 "while"			{ yylval.intval = WHILE; return(WHILE); }
 
 {L}({L}|{D})*		{ int id; struct symtab *sp;
