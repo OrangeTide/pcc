@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.71 2003/08/20 09:40:25 ragge Exp $	*/
+/*	$Id: local2.c,v 1.72 2003/09/01 12:08:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -871,6 +871,7 @@ xorllcon(NODE *p)
 void
 zzzcode(NODE *p, int c)
 {
+	NODE *l;
 	CONSZ hval;
 	int m;
 
@@ -1079,6 +1080,15 @@ zzzcode(NODE *p, int c)
 		p->n_rval += 2;
 		adrput(p);
 		p->n_rval -= 2;
+		break;
+
+	case 'i': /* Write instruction for short load from name */
+		l = getlr(p, 'L');
+		printf("	h%cr%c %s,%s+" CONFMT "\n",
+		    l->n_lval & 1 ? 'r' : 'l',
+		    ISUNSIGNED(p->n_type) ? 'z' : 'e',
+		    rnames[getlr(p, '1')->n_rval],
+		    l->n_name, l->n_lval >> 1);
 		break;
 
 	default:
