@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.11 2004/12/11 09:13:41 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.12 2005/01/13 12:36:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -146,7 +146,12 @@ typedef long long OFFSZ;
 #define MINRVAR	ESI	/* first register variable */
 #define MAXRVAR	EBX	/* last register variable */
 
-
+/*
+ * Register types are described by bitmasks.
+ */
+#define AREGS   (REGBIT(EAX)|REGBIT(EDX)|REGBIT(ECX)|REGBIT(ESI)| \
+	REGBIT(EDI)|REGBIT(EBX))
+#define TAREGS  (REGBIT(EAX)|REGBIT(EDX)|REGBIT(ECX))
 
 #define MYREADER(p) myreader(p)
 #define MYCANON(p) mycanon(p)

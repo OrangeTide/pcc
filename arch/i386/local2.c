@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.36 2005/01/02 17:57:03 ragge Exp $	*/
+/*	$Id: local2.c,v 1.37 2005/01/13 12:36:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -161,10 +161,6 @@ hopcode(int f, int o)
 char *
 rnames[] = {  /* keyed to register number tokens */
 	"%eax", "%edx", "%ecx", "%esi", "%edi", "%ebx", "%ebp", "%esp",
-};
-
-int rstatus[] = {
-	STAREG, STAREG, STAREG, SAREG, SAREG, SAREG, 0, 0,
 };
 
 int
