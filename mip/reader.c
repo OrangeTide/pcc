@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.107 2004/12/20 18:27:10 ragge Exp $	*/
+/*	$Id: reader.c,v 1.108 2004/12/30 10:35:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -268,6 +268,7 @@ static void epilogue(int regs, int autos, int retlab);
 void
 pass2_compile(struct interpass *ip)
 {
+	static int curlocc;
 	if (ip->type == IP_NODE) {
 		thisline = ip->lineno;
 #ifdef PCC_DEBUG
@@ -299,6 +300,10 @@ pass2_compile(struct interpass *ip)
 	}
 	switch (ip->type) {
 	case IP_NODE:
+#ifdef PCC_DEBUG
+		if (curlocc != PROG)
+			cerror("curlocc != PROG");
+#endif
 		p2compile(ip->ip_node);
 		tfree(ip->ip_node);
 		break;
@@ -312,7 +317,7 @@ pass2_compile(struct interpass *ip)
 		epilogue(ip->ip_regs, ip->ip_auto, ip->ip_retl);
 		break;
 	case IP_LOCCTR:
-		setlocc(ip->ip_locc);
+		curlocc = ip->ip_locc;
 		break;
 	case IP_DEFLAB:
 		deflab(ip->ip_lbl);
@@ -544,6 +549,7 @@ again:	switch (o = p->n_op) {
 		p1 = tcopy(p1);
 		/* idstrip(p1); */
 		p->n_left->n_right->n_left = p1;
+		canon(p); /* if fields involved */
 		goto again;
 
 	case ASSIGN:

@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.98 2004/12/20 19:02:53 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.99 2004/12/30 10:35:16 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -85,7 +85,6 @@ extern	char *scnames(int);
 #define SNOCREAT	00040
 #define STEMP		00100
 #define	SDYNARRAY	00200
-#define	SLABEL		00400
 #define	STNODE		01000
 #ifdef GCC_COMPAT
 #define	SRENAME		02000	/* Node is renamed */
@@ -228,10 +227,6 @@ extern	int retlab;
 #define FDEF		010
 #define FLOOP		020
 
-/*	used to mark a constant with no name field */
-
-#define	NONAME		040000
-
 /*	mark an offset which is undefined */
 
 #define NOOFFSET	(-10201)
@@ -327,6 +322,7 @@ void stabs_lbrac(int);
 void stabs_func(struct symtab *);
 void stabs_newsym(struct symtab *);
 void stabs_chgsym(struct symtab *);
+void stabs_struct(struct symtab *p, struct suedef *sue);
 #endif
 
 #ifndef CHARCAST
