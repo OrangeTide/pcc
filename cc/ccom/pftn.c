@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.115 2004/06/14 16:33:31 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.116 2004/06/22 12:12:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2241,6 +2241,8 @@ argcast(NODE *p, TWORD t, union dimfun *d, struct suedef *sue)
 
 /*
  * Do prototype checking and add conversions before calling a function.
+ * Argument f is function and a is a CM-separated list of arguments.
+ * Returns a merged node (via buildtree() of function and arguments.
  */
 NODE *
 doacall(NODE *f, NODE *a)
