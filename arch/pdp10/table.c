@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.50 2003/08/06 11:28:46 ragge Exp $	*/
+/*	$Id: table.c,v 1.51 2003/08/06 13:02:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -207,16 +207,22 @@ struct optab table[] = {
 		"	hrrz A1,A1\n", },
 
 { SCONV,	INTAREG,
-	SAREG|STAREG|SNAME|SOREG,	TDOUBLE,
-	SANY,	TWORD,
-		NAREG|NASL,	RESC1,
-		"	fix A1,UL\n", },
-
-{ SCONV,	INTAREG,
-	SAREG|STAREG|SNAME|SOREG,	TFLOAT,
+	SAREG|STAREG|SNAME|SOREG,	TDOUBLE|TFLOAT,
 	SANY,	TWORD,
 		NAREG|NASL,	RESC1,
 		"	fix A1,AL\n", },
+
+{ SCONV,	INTAREG,
+	SAREG|STAREG|SNAME|SOREG,	TWORD,
+	SANY,	TFLOAT,
+		NAREG|NASL,	RESC1,
+		"	fltr A1,AL\n", },
+
+{ SCONV,	INTAREG,
+	SAREG|STAREG|SNAME|SOREG,	TWORD,
+	SANY,	TDOUBLE,
+		NAREG|NASL,	RESC1,
+		"	fltr A1,AL\n	setz U1,\n", },
 
 /*
  * Store constant initializers.
