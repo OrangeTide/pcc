@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.50 2005/01/12 22:49:40 ragge Exp $	*/
+/*	$Id: main.c,v 1.51 2005/01/16 13:59:17 pj Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -44,7 +44,7 @@ int iTflag, oTflag;
 int xdebug, mdebug, sdebug, gflag;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
-int xssaflag;
+int xssaflag, xtailcallflag;
 
 int e2debug, t2debug, f2debug;
 
@@ -180,6 +180,8 @@ main(int argc, char *argv[])
 		case 'x': /* Different optimizations */
 			if (strcmp(optarg, "ssa") == 0)
 				xssaflag++;
+			else if (strcmp(optarg, "tailcall") == 0)
+				xtailcallflag++;
 			else
 				usage();
 			break;
