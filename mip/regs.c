@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.15 2004/05/05 20:32:27 ragge Exp $	*/
+/*	$Id: regs.c,v 1.16 2004/05/06 18:15:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -410,6 +410,15 @@ alloregs(NODE *p, int wantreg)
 		regc = alloregs(p->n_left, wantreg);
 		break;
 
+	case R_LREG+R_PREF+R_RESC:
+		regc = getregs(wantreg, sreg);
+		regc2 = alloregs(p->n_left, NOPREF);
+		freeregs(regc2);
+		p->n_rall = REGNUM(regc);
+		rallset = 1;
+		regc = shave(regc, nreg, q->rewrite);
+		break;
+
 	case R_LREG+R_PREF+R_RLEFT: /* Allocate regs, reclaim left */
 		regc = alloregs(p->n_left, wantreg);
 		regc2 = getregs(NOPREF, sreg);
@@ -438,10 +447,11 @@ alloregs(NODE *p, int wantreg)
 		break;
 
 	case R_DOR+R_RREG+R_LREG:
-		regc2 = alloregs(p->n_left, NOPREF);
 		regc = alloregs(p->n_right, NOPREF);
+		regc2 = alloregs(p->n_left, NOPREF);
 		freeregs(regc2);
 		freeregs(regc);
+		MKREGC(regc, 0, 0);
 		break;
 
 	case R_DOR+R_RREG+R_LREG+R_RRGHT:

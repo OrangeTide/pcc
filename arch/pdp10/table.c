@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.90 2004/05/05 20:26:18 ragge Exp $	*/
+/*	$Id: table.c,v 1.91 2004/05/06 18:15:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -928,7 +928,7 @@ struct optab table[] = {
 
 /* read an indirect long long value into register */
 { UMUL,	INTAREG,
-	SAREG|STAREG,	TPTRTO|TLL,
+	SAREG|STAREG,	TPTRTO|TLL|TWORD,
 	SANY,		TLL,
 	0,	0,
 		NAREG|NASL,	RESC1,

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.86 2004/05/05 20:26:18 ragge Exp $	*/
+/*	$Id: reader.c,v 1.87 2004/05/06 18:15:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -775,7 +775,7 @@ rcount()
 }
 
 #ifdef PCC_DEBUG
-#define	PRTABLE
+#undef	PRTABLE
 int
 e2print(NODE *p, int down, int *a, int *b)
 {
