@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.8 2005/02/18 16:52:39 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.9 2005/03/06 15:42:08 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -41,6 +41,7 @@
 #define	IDENT	267	/* identifier found */
 #define	CONCAT	268	/* ## found */
 #define	MKSTR	269	/* # found */
+#define	ELLIPS	270	/* ... found */
 
 typedef unsigned char usch;
 extern FILE *obuf;
