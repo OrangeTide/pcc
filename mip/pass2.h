@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.46 2004/12/20 18:27:10 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.47 2005/01/09 14:28:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -270,7 +270,8 @@ extern	char *opst[];	/* a vector containing names for ops */
 #define RTEMP		014
 #define RMASK		014
 #define DORIGHT		020
-#define TBSH		5
+#define	LBREG		040	/* XXX - left in breg */
+#define TBSH		6
 #define TBLIDX(idx)	((idx) >> TBSH)
 #define MKIDX(tbl,mod)	(((tbl) << TBSH) | (mod))
 
@@ -305,6 +306,6 @@ extern int regblk[REGSZ];
 regcode regalloc(NODE *, struct optab *, int);
 regcode alloregs(NODE *p, int wantreg);
 NODE *movenode(NODE *p, int reg);
-regcode getregs(int wantreg, int nreg);
+regcode getregs(int wantreg, int nreg, int breg);
 void freeregs(regcode regc);
 int mayuse(int reg, TWORD type);
