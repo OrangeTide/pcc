@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.37 2003/08/03 21:15:59 ragge Exp $	*/
+/*	$Id: reader.c,v 1.38 2003/08/04 09:15:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -320,11 +320,10 @@ order(NODE *p, int cook)
 		cerror( "no table entry for op %s", opst[p->n_op] );
 
 	case FORCE:
-		/* recurse, letting the work be done by rallo */
 		cook = INTAREG|INTBREG;
 		order(p->n_left, cook);
 		reclaim(p, RLEFT, cook);
-		goto again;
+		return;
 
 	case CBRANCH:
 		p1->n_label = p2->n_lval;
