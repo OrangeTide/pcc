@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.38 2005/01/21 15:39:00 ragge Exp $	*/
+/*	$Id: local2.c,v 1.39 2005/01/29 12:13:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -191,7 +191,7 @@ tlen(p) NODE *p;
 		default:
 			if (!ISPTR(p->n_type))
 				comperr("tlen type %d not pointer");
-			return SZPOINT/SZCHAR;
+			return SZPOINT(p->n_type)/SZCHAR;
 		}
 }
 
