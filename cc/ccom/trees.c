@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.125 2005/01/14 15:46:53 ragge Exp $	*/
+/*	$Id: trees.c,v 1.126 2005/01/16 11:57:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2225,6 +2225,7 @@ send_passt(int type, ...)
 		ip->ip_regs = va_arg(ap, int);
 		ip->ip_auto = va_arg(ap, int);
 		ip->ip_retl = va_arg(ap, int);
+		ip->ip_pname = cftnsp->sname; /* XXX */
 		break;
 	case IP_LOCCTR:
 		ip->ip_locc = va_arg(ap, int);
