@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.4 2005/01/11 14:27:28 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.5 2005/01/12 22:50:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -132,12 +132,12 @@ typedef long long OFFSZ;
 #define A0	4
 #define A1	5
 #define FB	6
-#define USP	7
+#define SP	7
 
 #define RETREG	R0	/* Return (and switch) register */
 #define REGSZ	8	/* Number of registers */
 #define FPREG	FB	/* frame pointer */
-#define STKREG	USP	/* stack pointer */
+#define STKREG	SP	/* stack pointer */
 #define MINRVAR R3	/* first register variable */
 #define MAXRVAR R3	/* last register variable */
 

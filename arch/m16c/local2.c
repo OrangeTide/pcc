@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.5 2005/01/11 14:27:28 ragge Exp $	*/
+/*	$Id: local2.c,v 1.6 2005/01/12 22:50:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -62,10 +62,9 @@ prologue(int regs, int autos, TWORD t)
 	if (Oflag) {
 		/* Optimizer running, save space on stack */
 		addto = (maxautooff - AUTOINIT)/SZCHAR;
-		printf("	push.w FB\n");
-		printf("	mov.w SP,FB\n");
+		printf("	enter #fixa\n");
 		if (addto)
-			printf("	add.b #-%d,SP\n", addto);
+			printf("	add.b #-%d,%s\n", addto, rnames[SP]);
 	} else {
 		/* non-optimized code, jump to epilogue for code generation */
 		ftlab1 = getlab();
@@ -97,19 +96,15 @@ eoftn(int regs, int autos, int retlab)
 		printf("	leave\n");
 		printf("	ret $4\n");
 #endif
-	} else {
-		printf("	mov.w FP,SP\n");
-		printf("	pop.w FP\n");
-		printf("	rts\n");
-	}
+	} else
+		printf("	exitd\n");
 
 	/* Prolog code */
 	if (Oflag == 0) {
 		deflab(ftlab1);
-		printf("	push.w FB\n");
-		printf("	mov.w SP,FB\n");
+		printf("	enter #fixa\n");
 		if (addto)
-			printf("	add.b #-%d,SP\n", addto);
+			printf("	add.b #-%d,%s\n", addto, rnames[SP]);
 		printf("	jmp " LABFMT "\n", ftlab2);
 	}
 }
@@ -395,6 +390,7 @@ mygenregs(NODE *p)
 }
 
 struct hardops hardops[] = {
+	{ PLUS, FLOAT, "?F_ADD_L04" },
 	{ MUL, LONGLONG, "__muldi3" },
 	{ MUL, ULONGLONG, "__muldi3" },
 	{ DIV, LONGLONG, "__divdi3" },
