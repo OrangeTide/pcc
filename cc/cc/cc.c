@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.20 2004/08/28 16:04:29 ragge Exp $	*/
+/*	$Id: cc.c,v 1.21 2004/09/02 21:26:06 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -336,7 +336,7 @@ char *argv[]; {
 		av[na++] = "-D__PCC__=" MKS(PCC_MAJOR);
 		av[na++] = "-D__PCC_MINOR__" MKS(PCC_MINOR);
 		if (!nostdinc)
-			av[na++] = "-S " STDINC;
+			av[na++] = "-S", av[na++] = STDINC;
 		if (sysinc)
 			av[na++] = "-S", av[na++] = sysinc;
 		for (j = 0; cppadd[j]; j++)
@@ -411,7 +411,7 @@ char *argv[]; {
 			av[4] = 0;
 		cunlink(tmp1);
 		cunlink(tmp2);
-		if (callsys("/bin/as", av) > 1) {
+		if (callsys("/bin/as", av)) {
 			cflag++;
 			eflag++;
 			cunlink(tmp4);
