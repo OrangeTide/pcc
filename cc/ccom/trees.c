@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.96 2003/11/13 15:59:46 ragge Exp $	*/
+/*	$Id: trees.c,v 1.97 2003/12/15 22:02:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2042,6 +2042,59 @@ p2tree(NODE *p)
 
 #endif
 
+static int
+storearg(NODE *p)
+{
+	static void storecall(NODE *);
+	NODE *np;
+	int al, tsz;
+
+	np = (p->n_op == CM ? p->n_right : p);
+	storecall(np);
+	al = talign(np->n_type, np->n_sue);
+	tsz = tsize(np->n_type, np->n_df, np->n_sue);
+	if (tsz < al)
+		al = ALINT;
+	SETOFF(tsz, al);
+
+	if (p->n_op == CM) {
+		np = p->n_left;
+		p->n_op = FUNARG;
+		p->n_type = np->n_type;
+		p->n_left = p->n_right;
+		p->n_sue = MKSUE(p->n_type & BTMASK);
+		p->n_rval = tsz;
+		send_passt(IP_NODE, p);
+		return storearg(np) + tsz;
+	} else {
+		p = block(FUNARG, p, NIL, p->n_type, 0,
+		    MKSUE(p->n_type & BTMASK));
+		p->n_rval = tsz;
+		send_passt(IP_NODE, p);
+		return tsz;
+	}
+}
+
+static void
+storecall(NODE *p)
+{
+	int o = p->n_op;
+	int ty = optype(o);
+
+	if (ty == LTYPE)
+		return;
+
+	if (o == CALL || o == FORTCALL || o == STCALL) {
+		p->n_op++; /* Make unary call XXX */
+		storecall(p->n_left);
+		p->n_rval = storearg(p->n_right);
+		return;
+	}
+	if (ty != UTYPE)
+		storecall(p->n_right);
+	storecall(p->n_left);
+}
+
 void
 ecode(NODE *p)	
 {
@@ -2060,6 +2113,7 @@ ecode(NODE *p)
 	}
 #endif
 	p2tree(p);
+	storecall(p);
 #if !defined(MULTIPASS)
 	send_passt(IP_NODE, p);
 #endif

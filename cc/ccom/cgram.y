@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.122 2003/09/12 15:14:01 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.123 2003/12/15 22:02:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -932,6 +932,7 @@ bdty(int op, ...)
 	case UMUL:
 	case UCALL:
 		q->n_left = va_arg(ap, NODE *);
+		q->n_rval = 0;
 		break;
 
 	case CALL:
