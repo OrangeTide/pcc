@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.6 2005/01/21 15:41:34 pj Exp $	*/
+/*	$Id: optim2.c,v 1.7 2005/01/23 13:47:09 pj Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -433,12 +433,6 @@ bblocks_build(struct labelinfo *labinfo)
 		if (ip->type == IP_NODE) {
 			switch(ip->ip_node->n_op) {
 			case CBRANCH:
-			case CALL:
-			case UCALL:
-			case FORTCALL:
-			case UFORTCALL:
-			case STCALL:
-			case USTCALL:
 			case GOTO:
 			case RETURN:
 				/* Jumps, last in bblock. */
@@ -477,6 +471,12 @@ bblocks_build(struct labelinfo *labinfo)
 			case ASSIGN:
 			case FORCE:
 			case FUNARG:
+			case CALL:
+			case UCALL:
+			case FORTCALL:
+			case UFORTCALL:
+			case STCALL:
+			case USTCALL:
 				/* Not jumps, continue with bblock. */
 				break;
 
