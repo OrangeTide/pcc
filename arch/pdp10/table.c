@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.72 2003/09/02 14:37:34 ragge Exp $	*/
+/*	$Id: table.c,v 1.73 2003/09/07 14:30:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -982,6 +982,20 @@ struct optab table[] = {
 	SANY,	ANYFIXED,
 		NAREG,	RESC1,
 		"	setz A1,\n", },
+
+{ OPLTYPE,	INAREG|INTAREG,
+	SANY,	ANYFIXED,
+	SUSHCON,	ANYFIXED,
+	0,	0,
+		NAREG|NASR,	RESC1,
+		"	movei A1,AR\n", },
+
+{ OPLTYPE,	INAREG|INTAREG,
+	SANY,	ANYFIXED,
+	SNSHCON,	ANYFIXED,
+	0,	0,
+		NAREG|NASR,	RESC1,
+		"	hrroi A1,AR\n", },
 
 { OPLTYPE,	INAREG|INTAREG,
 	SANY,	ANYFIXED,

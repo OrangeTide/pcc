@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.38 2003/09/02 14:37:34 ragge Exp $	*/
+/*	$Id: order.c,v 1.39 2003/09/07 14:30:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -664,6 +664,13 @@ special(NODE *p, int shape)
 		if (p->n_op == ICON && p->n_name[0] == '\0' &&
 		    (p->n_lval > 1 && p->n_lval <= 0777777))
 			return 1;
+		break;
+
+	case SNSHCON:
+		if (p->n_op == ICON && p->n_name[0] == '\0' &&
+		    (p->n_lval < 0 && p->n_lval > -01000000))
+			return 1;
+		break;
 	}
 	return 0;
 }
