@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.118 2003/08/23 12:25:46 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.119 2003/09/03 10:04:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -812,7 +812,9 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 		|  '*' term { $$ = buildtree(UNARY MUL, $2, NIL); }
 		|  '&' term {
 			if( ISFTN($2->n_type) || ISARY($2->n_type) ){
+#ifdef notdef
 				werror( "& before array or function: ignored" );
+#endif
 				$$ = $2;
 			} else
 				$$ = buildtree(UNARY AND, $2, NIL);
