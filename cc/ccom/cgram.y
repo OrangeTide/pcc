@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.139 2004/12/11 09:12:36 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.140 2004/12/12 09:20:47 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -647,12 +647,11 @@ begin:		  '{' {
 					stabs_line(lineno);
 #endif
 				dclargs();
-			} else {
-#ifdef STABS
-				if (gflag)
-					stabs_lbrac(blevel+1);
-#endif
 			}
+#ifdef STABS
+			if (gflag)
+				stabs_lbrac(blevel+1);
+#endif
 			++blevel;
 			oldstyle = 0;
 			bc->brklab = regvar;
