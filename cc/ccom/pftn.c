@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.89 2003/07/30 11:27:47 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.90 2003/07/30 11:48:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2583,7 +2583,6 @@ getsymtab(char *name, int flags)
 	s->sflags = flags & SMASK;
 	s->soffset = 0;
 	s->slevel = blevel;
-	s->s_argn = 0;
 	return s;
 }
 
