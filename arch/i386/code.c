@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.4 2004/06/05 08:22:42 ragge Exp $	*/
+/*	$Id: code.c,v 1.5 2004/06/21 08:19:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -65,7 +65,7 @@ efcode()
 	q = block(OREG, NIL, NIL, CHAR+PTR, 0, MKSUE(CHAR+PTR));
 	q->n_rval = EBP;
 	q->n_lval = 8; /* return buffer offset */
-	p = block(CM, p, q, INT, 0, MKSUE(INT));
+	p = block(CM, q, p, INT, 0, MKSUE(INT));
 	sz = (tsize(STRTY, cftnsp->sdf, cftnsp->ssue)+SZCHAR-1)/SZCHAR;
 	p = block(CM, p, bcon(sz), INT, 0, MKSUE(INT));
 	p->n_right->n_name = "";

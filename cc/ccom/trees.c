@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.113 2004/06/19 09:14:28 ragge Exp $	*/
+/*	$Id: trees.c,v 1.114 2004/06/21 08:19:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2149,6 +2149,18 @@ p2tree(NODE *p)
 
 #endif
 
+/*
+ * Change void data types into char.
+ */
+static void
+delvoid(NODE *p)
+{
+	/* Convert "PTR undef" (void *) to "PTR uchar" */
+	if (BTYPE(p->n_type) == VOID)
+		p->n_type = (p->n_type & ~BTMASK) | UCHAR;
+
+}
+
 void
 ecode(NODE *p)	
 {
@@ -2160,6 +2172,7 @@ ecode(NODE *p)
 	p = optim(p);
 	delasgop(p);
 	walkf(p, prtdcon);
+	walkf(p, delvoid);
 #ifdef PCC_DEBUG
 	if (xdebug) {
 		printf("Fulltree:\n"); 

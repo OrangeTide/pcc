@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.50 2004/06/19 09:14:27 ragge Exp $	*/
+/*	$Id: common.c,v 1.51 2004/06/21 08:19:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -214,39 +214,46 @@ void
 tfree(NODE *p)
 {
 	if (p->n_op != FREE)
-		walkf(p, nfree);
+		walkf(p, (void (*)(NODE *))nfree);
 }
 
-void
+/*
+ * Free a node, and return its left descendant.
+ * It is up to the caller to know whether the return value is usable.
+ */
+NODE *
 nfree(NODE *p)
 {
 	extern int inlnodecnt, recovernodes;
+	NODE *l;
 #ifdef PCC_DEBUG_NODES
 	NODE *q;
 #endif
 
-	if (p != NULL) {
-		if (p->n_op == FREE)
-			cerror("freeing FREE node", p);
+	if (p == NULL)
+		cerror("freeing blank node!");
+		
+	l = p->n_left;
+	if (p->n_op == FREE)
+		cerror("freeing FREE node", p);
 #ifdef PCC_DEBUG_NODES
-		q = freelink;
-		while (q != NULL) {
-			if (q == p)
-				cerror("freeing free node %p", p);
-			q = q->next;
-		}
+	q = freelink;
+	while (q != NULL) {
+		if (q == p)
+			cerror("freeing free node %p", p);
+		q = q->next;
+	}
 #endif
 
-		if (nflag)
-			printf("freeing node %p\n", p);
-		p->n_op = FREE;
-		p->next = freelink;
-		freelink = p;
-		usednodes--;
-		if (recovernodes)
-			inlnodecnt--;
-	} else
-		cerror("freeing blank node!");
+	if (nflag)
+		printf("freeing node %p\n", p);
+	p->n_op = FREE;
+	p->next = freelink;
+	freelink = p;
+	usednodes--;
+	if (recovernodes)
+		inlnodecnt--;
+	return l;
 }
 #endif
 
