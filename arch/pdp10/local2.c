@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.69 2003/08/18 11:59:50 ragge Exp $	*/
+/*	$Id: local2.c,v 1.70 2003/08/18 22:01:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -448,12 +448,9 @@ constput(NODE *p)
 		/* Can have more tests here, hrloi etc */
 		return;
 	} else {
-		if (val == 0)
-			printf("move %s,[ .long %s]", rnames[reg],
-			    p->n_right->n_name);
-		else
-			printf("move %s,[ .long %s+0%llo]", rnames[reg],
-			    p->n_right->n_name, val);
+		printf("xmovei %s,%s", rnames[reg], p->n_right->n_name);
+		if (val)
+			printf("+" CONFMT, val);
 	}
 }
 

@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.58 2003/08/18 11:59:50 ragge Exp $	*/
+/*	$Id: table.c,v 1.59 2003/08/18 22:01:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -541,8 +541,8 @@ struct optab table[] = {
 		"	setom AL\n", },
 
 { ASSIGN,	INAREG|INTAREG|FOREFF,
-	STAREG|SAREG,		TWORD,
-	SCON,		TWORD,
+	STAREG|SAREG,		TWORD|TPOINT,
+	SCON,		TWORD|TPOINT,
 		0,	RLEFT,
 		"	ZC\n", },
 
