@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.34 2003/07/31 09:05:34 ragge Exp $	*/
+/*	$Id: common.c,v 1.35 2003/08/01 13:12:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -358,7 +358,7 @@ mkdope()
  * output a nice description of the type of t
  */
 void
-tprint(TWORD t)
+tprint(TWORD t, TWORD q)
 {
 	static char * tnames[] = {
 		"undef",
@@ -384,7 +384,11 @@ tprint(TWORD t)
 		"?", "?"
 		};
 
-	for(;; t = DECREF(t) ){
+	for(;; t = DECREF(t), q = DECREF(q)) {
+		if (ISCON(q))
+			putchar('C');
+		if (ISVOL(q))
+			putchar('V');
 
 		if (ISPTR(t))
 			printf("PTR ");
@@ -393,7 +397,8 @@ tprint(TWORD t)
 		else if (ISARY(t))
 			printf("ARY ");
 		else {
-			printf("%s", tnames[t]);
+			printf("%s%s%s", ISCON(q << TSHIFT) ? "const " : "",
+			    ISVOL(q << TSHIFT) ? "volatile " : "", tnames[t]);
 			return;
 		}
 	}

@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.64 2003/07/30 17:56:25 ragge Exp $	*/
+/*	$Id: trees.c,v 1.65 2003/08/01 13:12:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1438,7 +1438,7 @@ eprint(NODE *p, int down, int *a, int *b)
 		printf(CONFMT, p->n_lval);
 		printf(", %d, ", p->n_rval);
 	}
-	tprint( p->n_type );
+	tprint( p->n_type, p->n_qual);
 	printf( ", %p, %p\n", p->n_df, p->n_sue );
 	return 0;
 }

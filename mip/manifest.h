@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.30 2003/07/31 09:05:34 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.31 2003/08/01 13:12:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -33,8 +33,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _MANIFEST_
-#define	_MANIFEST_
+#ifndef MANIFEST
+#define	MANIFEST
 
 #include <stdio.h>
 #include "macdefs.h"
@@ -92,21 +92,21 @@
 /* 
  * Type modifiers.
  */
-#define	PTR		0x100
-#define	FTN		0x200
-#define	ARY		0x300
-#define	CON		0x400
-#define	VOL		0x800
+#define	PTR		0x20
+#define	FTN		0x40
+#define	ARY		0x60
+#define	CON		0x20
+#define	VOL		0x40
 
 /*
  * Type packing constants
  */
-#define TMASK	0x0300
-#define TMASK1	0x3000
-#define TMASK2	0x3300
-#define BTMASK	0xff
-#define BTSHIFT	8
-#define TSHIFT	4
+#define TMASK	0x060
+#define TMASK1	0x180
+#define TMASK2	0x1e0
+#define BTMASK	0x1f
+#define BTSHIFT	5
+#define TSHIFT	2
 
 /*
  * Macros
@@ -119,8 +119,10 @@
 #define ENUNSIGN(x)	((x)+1)
 #define DEUNSIGN(x)	((x)-1)
 #define ISPTR(x)	(((x)&TMASK)==PTR)
-#define ISFTN(x)	(((x)&TMASK)==FTN)	/* is x a function type */
-#define ISARY(x)	(((x)&TMASK)==ARY)	/* is x an array type */
+#define ISFTN(x)	(((x)&TMASK)==FTN)	/* is x a function type? */
+#define ISARY(x)	(((x)&TMASK)==ARY)	/* is x an array type? */
+#define	ISCON(x)	(((x)&TMASK)==CON)	/* is x const? */
+#define	ISVOL(x)	(((x)&TMASK)==VOL)	/* is x volatile? */
 #define INCREF(x)	((((x)&~BTMASK)<<TSHIFT)|PTR|((x)&BTMASK))
 #define DECREF(x)	((((x)>>TSHIFT)&~BTMASK)|( (x)&BTMASK))
 #define SETOFF(x,y)	if ((x)%(y) != 0) (x) = (((x)/(y) + 1) * (y))

@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.12 2003/07/29 09:25:15 ragge Exp $	*/
+/*	$Id: node.h,v 1.13 2003/08/01 13:12:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -44,6 +44,7 @@ typedef struct node {
 	int	n_op;
 	int	n_rall;
 	TWORD	n_type;
+	TWORD	n_qual;
 	int	n_su;
 	union {
 		char *	_name;

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.32 2003/07/30 17:56:25 ragge Exp $	*/
+/*	$Id: reader.c,v 1.33 2003/08/01 13:12:04 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -721,7 +721,7 @@ e2print(NODE *p, int down, int *a, int *b)
 		}
 
 	printf( ", " );
-	tprint( p->n_type );
+	tprint( p->n_type, p->n_qual);
 	printf( ", " );
 	if( p->n_rall == NOPREF ) printf( "NOPREF" );
 	else {

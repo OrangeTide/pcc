@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.73 2003/07/30 17:56:25 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.74 2003/08/01 13:12:04 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -138,6 +138,7 @@ struct	symtab {
 	struct	symtab_hdr hdr;
 	char	*sname;
 	TWORD	stype;		/* type word */
+	TWORD	squal;		/* qualifier word */
 	union	dimfun *sdf;	/* ptr to the dimension/prototype array */
 	struct	suedef *ssue;	/* ptr to the definition table */
 	int	suse;		/* line number of last use of the variable */
