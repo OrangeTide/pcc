@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.21 2003/06/22 11:24:50 ragge Exp $	*/
+/*	$Id: main.c,v 1.22 2003/06/22 21:13:30 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -33,7 +33,7 @@
 #include "pass1.h"
 #include "pass2.h"
 
-int sflag;
+int sflag, Oflag;
 int lflag, odebug, rdebug, radebug, vdebug, s2debug, udebug, x2debug;
 int xdebug, mdebug, sdebug;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
@@ -100,7 +100,7 @@ main(int argc, char *argv[])
 	extern char *release;
 
 	offsz = caloff();
-	while ((ch = getopt(argc, argv, "VlwX:Z:W:s")) != -1)
+	while ((ch = getopt(argc, argv, "VlwX:Z:W:sO")) != -1)
 		switch (ch) {
 #if !defined(MULTIPASS) || defined(PASS1)
 		case 'X':
@@ -149,6 +149,10 @@ main(int argc, char *argv[])
 #endif
 		case 'l': /* linenos */
 			++lflag;
+			break;
+
+		case 'O': /* Optimize */
+			Oflag++;
 			break;
 
 		case 's': /* Statistics */
