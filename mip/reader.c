@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.93 2004/05/15 08:06:17 ragge Exp $	*/
+/*	$Id: reader.c,v 1.94 2004/05/15 12:14:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -65,6 +65,7 @@
 
 #include <string.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 /*	some storage declarations */
 int nrecur;

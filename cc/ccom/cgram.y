@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.123 2003/12/15 22:02:06 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.124 2004/05/15 12:14:42 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -138,6 +138,7 @@
 %{
 # include "pass1.h"
 # include <stdarg.h>
+# include <string.h>
 %}
 
 	/* define types */

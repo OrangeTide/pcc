@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.2 2004/05/13 19:33:47 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.3 2004/05/15 12:14:43 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -28,6 +28,8 @@
 
 #include "pass2.h"
 #include "external.h"
+
+#include <string.h>
 
 extern int saving;
 
