@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.60 2003/07/30 08:47:30 ragge Exp $	*/
+/*	$Id: trees.c,v 1.61 2003/07/30 11:27:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1721,7 +1721,6 @@ ecomp(NODE *p)
 		ecode(p);
 }
 
-#ifdef STDPRTREE
 #if defined(MULTIPASS)
 void	
 p2tree(NODE *p)
@@ -1842,7 +1841,6 @@ p2tree(NODE *p)
 	if( ty == BITYPE ) p2tree( p->n_right );
 	}
 
-#endif
 #endif
 
 void
