@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.12 2002/12/14 15:23:42 ragge Exp $	*/
+/*	$Id: scan.l,v 1.13 2003/01/09 22:06:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -61,7 +61,7 @@ static int floatcon(void);
 "char"			{ stwart = instruct;
 				yylval.nodep = mkty((TWORD)CHAR, 0, CHAR);
 			  return(TYPE); }
-"const"			{ stwart = instruct; yylval.nodep =
+"const"			{ yylval.nodep =
 				block(QUALIFIER, NIL, NIL, CONST, 0, 0);
 			  return(QUALIFIER); }
 "continue"		{ yylval.intval = CONTINUE; return(CONTINUE); }
@@ -111,7 +111,7 @@ static int floatcon(void);
 "void"			{ stwart = instruct;
 				yylval.nodep = mkty((TWORD)UNDEF, 0, UNDEF);
 			  return(TYPE); }
-"volatile"		{ stwart = instruct; yylval.nodep =
+"volatile"		{ yylval.nodep =
 				block(QUALIFIER, NIL, NIL, VOLATILE, 0, 0);
 			  return(QUALIFIER); }
 "while"			{ yylval.intval = WHILE; return(WHILE); }
