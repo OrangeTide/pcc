@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.6 2003/06/08 18:03:37 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.7 2003/06/08 18:26:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -174,7 +174,7 @@ int numsyms[NSTYPES];
  * Returns a struct symtab.
  */
 struct symtab *
-symbol_add(char *key, int ttype)
+lookup(char *key, int ttype)
 {
 	struct symtab *sym;
 	struct tree *w, *new, *last;
