@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.71 2003/07/30 11:48:33 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.72 2003/07/30 17:38:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -35,7 +35,6 @@
 
 #include <sys/types.h>
 
-#include "macdefs.h"
 #include "manifest.h"
 #ifdef PASS1
 #include "y.tab.h"

@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.19 2003/07/30 12:58:50 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.20 2003/07/30 17:38:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -34,8 +34,6 @@
  */
 #include <sys/types.h>
 
-#include "macdefs.h"
-#include "mac2defs.h"
 #include "manifest.h"
 #include "protos.h"
 
