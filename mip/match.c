@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.21 2003/09/09 12:30:15 ragge Exp $	*/
+/*	$Id: match.c,v 1.22 2003/09/12 14:53:29 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -135,7 +135,7 @@ tshape(NODE *p, int shape)
 	case OREG:
 		return( shape & SOREG );
 
-	case UNARY MUL:
+	case UMUL:
 		/* return STARNM or STARREG or 0 */
 		return( shumul(p->n_left) & shape );
 

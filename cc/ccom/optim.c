@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.15 2003/09/12 14:32:53 ragge Exp $	*/
+/*	$Id: optim.c,v 1.16 2003/09/12 14:53:29 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -60,7 +60,7 @@ fortarg(NODE *p)
 	}
 
 	while( ISPTR(p->n_type) ){
-		p = buildtree( UNARY MUL, p, NIL );
+		p = buildtree( UMUL, p, NIL );
 	}
 	return( optim(p) );
 }
@@ -116,7 +116,7 @@ optim(NODE *p)
 		nfree(p);
 		return q;
 
-	case UNARY MUL:
+	case UMUL:
 		if( LO(p) != ICON ) break;
 		LO(p) = NAME;
 		goto setuleft;

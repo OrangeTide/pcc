@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.18 2003/09/12 14:32:53 ragge Exp $	*/
+/*	$Id: node.h,v 1.19 2003/09/12 14:53:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -115,14 +115,14 @@ typedef struct node {
 #define PLUSEQ	11
 #define MINUS	12
 #define MINUSEQ	13
-#define UMINUS	14
+#define UMINUS	46
 #define DIV	15
 #define DIVEQ	16
 #define MOD	17
 #define MODEQ	18
 #define MUL	19
 #define MULEQ	20
-#define UMUL	21
+#define UMUL	47
 #define INCR	22
 #define DECR	23
 
