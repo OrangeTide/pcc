@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.60 2003/09/09 09:36:55 ragge Exp $	*/
+/*	$Id: reader.c,v 1.61 2003/09/09 09:41:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -367,7 +367,7 @@ order(NODE *p, int cook)
 		m = INTAREG|INTBREG;
 		rv = findops(p);
 foo:		if (rv < 0) {
-			if (setnbin(p))
+			if (setbin(p))
 				goto again;
 			goto nomat;
 		}
@@ -593,7 +593,6 @@ foo:		if (rv < 0) {
 		if (setasg(p))
 			goto again;
 		goto nomat;
-
 
 	case BITYPE:
 		if( setbin( p ) ) goto again;
