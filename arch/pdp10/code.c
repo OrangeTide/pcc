@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.30 2003/08/04 10:59:53 ragge Exp $	*/
+/*	$Id: code.c,v 1.31 2003/08/15 09:13:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -160,6 +160,8 @@ genswitch(struct swents **p, int n)
 		send_passt(IP_ASM, s);
 		branch(p[i]->slab);
 	}
-	if (p[0]->slab > 0)
+	if (p[0]->slab > 0) {
+		send_passt(IP_DEFLAB, getlab()); /* XXX - fool optimizer */
 		branch(p[0]->slab);
+	}
 }
