@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.75 2003/08/06 13:01:21 ragge Exp $	*/
+/*	$Id: trees.c,v 1.76 2003/08/06 17:08:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1803,7 +1803,6 @@ ecomp(NODE *p)
 	}
 	p = optim(p);
 	rmcops(p);
-	walkf(p, prtdcon);
 	send_passt(IP_LOCCTR, PROG);
 	if (p->n_op == ICON && p->n_type == VOID)
 		tfree(p);
@@ -1940,6 +1939,8 @@ ecode(NODE *p)
 
 	if (nerrors)	
 		return;
+
+	walkf(p, prtdcon);
 #ifdef PCC_DEBUG
 	if (xdebug) {
 		printf("Fulltree:\n"); 
