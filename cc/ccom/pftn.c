@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.124 2004/12/02 21:33:50 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.125 2004/12/11 09:12:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -252,7 +252,7 @@ defid(NODE *q, int class)
 	}
 #ifdef STABS
 	if (changed && gflag)
-		outstab(p);
+		stabs_chgsym(p); /* symbol changed */
 #endif
 
 	/* check that redeclarations are to the same structure */
@@ -475,10 +475,9 @@ defid(NODE *q, int class)
 		break;
 	}
 
-	/* user-supplied routine to fix up new definitions */
 #ifdef STABS
 	if (gflag)
-		outstab(p);
+		stabs_newsym(p);
 #endif
 
 #ifdef PCC_DEBUG

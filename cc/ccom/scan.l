@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.46 2004/12/02 21:33:50 ragge Exp $	*/
+/*	$Id: scan.l,v 1.47 2004/12/11 09:12:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -53,6 +53,12 @@ static NODE *floatcon(void);
 #define	CPP_IDENT 	2
 #define	CPP_LINE 	3
 #define	CPP_HASH	4
+
+#ifdef STABS
+#define	STABS_LINE(x) if (gflag && blevel) stabs_line(x)
+#else
+#define STABS_LINE(x)
+#endif
 %}
 
 %%
@@ -192,7 +198,7 @@ L?\"(\\.|[^\\"])*\"	{	char *c = yytext;
 ^#.*			{ control(CPP_HASH); }
 
 [ \t\v\f]		{ }
-"\n"			{ ++lineno; if (gflag) pstline(lineno); }
+"\n"			{ ++lineno; STABS_LINE(lineno); }
 .			{ /* ignore bad characters */ }
 
 %%
@@ -370,7 +376,7 @@ control(int t)
 		ftitle = addstring(eptr);
 #ifdef STABS
 		if (gflag)
-			pstabfile(ftitle);
+			stabs_file(ftitle);
 #endif
 	}
 	return;

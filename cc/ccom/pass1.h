@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.94 2004/12/02 21:33:50 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.95 2004/12/11 09:12:36 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -314,9 +314,14 @@ char *gcc_findname(struct symtab *sp);
 #endif
 
 #ifdef STABS
-void initstabs(void);
-void pstabfile(char *);
-void pstline(int);
+void stabs_init(void);
+void stabs_file(char *);
+void stabs_line(int);
+void stabs_rbrac(int);
+void stabs_lbrac(int);
+void stabs_func(struct symtab *);
+void stabs_newsym(struct symtab *);
+void stabs_chgsym(struct symtab *);
 #endif
 
 #ifndef CHARCAST
