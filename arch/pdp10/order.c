@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.39 2003/09/07 14:30:33 ragge Exp $	*/
+/*	$Id: order.c,v 1.40 2003/09/07 15:04:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -662,7 +662,7 @@ special(NODE *p, int shape)
 	switch (shape) {
 	case SUSHCON:
 		if (p->n_op == ICON && p->n_name[0] == '\0' &&
-		    (p->n_lval > 1 && p->n_lval <= 0777777))
+		    (p->n_lval > 0 && p->n_lval <= 0777777))
 			return 1;
 		break;
 
