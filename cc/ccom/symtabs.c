@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.11 2004/06/14 16:33:31 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.12 2004/06/21 11:16:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -307,6 +307,7 @@ lookup(char *key, int ttype)
 void
 symclear(int level)
 {
+	struct symtab *s;
 	int i;
 
 #ifdef PCC_DEBUG
@@ -314,8 +315,17 @@ symclear(int level)
 		printf("symclear(%d)\n", level);
 #endif
 	if (level < 1) {
-		for (i = 0; i < NSTYPES; i++)
+		for (i = 0; i < NSTYPES; i++) {
+			s = tmpsyms[i];
 			tmpsyms[i] = 0;
+			if (i != SLBLNAME)
+				continue;
+			while (s != NULL) {
+				if (s->soffset < 0)
+					uerror("label '%s' undefined",s->sname);
+				s = s->snext;
+			}
+		}
 	} else {
 		for (i = 0; i < NSTYPES; i++) {
 			if (i == SLBLNAME)

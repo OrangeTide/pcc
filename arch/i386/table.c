@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.30 2004/06/21 08:19:46 ragge Exp $	*/
+/*	$Id: table.c,v 1.31 2004/06/21 11:16:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -924,6 +924,14 @@ struct optab table[] = {
 	SANY,	TANY,
 		0,	RNOP,
 		"	jmp LL\n", },
+
+#ifdef GCC_COMPAT
+{ GOTO, 	FOREFF,
+	SAREG|STAREG,	TANY,
+	SANY,	TANY,
+		0,	RNOP,
+		"	jmp *AL\n", },
+#endif
 
 /*
  * Convert LTYPE to reg.
