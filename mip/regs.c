@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.38 2005/01/31 15:08:02 ragge Exp $	*/
+/*	$Id: regs.c,v 1.39 2005/02/20 11:59:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -146,7 +146,8 @@ getregs(int wantreg, int nreg, int breg)
 
 	if ((wantreg == NOPREF) || !isfree(wantreg, nreg)) {
 		if ((wantreg = findfree(nreg, breg)) < 0)
-			comperr("getregs: can't alloc %d regs", nreg);
+			comperr("getregs: can't alloc %d regs type %d",
+			    nreg, breg);
 	}
 	setused(wantreg, nreg);
 	MKREGC(regc, wantreg, nreg);

@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.9 2005/01/14 15:46:52 ragge Exp $	*/
+/*	$Id: init.c,v 1.10 2005/02/20 11:59:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -451,8 +451,10 @@ endinit(void)
 	if (csym->sclass == EXTDEF ||
 	    (csym->sclass == STATIC && csym->slevel == 0))
 		defnam(csym);
-	else
+	else if (csym->soffset == NOOFFSET || csym->sclass == AUTO)
 		deflab1(lbl = getlab());
+	else
+		deflab1(lbl = csym->soffset);
 
 	for (p = ilist; p ; p = p->next) {
 		/* print it out */
