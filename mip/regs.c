@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.35 2005/01/11 14:27:08 ragge Exp $	*/
+/*	$Id: regs.c,v 1.36 2005/01/17 21:25:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -425,8 +425,19 @@ alloregs(NODE *p, int wantreg)
 	switch (p->n_op) {
 	case UCALL:
 	 	/* All registers must be free here. */
+#ifdef old
 		if (findfree(fregs, 0) < 0) /* XXX check BREGs */
 			comperr("UCALL and not all regs free!");
+#else
+		{ int bs, rmsk = TAREGS|TBREGS;
+			while ((bs = ffs(rmsk))) {
+				bs--;
+				if (regblk[bs] & 1)
+					comperr("UCALL and reg %d used", bs);
+				rmsk &= ~(1 << bs);
+			}
+		}
+#endif
 		if (cword & R_LREG) {
 			regc = alloregs(p->n_left, NOPREF);
 			freeregs(regc);
