@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.12 2004/06/21 11:16:34 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.13 2004/10/03 15:36:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -92,6 +92,7 @@ symtab_add(char *key, struct tree **first, int *tabs, int *stlen)
 
 	case 1:
 		m = (char *)*first;
+		svbit = 0; /* XXX why? */
 		break;
 
 	default:
@@ -211,6 +212,7 @@ lookup(char *key, int ttype)
 
 	case 1:
 		w = (struct tree *)sympole[type];
+		svbit = 0; /* XXX why? */
 		break;
 
 	default:

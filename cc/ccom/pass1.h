@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.91 2004/10/02 14:29:44 pj Exp $	*/
+/*	$Id: pass1.h,v 1.92 2004/10/03 15:36:13 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -176,6 +176,7 @@ extern	int regvar;
 extern	int minrvar;
 extern	int brkflag;
 extern	int lastloc;
+#if 0
 typedef union {
 	int intval;
 	NODE *nodep;
@@ -188,6 +189,12 @@ typedef union {
 	} stri;
 } YYSTYPE;
 extern	YYSTYPE yylval;
+#endif
+
+struct stri {
+	char *str;
+	int len;
+} stri;
 
 #ifdef PASS1
 #include "y.tab.h"
