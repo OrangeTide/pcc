@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.19 2004/11/20 11:02:04 ragge Exp $	*/
+/*	$Id: local.c,v 1.20 2004/12/02 21:33:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -438,17 +438,4 @@ lcommdec(struct symtab *q)
 #endif
 	else
 		printf("	.lcomm " LABFMT ",0%o\n", q->soffset, off);
-}
-
-/*
- * Debugger code - ignore.
- */
-void
-prcstab(int a)
-{
-}
-
-void
-pfstab(char *a)
-{
 }

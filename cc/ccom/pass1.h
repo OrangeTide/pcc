@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.93 2004/10/04 16:49:28 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.94 2004/12/02 21:33:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -38,6 +38,7 @@
 #include "manifest.h"
 
 #include "protos.h"
+#include "ccconfig.h"
 
 /*
  * Storage classes
@@ -310,6 +311,12 @@ void gcc_init(void);
 int gcc_keyword(char *, NODE **);
 void gcc_rename(struct symtab *sp, char *newname);
 char *gcc_findname(struct symtab *sp);
+#endif
+
+#ifdef STABS
+void initstabs(void);
+void pstabfile(char *);
+void pstline(int);
 #endif
 
 #ifndef CHARCAST

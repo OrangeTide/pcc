@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.45 2004/10/04 16:49:28 ragge Exp $	*/
+/*	$Id: scan.l,v 1.46 2004/12/02 21:33:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -192,7 +192,7 @@ L?\"(\\.|[^\\"])*\"	{	char *c = yytext;
 ^#.*			{ control(CPP_HASH); }
 
 [ \t\v\f]		{ }
-"\n"			{ ++lineno; }
+"\n"			{ ++lineno; if (gflag) pstline(lineno); }
 .			{ /* ignore bad characters */ }
 
 %%
@@ -368,6 +368,10 @@ control(int t)
 			goto bad;
 		*wr = 0;
 		ftitle = addstring(eptr);
+#ifdef STABS
+		if (gflag)
+			pstabfile(ftitle);
+#endif
 	}
 	return;
 bad:

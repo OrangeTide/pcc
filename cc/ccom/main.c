@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.44 2004/11/20 11:04:00 ragge Exp $	*/
+/*	$Id: main.c,v 1.45 2004/12/02 21:33:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -100,7 +100,7 @@ main(int argc, char *argv[])
 
 	int ch;
 
-	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:")) != -1)
+	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:g")) != -1)
 		switch (ch) {
 #if !defined(MULTIPASS) || defined(PASS1)
 		case 'X':
@@ -164,7 +164,7 @@ main(int argc, char *argv[])
 			break;
 
 		case 'g': /* Debugging */
-			gflag = 1;
+//			gflag = 1;
 			break;
 
 		case 's': /* Statistics */
