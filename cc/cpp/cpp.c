@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.24 2005/03/20 16:21:12 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.25 2005/04/04 16:49:47 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -226,6 +226,7 @@ main(int argc, char **argv)
 
 	exfail = 0;
 	if (argc) {
+/* XXX - fix this for NEWBUF */
 		if (freopen(argv[0], "r", stdin) == NULL) {
 			fprintf(stderr, "Can't open %s", argv[0]);
 			exit(8);

@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.3 2005/03/20 16:21:12 ragge Exp $	*/
+/*	$Id: token.c,v 1.4 2005/04/04 16:49:47 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -393,6 +393,42 @@ gotid:		while (isalnum(c) || c == '_') {
 	return rval;
 }
 
+#ifdef NEW_READFILE
+/*
+ * A new file included.  Read buffers are allocated on the stack and
+ * all subroutines are called from here.  This function will be called
+ * recursive when multiple files are included.
+ */
+int
+pushfile(char *file)
+{
+	struct includ incl, *ic = &incl;
+
+	ic->lineno = 1;
+	if (ifiles != NULL) { /* not if first file */
+		if ((ic->infil = open(file, O_RDONLY)) < 0)
+			return -1;
+	} else
+		ic->infil = 0; /* STDIN_FILENO */
+
+	ic->fname = savstr(file); /* XXX - will loose space */
+	savch('\0');
+	ic->curptr = ic->buffer;
+	ic->next = ifiles;
+	ifiles = ic;
+
+	while ((c = qscan()) != 0) {
+		switch (c) {
+		case CONTROL:
+			control();
+			break;
+
+		
+
+
+
+}
+#else
 /*
  * A new file included.
  * If ifiles == NULL, this is the first file and already opened (stdin).
@@ -432,6 +468,7 @@ pushfile(char *file)
 
 	return 0;
 }
+#endif
 
 /*
  * End of included file (or everything).
