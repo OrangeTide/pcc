@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.11 2004/05/16 15:31:18 ragge Exp $	*/
+/*	$Id: order.c,v 1.12 2004/05/18 14:29:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -69,6 +69,9 @@ notoff(TWORD t, int r, CONSZ off, char *cp)
 	return(0);  /* YES */
 }
 
+/*
+ * Turn a UMUL-referenced node into OREG.
+ */
 int
 offstar(NODE *p)
 {
@@ -84,6 +87,20 @@ offstar(NODE *p)
 	}
 	geninsn(p, INTAREG|INAREG);
 	return 0;
+}
+
+/*
+ * Shape matches for UMUL.  Cooperates with offstar().
+ */
+int
+shumul(NODE *p)
+{
+
+	if (x2debug)
+		printf("shumul(%p)\n", p);
+
+	/* Always turn it into OREG on x86 */
+	return SOREG;
 }
 
 /*

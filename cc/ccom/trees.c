@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.104 2004/05/16 11:08:04 ragge Exp $	*/
+/*	$Id: trees.c,v 1.105 2004/05/18 14:29:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1105,10 +1105,12 @@ tymatch(p)  register NODE *p; {
 		t2 = DEUNSIGN(t2);
 		}
 
+#if 0
 	if ((t1 == CHAR || t1 == SHORT) && o!= RETURN)
 		t1 = INT;
 	if (t2 == CHAR || t2 == SHORT)
 		t2 = INT;
+#endif
 
 	if (t1 == FLOAT && t2 == FLOAT)
 		t = FLOAT;

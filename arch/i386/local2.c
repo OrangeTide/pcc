@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.14 2004/05/16 15:31:18 ragge Exp $	*/
+/*	$Id: local2.c,v 1.15 2004/05/18 14:29:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -301,9 +301,12 @@ flshape(NODE *p)
 }
 
 /* INTEMP shapes must not contain any temporary registers */
+/* XXX should this go away now? */
 int
 shtemp(NODE *p)
 {
+	return 0;
+#if 0
 	int r;
 
 	if (p->n_op == STARG )
@@ -330,8 +333,10 @@ shtemp(NODE *p)
 	if (optype(p->n_op) != LTYPE)
 		return(0);
 	return(1);
+#endif
 }
 
+#if 0
 int
 shumul(NODE *p)
 {
@@ -390,6 +395,7 @@ shumul(NODE *p)
 
 	return( 0 );
 }
+#endif
 
 void
 adrcon(CONSZ val)

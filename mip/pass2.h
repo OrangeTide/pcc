@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.37 2004/05/16 15:31:24 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.38 2004/05/18 14:29:37 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -63,10 +63,6 @@
 #define OPSHFT	010022		/* <<, >> */
 #define OPLTYPE	010024		/* leaf type nodes (e.g, NAME, ICON, etc.) */
 
-/* match returns */
-#define MNOPE	010000		/* no match generated */
-#define MDONE	010001		/* done evalution */
-
 /* shapes */
 #define SANY	01		/* same as FOREFF */
 #define SAREG	02		/* same as INAREG */
@@ -88,6 +84,12 @@
 #define SCCON	(SPECIAL|3)	/* -256 <= constant < 256 */
 #define SSCON	(SPECIAL|4)	/* -32768 <= constant < 32768 */
 #define SSOREG	(SPECIAL|5)	/* non-indexed OREG */
+
+/* tshape() return values */
+#define	SRNOPE	0		/* Cannot match any shape */
+#define	SRDIR	1		/* Direct match */
+#define	SROREG	2		/* Can convert into OREG */
+#define	SRREG	3		/* Must put into REG */
 
 /* INTEMP is carefully not conflicting with shapes */
 

@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.20 2004/05/15 12:14:43 ragge Exp $	*/
+/*	$Id: regs.c,v 1.21 2004/05/18 14:29:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -402,8 +402,8 @@ alloregs(NODE *p, int wantreg)
 			freeregs(regc);
 			/* Check that all regs are free? */
 		}
-		regc = getregs(1, szty(p->n_type)); /* XXX use return reg */
-		p->n_rall = 1;
+		regc = getregs(RETREG, szty(p->n_type));
+		p->n_rall = RETREG;
 		return regc;
 	case UMUL:
 		if ((p->n_su & LMASK) != LOREG)
@@ -439,7 +439,7 @@ alloregs(NODE *p, int wantreg)
 
 	case R_RRGHT: /* Reclaim, be careful about regs */
 	case R_RLEFT:
-		n = cword == R_RRGHT ? p->n_right : p->n_left;
+		n = getlr(p, cword == R_RRGHT ? 'R' : 'L');
 		if (n->n_op == REG) {
 			MKREGC(regc, n->n_rval, szty(n->n_type));
 			setused(n->n_rval, szty(n->n_type));

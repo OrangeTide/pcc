@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.5 2003/08/11 10:48:55 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.6 2004/05/18 14:29:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -126,10 +126,6 @@ typedef long long OFFSZ;
 #define	szty(t)	(((t) == DOUBLE || (t) == FLOAT || \
 	(t) == LONGLONG || (t) == ULONGLONG) ? 2 : 1)
 
-#define	shltype(o, p) \
-	((o) == REG || (o) == NAME || (o) == ICON || \
-	 (o) == OREG || ((o) == UNARY MUL && shumul((p)->n_left)))
-
 #define	EAX	0
 #define	EBX	1
 #define	ECX	2
@@ -139,8 +135,9 @@ typedef long long OFFSZ;
 #define	EBP	6
 #define	ESP	7
 
+#define	RETREG	EAX
 #define MYREADER(p) myreader(p)
 #define MYCANON(p) mycanon(p)
 #define	MYOPTIM
 
-#define special(a, b)	0
+#define special(a, b)	SRNOPE
