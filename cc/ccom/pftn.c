@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.133 2005/01/20 14:51:06 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.134 2005/01/20 21:24:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -516,10 +516,11 @@ ftnend()
 	extern struct swdef *swpole;
 
 	if (retlab != NOLAB && nerrors == 0) { /* inside a real function */
-		plabel( retlab);
+		plabel(retlab);
 		efcode(); /* struct return handled here */
 		branch(retlab = getlab());
-		send_passt(IP_EPILOG, minrvar, maxautooff, retlab);
+		send_passt(IP_EPILOG, minrvar, maxautooff,
+		    cftnsp->sname, cftnsp->stype, retlab);
 	}
 
 	tcheck();
@@ -624,7 +625,7 @@ done:	cendarg();
 	defnam(cftnsp);
 	ftnno = getlab();
 	retlab = getlab();
-	send_passt(IP_PROLOG, -1, -1, DECREF(cftnsp->stype));
+	send_passt(IP_PROLOG, -1, -1, cftnsp->sname, cftnsp->stype, retlab);
 	plabel(getlab()); /* after prolog, used in optimization */
 	bfcode(parr, nparams);
 	lparam = NULL;

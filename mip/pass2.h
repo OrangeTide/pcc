@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.48 2005/01/11 14:27:08 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.49 2005/01/20 21:24:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -189,8 +189,8 @@ extern	NODE
 	*mkunode(int, NODE *, int, TWORD),
 	*getlr(NODE *p, int);
 
-void eoftn(int regs, int autos, int retlab);
-void prologue(int regs, int autos, TWORD);
+void eoftn(struct interpass_prolog *);
+void prologue(struct interpass_prolog *);
 void setlocc(int locctr);
 int e2print(NODE *p, int down, int *a, int *b);
 void myoptim(struct interpass *);
@@ -312,3 +312,4 @@ NODE *movenode(NODE *p, int reg);
 regcode getregs(int wantreg, int nreg, int breg);
 void freeregs(regcode regc);
 int mayuse(int reg, TWORD type);
+void mktailopt(struct interpass *, struct interpass *);
