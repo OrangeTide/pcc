@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.49 2005/01/20 21:24:14 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.50 2005/01/21 15:41:34 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -313,3 +313,23 @@ regcode getregs(int wantreg, int nreg, int breg);
 void freeregs(regcode regc);
 int mayuse(int reg, TWORD type);
 void mktailopt(struct interpass *, struct interpass *);
+
+struct basicblock {
+	CIRCLEQ_ENTRY(basicblock) bbelem;
+	SIMPLEQ_HEAD(, cfgnode) children;
+	SIMPLEQ_HEAD(, cfgnode) parents;
+	struct interpass *first; /* first element of basic block */
+	struct interpass *last;  /* last element of basic block */
+};
+
+struct labelinfo {
+	struct basicblock **arr;
+	unsigned int size;
+	unsigned int low;
+};
+
+struct cfgnode {
+	SIMPLEQ_ENTRY(cfgnode) cfgelem;
+	struct basicblock *bblock;
+};
+
