@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.75 2003/06/04 20:40:06 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.76 2003/06/06 19:39:55 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -859,11 +859,9 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 
 string:		   C_STRING { $$ = $1; }
 		|  string C_STRING { 
-			$$ = malloc(strlen($1) + strlen($2) + 1);
+			$$ = tmpalloc(strlen($1) + strlen($2) + 1);
 			strcpy($$, $1);
 			strcat($$, $2);
-			free($1);
-			free($2);
 		}
 		;
 
