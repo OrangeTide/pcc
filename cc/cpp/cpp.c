@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.22 2005/02/18 16:52:39 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.23 2005/03/02 16:21:21 pj Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -65,6 +65,9 @@
  * This code originates from the V6 preprocessor with some additions
  * from V7 cpp, and at last ansi/c99 support.
  */
+
+#include "../config.h"
+
 #include <sys/wait.h>
 
 #include <fcntl.h>
@@ -75,6 +78,10 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+
+#ifdef HAVE_ALLOCA_H
+#include <alloca.h>
+#endif
 
 #include "cpp.h"
 
