@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.72 2003/12/15 22:02:06 ragge Exp $	*/
+/*	$Id: reader.c,v 1.73 2004/04/18 12:14:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -98,29 +98,7 @@ int relops(NODE *p);
 int asgops(NODE *p, int);
 NODE *store(NODE *);
 
-static void genregs(NODE *p);
 static void gencode(NODE *p, int cookie);
-
-/*
- * Layout of findops() return value:
- *	bit 0-1 where to store left node.
- *	bit 2-3 where to store right node.
- *	bit 4	set if right leg should be evaluated first
- *	bit 5-	table index
- */
-
-#define	LREG		001
-#define	LOREG		002
-#define	LTEMP		003
-#define	LMASK		003
-#define	RREG		004
-#define	ROREG		010
-#define	RTEMP		014
-#define	RMASK		014
-#define	DORIGHT		020
-#define	TBSH		5
-#define	TBLIDX(idx)	((idx) >> TBSH)
-#define	MKIDX(tbl,mod)	(((tbl) << TBSH) | (mod))
 
 static char *ltyp[] = { "", "LREG", "LOREG", "LTEMP" };
 static char *rtyp[] = { "", "RREG", "ROREG", "RTEMP" };
@@ -650,20 +628,6 @@ sucomp(NODE *p)
 	if (left > nreg)
 		nreg = left;
 	return nreg;
-}
-
-void
-genregs(NODE *p)
-{
-	rallo(p, NOPREF);
-}
-
-int
-alloregs(NODE *p, int wantreg)
-{
-	int rall;
-
-	rall = allo(p, wantreg);
 }
 
 void
