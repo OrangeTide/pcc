@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.30 2003/07/07 13:53:04 ragge Exp $	*/
+/*	$Id: main.c,v 1.31 2003/07/07 14:10:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -113,7 +113,6 @@ main(int argc, char *argv[])
 				case 'x': ++xdebug; break;
 				case 'P': ++proflg; break;
 				case 'g': ++gdebug; break;
-				case 'a': ++adebug; break;
 				case 's': ++sdebug; break;
 				case 'n': ++nflag; break;
 				default:
