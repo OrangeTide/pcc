@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.17 2003/08/25 13:50:57 ragge Exp $	*/
+/*	$Id: match.c,v 1.18 2003/09/01 14:55:59 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -394,6 +394,7 @@ leave:
 	return rval;
 }
 
+#if 0
 /*
  * called by: order, gencall
  * look for match in table and generate code if found unless
@@ -609,6 +610,7 @@ leave:
 
 	return rval;
 }
+#endif
 
 /*
  * generate code by interpreting table entry
