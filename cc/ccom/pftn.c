@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.141 2005/04/02 07:56:17 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.142 2005/04/16 11:20:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1365,6 +1365,8 @@ nidcl(NODE *p, int class)
 	case EXTERN:
 		if (commflag)
 			commdec(p->n_sp);
+		else
+			extdec(p->n_sp);
 		break;
 	case STATIC:
 		lcommdec(p->n_sp);
@@ -1778,6 +1780,9 @@ doacall(NODE *f, NODE *a)
 	} *at, *apole = NULL;
 	int argidx/* , hasarray = 0*/;
 	TWORD type, arrt;
+
+	/* First let MD code do something */
+	calldec(f, a);
 
 	/*
 	 * Do some basic checks.
