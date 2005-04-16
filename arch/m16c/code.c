@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.11 2005/04/16 11:21:16 ragge Exp $	*/
+/*	$Id: code.c,v 1.12 2005/04/16 11:27:29 pj Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -217,6 +217,9 @@ void
 addsym(struct symtab *q)
 {
 	struct symlst *w = sympole;
+
+	if (q == NULL)
+		return;
 
 	while (w) {
 		if (q == w->sp)
