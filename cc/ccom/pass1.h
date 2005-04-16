@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.103 2005/02/20 12:40:42 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.104 2005/04/16 08:33:57 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -161,7 +161,8 @@ struct	symtab {
 #define	slevel	hdr.h_slevel
 #define	sflags	hdr.h_sflags
 
-#define	MKSUE(type)  (struct suedef *)&btdim[type]
+#define	MKSUE(type)  &btdims[type]
+extern struct suedef btdims[];
 
 /*
  * External definitions
@@ -182,7 +183,6 @@ extern	int lineno, nerrors;
 
 extern	char *ftitle;
 extern	struct symtab *cftnsp;
-extern	int btdim[];
 extern	int autooff, argoff, strucoff;
 extern	int regvar;
 extern	int minrvar;
