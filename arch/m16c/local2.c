@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.20 2005/04/04 16:48:21 ragge Exp $	*/
+/*	$Id: local2.c,v 1.21 2005/04/16 11:21:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -61,6 +61,7 @@ prologue(struct interpass_prolog *ipp)
 	if (ipp->ipp_regs > 0 && ipp->ipp_regs != MINRVAR)
 		comperr("fix prologue register savings", ipp->ipp_regs);
 #endif
+	printf("	RSEG CODE:CODE:REORDER:NOROOT(0)\n");
 	if (ipp->ipp_vis)	
 		printf("	PUBLIC %s\n", ipp->ipp_name);
 	printf("%s:\n", ipp->ipp_name); 

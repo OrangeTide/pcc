@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.9 2005/03/02 15:34:36 ragge Exp $	*/
+/*	$Id: local.c,v 1.10 2005/04/16 11:21:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -361,6 +361,27 @@ int
 noinit()
 {
 	return(EXTERN);
+}
+
+/*
+ * Extern variable not necessary common.
+ */
+void
+extdec(struct symtab *q)
+{
+	extern void addsym(struct symtab *);
+	addsym(q);
+}
+
+/*
+ * Call to a function
+ */
+void
+calldec(NODE *p, NODE *r)
+{
+	struct symtab *q = p->n_sp;
+	extern void addsym(struct symtab *);
+	addsym(q);
 }
 
 /* make a common declaration for id, if reasonable */
