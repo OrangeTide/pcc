@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.54 2005/03/08 16:17:37 pj Exp $	*/
+/*	$Id: common.c,v 1.55 2005/04/16 09:01:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -454,7 +454,11 @@ getlab()
  */
 
 #define	MEMCHUNKSZ 8192	/* 8k per allocation */
+#if defined(sparc) || defined(__sparc__)
+#define	ROUNDUP(x) ((x) + (sizeof(long long)-1)) & ~(sizeof(long long)-1)
+#else
 #define	ROUNDUP(x) ((x) + (sizeof(int)-1)) & ~(sizeof(int)-1)
+#endif
 
 static char *allocpole;
 static int allocleft;
@@ -535,7 +539,7 @@ tmpfree()
 	if (f == NULL)
 		return;
 	if (*(char **)f == NULL) {
-		tmpleft = MEMCHUNKSZ - sizeof(char *);
+		tmpleft = MEMCHUNKSZ - (ROUNDUP(sizeof(char *)));
 		return;
 	}
 	while (f != NULL) {
