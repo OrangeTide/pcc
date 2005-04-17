@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.14 2005/02/19 11:37:55 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.15 2005/04/17 12:56:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -100,6 +100,14 @@ typedef long long OFFSZ;
 #define CONFMT	"%lld"		/* format for printing constants */
 #define LABFMT	".L%d"		/* format for printing labels */
 #define	STABLBL	".LL%d"		/* format for stab (debugging) labels */
+#ifdef FORTRAN
+#define XL 8
+#define	FLABELFMT "%s:\n"
+#define USETEXT ".text"
+#define USECONST ".data\t0" 	/* XXX - fix */
+#define USEBSS  ".data\t1" 	/* XXX - fix */
+#define USEINIT ".data\t2" 	/* XXX - fix */
+#endif
 
 #define BACKAUTO 		/* stack grows negatively for automatics */
 #define BACKTEMP 		/* stack grows negatively for temporaries */
