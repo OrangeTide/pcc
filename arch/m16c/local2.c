@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.22 2005/04/17 11:30:47 ragge Exp $	*/
+/*	$Id: local2.c,v 1.23 2005/04/17 12:12:57 pj Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -73,7 +73,7 @@ prologue(struct interpass_prolog *ipp)
 		/* non-optimized code, jump to epilogue for code generation */
 		ftlab1 = getlab();
 		ftlab2 = getlab();
-		printf("	jmp " LABFMT "\n", ftlab1);
+		printf("	jmp.w " LABFMT "\n", ftlab1);
 		deflab(ftlab2);
 	}
 }
@@ -109,7 +109,7 @@ eoftn(struct interpass_prolog *ipp)
 	if (Oflag == 0) {
 		deflab(ftlab1);
 		printf("	enter #%d\n", addto);
-		printf("	jmp " LABFMT "\n", ftlab2);
+		printf("	jmp.w " LABFMT "\n", ftlab2);
 	}
 }
 
