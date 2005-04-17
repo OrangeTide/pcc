@@ -1,4 +1,4 @@
-/*	$Id: defines.h,v 1.1 2005/04/17 12:56:08 ragge Exp $	*/
+/*	$Id: defines.h,v 1.2 2005/04/17 20:06:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -260,13 +260,13 @@ typedef long int ftnint;
 #define ISCOMPLEX(z) ONEOF(z, MSKCOMPLEX)
 #define ISREAL(z) ONEOF(z, MSKREAL)
 #define ISNUMERIC(z) ONEOF(z, MSKINT|MSKREAL|MSKCOMPLEX)
-#define ISICON(z) (z->tag==TCONST && ISINT(z->vtype))
-#define ISCHAR(z) (z->vtype==TYCHAR)
+#define ISICON(z) (z->exprblock.tag==TCONST && ISINT(z->exprblock.vtype))
+#define ISCHAR(z) (z->exprblock.vtype==TYCHAR)
 #define ISINT(z)   ONEOF(z, MSKINT)
-#define ISCONST(z) (z->tag==TCONST)
-#define ISERROR(z) (z->tag==TERROR)
-#define ISPLUSOP(z) (z->tag==TEXPR && z->opcode==OPPLUS)
-#define ISSTAROP(z) (z->tag==TEXPR && z->opcode==OPSTAR)
+#define ISCONST(z) (z->exprblock.tag==TCONST)
+#define ISERROR(z) (z->exprblock.tag==TERROR)
+#define ISPLUSOP(z) (z->exprblock.tag==TEXPR && z->opcode==OPPLUS)
+#define ISSTAROP(z) (z->exprblock.tag==TEXPR && z->opcode==OPSTAR)
 #define ISONE(z) (ISICON(z) && z->const.ci==1)
 #define INT(z) ONEOF(z, MSKINT|MSKCHAR)
 #define ICON(z) mkintcon( (ftnint)(z) )

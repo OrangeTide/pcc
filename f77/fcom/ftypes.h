@@ -1,4 +1,4 @@
-/*	$Id: ftypes.h,v 1.1 2005/04/17 12:56:08 ragge Exp $	*/
+/*	$Id: ftypes.h,v 1.2 2005/04/17 20:05:54 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -64,3 +64,10 @@
 #define	ALILONG		(ALLONG/ALCHAR)
 #define	ALIDOUBLE	(ALDOUBLE/ALCHAR)
 
+#if SZINT == SZSHORT
+#define TYINT	TYSHORT
+#else /* SZLONG >= SZINT */
+#define	TYINT	TYLONG
+#endif
+
+#define TYLENG  TYLONG
