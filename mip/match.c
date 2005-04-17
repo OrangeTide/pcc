@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.30 2004/06/14 16:33:31 ragge Exp $	*/
+/*	$Id: match.c,v 1.31 2005/04/17 11:31:19 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -182,6 +182,10 @@ ttype(TWORD t, int tword)
 	if (t2debug)
 		printf("ttype(%o, %o)\n", t, tword);
 #endif
+	if (ISPTR(t) && ISFTN(DECREF(t)) && (tword & TFTN)) {
+		/* For funny function pointers */
+		return 1;
+	}
 	if (ISPTR(t) && (tword&TPTRTO)) {
 		do {
 			t = DECREF(t);
