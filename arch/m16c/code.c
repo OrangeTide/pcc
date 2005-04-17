@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.12 2005/04/16 11:27:29 pj Exp $	*/
+/*	$Id: code.c,v 1.13 2005/04/17 11:30:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -142,6 +142,8 @@ bfcode(struct symtab **a, int n)
 	for (i = 0; i < n; i++) {
 		s = a[i];
 		sz = tsize(s->stype, s->sdf, s->ssue);
+		if (ISPTR(s->stype) && ISFTN(DECREF(s->stype)))
+			sz = SZLONG; /* function pointers are always 32 */
 		if (stk == 0)
 		    switch (sz) {
 		case SZCHAR:
