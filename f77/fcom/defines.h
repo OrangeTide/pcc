@@ -1,4 +1,4 @@
-/*	$Id: defines.h,v 1.2 2005/04/17 20:06:14 ragge Exp $	*/
+/*	$Id: defines.h,v 1.3 2005/04/18 15:56:57 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -265,8 +265,8 @@ typedef long int ftnint;
 #define ISINT(z)   ONEOF(z, MSKINT)
 #define ISCONST(z) (z->exprblock.tag==TCONST)
 #define ISERROR(z) (z->exprblock.tag==TERROR)
-#define ISPLUSOP(z) (z->exprblock.tag==TEXPR && z->opcode==OPPLUS)
-#define ISSTAROP(z) (z->exprblock.tag==TEXPR && z->opcode==OPSTAR)
+#define ISPLUSOP(z) (z->exprblock.tag==TEXPR && z->exprblock.opcode==OPPLUS)
+#define ISSTAROP(z) (z->exprblock.tag==TEXPR && z->exprblock.opcode==OPSTAR)
 #define ISONE(z) (ISICON(z) && z->const.ci==1)
 #define INT(z) ONEOF(z, MSKINT|MSKCHAR)
 #define ICON(z) mkintcon( (ftnint)(z) )
