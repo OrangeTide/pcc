@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.2 2005/04/17 12:53:14 ragge Exp $	*/
+/*	$Id: f77.c,v 1.3 2005/04/18 05:00:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -997,8 +997,6 @@ fprintf(diagfile, "Error in file %s: %s\n", infname, s);
 LOCAL int nch	= 0;
 LOCAL FILEP asmfile;
 LOCAL FILEP sortfile;
-
-#include "ftypes.h"
 
 static ftnint typesize[NTYPES]
 	= { 1, FSZADDR, FSZSHORT, FSZLONG, FSZLONG, 2*FSZLONG,
