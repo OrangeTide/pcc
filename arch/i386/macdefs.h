@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.15 2005/04/17 12:56:33 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.16 2005/04/18 04:59:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -107,6 +107,8 @@ typedef long long OFFSZ;
 #define USECONST ".data\t0" 	/* XXX - fix */
 #define USEBSS  ".data\t1" 	/* XXX - fix */
 #define USEINIT ".data\t2" 	/* XXX - fix */
+#define MAXREGVAR 3             /* XXX - fix */
+#define BLANKCOMMON "_BLNK_"
 #endif
 
 #define BACKAUTO 		/* stack grows negatively for automatics */
