@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.16 2005/04/18 04:59:56 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.17 2005/04/18 20:21:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -109,6 +109,12 @@ typedef long long OFFSZ;
 #define USEINIT ".data\t2" 	/* XXX - fix */
 #define MAXREGVAR 3             /* XXX - fix */
 #define BLANKCOMMON "_BLNK_"
+#define MSKIREG  (M(TYSHORT)|M(TYLONG))
+#define TYIREG TYLONG
+#define FSZLENG  FSZLONG
+#define FUDGEOFFSET 1
+#define	AUTOREG	EBP
+#define	ARGREG	EBP
 #endif
 
 #define BACKAUTO 		/* stack grows negatively for automatics */
