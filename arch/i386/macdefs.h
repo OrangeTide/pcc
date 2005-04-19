@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.17 2005/04/18 20:21:50 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.18 2005/04/19 19:14:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -115,6 +115,7 @@ typedef long long OFFSZ;
 #define FUDGEOFFSET 1
 #define	AUTOREG	EBP
 #define	ARGREG	EBP
+#define ARGOFFSET 4
 #endif
 
 #define BACKAUTO 		/* stack grows negatively for automatics */
