@@ -1,4 +1,4 @@
-/*	$Id: ftypes.h,v 1.2 2005/04/17 20:05:54 ragge Exp $	*/
+/*	$Id: ftypes.h,v 1.3 2005/04/19 19:13:54 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -58,6 +58,7 @@
  */
 #define	FSZADDR		(SZPOINT(0)/SZCHAR) /* XXX - typecheck? */
 #define	FSZSHORT	(SZSHORT/SZCHAR)
+#define	FSZINT		(SZINT/SZCHAR)
 #define	FSZLONG		(SZLONG/SZCHAR)
 #define	ALIADDR		(ALPOINT/ALCHAR)
 #define	ALISHORT	(ALSHORT/ALCHAR)
