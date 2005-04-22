@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.2 2005/04/18 20:21:20 ragge Exp $	*/
+/*	$Id: put.c,v 1.3 2005/04/22 07:04:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -82,7 +82,7 @@ int types2 [ ] =
 #endif
 	};
 
-
+void
 setlog()
 {
 types2[TYLOGICAL] = types2[tylogical];

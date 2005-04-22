@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.2 2005/04/17 20:05:54 ragge Exp $	*/
+/*	$Id: main.c,v 1.3 2005/04/22 07:04:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -36,14 +36,14 @@ char xxxvers[] = "\nFORTRAN 77 PASS 1, VERSION 1.16,  3 NOVEMBER 1978\n";
 
 #include "defs.h"
 
+static FILEP opf(char *);
+LOCAL void clfiles(void);
+
 int
-main(argc, argv)
-int argc;
-char **argv;
+main(int argc, char **argv)
 {
 char *s;
 int k, retcode;
-FILEP opf();
 
 #define DONE(c)	{ retcode = c; goto finis; }
 
@@ -137,7 +137,7 @@ if(inilex( copys(argv[0]) ))
 fprintf(diagfile, "%s:\n", argv[0]);
 fileinit();
 procinit();
-if(k = yyparse())
+if((k = yyparse()))
 	{
 	fprintf(diagfile, "Bad parse, return code %d\n", k);
 	DONE(1);
@@ -164,7 +164,7 @@ finis:
 }
 
 
-
+void
 done(k)
 int k;
 {
@@ -183,23 +183,25 @@ LOCAL FILEP opf(fn)
 char *fn;
 {
 FILEP fp;
-if( fp = fopen(fn, "w") )
+if(( fp = fopen(fn, "w") ))
 	return(fp);
 
 fatal1("cannot open intermediate file %s", fn);
 /* NOTREACHED */
+return 0; /* XXX GCC */
 }
 
 
 
-LOCAL clfiles()
+LOCAL void
+clfiles()
 {
 clf(&textfile);
 clf(&asmfile);
 clf(&initfile);
 }
 
-
+void
 clf(p)
 FILEP *p;
 {

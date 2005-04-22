@@ -1,4 +1,4 @@
-/*	$Id: intr.c,v 1.2 2005/04/18 18:44:25 ragge Exp $	*/
+/*	$Id: intr.c,v 1.3 2005/04/22 07:04:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -479,7 +479,7 @@ bad:
 
 
 
-
+int
 intrfunct(s)
 char s[VL];
 {
@@ -568,7 +568,7 @@ switch(fno)
 			q = NULL;
 			}
 		else
-			t = mktemp(type);
+			t = fmktemp(type, NULL);
 		t1 = mkexpr(OPQUEST,  mkexpr(OPLE, mkconv(type,ICON(0)), cpexpr(t)),
 			mkexpr(OPCOLON, cpexpr(t),
 				mkexpr(OPNEG, cpexpr(t), NULL) ));

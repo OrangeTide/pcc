@@ -1,4 +1,4 @@
-/*	$Id: lex.c,v 1.2 2005/04/17 20:05:54 ragge Exp $	*/
+/*	$Id: lex.c,v 1.3 2005/04/22 07:04:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -600,7 +600,7 @@ return(SUNKNOWN);
 }
 
 
-
+void
 initkey()
 {
 extern struct keylist keys[];

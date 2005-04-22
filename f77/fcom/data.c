@@ -1,4 +1,4 @@
-/*	$Id: data.c,v 1.2 2005/04/17 20:06:14 ragge Exp $	*/
+/*	$Id: data.c,v 1.3 2005/04/22 07:04:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -39,6 +39,7 @@
 static char datafmt[] = "%s\t%05ld\t%05ld\t%d" ;
 
 /* another initializer, called from parser */
+void
 dataval(repp, valp)
 register struct constblock *repp, *valp;
 {
@@ -324,7 +325,7 @@ switch(type)
 }
 
 
-
+void
 frdata(p0)
 chainp p0;
 {
