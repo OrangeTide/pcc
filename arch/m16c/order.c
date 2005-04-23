@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.12 2005/04/04 16:48:21 ragge Exp $	*/
+/*	$Id: order.c,v 1.13 2005/04/23 11:48:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -392,9 +392,14 @@ storearg(NODE *p)
 	 * XXX foo(long a, char b) ???
 	 */
 	for (stk = 0; stk < 4; stk++) {
+		TWORD t;
+
 		if (stk == nn)
 			break;
-		switch (narry[stk]->n_type) {
+		t = narry[stk]->n_type;
+		if (ISFTN(DECREF(t)))
+			t = LONG;
+		switch (t) {
 		case CHAR: case UCHAR:
 			if (r0l) {
 				if (r0h)
