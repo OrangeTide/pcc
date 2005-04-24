@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.25 2005/04/24 14:59:11 ragge Exp $	*/
+/*	$Id: local2.c,v 1.26 2005/04/24 19:25:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -315,7 +315,7 @@ canaddr(NODE *p)
 	int o = p->n_op;
 
 	if (o==NAME || o==REG || o==ICON || o==OREG ||
-	    (o==UMUL && shumul(p->n_left)))
+	    (o==UMUL && shumul(p->n_left) == SRDIR))
 		return(1);
 	return(0);
 }
