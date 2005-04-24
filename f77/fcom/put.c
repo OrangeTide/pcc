@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.3 2005/04/22 07:04:30 ragge Exp $	*/
+/*	$Id: put.c,v 1.4 2005/04/24 19:57:49 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -88,7 +88,7 @@ setlog()
 types2[TYLOGICAL] = types2[tylogical];
 }
 
-
+void
 putex1(p)
 expptr p;
 {
@@ -100,7 +100,7 @@ holdtemps = NULL;
 
 
 
-
+void
 putassign(lp, rp)
 expptr lp, rp;
 {
@@ -109,7 +109,7 @@ putx( fixexpr( mkexpr(OPASSIGN, lp, rp) ));
 
 
 
-
+void
 puteq(lp, rp)
 expptr lp, rp;
 {
@@ -120,7 +120,7 @@ putexpr( mkexpr(OPASSIGN, lp, rp) );
 
 
 /* put code for  a *= b */
-
+void
 putsteq(a, b)
 expptr a, b;
 {
@@ -305,6 +305,7 @@ return( q );
  * put out a character string constant.  begin every one on
  * a long integer boundary, and pad with nulls
  */
+void
 putstr(fp, s, n)
 FILEP fp;
 char *s;
