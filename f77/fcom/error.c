@@ -1,4 +1,4 @@
-/*	$Id: error.c,v 1.4 2005/04/24 19:57:49 ragge Exp $	*/
+/*	$Id: error.c,v 1.5 2005/04/30 07:55:34 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -75,13 +75,13 @@ char *s;
 void
 dclerr(s, v)
 	char *s;
-	struct nameblock *v;
+	struct bigblock *v;
 {
 	char buff[100];
 
 	if(v) {
 		sprintf(buff, "Declaration error for %s: %s",
-		    varstr(VL, v->varname), s);
+		    varstr(VL, v->b_name.varname), s);
 		err( buff);
 	} else
 		err1("Declaration error %s", s);
