@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.4 2005/04/30 07:55:34 ragge Exp $	*/
+/*	$Id: init.c,v 1.5 2005/04/30 11:19:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -163,11 +163,7 @@ ndata = 0;
 void
 procinit()
 {
-#ifdef NEWSTR
 register struct bigblock *p;
-#else
-register struct nameblock *p;
-#endif
 register struct dimblock *q;
 register struct hashentry *hp;
 register struct labelblock *lp;
@@ -214,11 +210,7 @@ for(hp = hashtab ; hp < lasthash ; ++hp)
 	if((p = hp->varp))
 		{
 		frexpr(p->vleng);
-#ifdef NEWSTR
 		if((q = p->b_name.vdim))
-#else
-		if((q = p->vdim))
-#endif
 			{
 			for(i = 0 ; i < q->ndim ; ++i)
 				{

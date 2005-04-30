@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.5 2005/04/30 07:55:35 ragge Exp $	*/
+/*	$Id: put.c,v 1.6 2005/04/30 11:19:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -172,11 +172,7 @@ int litflavor;
 if( ! ISCONST(p) )
 	fatal1("putconst: bad tag %d", p->tag);
 
-#ifdef NEWSTR
 q = BALLO();
-#else
-q = ALLOC(addrblock);
-#endif
 q->tag = TADDR;
 type = p->vtype;
 q->vtype = ( type==TYADDR ? TYINT : type );
