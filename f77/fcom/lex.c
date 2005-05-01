@@ -1,4 +1,4 @@
-/*	$Id: lex.c,v 1.5 2005/04/30 07:55:34 ragge Exp $	*/
+/*	$Id: lex.c,v 1.6 2005/05/01 13:26:43 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -520,7 +520,7 @@ for(i=s ; i<=lastch ; ++i)
 		else if(parlev == 0) {
 			if(*i == '=') expeql = 1;
 			else if(*i == ',') expcom = 1;
-copychar:		/*not a string of BLANK -- copy, shifting case if necessary */
+copychar:	;	/*not a string of BLANK -- copy, shifting case if necessary */
 		}
 		if(shiftcase && isupper(*i))
 			*j++ = tolower(*i);
