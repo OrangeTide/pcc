@@ -1,4 +1,4 @@
-/*	$Id: defs.h,v 1.7 2005/04/30 11:19:50 ragge Exp $	*/
+/*	$Id: defs.h,v 1.8 2005/05/01 08:19:55 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -101,7 +101,7 @@ extern int proctype;
 extern char * procname;
 extern int rtvlabel[ ];
 extern int fudgelabel;	/* to confuse the pdp11 optimizer */
-extern struct addrblock *typeaddr;
+extern struct bigblock *typeaddr;
 extern struct addrblock *retslot;
 extern int cxslot;
 extern int chslot;
@@ -571,7 +571,7 @@ void prcmgoto(expptr, int, int, int);
 void putstmt(void);
 char *lexline(ftnint *n);
 bigptr subcheck(struct bigblock *, bigptr), suboffset(struct bigblock *p);
-
+void putnreg(void);
 
 #undef expptr
 #undef tagptr

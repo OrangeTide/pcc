@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.5 2005/04/30 11:19:50 ragge Exp $	*/
+/*	$Id: init.c,v 1.6 2005/05/01 08:19:55 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -85,7 +85,7 @@ int proctype	= TYUNKNOWN;
 char *procname;
 int rtvlabel[NTYPES];
 int fudgelabel;
-struct addrblock *typeaddr;
+struct bigblock *typeaddr;
 struct addrblock *retslot;
 int cxslot	= -1;
 int chslot	= -1;
