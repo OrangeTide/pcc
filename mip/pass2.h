@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.61 2005/04/03 14:58:52 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.62 2005/05/01 11:05:10 pj Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -342,6 +342,8 @@ struct basicblock {
 	bittype *bucket;
 	bittype *df;
 	bittype *dfchildren;
+	bittype *Aorig;
+	bittype *Aphi;
 	struct interpass *first; /* first element of basic block */
 	struct interpass *last;  /* last element of basic block */
 };
