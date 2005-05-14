@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.12 2005/05/11 19:32:59 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.13 2005/05/14 08:03:49 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -47,7 +47,7 @@
 
 typedef unsigned char usch;
 extern FILE *obuf;
-extern usch yystr[];
+extern usch *yystr;
 extern usch *stringbuf;
 
 extern	int	trulvl;
@@ -77,6 +77,7 @@ struct symtab {
 struct recur;	/* not used outside cpp.c */
 int subst(char *, struct symtab *, struct recur *);
 struct symtab *lookup(char *namep, int enterf);
+int slow;	/* scan slowly for new tokens */
 
 int pushfile(char *fname);
 void popfile(void);
@@ -93,6 +94,5 @@ void yyerror(char *);
 void unpstr(usch *);
 usch *savstr(usch *str);
 void savch(int c);
-#ifdef NEWBUF
 void mainscan(void);
-#endif
+void putch(int);
