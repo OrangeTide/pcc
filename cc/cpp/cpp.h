@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.13 2005/05/14 08:03:49 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.14 2005/05/14 13:28:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -29,7 +29,7 @@
 
 #include <stdio.h> /* for obuf */
 
-#include "../config.h"
+#include "../../config.h"
 
 /* Scanner control codes */
 #define	CONTROL	257	/* ^[ \t]*# detected */
