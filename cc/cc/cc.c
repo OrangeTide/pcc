@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.40 2005/05/15 10:09:29 ragge Exp $	*/
+/*	$Id: cc.c,v 1.41 2005/05/15 12:01:15 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -543,7 +543,8 @@ char f[], *v[]; {
 	char *s;
 
 	if (vflag) {
-		for (t = 0; v[t]; t++)
+		fprintf(stderr, "%s ", f);
+		for (t = 1; v[t]; t++)
 			fprintf(stderr, "%s ", v[t]);
 		fprintf(stderr, "\n");
 	}
