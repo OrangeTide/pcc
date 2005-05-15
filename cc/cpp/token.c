@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.7 2005/05/14 08:03:49 ragge Exp $	*/
+/*	$Id: token.c,v 1.8 2005/05/15 12:01:42 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -435,6 +435,7 @@ pushfile(char *file)
 	struct includ ibuf;
 	struct includ *old;
 	struct includ *ic;
+	int otrulvl = trulvl, oflslvl = flslvl;
 
 	ic = &ibuf;
 	old = ifiles;
@@ -457,7 +458,7 @@ pushfile(char *file)
 
 	mainscan();
 
-	if (trulvl || flslvl)
+	if (trulvl != otrulvl || flslvl != oflslvl)
 		error("unterminated conditional");
 
 	ifiles = old;
