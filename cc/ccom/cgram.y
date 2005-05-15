@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.145 2005/04/02 07:56:17 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.146 2005/05/15 21:06:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -998,7 +998,7 @@ funct_idn:	   C_NAME  '(' {
 				defid(q, EXTERN);
 				nfree(q);
 			}
-			if (s->sclass == STATIC)
+			if (s->sclass == STATIC || s->sclass == USTATIC)
 				inline_ref($1);
 			spname = s;
 			$$ = buildtree(NAME, NIL, NIL);

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.125 2005/04/03 14:58:52 ragge Exp $	*/
+/*	$Id: reader.c,v 1.126 2005/05/15 21:06:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1303,7 +1303,8 @@ void
 canon(p) NODE *p; {
 	/* put p in canonical form */
 
-//	walkf(p, deltemp);
+	if (Oflag == 0)
+		walkf(p, deltemp);
 	walkf(p, setleft);	/* ptrs at left node for arithmetic */
 	walkf(p, oreg2);	/* look for and create OREG nodes */
 #ifndef FIELDOPS

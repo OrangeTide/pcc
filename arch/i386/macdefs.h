@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.18 2005/04/19 19:14:41 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.19 2005/05/15 21:06:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -170,7 +170,12 @@ typedef long long OFFSZ;
 	REGBIT(EDI)|REGBIT(EBX))
 #define TAREGS  (REGBIT(EAX)|REGBIT(EDX)|REGBIT(ECX))
 #define	BREGS	0xff00	/* 8-15 are just floating point regs */
+#define	BREGS_STACK 8	/* bregs is a register stack */
+#if 0
 #define	TBREGS	BREGS	/* 8-15 are just floating point regs */
+#else
+#define TBREGS	0
+#endif
 
 #define MYREADER(p) myreader(p)
 #define MYCANON(p) mycanon(p)

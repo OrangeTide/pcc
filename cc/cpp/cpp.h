@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.14 2005/05/14 13:28:27 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.15 2005/05/15 21:06:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -77,7 +77,6 @@ struct symtab {
 struct recur;	/* not used outside cpp.c */
 int subst(char *, struct symtab *, struct recur *);
 struct symtab *lookup(char *namep, int enterf);
-int slow;	/* scan slowly for new tokens */
 
 int pushfile(char *fname);
 void popfile(void);

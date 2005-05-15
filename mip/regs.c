@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.43 2005/04/03 14:58:52 ragge Exp $	*/
+/*	$Id: regs.c,v 1.44 2005/05/15 21:06:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -373,12 +373,14 @@ alloregs(NODE *p, int wantreg)
 	if (q->needs & (NACOUNT|NBCOUNT)) {
 		int nr = q->needs & (NACOUNT|NBCOUNT);
 		while (nr & NACOUNT) nareg++, nr -= NAREG;
+#ifndef BREGS_STACK
 		while (nr & NBCOUNT) nbreg++, nr -= NBREG;
+#endif
 		size = szty(p->n_type);
 		sreg = nareg * size;
 		sreg += nbreg * size;
 		if (nareg && nbreg)
-			comperr("cannot alloc both AREG and BREG (yet)");
+			comperr("%p: cannot alloc both AREG and BREG (yet)", p);
 		cword = R_PREF;
 	}
 
