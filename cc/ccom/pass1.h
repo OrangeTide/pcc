@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.105 2005/04/16 11:20:41 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.106 2005/05/19 20:52:55 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -85,6 +85,7 @@ extern	char *scnames(int);
 #define SNOCREAT	00040
 #define STEMP		00100
 #define	SDYNARRAY	00200
+#define	SINLINE		00400
 #define	STNODE		01000
 #ifdef GCC_COMPAT
 #define	SRENAME		02000	/* Node is renamed */

@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.15 2005/02/18 16:48:59 ragge Exp $	*/
+/*	$Id: inline.c,v 1.16 2005/05/19 20:52:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -99,14 +99,18 @@ inline_start(char *name)
 
 	if (isinlining)
 		cerror("already inlining function");
-	if (findfun(name))
-		cerror("inline function already defined");
 
-	is = ialloc();
-	is->ilink = ipole;
-	ipole = is;
-	is->name = name;
-	is->type = 0;
+	if ((is = findfun(name)) == 0) {
+		is = ialloc();
+		is->ilink = ipole;
+		ipole = is;
+		is->name = name;
+		is->type = 0;
+	} else {
+		if (is->type != 3)
+			cerror("inline function already defined");
+		is->type = 1;
+	}
 	DLIST_INIT(&is->shead, qelem);
 	isinlining++;
 }
@@ -127,9 +131,9 @@ inline_ref(char *name)
 
 	if (sdebug)
 		printf("inline_ref(\"%s\")\n", name);
-	if (isinlining)
+	if (isinlining) {
 		refnode(name);
-	else
+	} else {
 		while (w != NULL) {
 			if (w->name == name) {
 				if (w->type == 0)
@@ -138,6 +142,13 @@ inline_ref(char *name)
 			}
 			w = w->ilink;
 		}
+		/* function not yet defined, print out when found */
+		w = ialloc();
+		w->ilink = ipole;
+		ipole = w;
+		w->name = name;
+		w->type = 3;
+	}
 }
 
 static void

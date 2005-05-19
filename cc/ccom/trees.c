@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.134 2005/04/02 07:56:17 ragge Exp $	*/
+/*	$Id: trees.c,v 1.135 2005/05/19 20:52:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2215,6 +2215,7 @@ send_passt(int type, ...)
 		break;
 	case IP_ASM:
 		ip->ip_asm = va_arg(ap, char *);
+		lastloc = -1; /* don't know what asm does */
 		break;
 	default:
 		cerror("bad send_passt type %d", type);

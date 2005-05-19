@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.22 2005/03/02 16:37:16 ragge Exp $	*/
+/*	$Id: optim.c,v 1.23 2005/05/19 20:52:55 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -141,12 +141,15 @@ again:	o = p->n_op;
 			/* two right-shift  by constants */
 			RV(p) += RV(p->n_left);
 			p->n_left = zapleft(p->n_left);
-		} else if (LO(p) == LS && RCON(p->n_left) && RCON(p)) {
+		}
+#if 0
+		  else if (LO(p) == LS && RCON(p->n_left) && RCON(p)) {
 			RV(p) -= RV(p->n_left);
 			if (RV(p) < 0)
 				o = p->n_op = LS, RV(p) = -RV(p);
 			p->n_left = zapleft(p->n_left);
 		}
+#endif
 		if (RO(p) == ICON) {
 			if (RV(p) < 0) {
 				RV(p) = -RV(p);
@@ -169,10 +172,13 @@ again:	o = p->n_op;
 			/* two left-shift  by constants */
 			RV(p) += RV(p->n_left);
 			p->n_left = zapleft(p->n_left);
-		} else if (LO(p) == RS && RCON(p->n_left) && RCON(p)) {
+		}
+#if 0
+		  else if (LO(p) == RS && RCON(p->n_left) && RCON(p)) {
 			RV(p) -= RV(p->n_left);
 			p->n_left = zapleft(p->n_left);
 		}
+#endif
 		if (RO(p) == ICON) {
 			if (RV(p) < 0) {
 				RV(p) = -RV(p);
