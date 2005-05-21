@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.44 2005/05/15 21:06:35 ragge Exp $	*/
+/*	$Id: regs.c,v 1.45 2005/05/21 14:54:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1280,7 +1280,6 @@ printf("Coalescing node %d into %d\n", b, a);
 /*
  * Do register allocation for trees by graph-coloring.
  */
-#ifdef NEW_READER
 int
 ngenregs(struct interpass *ip, struct interpass *ie)
 {
@@ -1306,21 +1305,3 @@ ngenregs(struct interpass *ip, struct interpass *ie)
 			return 0;
 	}
 }
-#else
-void
-ngenregs(NODE *p)
-{
-	if (rdebug)
-		fwalk(p, e2print, 0);
-	interfere(p, NULL); /* Create interference graph */
-	pinterfere(p);
-	simplify(p);
-	coalesce(p);
-#if 0
-	freeze(p);
-	pspill(p);
-	assign(p);
-	aspill(p);
-#endif
-}
-#endif

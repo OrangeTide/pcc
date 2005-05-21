@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.23 2005/05/21 14:29:22 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.24 2005/05/21 14:54:33 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -323,7 +323,6 @@ saveip(struct interpass *ip)
 	myoptim((struct interpass *)ipp);
 #endif
 
-#ifdef NEW_READER
 if (xnewreg == 0) {
 	int tmpautooff;
 	NODE *p;
@@ -395,11 +394,6 @@ if (xnewreg == 0) {
 	DLIST_FOREACH(ip, &ipole, qelem) {
 		emit(ip);
 	}
-#else
-	DLIST_FOREACH(ip, &ipole, qelem) {
-		pass2_compile(ip);
-	}
-#endif
 	DLIST_INIT(&ipole, qelem);
 }
 
