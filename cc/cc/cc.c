@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.41 2005/05/15 12:01:15 ragge Exp $	*/
+/*	$Id: cc.c,v 1.42 2005/05/21 14:29:21 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -349,6 +349,8 @@ main(int argc, char *argv[])
 		av[na++]= "ccom";
 		if (gflag)
 			av[na++] = "-g";
+		if (Oflag)
+			av[na++] = "-O";
 		av[na++] = tmp4;
 		if (pflag || exfail)
 			{

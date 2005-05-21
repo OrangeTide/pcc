@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.58 2005/04/16 08:33:57 ragge Exp $	*/
+/*	$Id: main.c,v 1.59 2005/05/21 14:29:21 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -66,6 +66,15 @@ usage(void)
 {
 	(void)fprintf(stderr, "usage: %s [option] [infile] [outfile]...\n",
 	    prgname);
+	exit(1);
+}
+
+static void
+segvcatch(int a)
+{
+	fprintf(stderr, "%sinternal compiler error: %s, line %d\n",
+	    nerrors ? "" : "major ", ftitle, lineno);
+	fflush(stderr);
 	exit(1);
 }
 
@@ -216,6 +225,7 @@ main(int argc, char *argv[])
 		}
 
 	mkdope();
+	signal(SIGSEGV, segvcatch);
 	fregs = FREGS;	/* number of free registers */
 	lineno = 1;
 #ifdef GCC_COMPAT
