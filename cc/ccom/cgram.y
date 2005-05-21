@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.147 2005/05/19 20:52:55 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.148 2005/05/21 08:31:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -566,7 +566,10 @@ struct_declarator: declarator {
 		;
 
 		/* always preceeded by attributes */
-xnfdeclarator:	   declarator { init_declarator($<nodep>0, $1, 1); }
+xnfdeclarator:	   declarator {
+			init_declarator($<nodep>0, $1, 1);
+			send_passt(IP_STKOFF, autooff);
+		}
 		;
 
 /*

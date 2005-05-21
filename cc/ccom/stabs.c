@@ -1,4 +1,4 @@
-/*	$Id: stabs.c,v 1.9 2005/02/20 11:59:00 ragge Exp $	*/
+/*	$Id: stabs.c,v 1.10 2005/05/21 08:31:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -329,6 +329,12 @@ stabs_newsym(struct symtab *s)
 		putchar('G');
 		printtype(s);
 		cprint("\",%d,0,%d,0\n", N_GSYM, BIT2BYTE(s->ssue->suesize));
+		break;
+
+	case REGISTER:
+		cprint("r");
+		printtype(s);
+		cprint("\",%d,0,%d,%d\n", N_RSYM, 1, s->soffset);
 		break;
 
 	default:
