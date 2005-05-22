@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.26 2005/04/24 19:25:55 ragge Exp $	*/
+/*	$Id: local2.c,v 1.27 2005/05/22 10:46:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -65,7 +65,7 @@ prologue(struct interpass_prolog *ipp)
 	if (ipp->ipp_vis)	
 		printf("	PUBLIC %s\n", ipp->ipp_name);
 	printf("%s:\n", ipp->ipp_name); 
-	if (Oflag) {
+	if (xsaveip) {
 		/* Optimizer running, save space on stack */
 		addto = (p2maxautooff - AUTOINIT)/SZCHAR;
 		printf("	enter #%d\n", addto);
@@ -89,7 +89,7 @@ eoftn(struct interpass_prolog *ipp)
 		comperr("fix eoftn register savings %x", ipp->ipp_regs);
 #endif
 
-	if (Oflag == 0)
+	if (xsaveip == 0)
 		addto = (p2maxautooff - AUTOINIT)/SZCHAR;
 
 	/* return from function code */
@@ -110,7 +110,7 @@ eoftn(struct interpass_prolog *ipp)
 		printf("	exitd\n");
 
 	/* Prolog code */
-	if (Oflag == 0) {
+	if (xsaveip == 0) {
 		deflab(ftlab1);
 		printf("	enter #%d\n", addto);
 		printf("	jmp.w " LABFMT "\n", ftlab2);
