@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.44 2005/05/14 14:08:06 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.45 2005/05/22 10:45:47 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -182,10 +182,10 @@
 extern int idebug, bdebug, tdebug, edebug;
 extern int ddebug, xdebug, f2debug;
 extern int iTflag, oTflag;
-extern int vdebug, sflag, Oflag, nflag, gflag;
+extern int vdebug, sflag, nflag, gflag;
 extern int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
-extern int xssaflag, xtailcallflag, xnewreg;
+extern int xssaflag, xtailcallflag, xnewreg, xsaveip;
 
 int yyparse(void);
 void yyaccpt(void);
