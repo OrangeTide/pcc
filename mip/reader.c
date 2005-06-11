@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.130 2005/05/22 13:55:01 ragge Exp $	*/
+/*	$Id: reader.c,v 1.131 2005/06/11 07:38:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -333,13 +333,20 @@ emit(struct interpass *ip)
 
 		if (xsaveip == 0) {
 			savautooff = p2autooff;
+if (xnewreg == 0) {
 			do {
 				geninsn(p, FOREFF);
 			} while (sucomp(p) < 0);
-			p2autooff = savautooff;
 
 			genregs(p); /* allocate registers for instructions */
 			mygenregs(p);
+} else {
+			do {
+				geninsn(ip->ip_node, FOREFF);
+				nsucomp(ip->ip_node);
+			} while (ngenregs(ip, ip));
+}
+			p2autooff = savautooff;
 		}
 
 		switch (p->n_op) {
