@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.131 2005/06/11 07:38:41 ragge Exp $	*/
+/*	$Id: reader.c,v 1.132 2005/06/18 11:30:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -342,7 +342,10 @@ if (xnewreg == 0) {
 			mygenregs(p);
 } else {
 			do {
+				extern int tempmin, tempmax;
+
 				geninsn(ip->ip_node, FOREFF);
+				tempmin = tempmax = 100; /* XXX maxreg */
 				nsucomp(ip->ip_node);
 			} while (ngenregs(ip, ip));
 }
