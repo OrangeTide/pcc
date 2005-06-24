@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.64 2005/05/21 14:54:33 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.65 2005/06/24 08:45:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -222,6 +222,7 @@ void mygenregs(NODE *);
 void gencall(NODE *, NODE *prev);
 struct interpass *ipnode(NODE *);
 void deflab(int);
+void rmove(int, int, TWORD);
 
 char *prcook(int);
 
