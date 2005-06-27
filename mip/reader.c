@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.133 2005/06/24 08:45:32 ragge Exp $	*/
+/*	$Id: reader.c,v 1.134 2005/06/27 11:45:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -767,24 +767,33 @@ gencode(NODE *p, int cookie)
 		if ((p->n_su & RMASK) == ROREG)
 			canon(p);
 		else if (xnewreg && (p->n_su & RMASK) == RREG &&
-		    (q->rewrite & RRIGHT) && p->n_right->n_rall != p->n_rall)
+		    (q->rewrite & RRIGHT) && p->n_right->n_rall != p->n_rall) {
 			rmove(p->n_right->n_rall, p->n_rall, p->n_type);
+			p->n_right->n_rall = p->n_rall;
+			p->n_right->n_rval = p->n_rall;
+		}
 	}
 	if (p->n_su & LMASK) {
 		gencode(p->n_left, INTAREG|INTBREG);
-		if ((p->n_su & LMASK) == LOREG)
+		if ((p->n_su & LMASK) == LOREG) {
 			canon(p);
-		else if (xnewreg && (p->n_su & RMASK) == LREG &&
-		    (q->rewrite & RLEFT) && p->n_left->n_rall != p->n_rall)
+		} else if (xnewreg && (p->n_su & LMASK) == LREG &&
+		    (q->rewrite & RLEFT) && p->n_left->n_rall != p->n_rall) {
 			rmove(p->n_left->n_rall, p->n_rall, p->n_type);
+			p->n_left->n_rall = p->n_rall;
+			p->n_left->n_rval = p->n_rall;
+		}
 	}
 	if ((p->n_su & RMASK) && !(p->n_su & DORIGHT)) {
 		gencode(p->n_right, INTAREG|INTBREG);
 		if ((p->n_su & RMASK) == ROREG)
 			canon(p);
 		else if (xnewreg && (p->n_su & RMASK) == RREG &&
-		    (q->rewrite & RRIGHT) && p->n_right->n_rall != p->n_rall)
+		    (q->rewrite & RRIGHT) && p->n_right->n_rall != p->n_rall) {
 			rmove(p->n_right->n_rall, p->n_rall, p->n_type);
+			p->n_right->n_rall = p->n_rall;
+			p->n_right->n_rval = p->n_rall;
+		}
 	}
 	expand(p, cookie, q->cstring);
 	if (xnewreg && callop(p->n_op) && p->n_rall != RETREG)
