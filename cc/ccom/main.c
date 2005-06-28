@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.60 2005/05/22 10:45:47 ragge Exp $	*/
+/*	$Id: main.c,v 1.61 2005/06/28 13:28:41 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -42,7 +42,7 @@ int iTflag, oTflag;
 int xdebug, mdebug, sdebug, gflag;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
-int xssaflag, xtailcallflag, xnewreg, xsaveip;
+int xssaflag, xtailcallflag, xnewreg, xsaveip, xdeljumps;
 
 int e2debug, t2debug, f2debug, b2debug;
 
@@ -195,6 +195,8 @@ main(int argc, char *argv[])
 				xnewreg++;
 			else if (strcmp(optarg, "saveip") == 0)
 				xsaveip++;
+			else if (strcmp(optarg, "deljumps") == 0)
+				xdeljumps++;
 			else
 				usage();
 			break;
