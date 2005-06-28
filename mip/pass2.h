@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.65 2005/06/24 08:45:32 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.66 2005/06/28 13:29:00 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -180,7 +180,6 @@ extern	NODE resc[];
 
 extern	int p2autooff, p2maxautooff;
 extern	int maxtreg;
-extern	int ftnno;
 
 extern	int nrecur;		/* flag to keep track of recursions */
 
