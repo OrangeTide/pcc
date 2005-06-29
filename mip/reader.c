@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.140 2005/06/29 14:58:09 ragge Exp $	*/
+/*	$Id: reader.c,v 1.141 2005/06/29 17:59:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -773,11 +773,23 @@ gencode(NODE *p, int cookie)
 		gencode(p->n_right, INTAREG|INTBREG);
 		if ((p->n_su & RMASK) == ROREG)
 			canon(p);
-		else if (xnewreg && (p->n_su & RMASK) == RREG &&
-		    (q->rewrite & RRIGHT) && p->n_right->n_rall != p->n_rall) {
-			rmove(p->n_right->n_rall, p->n_rall, p->n_type);
-			p->n_right->n_rall = p->n_rall;
-			p->n_right->n_rval = p->n_rall;
+		else if (xnewreg && (p->n_su & RMASK) == RREG) {
+			if (q->needs & NSPECIAL) {
+				int left, right, res, mask;
+
+				nspecial(q, &left, &right, &res, &mask);
+				if (right && ffs(right)-1 != p->n_right->n_rall) {
+					rmove(p->n_right->n_rall,
+					    ffs(right)-1, p->n_type);
+					p->n_right->n_rall = ffs(right)-1;
+					p->n_right->n_rval = ffs(right)-1;
+				}
+			} else if ((q->rewrite & RRIGHT) &&
+			    p->n_right->n_rall != p->n_rall) {
+				rmove(p->n_right->n_rall, p->n_rall, p->n_type);
+				p->n_right->n_rall = p->n_rall;
+				p->n_right->n_rval = p->n_rall;
+			}
 		}
 	}
 	if (p->n_su & LMASK) {
@@ -807,11 +819,23 @@ gencode(NODE *p, int cookie)
 		gencode(p->n_right, INTAREG|INTBREG);
 		if ((p->n_su & RMASK) == ROREG)
 			canon(p);
-		else if (xnewreg && (p->n_su & RMASK) == RREG &&
-		    (q->rewrite & RRIGHT) && p->n_right->n_rall != p->n_rall) {
-			rmove(p->n_right->n_rall, p->n_rall, p->n_type);
-			p->n_right->n_rall = p->n_rall;
-			p->n_right->n_rval = p->n_rall;
+		else if (xnewreg && (p->n_su & RMASK) == RREG) {
+			if (q->needs & NSPECIAL) {
+				int left, right, res, mask;
+
+				nspecial(q, &left, &right, &res, &mask);
+				if (right && ffs(right)-1 != p->n_right->n_rall) {
+					rmove(p->n_right->n_rall,
+					    ffs(right)-1, p->n_type);
+					p->n_right->n_rall = ffs(right)-1;
+					p->n_right->n_rval = ffs(right)-1;
+				}
+			} else if ((q->rewrite & RRIGHT) &&
+			    p->n_right->n_rall != p->n_rall) {
+				rmove(p->n_right->n_rall, p->n_rall, p->n_type);
+				p->n_right->n_rall = p->n_rall;
+				p->n_right->n_rval = p->n_rall;
+			}
 		}
 	}
 	expand(p, cookie, q->cstring);
