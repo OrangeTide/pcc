@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.46 2005/05/21 08:31:36 ragge Exp $	*/
+/*	$Id: table.c,v 1.47 2005/06/29 12:40:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -715,6 +715,7 @@ struct optab table[] = {
 /*
  * DIV/MOD/MUL 
  */
+
 { DIV,	INTAREG,
 	STAREG,				TSWORD,
 	STAREG|SAREG|SNAME|SOREG,	TWORD,

@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.23 2005/01/13 15:00:50 pj Exp $	*/
+/*	$Id: order.c,v 1.24 2005/06/29 12:40:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -143,6 +143,25 @@ int
 setuni(NODE *p, int cookie)
 {
 	return 0;
+}
+
+/*
+ * Special handling of some instruction register allocation.
+ */
+void
+nspecial(struct optab *q, int *left, int *right, int *res, int *mask)
+{
+	switch (q->op) {
+	case DIV:
+	case MOD:
+		*left = REGBIT(EAX);
+		*right = 0;
+		*res = q->op == DIV ? REGBIT(EAX) : REGBIT(EDX);
+		*mask = REGBIT(EAX)|REGBIT(EDX);
+		break;
+	default:
+		comperr("nspecial");
+	}
 }
 
 /* register allocation */
