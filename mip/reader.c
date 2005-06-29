@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.137 2005/06/28 13:29:00 ragge Exp $	*/
+/*	$Id: reader.c,v 1.138 2005/06/29 07:12:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -346,7 +346,7 @@ if (xnewreg == 0) {
 				geninsn(ip->ip_node, FOREFF);
 				tempmin = tempmax = REGSZ;
 				nsucomp(ip->ip_node);
-			} while (ngenregs(ip, ip));
+			} while (ngenregs(ip));
 }
 			p2autooff = savautooff;
 		}
