@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.57 2005/06/29 19:33:16 ragge Exp $	*/
+/*	$Id: regs.c,v 1.58 2005/06/30 14:28:28 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1403,6 +1403,12 @@ insnwalk(NODE *p)
 		LIVEDEL(l);
 }
 
+/*
+ * Do variable liveness analysis.  Only analyze the long-lived 
+ * variables, and save the live-on-exit temporaries in a bit-field
+ * at the end of each basic block. This bit-field is later used
+ * when doing short-range liveness analysis.
+ */
 static void
 LivenessAnalysis(struct interpass *ip)
 {
