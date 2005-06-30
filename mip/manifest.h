@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.47 2005/06/28 13:29:00 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.48 2005/06/30 13:59:17 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -284,10 +284,10 @@ struct interpass_prolog {
 #define	IP_PROLOG	2
 #define	IP_STKOFF	3
 #define	IP_EPILOG	4
-#define	IP_DEFLAB	6
-#define	IP_DEFNAM	7
-#define	IP_ASM		8
-#define	MAXIP		8
+#define	IP_DEFLAB	5
+#define	IP_DEFNAM	6
+#define	IP_ASM		7
+#define	MAXIP		7
 
 void send_passt(int type, ...);
 /*
