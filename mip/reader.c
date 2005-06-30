@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.142 2005/06/29 19:33:16 ragge Exp $	*/
+/*	$Id: reader.c,v 1.143 2005/06/30 13:05:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -87,7 +87,6 @@ int fregs;
 int p2autooff, p2maxautooff;
 
 NODE *nodepole;
-int saving;
 
 int e2print(NODE *p, int down, int *a, int *b);
 void saveip(struct interpass *ip);

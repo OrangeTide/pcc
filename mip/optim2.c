@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.28 2005/06/29 07:12:41 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.29 2005/06/30 13:05:38 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -39,7 +39,6 @@
 #define MAX(a,b) (((a) > (b)) ? (a) : (b))
 #endif
 
-extern int saving;
 static int dfsnum;
 
 void saveip(struct interpass *ip);
@@ -91,7 +90,6 @@ saveip(struct interpass *ip)
 		return;
 	inftn = 0;
 	epp = (struct interpass_prolog *)ip;
-	saving = -1;
 
 	if (xdeljumps)
 		deljumps();	/* Delete redundant jumps and dead code */
