@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.31 2005/04/17 11:31:19 ragge Exp $	*/
+/*	$Id: match.c,v 1.32 2005/07/27 20:24:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -135,6 +135,13 @@ tshape(NODE *p, int shape)
 
 	case CCODES:
 		if (shape & SCC)
+			return SRDIR;
+		break;
+
+	case TEMP: /* temporaries are handled as registers */
+		/* XXX - register classes? */
+		mask = SAREG|STAREG;
+		if (shape & mask)
 			return SRDIR;
 		break;
 

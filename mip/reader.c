@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.143 2005/06/30 13:05:38 ragge Exp $	*/
+/*	$Id: reader.c,v 1.144 2005/07/27 20:24:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -588,6 +588,7 @@ sw:		switch (rv & LMASK) {
 		if (istnode(p))
 			comperr("geninsn REG");
 		/* FALLTHROUGH */
+	case TEMP:
 	case NAME:
 	case ICON:
 	case OREG:

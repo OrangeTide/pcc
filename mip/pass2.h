@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.68 2005/06/29 12:40:08 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.69 2005/07/27 20:24:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -328,6 +328,7 @@ struct basicblock {
 	DLIST_ENTRY(basicblock) bbelem;
 	SLIST_HEAD(, cfgnode) children; /* CFG - children to this node */
 	SLIST_HEAD(, cfgnode) parents; /* CFG - parents to this node */
+	int bbnum;	/* this basic block number */
 	unsigned int dfnum; /* DFS-number */
 	unsigned int dfparent; /* Parent in DFS */
 	unsigned int semi;
