@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.49 2005/07/21 15:00:29 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.50 2005/07/29 06:57:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -202,6 +202,8 @@ void yyaccpt(void);
 #define DLIST_ISEMPTY(h,f)	((h)->f.q_forw == (h))
 #define	DLIST_FOREACH(v,h,f) \
 	for ((v) = (h)->f.q_forw; (v) != (h); (v) = (v)->f.q_forw)
+#define	DLIST_FOREACH_REVERSE(v,h,f) \
+	for ((v) = (h)->f.q_back; (v) != (h); (v) = (v)->f.q_back)
 #define	DLIST_INSERT_BEFORE(h,e,f) {	\
 	(e)->f.q_forw = (h);		\
 	(e)->f.q_back = (h)->f.q_back;	\
