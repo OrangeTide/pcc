@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.61 2005/07/30 08:54:59 ragge Exp $	*/
+/*	$Id: regs.c,v 1.62 2005/07/30 12:00:34 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -51,6 +51,7 @@
 
 #include "pass2.h"
 #include <strings.h>
+#include <stdlib.h>
 
 static int usedregs;
 int regblk[REGSZ];
@@ -1304,12 +1305,17 @@ moveadd(int def, int use)
 static void
 insnwalk(NODE *p)
 {
-	struct optab *q = &table[TBLIDX(p->n_su)];
+	struct optab *q;
 	int def, nreg;
 	int i, l, r;
 	int left, right, rmask;
 
 	RDEBUG(("insnwalk: %p\n", p));
+
+	if (p->n_su == -1)
+		return insnwalk(p->n_left);
+
+	q = &table[TBLIDX(p->n_su)];
 
 	def = p->n_rall;
 	addalledges(def);
