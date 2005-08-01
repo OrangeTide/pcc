@@ -1,4 +1,4 @@
-/*	$Id: match.c,v 1.32 2005/07/27 20:24:32 ragge Exp $	*/
+/*	$Id: match.c,v 1.33 2005/08/01 16:33:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -142,7 +142,7 @@ tshape(NODE *p, int shape)
 		/* XXX - register classes? */
 		mask = SAREG|STAREG;
 		if (shape & mask)
-			return SRDIR;
+			return SRREG; /* let register allocator coalesce */
 		break;
 
 	case REG:

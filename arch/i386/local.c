@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.30 2005/04/16 14:21:24 pj Exp $	*/
+/*	$Id: local.c,v 1.31 2005/08/01 16:33:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -252,6 +252,15 @@ clocal(NODE *p)
                 nfree(p);
                 return(buildtree(o==PMCONV?MUL:DIV, p->n_left, p->n_right));
 
+	case FORCE:
+		if (xnewreg) {
+			/* put return value in return reg */
+			p->n_op = ASSIGN;
+			p->n_right = p->n_left;
+			p->n_left = block(REG, NIL, NIL, p->n_type,
+			    0, MKSUE(INT));
+		}
+		break;
 	}
 //printf("ut:\n");
 //fwalk(p, eprint, 0);
