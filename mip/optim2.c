@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.35 2005/07/30 08:54:59 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.36 2005/08/03 06:29:22 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -194,7 +194,7 @@ if (xnewreg == 0) {
 	 */
 	extern int tempmin, tempfe, tempmax;
 
-	tempmin = ipp->ip_tmpnum;
+	tempmin = ipp->ip_tmpnum - NREGREG;
 	tempfe = tempmax = epp->ip_tmpnum;
 	do {
 		/* do instruction assignment */
