@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.68 2005/08/06 11:33:23 ragge Exp $	*/
+/*	$Id: regs.c,v 1.69 2005/08/06 12:18:24 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2150,6 +2150,7 @@ RewriteProgram2(struct interpass *ip)
 int
 ngenregs(struct interpass *ip)
 {
+	struct interpass_prolog *ipp;
 	int i, nbits;
 
 	allregs = xsaveip ? AREGS : TAREGS;
@@ -2236,6 +2237,11 @@ onlyperm:
 		} else
 			RewriteProgram(ip);
 		return 1;
-	} else
-		return 0; /* Done! */
+	}
+	/* fill in regs to save */
+	ipp = (struct interpass_prolog *)DLIST_PREV(ip, qelem);
+	for (i = 0; i < NREGREG; i++)
+		if ((savregs & (1 << i)) == 0)
+			ipp->ipp_regs |= (1 << (i+MINRVAR));
+	return 0; /* Done! */
 }
