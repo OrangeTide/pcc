@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.69 2005/08/06 12:18:24 ragge Exp $	*/
+/*	$Id: regs.c,v 1.70 2005/08/06 14:51:28 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1756,6 +1756,8 @@ GetAlias(int n)
 static int
 OK(int t, int r)
 {
+	RDEBUG(("OK: t %d degree(t) %d adjSet(%d,%d)=%d\n",
+	    t, DEGREE(t), t, r, adjSet(t, r)));
 	if (DEGREE(t) < maxregs || t < maxregs || adjSet(t, r))
 		return 1;
 	return 0;
