@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.51 2005/08/06 12:18:24 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.52 2005/09/05 17:07:16 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -185,7 +185,11 @@ extern int iTflag, oTflag;
 extern int vdebug, sflag, nflag, gflag;
 extern int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration;
+#ifdef OLDSTYLE
 extern int xssaflag, xtailcallflag, xnewreg, xsaveip, xdeljumps;
+#else
+extern int xssaflag, xtailcallflag, xtemps, xdeljumps;
+#endif
 
 int yyparse(void);
 void yyaccpt(void);
@@ -287,7 +291,9 @@ struct interpass_prolog {
 /* Types of inter-pass structs */
 #define	IP_NODE		1
 #define	IP_PROLOG	2
+#ifdef OLDSTYLE
 #define	IP_STKOFF	3
+#endif
 #define	IP_EPILOG	4
 #define	IP_DEFLAB	5
 #define	IP_DEFNAM	6

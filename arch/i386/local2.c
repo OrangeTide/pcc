@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.48 2005/08/06 12:18:19 ragge Exp $	*/
+/*	$Id: local2.c,v 1.49 2005/09/05 17:07:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -35,7 +35,9 @@ int argsize(NODE *p);
 void genargs(NODE *p);
 static void sconv(NODE *p);
 
+#ifdef OLDSTYLE
 static int ftlab1, ftlab2;
+#endif
 
 void
 lineid(int l, char *fn)
@@ -92,6 +94,7 @@ offcalc(struct interpass_prolog *ipp)
 	return addto;
 }
 
+#ifdef OLDSTYLE
 void
 prologue(struct interpass_prolog *ipp)
 {
@@ -161,6 +164,52 @@ eoftn(struct interpass_prolog *ipp)
 		printf("	jmp " LABFMT "\n", ftlab2);
 	}
 }
+#else
+void
+prologue(struct interpass_prolog *ipp)
+{
+	int addto;
+
+	ftype = ipp->ipp_type;
+	if (ipp->ipp_vis)
+		printf("	.globl %s\n", ipp->ipp_name);
+	printf("	.align 4\n");
+	printf("%s:\n", ipp->ipp_name);
+	/*
+	 * We here know what register to save and how much to 
+	 * add to the stack.
+	 */
+	addto = offcalc(ipp);
+	prtprolog(ipp, addto);
+}
+
+void
+eoftn(struct interpass_prolog *ipp)
+{
+	int i, j;
+
+	if (ipp->ipp_ip.ip_lbl == 0)
+		return; /* no code needs to be generated */
+
+	/* return from function code */
+	for (i = ipp->ipp_regs, j = 0; i ; i >>= 1, j++) {
+		if (i & 1)
+			fprintf(stdout, "	movl -%d(%s),%s\n",
+			    regoff[j], rnames[FPREG], rnames[j]);
+			
+	}
+
+	/* struct return needs special treatment */
+	if (ftype == STRTY || ftype == UNIONTY) {
+		printf("	movl 8(%%ebp),%%eax\n");
+		printf("	leave\n");
+		printf("	ret $4\n");
+	} else {
+		printf("	leave\n");
+		printf("	ret\n");
+	}
+}
+#endif
 
 /*
  * add/sub/...

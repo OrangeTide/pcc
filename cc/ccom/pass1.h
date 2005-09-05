@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.107 2005/06/28 11:32:56 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.108 2005/09/05 17:07:16 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -183,7 +183,7 @@ extern	int lineno, nerrors;
 
 extern	char *ftitle;
 extern	struct symtab *cftnsp;
-extern	int autooff, argoff, strucoff;
+extern	int autooff, maxautooff, argoff, strucoff;
 extern	int regvar;
 extern	int minrvar;
 extern	int brkflag;
