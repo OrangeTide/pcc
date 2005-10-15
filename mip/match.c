@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.34 2005/09/17 07:58:40 ragge Exp $   */
+/*      $Id: match.c,v 1.35 2005/10/15 09:08:10 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -192,7 +192,7 @@ tshape(NODE *p, int shape)
 		break;
 
 	}
-#ifdef SNH_REG
+#ifdef MULTICLASS
 	if (shape & PCLASS(p))
 		return SRREG;	/* Can put in register */
 #else

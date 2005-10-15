@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.71 2005/09/17 07:58:40 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.72 2005/10/15 09:08:10 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -72,7 +72,7 @@ typedef int bittype; /* XXX - for basicblock */
 #define SANY	01		/* same as FOREFF */
 #define SAREG	02		/* same as INAREG */
 #define SBREG	04		/* same as INBREG */
-#ifdef SNH_REG
+#ifdef MULTICLASS
 #define SCREG	010		/* same as INTAREG */
 #define SDREG	020		/* same as INTBREG */
 #define	SEREG	010000
