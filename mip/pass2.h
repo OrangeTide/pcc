@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.72 2005/10/15 09:08:10 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.73 2005/10/17 06:46:49 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -239,6 +239,16 @@ char *prcook(int);
 void conput(FILE *, NODE *);
 
 extern	char *rnames[];
+
+#ifdef MULTICLASS
+extern int classmask(int);
+extern int aliasmap(int thisclass, int adjnum, int adjclass);
+#define	CLASSA	1
+#define	CLASSB	2
+#define	CLASSC	3
+#define	CLASSD	4
+#define	CLASSE	5
+#endif
 
 extern	int lineno;
 extern	int fldshf, fldsz;
