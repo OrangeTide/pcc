@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.73 2005/10/17 06:46:49 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.74 2005/10/22 08:08:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -241,8 +241,10 @@ void conput(FILE *, NODE *);
 extern	char *rnames[];
 
 #ifdef MULTICLASS
-extern int classmask(int);
+extern int classmask(int), tclassmask(int);
+extern void cmapinit(void);
 extern int aliasmap(int thisclass, int adjnum, int adjclass);
+extern int regK[];
 #define	CLASSA	1
 #define	CLASSB	2
 #define	CLASSC	3
