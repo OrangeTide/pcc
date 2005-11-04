@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.52 2005/10/22 08:08:25 ragge Exp $	*/
+/*	$Id: local2.c,v 1.53 2005/11/04 06:56:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -971,7 +971,7 @@ classmask(int class)
 	case CLASSD:
 		return DREGS;
 	default:
-		comperr("classmask: bad class");
+		comperr("classmask: bad class %d", class);
 	}
 	return 0; /* XXX */
 }
@@ -989,7 +989,7 @@ tclassmask(int class)
 	case CLASSD:
 		return TDREGS;
 	default:
-		comperr("classmask: bad class");
+		comperr("tclassmask: bad class %d", class);
 	}
 	return 0; /* XXX */
 }
