@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.75 2005/11/04 06:56:32 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.76 2005/11/05 15:37:56 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -107,7 +107,6 @@ typedef int bittype; /* XXX - for basicblock */
 #ifdef MULTICLASS
 /* find*() return values */
 #define	FRETRY	0
-#define	FSUCC	1
 #define	FFAIL	-1
 #endif
 

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.152 2005/11/05 08:17:40 ragge Exp $	*/
+/*	$Id: reader.c,v 1.153 2005/11/05 15:37:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -394,9 +394,9 @@ emit(struct interpass *ip)
 char *cnames[] = {
 	"SANY",
 	"SAREG",
-	"xxxxxx",
 	"SBREG",
-	"xxxxxx",
+	"SCREG",
+	"SDREG",
 	"SCC",
 	"SNAME",
 	"SCON",
@@ -747,7 +747,7 @@ sw:		switch (rv & LMASK) {
 			goto failed;
 		}
 	}
-	return 0;
+	return rv;
 #else
 	return;
 #endif
