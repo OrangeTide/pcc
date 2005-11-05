@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.37 2005/11/04 15:23:52 ragge Exp $   */
+/*      $Id: match.c,v 1.38 2005/11/05 08:17:40 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -421,12 +421,15 @@ static int shrtab[] = { 0, 0, ROREG, RREG };
 #endif
 
 #ifdef MULTICLASS
+/*
+ * Convert a node to REG or OREG.
+ */
 static int
 swmatch(NODE *p, int shape, int w)
 {
 	int sh;
 
-	if (w == SRREG)
+	if (w == LREG) /* Should be SRREG */
 		return geninsn(p, shape);
 
 	if (p->n_op == FLD) {
@@ -794,6 +797,7 @@ findasg(NODE *p, int cookie)
 			cookie = INREGS; /* XXX */
 		sh = ffs(cookie & qq->visit & INREGS)-1;
 	}
+	F2DEBUG(("findasg: node %p class %d\n", p, sh));
 	SCLASS(rv, sh);
 	p->n_su = rv;
 	return FSUCC;

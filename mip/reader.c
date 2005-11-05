@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.151 2005/11/04 06:56:32 ragge Exp $	*/
+/*	$Id: reader.c,v 1.152 2005/11/05 08:17:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -619,6 +619,10 @@ sw:		switch (rv & LMASK) {
 		if ((cookie & (INTAREG|INTBREG)) == 0)
 			comperr("geninsn OREG, node %p", p);
 #endif
+#ifdef MULTICLASS
+		rv = findleaf(p, cookie);
+		break;
+#else
 		if ((rv = findleaf(p, cookie)) < 0) {
 			if (setasg(p, cookie))
 				goto again;
@@ -626,6 +630,7 @@ sw:		switch (rv & LMASK) {
 		}
 		p->n_su = rv;
 		break;
+#endif
 
 	case UMUL:
 		/*
@@ -719,6 +724,11 @@ sw:		switch (rv & LMASK) {
 	}
 #ifdef MULTICLASS
 	switch (o) {
+	case REG:
+	case TEMP:
+	case NAME:
+	case ICON:
+	case OREG:
 	case ASSIGN:
 	case PLUS:
 	case MINUS:
