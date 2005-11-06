@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.53 2005/11/04 06:56:32 ragge Exp $	*/
+/*	$Id: local2.c,v 1.54 2005/11/06 17:15:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1137,6 +1137,8 @@ cmapinit()
 		    aliasmap(i+1, c, CLASSC) |
 		    aliasmap(i+1, d, CLASSD);
 		colormap[i][a][b][c][d] = (r ^ AREGS)!=0;
+if (colormap[i][a][b][c][d] < 0 || colormap[i][a][b][c][d] > 1)
+	comperr("colormap");
 	}
 	}
 	}

@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.51 2005/11/05 15:37:53 ragge Exp $	*/
+/*	$Id: table.c,v 1.52 2005/11/06 17:15:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -997,7 +997,7 @@ struct optab table[] = {
 /*
  * Convert LTYPE to reg.
  */
-{ OPLTYPE,	INTAREG,
+{ OPLTYPE,	INLL,
 	SANY,	TANY,
 	SCON|SOREG|SNAME,	TLL,
 		NAREG,	RESC1,

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.153 2005/11/05 15:37:56 ragge Exp $	*/
+/*	$Id: reader.c,v 1.154 2005/11/06 17:15:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -847,6 +847,7 @@ gencode(NODE *p, int cookie)
 		return; /* meaningless move to itself */
 	if (p->n_op == ASSIGN && p->n_left->n_op == REG &&
 	    p->n_left->n_rval == p->n_rall &&
+	    (p->n_su & RMASK) &&
 	    p->n_right->n_rall == p->n_rall) {
 #ifdef MULTICLASS
 		gencode(p->n_right, INREGS);
