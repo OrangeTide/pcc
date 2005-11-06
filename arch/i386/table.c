@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.52 2005/11/06 17:15:16 ragge Exp $	*/
+/*	$Id: table.c,v 1.53 2005/11/06 22:13:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -96,7 +96,7 @@ struct optab table[] = {
 
 /* convert signed char to int (or pointer). */
 { SCONV,	ININT,
-	SAREG|SOREG|SNAME,	TCHAR,
+	SHCH|SOREG|SNAME,	TCHAR,
 	SAREG,	TWORD|TPOINT,
 		NASL|NAREG,	RESC1,
 		"	movsbl ZL,A1\n", },
