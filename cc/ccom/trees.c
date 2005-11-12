@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.140 2005/11/04 06:56:32 ragge Exp $	*/
+/*	$Id: trees.c,v 1.141 2005/11/12 08:27:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1273,7 +1273,8 @@ block(int o, NODE *l, NODE *r, TWORD t, union dimfun *d, struct suedef *sue)
 	p->n_sue = sue;
 #if !defined(MULTIPASS)
 #ifdef MULTICLASS
-	p->n_reg = p->n_su = 0;
+	/* p->n_reg = */p->n_su = 0;
+	p->n_regw = 0;
 #else
 	p->n_rall = p->n_su = 0;
 #endif

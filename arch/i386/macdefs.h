@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.25 2005/10/22 08:08:25 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.26 2005/11/12 08:27:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -219,6 +219,14 @@ typedef long long OFFSZ;
 extern char colormap[NUMCLASS][NUMAREG][NUMBREG][NUMCREG][NUMDREG];
 #define COLORMAP(i, r) colormap[i][r[0]][r[1]][r[2]][r[3]]
 int type2class(int); /* XXX */
+extern int rgoff[];
+#define	MKREGNO(r, c)	(r+rgoff[c])
+#define	DECRD(x)	((x) & 63)	/* destination register from n_reg */
+#define DECRA1(x)	(((x) >> 6) & 7)	/* A1 reg */
+#define DECRA2(x)	(((x) >> 9) & 7)	/* A1 reg */
+#define	ENCRD(x)	(x)		/* Encode dest reg in n_reg */
+#define ENCRA1(x)	((x) << 6)	/* A1 */
+#define ENCRA2(x)	((x) << 9)	/* A2 */
 
 /* XXX - to die */
 #define MINRVAR	ESI	/* first register variable */

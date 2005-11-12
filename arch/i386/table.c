@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.53 2005/11/06 22:13:28 ragge Exp $	*/
+/*	$Id: table.c,v 1.54 2005/11/12 08:27:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -99,7 +99,7 @@ struct optab table[] = {
 	SHCH|SOREG|SNAME,	TCHAR,
 	SAREG,	TWORD|TPOINT,
 		NASL|NAREG,	RESC1,
-		"	movsbl ZL,A1\n", },
+		"	movsbl AL,A1\n", },
 
 /* convert char to short. */
 { SCONV,	ININT,
@@ -603,10 +603,10 @@ struct optab table[] = {
 		"	movw ZR,ZL\n", },
 
 { ASSIGN,	FOREFF|INTBREG,
-	SAREG|SNAME|SOREG,	TCHAR|TUCHAR,
+	SHCH|SNAME|SOREG,	TCHAR|TUCHAR,
 	SCON,		TANY,
 		0,	0,
-		"	movb ZR,ZL\n", },
+		"	movb AR,AL\n", },
 
 { ASSIGN,	FOREFF|INLL,
 	SHLL|SNAME|SOREG,	TLL,
@@ -1139,16 +1139,16 @@ struct optab table[] = {
 		"	movzwl ZL,A1\n	pushl A1\n", },
 
 { FUNARG,	FOREFF,
-	SAREG|SNAME|SOREG,	TCHAR,
-	SANY,	TCHAR,
+	SHCH|SNAME|SOREG,	TCHAR,
+	SANY,			TCHAR,
 		NAREG,	0,
-		"	movsbl ZL,A1\n	pushl A1\n", },
+		"	movsbl AL,A1\n	pushl A1\n", },
 
 { FUNARG,	FOREFF,
 	SAREG|SNAME|SOREG,	TUCHAR,
 	SANY,	TUCHAR,
 		NAREG,	0,
-		"	movzbl ZL,A1\n	pushl A1\n", },
+		"	movzbl AL,A1\n	pushl A1\n", },
 
 { FUNARG,	FOREFF,
 	SNAME|SOREG,	TDOUBLE,

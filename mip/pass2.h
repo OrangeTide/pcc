@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.76 2005/11/05 15:37:56 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.77 2005/11/12 08:27:42 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -106,7 +106,7 @@ typedef int bittype; /* XXX - for basicblock */
 
 #ifdef MULTICLASS
 /* find*() return values */
-#define	FRETRY	0
+#define	FRETRY	-2
 #define	FFAIL	-1
 #endif
 
@@ -240,7 +240,13 @@ void mygenregs(NODE *);
 void gencall(NODE *, NODE *prev);
 struct interpass *ipnode(NODE *);
 void deflab(int);
+#ifdef MULTICLASS
+void rmove(int, int, int);
+//int greg(struct regw *, int);
+//struct regw *gregw(int);
+#else
 void rmove(int, int, TWORD);
+#endif
 struct rspecial *nspecial(struct optab *);
 void printip(struct interpass *pole);
 int findops(NODE *p, int);
