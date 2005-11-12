@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.26 2005/11/12 08:27:42 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.27 2005/11/12 15:20:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -217,7 +217,7 @@ typedef long long OFFSZ;
 #define	MAXREGNUM	16	/* first non-precolored register */
 
 extern char colormap[NUMCLASS][NUMAREG][NUMBREG][NUMCREG][NUMDREG];
-#define COLORMAP(i, r) colormap[i][r[0]][r[1]][r[2]][r[3]]
+#define COLORMAP(i, r) colormap[i-1][r[1]][r[2]][r[3]][r[4]]
 int type2class(int); /* XXX */
 extern int rgoff[];
 #define	MKREGNO(r, c)	(r+rgoff[c])

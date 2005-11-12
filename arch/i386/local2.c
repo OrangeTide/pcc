@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.55 2005/11/12 08:27:42 ragge Exp $	*/
+/*	$Id: local2.c,v 1.56 2005/11/12 15:20:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1155,7 +1155,7 @@ if (colormap[i][a][b][c][d] < 0 || colormap[i][a][b][c][d] > 1)
 	}
 	}
 }
-int regK[] = { NUMAREG, NUMBREG, NUMCREG, NUMDREG };
+int regK[] = { 0, NUMAREG, NUMBREG, NUMCREG, NUMDREG };
 
 int
 type2class(int t)

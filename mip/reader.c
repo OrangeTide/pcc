@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.156 2005/11/12 08:27:42 ragge Exp $	*/
+/*	$Id: reader.c,v 1.157 2005/11/12 15:20:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -834,13 +834,13 @@ rewrite(NODE *p, int rewrite)
 #endif
 	} else if (rewrite & RESC1) {
 #ifdef MULTICLASS
-		p->n_reg = p->n_rval = DECRA1(p->n_reg);
+		p->n_reg = p->n_rval = p->n_reg;
 #else
 		p->n_rval = p->n_rall;
 #endif
 	} else if (rewrite & RESC2)
 #ifdef MULTICLASS
-		p->n_reg = p->n_rval = DECRA2(p->n_reg);
+		p->n_reg = p->n_rval = p->n_reg;
 #else
 		p->n_rval = p->n_rall + szty(p->n_type);
 #endif
