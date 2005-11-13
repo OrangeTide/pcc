@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.42 2005/11/12 15:20:25 ragge Exp $   */
+/*      $Id: match.c,v 1.43 2005/11/13 14:37:21 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -66,6 +66,7 @@
 
 int e2print(NODE *p, int down, int *a, int *b);
 void prttype(int t);
+void setclass(int tmp, int class);
 
 int fldsz, fldshf;
 
@@ -818,10 +819,8 @@ findasg(NODE *p, int cookie)
 	F2DEBUG(("findasg: node %p class %d\n", p, sh));
 	SCLASS(rv, sh);
 	p->n_su = rv;
-	if (p->n_left->n_op == TEMP) {
-		if (TCLASS(p->n_left->n_su) == 0)
-			SCLASS(p->n_left->n_su, sh);
-	}
+	if (p->n_left->n_op == TEMP)
+		setclass(p->n_left->n_lval, sh);
 	return sh;
 #else
 	return rv;
