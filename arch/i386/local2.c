@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.57 2005/11/13 14:37:21 ragge Exp $	*/
+/*	$Id: local2.c,v 1.58 2005/11/14 19:28:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1101,7 +1101,7 @@ aliasmap(int thisclass, int adjnum, int adjclass)
 		case CLASSA:
 			adjnum <<= 1;
 			adjnum = REGBIT(adjnum)|REGBIT(adjnum+1);
-			return adjnum & ~BREGS;
+			return adjnum & BREGS;
 		case CLASSB:
 			return REGBIT(adjnum);
 		case CLASSC:

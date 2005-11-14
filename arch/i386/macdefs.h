@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.28 2005/11/13 14:37:21 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.29 2005/11/14 19:28:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -225,6 +225,7 @@ int COLORMAP(int c, int *r);
 int type2class(int); /* XXX */
 extern int rgoff[];
 #define	MKREGNO(r, c)	(r+rgoff[c])
+#define	GREGNO(x)	(x < 8 ? x : x < 16 ? (x)-8 : x < 31 ? (x)-16 : (x)-31)
 #define	DECRD(x)	((x) & 63)	/* destination register from n_reg */
 #define DECRA1(x)	(((x) >> 6) & 7)	/* A1 reg */
 #define DECRA2(x)	(((x) >> 9) & 7)	/* A1 reg */
