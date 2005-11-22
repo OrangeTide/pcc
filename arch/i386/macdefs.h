@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.30 2005/11/20 21:48:41 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.31 2005/11/22 20:28:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -165,7 +165,7 @@ typedef long long OFFSZ;
 #define AREGS   (REGBIT(EAX)|REGBIT(EDX)|REGBIT(ECX)|REGBIT(ESI)| \
 	REGBIT(EDI)|REGBIT(EBX))
 #define	TAREGS	(REGBIT(EAX)|REGBIT(EDX)|REGBIT(ECX))
-#define	NUMAREG	6
+#define	NUMAREG	8
 
 #define	AL	0
 #define	AH	1

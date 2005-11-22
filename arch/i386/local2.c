@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.59 2005/11/20 21:48:41 ragge Exp $	*/
+/*	$Id: local2.c,v 1.60 2005/11/22 20:28:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1108,7 +1108,7 @@ alias2(int reg, int class)
 
 	ary[0] = ary[1] = 0;
 
-	c = (reg < NUMAREG ? CLASSA: reg < 16 ? CLASSB :
+	c = (reg < 6 ? CLASSA: reg < 16 ? CLASSB :
 	    reg < 31 ? CLASSC : CLASSD);
 	amap = aliasmap(class, GREGNO(reg), c);
 	switch (class) {
@@ -1186,7 +1186,7 @@ COLORMAP(int c, int *r)
 		num = r[CLASSB] > 4 ? 4 : r[CLASSB];
 		num += 2*r[CLASSC];
 		num += r[CLASSA];
-		return num < NUMAREG;
+		return num < 6;
 	case CLASSB:
 		num = r[CLASSA];
 		num += 2*r[CLASSC];
@@ -1203,6 +1203,6 @@ COLORMAP(int c, int *r)
 	return 0; /* XXX gcc */
 }
 
-int regK[] = { 0, NUMAREG, NUMBREG, NUMCREG, NUMDREG };
+int regK[] = { 0, 6, NUMBREG, NUMCREG, NUMDREG };
 int rgoff[5] = { 0, 0, 8, 16, 31 };
 #endif
