@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.60 2005/11/22 20:28:07 ragge Exp $	*/
+/*	$Id: local2.c,v 1.61 2005/11/26 07:52:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -169,7 +169,7 @@ hopcode(int f, int o)
 }
 
 char *rnames[] = {
-	"%eax", "%edx", "%ecx", "%esi", "%edi", "%ebx", "%ebp", "%esp",
+	"%eax", "%edx", "%ecx", "%ebx", "%esi", "%edi", "%ebp", "%esp",
 	"%al", "%ah", "%dl", "%dh", "%cl", "%ch", "%bl", "%bh",
 	"eaxedx", "eaxecx", "eaxebx", "eaxesi", "eaxedi", "edxecx",
 	"edxebx", "edxesi", "edxedi", "ecxebx", "ecxesi", "ecxedi",

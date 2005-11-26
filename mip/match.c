@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.44 2005/11/20 21:48:41 ragge Exp $   */
+/*      $Id: match.c,v 1.45 2005/11/26 07:52:20 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -183,7 +183,8 @@ tshape(NODE *p, int shape)
 		}
 		break;
 #else
-	case TEMP: /* temporaries are handled as registers */
+	case TEMP:
+		break;
 	case REG:
 		mask = PCLASS(p);
 		if (shape & mask)
