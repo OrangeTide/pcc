@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.33 2005/09/17 07:58:40 ragge Exp $	*/
+/*	$Id: local.c,v 1.34 2005/12/04 11:49:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -284,17 +284,6 @@ void
 cendarg()
 {
 	autooff = AUTOINIT;
-}
-
-/*
- * is an automatic variable of type t OK for a register variable
- */
-int
-cisreg(TWORD t)
-{
-	if (t == INT || t == UNSIGNED || t == LONG || t == ULONG)
-		return(1);
-	return 0; /* XXX - fix reg assignment in pftn.c */
 }
 
 /*

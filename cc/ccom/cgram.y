@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.150 2005/09/05 17:07:16 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.151 2005/12/04 11:49:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -629,7 +629,6 @@ compoundstmt:	   begin declaration_list stmt_list '}' {
 			if (autooff > maxautooff)
 				maxautooff = autooff;
 			autooff = savctx->contlab;
-			regvar = savctx->brklab;
 			savctx = savctx->next;
 #ifdef OLDSTYLE
 			send_passt(IP_STKOFF, autooff);
@@ -647,7 +646,6 @@ compoundstmt:	   begin declaration_list stmt_list '}' {
 			if (autooff > maxautooff)
 				maxautooff = autooff;
 			autooff = savctx->contlab;
-			regvar = savctx->brklab;
 			savctx = savctx->next;
 		}
 		;
@@ -667,7 +665,6 @@ begin:		  '{' {
 #endif
 			++blevel;
 			oldstyle = 0;
-			bc->brklab = regvar;
 			bc->contlab = autooff;
 			bc->next = savctx;
 			savctx = bc;

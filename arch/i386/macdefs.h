@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.31 2005/11/22 20:28:07 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.32 2005/12/04 11:49:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -230,8 +230,6 @@ extern int rgoff[];
 #define	RETREG(x)	MKREGNO(0, x)
 
 /* XXX - to die */
-#define MINRVAR	ESI	/* first register variable */
-#define MAXRVAR	EBX	/* last register variable */
 #define REGSZ	16	/* 8 "general" and 8 floating point regs */
 #define FPREG	EBP	/* frame pointer */
 #define STKREG	ESP	/* stack pointer */
