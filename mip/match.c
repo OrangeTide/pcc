@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.47 2005/12/04 11:49:00 ragge Exp $   */
+/*      $Id: match.c,v 1.48 2005/12/08 20:10:38 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -830,8 +830,9 @@ findasg(NODE *p, int cookie)
 	}
 	if (sh == -1) {
 		if (cookie == FOREFF)
-			cookie = INREGS; /* XXX */
-		sh = ffs(cookie & qq->visit & INREGS)-1;
+			sh = 0;
+		else
+			sh = ffs(cookie & qq->visit & INREGS)-1;
 	}
 	F2DEBUG(("findasg: node %p class %d\n", p, sh));
 	SCLASS(rv, sh);
@@ -879,26 +880,20 @@ findleaf(NODE *p, int cookie)
 		rv = MKIDX(ixp[i], 0);
 		break;
 	}
-	if (rv == -1) {
-		F2DEBUG(("findleaf failed\n"));
-	} else
-		F2DEBUG(("findleaf entry %d(%s %s)\n",
-		    TBLIDX(rv), ltyp[rv & LMASK], rtyp[(rv&RMASK)>>2]));
-
-#ifdef MULTICLASS
 	if (rv < 0) {
-		if (setasg(p, cookie))
+		F2DEBUG(("findleaf failed\n"));
+		if (setuni(p, cookie))
 			return FRETRY;
 		return FFAIL;
 	}
+	F2DEBUG(("findleaf entry %d(%s %s)\n",
+	    TBLIDX(rv), ltyp[rv & LMASK], rtyp[(rv&RMASK)>>2]));
+
 	sh = ffs(cookie & q->visit & INREGS)-1;
 	F2DEBUG(("findleaf: node %p class %d\n", p, sh));
 	SCLASS(rv, sh);
 	p->n_su = rv;
 	return sh;
-#else
-	return rv;
-#endif
 }
 
 /*

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.61 2005/11/26 07:52:20 ragge Exp $	*/
+/*	$Id: local2.c,v 1.62 2005/12/08 20:10:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -980,7 +980,6 @@ rmove(int s, int d, int c)
 	printf("	movl %s,%s\n", rnames[s], rnames[d]);
 }
 
-#ifdef MULTICLASS
 /*
  * Return all elements in class class as bits.
  */
@@ -1203,6 +1202,17 @@ COLORMAP(int c, int *r)
 	return 0; /* XXX gcc */
 }
 
+int
+gclass(TWORD t)
+{
+	if (t == CHAR || t == UCHAR)
+		return CLASSB;
+	if (t == LONGLONG || t == ULONGLONG)
+		return CLASSC;
+	if (t == FLOAT || t == DOUBLE || t == LDOUBLE)
+		return CLASSD;
+	return CLASSA;
+}
+
 int regK[] = { 0, 6, NUMBREG, NUMCREG, NUMDREG };
 int rgoff[5] = { 0, 0, 8, 16, 31 };
-#endif

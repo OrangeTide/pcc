@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.39 2005/09/17 07:58:40 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.40 2005/12/08 20:10:38 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -45,7 +45,6 @@ static int dfsnum;
 
 void saveip(struct interpass *ip);
 void deljumps(struct interpass *);
-void deltemp(NODE *p);
 void optdump(struct interpass *ip);
 void printip(struct interpass *pole);
 
