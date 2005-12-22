@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.57 2005/12/18 09:21:53 ragge Exp $	*/
+/*	$Id: table.c,v 1.58 2005/12/22 09:57:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -342,13 +342,13 @@ struct optab table[] = {
 { UCALL,	INCREG|FOREFF,
 	SCON,	TANY,
 	SCREG,	TANY,
-		NBREG|NBSL,	RESC1,	/* should be 0 */
+		NCREG|NCSL,	RESC1,	/* should be 0 */
 		"	call CL\nZC", },
 
 { UCALL,	INDREG|FOREFF,
 	SCON,	TANY,
 	SDREG,	TANY,
-		NBREG|NBSL,	RESC1,	/* should be 0 */
+		NDREG|NDSL,	RESC1,	/* should be 0 */
 		"	call CL\nZC", },
 
 { UCALL,	INTAREG|FOREFF,

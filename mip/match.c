@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.48 2005/12/08 20:10:38 ragge Exp $   */
+/*      $Id: match.c,v 1.49 2005/12/22 09:57:28 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -383,17 +383,8 @@ getlr(NODE *p, int c)
 		q = &resc[c];
 		q->n_op = REG;
 		q->n_type = p->n_type; /* ???? */
-#ifdef MULTICLASS
-#if 0
-		if (c != 0)
-			comperr("bad getlr in MULTICLASS: c %d p %p", c, p);
-#endif
 		q->n_rval = DECRD(p->n_reg);
 		q->n_su = p->n_su;
-#else
-		q->n_rval = p->n_rall; /* Should be assigned by genregs() */
-		q->n_rval += szty(q->n_type) * c;
-#endif
 		return q;
 
 	case 'L':
