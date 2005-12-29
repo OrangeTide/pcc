@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.162 2005/12/22 09:57:28 ragge Exp $	*/
+/*	$Id: reader.c,v 1.163 2005/12/29 15:40:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -751,8 +751,10 @@ gencode(NODE *p, int cookie)
 	} else if (q->needs & NSPECIAL) {
 		int rr = rspecial(q, NRES);
 
+printf("aaa rr %d p->n_reg %x\n", rr, p->n_reg);
 		if (rr >= 0 && p->n_reg != rr)
 			rmove(rr, DECRD(p->n_reg), TCLASS(p->n_su));
+printf("bbb\n");
 	} else if ((q->rewrite & RESC1) &&
 	    (DECRA1(p->n_reg) != DECRD(p->n_reg))) {
 		rmove(DECRA1(p->n_reg), DECRD(p->n_reg), TCLASS(p->n_su));
