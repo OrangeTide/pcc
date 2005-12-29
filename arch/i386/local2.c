@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.62 2005/12/08 20:10:38 ragge Exp $	*/
+/*	$Id: local2.c,v 1.63 2005/12/29 09:15:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -689,10 +689,7 @@ upput(NODE *p, int size)
 	size /= SZCHAR;
 	switch (p->n_op) {
 	case REG:
-		comperr("upput");
-#if 0
-		fputs(rnames[p->n_rval + 1], stdout);
-#endif
+		fprintf(stdout, "%%%s", &rnames[p->n_rval][3]);
 		break;
 
 	case NAME:
@@ -741,7 +738,11 @@ adrput(FILE *io, NODE *p)
 
 	case MOVE:
 	case REG:
-		fprintf(io, "%s", rnames[p->n_rval]);
+		if (p->n_type == LONGLONG || p->n_type == ULONGLONG) {
+			fprintf(io, "%%%c%c%c", rnames[p->n_rval][0],
+			    rnames[p->n_rval][1], rnames[p->n_rval][2]);
+		} else
+			fprintf(io, "%s", rnames[p->n_rval]);
 		return;
 
 	default:

@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.32 2005/12/04 11:49:00 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.33 2005/12/29 09:15:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -227,6 +227,7 @@ extern int rgoff[];
 #define	ENCRD(x)	(x)		/* Encode dest reg in n_reg */
 #define ENCRA1(x)	((x) << 6)	/* A1 */
 #define ENCRA2(x)	((x) << 9)	/* A2 */
+#define ENCRA(x,y)	((x) << (6+y*3))
 #define	RETREG(x)	MKREGNO(0, x)
 
 /* XXX - to die */
