@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.100 2005/12/30 14:23:54 ragge Exp $	*/
+/*	$Id: regs.c,v 1.101 2005/12/30 14:58:15 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1855,14 +1855,19 @@ RewriteProgram(struct interpass *ip)
 	rwtyp = 0;
 
 	if (!DLIST_ISEMPTY(&saveregs, link)) {
+		int i, j;
+
 		rwtyp = ONLYPERM;
-		comperr("fix saveregs");
-#if 0
 		DLIST_FOREACH(w, &saveregs, link) {
 			int num = w - nblock - tempmin;
-			savregs &= ~(1 << num);
+			nsavregs[num] = MAXREGS;
 		}
-#endif
+		for (i = j = 0; nsavregs[i] >= 0; i++) {
+			if (nsavregs[i] == MAXREGS)
+				continue;
+			nsavregs[i] = nsavregs[j++];
+		}
+		nsavregs[j] = -1;
 	}
 	if (!DLIST_ISEMPTY(&longregs, link)) {
 		rwtyp = LEAVES;
@@ -2004,15 +2009,6 @@ onlyperm: /* XXX - should not have to redo all */
 		DLIST_INSERT_AFTER(&initial, &nblock[i+tempmin], link);
 		moveadd(&nblock[i+tempmin], &ablock[nsavregs[i]]);
 	}
-#if 0
-	for (i = 0; i < NUMAREG; i++) {
-		if ((savregs & (1 << i)) == 0)
-			continue;
-		nblock[i+tempmin].r_class = CLASSA;
-		DLIST_INSERT_AFTER(&initial, &nblock[i+tempmin], link);
-		moveadd(&nblock[i+tempmin], &ablock[i]);
-	}
-#endif
 
 	Build(ip);
 	RDEBUG(("Build done\n"));
@@ -2044,8 +2040,17 @@ onlyperm: /* XXX - should not have to redo all */
 	}
 	/* fill in regs to save */
 	if (xtemps) {
+		int j;
+
 		/* XXX - to fix */
 		ipp->ipp_regs = 0;
+		for (i = 0; permregs[i] >= 0; i++) {
+			for (j = 0; nsavregs[j] >= 0; j++)
+				if (permregs[i] == nsavregs[j])
+					break;
+			if (permregs[i] != nsavregs[j])
+				ipp->ipp_regs |= (1 << permregs[i]);
+		}
 //		ipp->ipp_regs = (savregs ^ -1) & (AREGS & ~TAREGS);
 	} else
 		ipp->ipp_regs = 0;
