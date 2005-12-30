@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.34 2005/12/29 20:48:14 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.35 2005/12/30 09:56:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -340,10 +340,8 @@ typedef long long OFFSZ;
 		  (p->n_type >= FLOAT && p->n_type <= LDOUBLE ? SDREG : SAREG)))
 
 #define	NUMCLASS 	4	/* highest number of reg classes used */
-#define	MAXREGNUM	16	/* first non-precolored register */
 
 int COLORMAP(int c, int *r);
-extern int rgoff[];
 #define	GREGNO(x) (x < 8 ? x : x < 16 ? (x)-8 : x < 31 ? (x)-16 : (x)-31)
 #define	GCLASS(x) (x < 8 ? CLASSA : x < 16 ? CLASSB : x < 31 ? CLASSC : CLASSD)
 #define	DECRD(x)	((x) & 63)	/* destination register from n_reg */
