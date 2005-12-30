@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.82 2005/12/29 20:48:16 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.83 2005/12/30 14:23:54 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -254,7 +254,7 @@ void mygenregs(NODE *);
 void gencall(NODE *, NODE *prev);
 struct interpass *ipnode(NODE *);
 void deflab(int);
-void rmove(int, int, int);
+void rmove(int, int, TWORD);
 int rspecial(struct optab *, int);
 struct rspecial *nspecial(struct optab *q);
 void printip(struct interpass *pole);
@@ -276,7 +276,7 @@ extern	int roverlap[MAXREGS][MAXREGS];
 
 extern int classmask(int), tclassmask(int);
 extern void cmapinit(void);
-extern int aliasmap(int thisclass, int adjnum, int adjclass);
+extern int aliasmap(int adjclass, int regnum);
 extern int regK[];
 #define	CLASSA	1
 #define	CLASSB	2

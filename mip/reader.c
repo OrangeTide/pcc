@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.164 2005/12/29 20:48:16 ragge Exp $	*/
+/*	$Id: reader.c,v 1.165 2005/12/30 14:23:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -698,9 +698,9 @@ gencode(NODE *p, int cookie)
 		if (q->needs & NSPECIAL) {
 			int rr = rspecial(q, NRIGHT);
 
-			if (rr >= 0 && rr != p->n_right->n_reg) {
-				rmove(p->n_right->n_reg,
-				    rr, TCLASS(p->n_right->n_su));
+			if (rr >= 0 && rr != p->n_right->n_rval) {
+				rmove(p->n_right->n_rval,
+				    rr, p->n_right->n_type);
 				p->n_right->n_reg = rr;
 				p->n_right->n_rval = rr;
 			}
@@ -710,7 +710,7 @@ gencode(NODE *p, int cookie)
 			if (p->n_op == ASSIGN)
 				comperr("ASSIGN error");
 #endif
-			rmove(p->n_right->n_reg, p->n_reg, TCLASS(p->n_su));
+			rmove(p->n_right->n_reg, p->n_reg, p->n_type);
 			p->n_right->n_reg = p->n_reg;
 			p->n_right->n_reg = p->n_reg;
 		}
@@ -721,7 +721,7 @@ gencode(NODE *p, int cookie)
 
 			if (rr >= 0 && rr != p->n_left->n_reg) {
 				rmove(DECRD(p->n_left->n_reg), rr,
-				    TCLASS(p->n_left->n_su));
+				    p->n_left->n_type);
 				p->n_left->n_reg = rr;
 				p->n_left->n_rval = rr;
 			}
@@ -731,7 +731,7 @@ gencode(NODE *p, int cookie)
 			if (p->n_op == ASSIGN)
 				comperr("ASSIGN error");
 #endif
-			rmove(p->n_left->n_reg, p->n_reg, TCLASS(p->n_su));
+			rmove(p->n_left->n_reg, p->n_reg, p->n_type);
 			p->n_left->n_reg = p->n_reg;
 			p->n_left->n_rval = p->n_reg;
 		}
@@ -752,10 +752,12 @@ gencode(NODE *p, int cookie)
 		int rr = rspecial(q, NRES);
 
 		if (rr >= 0 && p->n_reg != rr)
-			rmove(rr, DECRD(p->n_reg), TCLASS(p->n_su));
+			rmove(rr, DECRD(p->n_reg), p->n_type);
 	} else if ((q->rewrite & RESC1) &&
 	    (DECRA1(p->n_reg) != DECRD(p->n_reg))) {
-		rmove(DECRA1(p->n_reg), DECRD(p->n_reg), TCLASS(p->n_su));
+printf("a: reg %x rval %d\n", p->n_reg, p->n_rval);
+		rmove(DECRA1(p->n_reg), DECRD(p->n_reg), p->n_type);
+printf("b\n");
 	}
 	rewrite(p, q->rewrite, cookie);
 }
