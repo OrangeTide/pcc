@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.166 2006/01/01 16:17:02 ragge Exp $	*/
+/*	$Id: reader.c,v 1.167 2006/01/06 12:47:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -711,7 +711,7 @@ gencode(NODE *p, int cookie)
 #endif
 			rmove(p->n_right->n_reg, p->n_reg, p->n_type);
 			p->n_right->n_reg = p->n_reg;
-			p->n_right->n_reg = p->n_reg;
+			p->n_right->n_rval = p->n_reg;
 		}
 	}
 	if ((p->n_su & LMASK) == LREG) {
