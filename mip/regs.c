@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.103 2006/01/06 12:47:34 ragge Exp $	*/
+/*	$Id: regs.c,v 1.104 2006/01/07 08:10:25 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1107,10 +1107,10 @@ LivenessAnalysis(void)
 	}
 }
 
-#define	SETCOPY(t,f,i,n) for (i = 0; i < n; i += NUMBITS) t[i] = f[i]
-#define	SETSET(t,f,i,n) for (i = 0; i < n; i += NUMBITS) t[i] |= f[i]
-#define	SETCLEAR(t,f,i,n) for (i = 0; i < n; i += NUMBITS) t[i] &= ~f[i]
-#define	SETCMP(v,t,f,i,n) for (i = 0; i < n; i += NUMBITS) \
+#define	SETCOPY(t,f,i,n) for (i = 0; i < n/NUMBITS; i++) t[i] = f[i]
+#define	SETSET(t,f,i,n) for (i = 0; i < n/NUMBITS; i++) t[i] |= f[i]
+#define	SETCLEAR(t,f,i,n) for (i = 0; i < n/NUMBITS; i++) t[i] &= ~f[i]
+#define	SETCMP(v,t,f,i,n) for (i = 0; i < n/NUMBITS; i++) \
 	if (t[i] != f[i]) v = 1
 
 /*
@@ -1151,18 +1151,6 @@ Build(struct interpass *ipole)
 				AddEdge(&nblock[i+tempmin], &nblock[j+tempmin]);
 			}
 		}
-#if 0
-		for (i = 0; i < NUMAREG; i++) {
-			if ((savregs & (1 << i)) == 0)
-				continue;
-			BITSET(out[nbblocks-1], i);
-			for (j = i+1; j < NUMAREG; j++) {
-				if ((savregs & (1 << j)) == 0)
-					continue;
-				AddEdge(&nblock[i+tempmin], &nblock[j+tempmin]);
-			}
-		}
-#endif
 
 		/* do liveness analysis on basic block level */
 		do {

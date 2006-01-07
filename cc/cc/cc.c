@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.43 2005/05/22 10:45:46 ragge Exp $	*/
+/*	$Id: cc.c,v 1.44 2006/01/07 08:10:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -354,8 +354,9 @@ main(int argc, char *argv[])
 		av[na++]= "ccom";
 		if (gflag)
 			av[na++] = "-g";
-		if (Oflag)
-			av[na++] = "-xsaveip";
+		if (Oflag) {
+			av[na++] = "-xtemps";
+		}
 		for (i = 0; i < xnum; i++)
 			av[na++] = xlist[i];
 		av[na++] = tmp4;
