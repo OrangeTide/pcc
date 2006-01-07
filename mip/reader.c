@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.167 2006/01/06 12:47:34 ragge Exp $	*/
+/*	$Id: reader.c,v 1.168 2006/01/07 17:04:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1015,7 +1015,11 @@ oreg2(NODE *p)
 			p->n_rval = r;
 			p->n_lval = temp;
 			p->n_name = cp;
-			p->n_su = 0; /* To stop gencode traversal */
+			/* stop gencode traversal */
+			if (p->n_su == -1)
+				p->n_su = 0;
+			else
+				p->n_su &= ~(LMASK|RMASK|DORIGHT);
 			tfree(q);
 			return;
 		}
