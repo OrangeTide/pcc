@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.66 2006/01/01 16:17:01 ragge Exp $	*/
+/*	$Id: local2.c,v 1.67 2006/01/12 21:35:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -499,7 +499,11 @@ zzzcode(NODE *p, int c)
 			    rnames[lr][2], rnames[pr]);
 		l->n_rval = l->n_reg = p->n_reg; /* XXX - not pretty */
 		break;
-		
+
+	case 'N': /* output extended reg name */
+		printf("%s", rnames[getlr(p, '1')->n_rval]);
+		break;
+
 	default:
 		comperr("zzzcode %c", c);
 	}
