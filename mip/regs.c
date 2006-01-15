@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.106 2006/01/12 21:35:23 ragge Exp $	*/
+/*	$Id: regs.c,v 1.107 2006/01/15 10:24:52 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -134,6 +134,9 @@ int nodnum = 100;
 REGW *ablock;
 
 static int tempmin, tempmax, basetemp, xbits;
+/*
+ * nsavregs are registers that must NOT be saved on stack in prolog.
+ */
 static int *nsavregs, *ndontregs;
 
 /*
@@ -1236,7 +1239,8 @@ Build(struct interpass *ipole)
 		}
 		printf("Degrees\n");
 		DLIST_FOREACH(y, &initial, link) {
-			printf("%d: trivial [%d] ", ASGNUM(y), trivially_colorable(y));
+			printf("%d (%c): trivial [%d] ", ASGNUM(y),
+			    CLASS(y)+'@', trivially_colorable(y));
 			for (x = ADJLIST(y); x; x = x->r_next) {
 				if (ONLIST(x->a_temp) != &selectStack &&
 				    ONLIST(x->a_temp) != &coalescedNodes)
@@ -2093,7 +2097,20 @@ onlyperm: /* XXX - should not have to redo all */
 	if (xtemps) {
 		int j;
 
-		/* XXX - to fix */
+		/* sanitycheck if we got a reg-move of permanent regs */
+		/* which we currently cannot deal with */
+		/* but probably should be able to do */
+		for (i = 0; nsavregs[i] >= 0; i++) {
+			for (j = 0; permregs[j] >= 0; j++) {
+				if (nblock[i+tempmin].r_color == permregs[j])
+					break;
+			}
+			if (nblock[i+tempmin].r_color != permregs[j])
+				comperr("permanent register colored '%s'",
+				    rnames[nblock[i+tempmin].r_color]);
+		}
+
+		/* XXX - to simplify */
 		ipp->ipp_regs = 0;
 		for (i = 0; permregs[i] >= 0; i++) {
 			for (j = 0; nsavregs[j] >= 0; j++)
