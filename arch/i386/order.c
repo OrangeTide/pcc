@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.32 2006/01/12 21:35:23 ragge Exp $	*/
+/*	$Id: order.c,v 1.33 2006/01/28 07:27:12 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -149,7 +149,7 @@ nspecial(struct optab *q)
 {
 	switch (q->op) {
 	case SCONV:
-		if ((q->ltype & (TINT|TUNSIGNED)) && 
+		if ((q->ltype & (TINT|TUNSIGNED|TSHORT|TUSHORT)) && 
 		    q->rtype == (TCHAR|TUCHAR)) {
 			static struct rspecial s[] = { 
 				{ NOLEFT, ESI }, { NOLEFT, EDI }, { 0 } };
@@ -158,6 +158,18 @@ nspecial(struct optab *q)
 		    q->rtype == TLONGLONG) {
 			static struct rspecial s[] = {
 				{ NLEFT, EAX }, { NRES, EAXEDX },
+				{ NEVER, EAX }, { NEVER, EDX }, { 0 } };
+			return s;
+		} else if (q->ltype == TSHORT &&
+		    q->rtype == (TLONGLONG|TULONGLONG)) {
+			static struct rspecial s[] = {
+				{ NLEFT, EAX }, { NRES, EAXEDX },
+				{ NEVER, EAX }, { NEVER, EDX }, { 0 } };
+			return s;
+		} else if (q->ltype == TCHAR &&
+		    q->rtype == (TLONGLONG|TULONGLONG)) {
+			static struct rspecial s[] = {
+				{ NRES, EAXEDX },
 				{ NEVER, EAX }, { NEVER, EDX }, { 0 } };
 			return s;
 		}

@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.147 2005/12/04 11:49:00 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.148 2006/01/28 07:27:12 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1159,7 +1159,7 @@ oalloc(struct symtab *p, int *poff )
 /* XXX OLDSTYLE */
 	if (xtemps && ((p->sclass == AUTO) || (p->sclass == REGISTER)) &&
 	    (p->stype < STRTY || ISPTR(p->stype)) &&
-	    !ISVOL((p->squal << TSHIFT))) {
+	    !ISVOL((p->squal << TSHIFT)) && cisreg(p->stype)) {
 		NODE *tn = tempnode(0, p->stype, p->sdf, p->ssue);
 		p->soffset = tn->n_lval;
 		p->sflags |= STNODE;

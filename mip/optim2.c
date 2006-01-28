@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.40 2005/12/08 20:10:38 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.41 2006/01/28 07:27:12 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -124,7 +124,7 @@ cvtaddrof(NODE *p)
 		p->n_rval = FPREG;
 	} else {
 		l = p->n_left;
-		p->n_type = l->n_type;
+		l->n_type = p->n_type;
 		p->n_right = mklnode(ICON, l->n_lval, 0, l->n_type);
 		p->n_op = PLUS;
 		l->n_op = REG;
