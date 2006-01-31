@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.39 2006/01/28 07:27:12 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.40 2006/01/31 21:19:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -245,9 +245,9 @@ typedef long long OFFSZ;
 	  EAXESI, EDXESI, EBXESI, ESIEDI, -1 },\
 	{ ECX, CL, CH, EDI, EAXECX, EDXECX, ECXEBX, ECXESI,	/* ecxedi */\
 	  EAXEDI, EDXEDI, EBXEDI, ESIEDI, -1 },\
-	{ EBX, BL, BH, ESI, EAXEBX, EDXEBX, ECXEBX, ECXEDI,	/* ebxesi */\
+	{ EBX, BL, BH, ESI, EAXEBX, EDXEBX, ECXEBX, EBXEDI,	/* ebxesi */\
 	  EAXESI, EDXESI, ECXESI, ESIEDI, -1 },\
-	{ EBX, BL, BH, EDI, EAXEBX, EDXEBX, ECXEBX, ECXESI,	/* ebxedi */\
+	{ EBX, BL, BH, EDI, EAXEBX, EDXEBX, ECXEBX, EBXESI,	/* ebxedi */\
 	  EAXEDI, EDXEDI, ECXEDI, ESIEDI, -1 },\
 	{ ESI, EDI, EAXESI, EDXESI, ECXESI, EBXESI,		/* esiedi */\
 	  EAXEDI, EDXEDI, ECXEDI, EBXEDI, -1 },\
