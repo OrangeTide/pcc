@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.65 2006/01/28 07:27:12 ragge Exp $	*/
+/*	$Id: table.c,v 1.66 2006/02/01 12:58:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -49,10 +49,8 @@ struct optab table[] = {
 /* First entry must be an empty entry */
 { -1, FOREFF, SANY, TANY, SANY, TANY, 0, 0, "", },
 
-#ifdef MULTICLASS
 #define	INTAREG	INAREG
 #define	INTBREG	INBREG
-#endif
 
 /*
  * A bunch conversions of integral<->integral types

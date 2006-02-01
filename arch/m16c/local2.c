@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.28 2006/02/01 09:27:41 janeno-1 Exp $	*/
+/*	$Id: local2.c,v 1.29 2006/02/01 12:58:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -576,20 +576,16 @@ COLORMAP(int c, int *r)
 
 	switch (c) {
 	case CLASSA:
-		num = r[CLASSB] > 4 ? 4 : r[CLASSB];
-		num += 2*r[CLASSC];
-		num += r[CLASSA];
-		return num < 6;
-	case CLASSB:
 		num = r[CLASSA];
-		num += 2*r[CLASSC];
-		num += r[CLASSB];
+		num += r[CLASSC];
 		return num < 4;
+	case CLASSB:
+		num = r[CLASSB];
+		return num < 2;
 	case CLASSC:
-		num = r[CLASSA];
-		num += r[CLASSB] > 4 ? 4 : r[CLASSB];
-		num += 2*r[CLASSC];
-		return num < 5;
+		num = 2*r[CLASSA];
+		num += r[CLASSC];
+		return num < 4;
 	}
 	return 0; /* XXX gcc */
 }

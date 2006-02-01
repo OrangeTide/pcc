@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.109 2006/01/31 21:19:52 ragge Exp $	*/
+/*	$Id: regs.c,v 1.110 2006/02/01 12:58:15 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -667,7 +667,7 @@ AddEdge(REGW *u, REGW *v)
 		NCLASS(v, CLASS(u))++;
 	}
 
-#ifndef MULTICLASS
+#if 0
 	RDEBUG(("AddEdge: u %d(d %d) v %d(d %d)\n", u, DEGREE(u), v, DEGREE(v)));
 #endif
 }

@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.143 2005/12/22 09:57:28 ragge Exp $	*/
+/*	$Id: trees.c,v 1.144 2006/02/01 12:58:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2128,10 +2128,6 @@ p2tree(NODE *p)
 	default:
 		p->n_name = "";
 		}
-
-#ifndef MULTICLASS
-	p->n_rall = NOPREF;
-#endif
 
 	if( ty != LTYPE ) p2tree( p->n_left );
 	if( ty == BITYPE ) p2tree( p->n_right );
