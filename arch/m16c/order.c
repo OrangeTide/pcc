@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.15 2006/02/01 09:27:41 janeno-1 Exp $	*/
+/*	$Id: order.c,v 1.16 2006/02/02 09:01:07 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -238,28 +238,36 @@ regalloc(NODE *p, struct optab *q, int wantreg)
 struct rspecial *
 nspecial(struct optab *q)
 {
-	switch (q->op) {
+    switch (q->op) {
 
-	case DIV:
-	    /*
+    case DIV:
+    case MOD:
+	if(q->ltype & (TINT|TSHORT)){
 	    static struct rspecial s[] = {
 		{ NRES, R0 }, { NRES, R2}, { 0 } };
 	    return s;
-	    */
-	    break;
-	case MOD:
-	    /*
+	} else if(q->ltype & TCHAR) {
 	    static struct rspecial s[] = {
-		{ { 0 } };
+		{ NRES, R0L }, { NRES, R0H}, { 0 } };
 	    return s;
-	    */
-	    break;
-
-	default:
-		break;
 	}
-	comperr("nspecial entry %d", q - table);
-	return 0; /* XXX gcc */
+	break;
+
+    case MUL:
+	/*
+	if(q->ltype & (TINT|TSHORT)){
+	    static struct rspecial s[] = {
+		{ NRES, R0 }, { NRES, R2}, { 0 } };
+	    return s;
+	    }*/
+	comperr("multiplication not implemented");
+	break;
+	
+    default:
+	break;
+    }
+    comperr("nspecial entry %d", q - table);
+    return 0; /* XXX gcc */
 }
 
 
