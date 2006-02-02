@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.20 2006/02/01 12:58:09 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.21 2006/02/02 09:02:07 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -121,12 +121,6 @@ typedef long long OFFSZ;
 
 #define szty(t) (((t) == LONG || (t) == ULONG || \
 	(ISPTR(t) && ISFTN(DECREF(t)))) ? 2 : 1)
-
-/*
- * Register names.  These must match rnames[] and rstatus[] in local2.c.
- * The crazy order of the registers are due to the current register
- * allocations strategy and should be fixed.
- */
 
 /*
  * m16c register classes:
