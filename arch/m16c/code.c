@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.14 2006/02/02 09:00:12 janeno-1 Exp $	*/
+/*	$Id: code.c,v 1.15 2006/02/02 14:22:56 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -266,7 +266,7 @@ bjobcode()
 	printf("	NAME gurka.c\n"); /* Don't have the name */
 	for (c = caps; c->cap; c++)
 		printf("	RTMODEL \"%s\", \"%s\"\n", c->cap, c->stat);
-	printf("	RSEG CODE:CODE:REORDER:NOROOT(0)\n");
+	//printf("	RSEG CODE:CODE:REORDER:NOROOT(0)\n");
 }
 
 /* called just before final exit */
