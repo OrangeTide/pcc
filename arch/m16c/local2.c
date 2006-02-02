@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.30 2006/02/02 08:59:05 janeno-1 Exp $	*/
+/*	$Id: local2.c,v 1.31 2006/02/02 12:26:10 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -97,7 +97,7 @@ eoftn(struct interpass_prolog *ipp)
 	addto = (p2maxautooff - AUTOINIT)/SZCHAR;
 
 	/* return from function code */
-	deflab(ipp->ipp_ip.ip_lbl);
+	//deflab(ipp->ipp_ip.ip_lbl);   //XXX - is this necessary?
 	
 	/* If retval is a pointer and not a function pointer, put in A0 */
 	if (ISPTR(DECREF(ipp->ipp_type)) &&
@@ -594,12 +594,11 @@ COLORMAP(int c, int *r)
 int
 gclass(TWORD t)
 {
-    printf("*gclass()*\n");	    
 	if (t == CHAR || t == UCHAR)
-	    return CLASSC;
+		return CLASSC;
 	
 	if(ISPTR(t))
-	    return CLASSB;
+		return CLASSB;
 	
 	return CLASSA;
 }
