@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.13 2005/04/17 11:30:47 ragge Exp $	*/
+/*	$Id: code.c,v 1.14 2006/02/02 09:00:12 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -355,6 +355,8 @@ fldty(struct symtab *p)
 void
 genswitch(struct swents **p, int n)
 {
+    uerror("switch() statements unsopported");
+#if 0
 	int i;
 	char *s;
 
@@ -370,4 +372,5 @@ genswitch(struct swents **p, int n)
 	}
 	if (p[0]->slab > 0)
 		branch(p[0]->slab);
+#endif
 }
