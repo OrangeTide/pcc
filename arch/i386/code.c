@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.12 2005/12/22 09:57:28 ragge Exp $	*/
+/*	$Id: code.c,v 1.13 2006/02/04 17:43:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -206,14 +206,6 @@ genswitch(struct swents **p, int n)
 		r = block(REG, NIL, NIL, INT, 0, MKSUE(INT));
 		r = buildtree(NE, r, bcon(p[i]->sval));
 		cbranch(buildtree(NOT, r, NIL), bcon(p[i]->slab));
-#if 0
-		s = (isinlining ? permalloc(40) : tmpalloc(40));
-		sprintf(s, "	cmpl $%lld,%%eax", p[i]->sval);
-		send_passt(IP_ASM, s);
-		s = (isinlining ? permalloc(40) : tmpalloc(40));
-		sprintf(s, "	je " LABFMT, p[i]->slab);
-		send_passt(IP_ASM, s);
-#endif
 	}
 	if (p[0]->slab > 0)
 		branch(p[0]->slab);

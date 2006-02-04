@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.84 2006/01/28 07:27:12 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.85 2006/02/04 17:43:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -250,7 +250,6 @@ void comperr(char *str, ...);
 void genregs(NODE *p);
 void ngenregs(struct interpass *);
 NODE *store(NODE *);
-void mygenregs(NODE *);
 void gencall(NODE *, NODE *prev);
 struct interpass *ipnode(NODE *);
 void deflab(int);
@@ -261,10 +260,12 @@ void printip(struct interpass *pole);
 int findops(NODE *p, int);
 int findasg(NODE *p, int);
 int finduni(NODE *p, int);
+int findargs(NODE *p);
 int findleaf(NODE *p, int);
 int relops(NODE *p);
 int offstar(NODE *p, int shape);
 int gclass(TWORD);
+void lastcall(NODE *);
 
 char *prcook(int);
 

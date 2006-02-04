@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.66 2006/02/01 12:58:11 ragge Exp $	*/
+/*	$Id: table.c,v 1.67 2006/02/04 17:43:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -365,6 +365,12 @@ struct optab table[] = {
  */
 
 /* separate handling of FOREFF */
+{ CALL,		FOREFF,
+	SCON,	TANY,
+	SANY,	TANY,
+		0,	0,
+		"	call CL\nZC", },
+
 { UCALL,	FOREFF,
 	SCON,	TANY,
 	SAREG,	TWORD|TPOINT,
@@ -807,6 +813,12 @@ struct optab table[] = {
 /*
  * DIV/MOD/MUL 
  */
+/* long long div is emulated */
+{ DIV,	INCREG,
+	SCREG|SNAME|SOREG|SCON, TLONGLONG,
+	SCREG|SNAME|SOREG|SCON, TLONGLONG,
+		NSPECIAL|NCREG|NCSL|NCSR,	RESC1,
+		"ZO", },
 
 { DIV,	INAREG,
 	SAREG,			TSWORD,
@@ -1262,10 +1274,10 @@ struct optab table[] = {
 		0,	0,
 		"	subl $12,%esp\n	fstpt (%esp)\n", },
 
-{ FUNARG,	FOREFF,
+{ STARG,	FOREFF,
 	SAREG|SOREG|SNAME|SCON,	TANY,
 	SANY,	TSTRUCT,
-		3*NAREG|NASL,	0,
+		NSPECIAL,	0,
 		"ZF", },
 
 # define DF(x) FORREW,SANY,TANY,SANY,TANY,REWRITE,x,""
