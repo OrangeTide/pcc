@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.37 2006/02/04 17:43:46 ragge Exp $	*/
+/*	$Id: local.c,v 1.38 2006/02/05 18:30:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -90,12 +90,13 @@ clocal(NODE *p)
 	case CALL:
 		/* Fix function call arguments. On x86, just add funarg */
 		for (r = p->n_right; r->n_op == CM; r = r->n_left) {
-			if (r->n_right->n_op != STARG)
+			if (r->n_right->n_op != STARG &&
+			    r->n_right->n_op != FUNARG)
 				r->n_right = block(FUNARG, r->n_right, NIL, 
 				    r->n_right->n_type, r->n_right->n_df,
 				    r->n_right->n_sue);
 		}
-		if (r->n_op != STARG) {
+		if (r->n_op != STARG && r->n_op != FUNARG) {
 			l = talloc();
 			*l = *r;
 			r->n_op = FUNARG; r->n_left = l; r->n_type = l->n_type;

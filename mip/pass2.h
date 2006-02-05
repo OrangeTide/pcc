@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.85 2006/02/04 17:43:46 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.86 2006/02/05 18:30:51 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -260,7 +260,6 @@ void printip(struct interpass *pole);
 int findops(NODE *p, int);
 int findasg(NODE *p, int);
 int finduni(NODE *p, int);
-int findargs(NODE *p);
 int findleaf(NODE *p, int);
 int relops(NODE *p);
 int offstar(NODE *p, int shape);

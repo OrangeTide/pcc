@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.58 2005/09/05 17:07:16 ragge Exp $	*/
+/*	$Id: common.c,v 1.59 2006/02/05 18:30:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -505,8 +505,10 @@ tmpalloc(int size)
 {
 	void *rv;
 
-	if (size > MEMCHUNKSZ)
-		cerror("tmpalloc %d", size);
+	if (size > MEMCHUNKSZ) {
+		return malloc(size);
+	//	cerror("tmpalloc %d", size);
+	}
 	if (size <= 0)
 		cerror("tmpalloc2");
 //printf("tmpalloc: tmppole %p tmpleft %d size %d ", tmppole, tmpleft, size);
