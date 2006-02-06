@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.31 2006/02/02 12:26:10 janeno-1 Exp $	*/
+/*	$Id: local2.c,v 1.32 2006/02/06 09:33:09 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -469,10 +469,11 @@ cbgen(int o, int lab)
 	printf("	%s " LABFMT "\n", ccbranches[o-EQ], lab);
 }
 
+#if 0
 void
 mygenregs(NODE *p)
 {
-#if 0
+
 	if (p->n_op == MINUS && p->n_type == DOUBLE &&
 	    (p->n_su & (LMASK|RMASK)) == (LREG|RREG)) {
 		p->n_su |= DORIGHT;
@@ -484,8 +485,9 @@ mygenregs(NODE *p)
 	if ((p->n_su & (LMASK|RMASK)) != (LREG|RREG))
 		return;
 	p->n_su &= ~DORIGHT;
-#endif
+
 }
+#endif
 
 struct hardops hardops[] = {
 	{ PLUS, FLOAT, "?F_ADD_L04" },
@@ -601,4 +603,37 @@ gclass(TWORD t)
 		return CLASSB;
 	
 	return CLASSA;
+}
+
+static int sizen;
+
+/* XXX: Fix this. */
+static int
+argsiz(NODE *p)
+{
+        TWORD t = p->n_type;
+
+        if (t < LONGLONG || t > MAXTYPES)
+                return 4;
+        if (t == LONGLONG || t == ULONGLONG || t == DOUBLE)
+                return 8;
+        if (t == LDOUBLE)
+                return 12;
+        if (t == STRTY)
+                return p->n_stsize;
+        comperr("argsiz");
+        return 0;
+}
+
+/*
+ * Calculate argument sizes.
+ * XXX: Fix this.
+ */
+void
+lastcall(NODE *p)
+{
+        sizen = 0;
+        for (p = p->n_right; p->n_op == CM; p = p->n_left)
+                sizen += argsiz(p->n_right);
+        sizen += argsiz(p);
 }

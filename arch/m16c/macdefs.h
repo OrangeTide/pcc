@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.21 2006/02/02 09:02:07 janeno-1 Exp $	*/
+/*	$Id: macdefs.h,v 1.22 2006/02/06 09:33:10 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -175,12 +175,12 @@ typedef long long OFFSZ;
 	{-1},\
 	{-1},\
 \
-	{R0, R0L, -1},\
-	{R0, R0H, -1},\
-	{R1, R1L, -1},\
-	{R1, R1H, -1},
+	{R0, -1},\
+	{R0, -1},\
+	{R1, -1},\
+	{R1, -1},
 
-#define PCLASS(p) (p->n_type <= UCHAR ? SCREG : SAREG)
+#define PCLASS(p) (p->n_type <= UCHAR ? SCREG : ISPTR(p->n_type) ? SBREG:SAREG)
 	    
 int COLORMAP(int c, int *r);
 #define	GCLASS(x) (x < 4 ? CLASSA : x < 6 ? CLASSB : x < 12 ? CLASSC : CLASSD)

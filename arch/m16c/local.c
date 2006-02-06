@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.10 2005/04/16 11:21:16 ragge Exp $	*/
+/*	$Id: local.c,v 1.11 2006/02/06 09:33:09 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -179,7 +179,8 @@ cendarg()
 int
 cisreg(TWORD t)
 {
-	if (t == INT || t == UNSIGNED )
+	if (t == INT || t == UNSIGNED || t == CHAR || t == UCHAR ||
+		ISPTR(t))
 		return(1);
 	return 0; /* XXX - fix reg assignment in pftn.c */
 }

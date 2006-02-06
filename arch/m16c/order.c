@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.16 2006/02/02 09:01:07 janeno-1 Exp $	*/
+/*	$Id: order.c,v 1.17 2006/02/06 09:33:10 janeno-1 Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -246,11 +246,13 @@ nspecial(struct optab *q)
 	    static struct rspecial s[] = {
 		{ NRES, R0 }, { NRES, R2}, { 0 } };
 	    return s;
-	} else if(q->ltype & TCHAR) {
+	}
+	/*
+	else if(q->ltype & TCHAR) {
 	    static struct rspecial s[] = {
 		{ NRES, R0L }, { NRES, R0H}, { 0 } };
 	    return s;
-	}
+	    }*/
 	break;
 
     case MUL:
