@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.110 2006/01/28 07:27:12 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.111 2006/02/16 16:46:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -173,7 +173,7 @@ struct swents {			/* switch table */
 	CONSZ	sval;		/* case value */
 	int	slab;		/* associated label */
 };
-void genswitch(struct swents **, int);
+void genswitch(int, struct swents **, int);
 
 extern	int blevel;
 extern	int instruct, got_type;

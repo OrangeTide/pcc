@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.148 2006/01/28 07:27:12 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.149 2006/02/16 16:46:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -505,7 +505,8 @@ ftnend()
 #ifdef GCC_COMPAT
 		c = gcc_findname(cftnsp);
 #endif
-		send_passt(IP_EPILOG, 0, maxautooff, c,
+		SETOFF(maxautooff, ALCHAR);
+		send_passt(IP_EPILOG, 0, maxautooff/SZCHAR, c,
 		    cftnsp->stype, cftnsp->sclass == EXTDEF, retlab);
 	}
 

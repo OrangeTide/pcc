@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.144 2006/02/01 12:58:13 ragge Exp $	*/
+/*	$Id: trees.c,v 1.145 2006/02/16 16:46:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1563,7 +1563,7 @@ doszof(NODE *p)
 }
 
 #ifdef PCC_DEBUG
-int
+void
 eprint(NODE *p, int down, int *a, int *b)
 {
 	int ty;
@@ -1584,7 +1584,6 @@ eprint(NODE *p, int down, int *a, int *b)
 	}
 	tprint(stdout, p->n_type, p->n_qual);
 	printf( ", %p, %p\n", p->n_df, p->n_sue );
-	return 0;
 }
 # endif
 

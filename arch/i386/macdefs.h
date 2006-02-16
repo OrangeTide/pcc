@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.40 2006/01/31 21:19:52 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.41 2006/02/16 16:46:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -130,7 +130,7 @@ typedef long long OFFSZ;
 
 #define BYTEOFF(x)	((x)&03)
 #define wdal(k)		(BYTEOFF(k)==0)
-#define BITOOR(x)	((x)/SZCHAR)	/* bit offset to oreg offset */
+#define BITOOR(x)	(x)	/* bit offset to oreg offset XXX die! */
 
 #define STOARG(p)
 #define STOFARG(p)
@@ -289,4 +289,5 @@ int COLORMAP(int c, int *r);
 #define MYCANON(p) mycanon(p)
 #define	MYOPTIM
 
-#define special(a, b)	SRNOPE
+#define	SHSTR		(MAXSPECIAL+1)	/* short struct */
+#define	SFUNCALL	(MAXSPECIAL+2)	/* struct assign after function call */
