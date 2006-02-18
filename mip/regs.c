@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.114 2006/02/16 16:46:31 ragge Exp $	*/
+/*	$Id: regs.c,v 1.115 2006/02/18 08:19:42 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2060,7 +2060,7 @@ ngenregs(struct interpass *ipole)
 	struct interpass_prolog *ipp, *epp;
 	struct interpass *ip;
 	int i, nbits = 0;
-	static int uu[1] = { -1 };
+	int uu[NPERMREG] = { -1 };
 	int xnsavregs[NPERMREG];
 	int beenhere = 0;
 
@@ -2086,9 +2086,13 @@ ngenregs(struct interpass *ipole)
 	 */
 	basetemp = tempmin;
 	if (xtemps == 0) {
-		nsavregs = uu;
-		ndontregs = tmpalloc(NPERMREG*sizeof(int));
-		memcpy(ndontregs, permregs, NPERMREG * sizeof(int));
+		nsavregs = xnsavregs;
+		for (i = 0; i < NPERMREG; i++)
+			xnsavregs[i] = 0;
+		ndontregs = uu;
+		for (i = 0; i < NPERMREG; i++)
+			ndontregs[i] = permregs[i];
+		ndontregs[i] = -1;
 	} else {
 		nsavregs = xnsavregs;
 		for (i = 0; i < NPERMREG; i++)
