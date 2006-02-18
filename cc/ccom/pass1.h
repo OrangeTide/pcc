@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.112 2006/02/18 08:19:42 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.113 2006/02/18 15:20:45 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -34,6 +34,7 @@
  */
 
 #include <sys/types.h>
+#include <stdarg.h>
 
 #include "manifest.h"
 
@@ -317,6 +318,7 @@ void ejobcode(int);
 void calldec(NODE *, NODE *);
 int cisreg(TWORD);
 char *tmpsprintf(char *fmt, ...);
+char *tmpvsprintf(char *fmt, va_list ap);
 
 
 void p1print(char *fmt, ...);
