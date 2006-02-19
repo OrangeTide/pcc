@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.146 2006/02/18 15:20:45 ragge Exp $	*/
+/*	$Id: trees.c,v 1.147 2006/02/19 22:22:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2224,6 +2224,7 @@ send_passt(int type, ...)
 		if (blevel == 0) { /* outside function */
 			printf("\t%s\n", va_arg(ap, char *));
 			va_end(ap);
+			lastloc = -1;
 			return;
 		}
 		ip->ip_asm = va_arg(ap, char *);
