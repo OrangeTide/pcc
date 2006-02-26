@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.69 2006/02/16 16:46:30 ragge Exp $	*/
+/*	$Id: table.c,v 1.70 2006/02/26 18:44:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1068,6 +1068,7 @@ struct optab table[] = {
 /*
  * INCR/DECR operators (post-increment)
  */
+#if 0
 { INCR,	INAREG,
 	SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TPTRTO,
 	SANY,	TANY,
@@ -1091,6 +1092,7 @@ struct optab table[] = {
 	SANY,	TANY,
 		NBREG,	RESC1,
 		"	movb AL,A1\n	incb AL\n", },
+#endif
 
 /*
  * Logical/branching operators
