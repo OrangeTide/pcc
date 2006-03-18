@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.147 2006/02/19 22:22:26 ragge Exp $	*/
+/*	$Id: trees.c,v 1.148 2006/03/18 08:18:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2352,5 +2352,6 @@ void
 plabel(int label)
 {
 	setloc1(PROG);
+	reached = 1; /* Will this always be correct? */
 	send_passt(IP_DEFLAB, label);
 }

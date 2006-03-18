@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.87 2006/02/16 16:46:30 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.88 2006/03/18 08:18:34 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -285,6 +285,13 @@ extern int regK[];
 #define	CLASSC	3
 #define	CLASSD	4
 #define	CLASSE	5
+
+/* routines to handle double indirection */
+#ifdef R2REGS
+void makeor2(NODE *p, NODE *q, int, int);
+int base(NODE *);
+int offset(NODE *p, int);
+#endif
 
 extern	int lineno;
 extern	int fldshf, fldsz;

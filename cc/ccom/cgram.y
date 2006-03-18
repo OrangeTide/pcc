@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.153 2006/02/19 22:22:26 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.154 2006/03/18 08:18:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -712,9 +712,9 @@ statement:	   e ';' { ecomp( $1 ); }
 			    resetbc(0);
 			    }
 		| switchpart statement
-			{  if( reached ) branch( brklab );
+			{ if( reached ) branch( brklab );
 			    plabel( $1 );
-			   swend();
+			    swend();
 			    plabel( brklab);
 			    if( (flostat&FBRK) || !(flostat&FDEF) ) reached = 1;
 			    resetbc(FCONT);

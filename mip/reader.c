@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.176 2006/02/26 18:44:05 ragge Exp $	*/
+/*	$Id: reader.c,v 1.177 2006/03/18 08:18:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -596,6 +596,7 @@ again:	switch (o = p->n_op) {
 		break;
 
 	case UMUL:
+
 		/*
 		 * If we end up here with an UMUL, try to fold it into
 		 * an OREG anyway.

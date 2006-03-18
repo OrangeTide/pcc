@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.41 2006/02/16 16:46:30 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.42 2006/03/18 08:18:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -280,6 +280,8 @@ int COLORMAP(int c, int *r);
 			 x == LONGLONG || x == ULONGLONG ? EAXEDX : \
 			 x == FLOAT || x == DOUBLE || x == LDOUBLE ? 31 : EAX)
 
+//#define R2REGS	1	/* permit double indexing */
+
 /* XXX - to die */
 #define FPREG	EBP	/* frame pointer */
 #define STKREG	ESP	/* stack pointer */
@@ -291,3 +293,4 @@ int COLORMAP(int c, int *r);
 
 #define	SHSTR		(MAXSPECIAL+1)	/* short struct */
 #define	SFUNCALL	(MAXSPECIAL+2)	/* struct assign after function call */
+#define	SPCON		(MAXSPECIAL+3)	/* positive nonnamed constant */
