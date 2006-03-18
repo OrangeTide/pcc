@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.5 2004/10/04 16:49:28 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.6 2006/03/18 15:30:47 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -41,6 +41,7 @@ static struct kw {
 	int rv;
 } kw[] = {
 	{ "__asm__", NULL, C_ASM },
+	{ "__asm", NULL, C_ASM },
 	{ "__signed", NULL, 0 },
 	{ "__inline", NULL, C_FUNSPEC },
 	{ "__const", NULL, 0 },

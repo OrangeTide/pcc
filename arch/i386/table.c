@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.71 2006/03/18 08:18:34 ragge Exp $	*/
+/*	$Id: table.c,v 1.72 2006/03/18 15:30:45 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -82,6 +82,13 @@ struct optab table[] = {
 { SCONV,	INFL,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
+		0,	RLEFT,
+		"", },
+
+/* convert pointers to pointers. */
+{ SCONV,	ININT,
+	SHINT,	TPOINT,
+	SANY,	TPOINT,
 		0,	RLEFT,
 		"", },
 
