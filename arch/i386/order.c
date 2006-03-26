@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.37 2006/02/22 16:27:27 ragge Exp $	*/
+/*	$Id: order.c,v 1.38 2006/03/26 07:14:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -72,7 +72,7 @@ offstar(NODE *p, int shape)
 
 	if( p->n_op == PLUS || p->n_op == MINUS ){
 		if( p->n_right->n_op == ICON ){
-			p->n_su = -1;
+			p->n_su = DOWNL;
 			(void)geninsn(p->n_left, INAREG);
 			return 1;
 		}

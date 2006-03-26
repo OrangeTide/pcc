@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.118 2006/02/26 18:44:05 ragge Exp $	*/
+/*	$Id: regs.c,v 1.119 2006/03/26 07:14:29 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -216,7 +216,7 @@ nsucomp(NODE *p)
 	REGW *w;
 	NODE *r;
 
-	if (p->n_su == -1)
+	if (p->n_su == DOWNL)
 		return nsucomp(p->n_left);
 
 	UDEBUG(("entering nsucomp, node %p\n", p));
@@ -456,13 +456,13 @@ popmlist(REGM *l)
 }
 
 #define	REGUALL(r, n)	r = &nodeblock[n]
-#define	GETP(p)		((p)->n_su == -1 ? getp(p) : p)
+#define	GETP(p)		((p)->n_su == DOWNL ? getp(p) : p)
 #define	GETRALL(p)	(GETP(p)->n_regw)
 
 static NODE *
 getp(NODE *p)
 {
-	while (p->n_su == -1)
+	while (p->n_su == DOWNL)
 		p = p->n_left;
 	return p;
 }
@@ -907,7 +907,7 @@ insntype(struct optab *q, NODE *p, int side)
 	NODE *lr = (side == RRIGHT ? p->n_right : p->n_left);
 	int nres;
 
-	if (p->n_su == -1)
+	if (p->n_su == DOWNL)
 		comperr("insntype == -1");
 
 	regw = p->n_regw;
@@ -1053,7 +1053,7 @@ insnwalk(NODE *p)
 
 	RDEBUG(("insnwalk: %p\n", p));
 
-	if (p->n_su == -1)
+	if (p->n_su == DOWNL)
 		return insnwalk(p->n_left);
 
 	q = &table[TBLIDX(p->n_su)];
@@ -1772,7 +1772,7 @@ paint(NODE *p)
 	REGW *w, *ww;
 	int i;
 
-	if (p->n_su == -1)
+	if (p->n_su == DOWNL)
 		return;
 
 	if (p->n_regw != NULL) {
