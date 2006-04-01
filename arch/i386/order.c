@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.38 2006/03/26 07:14:28 ragge Exp $	*/
+/*	$Id: order.c,v 1.39 2006/04/01 13:19:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -70,6 +70,8 @@ offstar(NODE *p, int shape)
 	if (x2debug)
 		printf("offstar(%p)\n", p);
 
+	if (p->n_op == REG || p->n_op == TEMP)
+		return 1; /* Is already oreg */
 	if( p->n_op == PLUS || p->n_op == MINUS ){
 		if( p->n_right->n_op == ICON ){
 			p->n_su = DOWNL;

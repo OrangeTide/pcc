@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.72 2006/03/18 15:30:45 ragge Exp $	*/
+/*	$Id: table.c,v 1.73 2006/04/01 13:19:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1031,53 +1031,46 @@ struct optab table[] = {
  * Indirection operators.
  */
 { UMUL,	INLL,
-	SAREG,	TPTRTO|TLL,
 	SANY,		TLL,
+	SOREG,		TPTRTO|TLL,
 		NCREG|NCSL,	RESC1,
-		"	movl 4(AL),U1\n	movl (AL),A1\n", },
+		"	movl UL,U1\n	movl AL,A1\n", },
 
-#if 1
 { UMUL,	INAREG,
-	SAREG,	TPOINT|TWORD,
-	SANY,		TPOINT|TWORD,
-		NAREG|NASL,	RESC1,
-		"	movl (AL),A1\n", },
-#else
-{ UMUL,	INAREG,
-	SAREG,	TPOINT|TWORD,
-	SANY,		TPOINT|TWORD,
+	SANY,	TPOINT|TWORD,
+	SOREG,	TPOINT|TWORD,
 		NAREG|NASL,	RESC1,
 		"	movl AL,A1\n", },
-#endif
+
 { UMUL,	INCH,
-	SAREG,	TCHAR|TUCHAR|TPTRTO,
 	SANY,		TCHAR|TUCHAR,
+	SAREG,	TCHAR|TUCHAR|TPTRTO,
 		NBREG|NBSL,	RESC1,
-		"	movb (AL),A1\n", },
+		"	movb AL,A1\n", },
 
 { UMUL,	INAREG,
-	SAREG,	TSHORT|TUSHORT|TPTRTO,
 	SANY,		TSHORT|TUSHORT,
+	SAREG,	TSHORT|TUSHORT|TPTRTO,
 		NAREG|NASL,	RESC1,
-		"	movw (AL),A1\n", },
+		"	movw AL,A1\n", },
 
 { UMUL,	INFL,
-	SAREG,	TLDOUBLE|TPTRTO,
 	SANY,		TLDOUBLE,
+	SAREG,	TLDOUBLE|TPTRTO,
 		NDREG,	RESC1,
-		"	fldq (AL)\n", },
+		"	fldq AL\n", },
 
 { UMUL,	INFL,
-	SAREG,	TDOUBLE|TPTRTO,
 	SANY,		TDOUBLE,
+	SAREG,	TDOUBLE|TPTRTO,
 		NDREG,	RESC1,
-		"	fldl (AL)\n", },
+		"	fldl AL\n", },
 
 { UMUL,	INFL,
-	SAREG,	TFLOAT|TPTRTO,
 	SANY,		TFLOAT,
+	SAREG,	TFLOAT|TPTRTO,
 		NDREG,	RESC1,
-		"	flds (AL)\n", },
+		"	flds AL\n", },
 
 /*
  * INCR/DECR operators (post-increment)
