@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.57 2006/04/01 13:19:18 ragge Exp $   */
+/*      $Id: match.c,v 1.58 2006/04/08 07:22:24 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -198,6 +198,9 @@ tshape(NODE *p, int shape)
 		break;
 
 	case UMUL:
+		/* may end up here if TEMPs involved */
+		if (oregok(p, 0) && (shape & SOREG))
+			return SRDIR; /* converted early */
 		if (shumul(p->n_left) & shape)
 			return SROREG;	/* Call offstar to do an OREG */
 		break;
