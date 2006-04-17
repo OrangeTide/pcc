@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.1 2006/04/17 13:23:52 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.1.1.1 2006/04/17 13:23:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
