@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.91 2006/04/08 07:22:24 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.92 2006/04/22 07:25:18 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -176,7 +176,7 @@ typedef int bittype; /* XXX - for basicblock */
 #define MUSTDO		010000	/* force register requirements */
 #define NOPREF		020000	/* no preference for register assignment */
 
-#define	isbreg(r)	(REGBIT(r) & BREGS)
+#define	isreg(p)	(p->n_op == REG || p->n_op == TEMP)
 
 #define TBUSY		01000
 
