@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.42 2006/03/18 08:18:34 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.43 2006/05/13 06:35:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -263,6 +263,7 @@ typedef long long OFFSZ;
 	{ -1 },
 
 
+/* Return a register class based on the type of the node */
 #define PCLASS(p) (p->n_type <= UCHAR ? SBREG : \
 		  (p->n_type == LONGLONG || p->n_type == ULONGLONG ? SCREG : \
 		  (p->n_type >= FLOAT && p->n_type <= LDOUBLE ? SDREG : SAREG)))
