@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.92 2006/04/22 07:25:18 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.93 2006/05/14 15:38:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -338,10 +338,12 @@ extern	char *opst[];	/* a vector containing names for ops */
 #define LREG		001
 #define LOREG		002
 #define LTEMP		003
+#define	LDIR		003
 #define LMASK		003
 #define RREG		004
 #define ROREG		010
 #define RTEMP		014
+#define	RDIR		014
 #define RMASK		014
 #define DORIGHT		020
 #define	SCLASS(v,x)	((v) |= ((x) << 5))
