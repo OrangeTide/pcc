@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.182 2006/05/13 06:35:36 ragge Exp $	*/
+/*	$Id: reader.c,v 1.183 2006/05/21 07:17:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -744,7 +744,7 @@ gencode(NODE *p, int cookie)
 		return;
 
 canon(p); /* XXX */
-fwalk(p, e2print, 0);
+//fwalk(p, e2print, 0);
 	expand(p, cookie, q->cstring);
 	if (callop(p->n_op) && cookie != FOREFF &&
 	    DECRA(p->n_reg, 0) != RETREG(p->n_type)) {
