@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.183 2006/05/21 07:17:59 ragge Exp $	*/
+/*	$Id: reader.c,v 1.184 2006/05/25 08:04:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -667,18 +667,24 @@ gencode(NODE *p, int cookie)
 
 	if (p->n_su & DORIGHT) {
 		gencode(p->n_right, INREGS);
+#ifndef ragge
 		if ((p->n_su & RMASK) == ROREG)
 			canon(p);
+#endif
 	}
 	if (p->n_su & LMASK) {
 		gencode(p->n_left, INREGS);
+#ifndef ragge
 		if ((p->n_su & LMASK) == LOREG)
 			canon(p);
+#endif
 	}
 	if ((p->n_su & RMASK) && !(p->n_su & DORIGHT)) {
 		gencode(p->n_right, INREGS);
+#ifndef ragge
 		if ((p->n_su & RMASK) == ROREG)
 			canon(p);
+#endif
 	}
 
 	if ((p->n_su & RMASK) == RREG) {

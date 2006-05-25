@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.122 2006/05/13 06:35:36 ragge Exp $	*/
+/*	$Id: regs.c,v 1.123 2006/05/25 08:04:56 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -165,6 +165,7 @@ newblock(NODE *p)
 	return nb;
 }
 
+#ifndef ragge
 /*
  * Avoid unwanted edges for OREG registers.
  * XXX - should not be done like this.
@@ -191,6 +192,7 @@ chkoreg(NODE *p)
 	}
 	return 0;
 }
+#endif
 
 static void
 setleaf(NODE *p)
@@ -380,12 +382,16 @@ nsucomp(NODE *p)
 		break;
 
 	case ROREG:
+#ifndef ragge
 		if (chkoreg(p->n_right))
 			right = 0;
 		else
 			right = nsucomp(p->n_right);
 		break;
-
+#else
+		right = nsucomp(p->n_right);
+		break;
+#endif
 	case RTEMP: 
 		cerror("sucomp RTEMP");
 	default:
@@ -405,6 +411,7 @@ nsucomp(NODE *p)
 		break;
 
 	case LOREG:
+#ifndef ragge
 		if (p->n_left->n_op == UMUL && chkoreg(p->n_left->n_left))
 			left = 0;
 		else if (chkoreg(p->n_left))
@@ -412,6 +419,10 @@ nsucomp(NODE *p)
 		else
 			left = nsucomp(p->n_left);
 		break;	
+#else
+		left = nsucomp(p->n_left);
+		break;
+#endif
 	case LTEMP:
 		cerror("sucomp LTEMP");
 	default:
