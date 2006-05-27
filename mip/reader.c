@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.185 2006/05/25 14:43:01 ragge Exp $	*/
+/*	$Id: reader.c,v 1.186 2006/05/27 07:32:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -649,12 +649,15 @@ gencode(NODE *p, int cookie)
 	NODE *p1;
 
 #ifdef ragge
-	if (p->n_su == 0) {
-		/* XXX - check DORIGHT */
-		if (optype(p->n_op) == BITYPE)
+	if (TBLIDX(p->n_su) == 0) {
+		int o = optype(p->n_op);
+
+		if (o == BITYPE && (p->n_su & DORIGHT))
 			gencode(p->n_right, 0);
 		if (optype(p->n_op) != LTYPE)
 			gencode(p->n_left, 0);
+		if (o == BITYPE && !(p->n_su & DORIGHT))
+			gencode(p->n_right, 0);
 		return;
 	}
 #else
