@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.93 2006/05/14 15:38:46 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.94 2006/05/30 20:33:21 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -264,7 +264,7 @@ int finduni(NODE *p, int);
 int findumul(NODE *p, int);
 int findleaf(NODE *p, int);
 int relops(NODE *p);
-int offstar(NODE *p, int shape);
+void offstar(NODE *p, int shape);
 int gclass(TWORD);
 void lastcall(NODE *);
 void myreader(struct interpass *pole);
