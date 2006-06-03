@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.72 2006/03/18 08:18:33 ragge Exp $	*/
+/*	$Id: local2.c,v 1.73 2006/06/03 11:42:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -554,6 +554,24 @@ zzzcode(NODE *p, int c)
 		expand(p, INAREG, "\tpushl AR\n");
 		expand(p, INAREG, "\tleal AL,%eax\n\tpushl %eax\n");
 		printf("\tcall memcpy\n");
+		break;
+
+	case 'S': /* emit eventual move after cast from longlong */
+		/* Currently only longlong -> char */
+		pr = DECRA(p->n_reg, 0);
+		lr = p->n_left->n_rval;
+		switch (p->n_type) {
+		case CHAR:
+		case UCHAR:
+			if (rnames[pr][2] != 'l' ||
+			    rnames[pr][1] != rnames[lr][1])
+				comperr("SCONV %s->%s", rnames[lr], rnames[pr]);
+			break;
+		default:
+			if (rnames[lr][1] != rnames[pr][2])
+				comperr("SCONV %s->%s", rnames[lr], rnames[pr]);
+			break;
+		}
 		break;
 
 	default:
