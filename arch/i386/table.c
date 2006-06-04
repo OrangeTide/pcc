@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.75 2006/06/03 11:42:43 ragge Exp $	*/
+/*	$Id: table.c,v 1.76 2006/06/04 13:26:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -926,25 +926,25 @@ struct optab table[] = {
 { DIV,	INAREG,
 	SAREG,			TSWORD,
 	SAREG|SNAME|SOREG,	TWORD,
-		NSPECIAL,	RLEFT,
+		NSPECIAL,	RDEST,
 		"	cltd\n	idivl AR\n", },
 
 { DIV,	INAREG,
 	SAREG,			TUWORD|TPOINT,
 	SAREG|SNAME|SOREG,	TUWORD|TPOINT,
-		NSPECIAL,	RLEFT,
+		NSPECIAL,	RDEST,
 		"	xorl %edx,%edx\n	divl AR\n", },
 
 { DIV,	INAREG,
 	SAREG,			TUSHORT,
 	SAREG|SNAME|SOREG,	TUSHORT,
-		NSPECIAL,	RLEFT,
+		NSPECIAL,	RDEST,
 		"	xorl %edx,%edx\n	divw AR\n", },
 
 { DIV,	INCH,
 	SHCH,			TUCHAR,
 	SHCH|SNAME|SOREG,	TUCHAR,
-		NSPECIAL,	RLEFT,
+		NSPECIAL,	RDEST,
 		"	xorb %ah,%ah\n	divb AR\n", },
 
 { DIV,	INFL,
@@ -1012,7 +1012,7 @@ struct optab table[] = {
 { MUL,	INCH,
 	SHCH,			TCHAR|TUCHAR,
 	SHCH|SNAME|SOREG,	TCHAR|TUCHAR,
-		NSPECIAL,	RLEFT,
+		NSPECIAL,	RDEST,
 		"	imulb AR\n", },
 
 { MUL,	INFL,
