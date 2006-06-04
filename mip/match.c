@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.68 2006/06/03 11:42:43 ragge Exp $   */
+/*      $Id: match.c,v 1.69 2006/06/04 09:49:58 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -471,8 +471,8 @@ chcheck(NODE *p, int shape, int rew)
 		if (shape & INREGS)
 			sh = SRREG;
 		break;
+
 	case SROREG:
-		break;
 	case SRDIR:
 		if (rew == 0)
 			break;
@@ -501,7 +501,7 @@ shswitch(int sh, NODE *p, int shape, int cookie, int rew, int go)
 	int lsh;
 
 	switch (go) {
-	case 0: /* direct match, just clear su */
+	case SRDIR: /* direct match, just clear su */
 		(void)swmatch(p, 0, 0);
 		break;
 

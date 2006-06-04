@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.73 2006/06/03 11:42:43 ragge Exp $	*/
+/*	$Id: local2.c,v 1.74 2006/06/04 09:49:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -567,6 +567,14 @@ zzzcode(NODE *p, int c)
 			    rnames[pr][1] != rnames[lr][1])
 				comperr("SCONV %s->%s", rnames[lr], rnames[pr]);
 			break;
+
+		case INT:
+		case UNSIGNED:
+			if (rnames[lr][1] != rnames[pr][2])
+				printf("\tmovl %%e%cx,%s\n",
+				    rnames[lr][1], rnames[pr]);
+			break;
+
 		default:
 			if (rnames[lr][1] != rnames[pr][2])
 				comperr("SCONV %s->%s", rnames[lr], rnames[pr]);
@@ -671,7 +679,7 @@ conput(FILE *fp, NODE *p)
 		return;
 
 	default:
-		comperr("illegal conput");
+		comperr("illegal conput, p %p", p);
 	}
 }
 
