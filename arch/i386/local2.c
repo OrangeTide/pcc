@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.74 2006/06/04 09:49:58 ragge Exp $	*/
+/*	$Id: local2.c,v 1.75 2006/06/10 08:25:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -557,15 +557,20 @@ zzzcode(NODE *p, int c)
 		break;
 
 	case 'S': /* emit eventual move after cast from longlong */
-		/* Currently only longlong -> char */
 		pr = DECRA(p->n_reg, 0);
 		lr = p->n_left->n_rval;
 		switch (p->n_type) {
 		case CHAR:
 		case UCHAR:
-			if (rnames[pr][2] != 'l' ||
-			    rnames[pr][1] != rnames[lr][1])
-				comperr("SCONV %s->%s", rnames[lr], rnames[pr]);
+			if (rnames[pr][2] == 'l' && rnames[lr][2] == 'x' &&
+			    rnames[pr][1] == rnames[lr][1])
+				break;
+			if (rnames[lr][2] == 'x') {
+				printf("\tmovb %%%cl,%s\n",
+				    rnames[lr][1], rnames[pr]);
+				break;
+			}
+			comperr("SCONV1 %s->%s", rnames[lr], rnames[pr]);
 			break;
 
 		case INT:
@@ -577,7 +582,7 @@ zzzcode(NODE *p, int c)
 
 		default:
 			if (rnames[lr][1] != rnames[pr][2])
-				comperr("SCONV %s->%s", rnames[lr], rnames[pr]);
+				comperr("SCONV2 %s->%s", rnames[lr], rnames[pr]);
 			break;
 		}
 		break;

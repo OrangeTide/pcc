@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.77 2006/06/08 16:45:15 ragge Exp $	*/
+/*	$Id: table.c,v 1.78 2006/06/10 08:25:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1322,8 +1322,8 @@ struct optab table[] = {
 		"	pushl UL\n	pushl AL\n", },
 
 { FUNARG,	FOREFF,
-	SCON|SAREG|SNAME|SOREG,	TWORD|TPOINT|TFLOAT,
-	SANY,	TWORD|TPOINT|TFLOAT,
+	SCON|SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SANY,	TWORD|TPOINT,
 		0,	RNULL,
 		"	pushl AL\n", },
 
