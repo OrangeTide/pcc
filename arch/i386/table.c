@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.78 2006/06/10 08:25:32 ragge Exp $	*/
+/*	$Id: table.c,v 1.79 2006/06/10 12:19:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1390,7 +1390,7 @@ struct optab table[] = {
 { STARG,	FOREFF,
 	SAREG|SOREG|SNAME|SCON,	TANY,
 	SANY,	TSTRUCT,
-		NSPECIAL,	0,
+		NSPECIAL|NAREG,	0,
 		"ZF", },
 
 # define DF(x) FORREW,SANY,TANY,SANY,TANY,REWRITE,x,""
