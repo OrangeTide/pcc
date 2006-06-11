@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.76 2006/06/10 15:05:23 ragge Exp $	*/
+/*	$Id: local2.c,v 1.77 2006/06/11 11:53:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -546,6 +546,7 @@ zzzcode(NODE *p, int c)
 		expand(p, INAREG, "\tpushl AR\n");
 		expand(p, INAREG, "\tleal AL,%eax\n\tpushl %eax\n");
 		printf("\tcall memcpy\n");
+		printf("\taddl $12,%%esp\n");
 		break;
 
 	case 'S': /* emit eventual move after cast from longlong */
@@ -794,7 +795,7 @@ cbgen(int o, int lab)
 }
 
 /*
- * Prepare for struct return by allocate bounce space on stack.
+ * Prepare for struct return by allocating bounce space on stack.
  */
 static void
 fixcalls(NODE *p)
@@ -803,8 +804,8 @@ fixcalls(NODE *p)
 	switch (p->n_op) {
 	case STCALL:
 	case USTCALL:
-		if (p->n_stsize+p2autooff > p2maxautooff)
-			stkpos = p2maxautooff = p->n_stsize+p2autooff;
+		if (p->n_stsize+p2autooff > stkpos)
+			stkpos = p->n_stsize+p2autooff;
 		break;
 	}
 		
@@ -821,6 +822,10 @@ myreader(struct interpass *ipole)
 			continue;
 		walkf(ip->ip_node, fixcalls);
 	}
+	if (stkpos > p2autooff)
+		p2autooff = stkpos;
+	if (stkpos > p2maxautooff)
+		p2maxautooff = stkpos;
 	if (x2debug)
 		printip(ipole);
 }
