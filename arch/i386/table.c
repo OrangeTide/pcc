@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.80 2006/06/10 15:05:23 ragge Exp $	*/
+/*	$Id: table.c,v 1.81 2006/06/13 07:54:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1058,7 +1058,7 @@ struct optab table[] = {
 	SANY,	TANY,
 	SOREG,	TLDOUBLE,
 		NDREG|NDSL,	RESC1,
-		"	fldq AL\n", },
+		"	fldt AL\n", },
 
 { UMUL,	INFL,
 	SANY,	TANY,

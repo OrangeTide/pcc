@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.135 2006/06/13 06:14:30 ragge Exp $	*/
+/*	$Id: regs.c,v 1.136 2006/06/13 07:54:31 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -899,9 +899,11 @@ insnwalk(NODE *p)
 			switch (rc->op) {
 #define	ONLY(c,s) if (c) s(c, &ablock[rc->num]); break;
 			case NLEFT: ONLY(lr, moveadd)
-			case NOLEFT: ONLY(lr, AddEdge)
+			case NOLEFT: /* ONLY(lr, AddEdge) */
+				addedge_r(p->n_left, &ablock[rc->num]); break;
 			case NRIGHT: ONLY(rr, moveadd)
-			case NORIGHT: ONLY(rr, AddEdge)
+			case NORIGHT: /* ONLY(rr, AddEdge) */
+				addedge_r(p->n_right, &ablock[rc->num]); break;
 			case NEVER: addalledges(&ablock[rc->num]); break;
 #undef ONLY
 			}
