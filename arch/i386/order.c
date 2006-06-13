@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.41 2006/06/10 15:05:23 ragge Exp $	*/
+/*	$Id: order.c,v 1.42 2006/06/13 06:14:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -173,7 +173,7 @@ nspecial(struct optab *q)
 		} else if (q->ltype == TSHORT &&
 		    q->rtype == (TLONGLONG|TULONGLONG)) {
 			static struct rspecial s[] = {
-				{ NLEFT, EAX }, { NRES, EAXEDX },
+				{ NRES, EAXEDX },
 				{ NEVER, EAX }, { NEVER, EDX }, { 0 } };
 			return s;
 		} else if (q->ltype == TCHAR &&

@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.134 2006/06/11 08:16:34 ragge Exp $	*/
+/*	$Id: regs.c,v 1.135 2006/06/13 06:14:30 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -851,8 +851,11 @@ insnwalk(NODE *p)
 	rv = p->n_regw;
 
 	rrv = lrv = NULL;
-	if (ASGLEFT(p)) /* remove assigned temp from live set first */
-		LIVEDEL((int)p->n_left->n_lval);
+	if (ASGLEFT(p)) {
+		int v = p->n_left->n_lval;
+		LIVEDEL(v); /* remove assigned temp from live set */
+		addalledges(&nblock[v]);
+	}
 
 	/* Add edges for the result of this node */
 	if (rv && (q->visit & INREGS || o == TEMP))	

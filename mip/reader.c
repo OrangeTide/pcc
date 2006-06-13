@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.191 2006/06/10 08:25:32 ragge Exp $	*/
+/*	$Id: reader.c,v 1.192 2006/06/13 06:14:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -717,7 +717,7 @@ gencode(NODE *p, int cookie)
 		}
 		if (lr >= 0) {
 			if (l->n_op != REG)
-				comperr("gencode: lop != REG");
+				comperr("gencode: %p lop != REG", p);
 			if (lr != l->n_rval)
 				rmove(l->n_rval, lr, l->n_type);
 			l->n_rval = l->n_reg = lr;
