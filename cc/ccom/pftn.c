@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.150 2006/02/19 22:22:26 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.151 2006/06/14 17:53:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1444,6 +1444,12 @@ uni:			p->n_lval = class;
 		if (p->n_op != TYPE)
 			cerror("typenode got notype %d", p->n_op);
 		switch (p->n_type) {
+		case UCHAR:
+		case USHORT: /* may come from typedef */
+			if (sign != 0 || adj != INT)
+				goto bad;
+			noun = p->n_type;
+			break;
 		case SIGNED:
 		case UNSIGNED:
 			if (sign != 0)
