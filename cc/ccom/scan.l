@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.47 2004/12/11 09:12:36 ragge Exp $	*/
+/*	$Id: scan.l,v 1.48 2006/06/15 19:05:23 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -135,17 +135,16 @@ L?'(\\.|[^\\'])+'	{ yylval.nodep = charcon(); return(C_ICON); }
 {D}*"."{D}+({E})?{FS}?	{ yylval.nodep = floatcon(); return(C_FCON); }
 {D}+"."{D}*({E})?{FS}?	{ yylval.nodep = floatcon(); return(C_FCON); }
 
-L?\"(\\.|[^\\"])*\"	{	char *c = yytext;
+L?\"(\\.|[^\\"])*\"	{
+				char *c = yytext;
 				int i = yyleng-2;
 
 				if (*c++ == 'L')
 					c++, i--;
 				c[i] = 0; /* last " */
-				yylval.stri.str = c;
-				yylval.stri.len = i;
+				yylval.strp = c;
 				return(C_STRING);
 			}
-
 "..."			{ return(C_ELLIPSIS); }
 ">>="			{ yylval.intval = RSEQ; return(C_ASOP); }
 "<<="			{ yylval.intval = LSEQ; return(C_ASOP); }
