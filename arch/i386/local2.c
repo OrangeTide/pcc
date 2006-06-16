@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.79 2006/06/14 17:53:08 ragge Exp $	*/
+/*	$Id: local2.c,v 1.80 2006/06/16 09:30:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -409,36 +409,16 @@ argsiz(NODE *p)
 void
 zzzcode(NODE *p, int c)
 {
-	struct optab *q;
 	NODE *r, *l;
 	int pr, lr;
 	char *ch;
 
 	switch (c) {
-#if 0
-	case 'B':
-		/*
-		 * Print conversion chars for loading into register.
-		 */
-		p = getlr(p, 'R');
-		switch (p->n_type) {
-		case SHORT: printf("swl"); break;
-		case USHORT: printf("zwl"); break;
-		case CHAR: printf("sbl"); break;
-		case UCHAR: printf("zbl"); break;
-		default: comperr("ZB: %d", p->n_type);
-		}
-		break;
-#endif
 
 	case 'C':  /* remove from stack after subroutine call */
 		pr = p->n_qual;
-		if (p->n_op == STCALL || p->n_op == USTCALL) {
+		if (p->n_op == STCALL || p->n_op == USTCALL)
 			pr += 4;
-			q = &table[TBLIDX(p->n_su)];
-			if (q->visit == FOREFF)
-				pr += p->n_stsize;
-		}
 		if (p->n_op == UCALL)
 			return; /* XXX remove ZC from UCALL */
 		if (pr)
@@ -467,14 +447,6 @@ zzzcode(NODE *p, int c)
 		if ((p->n_su & DORIGHT) == 0)
 			putchar('r');
 		break;
-
-#if 0
-	case 'I': /* high part of init constant */
-		if (p->n_name[0] != '\0')
-			comperr("named highword");
-		fprintf(stdout, CONFMT, (p->n_lval >> 32) & 0xffffffff);
-		break;
-#endif
 
 	case 'J': /* convert unsigned long long to floating point */
 		ulltofp(p);

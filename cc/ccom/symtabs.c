@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.13 2004/10/03 15:36:13 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.14 2006/06/16 09:30:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -65,7 +65,6 @@ addstring(char *key)
 {
 	return symtab_add(key, &firststr, &strtabs, &strstrlen);
 }
-
 
 /*
  * Add a name to the name stack (if its non-existing),

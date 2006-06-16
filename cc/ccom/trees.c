@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.148 2006/03/18 08:18:34 ragge Exp $	*/
+/*	$Id: trees.c,v 1.149 2006/06/16 09:30:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -484,6 +484,7 @@ buildtree(int o, NODE *l, NODE *r)
 
 				p->n_op += STCALL-CALL;
 				p->n_type = INCREF(p->n_type);
+				p = clocal(p); /* before recursing */
 				p = buildtree(UMUL, p, NIL);
 
 				}

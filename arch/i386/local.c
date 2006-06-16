@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.39 2006/06/10 15:05:23 ragge Exp $	*/
+/*	$Id: local.c,v 1.40 2006/06/16 09:30:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -49,7 +49,7 @@ clocal(NODE *p)
 	register struct symtab *q;
 	register NODE *r, *l;
 	register int o;
-	register int m, ml;
+	register int m;
 	TWORD t;
 
 //printf("in:\n");
@@ -128,19 +128,35 @@ clocal(NODE *p)
 		break;
 
 	case PCONV:
-		ml = p->n_left->n_type;
+		/* Remove redundant PCONV's. Be careful */
 		l = p->n_left;
-		if ((ml == CHAR || ml == UCHAR || ml == SHORT || ml == USHORT)
-		    && l->n_op != ICON)
+		if (l->n_op == ICON) {
+			l->n_lval = (unsigned)l->n_lval;
+			goto delp;
+		}
+		if (l->n_type < INT || l->n_type == LONGLONG || 
+		    l->n_type == ULONGLONG) {
+			/* float etc? */
+			p->n_left = block(SCONV, l, NIL,
+			    UNSIGNED, 0, MKSUE(UNSIGNED));
 			break;
-		l->n_type = p->n_type;
+		}
+		/* if left is SCONV, cannot remove */
+		if (l->n_op == SCONV)
+			break;
+		/* if conversion to another pointer type, just remove */
+		if (p->n_type > BTMASK && l->n_type > BTMASK)
+			goto delp;
+		break;
+
+	delp:	l->n_type = p->n_type;
 		l->n_qual = p->n_qual;
 		l->n_df = p->n_df;
 		l->n_sue = p->n_sue;
 		nfree(p);
 		p = l;
 		break;
-
+		
 	case SCONV:
 		l = p->n_left;
 
@@ -386,6 +402,9 @@ ninval(NODE *p)
 	t = p->n_type;
 	if (t > BTMASK)
 		t = INT; /* pointer */
+
+	if (p->n_op != ICON)
+		cerror("ninval: init node not constant");
 
 	switch (t) {
 	case LONGLONG:

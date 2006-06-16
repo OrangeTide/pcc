@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.82 2006/06/14 17:53:08 ragge Exp $	*/
+/*	$Id: table.c,v 1.83 2006/06/16 09:30:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -48,6 +48,13 @@
 struct optab table[] = {
 /* First entry must be an empty entry */
 { -1, FOREFF, SANY, TANY, SANY, TANY, 0, 0, "", },
+
+/* PCONVs are usually not necessary */
+{ PCONV,	INAREG,
+	SAREG,	TWORD|TPOINT,
+	SAREG,	TWORD|TPOINT,
+		0,	RLEFT,
+		"", },
 
 /*
  * A bunch conversions of integral<->integral types
@@ -474,7 +481,7 @@ struct optab table[] = {
 { USTCALL,	FOREFF,
 	SCON,	TANY,
 	SANY,	TANY,
-		0,	0,
+		NAREG|NASL,	0,
 		"ZP	call CL\nZC", },
 
 { USTCALL,	INAREG,
@@ -492,7 +499,7 @@ struct optab table[] = {
 { STCALL,	FOREFF,
 	SCON,	TANY,
 	SANY,	TANY,
-		0,	0,
+		NAREG|NASL,	0,
 		"ZP	call CL\nZC", },
 
 { STCALL,	INAREG,
