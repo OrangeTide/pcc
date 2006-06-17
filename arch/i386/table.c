@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.84 2006/06/17 08:23:29 ragge Exp $	*/
+/*	$Id: table.c,v 1.85 2006/06/17 14:23:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1094,15 +1094,33 @@ struct optab table[] = {
 /*
  * INCR/DECR operators (post-increment)
  */
-#if 0
 { INCR,	INAREG,
-	SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TPTRTO,
+	SAREG|SNAME|SOREG,	TWORD|TPOINT,
 	SANY,	TANY,
 		NAREG,	RESC1,
 		"	movl AL,A1\n	incl AL\n", },
 
+{ INCR,	FOREFF,
+	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SANY,	TANY,
+		0,	0,
+		"	incl AL\n", },
+
+{ DECR,	INAREG,
+	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SANY,	TANY,
+		NAREG,	RESC1,
+		"	movl AL,A1\n	decl AL\n", },
+
+{ DECR,	FOREFF,
+	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SANY,	TANY,
+		0,	0,
+		"	decl AL\n", },
+
+#if 0
 { INCR,	INAREG,
-	SAREG|SNAME|SOREG,	TWORD,
+	SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TPTRTO,
 	SANY,	TANY,
 		NAREG,	RESC1,
 		"	movl AL,A1\n	incl AL\n", },
@@ -1134,6 +1152,12 @@ struct optab table[] = {
 { OPLOG,	FORCC,
 	SAREG|SOREG|SNAME,	TWORD|TPOINT,
 	SCON|SAREG,	TWORD|TPOINT,
+		0, 	RESCC,
+		"	cmpl AR,AL\n", },
+
+{ OPLOG,	FORCC,
+	SCON|SAREG,	TWORD|TPOINT,
+	SAREG|SOREG|SNAME,	TWORD|TPOINT,
 		0, 	RESCC,
 		"	cmpl AR,AL\n", },
 

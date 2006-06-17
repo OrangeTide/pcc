@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.96 2006/06/17 08:23:30 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.97 2006/06/17 14:23:53 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -270,6 +270,7 @@ int gclass(TWORD);
 void lastcall(NODE *);
 void myreader(struct interpass *pole);
 int oregok(NODE *p, int sharp);
+void myormake(NODE *);
 
 char *prcook(int);
 

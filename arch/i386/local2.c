@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.81 2006/06/17 08:23:29 ragge Exp $	*/
+/*	$Id: local2.c,v 1.82 2006/06/17 14:23:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -722,7 +722,11 @@ adrput(FILE *io, NODE *p)
 		r = p->n_rval;
 		if (p->n_lval)
 			fprintf(io, "%d", (int)p->n_lval);
-		fprintf(io, "(%s)", rnames[p->n_rval]);
+		if (R2TEST(r)) {
+			fprintf(io, "(%s,%s,4)", rnames[R2UPK1(r)],
+			    rnames[R2UPK2(r)]);
+		} else
+			fprintf(io, "(%s)", rnames[p->n_rval]);
 		return;
 	case ICON:
 		/* addressable value of the constant */
