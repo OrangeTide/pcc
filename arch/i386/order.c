@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.44 2006/06/17 14:23:50 ragge Exp $	*/
+/*	$Id: order.c,v 1.45 2006/06/17 14:24:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -102,12 +102,12 @@ offstar(NODE *p, int shape)
 void
 myormake(NODE *q)
 {
+#ifdef notyet
 	NODE *p, *r;
 
 	if (x2debug)
 		printf("myormake(%p)\n", q);
 
-#ifdef notyet
 	p = q->n_left;
 	if (p->n_op == PLUS && (r = p->n_right)->n_op == LS &&
 	    r->n_right->n_op == ICON && r->n_right->n_lval == 2 &&
