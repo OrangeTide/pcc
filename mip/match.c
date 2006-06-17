@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.69 2006/06/04 09:49:58 ragge Exp $   */
+/*      $Id: match.c,v 1.70 2006/06/17 13:00:38 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -596,8 +596,12 @@ findops(NODE *p, int cookie)
 	sh = shswitch(sh, p->n_right, qq->rshape, cookie,
 	    qq->rewrite & RRIGHT, gor);
 
-	if (sh == -1)
-		sh = ffs(cookie & qq->visit & INREGS)-1;
+	if (sh == -1) {
+		if (cookie == FOREFF)
+			sh = 0;
+		else
+			sh = ffs(cookie & qq->visit & INREGS)-1;
+	}
 	F2DEBUG(("findops: node %p (%s)\n", p, prcook(1 << sh)));
 	p->n_su = MKIDX(idx, 0);
 	SCLASS(p->n_su, sh);
