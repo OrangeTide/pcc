@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.12 2005/04/02 07:56:17 ragge Exp $	*/
+/*	$Id: init.c,v 1.13 2006/06/17 08:23:29 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -301,7 +301,7 @@ doinit(NODE *p)
 		ecomp(buildtree(ASSIGN, buildtree(NAME, NIL, NIL), p));
 		return;
 	}
-	if (howinit & DOCOPY && p->n_type == STRTY) {
+	if (howinit & DOCOPY && ISSOU(p->n_type)) {
 		/* struct copy in initialization */
 		spname = csym;
 		ecomp(buildtree(ASSIGN, buildtree(NAME, NIL, NIL), p));

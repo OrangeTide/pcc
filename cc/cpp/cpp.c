@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.29 2005/05/15 21:06:35 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.30 2006/06/17 08:23:30 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -86,8 +86,8 @@
 #include "cpp.h"
 
 #define	MAXARG	250	/* # of args to a macro, limited by char value */
-#define	SBSIZE	200000
-#define	SYMSIZ	6000
+#define	SBSIZE	400000
+#define	SYMSIZ	10000
 
 static usch	sbf[SBSIZE];
 /* C command */

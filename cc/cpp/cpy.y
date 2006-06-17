@@ -1,4 +1,4 @@
-/*	$Id: cpy.y,v 1.6 2004/10/03 13:23:48 ragge Exp $	*/
+/*	$Id: cpy.y,v 1.7 2006/06/17 08:23:30 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -72,6 +72,7 @@ void yyerror(char *);
 %term number stop
 %term EQ NE LE GE LS RS
 %term ANDAND OROR
+
 %left ','
 %right '='
 %right '?' ':'
@@ -86,8 +87,15 @@ void yyerror(char *);
 %left '*' '/' '%'
 %right '!' '~' UMINUS
 %left '(' '.'
+
+%union {
+	long long val;
+}
+
+%type <val> term number e
+
 %%
-S:	e stop	{ return($1);}
+S:	e stop	{ return($1 != 0);}
 
 
 e:	  e '*' e
@@ -196,7 +204,7 @@ yylex2(void)
 again:	c = yylex();
 	switch (c) {
 	case NUMBER:
-		yylval = atoi(yystr);
+		yylval.val = strtoll(yystr, 0, 0); /* XXX check errors */
 		return number;
 
 	case WSPACE:
@@ -215,14 +223,14 @@ again:	c = yylex();
 			if (par == '(' && ((c = yylex2()) != ')'))
 				goto bad;
 			gotdef = 0;
-			yylval = d;
+			yylval.val = d;
 			return number;
 		}
 		if (gotdef)
 			return IDENT;
 
 		/* Is this a defined macro? */
-		yylval = 0;
+		yylval.val = 0;
 		if ((nl = lookup(yystr, FIND)) == NULL)
 			return number;
 		osp = stringbuf;
@@ -277,7 +285,7 @@ again:	c = yylex();
 		return stop;
 
 	case CHARCON:
-		yylval = charcon();
+		yylval.val = charcon();
 		return number;
 
 	default:

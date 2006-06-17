@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.80 2006/06/16 09:30:31 ragge Exp $	*/
+/*	$Id: local2.c,v 1.81 2006/06/17 08:23:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -394,13 +394,13 @@ argsiz(NODE *p)
 {
 	TWORD t = p->n_type;
 
-	if (t < LONGLONG || t == FLOAT || t > MAXTYPES)
+	if (t < LONGLONG || t == FLOAT || t > BTMASK)
 		return 4;
 	if (t == LONGLONG || t == ULONGLONG || t == DOUBLE)
 		return 8;
 	if (t == LDOUBLE)
 		return 12;
-	if (t == STRTY)
+	if (t == STRTY || t == UNIONTY)
 		return p->n_stsize;
 	comperr("argsiz");
 	return 0;

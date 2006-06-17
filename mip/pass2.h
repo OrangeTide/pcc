@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.95 2006/06/03 11:42:44 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.96 2006/06/17 08:23:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -245,6 +245,7 @@ int setasg(NODE *, int);
 int setuni(NODE *, int);
 int sucomp(NODE *);
 int nsucomp(NODE *);
+int setorder(NODE *);
 int geninsn(NODE *, int cookie);
 void adrput(FILE *, NODE *);
 void comperr(char *str, ...);

@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.54 2006/02/16 16:46:30 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.55 2006/06/17 08:23:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -161,11 +161,6 @@
 #define ASGOPFLG 020000
 
 #define SPFLG	040000
-
-/*
- * Table sizes.
- */
-#define TREESZ	20000		/* space for building parse tree */
 
 /*
  * Location counters

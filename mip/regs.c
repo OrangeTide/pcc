@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.136 2006/06/13 07:54:31 ragge Exp $	*/
+/*	$Id: regs.c,v 1.137 2006/06/17 08:23:30 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -243,13 +243,15 @@ nsucomp(NODE *p)
 			need = left + MAX(nreg, 1);
 		else
 			need = MAX(right, left);
-		/* XXX - should take care of overlapping needs */
-		if (right > left) {
-			p->n_su |= DORIGHT;
-		} else if (right == left) {
-			/* A favor to 2-operand architectures */
-			if ((q->rewrite & RRIGHT) == 0)
+		if (setorder(p) == 0) {
+			/* XXX - should take care of overlapping needs */
+			if (right > left) {
 				p->n_su |= DORIGHT;
+			} else if (right == left) {
+				/* A favor to 2-operand architectures */
+				if ((q->rewrite & RRIGHT) == 0)
+					p->n_su |= DORIGHT;
+			}
 		}
 	} else if (o != LTYPE) {
 		/* One child */

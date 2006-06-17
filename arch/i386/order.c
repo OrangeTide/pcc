@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.42 2006/06/13 06:14:30 ragge Exp $	*/
+/*	$Id: order.c,v 1.43 2006/06/17 08:23:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -256,4 +256,17 @@ nspecial(struct optab *q)
 	}
 	comperr("nspecial entry %d", q - table);
 	return 0; /* XXX gcc */
+}
+
+/*
+ * Set evaluation order of a binary node if it differs from default.
+ */
+int
+setorder(NODE *p)
+{
+	/* if class is D (floats) always do left first, so stack works */
+	if (TCLASS(p->n_left->n_su) == CLASSD &&
+	    TCLASS(p->n_right->n_su) == CLASSD)
+		return 1;
+	return 0;
 }
