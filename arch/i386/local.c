@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.40 2006/06/16 09:30:31 ragge Exp $	*/
+/*	$Id: local.c,v 1.41 2006/06/17 16:35:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -170,7 +170,8 @@ clocal(NODE *p)
 			if (p->n_type != FLOAT && p->n_type != DOUBLE &&
 			    l->n_type != FLOAT && l->n_type != DOUBLE &&
 			    l->n_type != LDOUBLE && p->n_type != LDOUBLE) {
-				if (l->n_op == NAME || l->n_op == UMUL) {
+				if (l->n_op == NAME || l->n_op == UMUL ||
+				    l->n_op == TEMP) {
 					l->n_type = p->n_type;
 					nfree(p);
 					return l;
