@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.85 2006/06/17 14:23:50 ragge Exp $	*/
+/*	$Id: table.c,v 1.86 2006/06/18 15:00:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1095,25 +1095,25 @@ struct optab table[] = {
  * INCR/DECR operators (post-increment)
  */
 { INCR,	INAREG,
-	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SAREG|SNAME|SOREG,	TWORD,
 	SANY,	TANY,
 		NAREG,	RESC1,
 		"	movl AL,A1\n	incl AL\n", },
 
 { INCR,	FOREFF,
-	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SAREG|SNAME|SOREG,	TWORD,
 	SANY,	TANY,
 		0,	0,
 		"	incl AL\n", },
 
 { DECR,	INAREG,
-	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SAREG|SNAME|SOREG,	TWORD,
 	SANY,	TANY,
 		NAREG,	RESC1,
 		"	movl AL,A1\n	decl AL\n", },
 
 { DECR,	FOREFF,
-	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SAREG|SNAME|SOREG,	TWORD,
 	SANY,	TANY,
 		0,	0,
 		"	decl AL\n", },
