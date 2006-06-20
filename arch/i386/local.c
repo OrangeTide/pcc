@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.41 2006/06/17 16:35:38 ragge Exp $	*/
+/*	$Id: local.c,v 1.42 2006/06/20 06:02:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -177,6 +177,13 @@ clocal(NODE *p)
 					return l;
 				}
 			}
+		}
+
+		if (DEUNSIGN(p->n_type) == INT && DEUNSIGN(l->n_type) == INT &&
+		    coptype(l->n_op) == BITYPE) {
+			l->n_type = p->n_type;
+			nfree(p);
+			return l;
 		}
 
 		o = l->n_op;

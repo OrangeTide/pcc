@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.153 2006/06/18 08:02:50 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.154 2006/06/20 06:02:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -635,6 +635,7 @@ done:	cendarg();
 			p->sflags |= STNODE;
 			ecomp(s);
 		}
+		plabel(getlab()); /* used when spilling */
 	}
 	lparam = NULL;
 	nparams = 0;
