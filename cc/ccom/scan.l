@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.48 2006/06/15 19:05:23 ragge Exp $	*/
+/*	$Id: scan.l,v 1.49 2006/06/28 18:32:18 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -304,6 +304,7 @@ cvtdig(int radix)
 		else if (v > MAX_INT && radix != 10)
 			ntype = UNSIGNED;
 	}
+	ntype = ctype(ntype);
 	p = block(ICON, NIL, NIL, ntype, 0, MKSUE(ntype));
 	p->n_lval = v;
 	ASGLVAL(p->n_slval, v);
