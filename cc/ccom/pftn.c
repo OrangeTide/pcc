@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.154 2006/06/20 06:02:44 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.155 2006/06/29 05:43:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1826,6 +1826,18 @@ doacall(NODE *f, NODE *a)
 			else
 				werror("no prototype for function pointer");
 		}
+		/* floats must be cast to double */
+		if (a == NULL)
+			goto build;
+		for (w = a; w->n_op == CM; w = w->n_left) {
+			if (w->n_right->n_type != FLOAT)
+				continue;
+			w->n_right = argcast(w->n_right, DOUBLE,
+			    NULL, MKSUE(DOUBLE));
+		}
+		if (a->n_type == FLOAT) {
+			MKTY(a, DOUBLE, 0, 0);
+		}
 		goto build;
 	}
 	if (al->type == VOID) {
@@ -1858,8 +1870,15 @@ doacall(NODE *f, NODE *a)
 	 */
 	argidx = 1;
 	while (al->type != TNULL) {
-		if (al->type == TELLIPSIS)
+		if (al->type == TELLIPSIS) {
+			/* convert the rest of float to double */
+			for (; apole; apole = apole->next) {
+				if (apole->node->n_type != FLOAT)
+					continue;
+				MKTY(apole->node, DOUBLE, 0, 0);
+			}
 			goto build;
+		}
 		if (apole == NULL) {
 			uerror("too few arguments to function");
 			goto build;
