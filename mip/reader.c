@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.193 2006/06/17 14:23:53 ragge Exp $	*/
+/*	$Id: reader.c,v 1.194 2006/07/03 15:00:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -470,7 +470,7 @@ again:	switch (o = p->n_op) {
 
 	case INCR:
 	case DECR:
-		rv = findops(p, cookie);
+		rv = findasg(p, cookie);
 		if (rv != FFAIL)
 			break;
 

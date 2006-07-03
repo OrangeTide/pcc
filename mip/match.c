@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.70 2006/06/17 13:00:38 ragge Exp $   */
+/*      $Id: match.c,v 1.71 2006/07/03 15:00:44 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -738,11 +738,6 @@ findasg(NODE *p, int cookie)
 		if ((shl = tshape(l, q->lshape)) == SRNOPE)
 			continue;
 
-#if 0
-		if (p->n_left->n_op == TEMP)
-			shl = SRDIR;
-		else
-#endif
 		if (shl == SRREG)
 			continue;
 
