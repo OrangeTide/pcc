@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.25 2006/07/03 15:00:44 ragge Exp $	*/
+/*	$Id: optim.c,v 1.26 2006/07/09 13:02:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -165,6 +165,11 @@ again:	o = p->n_op;
 				p->n_op = ICON; p->n_lval = 0; p->n_sp = NULL;
 			} else
 #endif
+			/* avoid larger shifts than type size */
+			if (RV(p) >= p->n_sue->suesize) {
+				RV(p) = RV(p) % p->n_sue->suesize;
+				werror("shift larger than type");
+			}
 			if (RV(p) == 0)
 				p = zapleft(p);
 		}
@@ -196,6 +201,11 @@ again:	o = p->n_op;
 				p->n_op = ICON; p->n_lval = 0; p->n_sp = NULL;
 			} else
 #endif
+			/* avoid larger shifts than type size */
+			if (RV(p) >= p->n_sue->suesize) {
+				RV(p) = RV(p) % p->n_sue->suesize;
+				werror("shift larger than type");
+			}
 			if (RV(p) == 0)  
 				p = zapleft(p);
 		}
