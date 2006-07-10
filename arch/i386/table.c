@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.87 2006/06/28 18:32:18 ragge Exp $	*/
+/*	$Id: table.c,v 1.88 2006/07/10 07:55:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -553,7 +553,7 @@ struct optab table[] = {
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 		0,	RLEFT,
-		"	faddp %st,%st(1)\n", },
+		"	faddp\n", },
 
 { PLUS,		INAREG,
 	SAREG|SNAME|SOREG,	TWORD|TPOINT,
@@ -603,7 +603,7 @@ struct optab table[] = {
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 		0,	RLEFT,
-		"	fsubZHp %st,%st(1)\n", },
+		"	fsubZAp\n", },
 
 /* Simple r/m->reg ops */
 { OPSIMP,	INAREG|FOREFF,
@@ -988,7 +988,7 @@ struct optab table[] = {
 	SHFL,		TLDOUBLE|TDOUBLE|TFLOAT,
 	SHFL,		TLDOUBLE|TDOUBLE|TFLOAT,
 		0,	RLEFT,
-		"	fdivrp %st,%st(1)\n", },
+		"	fdivZAp\n", },
 
 /* (u)longlong mod is emulated */
 { MOD,	INCREG,
@@ -1056,7 +1056,7 @@ struct optab table[] = {
 	SHFL,		TLDOUBLE|TDOUBLE|TFLOAT,
 	SHFL,		TLDOUBLE|TDOUBLE|TFLOAT,
 		0,	RLEFT,
-		"	fmulp %st,%st(1)\n", },
+		"	fmulp\n", },
 
 /*
  * Indirection operators.
@@ -1188,14 +1188,23 @@ struct optab table[] = {
 { OPLOG,	FORCC,
 	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
 	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
-		0, 	0,
+		NSPECIAL, 	0,
 		"ZG", },
 
 { OPLOG,	FORCC,
 	SOREG|SNAME,	TDOUBLE|TFLOAT,
 	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
-		0, 	0,
+		NSPECIAL, 	0,
 		"ZG", },
+
+#if 0
+/* Ppro and later only */
+{ OPLOG,	FORCC,
+	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
+	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
+		0, 	RESCC,
+		"ZA	fucomip %st,%st(1)\n", },
+#endif
 
 { OPLOG,	FORCC,
 	SANY,	TANY,

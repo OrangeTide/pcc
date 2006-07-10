@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.42 2006/06/20 06:02:43 ragge Exp $	*/
+/*	$Id: local.c,v 1.43 2006/07/10 07:55:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -452,15 +452,21 @@ inval(CONSZ word)
 void
 finval(NODE *p)
 {
+	union { float f; double d; long double l; int i[3]; } u;
+
 	switch (p->n_type) {
 	case LDOUBLE:
-		printf("\t.tfloat\t0t%.20Le\n", p->n_dcon);
+		u.i[2] = 0;
+		u.l = (long double)p->n_dcon;
+		printf("\t.long\t0x%x,0x%x,0x%x\n", u.i[0], u.i[1], u.i[2]);
 		break;
 	case DOUBLE:
-		printf("\t.dfloat\t0d%.20e\n", (double)p->n_dcon);
+		u.d = (double)p->n_dcon;
+		printf("\t.long\t0x%x,0x%x\n", u.i[0], u.i[1]);
 		break;
 	case FLOAT:
-		printf("\t.ffloat\t0f%.20e\n", (float)p->n_dcon);
+		u.f = (float)p->n_dcon;
+		printf("\t.long\t0x%x\n", u.i[0]);
 		break;
 	}
 }
