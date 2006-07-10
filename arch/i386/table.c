@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.88 2006/07/10 07:55:26 ragge Exp $	*/
+/*	$Id: table.c,v 1.89 2006/07/10 13:42:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -276,7 +276,7 @@ struct optab table[] = {
 	SOREG|SNAME,	TLL,
 	SANY,	TCHAR|TUCHAR,
 		NAREG|NASL,	RESC1,
-		"	movb ZL,Z1\n", },
+		"	movb AL,A1\n", },
 
 /* convert (u)long long to (u)char (reg->reg, hopefully nothing) */
 { SCONV,	INCH,
@@ -290,7 +290,7 @@ struct optab table[] = {
 	SOREG|SNAME,	TLL,
 	SAREG,	TSHORT|TUSHORT,
 		NAREG|NASL,	RESC1,
-		"	movw ZL,Z1\n", },
+		"	movw AL,A1\n", },
 
 /* convert (u)long long to (u)short (reg->reg, hopefully nothing) */
 { SCONV,	INAREG,
