@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.26 2006/07/09 13:02:40 ragge Exp $	*/
+/*	$Id: optim.c,v 1.27 2006/07/10 10:05:35 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -292,6 +292,10 @@ again:	o = p->n_op;
 		if (RCON(p) && ISUNSIGNED(p->n_type) && (i=ispow2(RV(p))) > 0) {
 			p->n_op = RS;
 			RV(p) = i;
+			q = p->n_right;
+			if(tsize(q->n_type, q->n_df, q->n_sue) > SZINT)
+				p->n_right = makety(q, INT, 0, 0, MKSUE(INT));
+
 			break;
 		}
 		break;

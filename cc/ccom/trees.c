@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.149 2006/06/16 09:30:32 ragge Exp $	*/
+/*	$Id: trees.c,v 1.150 2006/07/10 10:05:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -413,11 +413,24 @@ buildtree(int o, NODE *l, NODE *r)
 			break;
 
 		case LS:
-		case RS:
+		case RS: /* must make type size at least int... */
+			if (p->n_type == CHAR || p->n_type == SHORT) {
+				p->n_left = makety(l, INT, 0, 0, MKSUE(INT));
+			} else if (p->n_type == UCHAR || p->n_type == USHORT) {
+				p->n_left = makety(l, UNSIGNED, 0, 0,
+				    MKSUE(UNSIGNED));
+			}
+			l = p->n_left;
+			p->n_type = l->n_type;
+			p->n_qual = l->n_qual;
+			p->n_df = l->n_df;
+			p->n_sue = l->n_sue;
+
+			/* FALLTHROUGH */
 		case LSEQ:
-		case RSEQ:
-			if(tsize(p->n_right->n_type, p->n_right->n_df, p->n_right->n_sue) > SZINT)
-				p->n_right = r = makety(r, INT, 0, 0, MKSUE(INT));
+		case RSEQ: /* ...but not for assigned types */
+			if(tsize(r->n_type, r->n_df, r->n_sue) > SZINT)
+				p->n_right = makety(r, INT, 0, 0, MKSUE(INT));
 			break;
 
 		case RETURN:

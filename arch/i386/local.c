@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.43 2006/07/10 07:55:26 ragge Exp $	*/
+/*	$Id: local.c,v 1.44 2006/07/10 10:05:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -234,6 +234,7 @@ clocal(NODE *p)
 				cerror("unknown type %d", m);
 			}
 			l->n_type = m;
+			l->n_sue = MKSUE(m);
 			nfree(p);
 			return l;
 		}
