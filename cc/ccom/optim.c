@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.27 2006/07/10 10:05:35 ragge Exp $	*/
+/*	$Id: optim.c,v 1.28 2006/07/11 07:54:29 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -282,6 +282,12 @@ again:	o = p->n_op;
 			RV(p) = -RV(p);
 			o = p->n_op = MINUS;
 			}
+
+		/* remove ops with RHS 0 */
+		if ((o == PLUS || o == MINUS || o == OR || o == ER) &&
+		    nncon(p->n_right) && RV(p) == 0) {
+			goto zapright;
+		}
 		break;
 
 	case DIV:
