@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.45 2006/07/12 12:00:40 ragge Exp $	*/
+/*	$Id: cc.c,v 1.46 2006/07/12 12:21:12 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -459,6 +459,11 @@ nocom:
 		eflag |= callsys("/bin/ld", av);
 		if (nc==1 && nxo==1 && eflag==0)
 			cunlink(setsuf(clist[0], 'o'));
+		else if (nc > 0 && eflag == 0) {
+			/* remove .o files XXX ugly */
+			for (i = 0; i < nc; i++)
+				cunlink(setsuf(clist[i], 'o'));
+		}
 	}
 	dexit(eflag);
 	return 0;
