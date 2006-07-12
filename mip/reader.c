@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.194 2006/07/03 15:00:44 ragge Exp $	*/
+/*	$Id: reader.c,v 1.195 2006/07/12 08:09:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1139,6 +1139,7 @@ mklnode(int op, CONSZ lval, int rval, TWORD type)
 	p->n_rval = rval;
 	p->n_type = type;
 	p->n_regw = NULL;
+	p->n_su = 0;
 	return p;
 }
 
