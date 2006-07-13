@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.13 2006/06/17 08:23:29 ragge Exp $	*/
+/*	$Id: init.c,v 1.14 2006/07/13 10:09:47 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -332,7 +332,8 @@ doinit(NODE *p)
 			infld(o, SZCHAR);
 			gotscal();
 		}
-		if (alen && *c)
+		/* This check may fail if \0 are in the string */
+		if (alen && c[-1])
 			werror("too many chars in string");
 		irbrace();
 		tfree(p);
