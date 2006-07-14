@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.150 2006/07/10 10:05:35 ragge Exp $	*/
+/*	$Id: trees.c,v 1.151 2006/07/14 13:26:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1943,7 +1943,19 @@ delasgop(NODE *p)
 	NODE *q, *r;
 	int tval;
 
-	if ((cdope(p->n_op)&ASGOPFLG) && p->n_op != RETURN && p->n_op != CAST) {
+	if (p->n_op == INCR || p->n_op == DECR) {
+		/*
+		 * Rewrite x++ to (x += 1) -1; and deal with it further down.
+		 * Pass2 will remove -1 if unneccessary.
+		 */
+		q = tcopy(p);
+		tfree(p->n_left);
+		q->n_op = (p->n_op==INCR)?PLUSEQ:MINUSEQ;
+		p->n_op = (p->n_op==INCR)?MINUS:PLUS;
+		p->n_left = delasgop(q);
+
+	} else if ((cdope(p->n_op)&ASGOPFLG) &&
+	    p->n_op != RETURN && p->n_op != CAST) {
 		NODE *l = p->n_left;
 		NODE *ll = l->n_left;
 
