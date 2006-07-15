@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.29 2006/02/01 12:58:15 ragge Exp $	*/
+/*	$Id: node.h,v 1.30 2006/07/15 07:34:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -134,8 +134,6 @@ typedef struct node {
 #define RS	19
 #define COMPL	20
 
-#define INCR	21
-#define DECR	22
 #define UMUL	23
 #define UMINUS	24
 

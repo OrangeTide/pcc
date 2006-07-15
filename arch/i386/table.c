@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.90 2006/07/12 08:09:55 ragge Exp $	*/
+/*	$Id: table.c,v 1.91 2006/07/15 07:34:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1104,53 +1104,6 @@ struct optab table[] = {
 		"	flds AL\n", },
 
 /*
- * INCR/DECR operators (post-increment)
- */
-{ INCR,	INAREG,
-	SAREG|SNAME|SOREG,	TWORD,
-	SANY,	TANY,
-		NAREG,	RESC1,
-		"	movl AL,A1\n	incl AL\n", },
-
-{ INCR,	FOREFF,
-	SAREG|SNAME|SOREG,	TWORD,
-	SANY,	TANY,
-		0,	0,
-		"	incl AL\n", },
-
-{ DECR,	INAREG,
-	SAREG|SNAME|SOREG,	TWORD,
-	SANY,	TANY,
-		NAREG,	RESC1,
-		"	movl AL,A1\n	decl AL\n", },
-
-{ DECR,	FOREFF,
-	SAREG|SNAME|SOREG,	TWORD,
-	SANY,	TANY,
-		0,	0,
-		"	decl AL\n", },
-
-#if 0
-{ INCR,	INAREG,
-	SAREG|SNAME|SOREG,	TCHAR|TUCHAR|TPTRTO,
-	SANY,	TANY,
-		NAREG,	RESC1,
-		"	movl AL,A1\n	incl AL\n", },
-
-{ INCR,	INAREG,
-	SAREG|SNAME|SOREG,	TSHORT|TUSHORT,
-	SANY,	TANY,
-		NAREG,	RESC1,
-		"	movw AL,A1\n	incw AL\n", },
-
-{ INCR,	INCH,
-	SAREG|SNAME|SOREG,	TCHAR|TUCHAR,
-	SANY,	TANY,
-		NBREG,	RESC1,
-		"	movb AL,A1\n	incb AL\n", },
-#endif
-
-/*
  * Logical/branching operators
  */
 
@@ -1467,10 +1420,6 @@ struct optab table[] = {
 # define DF(x) FORREW,SANY,TANY,SANY,TANY,REWRITE,x,""
 
 { UMUL, DF( UMUL ), },
-
-{ INCR, DF(INCR), },
-
-{ DECR, DF(INCR), },
 
 { ASSIGN, DF(ASSIGN), },
 

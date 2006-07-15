@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.114 2006/06/15 19:05:23 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.115 2006/07/15 07:34:19 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -364,6 +364,10 @@ void stabs_struct(struct symtab *p, struct suedef *sue);
 #define	RSEQ		(MAXOP+25)
 
 #define	UNASG		(-(PLUSEQ-PLUS))+
+
+#define INCR		(MAXOP+26)
+#define DECR		(MAXOP+27)
+
 
 #define coptype(o)	(cdope(o)&TYFLG)
 #define clogop(o)	(cdope(o)&LOGFLG)

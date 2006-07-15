@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.47 2006/07/10 07:55:26 ragge Exp $	*/
+/*	$Id: order.c,v 1.48 2006/07/15 07:34:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -32,23 +32,6 @@
 #include <string.h>
 
 int canaddr(NODE *);
-
-/* should we delay the INCR or DECR operation p */
-int
-deltest(NODE *p)
-{
-	return 0;
-}
-
-/*
- * Check if p can be autoincremented.
- * XXX - nothing can be autoincremented for now.
- */
-int
-autoincr(NODE *p)
-{
-	return 0;
-}
 
 /* is it legal to make an OREG or NAME entry which has an
  * offset of off, (from a register of r), if the
