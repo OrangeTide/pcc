@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.15 2005/05/15 21:06:35 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.16 2006/07/15 07:37:20 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -70,7 +70,11 @@ struct symtab {
 
 /* buffer used internally */
 #ifndef CPPBUF
+#if 0
 #define CPPBUF  BUFSIZ
+#else
+#define CPPBUF  65536
+#endif
 #endif
 
 #define	NAMEMAX	64 /* max len of identifier */

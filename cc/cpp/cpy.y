@@ -1,4 +1,4 @@
-/*	$Id: cpy.y,v 1.7 2006/06/17 08:23:30 ragge Exp $	*/
+/*	$Id: cpy.y,v 1.8 2006/07/15 07:37:20 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -171,7 +171,7 @@ charcon(void)
 	int val;
 
 	wr++; /* skip first ' */
-	if (*wr++ == '/') {
+	if (*wr++ == '\\') {
 		switch (*wr++) {
 		case 'a': val = '\a'; break;
 		case 'b': val = '\b'; break;
@@ -181,6 +181,7 @@ charcon(void)
 		case 't': val = '\t'; break;
 		case 'v': val = '\v'; break;
 		case '\"': val = '\"'; break;
+		case '\\': val = '\\'; break;
 		case 'x': val = strtol(wr, &wr, 16); break;
 		case '0': case '1': case '2': case '3': case '4': 
 		case '5': case '6': case '7': case '8': case '9': 
