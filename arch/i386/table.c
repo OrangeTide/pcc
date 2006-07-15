@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.91 2006/07/15 07:34:19 ragge Exp $	*/
+/*	$Id: table.c,v 1.92 2006/07/15 15:25:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -457,6 +457,12 @@ struct optab table[] = {
 	SAREG,	TANY,
 	SANY,	TANY,
 		NAREG|NASL,	RESC1,	/* should be 0 */
+		"	call *AL\nZC", },
+
+{ CALL,		INBREG,
+	SAREG,	TANY,
+	SANY,	TANY,
+		NBREG|NBSL,	RESC1,	/* should be 0 */
 		"	call *AL\nZC", },
 
 { UCALL,	INBREG,
