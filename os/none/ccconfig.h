@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.1 2005/01/08 14:53:42 pj Exp $	*/
+/*	$Id: ccconfig.h,v 1.2 2006/07/30 09:29:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -35,7 +35,6 @@
  * This file is for targets where there is no OS
  */
 
-#ifdef mach_m16c
 /* common cpp predefines */
 #define	CPPADD	{ NULL, }
 #define	DYNLINKER { NULL }
@@ -43,6 +42,9 @@
 #define STARTFILES { NULL }
 #define	ENDFILES { NULL }
 
+#if defined(mach_m16c)
 #define	CPPMDADD { "-D__m16c__", NULL, }
+#elif defined(mach_nova)
+#define	CPPMDADD { "-D__nova__", NULL, }
 #endif
 
