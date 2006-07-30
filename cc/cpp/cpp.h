@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.16 2006/07/15 07:37:20 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.17 2006/07/30 09:33:30 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -78,8 +78,13 @@ struct symtab {
 #endif
 
 #define	NAMEMAX	64 /* max len of identifier */
+#ifdef ragge
+struct recur;	/* not used outside cpp.c */
+usch *subst(struct symtab *, struct recur *);
+#else
 struct recur;	/* not used outside cpp.c */
 int subst(char *, struct symtab *, struct recur *);
+#endif
 struct symtab *lookup(char *namep, int enterf);
 
 int pushfile(char *fname);

@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.5 2005/02/19 13:45:01 pj Exp $
+#	$Id: Makefile.in,v 1.6 2006/07/30 09:33:30 ragge Exp $
 #
 # Makefile.in for cpp
 #
@@ -60,7 +60,7 @@ install:
 	fi
 
 clean:
-	/bin/rm -f $(OBJS) cpp lex.yy.c y.tab.c
+	/bin/rm -f $(OBJS) cpp lex.yy.c y.tab.c tests/run*
 
 distclean: clean
 	/bin/rm -f Makefile
