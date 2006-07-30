@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.33 2006/07/30 12:52:40 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.34 2006/07/30 12:53:20 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -92,6 +92,8 @@
 static usch	sbf[SBSIZE];
 /* C command */
 
+#ifdef ragge
+
 #define	CHAR_BITS	8 /* XXX - should be checked in autoconf */
 #define	CHAR_MAX	(1 << CHAR_BITS)
 
@@ -120,6 +122,7 @@ usch utype[CHAR_MAX] = {
 	0,	0,	0,	0,	0,	0,	0,	0, /* 112- 119*/
 	0,	0,	0,	0,	0,	0,	0,	0, /* 120- 127*/
 };
+#endif
 
 int tflag;	/* traditional cpp syntax */
 #ifdef CPP_DEBUG
