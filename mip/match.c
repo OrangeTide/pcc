@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.71 2006/07/03 15:00:44 ragge Exp $   */
+/*      $Id: match.c,v 1.72 2006/07/30 09:32:15 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -461,12 +461,13 @@ swmatch(NODE *p, int shape, int w)
 static int
 chcheck(NODE *p, int shape, int rew)
 {
-	int sh;
+	int sh, sha;
 
+	sha = shape;
 	if (shape & SPECIAL)
 		shape = 0;
 
-	switch ((sh = tshape(p, shape))) {
+	switch ((sh = tshape(p, sha))) {
 	case SRNOPE:
 		if (shape & INREGS)
 			sh = SRREG;
