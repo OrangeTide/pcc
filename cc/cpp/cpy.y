@@ -1,4 +1,4 @@
-/*	$Id: cpy.y,v 1.8 2006/07/15 07:37:20 ragge Exp $	*/
+/*	$Id: cpy.y,v 1.9 2006/08/05 10:24:29 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -235,8 +235,13 @@ again:	c = yylex();
 		if ((nl = lookup(yystr, FIND)) == NULL)
 			return number;
 		osp = stringbuf;
+#ifdef ragge
+		if (subst(nl, NULL) == 0)
+			return number; /* failed substitution */
+#else
 		if (subst(yystr, nl, NULL) == 0)
 			return number; /* failed substitution */
+#endif
 		while (stringbuf > osp)
 			cunput(*--stringbuf);
 		goto again;
