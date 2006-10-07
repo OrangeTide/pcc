@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.196 2006/07/15 07:34:19 ragge Exp $	*/
+/*	$Id: reader.c,v 1.197 2006/10/07 09:19:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -85,7 +85,7 @@ int fregs;
 int p2autooff, p2maxautooff;
 
 NODE *nodepole;
-FILE *prfil = stdout;
+FILE *prfil;
 
 void saveip(struct interpass *ip);
 void deljumps(void);
@@ -684,6 +684,7 @@ e2print(NODE *p, int down, int *a, int *b)
 	extern int tablesize;
 #endif
 
+	prfil = stdout;
 	*a = *b = down+1;
 	while( down >= 2 ){
 		fprintf(prfil, "\t");

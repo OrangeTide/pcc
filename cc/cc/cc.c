@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.47 2006/07/13 10:09:47 ragge Exp $	*/
+/*	$Id: cc.c,v 1.48 2006/10/07 09:19:34 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -126,6 +126,9 @@ char *crt0file = CRT0FILE;
 char *startfiles[] = STARTFILES;
 char *endfiles[] = ENDFILES;
 char *cppmdadd[] = CPPMDADD;
+#ifndef STARTLABEL
+#define STARTLABEL "__start"
+#endif
 
 int
 main(int argc, char *argv[])
@@ -428,7 +431,7 @@ nocom:
 		av[j++] = "-X";
 		av[j++] = "-d";
 		av[j++] = "-e";
-		av[j++] = "__start";
+		av[j++] = STARTLABEL;
 		if (Bstatic == 0) { /* Dynamic linkage */
 			for (i = 0; dynlinker[i]; i++)
 				av[j++] = dynlinker[i];

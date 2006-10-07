@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.49 2006/06/28 18:32:18 ragge Exp $	*/
+/*	$Id: scan.l,v 1.50 2006/10/07 09:19:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -59,6 +59,19 @@ static NODE *floatcon(void);
 #else
 #define STABS_LINE(x)
 #endif
+#if defined(FLEX_SCANNER) && YY_FLEX_SUBMINOR_VERSION >= 31
+/* Hack to avoid unneccessary warnings */
+FILE *yyget_in  (void);
+FILE *yyget_out  (void);
+int yyget_leng  (void);
+char *yyget_text  (void);
+void yyset_in (FILE *  in_str );
+void yyset_out (FILE *  out_str );
+int yyget_debug  (void);
+void yyset_debug (int  bdebug );
+int yylex_destroy  (void);
+#endif
+
 %}
 
 %%
@@ -208,6 +221,7 @@ char *ftitle = "<stdin>";
 int
 yywrap(void)
 {
+	if (0) unput(0); /* quiet gcc */
 	return(1);
 }
 
