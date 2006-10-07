@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.37 2006/10/07 09:17:25 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.38 2006/10/07 15:47:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -711,6 +711,7 @@ xerror(usch *s)
 {
 	usch *t;
 
+	savch(0);
 	if (ifiles != NULL) {
 		t = sheap("%s:%d: ", ifiles->fname, ifiles->lineno);
 		write (2, t, strlen(t));
@@ -1205,9 +1206,9 @@ putstr(usch *s)
 }
 
 /*
- * convert a number to an ascii string.
+ * convert a number to an ascii string. Store it on the heap.
  */
-usch *
+static void
 num2str(int num)
 {
 	static usch buf[12];
@@ -1218,8 +1219,8 @@ num2str(int num)
 			*b++ = num % 10 + '0', num /= 10;
 	} else
 		*b++ = '0';
-	*b = 0;
-	return buf;
+	while (b > buf)
+		savch(*--b);
 }
 
 /*
@@ -1241,7 +1242,7 @@ sheap(char *fmt, ...)
 				savstr(va_arg(ap, char *));
 				break;
 			case 'd':
-				savstr(num2str(va_arg(ap, int)));
+				num2str(va_arg(ap, int));
 				break;
 			case 'c':
 				savch(va_arg(ap, int));

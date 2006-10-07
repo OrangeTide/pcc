@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.3 2006/10/07 13:38:34 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.4 2006/10/07 15:47:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -645,8 +645,10 @@ undefstmt(void)
 static void
 pragmastmt(void)
 {
+	slow = 1;
 	if (yylex() != WSPACE)
 		error("bad pragma");
-	/* macexpand() */
-	chknl();
+	while (yylex() != '\n')  /* no pragma support */
+		;
+	slow = 0;
 }

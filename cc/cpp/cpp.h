@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.20 2006/10/07 09:17:26 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.21 2006/10/07 15:47:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -96,7 +96,6 @@ void mainscan(void);
 void putch(int);
 void putstr(usch *s);
 void line(void);
-usch *num2str(int num);
 usch *sheap(char *fmt, ...);
 void xerror(usch *);
 #define error(...) xerror(sheap(__VA_ARGS__))
