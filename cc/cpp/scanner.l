@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.2 2006/10/07 09:17:26 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.3 2006/10/07 13:38:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -80,6 +80,7 @@ yyinput(char *b, int m)
 #define YY_INPUT(b,r,m) (r = yyinput(b, m))
 #define fprintf(x, ...) error(__VA_ARGS__)
 #define	ECHO putstr(yytext)
+#undef fileno
 #define fileno(x) 0
 
 #if YY_FLEX_SUBMINOR_VERSION >= 31
