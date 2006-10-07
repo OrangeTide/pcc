@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.4 2006/10/07 15:47:35 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.5 2006/10/07 16:38:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -427,6 +427,8 @@ cvtdig(int rad)
 	int c;
 
 	c = *y++;
+	if (rad == 16)
+		y++;
 	while (isxdigit(c)) {
 		rv = rv * rad + dig2num(c);
 		c = *y++;
