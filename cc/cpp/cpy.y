@@ -1,4 +1,4 @@
-/*	$Id: cpy.y,v 1.11 2006/10/07 09:17:26 ragge Exp $	*/
+/*	$Id: cpy.y,v 1.12 2006/10/08 13:41:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -94,11 +94,9 @@ int yylex(void);
 
 %union {
 	long long val;
-	struct symtab *nl;
 }
 
 %type <val> term NUMBER e
-%type <nl> IDENT
 
 %%
 S:	e '\n'	{ return($1 != 0);}
@@ -157,7 +155,6 @@ term:
 		{$$ = $2;}
 	| NUMBER
 		{$$= $1;}
-	| IDENT { $$ = $1 != NULL; }
 %%
 
 #include "cpp.h"

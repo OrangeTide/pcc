@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.39 2006/10/08 07:18:11 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.40 2006/10/08 13:41:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -161,7 +161,6 @@ usch *stringbuf = sbf;
 
 static void expdef(usch *proto, struct recur *, int gotwarn);
 void define(void);
-static void expmac(struct recur *);
 static int canexpand(struct recur *, struct symtab *np);
 void include(void);
 void line(void);
