@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.40 2006/10/08 13:41:39 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.41 2006/12/17 13:27:13 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -267,7 +267,7 @@ main(int argc, char **argv)
 		ofd = 1; /* stdout */
 	istty = isatty(ofd);
 
-	if (pushfile((usch *)(argc ? argv[0] : NULL)))
+	if (pushfile((usch *)(argc && strcmp(argv[0], "-") ? argv[0] : NULL)))
 		error("cannot open %s", argv[0]);
 
 	flbuf();
@@ -946,8 +946,9 @@ yid:
 					goto def;
 				break;
 			}
-			if (noexp != 1)
-				error("bad noexp %d", noexp);
+if (noexp > 1) goto def;
+//			if (noexp != 1)
+//				error("bad noexp %d", noexp);
 			stksv = NULL;
 			if ((c = yylex()) == WSPACE) {
 				stksv = alloca(yyleng+1);
@@ -1259,3 +1260,23 @@ usage()
 {
 	error("Usage: cpp [-Cdt] [-Dvar=val] [-Uvar] [-Ipath] [-Spath]");
 }
+
+#ifdef notyet
+/*
+ * Symbol table stuff.
+ * The data structure used is a patricia tree implementation using only
+ * bytes to store offsets.  
+ * The information stored is (lower address to higher):
+ *
+ *	unsigned char bitno[2]; bit number in the string
+ *	unsigned char left[3];	offset from base to left element
+ *	unsigned char right[3];	offset from base to right element
+ */
+poff ppole;
+
+poff
+plookup(usch *str, int type)
+{
+	sbf[]
+}
+#endif
