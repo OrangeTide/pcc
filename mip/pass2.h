@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.97 2006/06/17 14:23:53 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.98 2006/12/22 06:23:09 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -301,6 +301,7 @@ extern	int lineno;
 extern	int fldshf, fldsz;
 extern	int lflag, x2debug, udebug, e2debug, odebug, mdebug;
 extern	int rdebug, radebug, t2debug, s2debug, b2debug, c2debug;
+extern	int kflag;
 #ifdef FORT
 extern	int Oflag;
 #endif
