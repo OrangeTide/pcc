@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.152 2006/07/15 15:25:20 ragge Exp $	*/
+/*	$Id: trees.c,v 1.153 2006/12/30 08:19:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1709,15 +1709,17 @@ andorbr(NODE *p, int true, int false)
 				*p = *q;
 				nfree(q);
 				if (o == EQ)
-					p->n_op = NE;
+					p->n_op = negrel[p->n_op - EQ];
+//					p->n_op = NE; /* toggla */
 			} else if (p->n_right->n_lval == 1) {
 				nfree(p->n_right);
 				*p = *q;
 				nfree(q);
 				if (o == NE)
-					p->n_op = EQ;
+					p->n_op = negrel[p->n_op - EQ];
+//					p->n_op = EQ; /* toggla */
 			} else
-				break;
+				break; /* XXX - should always be false */
 			
 		}
 		/* FALLTHROUGH */
