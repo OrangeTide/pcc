@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.9 2006/10/07 13:38:34 ragge Exp $
+#	$Id: Makefile.in,v 1.10 2007/01/02 19:49:40 ragge Exp $
 #
 # Makefile.in for cpp
 #
@@ -60,6 +60,8 @@ test:
 	cmp tests/run7 tests/res7
 	./cpp < tests/test8 > tests/run8
 	cmp tests/run8 tests/res8
+	./cpp < tests/test9 > tests/run9
+	cmp tests/run9 tests/res9
 
 
 install:
