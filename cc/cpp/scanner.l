@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.7 2006/10/08 13:41:39 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.8 2007/01/02 19:48:17 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -203,12 +203,15 @@ L?'(\\.|[^\\'])+'	{	if (YYSTATE)
 				else if (!flslvl)
 					putch(' ');
 			}
-"/*"			{	int c;
+"/*"			{	int c, wrn;
 				if (Cflag)
 					putstr((usch *)yytext);
+				wrn = 0;
 			more:	while ((c = input()) && c != '*') {
 					if (c == '\n')
 						putch(c), ifiles->lineno++;
+					else if (c == 1) /* WARN */
+						wrn = 1;
 					else if (Cflag)
 						putch(c);
 				}
@@ -228,6 +231,8 @@ L?'(\\.|[^\\'])+'	{	if (YYSTATE)
 					return 0;
 				if (!tflag && !Cflag && !flslvl)
 					unput(' ');
+				if (wrn)
+					unput(1);
 			}
 
 <DEF>"##"		{ return CONCAT; }
