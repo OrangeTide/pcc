@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.155 2006/06/29 05:43:32 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.156 2007/01/13 13:06:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1450,7 +1450,7 @@ typenode(NODE *p)
 uni:			p->n_lval = class;
 			p->n_qual = qual >> TSHIFT;
 			return p;
-		} else if (p->n_type == STRTY || p->n_type == UNIONTY) {
+		} else if (ISSTR(p->n_type)) {
 			/* Save node; needed for return */
 			sp = p;
 			p = p->n_left;
