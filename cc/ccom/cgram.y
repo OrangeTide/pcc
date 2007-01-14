@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.158 2007/01/02 19:50:14 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.159 2007/01/14 16:33:49 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -520,6 +520,8 @@ struct_dcl_list:   struct_declaration
 
 struct_declaration:
 		   specifier_qualifier_list struct_declarator_list ';' {
+			extern int nomoretypes;
+			nomoretypes = 0;
 			nfree($1);
 		}
 		;
