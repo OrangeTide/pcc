@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.154 2007/01/13 13:06:59 ragge Exp $	*/
+/*	$Id: trees.c,v 1.155 2007/01/14 14:12:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -160,10 +160,7 @@ buildtree(int o, NODE *l, NODE *r)
 			nfree(r);
 			return(l);
 		}
-	} else if( (o==ANDAND || o==OROR) && (l->n_op==ICON||r->n_op==ICON) )
-		goto ccwarn;
-
-	else if( opty == BITYPE && l->n_op == ICON && r->n_op == ICON ){
+	} else if( opty == BITYPE && l->n_op == ICON && r->n_op == ICON ){
 
 		switch( o ){
 
@@ -179,9 +176,6 @@ buildtree(int o, NODE *l, NODE *r)
 		case NE:
 		case ANDAND:
 		case OROR:
-
-		ccwarn:
-
 		case PLUS:
 		case MINUS:
 		case MUL:
@@ -671,11 +665,11 @@ conval(NODE *p, int o, NODE *q)
 	case NE:
 		p->n_lval = p->n_lval != val;
 		break;
-	case OROR:
-		p->n_lval = p->n_lval || val;
-		break;
 	case ANDAND:
 		p->n_lval = p->n_lval && val;
+		break;
+	case OROR:
+		p->n_lval = p->n_lval || val;
 		break;
 	default:
 		return(0);
