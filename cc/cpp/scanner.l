@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.8 2007/01/02 19:48:17 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.9 2007/01/15 05:19:12 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -245,9 +245,15 @@ L?\"(\\.|[^\\"])*\"	{ PRTOUT(STRING); }
 				struct symtab *nl;
 				if (slow)
 					return IDENT;
-				if (flslvl)
+				if (YYSTATE == CONTR) {
+					if (flslvl)
+						BEGIN 0; /* do nothing */
+					else
+						error("undefined control");
+				}
+				if (flslvl) {
 					; /* do nothing */
-				else if ((nl = lookup((usch *)yytext, FIND)) != 0) {
+				} else if ((nl = lookup((usch *)yytext, FIND)) != 0) {
 					usch *op = stringbuf;
 					putstr(gotident(nl));
 					stringbuf = op;
