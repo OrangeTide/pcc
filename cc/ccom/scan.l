@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.52 2007/01/14 16:58:15 ragge Exp $	*/
+/*	$Id: scan.l,v 1.53 2007/01/27 08:25:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -139,7 +139,7 @@ int yylex_destroy  (void);
 				if (s && got_type == 0 && 
 				    nomoretypes == 0 && s->sclass == TYPEDEF)
 					return got_type = 1, C_TYPENAME;
-				got_type = 0;
+				nomoretypes = got_type = 0;
 				return(C_NAME);
 			}
 
