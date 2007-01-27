@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.49 2006/12/22 06:23:09 ragge Exp $	*/
+/*	$Id: cc.c,v 1.50 2007/01/27 08:27:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -127,6 +127,11 @@ char *crt0file = CRT0FILE;
 char *startfiles[] = STARTFILES;
 char *endfiles[] = ENDFILES;
 char *cppmdadd[] = CPPMDADD;
+#ifdef LIBCLIBS
+char *libclibs[] = LIBCLIBS;
+#else
+char *libclibs[] = { "-lc", NULL };
+#endif
 #ifndef STARTLABEL
 #define STARTLABEL "__start"
 #endif
@@ -466,7 +471,8 @@ nocom:
 		if (gflag)
 			av[j++] = "-lg";
 #endif
-		av[j++] = "-lc";
+		for (i = 0; libclibs[i]; i++)
+			av[j++] = libclibs[i];
 		if (!nostartfiles) {
 			for (i = 0; endfiles[i]; i++)
 				av[j++] = endfiles[i];
