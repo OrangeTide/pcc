@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.155 2007/01/14 14:12:40 ragge Exp $	*/
+/*	$Id: trees.c,v 1.156 2007/02/07 17:46:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2240,11 +2240,6 @@ send_passt(int type, ...)
 		if (type == IP_PROLOG)
 			ipp->ip_lblnum--;
 		break;
-#ifdef OLDSTYLE
-	case IP_STKOFF:
-		ip->ip_off = va_arg(ap, int);
-		break;
-#endif
 	case IP_DEFLAB:
 		ip->ip_lbl = va_arg(ap, int);
 		break;
