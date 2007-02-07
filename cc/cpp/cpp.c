@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.47 2007/01/27 08:24:21 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.48 2007/02/07 17:44:04 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -712,6 +712,7 @@ xerror(usch *s)
 {
 	usch *t;
 
+	flbuf();
 	savch(0);
 	if (ifiles != NULL) {
 		t = sheap("%s:%d: ", ifiles->fname, ifiles->lineno);
