@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.9 2007/01/15 05:19:12 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.10 2007/02/10 15:52:19 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -129,6 +129,8 @@ WS	[\t ]
 				if (os != 0 || slow)
 					return '\n';
 			}
+
+"\r"			{ ; /* Ignore CR's */ }
 
 <IFR>"=="		{ return EQ; }
 <IFR>"!="		{ return NE; }
@@ -484,7 +486,7 @@ chknl(void)
 	while ((t = yylex()) == WSPACE)
 		;
 	if (t != '\n')
-		error("newline expected");
+		error("newline expected, got %d", t);
 }
 
 static void
