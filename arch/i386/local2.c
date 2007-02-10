@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.86 2006/07/15 15:01:05 ragge Exp $	*/
+/*	$Id: local2.c,v 1.87 2007/02/10 15:53:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -412,7 +412,7 @@ void
 zzzcode(NODE *p, int c)
 {
 	NODE *r, *l;
-	int pr, lr;
+	int pr, lr, s;
 	char *ch;
 
 	switch (c) {
@@ -526,7 +526,11 @@ zzzcode(NODE *p, int c)
 				    rnames[lr][1], rnames[pr]);
 				break;
 			}
-			comperr("SCONV1 %s->%s", rnames[lr], rnames[pr]);
+			/* Must go via stack */
+			s = BITOOR(freetemp(1));
+			printf("\tmovl %%e%ci,%d(%%ebp)\n", rnames[lr][1], s);
+			printf("\tmovb %d(%%ebp),%s\n", s, rnames[pr]);
+//			comperr("SCONV1 %s->%s", rnames[lr], rnames[pr]);
 			break;
 
 		case SHORT:
