@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.160 2007/03/10 08:14:44 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.161 2007/04/22 08:42:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1120,7 +1120,7 @@ strend(char *str)
 void
 strprint()
 {
-	unsigned char *wr;
+	char *wr;
 	int i, val;
 
 	while (strpole != NULL) {
@@ -1128,12 +1128,12 @@ strprint()
 		deflab1(strpole->sym->soffset);
 
 		i = 0;
-		wr = (unsigned char *)strpole->sym->sname;
+		wr = strpole->sym->sname;
 		while (*wr != 0) {
 			if (*wr++ == '\\')
-				val = esccon((char **)&wr);
+				val = esccon(&wr);
 			else
-				val = wr[-1];
+				val = (unsigned char)wr[-1];
 			bycode(val, i);
 			i++;
 		}
