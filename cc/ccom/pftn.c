@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.161 2007/04/22 08:42:50 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.162 2007/04/22 13:13:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -83,7 +83,6 @@ int brklab;
 int contlab;
 int flostat;
 int instruct, blevel;
-OFFSZ inoff;
 int reached, prolab;
 
 struct params;
