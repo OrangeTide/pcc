@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.117 2007/03/10 08:14:44 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.118 2007/07/06 17:02:27 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -293,6 +293,7 @@ int falloc(struct symtab *p, int w, int new, NODE *pty);
 TWORD ctype(TWORD);  
 void inval(CONSZ);
 void ninval(NODE *);
+void indata(CONSZ, int);
 void defnam(struct symtab *);
 void plabel(int lab);
 void bjobcode(void);

@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.14 2006/02/16 16:46:30 ragge Exp $	*/
+/*	$Id: code.c,v 1.15 2007/07/06 17:02:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -169,7 +169,7 @@ void
 zecode(int n)
 {
 	printf("	.zero %d\n", n * (SZINT/SZCHAR));
-	inoff += n * SZINT;
+//	inoff += n * SZINT;
 }
 
 /*

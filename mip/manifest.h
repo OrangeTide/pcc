@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.55 2006/06/17 08:23:30 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.56 2007/07/06 17:02:27 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -221,6 +221,7 @@ void yyaccpt(void);
 	{ (h)->q_forw = NULL; (h)->q_last = &(h)->q_forw; }
 #define	SLIST_ENTRY(t)	struct { struct t *q_forw; }
 #define	SLIST_HEAD(n,t) struct n { struct t *q_forw, **q_last; }
+#define	SLIST_FIRST(h)	((h)->q_forw)
 #define	SLIST_FOREACH(v,h,f) \
 	for ((v) = (h)->q_forw; (v) != NULL; (v) = (v)->f.q_forw)
 #define	SLIST_INSERT_LAST(h,e,f) {	\

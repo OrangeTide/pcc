@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.46 2007/03/10 08:14:44 ragge Exp $	*/
+/*	$Id: local.c,v 1.47 2007/07/06 17:02:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -385,6 +385,24 @@ spalloc(NODE *t, NODE *p, OFFSZ off)
 	t->n_type = sp->n_type;
 	ecomp(buildtree(ASSIGN, t, sp)); /* Emit! */
 
+}
+
+void
+indata(CONSZ val, int size)
+{
+	switch (size) {
+	case SZCHAR:
+		printf("\t.byte %d\n", (int)val & 0xff);
+		break;
+	case SZSHORT:
+		printf("\t.word %d\n", (int)val & 0xffff);
+		break;
+	case SZINT:
+		printf("\t.long %d\n", (int)val & 0xffffffff);
+		break;
+	default:
+		cerror("indata");
+	}
 }
 
 /*
