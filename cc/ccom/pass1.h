@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.118 2007/07/06 17:02:27 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.119 2007/07/10 16:13:54 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -294,6 +294,7 @@ TWORD ctype(TWORD);
 void inval(CONSZ);
 void ninval(NODE *);
 void indata(CONSZ, int);
+void instring(char *);
 void defnam(struct symtab *);
 void plabel(int lab);
 void bjobcode(void);
@@ -307,7 +308,7 @@ void endinit(void);
 void ilbrace(void);
 void irbrace(void);
 void scalinit(NODE *p);
-
+int ftoint(NODE *, CONSZ **);
 void p1print(char *fmt, ...);
 char *copst(int);
 int cdope(int);
