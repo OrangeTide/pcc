@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.30 2006/07/15 07:34:19 ragge Exp $	*/
+/*	$Id: node.h,v 1.31 2007/07/22 12:50:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -184,7 +184,7 @@ typedef struct node {
 #define STASG	50
 #define STARG	51
 #define FORCE	52
-#define INIT	53
+/* #define INIT	53 */
 #define	GOTO	54
 #define	RETURN	55
 #define STREF	56

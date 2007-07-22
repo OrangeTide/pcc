@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.197 2006/10/07 09:19:34 ragge Exp $	*/
+/*	$Id: reader.c,v 1.198 2007/07/22 12:50:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -135,7 +135,7 @@ isuseless(NODE *n)
 	case UCALL:
 	case UFORTCALL:
 	case FORCE:
-	case INIT:
+/*	case INIT: */
 	case ASSIGN:
 	case CALL:
 	case FORTCALL:
@@ -427,7 +427,7 @@ again:	switch (o = p->n_op) {
 	case UMINUS:
 	case PCONV:
 	case SCONV:
-	case INIT:
+/*	case INIT: */
 	case GOTO:
 	case FUNARG:
 	case STARG:

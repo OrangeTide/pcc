@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.64 2006/07/15 07:34:19 ragge Exp $	*/
+/*	$Id: common.c,v 1.65 2007/07/22 12:50:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -327,7 +327,7 @@ struct dopest {
 	{ UFORTCALL, "UFCALL", UTYPE|CALLFLG, },
 	{ COMPL, "~", UTYPE, },
 	{ FORCE, "FORCE", UTYPE, },
-	{ INIT, "INIT", UTYPE, },
+/*	{ INIT, "INIT", UTYPE, }, */
 	{ SCONV, "SCONV", UTYPE, },
 	{ PCONV, "PCONV", UTYPE, },
 	{ PLUS, "+", BITYPE|FLOFLG|SIMPFLG|COMMFLG, },
