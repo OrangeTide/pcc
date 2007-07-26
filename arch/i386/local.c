@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.49 2007/07/22 12:50:56 ragge Exp $	*/
+/*	$Id: local.c,v 1.50 2007/07/26 09:55:57 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -541,7 +541,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 		break;
 	case CHAR:
 	case UCHAR:
-		printf("\t.char %d\n", (int)p->n_lval & 0xff);
+		printf("\t.byte %d\n", (int)p->n_lval & 0xff);
 		break;
 	case LDOUBLE:
 		u.i[2] = 0;
