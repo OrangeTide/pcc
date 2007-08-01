@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.163 2007/07/06 17:02:27 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.164 2007/08/01 04:55:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1604,7 +1604,7 @@ tymerge(NODE *typ, NODE *idp)
 #endif
 
 	idp->n_type = typ->n_type;
-	idp->n_qual = INCQAL(typ->n_qual) | idp->n_qual;
+	idp->n_qual = (typ->n_qual << TSHIFT) | idp->n_qual; /* XXX ??? */
 
 	tylkp = &tylnk;
 	tylkp->next = NULL;
