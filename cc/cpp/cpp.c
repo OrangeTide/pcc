@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.48 2007/02/07 17:44:04 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.49 2007/08/01 04:52:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -729,11 +729,12 @@ xerror(usch *s)
 void
 savch(c)
 {
-	*stringbuf++ = c;
-	if (stringbuf-sbf < SBSIZE)
-		return;
-	stringbuf = sbf; /* need space to write error message */
-	error("Too much defining");
+	if (stringbuf-sbf < SBSIZE) {
+		*stringbuf++ = c;
+	} else {
+		stringbuf = sbf; /* need space to write error message */
+		error("Too much defining");
+	} 
 }
 
 /*
@@ -1160,9 +1161,12 @@ savstr(usch *str)
 {
 	usch *rv = stringbuf;
 
-	while ((*stringbuf++ = *str++))
-		if (stringbuf >= &sbf[SBSIZE])
+	do {
+		if (stringbuf >= &sbf[SBSIZE])   {
+			stringbuf = sbf; /* need space to write error message */
 			error("out of macro space!");
+		}
+	} while ((*stringbuf++ = *str++));
 	stringbuf--;
 	return rv;
 }
