@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.23 2006/10/08 13:41:39 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.24 2007/08/08 20:29:14 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -44,6 +44,9 @@ extern	int	flslvl;
 extern	int	elflvl;
 extern	int	elslvl;
 extern	int	tflag, Cflag;
+extern	int	Mflag;
+extern	usch	*Mfile;
+extern	int	ofd;
 
 /* args for lookup() */
 #define FIND    0
@@ -59,7 +62,8 @@ extern	int	tflag, Cflag;
 /* definition for include file info */
 struct includ {
 	struct includ *next;
-	usch *fname;
+	usch *fname;	/* current fn, changed if #line found */
+	usch *orgfn;	/* current fn, not changed */
 	int lineno;
 	int infil;
 	usch *curptr;
