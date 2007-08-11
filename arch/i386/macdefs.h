@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.44 2006/07/10 07:55:26 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.45 2007/08/11 09:05:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -42,6 +42,7 @@
  * Storage space requirements
  */
 #define SZCHAR		8
+#define SZBOOL		8
 #define SZINT		32
 #define SZFLOAT		32
 #define SZDOUBLE	64
@@ -55,6 +56,7 @@
  * Alignment constraints
  */
 #define ALCHAR		8
+#define ALBOOL		8
 #define ALINT		32
 #define ALFLOAT		32
 #define ALDOUBLE	32
@@ -87,6 +89,8 @@
 
 /* Default char is signed */
 #undef	CHAR_UNSIGNED
+#define	BOOL_TYPE	CHAR	/* what used to store _Bool */
+#define	WCHAR_TYPE	INT	/* what used to store wchar_t */
 
 /*
  * Use large-enough types.

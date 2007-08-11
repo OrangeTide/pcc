@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.164 2007/08/01 04:55:46 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.165 2007/08/11 09:05:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -996,6 +996,8 @@ talign(unsigned int ty, struct suedef *sue)
 	case ENUMTY:
 	case STRTY:
 		return((unsigned int)sue->suealign);
+	case BOOL:
+		return (ALBOOL);
 	case CHAR:
 	case UCHAR:
 		return (ALCHAR);

@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.121 2007/07/26 09:55:58 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.122 2007/08/11 09:05:06 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -375,6 +375,11 @@ void stabs_struct(struct symtab *p, struct suedef *sue);
 
 #define INCR		(MAXOP+26)
 #define DECR		(MAXOP+27)
+/*
+ * The following types are only used in pass1.
+ */
+#define SIGNED		(MAXTYPES+1)
+#define BOOL		(MAXTYPES+2)
 
 
 #define coptype(o)	(cdope(o)&TYFLG)

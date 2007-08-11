@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.65 2007/07/22 12:50:56 ragge Exp $	*/
+/*	$Id: common.c,v 1.66 2007/08/11 09:05:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -408,6 +408,8 @@ tprint(FILE *fp, TWORD t, TWORD q)
 		"enumty",
 		"moety",
 		"void",
+		"signed", /* pass1 */
+		"bool", /* pass1 */
 		"?", "?"
 		};
 
