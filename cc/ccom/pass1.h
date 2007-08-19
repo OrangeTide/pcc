@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.122 2007/08/11 09:05:06 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.123 2007/08/19 19:21:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -197,7 +197,7 @@ extern	int isinlining;
 
 extern	struct symtab *spname;
 
-extern	int sdebug;
+extern	int sdebug, idebug;
 
 /* various labels */
 extern	int brklab;
@@ -230,6 +230,7 @@ extern	NODE
 	*rstruct(char *, int),
 	*dclstruct(struct rstack *),
 	*strend(char *),
+	*wstrend(char *),
 	*tymerge(NODE *typ, NODE *idp),
 	*stref(NODE *),
 	*offcon(OFFSZ, TWORD, union dimfun *, struct suedef *),
