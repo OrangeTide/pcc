@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.24 2007/08/08 20:29:14 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.25 2007/08/19 19:22:15 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -54,7 +54,11 @@ extern	int	ofd;
 
 /* buffer used internally */
 #ifndef CPPBUF
+#ifdef __pdp11__
 #define CPPBUF  BUFSIZ
+#else
+#define CPPBUF	65536
+#endif
 #endif
 
 #define	NAMEMAX	64 /* max len of identifier */
