@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.52 2007/08/11 09:05:06 ragge Exp $	*/
+/*	$Id: local.c,v 1.53 2007/08/19 19:25:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -280,7 +280,8 @@ clocal(NODE *p)
 		p->n_op = ASSIGN;
 		p->n_right = p->n_left;
 		p->n_left = block(REG, NIL, NIL, p->n_type, 0, MKSUE(INT));
-		p->n_left->n_rval = RETREG(p->n_type);
+		p->n_left->n_rval = p->n_left->n_type == BOOL ? 
+		    RETREG(CHAR) : RETREG(p->n_type);
 		break;
 
 	case LS:
