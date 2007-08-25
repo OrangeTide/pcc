@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.165 2007/08/19 19:24:52 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.166 2007/08/25 05:57:07 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -965,6 +965,8 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 				defid(q, EXTERN);
 				nfree(q);
 			}
+			if (spname->sflags & SINLINE)
+				inline_ref($1);
 			$$ = buildtree(NAME, NIL, NIL);
 			spname->suse = -lineno;
 			if (spname->sflags & SDYNARRAY)
