@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.25 2007/08/19 19:22:15 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.26 2007/09/09 09:58:54 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -80,6 +80,14 @@ struct includ {
 struct symtab {
 	usch *namep;    
 	usch *value;    
+	usch *file;
+	int line;
+};
+
+struct initar {
+	struct initar *next;
+	int type;
+	char *str;
 };
 
 struct recur;	/* not used outside cpp.c */
