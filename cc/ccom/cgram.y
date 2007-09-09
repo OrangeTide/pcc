@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.167 2007/09/09 10:01:01 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.168 2007/09/09 17:42:33 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -203,10 +203,10 @@ struct savbc {
 %type <rp>	enum_head str_head
 %type <symp>	xnfdeclarator clbrace
 
-%token <intval> C_CLASS C_STRUCT C_RELOP C_DIVOP C_SHIFTOP
+%type <intval> C_CLASS C_STRUCT C_RELOP C_DIVOP C_SHIFTOP
 		C_ANDAND C_OROR C_STROP C_INCOP C_UNOP C_ASOP C_EQUOP
-%token <nodep>  C_TYPE C_QUALIFIER C_ICON C_FCON
-%token <strp>	C_NAME C_TYPENAME
+%type <nodep>  C_TYPE C_QUALIFIER C_ICON C_FCON
+%type <strp>	C_NAME C_TYPENAME
 
 %%
 

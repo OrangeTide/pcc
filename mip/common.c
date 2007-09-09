@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.66 2007/08/11 09:05:05 ragge Exp $	*/
+/*	$Id: common.c,v 1.67 2007/09/09 17:42:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -452,6 +452,15 @@ getlab()
  */
 
 #define	MEMCHUNKSZ 8192	/* 8k per allocation */
+struct b {
+	char a1;
+	union {
+		long long l;
+		long double d;
+	} a2;
+};
+
+#define ALIGNMENT ((int)&((struct b *)0)->a2)
 #define	ROUNDUP(x) ((x) + (sizeof(ALIGNMENT)-1)) & ~(sizeof(ALIGNMENT)-1)
 
 static char *allocpole;

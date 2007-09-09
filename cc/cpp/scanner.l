@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.14 2007/09/09 09:58:54 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.15 2007/09/09 17:42:33 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -356,6 +356,7 @@ prinit(struct initar *it, struct includ *ic)
 
 	if (it->next)
 		prinit(it->next, ic);
+	pre = post = NULL; /* XXX gcc */
 	switch (it->type) {
 	case 'D':
 		pre = "#define ";
