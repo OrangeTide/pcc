@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.58 2007/08/19 19:24:51 ragge Exp $	*/
+/*	$Id: scan.l,v 1.59 2007/09/15 07:37:44 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -302,7 +302,7 @@ fhexcon(void)
 	if (*c != 'P' && *c != 'p')
 		cerror("fhexcon2");
 	c++;
-	sprintf(buf, "%llu.%lluE%s", num1, num2, c);
+	snprintf(buf, sizeof(buf), "%llu.%lluE%s", num1, num2, c);
 	return f2(buf);
 }
 

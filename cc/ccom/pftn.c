@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.168 2007/09/09 10:01:01 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.169 2007/09/15 07:37:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2541,7 +2541,7 @@ scnames(int c)
 	/* return the name for storage class c */
 	static char buf[12];
 	if( c&FIELD ){
-		sprintf( buf, "FIELD[%d]", c&FLDSIZ );
+		snprintf( buf, sizeof(buf), "FIELD[%d]", c&FLDSIZ );
 		return( buf );
 		}
 	return( ccnames[c] );

@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.199 2007/08/11 09:05:05 ragge Exp $	*/
+/*	$Id: reader.c,v 1.200 2007/09/15 07:37:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -339,7 +339,7 @@ prcook(int cookie)
 		case SMONE:
 			return "SMONE";
 		default:
-			sprintf(buf, "SPECIAL+%d", cookie & ~SPECIAL);
+			snprintf(buf, sizeof(buf), "SPECIAL+%d", cookie & ~SPECIAL);
 			return buf;
 		}
 	}
@@ -349,9 +349,9 @@ prcook(int cookie)
 	for (i = 0; cnames[i]; ++i) {
 		if (cookie & (1<<i)) {
 			if (flag)
-				strcat(buf, "|");
+				strlcat(buf, "|", sizeof(buf));
 			++flag;
-			strcat(buf, cnames[i]);
+			strlcat(buf, cnames[i], sizeof(buf));
 		}
 	}
 	return buf;

@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.168 2007/09/09 17:42:33 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.169 2007/09/15 07:37:43 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -993,24 +993,28 @@ clbrace:	   '{'	{ $$ = clbrace($<nodep>-1); }
 		;
 
 string:		   C_STRING {
-			$$ = tmpalloc(strlen($1) + 1);
-			strcpy($$, $1);
+			int len = strlen($1) + 1;
+			$$ = tmpalloc(len);
+			strlcpy($$, $1, len);
 		}
 		|  string C_STRING { 
-			$$ = tmpalloc(strlen($1) + strlen($2) + 1);
-			strcpy($$, $1);
-			strcat($$, $2);
+			int len = strlen($1) + strlen($2) + 1;
+			$$ = tmpalloc(len);
+			strlcpy($$, $1, len);
+			strlcat($$, $2, len);
 		}
 		;
 
 wstring:	  C_WSTRING {
-			$$ = tmpalloc(strlen($1) + 1);
-			strcpy($$, $1);
+			int len = strlen($1) + 1;
+			$$ = tmpalloc(len);
+			strlcpy($$, $1, len);
 		}
 		|  string C_WSTRING { 
-			$$ = tmpalloc(strlen($1) + strlen($2) + 1);
-			strcpy($$, $1);
-			strcat($$, $2);
+			int len = strlen($1) + strlen($2) + 1;
+			$$ = tmpalloc(len);
+			strlcpy($$, $1, len);
+			strlcat($$, $2, len);
 		}
 		;
 

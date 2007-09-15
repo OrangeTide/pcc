@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.161 2007/09/09 17:42:33 ragge Exp $	*/
+/*	$Id: trees.c,v 1.162 2007/09/15 07:37:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2158,7 +2158,7 @@ p2tree(NODE *p)
 				int n = q->soffset;
 				if (n < 0)
 					n = -n;
-				sprintf(cp, LABFMT, n);
+				snprintf(cp, 32, LABFMT, n);
 				p->n_name = cp;
 			} else {
 #ifdef GCC_COMPAT
