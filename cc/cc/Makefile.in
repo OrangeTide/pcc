@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.5 2006/10/07 09:19:34 ragge Exp $
+#	$Id: Makefile.in,v 1.6 2007/09/15 07:48:11 ragge Exp $
 #
 # Makefile.in for the cc part of pcc.
 #
@@ -30,6 +30,7 @@ ${DEST}: $(OBJS)
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c $<
 
 install:
+	test -z "$(bindir)" || mkdir -p "$(bindir)"
 	${INSTALL_PROGRAM} ${DEST} ${bindir}
 	@if [ ${strip} = yes ]; then		\
 		strip ${bindir}/${DEST} ;	\
