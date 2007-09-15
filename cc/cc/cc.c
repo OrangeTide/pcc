@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.53 2007/09/15 07:37:41 ragge Exp $	*/
+/*	$Id: cc.c,v 1.54 2007/09/15 09:29:45 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -476,7 +476,8 @@ nocom:
 		if (Bstatic == 0) { /* Dynamic linkage */
 			for (i = 0; dynlinker[i]; i++)
 				av[j++] = dynlinker[i];
-		}
+		} else
+			av[j++] = "-Bstatic";
 		if (outfile) {
 			av[j++] = "-o";
 			av[j++] = outfile;
