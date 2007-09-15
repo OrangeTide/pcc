@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.11 2007/09/15 07:48:15 ragge Exp $
+#	$Id: Makefile.in,v 1.12 2007/09/15 14:50:07 ragge Exp $
 #
 # Makefile.in for cpp
 #
@@ -65,11 +65,11 @@ test:
 
 
 install:
-	test -z "$(libexecdir)" || mkdir -p "$(libexecdir)"
-	${INSTALL_PROGRAM} ${DEST} ${libexecdir}
+	test -z "${DESTDIR}$(libexecdir)" || mkdir -p "${DESTDIR}$(libexecdir)"
+	${INSTALL_PROGRAM} ${DEST} ${DESTDIR}${libexecdir}
 	@if [ ${strip} = yes ]; then		\
-		strip ${libexecdir}/${DEST} ;	\
-		echo strip ${libexecdir}/${DEST} ;	\
+		strip ${DESTDIR}${libexecdir}/${DEST} ;	\
+		echo strip ${DESTDIR}${libexecdir}/${DEST} ;	\
 	fi
 
 clean:
