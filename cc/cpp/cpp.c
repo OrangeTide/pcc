@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.54 2007/09/09 17:42:33 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.55 2007/09/16 08:26:37 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -1333,7 +1333,8 @@ getsymtab(usch *str)
 {
 	struct symtab *sp = malloc(sizeof(struct symtab));
 
-	sp->namep = savstr(str), savch('\0');
+	sp->namep = savstr(str);
+	savch('\0');
 	sp->value = NULL;
 	sp->file = ifiles ? ifiles->orgfn : (usch *)"<initial>";
 	sp->line = ifiles ? ifiles->lineno : 0;
