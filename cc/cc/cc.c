@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.54 2007/09/15 09:29:45 ragge Exp $	*/
+/*	$Id: cc.c,v 1.55 2007/09/16 19:25:36 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -71,7 +71,7 @@
 /*
  * Many specific definitions, should be declared elsewhere.
  */
-#define	STDINC	  "/usr/include"
+#define	STDINC	  "/usr/include/"
 
 #define SBSIZE 10000
 #define MAXINC 100
