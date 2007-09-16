@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.15 2007/09/09 17:42:33 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.16 2007/09/16 18:25:38 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -192,7 +192,7 @@ L?'(\\.|[^\\'])+'	{	if (YYSTATE)
 
 <CONTR>"ifndef"		{ contr = 0; ifndefstmt(); }
 <CONTR>"ifdef"		{ contr = 0; ifdefstmt(); }
-<CONTR>"if"{WS}+	{ contr = 0; storepb(); BEGIN IFR; ifstmt(); BEGIN 0; }
+<CONTR>"if"		{ contr = 0; storepb(); BEGIN IFR; ifstmt(); BEGIN 0; }
 <CONTR>"include"	{ contr = 0; BEGIN 0; include(); prtline(); }
 <CONTR>"else"		{ contr = 0; elsestmt(); }
 <CONTR>"endif"		{ contr = 0; endifstmt(); }
@@ -201,7 +201,7 @@ L?'(\\.|[^\\'])+'	{	if (YYSTATE)
 <CONTR>"undef"		{ contr = 0; if (slow) return IDENT; undefstmt(); }
 <CONTR>"line"		{ contr = 0; storepb(); BEGIN 0; line(); }
 <CONTR>"pragma"		{ contr = 0; pragmastmt(); }
-<CONTR>"elif"{WS}+	{ contr = 0; storepb(); BEGIN IFR; elifstmt(); BEGIN 0; }
+<CONTR>"elif"		{ contr = 0; storepb(); BEGIN IFR; elifstmt(); BEGIN 0; }
 
 
 
