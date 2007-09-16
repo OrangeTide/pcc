@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.88 2007/09/09 10:02:59 ragge Exp $	*/
+/*	$Id: local2.c,v 1.89 2007/09/16 19:08:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1043,7 +1043,8 @@ special(NODE *p, int shape)
 			return SRREG;
 		break;
 	case SPCON:
-		if (o != ICON || p->n_name[0] || p->n_lval < 0)
+		if (o != ICON || p->n_name[0] ||
+		    p->n_lval < 0 || p->n_lval > 0x7fffffff)
 			break;
 		return SRDIR;
 	}
