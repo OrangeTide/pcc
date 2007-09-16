@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.55 2007/09/16 08:26:37 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.56 2007/09/16 09:38:07 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -104,8 +104,8 @@ int dflag;	/* debug printouts */
 #endif
 
 int ofd;
-static usch outbuf[CPPBUF];
-static int obufp, istty;
+usch outbuf[CPPBUF];
+int obufp, istty;
 int Cflag, Mflag;
 usch *Mfile;
 struct initar *initar;
@@ -483,9 +483,9 @@ include()
 		return;
 	osp = stringbuf;
 	slow = 1;
-	if (yylex() != WSPACE)
-		goto bad;
-again:	if ((c = yylex()) != STRING && c != '<' && c != IDENT)
+	if ((c = yylex()) == WSPACE)
+		c = yylex();
+again:	if (c != STRING && c != '<' && c != IDENT)
 		goto bad;
 
 	if (c == IDENT) {
