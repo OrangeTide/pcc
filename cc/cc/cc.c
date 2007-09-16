@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.55 2007/09/16 19:25:36 ragge Exp $	*/
+/*	$Id: cc.c,v 1.56 2007/09/16 19:42:49 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -603,9 +603,10 @@ setsuf(char *s, char ch)
 }
 
 int
-callsys(f, v)
-char f[], *v[]; {
-	int t, status;
+callsys(char f[], char *v[])
+{
+	int status;
+	pid_t t;
 	char *s;
 
 	if (vflag) {
@@ -617,8 +618,10 @@ char f[], *v[]; {
 
 	if ((t=fork())==0) {
 		if (Bflag) {
-			int len = strlen(Bflag) + 8;
+			size_t len = strlen(Bflag) + 8;
 			char *a = malloc(len);
+			if (a == NULL)
+				errorx(1, "callsys: malloc failed\n");
 			if ((s = strrchr(f, '/'))) {
 				strlcpy(a, Bflag, len);
 				strlcat(a, s, len);

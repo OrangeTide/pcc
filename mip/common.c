@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.68 2007/09/16 09:22:23 ragge Exp $	*/
+/*	$Id: common.c,v 1.69 2007/09/16 19:42:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -514,7 +514,8 @@ tmpalloc(int size)
 	void *rv;
 
 	if (size > MEMCHUNKSZ) {
-		return malloc(size);
+		if ((rv = malloc(size)) == NULL)
+			cerror("tmpalloc: out of memory");
 	//	cerror("tmpalloc %d", size);
 	}
 	if (size <= 0)
