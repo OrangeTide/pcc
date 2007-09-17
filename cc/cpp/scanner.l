@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.16 2007/09/16 18:25:38 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.17 2007/09/17 18:16:14 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -374,6 +374,8 @@ prinit(struct initar *it, struct includ *ic)
 		pre = "#include \"";
 		post = "\"\n";
 		break;
+	default:
+		error("prinit");
 	}
 	strcat((char *)ic->buffer, pre);
 	strcat((char *)ic->buffer, it->str);
@@ -418,19 +420,10 @@ pushfile(usch *file)
 	if (initar) {
 		*ic->maxread = 0;
 		prinit(initar, ic);
+		if (dMflag)
+			write(ofd, ic->buffer, strlen((char *)ic->buffer));
 		initar = NULL;
 	}
-#if 0
-	if (old == NULL && ifile != NULL) {
-		strcpy((char *)ic->buffer, "#include \"");
-		strcat((char *)ic->buffer, ifile);
-		strcat((char *)ic->buffer, "\"\n");
-		while (*ic->maxread)
-			ic->maxread++;
-		ic->lineno = 0;
-		ifile = NULL;
-	}
-#endif
 
 	otrulvl = trulvl;
 
@@ -454,6 +447,8 @@ prtline()
 	usch *s, *os = stringbuf;
 
 	if (Mflag) {
+		if (dMflag)
+			return; /* no output */
 		if (ifiles->lineno == 1) {
 			s = sheap("%s: %s\n", Mfile, ifiles->fname);
 			write(ofd, s, strlen((char *)s));

@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.26 2007/09/09 09:58:54 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.27 2007/09/17 18:16:14 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -44,7 +44,7 @@ extern	int	flslvl;
 extern	int	elflvl;
 extern	int	elslvl;
 extern	int	tflag, Cflag;
-extern	int	Mflag;
+extern	int	Mflag, dMflag;
 extern	usch	*Mfile;
 extern	int	ofd;
 
