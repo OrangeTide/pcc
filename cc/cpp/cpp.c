@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.60 2007/09/17 18:16:14 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.61 2007/09/18 20:15:58 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -176,7 +176,7 @@ main(int argc, char **argv)
 	struct symtab *nl;
 	register int ch;
 
-	while ((ch = getopt(argc, argv, "CD:I:MS:U:d:i:tv")) != -1)
+	while ((ch = getopt(argc, argv, "CD:I:MS:U:d:i:tv?")) != -1)
 		switch (ch) {
 		case 'C': /* Do not discard comments */
 			Cflag++;
