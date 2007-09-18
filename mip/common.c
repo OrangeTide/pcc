@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.69 2007/09/16 19:42:53 ragge Exp $	*/
+/*	$Id: common.c,v 1.70 2007/09/18 06:20:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -136,6 +136,7 @@ werror(char *s, ...)
 	fprintf(stderr, "warning: ");
 	vfprintf(stderr, s, ap);
 	fprintf(stderr, "\n");
+	va_end(ap);
 }
 
 #ifndef MKEXT
