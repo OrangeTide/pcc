@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.17 2007/09/17 18:16:14 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.18 2007/09/19 17:20:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -54,6 +54,9 @@ static void elifstmt(void);
 static void storepb(void);
 void  include(void);
 void  define(void);
+
+extern int yyget_lineno (void);
+extern void yyset_lineno (int);
 
 static int inch(void);
 

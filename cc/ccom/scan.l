@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.60 2007/09/16 18:25:38 ragge Exp $	*/
+/*	$Id: scan.l,v 1.61 2007/09/19 17:20:26 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -73,6 +73,8 @@ void yyset_out (FILE *  out_str );
 int yyget_debug  (void);
 void yyset_debug (int  bdebug );
 int yylex_destroy  (void);
+extern int yyget_lineno (void);
+extern void yyset_lineno (int);
 #endif
 
 %}
