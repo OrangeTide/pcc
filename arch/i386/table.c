@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.95 2007/09/09 10:02:59 ragge Exp $	*/
+/*	$Id: table.c,v 1.96 2007/09/20 14:52:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -561,7 +561,7 @@ struct optab table[] = {
 		0,	RLEFT,
 		"	faddp\n", },
 
-{ PLUS,		INAREG,
+{ PLUS,		INAREG|FOREFF,
 	SAREG|SNAME|SOREG,	TWORD|TPOINT,
 	SONE,	TANY,
 		0,	RLEFT,
@@ -573,7 +573,7 @@ struct optab table[] = {
 		NAREG|NASL,	RESC1,
 		"	leal CR(AL),A1\n", },
 
-{ PLUS,		INCH,
+{ PLUS,		INCH|FOREFF,
 	SHCH|SNAME|SOREG,	TCHAR|TUCHAR,
 	SONE,	TANY,
 		0,	RLEFT,
@@ -585,6 +585,17 @@ struct optab table[] = {
 		NAREG|NASL|NASR,	RESC1,
 		"	leal (AL,AR),A1\n", },
 
+{ MINUS,	INAREG|FOREFF,
+	SAREG|SNAME|SOREG,	TWORD|TPOINT,
+	SONE,			TANY,
+		0,	RLEFT,
+		"	decl AL\n", },
+
+{ MINUS,	INCH|FOREFF,
+	SHCH|SNAME|SOREG,	TCHAR|TUCHAR,
+	SONE,	TANY,
+		0,	RLEFT,
+		"	decb AL\n", },
 
 /* address as register offset, negative */
 { MINUS,	INAREG,
