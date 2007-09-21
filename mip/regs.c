@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.151 2007/09/16 08:26:34 ragge Exp $	*/
+/*	$Id: regs.c,v 1.152 2007/09/21 10:16:24 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2197,54 +2197,54 @@ onlyperm: /* XXX - should not have to redo all */
 		case SMALL:
 			optimize(ipole);
 			if (beenhere++ == MAXLOOP)
-					comperr("beenhere");
-				goto recalc;
-			}
+				comperr("beenhere");
+			goto recalc;
 		}
+	}
 
 		/* fill in regs to save */
-		ipp->ipp_regs = 0;
-		for (i = 0; i < NPERMREG-1; i++) {
-			NODE *p;
+	ipp->ipp_regs = 0;
+	for (i = 0; i < NPERMREG-1; i++) {
+		NODE *p;
 
-			if (nsavregs[i]) {
-				ipp->ipp_regs |= (1 << permregs[i]);
-				continue; /* Spilled */
-			}
-			if (nblock[i+tempmin].r_color == permregs[i])
-				continue; /* Coalesced */
-			/*
-			 * If the original color of this permreg is used for
-			 * coloring another register, swap them to avoid
-			 * unneccessary moves.
-			 */
-			for (j = i+1; j < NPERMREG-1; j++) {
-				if (nblock[j+tempmin].r_color != permregs[i])
-					continue;
-				nblock[j+tempmin].r_color = nblock[i+tempmin].r_color;
-				break;
-			}
-			if (j != NPERMREG-1)
-				continue;
-
-			/* Generate reg-reg move nodes for save */
-			p = mkbinode(ASSIGN,
-			    mklnode(REG, 0, nblock[i+tempmin].r_color, INT),
-			    mklnode(REG, 0, permregs[i], INT), INT);
-			p->n_reg = p->n_left->n_reg = p->n_right->n_reg = -1;
-			p->n_left->n_su = p->n_right->n_su = 0;
-			geninsn(p, FOREFF);
-			ip = ipnode(p);
-			DLIST_INSERT_AFTER(ipole->qelem.q_forw, ip, qelem);
-				/* XXX not int */
-			p = mkbinode(ASSIGN, mklnode(REG, 0, permregs[i], INT),
-			    mklnode(REG, 0, nblock[i+tempmin].r_color, INT), INT);
-			p->n_reg = p->n_left->n_reg = p->n_right->n_reg = -1;
-			p->n_left->n_su = p->n_right->n_su = 0;
-			geninsn(p, FOREFF);
-			ip = ipnode(p);
-			DLIST_INSERT_BEFORE(ipole->qelem.q_back, ip, qelem);
+		if (nsavregs[i]) {
+			ipp->ipp_regs |= (1 << permregs[i]);
+			continue; /* Spilled */
 		}
-		epp->ipp_regs = ipp->ipp_regs;
+		if (nblock[i+tempmin].r_color == permregs[i])
+			continue; /* Coalesced */
+		/*
+		 * If the original color of this permreg is used for
+		 * coloring another register, swap them to avoid
+		 * unneccessary moves.
+		 */
+		for (j = i+1; j < NPERMREG-1; j++) {
+			if (nblock[j+tempmin].r_color != permregs[i])
+				continue;
+			nblock[j+tempmin].r_color = nblock[i+tempmin].r_color;
+			break;
+		}
+		if (j != NPERMREG-1)
+			continue;
+
+		/* Generate reg-reg move nodes for save */
+		p = mkbinode(ASSIGN,
+		    mklnode(REG, 0, nblock[i+tempmin].r_color, INT),
+		    mklnode(REG, 0, permregs[i], INT), INT);
+		p->n_reg = p->n_left->n_reg = p->n_right->n_reg = -1;
+		p->n_left->n_su = p->n_right->n_su = 0;
+		geninsn(p, FOREFF);
+		ip = ipnode(p);
+		DLIST_INSERT_AFTER(ipole->qelem.q_forw, ip, qelem);
+			/* XXX not int */
+		p = mkbinode(ASSIGN, mklnode(REG, 0, permregs[i], INT),
+		    mklnode(REG, 0, nblock[i+tempmin].r_color, INT), INT);
+		p->n_reg = p->n_left->n_reg = p->n_right->n_reg = -1;
+		p->n_left->n_su = p->n_right->n_su = 0;
+		geninsn(p, FOREFF);
+		ip = ipnode(p);
+		DLIST_INSERT_BEFORE(ipole->qelem.q_back, ip, qelem);
+	}
+	epp->ipp_regs = ipp->ipp_regs;
 		/* Done! */
 }
