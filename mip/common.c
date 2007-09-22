@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.72 2007/09/22 16:20:13 ragge Exp $	*/
+/*	$Id: common.c,v 1.73 2007/09/22 17:15:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -461,7 +461,7 @@ struct b {
 	} a2;
 };
 
-#define ALIGNMENT ((int)&((struct b *)0)->a2)
+#define ALIGNMENT ((long)&((struct b *)0)->a2)
 #define	ROUNDUP(x) (((x) + ((ALIGNMENT)-1)) & ~((ALIGNMENT)-1))
 
 static char *allocpole;
