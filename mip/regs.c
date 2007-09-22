@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.153 2007/09/22 08:45:25 ragge Exp $	*/
+/*	$Id: regs.c,v 1.154 2007/09/22 16:31:13 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -543,7 +543,7 @@ adjSet(REGW *u, REGW *v)
 	}
 	if (u > v)
 		t = v, v = u, u = t;
-	w = edgehash[((int)u+(int)v) & 255];
+	w = edgehash[((long)u+(long)v) & 255];
 	for (; w; w = w->next) {
 		if (u == w->u && v == w->v)
 			return 1;
@@ -561,7 +561,7 @@ adjSetadd(REGW *u, REGW *v)
 
 	if (u > v)
 		t = v, v = u, u = t;
-	x = ((int)u+(int)v) & 255;
+	x = ((long)u+(long)v) & 255;
 	w = tmpalloc(sizeof(struct AdjSet));
 	w->u = u, w->v = v;
 	w->next = edgehash[x];
