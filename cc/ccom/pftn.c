@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.170 2007/09/16 09:23:11 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.171 2007/09/23 20:00:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2046,7 +2046,8 @@ doacall(NODE *f, NODE *a)
 	if (ddebug) {
 		printf("doacall.\n");
 		fwalk(f, eprint, 0);
-		fwalk(a, eprint, 0);
+		if (a)
+			fwalk(a, eprint, 0);
 	}
 #endif
 
