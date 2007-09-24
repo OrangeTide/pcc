@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.28 2007/09/23 15:12:38 ragge Exp $	*/
+/*	$Id: init.c,v 1.29 2007/09/24 14:53:48 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -282,10 +282,14 @@ stkpush(void)
 		is->in_df = sp->sdf;
 	} else if (ISSOU(t)) {
 		sq = *pstk->in_xp;
-		is->in_xp = ISSOU(sq->stype) ? sq->ssue->suelem : 0;
-		is->in_t = sq->stype;
-		is->in_sym = sq;
-		is->in_df = sq->sdf;
+		if (sq == NULL) {
+			uerror("excess of initializing elements");
+		} else {
+			is->in_xp = ISSOU(sq->stype) ? sq->ssue->suelem : 0;
+			is->in_t = sq->stype;
+			is->in_sym = sq;
+			is->in_df = sq->sdf;
+		}
 	} else if (ISARY(t)) {
 		is->in_xp = ISSOU(DECREF(t)) ? pstk->in_sym->ssue->suelem : 0;
 		is->in_t = DECREF(t);
