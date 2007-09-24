@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.29 2007/09/24 14:53:48 ragge Exp $	*/
+/*	$Id: init.c,v 1.30 2007/09/24 20:34:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -301,7 +301,7 @@ stkpush(void)
 		if (ISARY(is->in_t))
 			is->in_df = pstk->in_df+1;
 	} else
-		cerror("onstk");
+		uerror("too many left braces");
 	is->in_prev = pstk;
 	pstk = is;
 
