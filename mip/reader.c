@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.201 2007/09/21 16:06:41 ragge Exp $	*/
+/*	$Id: reader.c,v 1.202 2007/09/24 16:23:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -788,7 +788,7 @@ ffld(NODE *p, int down, int *down1, int *down2 )
 		p->n_left->n_type = ty;
 
 		p->n_op = AND;
-		p->n_right = mklnode(ICON, (1 << s)-1, 0, ty);
+		p->n_right = mklnode(ICON, ((CONSZ)1 << s)-1, 0, ty);
 
 		/* now, if a shift is needed, do it */
 
