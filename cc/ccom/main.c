@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.71 2007/09/24 15:42:00 ragge Exp $	*/
+/*	$Id: main.c,v 1.72 2007/09/25 06:43:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -287,7 +287,8 @@ main(int argc, char *argv[])
 	yyaccpt();
 
 	ejobcode( nerrors ? 1 : 0 );
-	lcommprint();
+	if (!nerrors)
+		lcommprint();
 
 	if (sflag)
 		prtstats();
