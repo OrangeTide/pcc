@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.19 2007/09/20 20:27:57 ragge Exp $	*/
+/*	$Id: scanner.l,v 1.20 2007/09/25 20:41:07 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -799,10 +799,16 @@ undefstmt(void)
 static void
 pragmastmt(void)
 {
+	int c;
+
 	slow = 1;
 	if (yylex() != WSPACE)
 		error("bad pragma");
-	while (yylex() != '\n')  /* no pragma support */
-		;
+	putstr((usch *)"#pragma ");
+	do {
+		putch(c = input());	/* Do arg expansion instead? */
+	} while (c && c != '\n');
+	ifiles->lineno++;
+	prtline();
 	slow = 0;
 }
