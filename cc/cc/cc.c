@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.61 2007/09/26 14:48:47 ragge Exp $	*/
+/*	$Id: cc.c,v 1.62 2007/09/28 08:48:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -76,7 +76,7 @@
 
 #define SBSIZE 10000
 #define MAXINC 100
-#define MAXFIL 100
+#define MAXFIL 10000
 #define MAXLIB 10000
 #define MAXAV  10000
 #define MAXOPT 100
