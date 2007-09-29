@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.30 2007/09/24 20:34:03 ragge Exp $	*/
+/*	$Id: init.c,v 1.31 2007/09/29 12:24:02 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -326,7 +326,7 @@ stkpop(void)
 		printf("stkpop\n");
 #endif
 	for (; pstk; pstk = pstk->in_prev) {
-		if (pstk->in_t == STRTY) {
+		if (pstk->in_t == STRTY && pstk->in_xp[0] != NULL) {
 			pstk->in_xp++;
 			if (*pstk->in_xp != NULL)
 				break;
@@ -731,7 +731,7 @@ irbrace()
 		if (ISARY(pstk->in_t))
 			pstk->in_n = pstk->in_df->ddim;
 		else if (pstk->in_t == STRTY) {
-			while (pstk->in_xp[1] != NULL)
+			while (pstk->in_xp[1] != NULL && pstk->in_xp[1] != NULL)
 				pstk->in_xp++;
 		}
 		stkpop();
