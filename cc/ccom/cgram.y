@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.170 2007/09/16 19:25:33 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.171 2007/09/30 20:32:08 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -883,6 +883,10 @@ nocon_e:	{ $<intval>$=instruct; instruct=0; } e %prec ',' {
 
 elist:		   e %prec ','
 		|  elist  ','  e { $$ = buildtree(CM, $1, $3); }
+		|  elist  ','  cast_type { /* hack for stdarg */
+			$3->n_op = TYPE;
+			$$ = buildtree(CM, $1, $3);
+		}
 		;
 
 /*
