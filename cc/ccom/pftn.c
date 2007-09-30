@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.174 2007/09/30 20:33:23 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.175 2007/09/30 20:38:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2029,7 +2029,7 @@ bad:
 }
 
 static NODE *
-builtin_pcc_va_arg(NODE *f, NODE *a)
+builtin_va_arg(NODE *f, NODE *a)
 {
 	NODE *p, *q, *r;
 	int sz, nodnum;
@@ -2061,7 +2061,7 @@ builtin_pcc_va_arg(NODE *f, NODE *a)
 	r = tempnode(nodnum, r->n_type, r->n_df, r->n_sue);
 	return r;
 bad:
-	uerror("bad argument to __builtin_pcc_va_arg");
+	uerror("bad argument to __builtin_va_arg");
 	return bcon(0);
 
 }
@@ -2094,7 +2094,7 @@ static struct bitable {
 } bitable[] = {
 	{ "__builtin_alloca", builtin_alloca },
 	{ "__builtin_stdarg_start", builtin_stdarg_start },
-	{ "__builtin_pcc_va_arg", builtin_pcc_va_arg },
+	{ "__builtin_va_arg", builtin_va_arg },
 	{ "__builtin_va_end", builtin_va_end },
 	{ "__builtin_va_copy", builtin_va_copy },
 #ifdef TARGET_BUILTINS
