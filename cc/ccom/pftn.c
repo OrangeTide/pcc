@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.175 2007/09/30 20:38:26 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.176 2007/10/01 16:13:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2161,7 +2161,7 @@ doacall(NODE *f, NODE *a)
 	/* First let MD code do something */
 	calldec(f, a);
 /* XXX XXX hack */
-	if ((f->n_op == CALL || f->n_op == CALL) &&
+	if ((f->n_op == CALL) &&
 	    f->n_left->n_op == ADDROF &&
 	    f->n_left->n_left->n_op == NAME &&
 	    (f->n_left->n_left->n_type & 0x7e0) == 0x4c0)
