@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.203 2007/09/24 17:49:54 ragge Exp $	*/
+/*	$Id: reader.c,v 1.204 2007/10/01 15:27:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -681,6 +681,7 @@ gencode(NODE *p, int cookie)
 }
 
 int negrel[] = { NE, EQ, GT, GE, LT, LE, UGT, UGE, ULT, ULE } ;  /* negatives of relationals */
+size_t negrelsize = sizeof negrel / sizeof negrel[0];
 
 #ifdef PCC_DEBUG
 #undef	PRTABLE
