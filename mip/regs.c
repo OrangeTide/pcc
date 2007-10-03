@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.156 2007/10/02 20:43:48 ragge Exp $	*/
+/*	$Id: regs.c,v 1.157 2007/10/03 20:36:56 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2141,7 +2141,7 @@ ngenregs(struct interpass *ipole)
 		nblock -= tempmin;
 		live = tmpalloc(BIT2BYTE(nbits));
 		RDEBUG(("nblock %p num %d size %zd\n",
-		    nblock, nbits, (int)(nbits * sizeof(REGW))));
+		    nblock, nbits, (size_t)(nbits * sizeof(REGW))));
 	}
 
 
