@@ -1,4 +1,4 @@
-/*	$Id: stabs.c,v 1.15 2007/09/15 07:37:44 ragge Exp $	*/
+/*	$Id: stabs.c,v 1.16 2007/10/03 18:30:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -183,7 +183,7 @@ findtype(TWORD t, union dimfun *df, struct suedef *sue)
 void
 stabs_line(int line)
 {
-	cprint(savestabs, ".stabn %d,0,%d," STABLBL "-%s", N_SLINE, line, stablbl, curfun);
+	cprint(savestabs, ".stabn %d,0,%d," STABLBL "-%s", N_SLINE, line, stablbl, exname(curfun));
 	cprint(1, STABLBL ":", stablbl++);
 }
 
