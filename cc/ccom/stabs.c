@@ -1,4 +1,4 @@
-/*	$Id: stabs.c,v 1.16 2007/10/03 18:30:00 ragge Exp $	*/
+/*	$Id: stabs.c,v 1.17 2007/10/04 17:44:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -194,7 +194,7 @@ void
 stabs_lbrac(int blklvl)
 {
 	cprint(savestabs, ".stabn %d,0,%d," STABLBL "-%s",
-	    N_LBRAC, blklvl, stablbl, curfun);
+	    N_LBRAC, blklvl, stablbl, exname(curfun));
 	cprint(1, STABLBL ":", stablbl++);
 }
 
@@ -205,7 +205,7 @@ void
 stabs_rbrac(int blklvl)
 {
 	cprint(savestabs, ".stabn %d,0,%d," STABLBL "-%s\n",
-	    N_RBRAC, blklvl, stablbl, curfun);
+	    N_RBRAC, blklvl, stablbl, exname(curfun));
 	cprint(1, STABLBL ":", stablbl++);
 }
 
