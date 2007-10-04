@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.65 2007/09/25 20:41:08 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.66 2007/10/04 16:44:31 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -84,6 +84,7 @@
 #include <alloca.h>
 #endif
 
+#include "../../mip/compat.h"
 #include "cpp.h"
 #include "y.tab.h"
 

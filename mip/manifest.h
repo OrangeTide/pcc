@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.61 2007/09/30 20:35:40 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.62 2007/10/04 16:44:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -40,6 +40,7 @@
 #include "../config.h"
 #include "macdefs.h"
 #include "node.h"
+#include "compat.h"
 
 /*
  * Node types
@@ -293,14 +294,6 @@ void send_passt(int type, ...);
 char	*hash(char *s);
 char	*savestr(char *cp);
 char	*tstr(char *cp);
-
-#ifndef HAVE_STRLCPY
-size_t strlcpy(char *dst, const char *src, size_t siz);
-#endif
-
-#ifndef HAVE_STRLCAT
-size_t strlcat(char *dst, const char *src, size_t siz);
-#endif
 
 /* memory management stuff */
 void *permalloc(int size);
