@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.66 2007/10/03 20:49:48 ragge Exp $	*/
+/*	$Id: cc.c,v 1.67 2007/10/04 06:56:34 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -288,7 +288,7 @@ main(int argc, char *argv[])
 
 			case 'd':
 				dflag++;
-				strncpy(alist, argv[i], 19);
+				strlcpy(alist, argv[i], sizeof (alist));
 				break;
 			case 'v':
 				printf("%s\n", VERSSTR);
