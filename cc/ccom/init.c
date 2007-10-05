@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.33 2007/10/02 20:36:12 ragge Exp $	*/
+/*	$Id: init.c,v 1.34 2007/10/05 12:51:18 otto Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -185,16 +185,19 @@ getll(void)
 /*
  * Return structure containing off bitnumber.
  * Allocate more entries, if needed.
- * This is not bright implemented.
  */
 static struct llist *
 setll(OFFSZ off)
 {
-	struct llist *ll;
+	struct llist *ll = NULL;
 
 	/* Ensure that we have enough entries */
 	while (off >= basesz * numents)
-		(void)getll();
+		 ll = getll();
+
+	if (ll != NULL && ll->begsz <= off && ll->begsz + basesz > off)
+		return ll;
+
 	SLIST_FOREACH(ll, &lpole, next)
 		if (ll->begsz <= off && ll->begsz + basesz > off)
 			break;
