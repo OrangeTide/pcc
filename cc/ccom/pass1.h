@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.125 2007/09/09 10:01:01 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.126 2007/10/06 15:19:22 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -231,7 +231,7 @@ extern	NODE
 	*buildtree(int, NODE *l, NODE *r),
 	*mkty(unsigned, union dimfun *, struct suedef *),
 	*rstruct(char *, int),
-	*dclstruct(struct rstack *),
+	*dclstruct(struct rstack *, int),
 	*strend(char *),
 	*wstrend(char *),
 	*tymerge(NODE *typ, NODE *idp),

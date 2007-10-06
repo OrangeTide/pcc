@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.12 2007/09/29 14:41:23 ragge Exp $
+#	$Id: Makefile.in,v 1.13 2007/10/06 15:19:22 ragge Exp $
 #
 # Makefile.in for ccom
 #
@@ -96,6 +96,8 @@ scan.c: scan.l cgram.c
 	mv lex.yy.c scan.c
 
 optim2.o reader.o: external.h
+
+pftn.o: cgram.c # creates cgram.h also
 
 install:
 	test -z "${DESTDIR}$(libexecdir)" || mkdir -p "${DESTDIR}$(libexecdir)"
