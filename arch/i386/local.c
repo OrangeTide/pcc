@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.58 2007/10/06 13:18:54 otto Exp $	*/
+/*	$Id: local.c,v 1.59 2007/10/06 13:27:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -148,6 +148,8 @@ clocal(NODE *p)
 				r = l->n_left->n_left;
 				if (r->n_type >= FLOAT && r->n_type <= LDOUBLE)
 					break;
+				if (ISPTR(r->n_type))
+					break; /* no opt for pointers */
 				if (toolarge(r->n_type, l->n_right->n_lval))
 					break;
 				/* Type must be correct */
