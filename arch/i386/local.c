@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.57 2007/10/05 15:39:17 ragge Exp $	*/
+/*	$Id: local.c,v 1.58 2007/10/06 13:18:54 otto Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -45,6 +45,7 @@ toolarge(TWORD t, CONSZ con)
 #define	UCHK(i)	case i: if (ucon > MAX_##i) return 1; break
 	SCHK(INT);
 	SCHK(SHORT);
+	case BOOL:
 	SCHK(CHAR);
 	UCHK(UNSIGNED);
 	UCHK(USHORT);
