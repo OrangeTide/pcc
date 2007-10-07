@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.22 2007/10/04 16:44:31 ragge Exp $   */
+/*	$Id: scanner.l,v 1.23 2007/10/07 07:50:39 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -805,9 +805,12 @@ pragmastmt(void)
 	slow = 1;
 	if (yylex() != WSPACE)
 		error("bad pragma");
-	putstr((usch *)"#pragma ");
+	if (!flslvl)
+		putstr((usch *)"#pragma ");
 	do {
-		putch(c = input());	/* Do arg expansion instead? */
+		c = input();
+		if (!flslvl)
+			putch(c);	/* Do arg expansion instead? */
 	} while (c && c != '\n');
 	ifiles->lineno++;
 	prtline();
