@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.68 2007/10/06 08:09:48 ragge Exp $	*/
+/*	$Id: cc.c,v 1.69 2007/10/08 14:53:42 stefan Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -74,8 +74,6 @@
  */
 #define	STDINC	  "/usr/include/"
 
-#define SBSIZE 10000
-#define MAXINC 100
 #define MAXFIL 10000
 #define MAXLIB 10000
 #define MAXAV  10000
@@ -735,9 +733,9 @@ char *f;
 }
 
 char *
-gettmp()
+gettmp(void)
 {
-	char *sfn = strdup("/tmp/ctm.XXXXXX");
+	char *sfn = copy("/tmp/ctm.XXXXXX");
 	int fd = -1;
 
 	if ((fd = mkstemp(sfn)) == -1) {
