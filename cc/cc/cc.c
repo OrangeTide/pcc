@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.69 2007/10/08 14:53:42 stefan Exp $	*/
+/*	$Id: cc.c,v 1.70 2007/10/08 16:28:34 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -584,6 +584,8 @@ dexit(int eval)
 			cunlink(tmp3);
 		cunlink(tmp4);
 	}
+	if (eval == 100)
+		_exit(eval);
 	exit(eval);
 }
 
