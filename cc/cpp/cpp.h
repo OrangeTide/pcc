@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.29 2007/10/12 18:05:36 stefan Exp $	*/
+/*	$Id: cpp.h,v 1.30 2007/10/12 21:37:36 stefan Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -143,7 +143,8 @@ void putch(int);
 void putstr(usch *s);
 void line(void);
 usch *sheap(char *fmt, ...);
-void warning(usch *);
+void xwarning(usch *);
 void xerror(usch *);
+#define warning(...) xwarning(sheap(__VA_ARGS__))
 #define error(...) xerror(sheap(__VA_ARGS__))
 void expmac(struct recur *);
