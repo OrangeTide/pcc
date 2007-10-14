@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.48 2007/10/05 15:39:18 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.49 2007/10/14 19:42:32 stefan Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -303,3 +303,10 @@ int COLORMAP(int c, int *r);
 #define	SHSTR		(MAXSPECIAL+1)	/* short struct */
 #define	SFUNCALL	(MAXSPECIAL+2)	/* struct assign after function call */
 #define	SPCON		(MAXSPECIAL+3)	/* positive nonnamed constant */
+
+/*
+ * Specials that indicate the applicability of machine idioms.
+ */
+#define SMIXOR		(MAXSPECIAL+4)
+#define SMILWXOR	(MAXSPECIAL+5)
+#define SMIHWXOR	(MAXSPECIAL+6)
