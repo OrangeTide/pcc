@@ -1,4 +1,4 @@
-/* $Id: ccconfig.h,v 1.1 2007/09/29 14:40:50 ragge Exp $ */
+/* $Id: ccconfig.h,v 1.2 2007/10/22 18:48:31 ragge Exp $ */
 /*-
  * Copyright (c) 2007
  *	Thorsten Glaser <tg@mirbsd.de>
@@ -60,7 +60,7 @@
        
 /* md part */  
        
-#if defined(mach_x86)
+#if defined(mach_i386)
 #define CPPMDADD	{			\
 	"-D__i386__",				\
 	"-D__i386",				\
