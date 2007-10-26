@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.2 2007/10/22 18:48:31 ragge Exp $	*/
+/*	$Id: ccconfig.h,v 1.3 2007/10/26 15:13:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -40,6 +40,8 @@
 
 #if defined(mach_i386)
 #define	CPPMDADD { "-D__i386__", NULL, }
+#elif defined(mach_vax)
+#define CPPMDADD { "-D__vax__", NULL, } 
 #else
 #error defines for arch missing
 #endif
