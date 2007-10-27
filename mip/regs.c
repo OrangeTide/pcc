@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.158 2007/10/20 18:12:25 otto Exp $	*/
+/*	$Id: regs.c,v 1.159 2007/10/27 13:36:37 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -29,6 +29,7 @@
 #include "pass2.h"
 #include <string.h>
 #include <strings.h>
+#include <stdint.h>
 #include <stdlib.h>
 #ifdef HAVE_ALLOCA_H
 #include <alloca.h>
@@ -547,7 +548,7 @@ adjSet(REGW *u, REGW *v)
 	}
 	if (u > v)
 		t = v, v = u, u = t;
-	w = edgehash[((long)u+(long)v) & 255];
+	w = edgehash[((intptr_t)u+(intptr_t)v) & 255];
 	for (; w; w = w->next) {
 		if (u == w->u && v == w->v)
 			return 1;
@@ -565,7 +566,7 @@ adjSetadd(REGW *u, REGW *v)
 
 	if (u > v)
 		t = v, v = u, u = t;
-	x = ((long)u+(long)v) & 255;
+	x = ((intptr_t)u+(intptr_t)v) & 255;
 	w = tmpalloc(sizeof(struct AdjSet));
 	w->u = u, w->v = v;
 	w->next = edgehash[x];
