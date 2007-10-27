@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.89 2004/05/15 12:14:33 ragge Exp $	*/
+/*	$Id: local2.c,v 1.90 2007/10/27 13:21:08 stefan Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -39,13 +39,6 @@ void genargs(NODE *p);
 static int ftlab1, ftlab2;
 static int offlab;
 int offarg;
-
-void
-lineid(int l, char *fn)
-{
-	/* identify line l and file fn */
-	printf("#	line %d, file %s\n", l, fn);
-}
 
 void
 defname(char *name, int visib)

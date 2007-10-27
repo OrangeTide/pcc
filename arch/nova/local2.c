@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.1 2006/07/30 09:30:48 ragge Exp $	*/
+/*	$Id: local2.c,v 1.2 2007/10/27 13:21:08 stefan Exp $	*/
 /*
  * Copyright (c) 2006 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -33,13 +33,6 @@
 
 void acon(NODE *p);
 int argsize(NODE *p);
-
-void
-lineid(int l, char *fn)
-{
-	/* identify line l and file fn */
-	printf("#	line %d, file %s\n", l, fn);
-}
 
 void
 deflab(int label)
