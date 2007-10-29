@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.46 2007/10/01 15:27:53 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.47 2007/10/29 00:40:11 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -597,7 +597,8 @@ cfg_build(struct labelinfo *labinfo)
 		pnode->bblock = bb;
 
 		if ((bb->last->type == IP_NODE) && 
-		    (bb->last->ip_node->n_op == GOTO)) {
+		    (bb->last->ip_node->n_op == GOTO) &&
+		    (bb->last->ip_node->n_left->n_op == ICON))  {
 			if (bb->last->ip_node->n_left->n_lval - labinfo->low > 
 			    labinfo->size) {
 				comperr("Label out of range: %d, base %d", 
