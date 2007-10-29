@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.206 2007/10/23 18:38:25 ragge Exp $	*/
+/*	$Id: reader.c,v 1.207 2007/10/29 14:13:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -441,6 +441,7 @@ again:	switch (o = p->n_op) {
 	case STARG:
 	case UCALL:
 	case USTCALL:
+	case ADDROF:
 		rv = finduni(p, cookie);
 		break;
 
@@ -839,7 +840,7 @@ deltemp(NODE *p)
 		p->n_op = OREG;
 		p->n_rval = FPREG;
 		p->n_lval = w->tempaddr;
-	} else if (p->n_op == ADDROF) {
+	} else if (p->n_op == ADDROF && p->n_left->n_op != NAME) {
 		/* TEMPs are already converted to OREGs */
 		if ((l = p->n_left)->n_op != OREG)
 			comperr("bad U&");
