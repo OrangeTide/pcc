@@ -1,4 +1,4 @@
-/*	$Id: stabs.c,v 1.17 2007/10/04 17:44:39 ragge Exp $	*/
+/*	$Id: stabs.c,v 1.18 2007/10/29 00:38:17 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -183,7 +183,11 @@ findtype(TWORD t, union dimfun *df, struct suedef *sue)
 void
 stabs_line(int line)
 {
+#ifdef STAB_LINE_ABSOLUTE
+	cprint(savestabs, ".stabn %d,0,%d," STABLBL, N_SLINE, line, stablbl);
+#else
 	cprint(savestabs, ".stabn %d,0,%d," STABLBL "-%s", N_SLINE, line, stablbl, exname(curfun));
+#endif
 	cprint(1, STABLBL ":", stablbl++);
 }
 
@@ -193,8 +197,12 @@ stabs_line(int line)
 void
 stabs_lbrac(int blklvl)
 {
+#ifdef STAB_LINE_ABSOLUTE
+	cprint(savestabs, ".stabn %d,0,%d," STABLBL, N_LBRAC, blklvl, stablbl);
+#else
 	cprint(savestabs, ".stabn %d,0,%d," STABLBL "-%s",
 	    N_LBRAC, blklvl, stablbl, exname(curfun));
+#endif
 	cprint(1, STABLBL ":", stablbl++);
 }
 
@@ -204,8 +212,13 @@ stabs_lbrac(int blklvl)
 void
 stabs_rbrac(int blklvl)
 {
+#ifdef STAB_LINE_ABSOLUTE
+	cprint(savestabs, ".stabn %d,0,%d," STABLBL "\n",
+	    N_RBRAC, blklvl, stablbl);
+#else
 	cprint(savestabs, ".stabn %d,0,%d," STABLBL "-%s\n",
 	    N_RBRAC, blklvl, stablbl, exname(curfun));
+#endif
 	cprint(1, STABLBL ":", stablbl++);
 }
 
