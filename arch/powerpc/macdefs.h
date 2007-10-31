@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.2 2007/10/29 00:54:43 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.3 2007/10/31 00:47:23 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -262,6 +262,7 @@ int COLORMAP(int c, int *r);
 
 #define	SHSTR		(MAXSPECIAL+1)	/* short struct */
 #define	SFUNCALL	(MAXSPECIAL+2)	/* struct assign after function call */
+#define SPCON		(MAXSPECIAL+3)  /* positive constant */
 
 struct stub {
 	struct { struct stub *q_forw, *q_back; } link;
