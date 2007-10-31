@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.181 2007/10/19 18:41:56 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.182 2007/10/31 00:39:53 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1167,6 +1167,7 @@ strend(char *str)
 	    tmpalloc(sizeof(union dimfun)), MKSUE(CHAR));
 #ifdef CHAR_UNSIGNED
 	p->n_type = UCHAR+ARY;
+	p->n_sue = MKSUE(UCHAR);
 #endif
 	/* length calculation, used only for sizeof */
 	for (i = 0, c = str; *c; ) {
