@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.3 2007/10/31 00:47:23 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.4 2007/11/01 10:50:45 otto Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -97,7 +97,11 @@ typedef	unsigned long long U_CONSZ;
 typedef long long OFFSZ;
 
 #define CONFMT	"%lld"		/* format for printing constants */
+#ifdef ELFABI
+#define LABFMT	".L%d"		/* format for printing labels */
+#else
 #define LABFMT	"L%d"		/* format for printing labels */
+#endif
 #define	STABLBL	"LL%d"		/* format for stab (debugging) labels */
 #define STAB_LINE_ABSOLUTE	/* S_LINE fields use absolute addresses */
 

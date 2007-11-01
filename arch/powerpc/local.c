@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.2 2007/10/31 00:47:23 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.3 2007/11/01 10:50:45 otto Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -815,6 +815,7 @@ finval(NODE *p)
 char *
 exname(char *p)
 {
+#ifndef ELFABI
 #define NCHNAM	256
         static char text[NCHNAM+1];
 	int i;
@@ -830,6 +831,9 @@ exname(char *p)
         text[NCHNAM] = '\0';  /* truncate */
 
         return (text);
+#else
+	return (p == NULL ? "" : p);
+#endif
 }
 
 /*
@@ -910,7 +914,12 @@ deflab1(int label)
 	printf(LABFMT ":\n", label);
 }
 
+#ifdef ELFABI
+static char *loctbl[] = { "text", "data", "section .rodata,",
+    "section .rodata" };
+#else
 static char *loctbl[] = { "text", "data", "section .rodata,", "cstring" };
+#endif
 
 void
 setloc1(int locc)
