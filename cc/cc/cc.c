@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.73 2007/10/22 21:38:44 stefan Exp $	*/
+/*	$Id: cc.c,v 1.74 2007/11/01 10:19:28 stefan Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -350,7 +350,8 @@ main(int argc, char *argv[])
 	if(nc==0)
 		goto nocom;
 	if (pflag==0) {
-		tmp3 = gettmp();
+		if (!sflag)
+			tmp3 = gettmp();
 		tmp4 = gettmp();
 	}
 	if (signal(SIGINT, SIG_IGN) != SIG_IGN)	/* interrupt */
