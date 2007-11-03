@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.169 2007/10/08 18:27:02 otto Exp $	*/
+/*	$Id: trees.c,v 1.170 2007/11/03 18:55:58 otto Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -227,7 +227,7 @@ buildtree(int o, NODE *l, NODE *r)
 				l->n_dcon *= r->n_dcon; break;
 			case DIV:
 				if (r->n_dcon == 0)
-					uerror("division by 0.");
+					goto runtime;
 				else
 					l->n_dcon /= r->n_dcon;
 			}
@@ -238,7 +238,7 @@ buildtree(int o, NODE *l, NODE *r)
 			return(l);
 		}
 	}
-
+runtime:
 	/* its real; we must make a new node */
 
 	p = block(o, l, r, INT, 0, MKSUE(INT));
