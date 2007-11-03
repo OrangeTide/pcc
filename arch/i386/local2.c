@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.91 2007/10/27 13:21:08 stefan Exp $	*/
+/*	$Id: local2.c,v 1.92 2007/11/03 11:11:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -709,6 +709,8 @@ adrput(FILE *io, NODE *p)
 
 	case OREG:
 		r = p->n_rval;
+		if (p->n_name[0])
+			printf("%s%s", p->n_name, p->n_lval ? "+" : "");
 		if (p->n_lval)
 			fprintf(io, "%d", (int)p->n_lval);
 		if (R2TEST(r)) {
