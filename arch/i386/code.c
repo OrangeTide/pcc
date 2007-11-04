@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.15 2007/07/06 17:02:27 ragge Exp $	*/
+/*	$Id: code.c,v 1.16 2007/11/04 17:59:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -67,9 +67,11 @@ defnam(struct symtab *p)
 void
 efcode()
 {
+	extern int gotnr;
 	NODE *p, *q;
 	int sz;
 
+	gotnr = 0;	/* new number for next fun */
 	if (cftnsp->stype != STRTY+FTN && cftnsp->stype != UNIONTY+FTN)
 		return;
 	/* address of return struct is in eax */
