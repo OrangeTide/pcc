@@ -1,4 +1,4 @@
-/*	$id: code.c,v 1.1 2007/10/19 18:34:53 gmcgarry exp $	*/
+/*	$Id: code.c,v 1.5 2007/11/05 23:19:08 stefan Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
