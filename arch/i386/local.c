@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.60 2007/11/04 17:59:27 ragge Exp $	*/
+/*	$Id: local.c,v 1.61 2007/11/06 15:21:04 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -544,7 +544,7 @@ instring(char *str)
 {
 	char *s;
 
-	/* be kind to assemblers and avoid long strings */
+	/* be kind to assemblers and avoid long strings */
 	printf("\t.ascii \"");
 	for (s = str; *s != 0; ) {
 		if (*s++ == '\\') {
