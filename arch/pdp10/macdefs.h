@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.25 2007/11/04 17:54:27 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.26 2007/11/07 21:41:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -243,7 +243,7 @@ typedef long long OFFSZ;
 
 /* Return a register class based on the type of the node */
 #define PCLASS(p) (szty(p->n_type) == 2 ? SBREG : SAREG)
-#define RETREG(x) (szty(x) == 2 ? SBREG : SAREG)
+#define RETREG(x) (szty(x) == 2 ? XR1 : R1)
 #define DECRA(x,y)      (((x) >> (y*6)) & 63)   /* decode encoded regs */
 #define ENCRD(x)        (x)             /* Encode dest reg in n_reg */
 #define ENCRA1(x)       ((x) << 6)      /* A1 */

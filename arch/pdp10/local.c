@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.63 2007/11/04 17:54:27 ragge Exp $	*/
+/*	$Id: local.c,v 1.64 2007/11/07 21:41:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -361,6 +361,13 @@ rmpc:			l->n_type = p->n_type;
 		p->n_op = CALL;
 		oop->n_left = p;
 		return oop;
+
+	case FORCE:
+		p->n_op = ASSIGN;
+		p->n_right = p->n_left;
+		p->n_left = block(REG, NIL, NIL, p->n_type, 0, MKSUE(INT));
+		p->n_left->n_rval = RETREG(p->n_type);
+		break;
 
 	}
 
