@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.101 2007/11/04 18:02:09 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.102 2007/11/07 18:01:14 mickey Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -357,6 +357,9 @@ extern	char *opst[];	/* a vector containing names for ops */
 #define	TBREGS	0
 #endif
 #define	REGBIT(x) (1 << (x))
+#ifndef PERMTYPE
+#define	PERMTYPE(a)	(INT)
+#endif
 
 void emit(struct interpass *);
 void optimize(struct interpass *);
