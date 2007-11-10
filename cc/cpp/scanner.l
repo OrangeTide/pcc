@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.26 2007/10/25 17:42:47 ragge Exp $   */
+/*	$Id: scanner.l,v 1.27 2007/11/10 22:09:53 stefan Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -52,6 +52,7 @@ static void undefstmt(void);
 static void cpperror(void);
 static void elifstmt(void);
 static void storepb(void);
+static void badop(const char *);
 void  include(void);
 void  define(void);
 
@@ -139,6 +140,8 @@ WS	[\t ]
 
 "\r"			{ ; /* Ignore CR's */ }
 
+<IFR>"++"		{ badop("++"); }
+<IFR>"--"		{ badop("--"); }
 <IFR>"=="		{ return EQ; }
 <IFR>"!="		{ return NE; }
 <IFR>"<="		{ return LE; }
@@ -828,4 +831,10 @@ pragmastmt(void)
 	ifiles->lineno++;
 	prtline();
 	slow = 0;
+}
+
+static void
+badop(const char *op)
+{
+	error("invalid operator in preprocessor expression: %s", op);
 }
