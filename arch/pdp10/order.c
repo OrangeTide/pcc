@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.59 2007/11/04 17:54:27 ragge Exp $	*/
+/*	$Id: order.c,v 1.60 2007/11/12 18:59:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -198,4 +198,28 @@ myormake(NODE *p)
 {
 	if (x2debug)
 		printf("myormake(%p)\n", p);
+}
+
+/*
+ * set registers in calling conventions live.
+ */
+int *
+livecall(NODE *p)
+{
+	static int r[8], *s = r;
+
+	*s = -1;
+	if (p->n_op == UCALL || p->n_op == UFORTCALL || p->n_op == USTCALL ||
+	    p->n_op == FORTCALL)
+		return s;
+	for (p = p->n_right; p->n_op == CM; p = p->n_left) {
+		if (p->n_right->n_op == ASSIGN &&
+		    p->n_right->n_left->n_op == REG)
+			*s++ = p->n_right->n_left->n_rval;
+	}
+	if (p->n_right->n_op == ASSIGN &&
+	    p->n_right->n_left->n_op == REG)
+		*s++ = p->n_right->n_left->n_rval;
+	*s = -1;
+	return s;
 }
