@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.92 2007/11/03 11:11:20 ragge Exp $	*/
+/*	$Id: local2.c,v 1.93 2007/11/12 19:02:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -51,6 +51,7 @@ static TWORD ftype;
 static void
 prtprolog(struct interpass_prolog *ipp, int addto)
 {
+	static int lwnr;
 	int i, j;
 
 	printf("	pushl %%ebp\n");
@@ -61,6 +62,13 @@ prtprolog(struct interpass_prolog *ipp, int addto)
 		if (i & 1)
 			fprintf(stdout, "	movl %s,-%d(%s)\n",
 			    rnames[j], regoff[j], rnames[FPREG]);
+	if (kflag == 0)
+		return;
+	printf("	call .LW%d\n", ++lwnr);
+	printf(".LW%d:\n", lwnr);
+	printf("	popl %%ebx\n");
+	printf("	addl $_GLOBAL_OFFSET_TABLE_+[.-.LW%d], %%ebx\n",
+	    lwnr);
 }
 
 /*
