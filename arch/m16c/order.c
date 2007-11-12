@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.17 2006/02/06 09:33:10 janeno-1 Exp $	*/
+/*	$Id: order.c,v 1.18 2007/11/12 19:03:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -598,3 +598,15 @@ mktailopt(struct interpass *ip1, struct interpass *ip2)
 	pass2_compile(ip2);
 }
 #endif
+/*
+ * Set registers "live" at function calls (like arguments in registers).
+ * This is for liveness analysis of registers.
+ */
+int *
+livecall(NODE *p)
+{
+	static int r[1] = { -1 }; /* Terminate with -1 */
+
+	return &r[0];
+}
+

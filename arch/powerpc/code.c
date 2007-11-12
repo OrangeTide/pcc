@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.5 2007/11/05 23:19:08 stefan Exp $	*/
+/*	$Id: code.c,v 1.6 2007/11/12 19:03:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -807,4 +807,13 @@ mrst_find_window(struct swents **p, int n, int *state, int lab, int *len, int *l
 	DPRINTF(("msrt_find_window: returning Wmax=%lu, len=%d, lowbit=%d [tblsize=%u, entries=%u]\n", Wmax, Lmax, lowmax, tblsize, C));
 
 	return Wmax;
+}
+/*
+ * Called with a function call with arguments as argument.
+ * This is done early in buildtree() and only done once.
+ */
+NODE *
+funcode(NODE *p)
+{
+	return p;
 }

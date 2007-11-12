@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.2 2007/10/26 15:06:41 ragge Exp $	*/
+/*	$Id: code.c,v 1.3 2007/11/12 19:03:28 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -328,3 +328,12 @@ walkheap(start, limit)
 	}
 }
 #endif
+/*
+ * Called with a function call with arguments as argument.
+ * This is done early in buildtree() and only done once.
+ */
+NODE *
+funcode(NODE *p)
+{
+	return p;
+}
