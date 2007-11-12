@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.126 2007/10/06 15:19:22 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.127 2007/11/12 18:56:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -320,6 +320,7 @@ int cdope(int);
 void myp2tree(NODE *);
 void lcommprint(void);
 void lcommdel(struct symtab *);
+NODE *funcode(NODE *);
 
 #ifdef GCC_COMPAT
 void gcc_init(void);

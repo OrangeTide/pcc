@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.170 2007/11/03 18:55:58 otto Exp $	*/
+/*	$Id: trees.c,v 1.171 2007/11/12 18:56:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -484,6 +484,8 @@ runtime:
 
 		case CALL:
 			p->n_right = r = strargs(p->n_right);
+			p = funcode(p);
+			/* FALLTHROUGH */
 		case UCALL:
 			if (!ISPTR(l->n_type))
 				uerror("illegal function");
