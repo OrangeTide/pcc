@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.173 2007/10/29 18:18:53 stefan Exp $	*/
+/*	$Id: cgram.y,v 1.174 2007/11/14 10:18:29 mickey Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -967,10 +967,12 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 		}
 		|  C_SIZEOF term { $$ = doszof($2); }
 		|  '(' cast_type ')' term  %prec C_INCOP {
+			register NODE *q;
 			$$ = buildtree(CAST, $2, $4);
 			nfree($$->n_left);
+			q = $$->n_right;
 			nfree($$);
-			$$ = $$->n_right; /* XXX use after free */
+			$$ = q;
 		}
 		|  C_SIZEOF '(' cast_type ')'  %prec C_SIZEOF {
 			$$ = doszof($3);
