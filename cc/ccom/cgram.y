@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.174 2007/11/14 10:18:29 mickey Exp $	*/
+/*	$Id: cgram.y,v 1.175 2007/11/15 23:54:29 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -781,7 +781,7 @@ statement:	   e ';' { ecomp( $1 ); }
 				ecomp(temp->n_right);
 			else
 				ecomp(buildtree(FORCE, temp->n_right, NIL));
-			nfree(temp->n_left);
+			tfree(temp->n_left);
 			nfree(temp);
 			branch(retlab);
 			reached = 0;
