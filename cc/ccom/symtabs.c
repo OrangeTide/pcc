@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.14 2006/06/16 09:30:32 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.15 2007/11/15 14:38:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -343,10 +343,11 @@ struct symtab *
 hide(struct symtab *sym)
 {
 	struct symtab *new;
+	int typ = sym->sflags & SMASK;
 
-	new = getsymtab(sym->sname, SNORMAL|STEMP);
-	new->snext = tmpsyms[SNORMAL];
-	tmpsyms[SNORMAL] = new;
+	new = getsymtab(sym->sname, typ|STEMP);
+	new->snext = tmpsyms[typ];
+	tmpsyms[typ] = new;
 #ifdef PCC_DEBUG
 	if (ddebug)
 		printf("\t%s hidden at level %d (%p -> %p)\n",
