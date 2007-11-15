@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.27 2007/11/10 22:09:53 stefan Exp $   */
+/*	$Id: scanner.l,v 1.28 2007/11/15 11:26:54 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -520,6 +520,8 @@ cvtdig(int rad)
 		y++;
 	yylval.node.op = *y == 'u' || *y == 'U' ? UNUMBER : NUMBER;
 	yylval.node.nd_uval = rv;
+	if ((rad == 8 || rad == 16) && yylval.node.nd_val < 0)
+		yylval.node.op = UNUMBER;
 	if (yylval.node.op == NUMBER && yylval.node.nd_val < 0)
 		/* too large for signed */
 		error("Constant \"%s\" is out of range", yytext);
