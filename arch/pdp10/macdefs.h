@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.26 2007/11/07 21:41:19 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.27 2007/11/16 22:28:57 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -111,8 +111,6 @@ typedef long long OFFSZ;
 #undef BACKAUTO 		/* stack grows negatively for automatics */
 #undef BACKTEMP 		/* stack grows negatively for temporaries */
 
-#define	MYP2TREE(p) myp2tree(p);
-
 #undef	FIELDOPS		/* no bit-field instructions */
 #undef	RTOLBYTES		/* bytes are numbered left to right */
 
@@ -135,10 +133,6 @@ typedef long long OFFSZ;
 #define	shltype(o, p) \
 	((o) == REG || (o) == NAME || (o) == ICON || \
 	 (o) == OREG || ((o) == UMUL && shumul((p)->n_left)))
-
-#define MYREADER(p) myreader(p)
-#define MYCANON(p) mycanon(p)
-#define	MYOPTIM
 
 #undef	SPECIAL_INTEGERS
 
