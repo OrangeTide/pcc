@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.173 2007/11/16 23:28:39 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.174 2007/11/16 23:49:01 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2317,8 +2317,7 @@ send_passt(int type, ...)
 	ip->lineno = lineno;
 	switch (type) {
 	case IP_NODE:
-		if (lastloc != PROG)
-			setloc1(PROG);
+		setloc1(PROG);
 		ip->ip_node = va_arg(ap, NODE *);
 		break;
 	case IP_EPILOG:
