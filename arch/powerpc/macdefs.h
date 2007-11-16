@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.4 2007/11/01 10:50:45 otto Exp $	*/
+/*	$Id: macdefs.h,v 1.5 2007/11/16 22:31:59 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -104,8 +104,6 @@ typedef long long OFFSZ;
 #endif
 #define	STABLBL	"LL%d"		/* format for stab (debugging) labels */
 #define STAB_LINE_ABSOLUTE	/* S_LINE fields use absolute addresses */
-
-#define	MYP2TREE(p) myp2tree(p);
 
 #undef	FIELDOPS		/* no bit-field instructions */
 #if 0
@@ -259,10 +257,6 @@ typedef long long OFFSZ;
 #define RETREG(x)       ((x) == ULONGLONG || (x) == LONGLONG ? R3R4 : R3)
 
 int COLORMAP(int c, int *r);
-
-#define MYREADER(p) myreader(p)
-#define MYCANON(p) mycanon(p)
-#define	MYOPTIM
 
 #define	SHSTR		(MAXSPECIAL+1)	/* short struct */
 #define	SFUNCALL	(MAXSPECIAL+2)	/* struct assign after function call */
