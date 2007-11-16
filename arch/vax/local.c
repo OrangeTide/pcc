@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.3 2007/10/29 14:19:08 ragge Exp $	*/
+/*	$Id: local.c,v 1.4 2007/11/16 22:35:32 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -211,6 +211,11 @@ clocal(p) NODE *p; {
 	}
 
 	return(p);
+}
+
+void
+myp2tree(NODE *p)
+{
 }
 
 /*
