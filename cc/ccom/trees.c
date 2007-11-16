@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.171 2007/11/12 18:56:25 ragge Exp $	*/
+/*	$Id: trees.c,v 1.172 2007/11/16 22:15:39 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2106,9 +2106,7 @@ p2tree(NODE *p)
 	struct symtab *q;
 	int ty;
 
-# ifdef MYP2TREE
-	MYP2TREE(p);  /* local action can be taken here; then return... */
-# endif
+	myp2tree(p);  /* local action can be taken here */
 
 	ty = coptype(p->n_op);
 
