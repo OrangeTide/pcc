@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.7 2007/11/16 00:27:06 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.8 2007/11/17 00:09:36 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -42,7 +42,7 @@
 #define	CPPMDADD { "-D__arm__", NULL, }
 #elif defined(mach_i386)
 #define	CPPMDADD { "-D__i386__", NULL, }
-#elif defined(mach_ppc)
+#elif defined(mach_powerpc)
 #define	CPPMDADD { "-D__ppc__", NULL, }
 #elif defined(mach_mips)
 #define	CPPMDADD { "-D__mips__", NULL, }
