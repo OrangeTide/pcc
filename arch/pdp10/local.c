@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.64 2007/11/07 21:41:19 ragge Exp $	*/
+/*	$Id: local.c,v 1.65 2007/11/18 17:28:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -262,8 +262,6 @@ rmpc:			l->n_type = p->n_type;
 			case UNSIGNED:
 				l->n_lval = val & 0777777777777LL;
 				break;
-			case ENUMTY:
-			case MOETY:
 			case INT:
 				l->n_lval = val & 0777777777777LL;
 				if (val & 0400000000000LL)
@@ -486,7 +484,6 @@ xptype(TWORD t)
 	case DOUBLE:
 	case STRTY:
 	case UNIONTY:
-	case ENUMTY:
 	case UNSIGNED:
 	case ULONG:
 	case ULONGLONG:
@@ -558,7 +555,6 @@ offcon(OFFSZ off, TWORD t, union dimfun *d, struct suedef *sue)
 	case ULONG:
 	case STRTY:
 	case UNIONTY:
-	case ENUMTY:
 	case LONGLONG:
 	case ULONGLONG:
 	case FLOAT:
