@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.127 2007/11/12 18:56:25 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.128 2007/11/18 17:24:57 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -134,8 +134,8 @@ union arglist {
 	union dimfun *df;
 	struct suedef *sue;
 };
-#define TNULL		INCREF(MOETY) /* pointer to MOETY -- impossible type */
-#define TELLIPSIS 	INCREF(INCREF(MOETY))
+#define TNULL		INCREF(FARG) /* pointer to FARG -- impossible type */
+#define TELLIPSIS 	INCREF(INCREF(FARG))
 
 /*
  * Symbol table definition.
@@ -321,6 +321,9 @@ void myp2tree(NODE *);
 void lcommprint(void);
 void lcommdel(struct symtab *);
 NODE *funcode(NODE *);
+struct symtab *enumhd(char *);
+NODE *enumdcl(struct symtab *);
+NODE *enumref(char *);
 
 #ifdef GCC_COMPAT
 void gcc_init(void);
