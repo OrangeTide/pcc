@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.3 2007/11/12 19:03:28 ragge Exp $	*/
+/*	$Id: code.c,v 1.4 2007/11/22 14:36:37 stefan Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -202,17 +202,13 @@ fldty( p ) struct symtab *p; { /* fix up type of field p */
 	;
 	}
 
-/* p points to an array of structures, each consisting
- * of a constant value and a label.
- * The first is >=0 if there is a default label;
- * its value is the label number
- * The entries p[1] to p[n] are the nontrivial cases
+/*
  * XXX - fix genswitch.
  */
-void
-genswitch(int num, struct swents **p, int n)
+int
+mygenswitch(int num, TWORD type, struct swents **p, int n)
 {
-	cerror("genswitch");
+	return 0;
 }
 
 #ifdef notyet

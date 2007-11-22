@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.175 2007/11/18 17:24:57 ragge Exp $	*/
+/*	$Id: trees.c,v 1.176 2007/11/22 14:36:37 stefan Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2397,4 +2397,19 @@ plabel(int label)
 	setloc1(PROG);
 	reached = 1; /* Will this always be correct? */
 	send_passt(IP_DEFLAB, label);
+}
+
+/*
+ * Perform integer promotion on node n.
+ */
+NODE *
+intprom(NODE *n)
+{
+	if ((n->n_type >= CHAR && n->n_type < INT) || n->n_type == BOOL) {
+		if ((n->n_type == UCHAR && MAX_UCHAR > MAX_INT) ||
+		    (n->n_type == USHORT && MAX_USHORT > MAX_INT))
+			return makety(n, UNSIGNED, 0, 0, MKSUE(UNSIGNED));
+		return makety(n, INT, 0, 0, MKSUE(INT));
+	}
+	return n;
 }
