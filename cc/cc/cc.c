@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.76 2007/11/10 22:07:04 stefan Exp $	*/
+/*	$Id: cc.c,v 1.77 2007/11/22 21:42:39 stefan Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -443,9 +443,9 @@ main(int argc, char *argv[])
 			}
 		if(sflag) {
 			if (outfile)
-				assource = tmp3 = outfile;
+				tmp3 = outfile;
 			else
-				assource = tmp3 = setsuf(clist[i], 's');
+				tmp3 = setsuf(clist[i], 's');
 		}
 		av[na++] = tmp3;
 #if 0
