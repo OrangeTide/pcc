@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.74 2007/11/15 23:56:47 gmcgarry Exp $	*/
+/*	$Id: main.c,v 1.75 2007/11/26 00:26:46 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -112,7 +112,7 @@ main(int argc, char *argv[])
 
 	prgname = argv[0];
 
-	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:gx:kv")) != -1)
+	while ((ch = getopt(argc, argv, "VlwX:Z:W:sOT:gx:kvm:")) != -1)
 		switch (ch) {
 #if !defined(MULTIPASS) || defined(PASS1)
 		case 'X':
@@ -192,6 +192,10 @@ main(int argc, char *argv[])
 
 		case 'l': /* linenos */
 			++lflag;
+			break;
+
+		case 'm': /* target-specific */
+			mflags(optarg);
 			break;
 
 		case 'g': /* Debugging */

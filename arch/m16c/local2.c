@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.34 2007/11/16 22:25:04 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.35 2007/11/26 00:26:46 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -639,4 +639,12 @@ lastcall(NODE *p)
         for (p = p->n_right; p->n_op == CM; p = p->n_left)
                 sizen += argsiz(p->n_right);
         sizen += argsiz(p);
+}
+
+/*
+ * Target-dependent command-line options.
+ */
+void
+mflags(char *str)
+{
 }

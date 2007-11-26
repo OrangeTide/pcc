@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.7 2007/11/25 12:49:36 stefan Exp $	*/
+/*	$Id: local2.c,v 1.8 2007/11/26 00:26:47 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1177,4 +1177,12 @@ special(NODE *p, int shape)
 		break;
 	}
 	return SRNOPE;
+}
+
+/*
+ * Target-dependent command-line options.
+ */
+void
+mflags(char *str)
+{
 }

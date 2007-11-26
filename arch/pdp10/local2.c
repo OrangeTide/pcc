@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.93 2007/11/18 17:28:36 ragge Exp $	*/
+/*	$Id: local2.c,v 1.94 2007/11/26 00:26:47 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1298,4 +1298,12 @@ COLORMAP(int c, int *r)
 	}
 	comperr("COLORMAP");
 	return 0; /* XXX gcc */
+}
+
+/*
+ * Target-dependent command-line options.
+ */
+void
+mflags(char *str)
+{
 }

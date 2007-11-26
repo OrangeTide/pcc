@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.93 2007/11/12 19:02:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.94 2007/11/26 00:26:46 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1063,4 +1063,12 @@ special(NODE *p, int shape)
 		return SRDIR;
 	}
 	return SRNOPE;
+}
+
+/*
+ * Target-dependent command-line options.
+ */
+void
+mflags(char *str)
+{
 }

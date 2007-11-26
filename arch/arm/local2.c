@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.7 2007/11/22 18:36:44 gmcgarry Exp $    */
+/*      $Id: local2.c,v 1.8 2007/11/26 00:26:46 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -951,4 +951,12 @@ int
 special(NODE *p, int shape)
 {
 	return SRNOPE;
+}
+
+/*
+ * Target-dependent command-line options.
+ */
+void
+mflags(char *str)
+{
 }
