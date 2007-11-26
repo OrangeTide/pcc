@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.104 2007/11/15 23:43:29 gmcgarry Exp $	*/
+/*	$Id: pass2.h,v 1.105 2007/11/26 00:00:17 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -232,13 +232,9 @@ void prologue(struct interpass_prolog *);
 void e2print(NODE *p, int down, int *a, int *b);
 void myoptim(struct interpass *);
 void cbgen(int op, int label);
-struct optab *nxtmatch(struct optab *);
-int chkmatch(NODE *, int, int, int);
 int match(NODE *p, int cookie);
-int nmatch(NODE *p, int what);
-#ifndef special
+int acceptable(struct optab *);
 int special(NODE *, int);
-#endif
 int setasg(NODE *, int);
 int setuni(NODE *, int);
 int sucomp(NODE *);
