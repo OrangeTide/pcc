@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.60 2007/11/12 18:59:27 ragge Exp $	*/
+/*	$Id: order.c,v 1.61 2007/11/26 00:10:03 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -79,18 +79,6 @@ offstar(NODE *p, int shape)
 		}
 	}
 	geninsn(p, INAREG);
-}
-
-/*
- * Rewrite increment/decrement operation.
- */
-int
-setincr(NODE *p)
-{
-	if (x2debug)
-		printf("setincr(%p)\n", p);
-
-	return(0);
 }
 
 /*
@@ -222,4 +210,13 @@ livecall(NODE *p)
 		*s++ = p->n_right->n_left->n_rval;
 	*s = -1;
 	return s;
+}
+
+/*
+ * Signal whether the instruction is acceptable for this target.
+ */
+int
+acceptable(struct optab *op)
+{
+	return 1;
 }

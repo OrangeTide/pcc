@@ -1,4 +1,4 @@
-/*      $Id: order.c,v 1.2 2007/11/22 18:36:44 gmcgarry Exp $    */
+/*      $Id: order.c,v 1.3 2007/11/26 00:10:03 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -290,4 +290,13 @@ livecall(NODE *p)
 	num = (num > 4 ? 4 : num);
 
         return &r[4 - num];
+}
+
+/*
+ * Signal whether the instruction is acceptable for this target.
+ */
+int
+acceptable(struct optab *op)
+{
+	return 1;
 }

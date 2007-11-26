@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.3 2007/11/12 19:03:28 ragge Exp $	*/
+/*	$Id: order.c,v 1.4 2007/11/26 00:10:03 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -344,11 +344,6 @@ comperr("offstar");
 	}
 
 int
-setincr( p ) NODE *p; {
-	return( 0 );  /* for the moment, don't bother */
-	}
-
-int
 setbin( p ) register NODE *p; {
 
 #if 0
@@ -606,3 +601,11 @@ livecall(NODE *p)
 	return &r[0];
 }
 
+/*
+ * Signal whether the instruction is acceptable for this target.
+ */
+int
+acceptable(struct optab *op)
+{
+	return 1;
+}
