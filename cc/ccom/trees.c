@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.176 2007/11/22 14:36:37 stefan Exp $	*/
+/*	$Id: trees.c,v 1.177 2007/11/26 00:05:06 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -460,6 +460,7 @@ runtime:
 				sue = r->n_sue;
 
 				l = block(STASG, l, r, t, d, sue);
+				l = clocal(l);
 
 				if( o == RETURN ){
 					nfree(p);
