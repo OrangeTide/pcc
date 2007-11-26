@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.94 2007/11/26 00:26:46 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.95 2007/11/26 14:57:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1028,6 +1028,8 @@ lastcall(NODE *p)
 	for (p = p->n_right; p->n_op == CM; p = p->n_left)
 		size += argsiz(p->n_right);
 	size += argsiz(p);
+	if (kflag)
+		size -= 4;
 	op->n_qual = size; /* XXX */
 }
 
