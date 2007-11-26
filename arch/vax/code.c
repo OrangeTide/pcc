@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.4 2007/11/22 14:36:37 stefan Exp $	*/
+/*	$Id: code.c,v 1.5 2007/11/26 05:31:41 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -184,12 +184,14 @@ bycode( t, i ){
 		}
 	}
 
+#if 0
 void
 zecode( n ){
 	/* n integer words of zeros */
 	if( n <= 0 ) return;
 	printf( "	.space	%d\n", (SZINT/SZCHAR)*n );
 	}
+#endif
 
 int
 fldal( t ) unsigned t; { /* return the alignment of field of type t */
