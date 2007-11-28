@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.210 2007/11/23 15:53:20 ragge Exp $	*/
+/*	$Id: reader.c,v 1.211 2007/11/28 03:02:08 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -633,6 +633,10 @@ gencode(NODE *p, int cookie)
 		int lr = rspecial(q, NLEFT);
 
 		if (rr >= 0) {
+#ifdef PCC_DEBUG
+			if (optype(p->n_op) != BITYPE)
+				comperr("gencode: rspecial borked");
+#endif
 			if (r->n_op != REG)
 				comperr("gencode: rop != REG");
 			if (rr != r->n_rval)
