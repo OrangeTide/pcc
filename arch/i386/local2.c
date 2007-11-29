@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.95 2007/11/26 14:57:02 ragge Exp $	*/
+/*	$Id: local2.c,v 1.96 2007/11/29 16:02:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -64,6 +64,28 @@ prtprolog(struct interpass_prolog *ipp, int addto)
 			    rnames[j], regoff[j], rnames[FPREG]);
 	if (kflag == 0)
 		return;
+	/* if ebx are not saved to stack, it must be moved into another reg */
+	/* check and emit the move before GOT stuff */
+	if ((ipp->ipp_regs & (1 << EBX)) == 0) {
+		struct interpass *ip = (struct interpass *)ipp;
+
+		ip = DLIST_PREV(ip, qelem);
+		ip = DLIST_PREV(ip, qelem);
+		ip = DLIST_PREV(ip, qelem);
+		if (ip->type != IP_NODE || ip->ip_node->n_op != ASSIGN ||
+		    ip->ip_node->n_left->n_op != REG)
+			comperr("prtprolog pic error");
+		ip = (struct interpass *)ipp;
+		ip = DLIST_NEXT(ip, qelem);
+		if (ip->type != IP_NODE || ip->ip_node->n_op != ASSIGN ||
+		    ip->ip_node->n_left->n_op != REG)
+			comperr("prtprolog pic error2");
+		printf("	movl %s,%s\n",
+		    rnames[ip->ip_node->n_right->n_rval],
+		    rnames[ip->ip_node->n_left->n_rval]);
+		tfree(ip->ip_node);
+		DLIST_REMOVE(ip, qelem);
+	}
 	printf("	call .LW%d\n", ++lwnr);
 	printf(".LW%d:\n", lwnr);
 	printf("	popl %%ebx\n");
