@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.7 2007/11/28 02:23:53 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.8 2007/11/30 23:29:13 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -296,22 +296,29 @@ moveargs(NODE **p, int *regp)
         regnum = *regp;
 	sz = tsize(r->n_type, r->n_df, r->n_sue) / SZINT;
 
-	if (regnum <= A0 + nargregs && r->n_type == STRTY) {
+	if (regnum <= A0 + nargregs &&
+	    (r->n_type == STRTY || r->n_type == UNIONTY)) {
 		/* copy structure into registers */
 		n = regnum - A0;
 		tsz = sz > nargregs - n ? nargregs - n : sz;
+#if 0
 		printf("[should copy %d words into registers]\n", tsz);
-
 		while (tsz > 0) {
 			q = block(REG, NIL, NIL, INT, 0, MKSUE(INT));
 			q->n_rval = regnum + tsz;
                 	q = buildtree(ASSIGN, q, r);
-			r = block(CM, q, NIL, INT, 0, MKSUE(INT));
 			tsz--;
+			if (tsz > 0)
+				r = block(CM, q, NIL, INT, 0, MKSUE(INT));
+			else
+				r = q;
 		}
+#endif
+		q = r;
 		t = r;
 
-	} else if (regnum + sz <= A0 + nargregs) {
+	} else if (regnum + sz <= A0 + nargregs &&
+		(r->n_type != STRTY && r->n_type != UNIONTY)) {
                 t = block(REG, NIL, NIL, r->n_type, r->n_df, r->n_sue);
 		switch(r->n_type) {
 		case DOUBLE:
