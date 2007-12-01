@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.10 2007/11/30 23:12:32 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.11 2007/12/01 17:15:38 gmcgarry Exp $
 #
 # Makefile.in for the cc part of pcc.
 #
@@ -6,6 +6,7 @@ prefix = @prefix@
 exec_prefix = @exec_prefix@
 bindir = @bindir@
 libexecdir = @libexecdir@
+includedir = @includedir@
 datarootdir = @datarootdir@
 mandir = @mandir@
 strip = @strip@
