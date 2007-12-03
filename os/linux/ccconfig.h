@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.5 2007/12/02 22:21:13 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.6 2007/12/03 15:47:00 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -38,7 +38,7 @@
 /* XXX maybe configure could detect these? Or we should build our own? */
 #if defined(mach_i386)
 #define GCCLIBDIR LIBDIR "gcc/i586-suse-linux/4.1.0/"
-#else defined(mach_powerpc)
+#elif defined(mach_powerpc)
 #define GCCLIBDIR LIBDIR "gcc/powerpc-unknown-linux/4.1.2/"
 #endif
 
