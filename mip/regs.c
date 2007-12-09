@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.164 2007/11/23 15:51:20 ragge Exp $	*/
+/*	$Id: regs.c,v 1.165 2007/12/09 17:52:54 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2007,7 +2007,8 @@ temparg(struct interpass *ipole, REGW *w)
 		if (ip->type == IP_ASM)
 			continue;
 		p = ip->ip_node;
-#ifdef PCC_DEBUG
+#ifdef notdef
+		/* register args may already have been put on stack */
 		if (p->n_op != ASSIGN || p->n_left->n_op != TEMP)
 			comperr("temparg");
 #endif
