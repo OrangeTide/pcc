@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.185 2007/11/23 16:00:06 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.186 2007/12/09 17:46:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1175,7 +1175,7 @@ wstrend(char *str)
 	}
 	p->n_df->ddim = (i+1) * ((MKSUE(WCHAR_TYPE))->suesize/SZCHAR);
 	p->n_sp = sp;
-	return(p);
+	return(clocal(p));
 }
 
 /*
@@ -1224,7 +1224,7 @@ strend(char *str)
 	}
 	p->n_df->ddim = i+1;
 	p->n_sp = s;
-	return(p);
+	return(clocal(p));
 }
 
 /*
