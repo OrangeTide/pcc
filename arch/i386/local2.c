@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.96 2007/11/29 16:02:11 ragge Exp $	*/
+/*	$Id: local2.c,v 1.97 2007/12/09 17:55:45 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -750,6 +750,18 @@ adrput(FILE *io, NODE *p)
 			fprintf(io, "(%s)", rnames[p->n_rval]);
 		return;
 	case ICON:
+#ifdef PCC_DEBUG
+		/* Sanitycheck for PIC, to catch adressable constants */
+		if (kflag && p->n_name[0]) {
+			static int foo;
+
+			if (foo++ == 0) {
+				printf("\nfailing...\n");
+				fwalk(p, e2print, 0);
+				comperr("pass2 conput");
+			}
+		}
+#endif
 		/* addressable value of the constant */
 		fputc('$', io);
 		conput(io, p);
