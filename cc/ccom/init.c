@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.36 2007/11/29 16:03:23 ragge Exp $	*/
+/*	$Id: init.c,v 1.37 2007/12/09 17:50:30 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -453,7 +453,12 @@ nsetval(CONSZ off, int fsz, NODE *p)
 static void
 setscl(struct symtab *sp)
 {
-	setloc1((sp->squal << TSHIFT) & CON ? RDATA : DATA);
+	int ro = DATA;
+
+	if (BTYPE(sp->stype) == sp->stype && sp->squal == (CON >> TSHIFT))
+		ro = RDATA;
+	/* XXX - readonly pointers */
+	setloc1(ro);
 	defalign(talign(sp->stype, sp->ssue));
 	if (sp->sclass == EXTDEF ||
 	    (sp->sclass == STATIC && sp->slevel == 0)) {
@@ -835,7 +840,7 @@ strcvt(NODE *p)
 			i = (unsigned char)s[-1];
 		asginit(bcon(i));
 	} 
-	nfree(p);
+	tfree(p);
 }
 
 /*
@@ -948,10 +953,7 @@ simpleinit(struct symtab *sp, NODE *p)
 		spname = sp;
 		p = optim(buildtree(ASSIGN, buildtree(NAME, NIL, NIL), p));
 		setscl(sp);
-		if (p->n_right->n_op != ICON && p->n_right->n_op != FCON)
-			uerror("initializer element is not a constant");
-		else
-			ninval(0, p->n_right->n_sue->suesize, p->n_right);
+		ninval(0, p->n_right->n_sue->suesize, p->n_right);
 		tfree(p);
 		break;
 
