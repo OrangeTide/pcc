@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.4 2007/11/22 18:36:44 gmcgarry Exp $    */
+/*      $Id: code.c,v 1.5 2007/12/13 03:59:04 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -132,7 +132,7 @@ bfcode(struct symtab **sp, int cnt)
 		p = tempnode(0, PTR+STRTY, 0, cftnsp->ssue);
 		rvnr = p->n_lval;
 		q = block(REG, NIL, NIL, PTR+STRTY, 0, cftnsp->ssue);
-		q->n_rval = start++;
+		q->n_rval = R0 + start++;
 		p = buildtree(ASSIGN, p, q);
 		ecomp(p);
 	}
