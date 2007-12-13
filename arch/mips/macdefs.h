@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.7 2007/12/13 04:20:14 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.8 2007/12/13 12:39:51 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -328,6 +328,7 @@ typedef long long OFFSZ;
 #define PCLASS(p)	(1 << gclass((p)->n_type))
 #define DECRA(x,y)	(((x) >> (y*6)) & 63)   /* decode encoded regs */
 #define ENCRA(x,y)	((x) << (6+y*6))        /* encode regs in int */
+#define ENCRD(x)	(x)			/* Encode dest reg in n_reg */
 
 int COLORMAP(int c, int *r);
 
