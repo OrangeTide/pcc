@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.186 2007/12/09 17:46:41 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.187 2007/12/20 16:43:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1779,7 +1779,7 @@ tymerge(NODE *typ, NODE *idp)
 #endif
 
 	idp->n_type = typ->n_type;
-	idp->n_qual = typ->n_qual;
+	idp->n_qual |= typ->n_qual;
 
 	tylkp = &tylnk;
 	tylkp->next = NULL;
@@ -1804,7 +1804,6 @@ tymerge(NODE *typ, NODE *idp)
 	/* now idp is a single node: fix up type */
 
 	idp->n_type = ctype(idp->n_type);
-//	idp->n_qual = DECQAL(idp->n_qual);
 
 	/* in case ctype has rewritten things */
 	if ((t = BTYPE(idp->n_type)) != STRTY && t != UNIONTY)
@@ -1921,8 +1920,10 @@ tyreduce(NODE *p, struct tylnk **tylkp, int *ntdim)
 	TWORD t, q;
 
 	o = p->n_op;
-	if (o == NAME)
+	if (o == NAME) {
+		p->n_qual = DECQAL(p->n_qual);
 		return;
+	}
 
 	t = INCREF(p->n_type);
 	q = p->n_qual;
