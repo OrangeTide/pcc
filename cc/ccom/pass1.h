@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.129 2007/11/22 14:36:37 stefan Exp $	*/
+/*	$Id: pass1.h,v 1.130 2007/12/20 16:44:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -325,6 +325,7 @@ NODE *funcode(NODE *);
 struct symtab *enumhd(char *);
 NODE *enumdcl(struct symtab *);
 NODE *enumref(char *);
+CONSZ icons(NODE *);
 
 #ifdef GCC_COMPAT
 void gcc_init(void);
