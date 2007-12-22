@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.9 2007/12/13 04:20:14 gmcgarry Exp $	*/
+/*	$Id: order.c,v 1.10 2007/12/22 21:46:26 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -40,7 +40,10 @@
 int
 notoff(TWORD t, int r, CONSZ off, char *cp)
 {
-	if (off > 65535) return 1;
+	/*
+	 * although the hardware doesn't permit offsets greater
+	 * than +/- 32K, the assembler fixes it for us.
+	 */
 	return 0;		/* YES */
 }
 

@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.8 2007/12/13 12:39:51 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.9 2007/12/22 21:46:26 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -69,7 +69,7 @@
 #define ALCHAR		8
 #define ALBOOL		32
 #define ALINT		32
-#define ALFLOAT		64
+#define ALFLOAT		32
 #define ALDOUBLE	64
 #define ALLDOUBLE	64
 #define ALLONG		32
