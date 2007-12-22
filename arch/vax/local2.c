@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.5 2007/11/26 00:26:47 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.6 2007/12/22 10:18:56 stefan Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -539,6 +539,12 @@ shltype( o, p ) register NODE *p; {
 	return( o== REG || o == NAME || o == ICON || o == OREG || ( o==UMUL && shumul(p->n_left)) );
 	}
 #endif
+
+int
+fldexpand(NODE *p, int cookie, char **cp)
+{
+	return 0;
+}
 
 int
 flshape( p ) register NODE *p; {

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.3 2007/11/26 00:26:47 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.4 2007/12/22 10:18:55 stefan Exp $	*/
 /*
  * Copyright (c) 2006 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -162,6 +162,12 @@ tlen(p) NODE *p;
 		}
 }
 #endif
+
+int
+fldexpand(NODE *p, int cookie, char **cp)
+{
+	return 0;
+}
 
 #if 0
 /*

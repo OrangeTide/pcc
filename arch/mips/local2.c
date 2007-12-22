@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.13 2007/12/13 04:20:14 gmcgarry Exp $	 */
+/*	$Id: local2.c,v 1.14 2007/12/22 10:18:55 stefan Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -719,6 +719,12 @@ int
 rewfld(NODE * p)
 {
 	return (1);
+}
+
+int
+fldexpand(NODE *p, int cookie, char **cp)
+{
+	return 0;
 }
 
 /*

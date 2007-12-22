@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.75 2007/11/26 00:02:58 gmcgarry Exp $   */
+/*      $Id: match.c,v 1.76 2007/12/22 10:18:56 stefan Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -275,19 +275,28 @@ expand(NODE *p, int cookie, char *cp)
 			continue;
 
 		case 'F':  /* this line deleted if FOREFF is active */
-			if( cookie & FOREFF ) while( *++cp != '\n' ) ; /* VOID */
+			if (cookie & FOREFF) {
+				while (*++cp != '\n' && *(cp - 1) != '\0')
+					continue;
+			}
 			continue;
 
 		case 'S':  /* field size */
+			if (fldexpand(p, cookie, &cp))
+				continue;
 			printf("%d", FLDSZ(p->n_rval));
 			continue;
 
 		case 'H':  /* field shift */
+			if (fldexpand(p, cookie, &cp))
+				continue;
 			printf("%d", FLDSHF(p->n_rval));
 			continue;
 
 		case 'M':  /* field mask */
 		case 'N':  /* complement of field mask */
+			if (fldexpand(p, cookie, &cp))
+				continue;
 			val = 1;
 			val <<= FLDSZ(p->n_rval);
 			--val;

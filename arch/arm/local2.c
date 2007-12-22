@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.8 2007/11/26 00:26:46 gmcgarry Exp $    */
+/*      $Id: local2.c,v 1.9 2007/12/22 10:18:55 stefan Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -167,6 +167,12 @@ twollcomp(NODE *p)
 	expand(p, 0, "\tcmp AR,AL\t@ (and lower)\n");
 	cbgen(p->n_op, e);
 	deflab(s);
+}
+
+int
+fldexpand(NODE *P, int cookie, char **cp)
+{
+	return 0;
 }
 
 #if 0
