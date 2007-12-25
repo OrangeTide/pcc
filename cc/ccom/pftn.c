@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.187 2007/12/20 16:43:25 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.188 2007/12/25 13:58:48 stefan Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1734,6 +1734,8 @@ typenode(NODE *p)
 	p = (saved ? saved : block(TYPE, NIL, NIL, type, 0, 0));
 	p->n_qual = qual;
 	p->n_lval = class;
+	if (BTYPE(p->n_type) == UNDEF)
+		MODTYPE(p->n_type, INT);
 	return p;
 
 bad:	uerror("illegal type combination");
