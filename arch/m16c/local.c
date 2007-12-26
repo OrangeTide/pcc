@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.11 2006/02/06 09:33:09 janeno-1 Exp $	*/
+/*	$Id: local.c,v 1.12 2007/12/26 13:26:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -481,6 +481,21 @@ myp2tree(NODE *p)
 			p->n_right->n_stalign = al->type == TELLIPSIS ? i : 0;
 		} else
 			p->n_right->n_stalign = 0;
+		break;
+
+	case FCON:
+		/* Write float constants to memory */
+		setloc1(RDATA);
+		defalign(p->n_type == FLOAT ? ALFLOAT : p->n_type == DOUBLE ?
+		    ALDOUBLE : ALLDOUBLE );
+		deflab1(i = getlab()); 
+		ninval(0, btdims[p->n_type].suesize, p);
+		p->n_op = NAME;
+		p->n_lval = 0;	
+		p->n_sp = tmpalloc(sizeof(struct symtab_hdr));
+		p->n_sp->sclass = ILABEL;
+		p->n_sp->soffset = i;
+		p->n_sp->sflags = 0;
 		break;
 	}
 

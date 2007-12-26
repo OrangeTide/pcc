@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.4 2007/11/16 22:35:32 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.5 2007/12/26 13:26:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -216,6 +216,26 @@ clocal(p) NODE *p; {
 void
 myp2tree(NODE *p)
 {
+	int o = p->n_op, i;
+
+	if (o != FCON) 
+		return;
+
+	/* Write float constants to memory */
+	/* Should be volontary per architecture */
+ 
+	setloc1(RDATA);
+	defalign(p->n_type == FLOAT ? ALFLOAT : p->n_type == DOUBLE ?
+	    ALDOUBLE : ALLDOUBLE );
+	deflab1(i = getlab()); 
+	ninval(0, btdims[p->n_type].suesize, p);
+	p->n_op = NAME;
+	p->n_lval = 0;	
+	p->n_sp = tmpalloc(sizeof(struct symtab_hdr));
+	p->n_sp->sclass = ILABEL;
+	p->n_sp->soffset = i;
+	p->n_sp->sflags = 0;
+
 }
 
 /*
