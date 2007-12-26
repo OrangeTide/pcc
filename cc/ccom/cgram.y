@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.178 2007/11/25 10:23:53 stefan Exp $	*/
+/*	$Id: cgram.y,v 1.179 2007/12/26 10:18:47 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -997,20 +997,9 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 		|  term C_STROP C_TYPENAME { $$ = structref($1, $2, $3); }
 		|  C_NAME {
 			spname = lookup($1, 0);
-			/* recognize identifiers in initializations */
-			if (blevel==0 && spname->stype == UNDEF) {
-				register NODE *q;
-				werror("undeclared initializer name %s",
-				    spname->sname);
-				q = block(NAME, NIL, NIL, INT, 0, MKSUE(INT));
-				q->n_sp = spname;
-				defid(q, EXTERN);
-				nfree(q);
-			}
 			if (spname->sflags & SINLINE)
 				inline_ref($1);
 			$$ = buildtree(NAME, NIL, NIL);
-			spname->suse = -lineno;
 			if (spname->sflags & SDYNARRAY)
 				$$ = buildtree(UMUL, $$, NIL);
 		}
