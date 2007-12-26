@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.179 2007/12/26 13:22:25 stefan Exp $	*/
+/*	$Id: trees.c,v 1.180 2007/12/26 13:31:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1603,30 +1603,6 @@ eprint(NODE *p, int down, int *a, int *b)
 }
 # endif
 
-void
-prtdcon(NODE *p)
-{
-	int o = p->n_op, i;
-
-	if (o != FCON)
-		return;
-
-	/* Write float constants to memory */
-	/* Should be volontary per architecture */
-
-	setloc1(RDATA);
-	defalign(p->n_type == FLOAT ? ALFLOAT : p->n_type == DOUBLE ?
-	    ALDOUBLE : ALLDOUBLE );
-	deflab1(i = getlab());
-	ninval(0, btdims[p->n_type].suesize, p);
-	p->n_op = NAME;
-	p->n_lval = 0;
-	p->n_sp = tmpalloc(sizeof(struct symtab_hdr));
-	p->n_sp->sclass = ILABEL;
-	p->n_sp->soffset = i;
-	p->n_sp->sflags = 0;
-}
-
 extern int negrel[];
 
 /*
@@ -2208,7 +2184,6 @@ ecode(NODE *p)
 
 	p = optim(p);
 	p = delasgop(p);
-	walkf(p, prtdcon);
 	walkf(p, delvoid);
 #ifdef PCC_DEBUG
 	if (xdebug) {
