@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.179 2007/12/26 10:18:47 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.180 2007/12/26 13:22:25 stefan Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1268,9 +1268,7 @@ genswitch(int num, TWORD type, struct swents **p, int n)
 	for (i = 1; i <= n; ++i) {
 		/* already in 1 */
 		r = tempnode(num, type, 0, MKSUE(type));
-		q = block(ICON, NIL, NIL, type, 0, MKSUE(type));
-		q->n_sp = NULL;
-		q->n_lval = p[i]->sval;
+		q = xbcon(p[i]->sval, NULL, type);
 		r = buildtree(NE, r, clocal(q));
 		cbranch(buildtree(NOT, r, NIL), bcon(p[i]->slab));
 	}

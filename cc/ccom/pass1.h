@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.130 2007/12/20 16:44:48 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.131 2007/12/26 13:22:25 stefan Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -238,6 +238,7 @@ extern	NODE
 	*stref(NODE *),
 	*offcon(OFFSZ, TWORD, union dimfun *, struct suedef *),
 	*bcon(int),
+	*xbcon(CONSZ, struct symtab *, TWORD),
 	*bpsize(NODE *),
 	*convert(NODE *, int),
 	*pconvert(NODE *),
