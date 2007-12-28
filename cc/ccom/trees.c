@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.180 2007/12/26 13:31:50 ragge Exp $	*/
+/*	$Id: trees.c,v 1.181 2007/12/28 22:43:12 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1529,7 +1529,7 @@ moditype(TWORD ty)
 	}
 }
 
-int tvaloff = 100;
+int tvaloff = MAXREGS+NPERMREG > 100 ? MAXREGS+NPERMREG + 100 : 100;
 
 /*
  * Returns a TEMP node with temp number nr.
