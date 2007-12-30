@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.61 2007/11/26 00:10:03 gmcgarry Exp $	*/
+/*	$Id: order.c,v 1.62 2007/12/30 20:17:23 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -205,11 +205,11 @@ livecall(NODE *p)
 		    p->n_right->n_left->n_op == REG)
 			*s++ = p->n_right->n_left->n_rval;
 	}
-	if (p->n_right->n_op == ASSIGN &&
-	    p->n_right->n_left->n_op == REG)
-		*s++ = p->n_right->n_left->n_rval;
+	if (p->n_op == ASSIGN &&
+	    p->n_left->n_op == REG)
+		*s++ = p->n_left->n_rval;
 	*s = -1;
-	return s;
+	return r;
 }
 
 /*
