@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.181 2007/12/30 10:31:51 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.182 2007/12/30 16:19:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -456,17 +456,17 @@ arg_param_list:	   declarator { olddecl(tymerge($<nodep>0, $1)); }
 /*
  * Declarations in beginning of blocks.
  */
-declaration_list:  declaration
-		|  declaration_list declaration
+block_item_list:   block_item
+		|  block_item_list block_item
+		;
+
+block_item:	   declaration
+		|  statement
 		;
 
 /*
  * Here starts the old YACC code.
  */
-
-stmt_list:	   stmt_list statement
-		|  { bccode(); }
-		;
 
 /*
  * Variables are declared in init_declarator.
@@ -648,7 +648,7 @@ ibrace:		   '{' {  ilbrace(); }
 
 /*	STATEMENTS	*/
 
-compoundstmt:	   begin declaration_list stmt_list '}' {  
+compoundstmt:	   begin block_item_list '}' {  
 #ifdef STABS
 			if (gflag && blevel > 2)
 				stabs_rbrac(blevel);
@@ -662,7 +662,7 @@ compoundstmt:	   begin declaration_list stmt_list '}' {
 			autooff = savctx->contlab;
 			savctx = savctx->next;
 		}
-		|  begin stmt_list '}' {
+		|  begin '}' {
 #ifdef STABS
 			if (gflag && blevel > 2)
 				stabs_rbrac(blevel);
@@ -696,6 +696,7 @@ begin:		  '{' {
 			bc->contlab = autooff;
 			bc->next = savctx;
 			savctx = bc;
+			bccode();
 		}
 		;
 
