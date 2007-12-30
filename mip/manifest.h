@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.69 2007/12/30 10:31:51 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.70 2007/12/30 20:43:46 stefan Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -116,6 +116,7 @@
 #define UNSIGNABLE(x)	(((x)<=ULONGLONG&&(x)>=CHAR) && !ISUNSIGNED(x))
 #define ENUNSIGN(x)	((x)|1)
 #define DEUNSIGN(x)	((x)&~1)
+#define ISINTEGER(x)	(((x) >= CHAR && (x) <= ULONGLONG) || (x) == BOOL)
 #define ISPTR(x)	(((x)&TMASK)==PTR)
 #define ISFTN(x)	(((x)&TMASK)==FTN)	/* is x a function type? */
 #define ISARY(x)	(((x)&TMASK)==ARY)	/* is x an array type? */
