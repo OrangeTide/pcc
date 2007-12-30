@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.9 2007/12/26 13:45:00 stefan Exp $	*/
+/*	$Id: code.c,v 1.10 2007/12/30 10:31:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -422,7 +422,7 @@ genswitch_table(int num, struct swents **p, int n)
 	r = tempnode(num, UNSIGNED, 0, MKSUE(UNSIGNED));
 	r = buildtree(MINUS, r, bcon(minval));
 	t = tempnode(0, UNSIGNED, 0, MKSUE(UNSIGNED));
-	tval = t->n_lval;
+	tval = regno(t);
 	r = buildtree(ASSIGN, t, r);
 	ecomp(r);
 
@@ -448,7 +448,7 @@ genswitch_table(int num, struct swents **p, int n)
 	r = buildtree(ASSIGN, t, r);
 	ecomp(r);
 
-	r = tempnode(t->n_lval, INCREF(UNSIGNED), 0, MKSUE(UNSIGNED));
+	r = tempnode(regno(t), INCREF(UNSIGNED), 0, MKSUE(UNSIGNED));
 	r = buildtree(UMUL, r, NIL);
 	t = block(NAME, NIL, NIL, UCHAR, 0, MKSUE(UCHAR));
 	t->n_sp = strtbl;
@@ -569,7 +569,7 @@ mrst_rec(int num, struct swents **p, int n, int *state, int lab)
 	r = buildtree(RS, r, bcon(lowbit));
 
 	t = tempnode(0, UNSIGNED, 0, MKSUE(UNSIGNED));
-	tval = t->n_lval;
+	tval = regno(t);
 	r = buildtree(ASSIGN, t, r);
 	ecomp(r);
 
@@ -588,7 +588,7 @@ mrst_rec(int num, struct swents **p, int n, int *state, int lab)
 	r = buildtree(ASSIGN, t, r);
 	ecomp(r);
 
-	r = tempnode(t->n_lval, INCREF(UNSIGNED), 0, MKSUE(UNSIGNED));
+	r = tempnode(regno(t), INCREF(UNSIGNED), 0, MKSUE(UNSIGNED));
 	r = buildtree(UMUL, r, NIL);
 	t = block(NAME, NIL, NIL, UCHAR, 0, MKSUE(UCHAR));
 	t->n_sp = strtbl;

@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.6 2007/12/26 13:26:14 ragge Exp $	*/
+/*	$Id: local.c,v 1.7 2007/12/30 10:31:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -52,7 +52,7 @@ emitinnercall(NODE *r)
 #endif
 
 	tmp1 = tempnode(0, r->n_type, r->n_df, r->n_sue);
-	tmp2 = tempnode(tmp1->n_lval, r->n_type, r->n_df, r->n_sue);
+	tmp2 = tempnode(regno(tmp1), r->n_type, r->n_df, r->n_sue);
 	ecode(buildtree(ASSIGN, tmp1, r));
 
 	return tmp2;

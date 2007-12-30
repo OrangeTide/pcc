@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.11 2007/12/26 13:26:14 ragge Exp $	*/
+/*	$Id: local.c,v 1.12 2007/12/30 10:31:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -75,7 +75,7 @@ clocal(NODE *p)
 		if (p->n_type == PTR+VOID)
 			isptrvoid = 1;
 		r = tempnode(0, p->n_type, p->n_df, p->n_sue);
-		tmpnr = r->n_lval;
+		tmpnr = regno(r);
 		r = block(ASSIGN, r, p, p->n_type, p->n_df, p->n_sue);
 
 		p = tempnode(tmpnr, r->n_type, r->n_df, r->n_sue);
@@ -790,7 +790,7 @@ mips_builtin_va_arg(NODE *f, NODE *a)
 	/* create a copy to a temp node */
 	p = tcopy(a->n_left);
 	q = tempnode(0, p->n_type, p->n_df, p->n_sue);
-	tmpnr = q->n_lval;
+	tmpnr = regno(q);
 	p = buildtree(ASSIGN, q, p);
 
 	r = a->n_right;

@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.35 2007/11/26 20:14:04 stefan Exp $	*/
+/*	$Id: code.c,v 1.36 2007/12/30 10:31:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -85,7 +85,7 @@ bfcode(struct symtab **sp, int cnt)
 			    sp[i]->stype, sp[i]->sdf, sp[i]->ssue);
 			q->n_rval = n;
 			p = buildtree(ASSIGN, p, q);
-			sp[i]->soffset = p->n_left->n_lval;
+			sp[i]->soffset = regno(p->n_left);
 			sp[i]->sflags |= STNODE;
 			ecomp(p);
 		} else {
@@ -96,7 +96,7 @@ bfcode(struct symtab **sp, int cnt)
 				p = tempnode(0, sp[i]->stype,
 				    sp[i]->sdf, sp[i]->ssue);
 				p = buildtree(ASSIGN, p, buildtree(NAME, 0, 0));
-				sp[i]->soffset = p->n_left->n_lval;
+				sp[i]->soffset = regno(p->n_left);
 				sp[i]->sflags |= STNODE;
 				ecomp(p);
 			}

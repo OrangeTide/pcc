@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.180 2007/12/26 13:22:25 stefan Exp $	*/
+/*	$Id: cgram.y,v 1.181 2007/12/30 10:31:51 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -882,7 +882,7 @@ switchpart:	   C_SWITCH  '('  e  ')' {
 				t = $3->n_type;
 			}
 			p = tempnode(0, t, 0, MKSUE(t));
-			num = p->n_lval;
+			num = regno(p);
 			ecomp(buildtree(ASSIGN, p, $3));
 			branch( $$ = getlab());
 			swstart(num, t);

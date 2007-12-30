@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.213 2007/12/26 12:23:22 ragge Exp $	*/
+/*	$Id: reader.c,v 1.214 2007/12/30 10:31:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -733,7 +733,7 @@ e2print(NODE *p, int down, int *a, int *b)
 		break;
 
 	case TEMP:
-		fprintf(prfil, " " CONFMT, p->n_lval);
+		fprintf(prfil, " %d", regno(p));
 		break;
 
 	case ICON:
@@ -849,12 +849,12 @@ deltemp(NODE *p)
 	if (p->n_op == TEMP) {
 		/* Check if already existing */
 		for (w = tmpsave; w; w = w->next)
-			if (w->tempno == p->n_lval)
+			if (w->tempno == regno(p))
 				break;
 		if (w == NULL) {
 			/* new on stack */
 			w = tmpalloc(sizeof(struct tmpsave));
-			w->tempno = p->n_lval;
+			w->tempno = regno(p);
 			w->tempaddr = BITOOR(freetemp(szty(p->n_type)));
 			w->next = tmpsave;
 			tmpsave = w;

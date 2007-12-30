@@ -1,4 +1,4 @@
-/*      $Id: local.c,v 1.4 2007/12/26 13:26:13 ragge Exp $    */
+/*      $Id: local.c,v 1.5 2007/12/30 10:31:50 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -66,7 +66,7 @@ clocal(NODE *p)
                 	t = tempnode(0, r->n_type, r->n_df, r->n_sue);
 			r = buildtree(ASSIGN, t, r);
 			ecomp(r);
-			t = tempnode(t->n_lval, r->n_type, r->n_df, r->n_sue);
+			t = tempnode(regno(t), r->n_type, r->n_df, r->n_sue);
 			return t;
 		}
 		break;
