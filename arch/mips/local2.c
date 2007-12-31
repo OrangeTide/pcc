@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.15 2007/12/22 21:46:26 gmcgarry Exp $	 */
+/*	$Id: local2.c,v 1.16 2007/12/31 09:01:11 stefan Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -755,7 +755,7 @@ fldexpand(NODE *p, int cookie, char **cp)
                 break;
         case 'M':
         case 'N':
-                val = 1 << UPKFSZ(p->n_rval);
+                val = (CONSZ)1 << UPKFSZ(p->n_rval);
                 --val;
                 val <<= UPKFOFF(p->n_rval);
                 printf("0x%llx", (**cp == 'M' ? val : ~val)  & 0xffffffff);
