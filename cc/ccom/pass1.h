@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.131 2007/12/26 13:22:25 stefan Exp $	*/
+/*	$Id: pass1.h,v 1.132 2008/01/01 17:17:57 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -88,14 +88,7 @@ extern	char *scnames(int);
 #define	SDYNARRAY	00200
 #define	SINLINE		00400
 #define	STNODE		01000
-#ifdef GCC_COMPAT
-#define	SRENAME		02000	/* Node is renamed */
-#endif
 #define	SASG		04000
-
-#ifndef FIXDEF
-#define FIXDEF(p)
-#endif
 
 	/* alignment of initialized quantities */
 #ifndef AL_INIT
@@ -152,12 +145,12 @@ struct symtab_hdr {
 
 struct	symtab {
 	struct	symtab_hdr hdr;
-	char	*sname;
+	char	*sname;		/* Symbol name */
+	char	*soname;	/* Written-out name */
 	TWORD	stype;		/* type word */
 	TWORD	squal;		/* qualifier word */
 	union	dimfun *sdf;	/* ptr to the dimension/prototype array */
 	struct	suedef *ssue;	/* ptr to the definition table */
-	int	suse;		/* line number of last use of the variable */
 };
 
 #define	snext	hdr.h_next
@@ -208,6 +201,10 @@ extern	int contlab;
 extern	int flostat;
 extern	int retlab;
 
+/* pragma globals */
+extern int pragma_packed, pragma_aligned;
+extern char *pragma_renamed;
+
 /*
  * Flags used in structures/unions
  */
@@ -231,7 +228,7 @@ extern	NODE
 	*buildtree(int, NODE *l, NODE *r),
 	*mkty(unsigned, union dimfun *, struct suedef *),
 	*rstruct(char *, int),
-	*dclstruct(struct rstack *, int),
+	*dclstruct(struct rstack *),
 	*strend(char *),
 	*wstrend(char *),
 	*tymerge(NODE *typ, NODE *idp),
@@ -327,12 +324,12 @@ struct symtab *enumhd(char *);
 NODE *enumdcl(struct symtab *);
 NODE *enumref(char *);
 CONSZ icons(NODE *);
+int mypragma(char **);
+void fixdef(struct symtab *);
 
 #ifdef GCC_COMPAT
 void gcc_init(void);
 int gcc_keyword(char *, NODE **);
-void gcc_rename(struct symtab *sp, char *newname);
-char *gcc_findname(struct symtab *sp);
 #endif
 
 #ifdef STABS
