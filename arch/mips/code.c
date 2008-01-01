@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.11 2007/12/30 10:31:50 ragge Exp $	*/
+/*	$Id: code.c,v 1.12 2008/01/01 17:31:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -55,11 +55,8 @@ defalign(int n)
 void
 defnam(struct symtab *p)
 {
-	char *c = p->sname;
+	char *c = p->soname;
 
-#ifdef GCC_COMPAT
-	c = gcc_findname(p);
-#endif
 	if (p->sclass == EXTDEF)
 		printf("\t.globl %s\n", c);
 #ifdef USE_GAS

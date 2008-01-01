@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.12 2007/12/30 10:31:50 ragge Exp $	*/
+/*	$Id: local.c,v 1.13 2008/01/01 17:31:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -504,7 +504,7 @@ ninval(CONSZ off, int fsz, NODE *p)
                             q->sclass == ILABEL) {
                                 printf("+" LABFMT, q->soffset);
                         } else
-                                printf("+%s", exname(q->sname));
+                                printf("+%s", exname(q->soname));
                 }
                 printf("\n");
                 break;
@@ -592,11 +592,7 @@ commdec(struct symtab *q)
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZCHAR-1))/SZCHAR;
 
-#ifdef GCC_COMPAT
-	printf("	.comm %s,%d\n", gcc_findname(q), off);
-#else
-	printf("	.comm %s,%d\n", exname(q->sname), off);
-#endif
+	printf("	.comm %s,%d\n", exname(q->soname), off);
 }
 
 /* make a local common declaration for id, if reasonable */
@@ -608,11 +604,7 @@ lcommdec(struct symtab *q)
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZCHAR-1))/SZCHAR;
 	if (q->slevel == 0)
-#ifdef GCC_COMPAT
-		printf("\t.lcomm %s,%d\n", gcc_findname(q), off);
-#else
-		printf("\t.lcomm %s,%d\n", exname(q->sname), off);
-#endif
+		printf("\t.lcomm %s,%d\n", exname(q->soname), off);
 	else
 		printf("\t.lcomm " LABFMT ",%d\n", q->soffset, off);
 }
@@ -841,3 +833,19 @@ bad:
 	uerror("bad argument to __buildtin_va_copy");
 	return bcon(0);
 }
+/*
+ * Give target the opportunity of handling pragmas.
+ */
+int
+mypragma(char **ary)
+{
+	return 0; }
+
+/*
+ * Called when a identifier has been declared, to give target last word.
+ */
+void
+fixdef(struct symtab *sp)
+{
+}
+

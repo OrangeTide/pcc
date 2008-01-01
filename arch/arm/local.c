@@ -1,4 +1,4 @@
-/*      $Id: local.c,v 1.5 2007/12/30 10:31:50 ragge Exp $    */
+/*      $Id: local.c,v 1.6 2008/01/01 17:31:00 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -475,7 +475,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 			    q->sclass == ILABEL) {
 				printf("+" LABFMT, q->soffset);
 			} else
-				printf("+%s", exname(q->sname));
+				printf("+%s", exname(q->soname));
 		}
 		printf("\n");
 		break;
@@ -565,11 +565,7 @@ commdec(struct symtab *q)
 
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZCHAR-1))/SZCHAR;
-#ifdef GCC_COMPAT
-	printf("\t.comm %s,%d,%d\n", exname(gcc_findname(q)), off, 4);
-#else
-	printf("\t.comm %s,%,%d\n", exname(q->sname), off, 4);
-#endif
+	printf("\t.comm %s,%,%d\n", exname(q->soname), off, 4);
 }
 
 /*
@@ -583,11 +579,7 @@ lcommdec(struct symtab *q)
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZCHAR-1))/SZCHAR;
 	if (q->slevel == 0)
-#ifdef GCC_COMPAT
-		printf("\t.lcomm %s,%d\n", exname(gcc_findname(q)), off);
-#else
-		printf("\t.lcomm %s,%d\n", exname(q->sname), off);
-#endif
+		printf("\t.lcomm %s,%d\n", exname(q->soname), off);
 	else
 		printf("\t.lcomm " LABFMT ",%d\n", q->soffset, off);
 }
@@ -656,5 +648,21 @@ NODE *
 arm_builtin_va_copy(NODE *f, NODE *a)
 {
 	return bcon(0);
+}
+
+/*
+ * Give target the opportunity of handling pragmas.
+ */
+int
+mypragma(char **ary)
+{
+	return 0; }
+
+/*
+ * Called when a identifier has been declared, to give target last word.
+ */
+void
+fixdef(struct symtab *sp)
+{
 }
 

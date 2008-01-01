@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.3 2007/12/26 13:26:14 ragge Exp $	*/
+/*	$Id: local.c,v 1.4 2008/01/01 17:31:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -485,7 +485,7 @@ ninval(NODE *p)
 			    q->sclass == ILABEL) {
 				printf("+" LABFMT, q->soffset);
 			} else
-				printf("+%s", exname(q->sname));
+				printf("+%s", exname(q->soname));
 		}
 		printf("\n");
 		break;
@@ -590,11 +590,7 @@ commdec(struct symtab *q)
 
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZCHAR-1))/SZCHAR;
-#ifdef GCC_COMPAT
-	printf("	.comm %s,0%o\n", gcc_findname(q), off);
-#else
-	printf("	.comm %s,0%o\n", exname(q->sname), off);
-#endif
+	printf("	.comm %s,0%o\n", exname(q->soname), off);
 }
 
 /* make a local common declaration for id, if reasonable */
@@ -606,11 +602,7 @@ lcommdec(struct symtab *q)
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZCHAR-1))/SZCHAR;
 	if (q->slevel == 0)
-#ifdef GCC_COMPAT
-		printf("	.lcomm %s,0%o\n", gcc_findname(q), off);
-#else
-		printf("	.lcomm %s,0%o\n", exname(q->sname), off);
-#endif
+		printf("	.lcomm %s,0%o\n", exname(q->soname), off);
 	else
 		printf("	.lcomm " LABFMT ",0%o\n", q->soffset, off);
 }
@@ -634,3 +626,19 @@ setloc1(int locc)
 	lastloc = locc;
 	printf("	.%s\n", loctbl[locc]);
 }
+/*
+ * Give target the opportunity of handling pragmas.
+ */
+int
+mypragma(char **ary)
+{
+	return 0; }
+
+/*
+ * Called when a identifier has been declared, to give target last word.
+ */
+void
+fixdef(struct symtab *sp)
+{
+}
+
