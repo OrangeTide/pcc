@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.6 2007/12/03 15:47:00 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.7 2008/01/06 17:18:55 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -32,7 +32,7 @@
  */
 
 #ifndef LIBDIR
-#define LIBDIR /usr/lib/
+#define LIBDIR "/usr/lib/"
 #endif
 
 /* XXX maybe configure could detect these? Or we should build our own? */

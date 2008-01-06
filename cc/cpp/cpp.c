@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.73 2007/12/30 20:12:44 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.74 2008/01/06 17:18:55 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -66,7 +66,7 @@
  * from V7 cpp, and at last ansi/c99 support.
  */
 
-#include "../../config.h"
+#include "config.h"
 
 #include <sys/wait.h>
 
@@ -84,7 +84,7 @@
 #include <alloca.h>
 #endif
 
-#include "../../mip/compat.h"
+#include "compat.h"
 #include "cpp.h"
 #include "y.tab.h"
 

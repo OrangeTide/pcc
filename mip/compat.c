@@ -24,12 +24,12 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $Id: compat.c,v 1.1 2007/09/20 12:52:15 ragge Exp $
+ * $Id: compat.c,v 1.2 2008/01/06 17:18:55 ragge Exp $
  */
 
 #include <string.h>
 
-#include "../config.h"
+#include "config.h"
 #include "manifest.h"
 
 #ifndef HAVE_STRLCAT

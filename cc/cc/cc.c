@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.79 2007/11/30 23:05:15 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.80 2008/01/06 17:18:55 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -47,6 +47,8 @@
  *
  * This file should be rewritten readable.
  */
+#include "config.h"
+
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -61,7 +63,6 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "../../config.h"
 #include "ccconfig.h"
 /* C command */
 
