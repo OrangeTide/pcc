@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.9 2007/12/22 10:18:55 stefan Exp $	*/
+/*	$Id: local2.c,v 1.10 2008/01/06 15:12:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -167,10 +167,12 @@ prologue(struct interpass_prolog *ipp)
 #endif
 
 	ftype = ipp->ipp_type;
+#ifdef notdef
 	if (ipp->ipp_vis)
 		printf("	.globl %s\n", exname(ipp->ipp_name));
 	printf("	.align 2\n");
 	printf("%s:\n", exname(ipp->ipp_name));
+#endif
 	/*
 	 * We here know what register to save and how much to 
 	 * add to the stack.
