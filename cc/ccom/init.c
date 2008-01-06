@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.39 2007/12/26 13:22:25 stefan Exp $	*/
+/*	$Id: init.c,v 1.40 2008/01/06 15:07:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -448,31 +448,6 @@ nsetval(CONSZ off, int fsz, NODE *p)
 }
 
 /*
- * Align data and set correct location.
- */
-static void
-setscl(struct symtab *sp)
-{
-	int ro = DATA;
-
-	if (BTYPE(sp->stype) == sp->stype && sp->squal & (CON >> TSHIFT))
-		ro = RDATA;
-	else if (ISPTR(sp->stype) && ISCON(sp->squal))
-		ro = RDATA;
-	/* XXX - readonly pointers */
-	setloc1(ro);
-	defalign(talign(sp->stype, sp->ssue));
-	if (sp->sclass == EXTDEF ||
-	    (sp->sclass == STATIC && sp->slevel == 0)) {
-		defnam(sp);
-	} else {
-		if (sp->soffset == NOOFFSET)
-			cerror("setscl");
-		deflab1(sp->soffset);
-	}
-}
-
-/*
  * take care of generating a value for the initializer p
  * inoff has the current offset (last bit written)
  * in the current word being generated
@@ -620,7 +595,7 @@ endinit(void)
 #endif
 
 	if (csym->sclass != AUTO)
-		setscl(csym);
+		defloc(csym);
 
 	/* Calculate total block size */
 	if (ISARY(csym->stype) && csym->sdf->ddim == 0) {
@@ -952,7 +927,7 @@ simpleinit(struct symtab *sp, NODE *p)
 	case EXTDEF:
 		spname = sp;
 		p = optim(buildtree(ASSIGN, buildtree(NAME, NIL, NIL), p));
-		setscl(sp);
+		defloc(sp);
 		ninval(0, p->n_right->n_sue->suesize, p->n_right);
 		tfree(p);
 		break;
