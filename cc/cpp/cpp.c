@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.74 2008/01/06 17:18:55 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.75 2008/01/07 21:32:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -804,7 +804,7 @@ static void
 pragoper(void)
 {
 	usch *opb;
-	int t;
+	int t, plev;
 
 	slow = 1;
 	putstr((usch *)"\n#pragma ");
@@ -815,27 +815,39 @@ pragoper(void)
 	if ((t = yylex()) == WSPACE)
 		t = yylex();
 	opb = stringbuf;
-	while (t != ')') {
+	for (plev = 0; ; t = yylex()) {
+		if (t == '(')
+			plev++;
+		if (t == ')')
+			plev--;
+		if (plev < 0)
+			break;
 		savstr((usch *)yytext);
-		t = yylex();
 	}
+
 	savch(0);
 	cunput(WARN);
 	unpstr(opb);
 	stringbuf = opb;
 	expmac(NULL);
+	cunput('\n');
 	while (stringbuf > opb)
 		cunput(*--stringbuf);
-	if ((t = yylex()) != STRING)
-		goto bad;
-	opb = (usch *)yytext;
-	if (*opb++ == 'L')
-		opb++;
-	while ((t = *opb++) != '\"') {
-		if (t == '\\' && (*opb == '\"' || *opb == '\\'))
-			t = *opb++;
-		putch(t);
+	while ((t = yylex()) != '\n') {
+		if (t == WSPACE)
+			continue;
+		if (t != STRING)
+			goto bad;
+		opb = (usch *)yytext;
+		if (*opb++ == 'L')
+			opb++;
+		while ((t = *opb++) != '\"') {
+			if (t == '\\' && (*opb == '\"' || *opb == '\\'))
+				t = *opb++;
+			putch(t);
+		}
 	}
+
 	putch('\n');
 	prtline();
 	return;
