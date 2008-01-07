@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.70 2008/01/06 15:10:41 ragge Exp $	*/
+/*	$Id: local.c,v 1.71 2008/01/07 21:33:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -855,7 +855,7 @@ defzero(struct symtab *sp)
 		printf(LABFMT ",0%o\n", sp->soffset, off);
 }
 
-static char *nextsect;
+char *nextsect;
 
 #define	SSECTION	010000
 
@@ -876,6 +876,4 @@ mypragma(char **ary)
 void
 fixdef(struct symtab *sp)
 {
-	if (nextsect == NULL)
-		return;
 }

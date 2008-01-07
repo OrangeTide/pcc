@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.24 2008/01/06 15:10:41 ragge Exp $	*/
+/*	$Id: code.c,v 1.25 2008/01/07 21:33:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -36,6 +36,7 @@
 void
 defloc(struct symtab *sp)
 {
+	extern char *nextsect;
 	static char *loctbl[] = { "text", "data", "section .rodata" };
 	static int lastloc = -1;
 	TWORD t;
@@ -47,7 +48,11 @@ defloc(struct symtab *sp)
 	}
 	t = sp->stype;
 	s = ISFTN(t) ? PROG : ISCON(cqual(t, sp->squal)) ? RDATA : DATA;
-	if (s != lastloc)
+	if (nextsect) {
+		printf("	.section %s\n", nextsect);
+		nextsect = NULL;
+		s = -1;
+	} else if (s != lastloc)
 		printf("	.%s\n", loctbl[s]);
 	lastloc = s;
 	while (ISARY(t))
