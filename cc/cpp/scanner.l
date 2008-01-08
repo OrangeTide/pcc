@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.30 2007/11/19 05:31:15 ragge Exp $   */
+/*	$Id: scanner.l,v 1.31 2008/01/08 20:05:56 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -620,6 +620,8 @@ elsestmt(void)
 static void
 ifdefstmt(void)		 
 { 
+	int t;
+
 	if (flslvl) {
 		/* just ignore the rest of the line */
 		while (input() != '\n')
@@ -630,7 +632,10 @@ ifdefstmt(void)
 		return;
 	}
 	slow = 1;
-	if (yylex() != WSPACE || yylex() != IDENT)
+	do
+		t = yylex();
+	while (t == WSPACE);
+	if (t != IDENT)
 		error("bad ifdef");
 	slow = 0;
 	if (flslvl == 0 && lookup((usch *)yytext, FIND) != 0)
@@ -643,8 +648,13 @@ ifdefstmt(void)
 static void
 ifndefstmt(void)	  
 { 
+	int t;
+
 	slow = 1;
-	if (yylex() != WSPACE || yylex() != IDENT)
+	do
+		t = yylex();
+	while (t == WSPACE);
+	if (t != IDENT)
 		error("bad ifndef");
 	slow = 0;
 	if (flslvl == 0 && lookup((usch *)yytext, FIND) == 0)
