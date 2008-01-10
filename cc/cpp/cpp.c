@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.75 2008/01/07 21:32:36 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.76 2008/01/10 22:14:01 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -1170,7 +1170,9 @@ expdef(vp, rp, gotwarn)
 		
 	}
 	if (narg == 0 && ellips == 0)
-		c = yylex();
+		while ((c = yylex()) == WSPACE || c == '\n')
+			;
+
 	if (c != ')' || (i != narg && ellips == 0) || (i < narg && ellips == 1))
 		error("wrong arg count");
 
