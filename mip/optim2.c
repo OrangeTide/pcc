@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.50 2007/12/30 10:31:51 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.51 2008/01/11 21:14:42 stefan Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -301,11 +301,13 @@ again:	gotone = 0;
 
 			/*
 			 * Find unconditional jumps directly following a
-			 * label.
+			 * label. Jumps jumping to themselves are not
+			 * taken into account.
 			 */
 			if (n->type == IP_NODE && n->ip_node->n_op == GOTO) {
 				i = n->ip_node->n_left->n_lval;
-				jmpary[ip->ip_lbl - low] = i;
+				if (i != ip->ip_lbl)
+					jmpary[ip->ip_lbl - low] = i;
 			}
 
 			while (n->type == IP_DEFLAB) {
