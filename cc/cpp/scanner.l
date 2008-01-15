@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.31 2008/01/08 20:05:56 ragge Exp $   */
+/*	$Id: scanner.l,v 1.32 2008/01/15 16:40:15 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -200,7 +200,14 @@ L?'(\\.|[^\\'])+'	{	if (YYSTATE) {
 {D}*"."{D}+({E})?{FS}?	{ PRTOUT(FPOINT); }
 {D}+"."{D}*({E})?{FS}?	{ PRTOUT(FPOINT); }
 
-^{WS}*#{WS}*		{ contr = 1; BEGIN CONTR; }
+^{WS}*#{WS}*		{	extern int inmac;
+
+				if (inmac)
+					error("preprocessor directive found "
+					    "while expanding macro");
+				contr = 1;
+				BEGIN CONTR;
+			}
 {WS}+			{ PRTOUT(WSPACE); }
 
 <CONTR>"ifndef"		{ contr = 0; ifndefstmt(); }
