@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.71 2008/01/07 21:33:44 ragge Exp $	*/
+/*	$Id: local.c,v 1.72 2008/01/15 16:42:57 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -374,6 +374,14 @@ clocal(NODE *p)
 			l->n_sue = MKSUE(m);
 			nfree(p);
 			return l;
+		} else if (l->n_op == FCON) {
+			l->n_lval = l->n_dcon;
+			l->n_sp = NULL;
+			l->n_op = ICON;
+			l->n_type = m;
+			l->n_sue = MKSUE(m);
+			nfree(p);
+			return clocal(l);
 		}
 		if (DEUNSIGN(p->n_type) == SHORT &&
 		    DEUNSIGN(l->n_type) == SHORT) {
