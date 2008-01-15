@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.62 2007/12/30 20:17:23 mickey Exp $	*/
+/*	$Id: order.c,v 1.63 2008/01/15 21:47:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -30,26 +30,6 @@
 # include "pass2.h"
 
 int canaddr(NODE *);
-
-/* should we delay the INCR or DECR operation p */
-int
-deltest(NODE *p)
-{
-	TWORD ty = p->n_type;
-
-	return ty == PTR+CHAR || ty == PTR+UCHAR ||
-	    ty == PTR+SHORT || ty == PTR+USHORT;
-}
-
-/*
- * Check if p can be autoincremented.
- * Nothing can be autoincremented on PDP10.
- */
-int
-autoincr(NODE *p)
-{
-	return 0;
-}
 
 /* is it legal to make an OREG or NAME entry which has an
  * offset of off, (from a register of r), if the

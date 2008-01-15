@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.95 2007/11/12 18:59:27 ragge Exp $	*/
+/*	$Id: table.c,v 1.96 2008/01/15 21:47:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -265,8 +265,14 @@ struct optab table[] = {
 
 { UCALL,	INAREG,
 	SCON,	TANY,
-	SANY,	TWORD|TCHAR|TUCHAR|TSHORT|TUSHORT|TFLOAT|TDOUBLE|TLL|TPOINT,
+	SANY,	TWORD|TCHAR|TUCHAR|TSHORT|TUSHORT|TFLOAT|TPOINT,
 		NAREG,	RESC1,	/* should be 0 */
+		"	pushj 017,AL\nZB", },
+
+{ CALL,		INAREG,
+	SCON,	TANY,
+	SANY,	TANY,
+		NAREG|NASL,	RESC1,	/* should be 0 */
 		"	pushj 017,AL\nZB", },
 
 { UCALL,	INAREG,

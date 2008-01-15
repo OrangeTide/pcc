@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.95 2007/12/22 10:18:55 stefan Exp $	*/
+/*	$Id: local2.c,v 1.96 2008/01/15 21:47:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -680,7 +680,7 @@ zzzcode(NODE *p, int c)
 		break;
 
 	case 'B': /* remove from stack after subroutine call */
-		if (p->n_rval)
+		if (p->n_qual)
 			printf("	subi %%17,0%o\n", p->n_qual);
 		break;
 
