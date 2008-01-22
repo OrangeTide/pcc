@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.9 2007/12/22 21:46:26 gmcgarry Exp $	*/
+/*	$Id: table.c,v 1.10 2008/01/22 05:05:22 david Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -775,16 +775,9 @@ struct optab table[] = {
 
 /* Simple 'op rd, rs, rt' or 'op rt, rs, imm' operations */
 
-{ OPSIMP,	INBREG,
-	SBREG,	TLONGLONG|TULONGLONG,
-	SBREG,	TLONGLONG|TULONGLONG,
-		NBREG|NBSR|NBSL,	RESC1,
-      		"	O A1,AL,AR\n"
-      		"	O U1,UL,UR\n", },
-    
 { OPSIMP,	INAREG,
-	SAREG,	TWORD|TPOINT|TSHORT|TUSHORT|TUCHAR|TCHAR,
-	SAREG,	TWORD|TPOINT|TSHORT|TUSHORT|TUCHAR|TCHAR,
+	SAREG,	TWORD|TPOINT|TSHORT|TUSHORT|TUCHAR|TCHAR|TLONGLONG|TULONGLONG,
+	SAREG,	TWORD|TPOINT|TSHORT|TUSHORT|TUCHAR|TCHAR|TLONGLONG|TULONGLONG,
 		NAREG|NASR|NASL,	RESC1,
 		"	O A1,AL,AR\n", },
 
