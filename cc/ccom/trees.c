@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.184 2008/01/06 15:07:07 ragge Exp $	*/
+/*	$Id: trees.c,v 1.185 2008/01/26 22:16:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2227,7 +2227,7 @@ send_passt(int type, ...)
 		ipp->ipp_type = va_arg(ap, TWORD);
 		ipp->ipp_vis = va_arg(ap, int);
 		ip->ip_lbl = va_arg(ap, int);
-		ipp->ip_tmpnum = tvaloff;
+		ipp->ip_tmpnum = va_arg(ap, int);
 		ipp->ip_lblnum = crslab;
 		if (type == IP_PROLOG)
 			ipp->ip_lblnum--;
