@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.188 2008/01/27 10:48:04 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.189 2008/01/27 19:42:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -719,7 +719,7 @@ begin:		  '{' {
 		}
 		;
 
-statement:	   e ';' { ecomp( $1 ); }
+statement:	   e ';' { ecomp( $1 ); symclear(blevel); }
 		|  compoundstmt
 		|  ifprefix statement { plabel($1); reached = 1; }
 		|  ifelprefix statement {
@@ -884,7 +884,23 @@ forprefix:	  C_FOR  '('  .e  ';' .e  ';' {
 			else
 				flostat |= FLOOP;
 		}
+		|  C_FOR '(' incblev declaration .e ';' {
+			blevel--;
+			savebc();
+			contlab = getlab();
+			brklab = getlab();
+			plabel( $$ = getlab());
+			reached = 1;
+			if ($5)
+				cbranch(buildtree(NOT, $5, NIL), bcon(brklab));
+			else
+				flostat |= FLOOP;
+		}
 		;
+
+incblev:	   { blevel++; }
+		;
+
 switchpart:	   C_SWITCH  '('  e  ')' {
 			NODE *p;
 			int num;
