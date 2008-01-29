@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.134 2008/01/07 13:27:27 stefan Exp $	*/
+/*	$Id: pass1.h,v 1.135 2008/01/29 21:50:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -206,12 +206,6 @@ extern int pragma_packed, pragma_aligned;
 extern char *pragma_renamed;
 
 /*
- * Flags used in structures/unions
- */
-#define INSTRUCT	02
-#define INUNION		04
-
-/*
  * Flags used in the (elementary) flow analysis ...
  */
 #define FBRK		02
@@ -278,6 +272,7 @@ char *addname(char *);
 char *newstring(char *, int len);
 void symclear(int level);
 struct symtab *hide(struct symtab *p);
+void soumemb(NODE *, char *, int);
 int talign(unsigned int, struct suedef *);
 void bfcode(struct symtab **, int);
 int chkftn(union arglist *, union arglist *);
