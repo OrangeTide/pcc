@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.185 2008/01/26 22:16:17 ragge Exp $	*/
+/*	$Id: trees.c,v 1.186 2008/01/31 11:40:14 stefan Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -245,6 +245,8 @@ runtime:
 	if (actions & LVAL) { /* check left descendent */
 		if (notlval(p->n_left)) {
 			uerror("lvalue required");
+			nfree(p);
+			return l;
 #ifdef notyet
 		} else {
 			if ((l->n_type > BTMASK && ISCON(l->n_qual)) ||
