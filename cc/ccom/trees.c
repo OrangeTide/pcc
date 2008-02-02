@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.186 2008/01/31 11:40:14 stefan Exp $	*/
+/*	$Id: trees.c,v 1.187 2008/02/02 16:27:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -115,7 +115,6 @@ buildtree(int o, NODE *l, NODE *r)
 	struct symtab *sp = NULL; /* XXX gcc */
 	NODE *lr, *ll;
 	char *name;
-	struct symtab **elem;
 
 #ifdef PCC_DEBUG
 	if (bdebug) {
@@ -352,16 +351,15 @@ runtime:
 				break;
 			}
 
-			if ((elem = l->n_sue->suelem) == NULL)
+			if ((sp = l->n_sue->sylnk) == NULL)
 				uerror("undefined struct or union");
 
 			name = r->n_name;
-			for (; *elem != NULL; elem++) {
-				sp = *elem;
+			for (; sp != NULL; sp = sp->snext) {
 				if (sp->sname == name)
 					break;
 			}
-			if (*elem == NULL)
+			if (sp == NULL)
 				uerror("member '%s' not declared", name);
 
 			r->n_sp = sp;

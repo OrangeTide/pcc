@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.67 2008/01/29 21:50:30 ragge Exp $	*/
+/*	$Id: scan.l,v 1.68 2008/02/02 16:27:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -204,7 +204,7 @@ L?\"(\\.|[^\\"])*\"	{
 "!="			{ yylval.intval = NE; return(C_EQUOP); }
 ";"			{ notype = 0; return(';'); }
 ("{"|"<%")		{ notype = 0; return('{'); }
-("}"|"%>")		{ if (instruct) notype = 1; return('}'); }
+("}"|"%>")		{ if (rpole) notype = 1; return('}'); }
 ","			{ if (parbal) notype = 0; return(','); }
 ":"			{ return(':'); }
 "="			{ return('='); }

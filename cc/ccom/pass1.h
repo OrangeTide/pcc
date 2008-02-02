@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.135 2008/01/29 21:50:30 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.136 2008/02/02 16:27:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -116,7 +116,7 @@ union dimfun {
  */
 struct suedef {
 	int	suesize;	/* Size of the struct */
-	struct	symtab **suelem;/* points to the list of elements */
+	struct	symtab *sylnk;	/* the list of elements */
 	int	suealign;	/* Alignment of this struct */
 };
 
@@ -250,6 +250,7 @@ OFFSZ	tsize(TWORD, union dimfun *, struct suedef *),
 NODE *	typenode(NODE *new);
 void	spalloc(NODE *, NODE *, OFFSZ);
 char	*exname(char *);
+extern struct rstack *rpole;
 
 int oalloc(struct symtab *p, int *poff);
 void deflabel(char *);
@@ -316,6 +317,8 @@ int mypragma(char **);
 void fixdef(struct symtab *);
 int cqual(TWORD t, TWORD q);
 void defloc(struct symtab *);
+int fldchk(int sz);
+
 
 #ifdef GCC_COMPAT
 void gcc_init(void);
