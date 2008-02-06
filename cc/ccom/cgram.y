@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.192 2008/02/06 16:50:45 stefan Exp $	*/
+/*	$Id: cgram.y,v 1.193 2008/02/06 18:23:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -330,6 +330,9 @@ type_qualifier_list:
 direct_declarator: C_NAME { $$ = bdty(NAME, $1); }
 		|  '(' declarator ')' { $$ = $2; }
 		|  direct_declarator '[' nocon_e ']' { 
+			$3 = optim($3);
+			if (blevel == 0 && !nncon($3))
+				uerror("array size not constant");
 			if (!ISINTEGER($3->n_type))
 				werror("array size is not an integer");
 			else if ($3->n_op == ICON && $3->n_lval < 0) {
