@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.137 2008/02/06 18:23:00 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.138 2008/02/09 16:16:52 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -90,6 +90,9 @@ extern	char *scnames(int);
 #define	SINLINE		00400
 #define	STNODE		01000
 #define	SASG		04000
+#define	SLOCAL1		010000
+#define	SLOCAL2		020000
+#define	SLOCAL3		040000
 
 	/* alignment of initialized quantities */
 #ifndef AL_INIT
