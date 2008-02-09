@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.214 2007/12/30 10:31:51 ragge Exp $	*/
+/*	$Id: reader.c,v 1.215 2008/02/09 11:09:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -755,16 +755,8 @@ e2print(NODE *p, int down, int *a, int *b)
 	fprintf(prfil, ", " );
 	tprint(prfil, p->n_type, p->n_qual);
 	fprintf(prfil, ", " );
-	{
-		int gregn(struct regw *);
-		if (p->n_reg == -1)
-			fprintf(prfil, "REG <undef>");
-		else if (0 <= p->n_reg &&
-		    p->n_reg < (ENCRD(MAXREGS) + ENCRA(MAXREGS,0))) /* XXX */
-			fprintf(prfil, "REG %s", rnames[DECRA(p->n_reg, 0)]);
-		else
-			fprintf(prfil, "TEMP %d", gregn(p->n_regw));
-		}
+
+	prtreg(prfil, p);
 	fprintf(prfil, ", SU= %d(%cREG,%s,%s,%s,%s)\n",
 	    TBLIDX(p->n_su), 
 	    TCLASS(p->n_su)+'@',
