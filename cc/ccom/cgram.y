@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.193 2008/02/06 18:23:00 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.194 2008/02/09 14:22:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1013,7 +1013,7 @@ term:		   term C_INCOP {  $$ = buildtree( $2, $1, bcon(1) ); }
 		|  C_SIZEOF '(' cast_type ')'  %prec C_SIZEOF {
 			$$ = doszof($3);
 		}
-		| '(' cast_type ')' clbrace init_list '}' {
+		| '(' cast_type ')' clbrace init_list optcomma '}' {
 			endinit();
 			spname = $4;
 			$$ = buildtree(NAME, NIL, NIL);
