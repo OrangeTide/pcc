@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.101 2007/12/22 10:18:55 stefan Exp $	*/
+/*	$Id: table.c,v 1.102 2008/02/09 16:16:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -133,7 +133,7 @@ struct optab table[] = {
 { SCONV,	INLL,
 	SHCH|SOREG|SNAME,	TCHAR,
 	SANY,	TLL,
-		NSPECIAL|NAREG|NASL,	RESC1,
+		NSPECIAL|NCREG|NCSL,	RESC1,
 		"	movsbl AL,%eax\n	cltd\n", },
 
 /* convert unsigned char to (u)long long */
@@ -275,14 +275,14 @@ struct optab table[] = {
 { SCONV,	INCH,
 	SOREG|SNAME,	TLL,
 	SANY,	TCHAR|TUCHAR,
-		NAREG|NASL,	RESC1,
+		NBREG|NBSL,	RESC1,
 		"	movb AL,A1\n", },
 
 /* convert (u)long long to (u)char (reg->reg, hopefully nothing) */
 { SCONV,	INCH,
 	SHLL,	TLL,
 	SANY,	TCHAR|TUCHAR,
-		NAREG|NASL,	RESC1,
+		NBREG|NBSL,	RESC1,
 		"ZS", },
 
 /* convert (u)long long to (u)short (mem->reg) */
