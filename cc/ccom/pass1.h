@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.138 2008/02/09 16:16:52 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.139 2008/02/10 10:03:58 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -322,6 +322,8 @@ int cqual(TWORD t, TWORD q);
 void defloc(struct symtab *);
 int fldchk(int sz);
 int nncon(NODE *);
+void cunput(char c);
+
 
 #ifdef GCC_COMPAT
 void gcc_init(void);
