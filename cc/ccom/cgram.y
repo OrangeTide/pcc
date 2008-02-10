@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.195 2008/02/10 19:22:21 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.196 2008/02/10 22:15:22 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1372,10 +1372,13 @@ fundef(NODE *tp, NODE *p)
 {
 	extern int prolab;
 	struct symtab *s;
+	NODE *q = p;
 	int class = tp->n_lval, oclass;
 	char *c;
 
-	if (p->n_op != CALL && p->n_op != UCALL) {
+	while (q->n_op == UMUL)
+		q = q->n_left;
+	if (q->n_op != CALL && q->n_op != UCALL) {
 		uerror("invalid function definition");
 		p = bdty(UCALL, p);
 	}
