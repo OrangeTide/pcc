@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.52 2007/11/26 00:10:03 gmcgarry Exp $	*/
+/*	$Id: order.c,v 1.53 2008/02/10 10:08:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -280,9 +280,16 @@ setorder(NODE *p)
 int *
 livecall(NODE *p)
 {
-	static int r[2] = { EBX, -1 };
+	static int r[] = { EAX, EBX, -1 };
+	int off = 1;
 
-	return kflag ? &r[0] : &r[1];
+#ifdef TLS
+	if (p->n_left->n_op == ICON &&
+	    strcmp(p->n_left->n_name, "___tls_get_addr@PLT") == 0)
+		off--;
+#endif
+
+	return kflag ? &r[off] : &r[2];
 }
 
 /*
