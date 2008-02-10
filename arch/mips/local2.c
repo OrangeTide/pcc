@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.16 2007/12/31 09:01:11 stefan Exp $	 */
+/*	$Id: local2.c,v 1.17 2008/02/10 19:25:44 ragge Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -928,7 +928,6 @@ adrput(FILE * io, NODE * p)
 		conput(io, p);
 		return;
 
-	case MOVE:
 	case REG:
 		if (GCLASS(p->n_rval) == CLASSB || GCLASS(p->n_rval) == CLASSC)
 			print_reg64name(io, p->n_rval, 0);

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.36 2007/12/22 10:18:55 stefan Exp $	*/
+/*	$Id: local2.c,v 1.37 2008/02/10 19:25:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -428,7 +428,6 @@ adrput(FILE *io, NODE *p)
 		conput(io, p);
 		return;
 
-	case MOVE:
 	case REG:
 	    /*if (DEUNSIGN(p->n_type) == CHAR) {
 			fprintf(io, "R%c%c", p->n_rval < 2 ? '0' : '1',

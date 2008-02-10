@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.10 2008/02/10 14:30:31 ragge Exp $    */
+/*      $Id: local2.c,v 1.11 2008/02/10 19:25:43 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -698,7 +698,6 @@ adrput(FILE *io, NODE *p)
 		conput(io, p);
 		return;
 
-	case MOVE:
 	case REG:
 		switch (p->n_type) {
 #if !defined(ARM_HAS_FPA) && !defined(ARM_HAS_VFP)

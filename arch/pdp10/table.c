@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.96 2008/01/15 21:47:06 ragge Exp $	*/
+/*	$Id: table.c,v 1.97 2008/02/10 19:25:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -286,21 +286,6 @@ struct optab table[] = {
 	SANY,	TWORD|TCHAR|TUCHAR|TSHORT|TUSHORT|TFLOAT|TDOUBLE|TLL|TPOINT,
 		NAREG,	RESC1,	/* should be 0 */
 		"	pushj 017,@AL\nZB", },
-
-/*
- * MOVE nodes are usually inserted late (at register assignment).
- */
-{ MOVE,		FOREFF,
-	SANY,	TWORD,
-	SAREG|SAREG|SNAME|SOREG,	TWORD,
-		0,	RRIGHT,
-		"	move AR,AL\n", },
-
-{ MOVE,		FOREFF,
-	SANY,	TLL,
-	SAREG|SAREG|SNAME|SOREG,	TLL,
-		0,	RRIGHT,
-		"	dmove AR,AL\n", },
 
 #ifdef notyet
 /*
