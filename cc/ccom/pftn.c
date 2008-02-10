@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.194 2008/02/02 16:27:50 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.195 2008/02/10 22:14:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -885,7 +885,7 @@ ftnarg(NODE *p)
 #ifdef PCC_DEBUG
 	if (ddebug > 2)
 		printf("	saving sym %s (%p) from (%p)\n",
-		    p->n_sp->sname, p->n_sp, p);
+		    nparams ? p->n_sp->sname : "<noname>", p->n_sp, p);
 #endif
 }
 
