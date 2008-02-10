@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.73 2008/02/10 10:08:24 ragge Exp $	*/
+/*	$Id: local.c,v 1.74 2008/02/10 14:58:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -502,9 +502,10 @@ clocal(NODE *p)
 
 	case PMCONV:
 	case PVCONV:
-                if( p->n_right->n_op != ICON ) cerror( "bad conversion", 0);
-                nfree(p);
-                return(buildtree(o==PMCONV?MUL:DIV, p->n_left, p->n_right));
+		r = p;
+		p = buildtree(o == PMCONV ? MUL : DIV, p->n_left, p->n_right);
+		nfree(r);
+		break;
 
 	case FORCE:
 		/* put return value in return reg */
