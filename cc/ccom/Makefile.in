@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.17 2008/01/06 17:18:55 ragge Exp $
+#	$Id: Makefile.in,v 1.18 2008/02/10 15:05:25 ragge Exp $
 #
 # Makefile.in for ccom
 #
@@ -76,6 +76,9 @@ optim2.o: $(MIPDIR)/optim2.c
 
 regs.o: $(MIPDIR)/regs.c
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c -o $@ $(MIPDIR)/regs.c
+
+cgram.o: cgram.c
+	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -Wno-error -c -o $@ cgram.c
 
 common.o: $(MIPDIR)/common.c
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c -o $@ $(MIPDIR)/common.c
