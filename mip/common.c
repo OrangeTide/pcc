@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.74 2007/11/16 14:28:41 mickey Exp $	*/
+/*	$Id: common.c,v 1.75 2008/02/10 19:22:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -317,7 +317,6 @@ struct dopest {
 	{ REG, "REG", LTYPE, },
 	{ OREG, "OREG", LTYPE, },
 	{ TEMP, "TEMP", LTYPE, },
-	{ MOVE, "MOVE", UTYPE, },
 	{ ICON, "ICON", LTYPE, },
 	{ FCON, "FCON", LTYPE, },
 	{ CCODES, "CCODES", LTYPE, },
@@ -328,7 +327,8 @@ struct dopest {
 	{ UFORTCALL, "UFCALL", UTYPE|CALLFLG, },
 	{ COMPL, "~", UTYPE, },
 	{ FORCE, "FORCE", UTYPE, },
-/*	{ INIT, "INIT", UTYPE, }, */
+	{ XARG, "XARG", UTYPE, },
+	{ XASM, "XASM", BITYPE, },
 	{ SCONV, "SCONV", UTYPE, },
 	{ PCONV, "PCONV", UTYPE, },
 	{ PLUS, "+", BITYPE|FLOFLG|SIMPFLG|COMMFLG, },
