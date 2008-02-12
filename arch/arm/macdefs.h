@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.5 2008/02/10 14:30:31 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.6 2008/02/12 18:31:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -227,7 +227,3 @@ NODE *arm_builtin_va_arg(NODE *f, NODE *a);
 NODE *arm_builtin_va_end(NODE *f, NODE *a);
 NODE *arm_builtin_va_copy(NODE *f, NODE *a);
 #undef NODE
-
-/* Local prototypes XXX interpass violation */
-extern void setloc1(int);
-extern void deflab1(int);
