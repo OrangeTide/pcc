@@ -1,4 +1,4 @@
-/*      $Id: order.c,v 1.3 2007/11/26 00:10:03 gmcgarry Exp $    */
+/*      $Id: order.c,v 1.4 2008/02/12 18:37:02 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -86,6 +86,21 @@ offstar(NODE *p, int shape)
 void
 myormake(NODE *q)
 {
+        NODE *p, *r;
+
+	if (x2debug)
+		printf("myormake(%p)\n", q);
+
+	p = q->n_left;
+	if (p->n_op == PLUS && (r = p->n_right)->n_op == LS &&
+	    r->n_right->n_op == ICON && r->n_right->n_lval == 2 &&
+ 	    p->n_left->n_op == REG && r->n_left->n_op == REG) {
+		q->n_op = OREG;
+ 		q->n_lval = 0;
+		q->n_rval = R2PACK(p->n_left->n_rval, r->n_left->n_rval,
+				   r->n_right->n_lval);
+		tfree(p);
+	}
 }
 
 /*
