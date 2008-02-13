@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.3 2008/02/13 11:58:57 reed Exp $	*/
+/*	$Id: ccconfig.h,v 1.4 2008/02/13 13:06:27 reed Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -33,9 +33,10 @@
 
 /* common cpp predefines */
 #define	CPPADD	{ "-D__DragonFly__", "-D__ELF__", NULL, }
-#define	DYNLINKER { "-dynamic-linker", "/usr/libexec/ld.elf_so.2", NULL }
+#define	DYNLINKER { "-dynamic-linker", "/usr/libexec/ld-elf.so.2", NULL }
 #define CRT0FILE "/usr/lib/crt1.o"
 #define STARTFILES { "/usr/lib/crti.o", "/usr/lib/crtbegin.o", NULL }
+#define LIBCLIBS { "-lc", "-L/usr/lib/gcc34", "-lgcc", NULL }
 #define	ENDFILES { "/usr/lib/crtend.o", "/usr/lib/crtn.o", NULL }
 #define STARTLABEL "_start"
 
