@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.2 2007/10/22 18:48:31 ragge Exp $	*/
+/*	$Id: ccconfig.h,v 1.3 2008/02/13 11:58:57 reed Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -37,6 +37,7 @@
 #define CRT0FILE "/usr/lib/crt1.o"
 #define STARTFILES { "/usr/lib/crti.o", "/usr/lib/crtbegin.o", NULL }
 #define	ENDFILES { "/usr/lib/crtend.o", "/usr/lib/crtn.o", NULL }
+#define STARTLABEL "_start"
 
 #if defined(mach_i386)
 #define	CPPMDADD { "-D__i386__", NULL, }
