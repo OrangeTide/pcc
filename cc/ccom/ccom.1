@@ -1,5 +1,5 @@
 .\"	$NetBSD$
-.\"	$Id: ccom.1,v 1.7 2008/02/19 16:32:39 reed Exp $
+.\"	$Id: ccom.1,v 1.8 2008/02/20 01:31:26 gmcgarry Exp $
 ."\
 .\" Copyright (c) 2007 Jeremy C. Reed <reed@reedmedia.net>
 .\" Permission to use, copy, modify, and/or distribute this software for any
@@ -72,6 +72,8 @@ Report warnings.
 .Ar flags
 is one or more of the following:
 .Bl -tag -width Ds
+.It Sy error
+Report all warnings as errors.
 .It Sy implicit
 Implies
 .Sy implicit-function-declaration
@@ -85,6 +87,8 @@ TODO
 TODO
 .It Sy strict-prototypes
 TODO
+.It Sy W
+Enable all warnings.
 .El
 .\"
 .It Fl X Ar flags
