@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.10 2008/01/16 00:45:52 david Exp $	*/
+/*	$Id: ccconfig.h,v 1.11 2008/02/20 01:19:15 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -40,6 +40,7 @@
 
 /* host-dependent */
 #define CRT0FILE LIBDIR "crt0.o"
+#define CRT0FILE_PROFILE LIBDIR "gcrt0.o"
 #define STARTFILES { LIBDIR "crti.o", LIBDIR "crtbegin.o", NULL }
 #define	ENDFILES { LIBDIR "crtend.o", LIBDIR "crtn.o", NULL }
 

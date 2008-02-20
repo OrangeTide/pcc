@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.5 2008/01/16 00:45:52 david Exp $	*/
+/*	$Id: ccconfig.h,v 1.6 2008/02/20 01:19:15 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -35,6 +35,7 @@
 #define	CPPADD	{ "-D__OpenBSD__", "-D__ELF__", NULL, }
 #define	DYNLINKER { "-dynamic-linker", "/usr/libexec/ld.so", NULL }
 #define CRT0FILE "/usr/lib/crt0.o"
+#define CRT0FILE_PROFILE "/usr/lib/gcrt0.o"
 #define STARTFILES { "/usr/lib/crtbegin.o", NULL }
 #define	ENDFILES { "/usr/lib/crtend.o", NULL }
 

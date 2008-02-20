@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.4 2007/12/02 18:36:21 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.5 2008/02/20 01:19:15 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -35,9 +35,11 @@
 #define	CPPADD	{ "-D__Darwin__", "-I" INCLUDEDIR "/pcc", NULL }
 #define	DYNLINKER { NULL }
 #define CRT0FILE "/usr/lib/crt1.o"
+#define CRT0FILE_PROFILE "/usr/lib/gcrt1.o"
 #define STARTFILES { "-lcrt2.o", "-L/usr/lib/gcc/powerpc-apple-darwin8/4.0.1", NULL }
 #define	ENDFILES { NULL }
-#define LIBCLIBS { "-lc", "-lgcc", NULL }
+#define LIBCLIBS { "-lSystem", "-lgcc", NULL }
+#define LIBCLIBS_PROFILE { "-lSystem_profile", "-lgcc", NULL }
 #define STARTLABEL "start"
 
 /*
