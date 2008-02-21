@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.7 2008/02/20 01:02:36 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.8 2008/02/21 06:31:28 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -189,6 +189,9 @@ typedef long long OFFSZ;
 
 #define ARGINIT		(4*8)	/* # bits above fp where arguments start */
 #define AUTOINIT	(12*8)	/* # bits above fp where automatics start */
+
+#undef	FIELDOPS		/* no bit-field instructions */
+#define RTOLBYTES 1		/* bytes are numbered right to left */
 
 /* XXX - to die */
 #define FPREG   FP	/* frame pointer */
