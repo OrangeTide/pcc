@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.17 2008/02/24 15:54:39 ragge Exp $    */
+/*      $Id: local2.c,v 1.18 2008/02/24 16:31:53 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -32,10 +32,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "pass1.h"
 #include "pass2.h"
 
 extern void defalign(int);
+
+#define	exname(x) x
 
 /*
  * these mnemonics match the order of the preprocessor decls
@@ -709,11 +710,16 @@ conput(FILE *fp, NODE *p)
 		if (p->n_sp)
 			printf(" [class=%d,level=%d] ", p->n_sp->sclass, p->n_sp->slevel);
 #endif
+#ifdef notdef	/* ICON cannot ever use sp here */
+		/* If it does, it's a giant bug */
 		if (p->n_sp == NULL || (p->n_sp->sclass == ILABEL ||
 		   (p->n_sp->sclass == STATIC && p->n_sp->slevel > 0)))
 			s = p->n_name;
 		else
 			s = exname(p->n_name);
+#else
+		s = p->n_name;
+#endif
 			
 		if (*s != '\0') {
 			fprintf(fp, "%s", s);
