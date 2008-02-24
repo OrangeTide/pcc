@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.9 2008/02/12 18:31:58 ragge Exp $    */
+/*      $Id: code.c,v 1.10 2008/02/24 15:54:39 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -70,6 +70,8 @@ defloc(struct symtab *sp)
 		printf("        .type %s,%%function\n", exname(sp->soname));
 	if (sp->sclass == EXTDEF)
 		printf("        .global %s\n", exname(sp->soname));
+	if (ISFTN(t))
+		return;
 	if (sp->slevel == 0)
 		printf("%s:\n", exname(sp->soname));
 	else
@@ -303,8 +305,8 @@ prologue(struct interpass_prolog *ipp)
 	if (ipp->ipp_vis)
 		printf("\t.global %s\n", exname(ipp->ipp_name));
 	printf("\t.type %s,%%function\n", exname(ipp->ipp_name));
-	printf("%s:\n", exname(ipp->ipp_name));
 #endif
+	printf("%s:\n", exname(ipp->ipp_name));
 
 	/*
 	 * We here know what register to save and how much to 
