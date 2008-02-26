@@ -1,4 +1,4 @@
-/*	$Id: data.c,v 1.7 2005/05/01 13:26:43 ragge Exp $	*/
+/*	$Id: data.c,v 1.8 2008/02/26 17:15:02 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -32,6 +32,10 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  * POSSIBILITY OF SUCH DAMAGE.
  */
+#include "macdefs.h"
+
+#include "ftypes.h"
+#include "defines.h"
 #include "defs.h"
 
 /* ROUTINES CALLED DURING DATA STATEMENT PROCESSING */

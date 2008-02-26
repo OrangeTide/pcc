@@ -1,4 +1,4 @@
-/*	$Id: defs.h,v 1.9 2005/05/01 13:26:43 ragge Exp $	*/
+/*	$Id: defs.h,v 1.10 2008/02/26 17:15:02 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -35,11 +35,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
-
-#include "ftypes.h"
-#include "defines.h"
-
-#include "macdefs.h"
 
 #define VL 6
 
@@ -515,7 +510,7 @@ int fmtstmt(struct labelblock *lp);
 int cktype(int, int, int);
 int yylex(void), inregister(struct bigblock *);
 int inilex(char *), iocname(void);
-int maxtype(int, int), log2(ftnint), hextoi(int);
+int maxtype(int, int), flog2(ftnint), hextoi(int);
 int cmpstr(char *, char *, ftnint, ftnint);
 int enregister(struct bigblock *np);
 int conssgn(bigptr p);

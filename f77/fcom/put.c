@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.6 2005/04/30 11:19:50 ragge Exp $	*/
+/*	$Id: put.c,v 1.7 2008/02/26 17:15:02 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -37,13 +37,13 @@
  * JOHNSON AND RITCHIE FAMILIES OF SECOND PASSES
 */
 
+#include "macdefs.h"
+
+#include "ftypes.h"
+#include "defines.h"
 #include "defs.h"
 
-#if FAMILY == SCJ
-#	include "scjdefs.h"
-#else
-#	include "dmrdefs"
-#endif
+#include "scjdefs.h"
 
 /*
 char *ops [ ] =

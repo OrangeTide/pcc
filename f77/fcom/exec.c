@@ -1,4 +1,4 @@
-/*	$Id: exec.c,v 1.6 2005/05/01 13:26:43 ragge Exp $	*/
+/*	$Id: exec.c,v 1.7 2008/02/26 17:15:02 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -34,6 +34,10 @@
  */
 #include <string.h>
 
+#include "macdefs.h"
+
+#include "ftypes.h"
+#include "defines.h"
 #include "defs.h"
 
 /*   Logical IF codes

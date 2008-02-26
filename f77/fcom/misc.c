@@ -1,4 +1,4 @@
-/*	$Id: misc.c,v 1.8 2005/05/01 13:26:43 ragge Exp $	*/
+/*	$Id: misc.c,v 1.9 2008/02/26 17:15:02 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -35,6 +35,10 @@
 
 #include <string.h>
 
+#include "macdefs.h"
+
+#include "ftypes.h"
+#include "defines.h"
 #include "defs.h"
 
 int max(int, int);
@@ -186,10 +190,6 @@ static char name[XL+1];
 
 for(i=0;  i<n && *s!=' ' && *s!='\0' ; ++i)
 	name[i] = *s++;
-
-#if TARGET != GCOS
-name[i++] = '_';
-#endif
 
 name[i] = '\0';
 
@@ -494,9 +494,8 @@ return(t);
 
 
 /* return log base 2 of n if n a power of 2; otherwise -1 */
-#if FAMILY == SCJ
 int
-log2(n)
+flog2(n)
 ftnint n;
 {
 int k;
@@ -510,7 +509,6 @@ for(k = 0 ;  n >>= 1  ; ++k)
 	;
 return(k);
 }
-#endif
 
 
 void

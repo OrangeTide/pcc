@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.3 2005/04/22 07:04:30 ragge Exp $	*/
+/*	$Id: main.c,v 1.4 2008/02/26 17:15:02 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -34,6 +34,10 @@
  */
 char xxxvers[] = "\nFORTRAN 77 PASS 1, VERSION 1.16,  3 NOVEMBER 1978\n";
 
+#include "macdefs.h"
+
+#include "ftypes.h"
+#include "defines.h"
 #include "defs.h"
 
 static FILEP opf(char *);
@@ -74,7 +78,7 @@ while(argc>0 && argv[0][0]=='-')
 
 		case 'O':
 			optimflag = YES;
-			if( isdigit(s[1]) )
+			if( isdigit((int)s[1]) )
 				{
 				k = *++s - '0';
 				if(k > MAXREGVAR)
@@ -152,9 +156,7 @@ if(parstate != OUTSIDE)
 doext();
 preven(ALIDOUBLE);
 prtail();
-#if FAMILY==SCJ
 	puteof();
-#endif
 DONE(0);
 
 
