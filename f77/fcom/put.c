@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.7 2008/02/26 17:15:02 ragge Exp $	*/
+/*	$Id: put.c,v 1.8 2008/02/26 21:35:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -75,11 +75,7 @@ int ops2 [ ] =
 int types2 [ ] =
 	{
 	P2BAD, P2INT|P2PTR, P2SHORT, P2LONG, P2REAL, P2DREAL,
-#if TARGET == INTERDATA
-	P2BAD, P2BAD, P2LONG, P2CHAR, P2INT, P2BAD
-#else
 	P2REAL, P2DREAL, P2LONG, P2CHAR, P2INT, P2BAD
-#endif
 	};
 
 void
@@ -154,7 +150,7 @@ if( ISCOMPLEX(p->vtype) )
 	{
 	q = cpexpr(p);
 	q->vtype += (TYREAL-TYCOMPLEX);
-	q->b_addr.memoffset = mkexpr(OPPLUS, q->b_addr.memoffset, ICON(typesize[q->vtype]));
+	q->b_addr.memoffset = mkexpr(OPPLUS, q->b_addr.memoffset, MKICON(typesize[q->vtype]));
 	}
 else
 	q = mkrealcon( ISINT(p->vtype) ? TYDREAL : p->vtype , 0.0);
@@ -179,7 +175,7 @@ q->vtype = ( type==TYADDR ? TYINT : type );
 q->vleng = cpexpr(p->vleng);
 q->vstg = STGCONST;
 q->b_addr.memno = newlabel();
-q->b_addr.memoffset = ICON(0);
+q->b_addr.memoffset = MKICON(0);
 
 /* check for value in literal pool, and update pool if necessary */
 

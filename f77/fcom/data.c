@@ -1,4 +1,4 @@
-/*	$Id: data.c,v 1.8 2008/02/26 17:15:02 ragge Exp $	*/
+/*	$Id: data.c,v 1.9 2008/02/26 21:35:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -259,7 +259,7 @@ if(type!=TYCHAR && valtype==TYCHAR)
 	{
 	if(! ftn66flag)
 		warn("non-character datum initialized with character string");
-	varp->vleng = ICON(typesize[type]);
+	varp->vleng = MKICON(typesize[type]);
 	varp->vtype = type = TYCHAR;
 	}
 else if( (type==TYCHAR && valtype!=TYCHAR) ||

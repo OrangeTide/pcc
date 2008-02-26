@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.3 2008/02/26 16:55:24 ragge Exp $
+#	$Id: Makefile.in,v 1.4 2008/02/26 21:35:40 ragge Exp $
 #
 # Makefile for the Fortran 77 command
 #  Running on the @targmach@
@@ -60,7 +60,7 @@ lex.o : tokdefs
 driver.o $(OBJS)  : defs.h defines.h ftypes.h
 
 clean:
-	/bin/rm -f $(OBJS) ${DEST}
+	/bin/rm -f $(OBJS) ${DEST} gram.in gram.[ch] tokdefs
 
 install: 
 	${INSTALL_PROGRAM} ${DEST} ${bindir}

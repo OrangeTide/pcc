@@ -1,4 +1,4 @@
-/*	$Id: equiv.c,v 1.7 2008/02/26 17:15:02 ragge Exp $	*/
+/*	$Id: equiv.c,v 1.8 2008/02/26 21:35:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -84,12 +84,12 @@ for(i = 0 ; i < nequiv ; ++i)
 				cp = NULL;
 				ns = np->b_name.vdim->ndim;
 				while(--ns > 0)
-					cp = mkchain( ICON(1), cp);
+					cp = mkchain( MKICON(1), cp);
 				itemp->b_prim.argsp->b_list.listp->chain.nextp = cp;
 				}
 			offp = suboffset(itemp);
 			}
-		else	offp = ICON(0);
+		else	offp = MKICON(0);
 		if(ISICON(offp))
 			offset = q->eqvchain.eqvoffset = offp->b_const.fconst.ci;
 		else	{

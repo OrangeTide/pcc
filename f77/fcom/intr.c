@@ -1,4 +1,4 @@
-/*	$Id: intr.c,v 1.6 2008/02/26 17:15:02 ragge Exp $	*/
+/*	$Id: intr.c,v 1.7 2008/02/26 21:35:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -576,7 +576,7 @@ switch(fno)
 			}
 		else
 			t = fmktemp(type, NULL);
-		t1 = mkexpr(OPQUEST,  mkexpr(OPLE, mkconv(type,ICON(0)), cpexpr(t)),
+		t1 = mkexpr(OPQUEST,  mkexpr(OPLE, mkconv(type,MKICON(0)), cpexpr(t)),
 			mkexpr(OPCOLON, cpexpr(t),
 				mkexpr(OPNEG, cpexpr(t), NULL) ));
 		if(q)
