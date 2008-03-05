@@ -1,4 +1,4 @@
-/*	$Id: node.h,v 1.32 2008/02/10 19:22:21 ragge Exp $	*/
+/*	$Id: node.h,v 1.33 2008/03/05 18:55:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -25,6 +25,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+#ifndef NODE_H
+#define NODE_H
 
 /*
  * The node structure is the basic element in the compiler.
@@ -192,3 +195,5 @@ typedef struct node {
 #define	ADDROF	58
 
 #define	MAXOP	58
+
+#endif
