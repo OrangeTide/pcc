@@ -1,4 +1,4 @@
-/*	$Id: data.c,v 1.9 2008/02/26 21:35:40 ragge Exp $	*/
+/*	$Id: data.c,v 1.10 2008/03/05 18:50:33 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -32,8 +32,6 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#include "macdefs.h"
-
 #include "ftypes.h"
 #include "defines.h"
 #include "defs.h"

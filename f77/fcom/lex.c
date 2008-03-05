@@ -1,4 +1,4 @@
-/*	$Id: lex.c,v 1.7 2008/02/26 17:15:02 ragge Exp $	*/
+/*	$Id: lex.c,v 1.8 2008/03/05 18:50:33 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -32,8 +32,6 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#include "macdefs.h"
-
 #include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
@@ -799,7 +797,7 @@ if(needkwd)
 					radix = 2; break;
 				default:
 					err("bad bit identifier");
-					return(SNAME);
+					return(SFNAME);
 				}
 			++nextch;
 			for(p = token ; *nextch!=MYQUOTE ; )
@@ -812,7 +810,7 @@ if(needkwd)
 			toklen = p - token;
 			return( radix==16 ? SHEXCON : (radix==8 ? SOCTCON : SBITCON) );
 			}
-		return(SNAME);
+		return(SFNAME);
 		}
 	if( ! isdigit((int)*nextch) ) goto badchar;
 numconst:

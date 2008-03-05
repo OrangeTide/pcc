@@ -1,4 +1,4 @@
-/*	$Id: defines.h,v 1.9 2008/02/26 21:35:40 ragge Exp $	*/
+/*	$Id: defines.h,v 1.10 2008/03/05 18:50:33 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -33,6 +33,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdio.h>
+
+#include "pass2.h"
 
 #define INTERDATA 2
 #define GCOS 3
@@ -250,7 +252,7 @@ typedef long int ftnint;
 #define ISPLUSOP(z) (z->tag==TEXPR && z->b_expr.opcode==OPPLUS)
 #define ISSTAROP(z) (z->tag==TEXPR && z->b_expr.opcode==OPSTAR)
 #define ISONE(z) (ISICON(z) && z->b_const.fconst.ci==1)
-#define INT(z) ONEOF(z, MSKINT|MSKCHAR)
+/* #define INT(z) ONEOF(z, MSKINT|MSKCHAR) */
 #define MKICON(z) mkintcon( (ftnint)(z) )
 #define CHCON(z) mkstrcon(strlen(z), z)
 

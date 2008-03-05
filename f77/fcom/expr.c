@@ -1,4 +1,4 @@
-/*	$Id: expr.c,v 1.12 2008/02/26 21:35:40 ragge Exp $	*/
+/*	$Id: expr.c,v 1.13 2008/03/05 18:50:33 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -33,8 +33,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include <string.h>
-
-#include "macdefs.h"
 
 #include "ftypes.h"
 #include "defines.h"

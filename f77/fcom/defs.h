@@ -1,4 +1,4 @@
-/*	$Id: defs.h,v 1.10 2008/02/26 17:15:02 ragge Exp $	*/
+/*	$Id: defs.h,v 1.11 2008/03/05 18:50:33 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -525,8 +525,7 @@ void prcona(FILEP, ftnint);
 void prconr(FILEP, int, float);
 void prarif(bigptr, int, int, int);
 void putstr(FILEP, char *, ftnint);
-void putex1(bigptr p);
-void putassign(bigptr, bigptr);
+NODE *putex1(bigptr p);
 void puteq(bigptr, bigptr);
 void putsteq(bigptr, bigptr);
 void popstack(chainp *p); 
@@ -558,7 +557,7 @@ void p2reg(int, int);
 void p2oreg(ftnint, int, int);
 void p2icon(ftnint, int);
 void p2op(int, int);
-void putx(expptr p);
+NODE *putx(expptr p);
 void cpn(int, char *, char *);
 void prhead(FILEP fp);
 void prcmgoto(expptr, int, int, int);
