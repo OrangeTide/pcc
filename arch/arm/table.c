@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.13 2008/03/04 05:55:43 gmcgarry Exp $	*/
+/*	$Id: table.c,v 1.14 2008/03/06 05:47:43 gmcgarry Exp $	*/
 /*-
  * Copyright (c) 2007 Gregory McGarry <g.mcgarry@ieee.org>
  *
@@ -602,17 +602,31 @@ struct optab table[] = {
 		"	bl CL" COM "call (args, result in r0:r1) to scon/sname (CL)\n"
 		"ZC", },
 
-{ CALL,		INCREG,
+{ CALL,		INCREG | FEATURE_FPA,
 	SCON|SNAME,	TANY,
 	SCREG,		TFLOAT,
-		NCREG|NASL,	RESC1,	/* should be 0 */
+		NCREG|NCSL,	RESC1,	/* should be 0 */
 		"	bl CL" COM "call (args, result r0) to scon/sname (CL)\n"
 		"ZC", },
 
-{ CALL,		INCREG,
+{ CALL,		INCREG | FEATURE_FPA,
 	SCON|SNAME,	TANY,
 	SCREG,		TDOUBLE|TLDOUBLE,
 		NCREG|NCSL,	RESC1,	/* should be 0 */
+		"	bl CL" COM "call (args, result in r0:r1) to scon/sname (CL)\n"
+		"ZC", },
+
+{ CALL,		INAREG,
+	SCON|SNAME,	TANY,
+	SAREG,		TFLOAT,
+		NAREG|NASL,	RESC1,	/* should be 0 */
+		"	bl CL" COM "call (args, result r0) to scon/sname (CL)\n"
+		"ZC", },
+
+{ CALL,		INBREG,
+	SCON|SNAME,	TANY,
+	SBREG,		TDOUBLE|TLDOUBLE,
+		NBREG|NBSL,	RESC1,	/* should be 0 */
 		"	bl CL" COM "call (args, result in r0:r1) to scon/sname (CL)\n"
 		"ZC", },
 
@@ -628,13 +642,13 @@ struct optab table[] = {
 		NBREG|NBSL,	RESC1,	/* should be 0 */
 		"	bl CL" COM "call (no args, result in r0:r1) to scon/sname (CL)\n", },
 
-{ UCALL,	INCREG,
+{ UCALL,	INCREG | FEATURE_FPA,
 	SCON|SNAME,	TANY,
 	SCREG,		TFLOAT,
 		NCREG|NCSL,	RESC1,	/* should be 0 */
 		"	bl CL" COM "call (no args, result in r0) to scon/sname (CL)\n", },
 
-{ UCALL,	INCREG,
+{ UCALL,	INCREG | FEATURE_FPA,
 	SCON|SNAME,	TANY,
 	SCREG,		TDOUBLE|TLDOUBLE,
 		NCREG|NCSL,	RESC1,	/* should be 0 */
