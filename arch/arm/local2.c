@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.21 2008/03/04 06:03:13 gmcgarry Exp $    */
+/*      $Id: local2.c,v 1.22 2008/03/06 05:55:52 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -201,7 +201,7 @@ prologue(struct interpass_prolog *ipp)
 		return;
 
 	if (trepresent(addto)) {
-		printf("\tsub %s,#%d\n", rnames[SP], addto);
+		printf("\tsub %s,%s,#%d\n", rnames[SP], rnames[SP], addto);
 	} else {
 		nc = encode_constant(addto, vals);
 		for (i = 0; i < nc; i++)
@@ -222,6 +222,7 @@ eoftn(struct interpass_prolog *ipp)
 	} else {
 		printf("\tldmea %s,{%s,%s,%s}\n", rnames[FP], rnames[FP],
 		    rnames[SP], rnames[PC]);
+		printf("\tadd %s,%s,#%d\n", rnames[SP], rnames[SP], 16);
 	}
 	printf("\t.size %s,.-%s\n", exname(ipp->ipp_name),
 	    exname(ipp->ipp_name));
