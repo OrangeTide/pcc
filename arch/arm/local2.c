@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.22 2008/03/06 05:55:52 gmcgarry Exp $    */
+/*      $Id: local2.c,v 1.23 2008/03/07 01:50:41 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -749,10 +749,10 @@ argsiz(NODE *p)
 
 	if (t < LONGLONG || t == FLOAT || t > BTMASK)
 		return 4;
-	if (t == LONGLONG || t == ULONGLONG || t == DOUBLE)
+	if (t == LONGLONG || t == ULONGLONG)
 		return 8;
-	if (t == LDOUBLE)
-		return 12;
+	if (t == DOUBLE || t == LDOUBLE)
+		return 8;
 	if (t == STRTY || t == UNIONTY)
 		return p->n_stsize;
 	comperr("argsiz");
