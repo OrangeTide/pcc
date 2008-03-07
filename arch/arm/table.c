@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.15 2008/03/07 01:48:53 gmcgarry Exp $	*/
+/*	$Id: table.c,v 1.16 2008/03/07 02:42:16 gmcgarry Exp $	*/
 /*-
  * Copyright (c) 2007 Gregory McGarry <g.mcgarry@ieee.org>
  *
@@ -896,7 +896,7 @@ struct optab table[] = {
 
 { LS,	INAREG,
 	SAREG,	TWORD|TSHORT|TUSHORT|TCHAR|TUCHAR,
-	SAREG,	TWORD|TSHORT|TUSHORT|TCHAR|TUCHAR,
+	SAREG,	TANY,
 		NAREG|NASL,	RESC1,
 		"	mov A1,AL,asl AR" COM "left shift\n", },
 
@@ -912,15 +912,21 @@ struct optab table[] = {
 		NBREG,	RESC1,
 		"ZO" },
 
+{ LS,	INBREG,
+	SBREG,	TLONGLONG|TULONGLONG,
+	SAREG,	TANY,
+		NSPECIAL|NBREG,	RESC1,
+		"ZE" },
+
 { RS,	INAREG,
 	SAREG,	TSWORD|TSHORT|TCHAR,
-	SAREG,	TSWORD|TSHORT|TCHAR,
+	SAREG,	TANY,
 		NAREG|NASL,	RESC1,
 		"	mov A1,AL,asr AR" COM "right shift\n", },
 
 { RS,	INAREG,
 	SAREG,	TUWORD|TUSHORT|TUCHAR,
-	SAREG,	TUWORD|TUSHORT|TUCHAR,
+	SAREG,	TANY,
 		NAREG|NASL,	RESC1,
 		"	mov A1,AL,lsr AR" COM "right shift\n", },
 
@@ -941,6 +947,13 @@ struct optab table[] = {
 	SCON,	TANY,
 		NBREG,	RESC1,
 		"ZO" },
+
+{ RS,	INBREG,
+	SBREG,	TLONGLONG|TULONGLONG,
+	SAREG,	TANY,
+		NSPECIAL|NBREG,	RESC1,
+		"ZE" },
+
 
 /*
  * The next rules takes care of assignments. "=".
