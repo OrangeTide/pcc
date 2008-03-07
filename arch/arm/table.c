@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.14 2008/03/06 05:47:43 gmcgarry Exp $	*/
+/*	$Id: table.c,v 1.15 2008/03/07 01:48:53 gmcgarry Exp $	*/
 /*-
  * Copyright (c) 2007 Gregory McGarry <g.mcgarry@ieee.org>
  *
@@ -820,7 +820,7 @@ struct optab table[] = {
 	SAREG,	TWORD|TPOINT,
 	SAREG,	TWORD|TPOINT,
 		NAREG|NASL,	RESC1,
-		"	sub A1,AR,AL" COM "subtraction\n", },
+		"	sub A1,AL,AR" COM "subtraction\n", },
 
 { MINUS,	INBREG,
 	SBREG,	TLONGLONG|TULONGLONG,
