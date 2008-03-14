@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.11 2008/02/20 01:19:15 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.12 2008/03/14 17:32:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -43,6 +43,10 @@
 #define CRT0FILE_PROFILE LIBDIR "gcrt0.o"
 #define STARTFILES { LIBDIR "crti.o", LIBDIR "crtbegin.o", NULL }
 #define	ENDFILES { LIBDIR "crtend.o", LIBDIR "crtn.o", NULL }
+
+#ifdef LANG_F77
+#define F77LIBLIST { "-L/usr/local/lib", "-lF77", "-lI77", "-lm", "-lc", NULL };
+#endif
 
 /* host-independent */
 #define	DYNLINKER { "-dynamic-linker", "/usr/libexec/ld.elf_so", NULL }
