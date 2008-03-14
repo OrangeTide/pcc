@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.5 2008/03/05 18:57:02 ragge Exp $
+#	$Id: Makefile.in,v 1.6 2008/03/14 17:31:18 ragge Exp $
 #
 # Makefile.in for the f77 frontend of pcc.
 #
@@ -21,7 +21,7 @@ LDFLAGS = @LDFLAGS@
 INSTALL = @INSTALL@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 
-OBJS=f77.o flocal.o
+OBJS=f77.o
 DEST=@BINPREFIX@f77
 
 MIPDIR=${top_srcdir}/mip
@@ -35,9 +35,6 @@ ${DEST}: $(OBJS)
 
 .c.o:
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c $<
-
-flocal.o: $(MDIR)/flocal.c
-	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c -o $@ $(MDIR)/flocal.c
 
 install:
 	${INSTALL_PROGRAM} ${DEST} ${bindir}
