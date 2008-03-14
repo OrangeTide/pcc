@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.52 2008/03/05 18:52:08 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.53 2008/03/14 17:30:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -109,11 +109,6 @@ typedef long long OFFSZ;
 #ifdef LANG_F77
 #define XL 8			/* XXX max identifier length - fix */
 #define	FLABELFMT "%s:\n"
-#define USETEXT ".text"
-#define USECONST ".data\t0" 	/* XXX - fix */
-#define USEBSS  ".data\t1" 	/* XXX - fix */
-#define USEINIT ".data\t2" 	/* XXX - fix */
-#define MAXREGVAR 3             /* XXX - fix */
 #define BLANKCOMMON "_BLNK_"
 #define MSKIREG  (M(TYSHORT)|M(TYLONG))
 #define TYIREG TYLONG
