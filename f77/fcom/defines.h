@@ -1,4 +1,4 @@
-/*	$Id: defines.h,v 1.10 2008/03/05 18:50:33 ragge Exp $	*/
+/*	$Id: defines.h,v 1.11 2008/03/14 17:26:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -34,7 +34,9 @@
  */
 #include <stdio.h>
 
+#ifdef FCOM
 #include "pass2.h"
+#endif
 
 #define INTERDATA 2
 #define GCOS 3
@@ -260,7 +262,7 @@ typedef long int ftnint;
 #define roundup(a,b)    ( b * ( (a+b-1)/b) )
 
 /* prototypes for cpu-specific functions */
-void prchars(FILEP, int *);
+void prchars(int *);
 void pruse(FILEP, char *);
 void prskip(FILEP, ftnint);
 void prcomblock(FILEP, char *);

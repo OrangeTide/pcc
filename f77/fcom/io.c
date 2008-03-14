@@ -1,4 +1,4 @@
-/*	$Id: io.c,v 1.9 2008/03/05 18:50:33 ragge Exp $	*/
+/*	$Id: io.c,v 1.10 2008/03/14 17:26:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -209,17 +209,16 @@ return(lp->labelno);
 
 
 void
-setfmt(lp)
-struct labelblock *lp;
+setfmt(struct labelblock *lp)
 {
-ftnint n;
-char *s;
+	ftnint n;
+	char *s;
 
-s = lexline(&n);
-preven(ALILONG);
-prlabel(asmfile, lp->labelno);
-putstr(asmfile, s, n);
-flline();
+	s = lexline(&n);
+	preven(ALILONG);
+	prlabel(lp->labelno);
+	putstr(s, n);
+	flline();
 }
 
 

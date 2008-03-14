@@ -1,4 +1,4 @@
-/*	$Id: data.c,v 1.10 2008/03/05 18:50:33 ragge Exp $	*/
+/*	$Id: data.c,v 1.11 2008/03/14 17:26:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -279,8 +279,8 @@ switch(type)
 		type = tylogical;
 	case TYSHORT:
 	case TYLONG:
-		fprintf(initfile, datafmt, varname, offset, vlen, type);
-		prconi(initfile, type, con.ci);
+		printf(datafmt, varname, offset, vlen, type);
+		prconi(type, con.ci);
 		break;
 
 	case TYCOMPLEX:
@@ -297,8 +297,8 @@ switch(type)
 
 		for(i = 0 ; i < k ; ++i)
 			{
-			fprintf(initfile, datafmt, varname, offset, vlen, type);
-			prconr(initfile, type, con.cd[i]);
+			printf(datafmt, varname, offset, vlen, type);
+			prconr(type, con.cd[i]);
 			offset += typesize[type];
 			}
 		break;
@@ -310,14 +310,14 @@ switch(type)
 
 		for(i = 0 ; i < k ; ++i)
 			{
-			fprintf(initfile, datafmt, varname, offset++, vlen, TYCHAR);
-			fprintf(initfile, "\t%d\n", valp->b_const.fconst.ccp[i]);
+			printf(datafmt, varname, offset++, vlen, TYCHAR);
+			printf("\t%d\n", valp->b_const.fconst.ccp[i]);
 			}
 		k = elen - valp->vleng->b_const.fconst.ci;
 		while( k-- > 0)
 			{
-			fprintf(initfile, datafmt, varname, offset++, vlen, TYCHAR);
-			fprintf(initfile, "\t%d\n", ' ');
+			printf(datafmt, varname, offset++, vlen, TYCHAR);
+			printf("\t%d\n", ' ');
 			}
 		break;
 
