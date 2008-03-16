@@ -1,4 +1,4 @@
-/*	$Id: defs.h,v 1.12 2008/03/14 17:26:48 ragge Exp $	*/
+/*	$Id: defs.h,v 1.13 2008/03/16 10:28:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -517,7 +517,6 @@ int addressable(bigptr p);
 void prlabel(int);
 void prconi(int, ftnint);
 void mvarg(int, int, int);
-void prsave(void);
 void prcona(ftnint);
 void prconr(int, double);
 void prarif(bigptr, int, int, int);
@@ -555,12 +554,10 @@ void p2icon(ftnint, int);
 void p2op(int, int);
 NODE *putx(expptr p);
 void cpn(int, char *, char *);
-void prhead(FILEP fp);
 void prcmgoto(expptr, int, int, int);
 void putstmt(void);
 char *lexline(ftnint *n);
 bigptr subcheck(struct bigblock *, bigptr), suboffset(struct bigblock *p);
-void putnreg(void);
 struct bigblock *intraddr(struct bigblock *np);
 struct bigblock *intrcall(bigptr, bigptr, int);
 struct bigblock *finline(int, int, chainp);

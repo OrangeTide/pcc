@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.6 2008/03/14 17:26:48 ragge Exp $
+#	$Id: Makefile.in,v 1.7 2008/03/16 10:28:13 ragge Exp $
 #
 # Makefile for the Fortran 77 command
 #  Running on the @targmach@
@@ -102,6 +102,9 @@ regs.o: $(MIPDIR)/regs.c
 
 compat.o: $(MIPDIR)/compat.c
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c -o $@ $(MIPDIR)/compat.c
+
+common.o: $(MIPDIR)/common.c
+	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c -o $@ $(MIPDIR)/common.c
 
 external.h external.c: ${MIPDIR}/mkext.c $(MDIR)/table.c
 	$(CC_FOR_BUILD) $(DEFS) $(CPPFLAGS) $(CFLAGS) -DMKEXT -o mkext \

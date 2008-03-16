@@ -1,4 +1,4 @@
-/*	$Id: defines.h,v 1.11 2008/03/14 17:26:48 ragge Exp $	*/
+/*	$Id: defines.h,v 1.12 2008/03/16 10:28:13 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -263,7 +263,4 @@ typedef long int ftnint;
 
 /* prototypes for cpu-specific functions */
 void prchars(int *);
-void pruse(FILEP, char *);
-void prskip(FILEP, ftnint);
-void prcomblock(FILEP, char *);
 
