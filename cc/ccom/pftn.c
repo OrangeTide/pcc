@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.195 2008/02/10 22:14:28 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.196 2008/03/18 21:54:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -373,6 +373,11 @@ redec:			uerror("redeclaration of %s", p->sname);
 			oalloc(p, &autooff);
 		break;
 	case PARAM:
+		if (ISARY(p->stype)) {
+			/* remove array type on parameters before oalloc */
+			p->stype += (PTR-ARY);
+			p->sdf++;
+		}
 		if (arrstkp)
 			dynalloc(p, &argoff);
 		else
