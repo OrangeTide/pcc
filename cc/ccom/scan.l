@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.69 2008/02/10 10:03:58 ragge Exp $	*/
+/*	$Id: scan.l,v 1.70 2008/03/18 04:15:11 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -58,7 +58,7 @@ int notype, parbal;
 #define	CPP_HASH	4
 
 #ifdef STABS
-#define	STABS_LINE(x) if (gflag && blevel) stabs_line(x)
+#define	STABS_LINE(x) if (gflag && blevel > 1) stabs_line(x)
 #else
 #define STABS_LINE(x)
 #endif
