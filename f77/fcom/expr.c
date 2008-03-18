@@ -1,4 +1,4 @@
-/*	$Id: expr.c,v 1.14 2008/03/14 17:26:48 ragge Exp $	*/
+/*	$Id: expr.c,v 1.15 2008/03/18 16:42:38 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -461,7 +461,6 @@ switch(opcode)
 		break;
 
 	case OPASSIGN:
-	case OPPLUSEQ:
 	case OPSTAREQ:
 		if(ltype == rtype)
 			break;
@@ -1500,7 +1499,6 @@ switch(opcode)
 	case OPMAX:
 
 	case OPASSIGN:
-	case OPPLUSEQ:
 	case OPSTAREQ:
 
 	case OPCONV:
@@ -1625,7 +1623,6 @@ switch(op)
 		if(rt == 0)
 			return(0);
 	case OPASSIGN:
-	case OPPLUSEQ:
 	case OPSTAREQ:
 		if( ISINT(lt) && rt==TYCHAR)
 			return(lt);

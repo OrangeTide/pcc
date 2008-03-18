@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.54 2008/03/16 10:38:35 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.55 2008/03/18 16:42:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -107,12 +107,10 @@ typedef long long OFFSZ;
 #define LABFMT	".L%d"		/* format for printing labels */
 #define	STABLBL	".LL%d"		/* format for stab (debugging) labels */
 #ifdef LANG_F77
-#define XL 8			/* XXX max identifier length - fix */
 #define BLANKCOMMON "_BLNK_"
 #define MSKIREG  (M(TYSHORT)|M(TYLONG))
 #define TYIREG TYLONG
 #define FSZLENG  FSZLONG
-#define FUDGEOFFSET 1
 #define	AUTOREG	EBP
 #define	ARGREG	EBP
 #define ARGOFFSET 4
