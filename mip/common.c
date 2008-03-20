@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.77 2008/03/05 18:56:01 ragge Exp $	*/
+/*	$Id: common.c,v 1.78 2008/03/20 00:26:36 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -134,8 +134,10 @@ werror(char *s, ...)
 	va_list ap;
 
 	va_start(ap, s);
-	if (warniserr)
+	if (warniserr) {
 		uerror(s, ap);
+		return;
+	}
 	WHERE('w');
 	fprintf(stderr, "warning: ");
 	vfprintf(stderr, s, ap);
