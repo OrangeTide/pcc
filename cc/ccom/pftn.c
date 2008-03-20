@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.197 2008/03/20 00:22:34 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.198 2008/03/20 01:15:31 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -475,6 +475,10 @@ ftnend()
 	tmpfree(); /* Release memory resources */
 }
 
+static struct symtab nulsym = {
+	{ NULL, 0, 0, 0, 0 }, "null", "null", INT, 0, NULL, NULL
+};
+
 void
 dclargs()
 {
@@ -484,15 +488,10 @@ dclargs()
 	struct symtab *p, **parr = NULL; /* XXX gcc */
 	int i;
 
-	if (lparam->sym == NULL) {
-		uerror("parameter name omitted");
-		return;
-	}
-
 	/*
 	 * Deal with fun(void) properly.
 	 */
-	if (nparams == 1 && lparam->sym->stype == VOID)
+	if (nparams == 1 && lparam->sym && lparam->sym->stype == VOID)
 		goto done;
 
 	/*
@@ -507,8 +506,8 @@ dclargs()
 		p = a->sym;
 		parr[i++] = p;
 		if (p == NULL) {
-			uerror("arg %d missing", i);
-			p = cftnsp; /* just some symtab */
+			uerror("parameter %d name missing", i);
+			p = &nulsym; /* empty symtab */
 		}
 		if (p->stype == FARG) {
 			p->stype = INT;
