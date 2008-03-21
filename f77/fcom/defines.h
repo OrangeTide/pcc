@@ -1,4 +1,4 @@
-/*	$Id: defines.h,v 1.13 2008/03/18 16:42:38 ragge Exp $	*/
+/*	$Id: defines.h,v 1.14 2008/03/21 15:51:39 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -162,13 +162,13 @@ typedef long int ftnint;
 #define OPCCALL 20
 #define OPASSIGN 21
 /* #define OPPLUSEQ 22 */
-#define OPSTAREQ 23
+/* #define OPSTAREQ 23 */
 #define OPCONV 24
 #define OPLSHIFT 25
 #define OPMOD 26
 #define OPCOMMA 27
-#define OPQUEST 28
-#define OPCOLON 29
+/* #define OPQUEST 28 */
+/* #define OPCOLON 29 */
 #define OPABS 30
 #define OPMIN 31
 #define OPMAX 32

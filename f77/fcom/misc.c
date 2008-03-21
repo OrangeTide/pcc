@@ -1,4 +1,4 @@
-/*	$Id: misc.c,v 1.11 2008/03/14 17:26:48 ragge Exp $	*/
+/*	$Id: misc.c,v 1.12 2008/03/21 15:51:39 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -667,14 +667,13 @@ return(NO);
 }
 #endif
 
-
-
+/*
+ * Return YES if not an expression.
+ */
 int
-addressable(p)
-register bigptr p;
+addressable(bigptr p)
 {
-switch(p->tag)
-	{
+	switch(p->tag) {
 	case TCONST:
 		return(YES);
 
