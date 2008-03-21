@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.13 2008/03/07 01:50:41 gmcgarry Exp $    */
+/*      $Id: code.c,v 1.14 2008/03/21 20:10:17 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -532,17 +532,20 @@ movearg_64bit(NODE *p, int *regp)
 	} else if (reg == R3) {
 		/* half in and half out of the registers */
 		r = tcopy(p);
-		r = block(SCONV, r, NIL, INT, 0, MKSUE(INT));
-		if (features(FEATURE_BIGENDIAN))
-			r = pusharg(r, regp);
-		else
-			r = movearg_32bit(r, regp);
-		q = block(RS, p, bcon(32), p->n_type, p->n_df, p->n_sue);
-		q = block(SCONV, q, NIL, INT, 0, MKSUE(INT));
-		if (features(FEATURE_BIGENDIAN))
-			q = movearg_32bit(q, regp);
-		else
-			q = pusharg(q, regp);
+		if (features(FEATURE_BIGENDIAN)) {
+			q = buildtree(RS, p, bcon(32));
+			q = block(SCONV, q, NIL, INT, 0, MKSUE(INT));
+		} else {
+			q = block(SCONV, p, NIL, INT, 0, MKSUE(INT));
+		}
+		q = movearg_32bit(q, regp);
+		if (features(FEATURE_BIGENDIAN)) {
+			r = block(SCONV, r, NIL, INT, 0, MKSUE(INT));
+		} else {
+			r = buildtree(RS, r, bcon(32));
+			r = block(SCONV, r, NIL, INT, 0, MKSUE(INT));
+		}
+		r = pusharg(r, regp);
 		q = straighten(block(CM, q, r, p->n_type, p->n_df, p->n_sue));
         } else {
                 q = block(REG, NIL, NIL, p->n_type, p->n_df, p->n_sue);
