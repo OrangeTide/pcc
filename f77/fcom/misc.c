@@ -1,4 +1,4 @@
-/*	$Id: misc.c,v 1.12 2008/03/21 15:51:39 ragge Exp $	*/
+/*	$Id: misc.c,v 1.13 2008/03/22 16:22:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -140,23 +140,20 @@ return(q);
 }
 
 
-chainp mkchain(p,q)
-bigptr p;
-chainp q;
+chainp
+mkchain(bigptr p, chainp q)
 {
-register chainp r;
+	chainp r;
 
-if(chains)
-	{
-	r = chains;
-	chains = chains->chain.nextp;
-	}
-else
-	r = ALLOC(chain);
+	if(chains) {
+		r = chains;
+		chains = chains->chain.nextp;
+	} else
+		r = ALLOC(chain);
 
-r->chain.datap = p;
-r->chain.nextp = q;
-return(r);
+	r->chain.datap = p;
+	r->chain.nextp = q;
+	return(r);
 }
 
 
