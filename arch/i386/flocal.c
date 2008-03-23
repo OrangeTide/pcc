@@ -1,4 +1,4 @@
-/*	$Id: flocal.c,v 1.9 2008/03/16 10:36:34 ragge Exp $	*/
+/*	$Id: flocal.c,v 1.10 2008/03/23 09:18:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -59,10 +59,6 @@ setloc(int l)
 /*
 	PDP11-780/VAX - SPECIFIC PRINTING ROUTINES
 */
-
-/* XXX - to die */
-int maxregvar;
-int regnum[] =  { 11, 10, 9, 8, 7, 6 } ;
 
 /*
  * Called just before return from a subroutine.
