@@ -1,4 +1,4 @@
-/*	$Id: io.c,v 1.10 2008/03/14 17:26:48 ragge Exp $	*/
+/*	$Id: io.c,v 1.11 2008/03/23 09:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -53,7 +53,7 @@ LOCAL void iosetip(int, int);
 LOCAL void iosetlc(int, int, int);
 LOCAL void putiocall(struct bigblock *q);
 LOCAL void putio(bigptr, bigptr);
-
+LOCAL void startrw(void);
 
 
 LOCAL char ioroutine[XL+1];

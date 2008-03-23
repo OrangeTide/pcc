@@ -1,4 +1,4 @@
-/*	$Id: putscj.c,v 1.9 2008/03/22 10:02:10 ragge Exp $	*/
+/*	$Id: putscj.c,v 1.10 2008/03/23 09:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -424,10 +424,16 @@ putx(bigptr q)
 				p = putx(x1);
 				break;
 
+			case OPCOMMA:
+				for (x1 = q; x1->b_expr.opcode == OPCOMMA; 
+				    x1 = x1->b_expr.leftp)
+					putexpr(x1->b_expr.rightp);
+				p = putx(x1);
+				break;
+
 			case OPEQV:
 			case OPNEQV:
 			case OPADDR:
-			case OPCOMMA:
 			case OPBITOR:
 			case OPBITAND:
 			case OPBITXOR:

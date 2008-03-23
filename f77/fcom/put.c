@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.13 2008/03/22 10:02:10 ragge Exp $	*/
+/*	$Id: put.c,v 1.14 2008/03/23 09:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -68,7 +68,7 @@ int ops2 [ ] =
 	P2BAD,
 	P2LT, P2EQ, P2GT, P2LE, P2NE, P2GE,
 	P2CALL, P2CALL, P2ASSIGN, P2BAD, P2BAD, P2CONV, P2LSHIFT, P2MOD,
-	P2COMOP, P2BAD, P2BAD,
+	P2BAD, P2BAD, P2BAD,
 	P2BAD, P2BAD, P2BAD, P2BAD, P2BAD,
 	P2BITOR, P2BITAND, P2BITXOR, P2BITNOT, P2RSHIFT
 	};

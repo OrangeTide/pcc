@@ -1,4 +1,4 @@
-/*	$Id: intr.c,v 1.9 2008/03/21 15:51:39 ragge Exp $	*/
+/*	$Id: intr.c,v 1.10 2008/03/23 09:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -36,6 +36,9 @@
 #include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
+
+
+static struct bigblock *finline(int, int, chainp);
 
 union
 	{

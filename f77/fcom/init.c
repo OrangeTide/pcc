@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.10 2008/03/14 17:26:48 ragge Exp $	*/
+/*	$Id: init.c,v 1.11 2008/03/23 09:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -107,7 +107,6 @@ struct ctlframe *lastctl	= ctls+MAXCTL ;
 
 bigptr regnamep[10]; /* XXX MAXREGVAR */
 int highregvar;
-int nregvar;
 
 struct extsym extsymtab[MAXEXT];
 struct extsym *nextext	= extsymtab;
@@ -225,7 +224,6 @@ for(cp = templist ; cp ; cp = cp->chain.nextp)
 frchain(&templist);
 holdtemps = NULL;
 dorange = 0;
-nregvar = 0;
 highregvar = 0;
 entries = NULL;
 rpllist = NULL;

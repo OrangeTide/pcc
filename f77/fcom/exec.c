@@ -1,4 +1,4 @@
-/*	$Id: exec.c,v 1.11 2008/03/22 16:22:25 ragge Exp $	*/
+/*	$Id: exec.c,v 1.12 2008/03/23 09:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -44,6 +44,7 @@ LOCAL void exar2(int, bigptr, int, int);
 LOCAL void pushctl(int code);
 LOCAL void popctl(void);
 LOCAL void poplab(void);
+LOCAL void mkstfunct(struct bigblock *, bigptr);
 
 void
 exif(p)

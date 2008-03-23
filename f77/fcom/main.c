@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.6 2008/03/14 17:26:48 ragge Exp $	*/
+/*	$Id: main.c,v 1.7 2008/03/23 09:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -80,18 +80,9 @@ main(int argc, char **argv)
 
 		case 'O':
 			optimflag = YES;
-#ifdef notdef
-			if( isdigit((int)s[1]) )
-				{
-				k = *++s - '0';
-				if(k > MAXREGVAR)
-					{
-					warn1("-O%d: too many register variables", k);
-					maxregvar = MAXREGVAR;
-					}
-				else
-					maxregvar = k;
-				}
+#ifdef notyet
+			xdeljumps = 1;
+			xtemps = 1;
 #endif
 			break;
 
