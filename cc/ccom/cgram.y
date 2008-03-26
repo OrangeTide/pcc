@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.197 2008/02/20 16:59:15 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.198 2008/03/26 20:05:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -366,7 +366,7 @@ direct_declarator: C_NAME { $$ = bdty(NAME, $1); }
 		}
 		;
 
-fundcl:		   { blevel++; argoff = ARGINIT; ctval = tvaloff; }
+fundcl:		   { if (++blevel == 1) argoff = ARGINIT; ctval = tvaloff; }
 		;
 
 identifier_list:   C_NAME {
