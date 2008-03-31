@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.198 2008/03/20 01:15:31 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.199 2008/03/31 05:34:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -545,7 +545,18 @@ dclargs()
 		if (chkftn(al, alb))
 			uerror("function doesn't match prototype");
 		intcompare = 0;
+
 	}
+
+	if (oldstyle && nparams) {
+		/* Must recalculate offset for oldstyle args here */
+		argoff = ARGINIT;
+		for (i = 0; i < nparams; i++) {
+			parr[i]->soffset = NOOFFSET;
+			oalloc(parr[i], &argoff);
+		}
+	}
+
 done:	cendarg();
 
 	plabel(prolab); /* after prolog, used in optimization */
