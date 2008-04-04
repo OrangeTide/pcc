@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.200 2008/04/02 19:38:49 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.201 2008/04/04 16:23:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1145,7 +1145,7 @@ oalloc(struct symtab *p, int *poff )
 	} else
 #endif
 	if (p->sclass == PARAM && (p->stype == CHAR || p->stype == UCHAR ||
-	    p->stype == SHORT || p->stype == USHORT)) {
+	    p->stype == SHORT || p->stype == USHORT || p->stype == BOOL)) {
 		off = upoff(SZINT, ALINT, &noff);
 #ifndef RTOLBYTES
 		off = noff - tsz;
