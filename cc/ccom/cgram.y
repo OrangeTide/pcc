@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.198 2008/03/26 20:05:06 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.199 2008/04/06 11:56:44 stefan Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1351,6 +1351,8 @@ init_declarator(NODE *tn, NODE *p, int assign)
 		if (assign) {
 			defid(typ, class);
 			typ->n_sp->sflags |= SASG;
+			if (typ->n_sp->sflags & SDYNARRAY)
+				uerror("can't initialize dynamic arrays");
 			lcommdel(typ->n_sp);
 		} else {
 			nidcl(typ, class);
