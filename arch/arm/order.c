@@ -1,4 +1,4 @@
-/*      $Id: order.c,v 1.5 2008/02/20 01:02:36 gmcgarry Exp $    */
+/*      $Id: order.c,v 1.6 2008/04/10 01:07:37 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -81,7 +81,8 @@ offstar(NODE *p, int shape)
 }
 
 /*
- * It is OK to do an OREG - Modify the expression tree to be an OREG.
+ * Unable to convert to OREG (notoff() returned failure).  Output
+ * suitable instructions to replace OREG.
  */
 void
 myormake(NODE *q)
