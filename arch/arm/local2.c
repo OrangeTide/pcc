@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.25 2008/03/18 03:59:22 gmcgarry Exp $    */
+/*      $Id: local2.c,v 1.26 2008/04/10 01:07:08 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -521,7 +521,7 @@ shiftop(NODE *p)
 		if (r->n_lval - 32 != 0)
 			printf(",%s " CONFMT, shifttype, r->n_lval - 32);
 		printf("\n");
-	} else if (p->n_op == LS && r->n_op == ICON) {
+	} else if (p->n_op == RS && r->n_op == ICON) {
 		expand(p, INBREG, "\tmov A1,#0" COM "64-bit right-shift\n");
 		expand(p, INBREG, "\tmov U1,#0\n");
 	}
@@ -1505,6 +1505,9 @@ mflags(char *str)
 		fset |= FEATURE_EXTEND;
 		fset |= FEATURE_MUL;
 		fset |= FEATURE_MULL;
+	} else {
+		fprintf(stderr, "unknown m option '%s'\n", str);
+		exit(1);
 	}
 }
 
