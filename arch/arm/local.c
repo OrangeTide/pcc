@@ -1,4 +1,4 @@
-/*      $Id: local.c,v 1.17 2008/03/07 04:07:05 gmcgarry Exp $    */
+/*      $Id: local.c,v 1.18 2008/04/10 01:06:17 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -721,7 +721,7 @@ arm_builtin_va_arg(NODE *f, NODE *a)
         sz = tsize(r->n_type, r->n_df, r->n_sue) / SZCHAR;
         if (sz < SZINT/SZCHAR) {
                 werror("%s%s promoted to int when passed through ...",
-                        r->n_type & 1 ? "unsigned " : "",
+                        ISUNSIGNED(r->n_type) ? "unsigned " : "",
                         DEUNSIGN(r->n_type) == SHORT ? "short" : "char");
                 sz = SZINT/SZCHAR;
         }
