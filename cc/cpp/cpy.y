@@ -1,4 +1,4 @@
-/*	$Id: cpy.y,v 1.15 2007/10/18 20:41:41 ragge Exp $	*/
+/*	$Id: cpy.y,v 1.16 2008/04/12 17:14:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -87,7 +87,7 @@ int setd(int l, int r);
 /*
  * The following terminals are not used in the yacc code.
  */
-%term STRING FPOINT WSPACE VA_ARGS CONCAT MKSTR ELLIPS
+%term STRING FPOINT WSPACE VA_ARGS CONCAT MKSTR ELLIPS CMNT
 
 %left ','
 %right '?' ':'

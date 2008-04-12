@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.32 2008/01/06 17:18:55 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.33 2008/04/12 17:14:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -137,3 +137,4 @@ void xerror(usch *);
 #define warning(...) xwarning(sheap(__VA_ARGS__))
 #define error(...) xerror(sheap(__VA_ARGS__))
 void expmac(struct recur *);
+int cinput(void);
