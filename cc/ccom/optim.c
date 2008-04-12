@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.30 2008/02/06 18:23:00 ragge Exp $	*/
+/*	$Id: optim.c,v 1.31 2008/04/12 17:16:27 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -135,7 +135,8 @@ again:	o = p->n_op;
 		goto setuleft;
 
 	case RS:
-		if (LO(p) == RS && RCON(p->n_left) && RCON(p)) {
+		if (LO(p) == RS && RCON(p->n_left) && RCON(p) &&
+		    (RV(p) + RV(p->n_left)) < p->n_sue->suesize) {
 			/* two right-shift  by constants */
 			RV(p) += RV(p->n_left);
 			p->n_left = zapleft(p->n_left);
