@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.36 2008/04/12 17:14:27 ragge Exp $   */
+/*	$Id: scanner.l,v 1.37 2008/04/13 16:36:56 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -754,8 +754,20 @@ storepb(void)
 	usch *opb = stringbuf;
 	int c;
 
-	while ((c = input()) != '\n')
+	while ((c = input()) != '\n') {
+		if (c == '/') {
+			 if ((c = input()) == '*') {
+				/* ignore comments here whatsoever */
+				usch *g = stringbuf;
+				getcmnt();
+				stringbuf = g;
+				continue;
+			}
+			unput(c);
+			c = '/';
+		}
 		savch(c);
+	}
 	cunput('\n');
 	savch(0);
 	fixdefined(opb); /* XXX can fail if #line? */

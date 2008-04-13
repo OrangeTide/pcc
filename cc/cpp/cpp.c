@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.79 2008/04/12 17:14:27 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.80 2008/04/13 16:36:56 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -170,7 +170,6 @@ void include(void);
 void line(void);
 void flbuf(void);
 void usage(void);
-static void getcmnt(void);
 
 int
 main(int argc, char **argv)
@@ -562,7 +561,7 @@ definp(void)
 	return c;
 }
 
-static void
+void
 getcmnt(void)
 {
 	int c;
