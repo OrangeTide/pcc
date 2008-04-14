@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.84 2008/04/13 16:35:40 ragge Exp $	*/
+/*	$Id: cc.c,v 1.85 2008/04/14 16:14:55 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -301,7 +301,8 @@ main(int argc, char *argv[])
 				outfile = argv[++i];
 				break;
 			case 'O':
-				Oflag++;
+				if (argv[i][2] != '0')
+					Oflag++;
 				break;
 			case 'E':
 				Eflag++;
