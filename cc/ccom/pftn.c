@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.201 2008/04/04 16:23:58 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.202 2008/04/14 11:03:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1119,12 +1119,11 @@ oalloc(struct symtab *p, int *poff )
 	/*
 	 * Only generate tempnodes if we are optimizing,
 	 * and only for integers, floats or pointers,
-	 * and not if the basic type is volatile.
+	 * and not if the type on this level is volatile.
 	 */
-/* XXX OLDSTYLE */
 	if (xtemps && ((p->sclass == AUTO) || (p->sclass == REGISTER)) &&
 	    (p->stype < STRTY || ISPTR(p->stype)) &&
-	    !ISVOL((p->squal << TSHIFT)) && cisreg(p->stype)) {
+	    !(cqual(p->stype, p->squal) & VOL) && cisreg(p->stype)) {
 		NODE *tn = tempnode(0, p->stype, p->sdf, p->ssue);
 		p->soffset = regno(tn);
 		p->sflags |= STNODE;
