@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.13 2008/04/10 01:34:16 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.14 2008/04/15 00:47:19 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -40,7 +40,6 @@ static void genswitch_mrst(int num, struct swents **p, int n);
 #endif
 
 int lastloc = -1;
-
 static int rvnr;
 
 /*
@@ -267,8 +266,7 @@ param_retstruct(void)
 {
 	NODE *p, *q;
 
-	/* XXX what if it is a union? */
-	p = tempnode(0, PTR+STRTY, 0, cftnsp->ssue);
+	p = tempnode(0, cftnsp->stype, 0, cftnsp->ssue);
 	rvnr = regno(p);
 	q = block(REG, NIL, NIL, PTR+STRTY, 0, cftnsp->ssue);
 	regno(q) = R3;
@@ -1517,8 +1515,10 @@ funcode(NODE *p)
 	int regnum = R3;
 	int fregnum = F1;
 
-        if (p->n_type == STRTY+FTN || p->n_type == UNIONTY+FTN)
+        if (p->n_type == STRTY+FTN || p->n_type == UNIONTY+FTN) {
 		p = retstruct(p);
+		regnum = R4;
+	}
 
 	p->n_right = moveargs(p->n_right, &regnum, &fregnum);
 
