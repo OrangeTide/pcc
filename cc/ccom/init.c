@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.41 2008/02/02 16:27:50 ragge Exp $	*/
+/*	$Id: init.c,v 1.42 2008/04/15 09:52:32 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -401,10 +401,12 @@ findoff(void)
 			}
 		}
 	}
+#ifdef PCC_DEBUG
 	if (idebug>1) {
 		printf("findoff: off %lld\n", off);
 		prtstk(pstk);
 	}
+#endif
 	return off;
 }
 
