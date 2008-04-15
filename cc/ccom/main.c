@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.76 2008/02/20 01:11:38 gmcgarry Exp $	*/
+/*	$Id: main.c,v 1.77 2008/04/15 09:52:09 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -26,7 +26,11 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "config.h"
+
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <signal.h>
 #include <string.h>
 #include <stdlib.h>
