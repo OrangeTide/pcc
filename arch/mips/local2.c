@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.18 2008/04/15 00:44:43 gmcgarry Exp $	 */
+/*	$Id: local2.c,v 1.19 2008/04/15 10:24:51 gmcgarry Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -33,6 +33,7 @@
 
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 #include <assert.h>
 
 #include "pass1.h"
