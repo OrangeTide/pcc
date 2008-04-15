@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.11 2006/09/28 11:10:08 ragge Exp $	*/
+/*	$Id: token.c,v 1.12 2008/04/15 09:54:23 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -35,17 +35,7 @@
 #include "cpp.h"
 
 /* definition for include file info */
-struct includ {
-	struct includ *next;
-	char *fname;
-	int lineno;
-	int infil;
-	usch *curptr;
-	usch *maxread;
-	usch *ostr;
-	usch *buffer;
-	usch bbuf[NAMEMAX+CPPBUF+1];
-} *ifiles;
+struct includ *ifiles;
 
 usch *yyp, *yystr, yybuf[CPPBUF];
 
