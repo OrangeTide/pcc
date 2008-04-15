@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.219 2008/03/20 00:28:15 gmcgarry Exp $	*/
+/*	$Id: reader.c,v 1.220 2008/04/15 10:00:43 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -228,7 +228,9 @@ pass2_compile(struct interpass *ip)
 		if (ip->type != IP_NODE)
 			continue;
 		canon(ip->ip_node);
+#ifdef PCC_DEBUG
 		walkf(ip->ip_node, cktree);
+#endif
 		if ((ip->ip_node = deluseless(ip->ip_node)) == NULL) {
 			DLIST_REMOVE(ip, qelem);
 		} else while (!DLIST_ISEMPTY(&prepole, qelem)) {
@@ -1080,8 +1082,10 @@ comperr(char *str, ...)
 	va_end(ap);
 	prfil = stderr;
 
+#ifdef PCC_DEBUG
 	if (nodepole && nodepole->n_op != FREE)
 		fwalk(nodepole, e2print, 0);
+#endif
 	exit(1);
 }
 
