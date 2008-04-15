@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.13 2008/04/15 00:48:39 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.14 2008/04/15 09:42:25 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -355,8 +355,7 @@ stasg(NODE *p)
         /* R3 = dest, R4 = src, R5 = len */
         printf("\tli %s,%d\n", rnames[R5], p->n_stsize);
         if (l->n_op == OREG) {
-                printf("\taddi %s,%s," CONFMT "\n",
-                    rnames[R3], rnames[regno(l)], val);
+                printf("\taddi %s,%s,%d\n", rnames[R3], rnames[regno(l)], val);
         } else if (l->n_op == NAME) {
 #if defined(ELFABI)
                 printf("\tli %s,", rnames[R3]);
