@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.80 2008/04/13 16:36:56 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.81 2008/04/15 09:56:27 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -68,10 +68,14 @@
 
 #include "config.h"
 
+#ifdef HAVE_SYS_WAIT_H
 #include <sys/wait.h>
+#endif
 
 #include <fcntl.h>
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>

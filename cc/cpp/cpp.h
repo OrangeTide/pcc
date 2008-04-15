@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.34 2008/04/13 16:36:56 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.35 2008/04/15 09:56:27 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -28,6 +28,7 @@
  */
 
 #include <stdio.h> /* for obuf */
+#include <stdlib.h>
 
 #include "config.h"
 
@@ -72,6 +73,7 @@ struct includ {
 	int infil;
 	usch *curptr;
 	usch *maxread;
+	usch *ostr;
 	usch *buffer;
 	usch bbuf[NAMEMAX+CPPBUF+1];
 } *ifiles;
@@ -134,8 +136,13 @@ void line(void);
 usch *sheap(char *fmt, ...);
 void xwarning(usch *);
 void xerror(usch *);
+#ifdef HAVE_CPP_VARARG_MACRO_GCC
 #define warning(...) xwarning(sheap(__VA_ARGS__))
 #define error(...) xerror(sheap(__VA_ARGS__))
+#else
+#define warning xwarning
+#define error xerror
+#endif
 void expmac(struct recur *);
 int cinput(void);
 void getcmnt(void);

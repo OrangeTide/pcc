@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.37 2008/04/13 16:36:56 ragge Exp $   */
+/*	$Id: scanner.l,v 1.38 2008/04/15 09:56:27 gmcgarry Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -27,14 +27,18 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "config.h"
+
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <fcntl.h>
 #include <errno.h>
 
-#include "../../mip/compat.h"
+#include "compat.h"
 #include "cpp.h"
 #include "y.tab.h"
 %}
@@ -86,7 +90,9 @@ yyinput(char *b, int m)
 #undef YY_BUF_SIZE
 #define	YY_BUF_SIZE 32768
 #define YY_INPUT(b,r,m) (r = yyinput(b, m))
+#ifdef HAVE_CPP_VARARG_MACRO_GCC
 #define fprintf(x, ...) error(__VA_ARGS__)
+#endif
 #define	ECHO putstr((usch *)yytext)
 #undef fileno
 #define fileno(x) 0
