@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.12 2008/01/06 17:18:55 ragge Exp $
+#	$Id: Makefile.in,v 1.13 2008/04/15 10:04:49 gmcgarry Exp $
 #
 # Makefile.in for the cc part of pcc.
 #
@@ -17,7 +17,7 @@ CC = @CC@
 TARGOS = @targos@
 TARGMACH = @targmach@
 CFLAGS = @CFLAGS@  -DLIBEXECDIR=\"${libexecdir}\" -DINCLUDEDIR=\"${includedir}\"
-CPPFLAGS = @CPPFLAGS@ -I${top_builddir} -I${top_srcdir}/os/${TARGOS} -I${MDIR} -Dmach_${TARGMACH} -Dos_${TARGOS}
+CPPFLAGS = @CPPFLAGS@ -I${top_builddir} -I${top_srcdir}/os/${TARGOS} -I${MIPDIR} -I${MDIR} -Dmach_${TARGMACH} -Dos_${TARGOS}
 LIBS = @LIBS@
 LDFLAGS = @LDFLAGS@
 INSTALL = @INSTALL@
