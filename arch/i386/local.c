@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.75 2008/04/15 00:36:52 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.76 2008/04/17 11:17:13 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -906,9 +906,29 @@ ninval(CONSZ off, int fsz, NODE *p)
 char *
 exname(char *p)
 {
+#if defined(PECOFFABI) || defined(MACHOABI)
+
+#define NCHNAM  256
+	static char text[NCHNAM+1];
+	int i;
+
 	if (p == NULL)
 		return "";
-	return p;
+
+	text[0] = '_';
+	for (i=1; *p && i<NCHNAM; ++i)
+		text[i] = *p++;
+
+	text[i] = '\0';
+	text[NCHNAM] = '\0';  /* truncate */
+
+	return (text);
+
+#else
+
+	return (p == NULL ? "" : p);
+
+#endif
 }
 
 /*
