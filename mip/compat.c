@@ -24,7 +24,7 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $Id: compat.c,v 1.3 2008/04/15 09:57:55 gmcgarry Exp $
+ * $Id: compat.c,v 1.4 2008/04/17 11:25:26 gmcgarry Exp $
  */
 
 /*-
@@ -184,22 +184,26 @@ getopt(int argc, char **argv, char *args)
         char cmd;
         char rv;
 
-        if (argv[optind] && *argv[optind]=='-') {
+        if (argv[optind] && *argv[optind] == '-') {
                 cmd = *(argv[optind] + 1);
 
                 for (n = 0; n < nlen; n++) {
                         if (args[n] == ':')
 				continue;
                         if (args[n] == cmd) {
-                                if (args[n+1]==':') {
-                                        rv = *(argv[optind] + 1);
-                                        optarg = argv[optind + 1];
+                                rv = *(argv[optind] + 1);
+                                if (args[n+1] == ':') {
+					if (*argv[optind] + 2) != '\0') {
+	                                        optarg = argv[optind] + 2;
+						optind += 1;
+					} else {
+	                                        optarg = argv[optind + 1];
+                                        	optind += 2;
+					}
                                         if (!optarg)
 						 optarg="";
-                                        optind += 2;
                                         return rv;
                                 } else {
-                                        rv = *(argv[optind] + 1);
                                         optarg = NULL;
                                         optind += 1;
                                         return rv;
@@ -212,7 +216,7 @@ getopt(int argc, char **argv, char *args)
 }
 #endif
 
-#ifdef os_win32
+#ifdef WIN32
 #define ISPATHSEPARATOR(x) ((x == '/') || (x == '\\'))
 #else
 #define ISPATHSEPARATOR(x) (x == '/')
