@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.202 2008/04/13 17:14:22 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.203 2008/04/18 06:54:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -788,7 +788,7 @@ statement:	   e ';' { ecomp( $1 ); symclear(blevel); }
 		}
 		|  C_RETURN  ';' {
 			branch(retlab);
-			if (cftnsp->stype != VOID && noretype &&
+			if (cftnsp->stype != VOID && noretype == 0 &&
 			    cftnsp->stype != VOID+FTN)
 				uerror("return value required");
 			rch:
