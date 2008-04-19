@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.38 2008/04/15 09:56:27 gmcgarry Exp $   */
+/*	$Id: scanner.l,v 1.39 2008/04/19 09:48:01 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -435,12 +435,8 @@ pushfile(usch *file)
 
 	slow = 0;
 	if (file != NULL) {
-		if ((ic->infil = open((char *)file, O_RDONLY)) < 0) {
-			if (errno != ENOENT)
-				error("Cannot open '%s'. %s", file,
-						strerror(errno));
+		if ((ic->infil = open((char *)file, O_RDONLY)) < 0)
 			return -1;
-		}
 		ic->orgfn = ic->fname = file;
 		if (++inclevel > MAX_INCLEVEL)
 			error("Limit for nested includes exceeded");
