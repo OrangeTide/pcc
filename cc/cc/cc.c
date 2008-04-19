@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.89 2008/04/17 11:14:38 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.90 2008/04/19 09:50:52 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -855,7 +855,7 @@ callsys(char *f, char *v[])
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
-		dexit(eflag);
+		dexit(eflag ? eflag : 1);
 	errorx(8, "Fatal error in %s", f);
 }
 #endif
