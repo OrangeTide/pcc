@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.91 2008/04/19 13:14:06 ragge Exp $	*/
+/*	$Id: cc.c,v 1.92 2008/04/19 13:19:26 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -875,7 +875,12 @@ callsys(char *f, char *v[])
 char *
 copy(char *as, int extra)
 {
-	return strcpy(ccmalloc(strlen(as)+extra+1), as);
+	int len = strlen(as)+1;
+	char *rv;
+
+	rv = ccmalloc(len+extra);
+	strlcpy(rv, as, len);
+	return rv;
 }
 
 int
