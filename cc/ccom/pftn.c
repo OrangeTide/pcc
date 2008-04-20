@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.202 2008/04/14 11:03:29 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.203 2008/04/20 09:41:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1458,9 +1458,9 @@ typenode(NODE *p)
 	NODE *q, *saved;
 	TWORD type;
 	int class, qual;
-	int sig, uns;
+	int sig, uns, cmplx;
 
-	type = class = qual = sig = uns = 0;
+	cmplx = type = class = qual = sig = uns = 0;
 	saved = NIL;
 
 	if (rpole != NULL)
@@ -1543,11 +1543,32 @@ typenode(NODE *p)
 					goto bad;
 				uns = 1;
 				break;
+			case COMPLEX:
+				cmplx = 1;
+				break;
 			default:
 				cerror("typenode");
 			}
 		}
 	}
+	if (cmplx) {
+		if (sig || uns)
+			goto bad;
+		switch (type) {
+		case FLOAT:
+			type = FCOMPLEX;
+			break;
+		case DOUBLE:
+			type = COMPLEX;
+			break;
+		case LDOUBLE:
+			type = LCOMPLEX;
+			break;
+		default:
+			goto bad;
+		}
+	}
+
 	if (saved && type)
 		goto bad;
 	if (sig || uns) {

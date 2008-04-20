@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.71 2008/04/16 15:17:10 ragge Exp $	*/
+/*	$Id: scan.l,v 1.72 2008/04/20 09:41:38 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -94,6 +94,8 @@ extern void yyset_lineno (int);
 "break"			{ return(C_BREAK); }
 "case"			{ return(C_CASE); }
 "char"			{ yylval.nodep = mkty((TWORD)CHAR, 0, MKSUE(CHAR));
+			  notype=1; return(C_TYPE); }
+"_Complex"		{ yylval.nodep = mkty((TWORD)COMPLEX, 0, MKSUE(DOUBLE));
 			  notype=1; return(C_TYPE); }
 "const"			{ yylval.nodep =
 				block(QUALIFIER, NIL, NIL, CON, 0, 0);

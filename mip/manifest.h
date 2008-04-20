@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.73 2008/03/18 16:51:07 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.74 2008/04/20 09:41:38 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -319,6 +319,10 @@ void pass2_compile(struct interpass *);
 NODE *nfree(NODE *);
 NODE *tcopy(NODE *);
 void fwalk(NODE *t, void (*f)(NODE *, int, int *, int *), int down);
+void flist(NODE *p, void (*f)(NODE *, void *), void *);
+void listf(NODE *p, void (*f)(NODE *));
+NODE *listarg(NODE *p, int n, int *cnt);
+
 
 extern	int nerrors;		/* number of errors seen so far */
 extern	int warniserr;		/* treat warnings as errors */
