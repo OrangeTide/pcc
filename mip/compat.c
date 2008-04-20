@@ -24,7 +24,7 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $Id: compat.c,v 1.4 2008/04/17 11:25:26 gmcgarry Exp $
+ * $Id: compat.c,v 1.5 2008/04/20 01:53:37 gmcgarry Exp $
  */
 
 /*-
@@ -193,7 +193,7 @@ getopt(int argc, char **argv, char *args)
                         if (args[n] == cmd) {
                                 rv = *(argv[optind] + 1);
                                 if (args[n+1] == ':') {
-					if (*argv[optind] + 2) != '\0') {
+					if (*(argv[optind] + 2) != '\0') {
 	                                        optarg = argv[optind] + 2;
 						optind += 1;
 					} else {
