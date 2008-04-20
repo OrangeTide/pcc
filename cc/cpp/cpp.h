@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.35 2008/04/15 09:56:27 gmcgarry Exp $	*/
+/*	$Id: cpp.h,v 1.36 2008/04/20 01:47:24 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -140,8 +140,8 @@ void xerror(usch *);
 #define warning(...) xwarning(sheap(__VA_ARGS__))
 #define error(...) xerror(sheap(__VA_ARGS__))
 #else
-#define warning xwarning
-#define error xerror
+#define warning printf
+#define error printf
 #endif
 void expmac(struct recur *);
 int cinput(void);
