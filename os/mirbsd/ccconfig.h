@@ -1,4 +1,4 @@
-/* $Id: ccconfig.h,v 1.3 2008/02/20 01:19:15 gmcgarry Exp $ */
+/* $Id: ccconfig.h,v 1.4 2008/04/21 14:30:56 gmcgarry Exp $ */
 /*-
  * Copyright (c) 2007
  *	Thorsten Glaser <tg@mirbsd.de>
@@ -56,7 +56,6 @@
 	NULL					\
 }      
 #define CRT0FILE       "/usr/lib/crt0.o"
-#define CRT0FILE_PROFILE "/usr/lib/gcrt0.o"
 #define STABS
        
 /* md part */  
