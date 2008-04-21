@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.7 2008/03/16 10:28:13 ragge Exp $
+#	$Id: Makefile.in,v 1.8 2008/04/21 14:41:44 gmcgarry Exp $
 #
 # Makefile for the Fortran 77 command
 #  Running on the @targmach@
@@ -65,6 +65,9 @@ driver.o $(OBJS)  : defs.h defines.h ftypes.h
 
 clean:
 	/bin/rm -f $(OBJS) ${DEST} gram.in gram.[ch] tokdefs
+
+distclean: clean
+	/bin/rm -f Makefile
 
 install: 
 	${INSTALL_PROGRAM} ${DEST} ${bindir}
