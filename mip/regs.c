@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.173 2008/04/20 09:41:39 ragge Exp $	*/
+/*	$Id: regs.c,v 1.174 2008/04/27 11:34:32 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2034,6 +2034,7 @@ static REGW *spole;
 static void
 longtemp(NODE *p)
 {
+	NODE *l, *r;
 	REGW *w;
 
 	if (p->n_op != TEMP)
@@ -2046,9 +2047,10 @@ longtemp(NODE *p)
 			w->r_color = BITOOR(freetemp(szty(p->n_type)));
 			w->r_class = 1;
 		}
-		p->n_op = OREG;
-		p->n_lval = w->r_color;
-		p->n_rval = FPREG;
+		l = mklnode(REG, 0, FPREG, INCREF(p->n_type));
+		r = mklnode(ICON, w->r_color, 0, INT);
+		p->n_left = mkbinode(PLUS, l, r, INCREF(p->n_type));
+		p->n_op = UMUL;
 		p->n_regw = NULL;
 		break;
 	}
