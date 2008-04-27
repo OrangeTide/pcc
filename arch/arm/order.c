@@ -1,4 +1,4 @@
-/*      $Id: order.c,v 1.7 2008/04/14 01:55:54 gmcgarry Exp $    */
+/*      $Id: order.c,v 1.8 2008/04/27 11:37:03 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -41,10 +41,13 @@
  * OREG can be generated.
  */
 int
-notoff(TWORD t, int r, CONSZ off, char *cp)
+notoff(TWORD ty, int r, CONSZ off, char *cp)
 {
 	if (cp && cp[0]) return 1;
-	return !(off < 32768 && off > -32769);  /* YES */
+	if (DEUNSIGN(ty) == INT || ty == UCHAR)
+		return !(off < 4096 && off > -4096);
+	else
+		return !(off < 256 && off > -256);
 }
 
 /*
