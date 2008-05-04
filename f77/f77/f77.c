@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.7 2008/05/04 09:53:35 ragge Exp $	*/
+/*	$Id: f77.c,v 1.8 2008/05/04 16:45:08 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -391,7 +391,8 @@ dofort(char *s)
 		errorx("Error.  No assembly.");
 	doasm(s);
 
-	rmf(asmfname);
+	if (saveasmflag == NO)
+		rmf(asmfname);
 	return(0);
 }
 
@@ -701,7 +702,8 @@ if(p!=NULL && *p!=NULL && *p!=stdout)
 void
 rmfiles()
 {
-	rmf(asmfname);
+	if (saveasmflag == NO)
+		rmf(asmfname);
 }
 
 void
