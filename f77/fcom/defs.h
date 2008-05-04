@@ -1,4 +1,4 @@
-/*	$Id: defs.h,v 1.16 2008/05/04 09:53:35 ragge Exp $	*/
+/*	$Id: defs.h,v 1.17 2008/05/04 16:47:23 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -548,6 +548,8 @@ bigptr suboffset(struct bigblock *p);
 struct bigblock *intraddr(struct bigblock *np);
 struct bigblock *intrcall(bigptr, bigptr, int);
 void setloc(int);
+void prnloc(char *name);
+
 int fno;
 int type;
 chainp args;

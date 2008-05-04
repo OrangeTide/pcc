@@ -1,4 +1,4 @@
-/*	$Id: flocal.c,v 1.10 2008/03/23 09:18:50 ragge Exp $	*/
+/*	$Id: flocal.c,v 1.11 2008/05/04 16:47:23 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -48,9 +48,13 @@ prchars(int *s)
 void
 setloc(int l)
 {
+	static int lastloc = -1;
 	static char *loctbl[] =
 	    { "text", "data", "section .rodata", "section .rodata", "bss" };
+	if (l == lastloc)
+		return;
 	printf("\t.%s\n", loctbl[l]);
+	lastloc = l;
 }
 
 #ifdef FCOM
@@ -77,6 +81,19 @@ prlabel(int k)
 	printf(LABFMT ":\n", k);
 }
 
+/*
+ * Print naming for location.
+ * name[0] is location type.
+ */
+void
+prnloc(char *name)
+{
+	if (*name == '0')
+		setloc(DATA);
+	else
+		fatal("unhandled prnloc %c", *name);
+	printf("%s:\n", name+1);
+}
 
 /*
  * Print integer constant.
