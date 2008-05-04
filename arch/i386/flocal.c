@@ -1,4 +1,4 @@
-/*	$Id: flocal.c,v 1.11 2008/05/04 16:47:23 ragge Exp $	*/
+/*	$Id: flocal.c,v 1.12 2008/05/04 19:49:10 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -127,15 +127,6 @@ preven(int k)
 {
 	if (k > 1)
 		printf("\t.align\t%d\n", k);
-}
-
-/*
- * Arithmetic IF.  SHouldn't be here.
- */
-void
-prarif(bigptr p, int neg, int zer, int pos)
-{
-	fatal1("Arithmetic IF not implemented");
 }
 
 /*

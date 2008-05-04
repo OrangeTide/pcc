@@ -1,4 +1,4 @@
-/*	$Id: putscj.c,v 1.10 2008/03/23 09:17:44 ragge Exp $	*/
+/*	$Id: putscj.c,v 1.11 2008/05/04 19:49:10 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -185,6 +185,18 @@ putif(bigptr p, int l)
 		p1 = mkbinode(CBRANCH, p1, mklnode(ICON, l, 0, INT), INT);
 		sendp2(p1);
 	}
+}
+
+/* Arithmetic IF  */
+void
+prarif(bigptr p, int neg, int zer, int pos)
+{
+	bigptr x1 = fmktemp(p->vtype, NULL);
+
+	putexpr(mkexpr(OPASSIGN, cpexpr(x1), p));
+	putif(mkexpr(OPGE, cpexpr(x1), MKICON(0)), neg);
+	putif(mkexpr(OPLE, x1, MKICON(0)), pos);
+	putgoto(zer);
 }
 
 /* put out code for  goto l   */
