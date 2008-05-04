@@ -1,4 +1,4 @@
-/*	$Id: flocal.c,v 1.12 2008/05/04 19:49:10 ragge Exp $	*/
+/*	$Id: flocal.c,v 1.13 2008/05/04 20:13:47 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -201,12 +201,6 @@ prolog(struct entrypoint *ep, struct bigblock *argvec)
 void
 prdbginfo()
 {
-}
-
-void
-prcmgoto(bigptr a, int b, int c, int d)
-{
-	fatal1("Fix computed goto\n");
 }
 
 static void
