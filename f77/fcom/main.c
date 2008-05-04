@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.7 2008/03/23 09:17:44 ragge Exp $	*/
+/*	$Id: main.c,v 1.8 2008/05/04 09:53:35 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -58,6 +58,9 @@ main(int argc, char **argv)
 {
 	int ch;
 	int k, retcode;
+
+	infile = stdin;
+	diagfile = stderr;
 
 #define DONE(c)	{ retcode = c; goto finis; }
 
