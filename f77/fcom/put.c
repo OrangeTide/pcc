@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.14 2008/03/23 09:17:44 ragge Exp $	*/
+/*	$Id: put.c,v 1.15 2008/05/05 21:33:17 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -239,7 +239,7 @@ putconst(struct bigblock *p)
 	case TYLOGICAL:
 	case TYSHORT:
 	case TYLONG:
-		prconi(type, p->b_const.fconst.ci);
+		prconi(stdout, type, p->b_const.fconst.ci);
 		break;
 
 	case TYCOMPLEX:
@@ -255,7 +255,7 @@ putconst(struct bigblock *p)
 
 	flpt:
 		for(i = 0 ; i < k ; ++i)
-			prconr(type, p->b_const.fconst.cd[i]);
+			prconr(stdout, type, p->b_const.fconst.cd[i]);
 		break;
 
 	case TYCHAR:
