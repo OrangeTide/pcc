@@ -1,4 +1,4 @@
-/*	$Id: flocal.c,v 1.13 2008/05/04 20:13:47 ragge Exp $	*/
+/*	$Id: flocal.c,v 1.14 2008/05/05 21:36:06 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -99,9 +99,9 @@ prnloc(char *name)
  * Print integer constant.
  */
 void
-prconi(int type, ftnint n)
+prconi(FILE *fp, int type, ftnint n)
 {
-	printf("\t%s\t%ld\n", (type==TYSHORT ? ".word" : ".long"), n);
+	fprintf(fp, "\t%s\t%ld\n", (type==TYSHORT ? ".word" : ".long"), n);
 }
 
 /*
@@ -117,9 +117,9 @@ prcona(ftnint a)
  * Print out a floating constant.
  */
 void
-prconr(int type, double x)
+prconr(FILE *fp, int type, double x)
 {
-	printf("\t%s\t0f%e\n", (type==TYREAL ? ".float" : ".double"), x);
+	fprintf(fp, "\t%s\t0f%e\n", (type==TYREAL ? ".float" : ".double"), x);
 }
 
 void
