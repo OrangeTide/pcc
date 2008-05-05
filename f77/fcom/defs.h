@@ -1,4 +1,4 @@
-/*	$Id: defs.h,v 1.17 2008/05/04 16:47:23 ragge Exp $	*/
+/*	$Id: defs.h,v 1.18 2008/05/05 21:34:45 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -43,7 +43,7 @@
 #define MAXLITERALS 20
 #define MAXCTL 20
 #define MAXHASH 401
-#define MAXSTNO 201
+#define MAXSTNO 1000
 #define MAXEXT 200
 #define MAXEQUIV 150
 #define MAXLABLIST 100
@@ -515,9 +515,9 @@ int fixargs(int, struct bigblock *);
 int addressable(bigptr p);
 
 void prlabel(int);
-void prconi(int, ftnint);
+void prconi(FILE *, int, ftnint);
 void prcona(ftnint);
-void prconr(int, double);
+void prconr(FILE *, int, double);
 void prarif(bigptr, int, int, int);
 void putstr(char *, ftnint);
 NODE *putex1(bigptr p);
