@@ -1,4 +1,4 @@
-/*	$Id: intr.c,v 1.10 2008/03/23 09:17:44 ragge Exp $	*/
+/*	$Id: intr.c,v 1.11 2008/05/06 21:14:26 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -415,9 +415,13 @@ switch(packed.bits.f1)
 	case INTRGEN:
 		sp = spectab + packed.bits.f3;
 		for(i=0; i<packed.bits.f2 ; ++i)
-			if(sp->atype == mtype)
+			if(sp->atype == mtype) {
+				if (tyint == TYLONG &&
+				    sp->rtype == TYSHORT && 
+				    sp[1].atype == mtype)
+					sp++; /* use long int */
 				goto specfunct;
-			else
+			} else
 				++sp;
 		goto badtype;
 
