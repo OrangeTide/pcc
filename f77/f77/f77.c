@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.8 2008/05/04 16:45:08 ragge Exp $	*/
+/*	$Id: f77.c,v 1.9 2008/05/08 07:07:06 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -96,6 +96,7 @@ static char *eflagp	= eflags;
 static char *rflagp	= rflags;
 static char **loadargs;
 static char **loadp;
+static int oflag;
 
 static flag loadflag	= YES;
 static flag saveasmflag	= NO;
@@ -230,6 +231,7 @@ main(int argc, char **argv)
 					addarg(ffary, &ffmax, s-1);
 					goto endfor;
 				}
+				oflag = 1;
 				aoutname = *++argv;
 				--argc;
 				break;
@@ -404,7 +406,10 @@ doasm(char *s)
 	char *params[MAXARGS];
 	int nparms;
 
-	obj = setdoto(s);
+	if (oflag)
+		obj = aoutname;
+	else
+		obj = setdoto(s);
 
 	if(verbose)
 		fprintf(diagfile, "  ASM.");
