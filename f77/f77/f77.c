@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.9 2008/05/08 07:07:06 ragge Exp $	*/
+/*	$Id: f77.c,v 1.10 2008/05/09 08:11:00 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -406,7 +406,7 @@ doasm(char *s)
 	char *params[MAXARGS];
 	int nparms;
 
-	if (oflag)
+	if (oflag && loadflag == NO)
 		obj = aoutname;
 	else
 		obj = setdoto(s);
