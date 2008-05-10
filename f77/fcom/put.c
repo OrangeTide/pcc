@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.15 2008/05/05 21:33:17 ragge Exp $	*/
+/*	$Id: put.c,v 1.16 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -37,7 +37,6 @@
  * JOHNSON AND RITCHIE FAMILIES OF SECOND PASSES
 */
 
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 

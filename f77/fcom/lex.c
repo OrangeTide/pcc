@@ -1,4 +1,4 @@
-/*	$Id: lex.c,v 1.10 2008/05/04 09:53:35 ragge Exp $	*/
+/*	$Id: lex.c,v 1.11 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -32,7 +32,6 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 

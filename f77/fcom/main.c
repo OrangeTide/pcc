@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.9 2008/05/05 21:33:17 ragge Exp $	*/
+/*	$Id: main.c,v 1.10 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -36,7 +36,6 @@ char xxxvers[] = "\nFORTRAN 77 PASS 1, VERSION 1.16,  3 NOVEMBER 1978\n";
 
 #include <unistd.h>
 
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 

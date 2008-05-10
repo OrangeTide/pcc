@@ -1,4 +1,4 @@
-/*	$Id: defines.h,v 1.14 2008/03/21 15:51:39 ragge Exp $	*/
+/*	$Id: defines.h,v 1.15 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -37,6 +37,7 @@
 #ifdef FCOM
 #include "pass2.h"
 #endif
+#include "ftypes.h"
 
 #define INTERDATA 2
 #define GCOS 3

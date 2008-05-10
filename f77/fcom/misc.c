@@ -1,4 +1,4 @@
-/*	$Id: misc.c,v 1.13 2008/03/22 16:22:25 ragge Exp $	*/
+/*	$Id: misc.c,v 1.14 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -35,7 +35,6 @@
 
 #include <string.h>
 
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 

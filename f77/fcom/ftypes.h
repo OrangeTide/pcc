@@ -1,4 +1,4 @@
-/*	$Id: ftypes.h,v 1.3 2005/04/19 19:13:54 ragge Exp $	*/
+/*	$Id: ftypes.h,v 1.4 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -65,6 +65,9 @@
 #define	ALILONG		(ALLONG/ALCHAR)
 #define	ALIDOUBLE	(ALDOUBLE/ALCHAR)
 
+#ifndef SZINT
+#error macdefs.h
+#endif
 #if SZINT == SZSHORT
 #define TYINT	TYSHORT
 #else /* SZLONG >= SZINT */

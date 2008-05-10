@@ -1,4 +1,4 @@
-/*	$Id: io.c,v 1.11 2008/03/23 09:17:44 ragge Exp $	*/
+/*	$Id: io.c,v 1.12 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -38,7 +38,6 @@
 
 #include <string.h>
 
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 

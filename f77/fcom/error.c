@@ -1,4 +1,4 @@
-/*	$Id: error.c,v 1.7 2008/03/05 18:50:33 ragge Exp $	*/
+/*	$Id: error.c,v 1.8 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -35,7 +35,6 @@
 
 #include <stdarg.h>
 
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 

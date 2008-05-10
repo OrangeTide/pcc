@@ -1,4 +1,4 @@
-/*	$Id: putscj.c,v 1.14 2008/05/08 07:05:39 ragge Exp $	*/
+/*	$Id: putscj.c,v 1.15 2008/05/10 07:53:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -38,7 +38,6 @@
 #include <unistd.h>
 #include <string.h>
 
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 
