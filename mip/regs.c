@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.175 2008/05/11 16:55:03 ragge Exp $	*/
+/*	$Id: regs.c,v 1.176 2008/05/11 20:14:40 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -41,7 +41,9 @@
 
 #define	MAXLOOP	20 /* Max number of allocation loops XXX 3 should be enough */
 
+#ifndef MAX
 #define MAX(a,b) (((a) > (b)) ? (a) : (b))
+#endif
  
 /*
  * New-style register allocator using graph coloring.
