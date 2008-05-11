@@ -1,4 +1,4 @@
-/*	$Id: proc.c,v 1.12 2008/05/10 07:53:41 ragge Exp $	*/
+/*	$Id: proc.c,v 1.13 2008/05/11 15:28:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -628,7 +628,7 @@ for(oldp = (chainp)&templist ; (p = oldp->chain.nextp) ; oldp = p)
 	    (type!=TYCHAR || q->vleng->b_const.fconst.ci==leng) )
 		{
 		oldp->chain.nextp = p->chain.nextp;
-		free(p);
+		ckfree(p);
 		return(q);
 		}
 	}

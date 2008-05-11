@@ -1,4 +1,4 @@
-/*	$Id: put.c,v 1.16 2008/05/10 07:53:41 ragge Exp $	*/
+/*	$Id: put.c,v 1.17 2008/05/11 15:28:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -42,7 +42,6 @@
 
 #include "scjdefs.h"
 
-/*
 char *ops [ ] =
 	{
 	"??", "+", "-", "*", "/", "**", "-",
@@ -54,7 +53,6 @@ char *ops [ ] =
 	" abs ", " min ", " max ", " addr ", " indirect ",
 	" bitor ", " bitand ", " bitxor ", " bitnot ", " >> ",
 	};
-*/
 
 /*
  * The index position here matches tho OPx numbers in defines.h.
@@ -88,7 +86,9 @@ types2[TYLOGICAL] = types2[tylogical];
 NODE *
 putex1(bigptr q)
 {
-	NODE *p = putx(fixtype(q));
+	NODE *p;
+	q = fixtype(q);
+	p = putx(q);
 	templist = hookup(templist, holdtemps);
 	holdtemps = NULL;
 	return p;

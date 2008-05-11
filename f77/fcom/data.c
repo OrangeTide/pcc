@@ -1,4 +1,4 @@
-/*	$Id: data.c,v 1.14 2008/05/10 07:53:41 ragge Exp $	*/
+/*	$Id: data.c,v 1.15 2008/05/11 15:28:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -348,7 +348,7 @@ for(p = p0 ; p ; p = p->chain.nextp)
 			return;	/* circular chain completed */
 		q->isbusy = YES;
 		frdata(q->b_impldo.datalist);
-		free(q);
+		ckfree(q);
 		}
 	else
 		frexpr(q);

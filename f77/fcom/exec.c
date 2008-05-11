@@ -1,4 +1,4 @@
-/*	$Id: exec.c,v 1.13 2008/05/10 07:53:41 ragge Exp $	*/
+/*	$Id: exec.c,v 1.14 2008/05/11 15:28:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -222,7 +222,7 @@ mkstfunct(struct bigblock *lp, bigptr rp)
 			err("non-variable argument in statement function definition");
 		else {
 			vardcl(args->chain.datap = p->b_prim.namep);
-			free(p);
+			ckfree(p);
 		}
 }
 

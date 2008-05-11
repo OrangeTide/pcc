@@ -1,4 +1,4 @@
-/*	$Id: equiv.c,v 1.10 2008/05/10 07:53:41 ragge Exp $	*/
+/*	$Id: equiv.c,v 1.11 2008/05/11 15:28:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -267,7 +267,7 @@ for(q = p->equivs ; q ; q = q1)
 		np->vardesc.varno = nvarno;
 		np->voffset -= delta;
 		}
-	else	free(q);
+	else	ckfree(q);
 	}
 p->equivs = NULL;
 }
@@ -284,7 +284,7 @@ register chainp q, oq;
 for(q = p->equivs ; q ; q = oq)
 	{
 	oq = q->eqvchain.nextp;
-	free(q);
+	ckfree(q);
 	}
 p->equivs = NULL;
 }

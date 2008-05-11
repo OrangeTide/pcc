@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.13 2008/05/10 07:53:41 ragge Exp $	*/
+/*	$Id: init.c,v 1.14 2008/05/11 15:28:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -209,9 +209,9 @@ for(hp = hashtab ; hp < lasthash ; ++hp)
 			frexpr(q->nelt);
 			frexpr(q->baseoffset);
 			frexpr(q->basexpr);
-			free(q);
+			ckfree(q);
 			}
-		free(p);
+		ckfree(p);
 		hp->varp = NULL;
 		}
 nintnames = 0;
@@ -219,7 +219,7 @@ highlabtab = labeltab;
 
 ctlstack = ctls - 1;
 for(cp = templist ; cp ; cp = cp->chain.nextp)
-	free(cp->chain.datap);
+	ckfree(cp->chain.datap);
 frchain(&templist);
 holdtemps = NULL;
 dorange = 0;

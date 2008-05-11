@@ -1,4 +1,4 @@
-/*	$Id: intr.c,v 1.12 2008/05/10 07:53:41 ragge Exp $	*/
+/*	$Id: intr.c,v 1.13 2008/05/11 15:28:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -384,7 +384,7 @@ switch(packed.bits.f1)
 				argsp->b_list.listp->chain.nextp->chain.datap);
 			}
 		frchain( &(argsp->b_list.listp) );
-		free(argsp);
+		ckfree(argsp);
 		return(q);
 
 	case INTRCONV:
@@ -407,7 +407,7 @@ switch(packed.bits.f1)
 
 		q->vtype = rettype;
 		frchain(&(argsp->b_list.listp));
-		free(argsp);
+		ckfree(argsp);
 		return(q);
 
 
@@ -438,7 +438,7 @@ switch(packed.bits.f1)
 		if((q = finline(sp-spectab, mtype, argsp->b_list.listp)))
 			{
 			frchain( &(argsp->b_list.listp) );
-			free(argsp);
+			ckfree(argsp);
 			}
 		else if(sp->othername)
 			{
