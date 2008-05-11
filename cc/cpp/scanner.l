@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.39 2008/04/19 09:48:01 ragge Exp $   */
+/*	$Id: scanner.l,v 1.40 2008/05/11 16:55:03 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -98,7 +98,7 @@ yyinput(char *b, int m)
 #define fileno(x) 0
 
 #if YY_FLEX_SUBMINOR_VERSION >= 31
-/* Hack to avoid unneccessary warnings */
+/* Hack to avoid unnecessary warnings */
 FILE *yyget_in	(void);
 FILE *yyget_out  (void);
 int yyget_leng	(void);

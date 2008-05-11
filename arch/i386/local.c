@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.76 2008/04/17 11:17:13 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.77 2008/05/11 16:55:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -324,7 +324,7 @@ clocal(NODE *p)
 		l = p->n_left;
 
 		/*
-		 * Remove unneccessary conversion ops.
+		 * Remove unnecessary conversion ops.
 		 */
 		if (clogop(l->n_op) && l->n_left->n_op == SCONV) {
 			if (coptype(l->n_op) != BITYPE)

@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.72 2008/04/20 09:41:38 ragge Exp $	*/
+/*	$Id: scan.l,v 1.73 2008/05/11 16:55:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -63,7 +63,7 @@ int notype, parbal;
 #define STABS_LINE(x)
 #endif
 #if defined(FLEX_SCANNER) && YY_FLEX_SUBMINOR_VERSION >= 31
-/* Hack to avoid unneccessary warnings */
+/* Hack to avoid unnecessary warnings */
 FILE *yyget_in  (void);
 FILE *yyget_out  (void);
 int yyget_leng  (void);

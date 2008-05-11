@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.174 2008/04/27 11:34:32 gmcgarry Exp $	*/
+/*	$Id: regs.c,v 1.175 2008/05/11 16:55:03 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2498,7 +2498,7 @@ onlyperm: /* XXX - should not have to redo all */
 		/*
 		 * If the original color of this permreg is used for
 		 * coloring another register, swap them to avoid
-		 * unneccessary moves.
+		 * unnecessary moves.
 		 */
 		for (j = i+1; j < NPERMREG-1; j++) {
 			if (nblock[j+tempmin].r_color != permregs[i])

@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.190 2008/05/03 16:39:50 stefan Exp $	*/
+/*	$Id: trees.c,v 1.191 2008/05/11 16:55:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1937,7 +1937,7 @@ delasgop(NODE *p)
 	if (p->n_op == INCR || p->n_op == DECR) {
 		/*
 		 * Rewrite x++ to (x += 1) -1; and deal with it further down.
-		 * Pass2 will remove -1 if unneccessary.
+		 * Pass2 will remove -1 if unnecessary.
 		 */
 		q = ccopy(p);
 		tfree(p->n_left);
