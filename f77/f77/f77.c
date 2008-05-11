@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.10 2008/05/09 08:11:00 ragge Exp $	*/
+/*	$Id: f77.c,v 1.11 2008/05/11 15:24:07 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -47,10 +47,12 @@ char xxxvers[] = "\n FORTRAN 77 DRIVER, VERSION 1.11,   28 JULY 1978\n";
 #include <errno.h>
 
 #include "ccconfig.h"
-#include "defines.h"
-#include "ftypes.h"
 
-#include "macdefs.h"
+typedef FILE *FILEP;
+typedef int flag;
+typedef void *ptr;
+#define	YES 1
+#define NO 0
 
 FILEP diagfile;
 
@@ -119,15 +121,10 @@ int dotchar(char *), unreadable(char *), sys(char *), dofort(char *);
 int nodup(char *), dopass2(void);
 int await(int);
 void rmf(char *), doload(char *[], char *[]), doasm(char *);
-LOCAL void fname(char *, char *);
+void fname(char *, char *);
 void clf(FILEP *p);
 void badfile(char *s);
 void err(char *s);
-ftnint doeven(ftnint, int);
-int rdname(int *vargroupp, char *name);
-int rdlong(ftnint *n);
-void prspace(ftnint n);
-void prch(int c);
 static int callsys(char f[], char *v[]);
 void errorx(char *fmt, ...);
 
@@ -732,7 +729,7 @@ if(!debugflag && fn!=NULL && *fn!='\0')
 
 
 
-LOCAL void fname(name, suff)
+void fname(name, suff)
 char *name, *suff;
 {
 sprintf(name, "fort%d.%s", pid, suff);
