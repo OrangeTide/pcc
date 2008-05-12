@@ -1,4 +1,4 @@
-/*	$Id: io.c,v 1.13 2008/05/11 15:28:03 ragge Exp $	*/
+/*	$Id: io.c,v 1.14 2008/05/12 20:08:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -604,7 +604,7 @@ if((p = V(IOSFMT)))
 			}
 		if( ISINT(np->vtype) )
 			{
-			ioset(TYADDR, fmtoff, p);
+			ioset(TYADDR, fmtoff, cpexpr(p));
 			goto endfmt;
 			}
 		}
