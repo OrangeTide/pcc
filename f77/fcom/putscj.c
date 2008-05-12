@@ -1,4 +1,4 @@
-/*	$Id: putscj.c,v 1.16 2008/05/11 15:28:03 ragge Exp $	*/
+/*	$Id: putscj.c,v 1.17 2008/05/12 20:07:47 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -301,6 +301,13 @@ putx(bigptr q)
 	int opc;
 	int type, k;
 
+#ifdef PCC_DEBUG
+	if (tflag) {
+		printf("putx %p\n", q);
+		fprint(q, 0);
+	}
+#endif
+
 	switch(q->tag) {
 	case TERROR:
 		ckfree(q);
@@ -496,6 +503,12 @@ putop(bigptr q)
 	bigptr lp, tp;
 	int pt, lt;
 
+#ifdef PCC_DEBUG
+	if (tflag) {
+		printf("putop %p\n", q);
+		fprint(q, 0);
+	}
+#endif
 	switch(q->b_expr.opcode) { /* check for special cases and rewrite */
 	case OPCONV:
 		pt = q->vtype;

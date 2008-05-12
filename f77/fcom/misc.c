@@ -1,4 +1,4 @@
-/*	$Id: misc.c,v 1.15 2008/05/11 15:28:03 ragge Exp $	*/
+/*	$Id: misc.c,v 1.16 2008/05/12 20:07:47 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -631,15 +631,22 @@ ckalloc(int n)
 {
 	ptr p;
 
-	p = calloc(1, (unsigned) n);
-	if (p == NULL)
+	if ((p = calloc(1, (unsigned) n)) == NULL)
 		fatal("out of memory");
+#ifdef PCC_DEBUG
+	if (mflag)
+		printf("ckalloc: sz %d ptr %p\n", n, p);
+#endif
 	return(p);
 }
 
 void
 ckfree(void *p)
 {
+#ifdef PCC_DEBUG
+	if (mflag)
+		printf("ckfree: ptr %p\n", p);
+#endif
 	free(p);
 }
 
