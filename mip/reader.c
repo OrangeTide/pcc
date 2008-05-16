@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.222 2008/05/16 02:00:17 gmcgarry Exp $	*/
+/*	$Id: reader.c,v 1.223 2008/05/16 02:02:15 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1157,6 +1157,7 @@ mkbinode(int op, NODE *left, NODE *right, TWORD type)
 	p->n_right = right;
 	p->n_type = type;
 	p->n_regw = NULL;
+	p->n_su = 0;
 	return p;
 }
 
@@ -1172,6 +1173,7 @@ mkunode(int op, NODE *left, int rval, TWORD type)
 	p->n_rval = rval;
 	p->n_type = type;
 	p->n_regw = NULL;
+	p->n_su = 0;
 	return p;
 }
 
