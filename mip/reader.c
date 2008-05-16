@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.221 2008/04/20 09:41:38 ragge Exp $	*/
+/*	$Id: reader.c,v 1.222 2008/05/16 02:00:17 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -619,6 +619,13 @@ genxasm(NODE *p)
 			else
 				adrput(stdout, nary[(int)w[1]-'0']->n_left);
 			w++;
+		} else if (*w == '\\') {
+			w++;
+			switch (*w) {
+				case 'n': putchar('\n'); break;
+				case 't': putchar('\t'); break;
+				case '\\': putchar('\\'); break;
+			}
 		} else
 			putchar(*w);
 		w++;
