@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.15 2008/04/14 03:44:37 gmcgarry Exp $    */
+/*      $Id: code.c,v 1.16 2008/05/16 02:18:14 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -264,7 +264,7 @@ param_retstruct(void)
 {
         NODE *p, *q;
 
-        p = tempnode(0, cftnsp->stype, 0, cftnsp->ssue);
+        p = tempnode(0, PTR-FTN+cftnsp->stype, 0, cftnsp->ssue);
         rvnr = regno(p);
         q = block(REG, NIL, NIL, PTR+STRTY, 0, cftnsp->ssue);
         regno(q) = R0;
@@ -332,7 +332,7 @@ bfcode(struct symtab **sp, int cnt)
                 ++usym;
         }
 
-	/* if returning a structure, more the hidden argument into a TEMP */
+	/* if returning a structure, move the hidden argument into a TEMP */
         if (cftnsp->stype == STRTY+FTN || cftnsp->stype == UNIONTY+FTN) {
 		param_retstruct();
 		++argoff;
