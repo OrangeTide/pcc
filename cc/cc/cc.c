@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.96 2008/04/20 04:54:13 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.97 2008/05/20 05:38:05 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -91,6 +91,10 @@
 #define	STDINC	  	"/usr/include/"
 #endif
 
+#ifndef LIBDIR
+#define LIBDIR		"/usr/lib/"
+#endif
+
 #ifndef PREPROCESSOR
 #define PREPROCESSOR	"cpp"
 #endif
@@ -105,6 +109,15 @@
 
 #ifndef LINKER
 #define LINKER		"ld"
+#endif
+
+#define OS MKS(TARGOS)
+#define MACH MKS(TARGMACH)
+#ifndef PCCINCDIR
+#define PCCINCDIR	LIBDIR "pcc/" MACH "-" OS "/" PACKAGE_VERSION "/include"
+#endif
+#ifndef PCCLIBDIR
+#define PCCLIBDIR	LIBDIR "pcc/" MACH "-" OS "/" PACKAGE_VERSION "/lib"
 #endif
 
 #define MAXFIL 10000
@@ -489,6 +502,7 @@ main(int argc, char *argv[])
 			av[na++] = *pv;
 		if (!nostdinc)
 			av[na++] = "-S", av[na++] = STDINC;
+		av[na++] = "-I" PCCINCDIR;
 		if (idirafter) {
 			av[na++] = "-I";
 			av[na++] = idirafter;
@@ -673,6 +687,7 @@ nocom:
 		if (pthreads)
 			av[j++] = "-lpthread";
 		if (!nostdlib) {
+			av[j++] = "-L" PCCLIBDIR;
 			if (pgflag) {
 				for (i = 0; libclibs_profile[i]; i++)
 					av[j++] = libclibs_profile[i];
