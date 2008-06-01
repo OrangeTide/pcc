@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.192 2008/05/16 02:11:36 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.193 2008/06/01 00:54:41 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2106,13 +2106,14 @@ p2tree(NODE *p)
 					n = -n;
 				snprintf(cp, 32, LABFMT, n);
 				p->n_name = cp;
-			} else {
+			} else if (!kflag) {
 				char *name = exname(q->soname);
 				int n = strlen(name) + 1;
 				char *cp = (isinlining ?  permalloc(n) : tmpalloc(n));
 				strlcpy(cp, name, n);
 				p->n_name = cp;
-			}
+			} else
+				p->n_name = q->soname;
 		} else
 			p->n_name = "";
 		break;
