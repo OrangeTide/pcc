@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.97 2008/05/20 05:38:05 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.98 2008/06/03 06:27:20 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -500,9 +500,10 @@ main(int argc, char *argv[])
 			av[na++] = "-t";
 		for(pv=ptemp; pv <pvt; pv++)
 			av[na++] = *pv;
-		if (!nostdinc)
+		if (!nostdinc) {
 			av[na++] = "-S", av[na++] = STDINC;
-		av[na++] = "-I" PCCINCDIR;
+			av[na++] = "-I" PCCINCDIR;
+		}
 		if (idirafter) {
 			av[na++] = "-I";
 			av[na++] = idirafter;
@@ -589,6 +590,9 @@ main(int argc, char *argv[])
 	assemble:
 		na = 0;
 		av[na++] = as;
+#if defined(os_sunos) && defined(mach_sparc64)
+		av[na++] = "-m64";
+#endif
 		if (vflag)
 			av[na++] = "-v";
 		if (kflag)
@@ -624,13 +628,17 @@ nocom:
 #ifndef os_win32
 		if (vflag)
 			av[j++] = "-v";
+#ifndef os_sunos
 		av[j++] = "-X";
+#endif
 		if (shared) {
 			av[j++] = "-shared";
+#ifndef os_sunos
 		} else {
 			av[j++] = "-d";
 			av[j++] = "-e";
 			av[j++] = STARTLABEL;
+#endif
 			if (Bstatic == 0) { /* Dynamic linkage */
 #ifdef DYNLINKER
 				for (i = 0; dynlinker[i]; i++)
