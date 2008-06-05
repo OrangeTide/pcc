@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.73 2008/05/11 16:55:03 ragge Exp $	*/
+/*	$Id: scan.l,v 1.74 2008/06/05 06:26:32 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -38,6 +38,7 @@ FS			(f|F|l|L)
 IS			(u|U|l|L)*
 
 %{
+#include <stdlib.h>
 #include <errno.h>  
 #include <string.h>
 #include <stdarg.h>
