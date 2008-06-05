@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.18 2008/02/10 15:05:25 ragge Exp $
+#	$Id: Makefile.in,v 1.19 2008/06/05 04:25:40 gmcgarry Exp $
 #
 # Makefile.in for cpp
 #
@@ -7,7 +7,7 @@ srcdir=@srcdir@
 top_srcdir=@top_srcdir@
 builddir=@builddir@
 top_builddir=@top_builddir@
-XFL=-DCPP_DEBUG -Wall -Wmissing-prototypes -Wstrict-prototypes -Werror
+XFL=-DCPP_DEBUG
 
 prefix = @prefix@
 exec_prefix = @exec_prefix@
