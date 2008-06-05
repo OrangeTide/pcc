@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.98 2008/06/03 06:27:20 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.99 2008/06/05 04:03:56 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -136,7 +136,7 @@ int callsys(char [], char *[]);
 int cunlink(char *);
 void dexit(int);
 void idexit(int);
-char *gettmp();
+char *gettmp(void);
 void *ccmalloc(int size);
 char	*av[MAXAV];
 char	*clist[MAXFIL];
@@ -915,6 +915,8 @@ callsys(char *f, char *v[])
 	if (WIFSIGNALED(status))
 		dexit(eflag ? eflag : 1);
 	errorx(8, "Fatal error in %s", f);
+
+	return 0;
 }
 #endif
 
