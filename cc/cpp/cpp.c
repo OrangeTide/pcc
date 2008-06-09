@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.82 2008/04/20 01:47:49 gmcgarry Exp $	*/
+/*	$Id: cpp.c,v 1.83 2008/06/09 10:43:02 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -413,7 +413,7 @@ found:			if (nl == 0 || subst(nl, NULL) == 0) {
 			return base;
 		}
 	}
-	error("preamture EOF");
+	error("premature EOF");
 	/* NOTREACHED */
 	return NULL; /* XXX gcc */
 }
