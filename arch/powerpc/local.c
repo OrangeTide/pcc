@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.11 2008/05/11 16:55:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.12 2008/06/19 07:29:22 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -35,8 +35,7 @@
 
 extern int kflag;
 
-static
-void simmod(NODE *p);
+static void simmod(NODE *p);
 
 /*	this file contains code which is dependent on the target machine */
 
@@ -1266,6 +1265,9 @@ simmod(NODE *p)
 	NODE *r = p->n_right;
 
 	assert(p->n_op == MOD);
+
+	if (!ISUNSIGNED(p->n_type))
+		return;
 
 #define ISPOW2(n) ((n) && (((n)&((n)-1)) == 0))
 
