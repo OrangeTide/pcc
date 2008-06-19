@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.194 2008/06/19 11:43:58 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.195 2008/06/19 12:09:21 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1163,6 +1163,10 @@ tymatch(p)  register NODE *p; {
 		t2 = DEUNSIGN(t2);
 		}
 
+	if (Wsign_compare && clogop(o) && t1 == t2 && lu != ru &&
+	    p->n_left->nop != ICON && p->n_right != ICON)
+		werror("comparison between signed an unsigned");
+
 #if 0
 	if ((t1 == CHAR || t1 == SHORT) && o!= RETURN)
 		t1 = INT;
@@ -1218,9 +1222,6 @@ tymatch(p)  register NODE *p; {
 		p->n_df = NULL;
 		p->n_sue = MKSUE(t);
 		}
-
-	if (Wsign_compare && clogop(o) && t1 == t2 && lu != ru)
-		werror("comparison between signed an unsigned");
 
 #ifdef PCC_DEBUG
 	if (tdebug) {
