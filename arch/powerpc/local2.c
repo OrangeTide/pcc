@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.14 2008/04/15 09:42:25 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.15 2008/06/19 07:32:44 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1396,8 +1396,9 @@ COLORMAP(int c, int *r)
                 return num < 16;
 	case CLASSC:
 		return num < 32;
+        case CLASSD:
+                return r[CLASSD] < DREGCNT;
         }
-        assert(0);
         return 0; /* XXX gcc */
 }
 
