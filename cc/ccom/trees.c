@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.193 2008/06/01 00:54:41 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.194 2008/06/19 11:43:58 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1218,6 +1218,9 @@ tymatch(p)  register NODE *p; {
 		p->n_df = NULL;
 		p->n_sue = MKSUE(t);
 		}
+
+	if (Wsign_compare && clogop(o) && t1 == t2 && lu != ru)
+		werror("comparison between signed an unsigned");
 
 #ifdef PCC_DEBUG
 	if (tdebug) {

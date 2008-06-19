@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.101 2008/06/19 08:11:40 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.102 2008/06/19 11:43:58 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -264,6 +264,12 @@ main(int argc, char *argv[])
 					wlist[nw++] = "-WW";
 				} else if (strcmp(argv[i],
 				    "-Wno-pointer-sign") == 0) {
+					wlist[nw++] = argv[i];
+				} else if (strcmp(argv[i],
+				    "-Wsign-compare") == 0) {
+					wlist[nw++] = argv[i];
+				} else if (strcmp(argv[i],
+				    "-Wno-sign-compare") == 0) {
 					wlist[nw++] = argv[i];
 				}
 				break;
