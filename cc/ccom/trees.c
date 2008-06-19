@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.195 2008/06/19 12:09:21 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.196 2008/06/19 12:23:22 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1164,7 +1164,7 @@ tymatch(p)  register NODE *p; {
 		}
 
 	if (Wsign_compare && clogop(o) && t1 == t2 && lu != ru &&
-	    p->n_left->nop != ICON && p->n_right != ICON)
+	    p->n_left->n_op != ICON && p->n_right->n_op != ICON)
 		werror("comparison between signed an unsigned");
 
 #if 0
