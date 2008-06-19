@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.53 2008/06/19 07:41:12 gmcgarry Exp $	*/
+/*	$Id: optim2.c,v 1.54 2008/06/19 12:51:48 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -429,7 +429,7 @@ again:	gotone = 0;
 			continue;
 		ip->ip_node->n_right->n_lval = j;
 		i = ip->ip_node->n_left->n_op;
-		if (i < EQ || i - EQ >= negrelsize)
+		if (i < EQ || i - EQ >= (int)negrelsize)
 			comperr("deljumps: unexpected op");
 		ip->ip_node->n_left->n_op = negrel[i - EQ];
 		tfree(n->ip_node);

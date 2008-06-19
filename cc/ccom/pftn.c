@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.204 2008/06/19 08:05:00 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.205 2008/06/19 12:51:48 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2070,7 +2070,7 @@ doacall(NODE *f, NODE *a)
 	    f->n_sp->sname[0] == '_' && f->n_sp->sname[1] == '_') {
 		int i;
 
-		for (i = 0; i < sizeof(bitable)/sizeof(bitable[0]); i++) {
+		for (i = 0; i < (int)(sizeof(bitable)/sizeof(bitable[0])); i++) {
 			if (strcmp(bitable[i].name, f->n_sp->sname) == 0)
 				return (*bitable[i].fun)(f, a);
 		}

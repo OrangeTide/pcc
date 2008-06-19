@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.106 2008/02/09 11:09:38 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.107 2008/06/19 12:51:48 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -383,12 +383,12 @@ struct basicblock {
 
 struct labelinfo {
 	struct basicblock **arr;
-	unsigned int size;
+	int size;
 	unsigned int low;
 };
 
 struct bblockinfo {
-	unsigned int size;
+	int size;
 	struct basicblock **arr;
 };
 
