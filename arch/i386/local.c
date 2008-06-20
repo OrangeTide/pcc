@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.77 2008/05/11 16:55:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.78 2008/06/20 06:37:46 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -987,8 +987,11 @@ char *nextsect;
 #ifdef TLS
 static int gottls;
 #endif
+static int constructor;
+static int destructor;
 
-/* * Give target the opportunity of handling pragmas.
+/*
+ * Give target the opportunity of handling pragmas.
  */
 int
 mypragma(char **ary)
@@ -999,8 +1002,17 @@ mypragma(char **ary)
 		return 1;
 	}
 #endif
+	if (strcmp(ary[1], "constructor") == 0 || strcmp(ary[1], "init") == 0) {
+		constructor = 1;
+		return 1;
+	}
+	if (strcmp(ary[1], "destructor") == 0 || strcmp(ary[1], "fini") == 0) {
+		destructor = 1;
+		return 1;
+	}
 	if (strcmp(ary[1], "section") || ary[2] == NULL)
 		return 0;
+
 	nextsect = newstring(ary[2], strlen(ary[2]));
 	return 1;
 }
@@ -1017,4 +1029,11 @@ fixdef(struct symtab *sp)
 		sp->sflags |= STLS;
 	gottls = 0;
 #endif
+	if ((constructor || destructor) && (sp->sclass != PARAM)) {
+		printf("\t.section .%ctors,\"aw\",@progbits\n",
+		    constructor ? 'c' : 'd');
+		printf("\t.p2align 2\n");
+		printf("\t.long %s\n", exname(sp->sname));
+		constructor = destructor = 0;
+	}
 }
