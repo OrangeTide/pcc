@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.102 2008/06/19 11:43:58 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.103 2008/06/20 12:37:52 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -260,6 +260,8 @@ main(int argc, char *argv[])
 					wlist[nw++] = argv[i];
 				} else if (strcmp(argv[i], "-Wshadow") == 0) {
 					wlist[nw++] = argv[i];
+				} else if (strcmp(argv[i], "-Wno-shadow") == 0) {
+					wlist[nw++] = argv[i];
 				} else if (strcmp(argv[i], "-Wall") == 0) {
 					wlist[nw++] = "-WW";
 				} else if (strcmp(argv[i],
@@ -270,6 +272,12 @@ main(int argc, char *argv[])
 					wlist[nw++] = argv[i];
 				} else if (strcmp(argv[i],
 				    "-Wno-sign-compare") == 0) {
+					wlist[nw++] = argv[i];
+				} else if (strcmp(argv[i],
+				    "-Wunknown-pragmas") == 0) {
+					wlist[nw++] = argv[i];
+				} else if (strcmp(argv[i],
+				    "-Wno-unknown-pragmas") == 0) {
 					wlist[nw++] = argv[i];
 				}
 				break;

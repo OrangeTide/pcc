@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.81 2008/06/20 05:54:26 gmcgarry Exp $	*/
+/*	$Id: main.c,v 1.82 2008/06/20 12:37:52 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -46,7 +46,7 @@ int iTflag, oTflag;
 int xdebug, sdebug, gflag, c2debug, pdebug;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration, Wpointer_sign, Wshadow,
-	Wsign_compare;
+	Wsign_compare, Wunknown_pragmas;
 #ifdef CHAR_UNSIGNED
 int funsigned_char = 1;
 #else
@@ -72,6 +72,7 @@ static struct {
 	{ "shadow", &Wshadow, },
 	{ "pointer-sign", &Wpointer_sign, },
 	{ "sign-compare", &Wsign_compare, },
+	{ "unknown-pragmas", &Wunknown_pragmas, },
 	{ NULL, NULL, },
 };
 

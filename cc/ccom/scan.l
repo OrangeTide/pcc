@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.74 2008/06/05 06:26:32 gmcgarry Exp $	*/
+/*	$Id: scan.l,v 1.75 2008/06/20 12:37:52 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -510,10 +510,13 @@ pragma()
 		pragma_aligned = ary[2] ? atoi(ary[2]) : 1;
 	} else if (strcmp(ary[1], "rename") == 0) {
 		pragma_renamed = newstring(ary[2], strlen(ary[2]));
-	} else if (mypragma(ary))
+	} else if (mypragma(ary)) {
 		return;
-	else
-bad:		werror("unknown pragma");
+	} else {
+bad:
+		if (Wunknown_pragmas)
+			werror("unknown pragma");
+	}
 }
 
 void
