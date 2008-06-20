@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.80 2008/06/19 11:43:58 gmcgarry Exp $	*/
+/*	$Id: main.c,v 1.81 2008/06/20 05:54:26 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -344,6 +344,9 @@ main(int argc, char *argv[])
 		stabs_init();
 	}
 #endif
+
+	if (sspflag)
+		sspinit();
 
 	(void) yyparse();
 	yyaccpt();

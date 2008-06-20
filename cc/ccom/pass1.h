@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.143 2008/06/19 08:32:28 gmcgarry Exp $	*/
+/*	$Id: pass1.h,v 1.144 2008/06/20 05:54:26 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -305,6 +305,9 @@ char *tmpvsprintf(char *, va_list);
 void asginit(NODE *);
 void desinit(NODE *);
 void endinit(void);
+void sspinit(void);
+void sspstart(void);
+void sspend(void);
 void ilbrace(void);
 void irbrace(void);
 void scalinit(NODE *);
