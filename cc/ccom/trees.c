@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.198 2008/06/20 12:50:34 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.199 2008/06/20 13:19:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -543,6 +543,55 @@ runtime:
 	return(p);
 
 	}
+
+/*
+ * Build a name node based on a symtab entry.
+ * broken out from buildtree().
+ */
+NODE *
+nametree(struct symtab *sp)
+{
+	NODE *p;
+
+	p = block(NAME, NIL, NIL, sp->stype, sp->sdf, sp->ssue);
+	p->n_qual = sp->squal;
+	p->n_sp = sp;
+
+#ifndef NO_C_BUILTINS
+	if (sp->sname[0] == '_' && strncmp(sp->sname, "__builtin_", 10) == 0)
+		return p;  /* do not touch builtins here */
+	
+#endif
+
+	if (sp->sflags & STNODE) {
+		/* Generated for optimizer */
+		p->n_op = TEMP;
+		p->n_rval = sp->soffset;
+	}
+
+#ifdef GCC_COMPAT
+	/* Get a label name */
+	if (sp->sflags == SLBLNAME) {
+		p->n_type = VOID;
+		p->n_sue = MKSUE(VOID);
+	}
+#endif
+	if (sp->stype == UNDEF) {
+		uerror("%s undefined", sp->sname);
+		/* make p look reasonable */
+		p->n_type = INT;
+		p->n_sue = MKSUE(INT);
+		p->n_df = NULL;
+		defid(p, SNULL);
+	}
+	if (sp->sclass == MOE) {
+		p->n_op = ICON;
+		p->n_lval = sp->soffset;
+		p->n_df = NULL;
+		p->n_sp = NULL;
+	}
+	return clocal(p);
+}
 
 /*
  * Do a conditional branch.
