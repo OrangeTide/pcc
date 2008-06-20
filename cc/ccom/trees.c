@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.196 2008/06/19 12:23:22 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.197 2008/06/20 11:44:13 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -801,7 +801,8 @@ chkpun(NODE *p)
 			t1 = DECREF(t1);
 			t2 = DECREF(t2);
 		}
-		werror("illegal pointer combination");
+		if (Wpointer_sign)
+			werror("illegal pointer combination");
 	}
 }
 
@@ -1165,7 +1166,7 @@ tymatch(p)  register NODE *p; {
 
 	if (Wsign_compare && clogop(o) && t1 == t2 && lu != ru &&
 	    p->n_left->n_op != ICON && p->n_right->n_op != ICON)
-		werror("comparison between signed an unsigned");
+		werror("comparison between signed and unsigned");
 
 #if 0
 	if ((t1 == CHAR || t1 == SHORT) && o!= RETURN)
