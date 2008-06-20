@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.103 2008/06/20 12:37:52 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.104 2008/06/20 12:50:33 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -278,6 +278,12 @@ main(int argc, char *argv[])
 					wlist[nw++] = argv[i];
 				} else if (strcmp(argv[i],
 				    "-Wno-unknown-pragmas") == 0) {
+					wlist[nw++] = argv[i];
+				} else if (strcmp(argv[i],
+				    "-Wunreachable-code") == 0) {
+					wlist[nw++] = argv[i];
+				} else if (strcmp(argv[i],
+				    "-Wno-unreachable-code") == 0) {
 					wlist[nw++] = argv[i];
 				}
 				break;
