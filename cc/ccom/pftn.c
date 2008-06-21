@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.207 2008/06/20 12:04:04 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.208 2008/06/21 16:30:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2166,8 +2166,15 @@ doacall(NODE *f, NODE *a)
 		if ((hasarray = ISARY(arrt)))
 			arrt += (PTR-ARY);
 #endif
-		if (ISARY(type))
-			type += (PTR-ARY);
+		/* Taking addresses of arrays are meaningless in expressions */
+		/* but people tend to do that and also use in prototypes */
+		/* this is mostly a problem with typedefs */
+		if (ISARY(type)) {
+			if (ISPTR(arrt) && ISARY(DECREF(arrt)))
+				type = INCREF(type);
+			else
+				type += (PTR-ARY);
+		}
 
 		/* Check structs */
 		if (type <= BTMASK && arrt <= BTMASK) {
