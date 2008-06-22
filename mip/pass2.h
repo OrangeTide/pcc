@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.107 2008/06/19 12:51:48 gmcgarry Exp $	*/
+/*	$Id: pass2.h,v 1.108 2008/06/22 15:25:00 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -267,6 +267,7 @@ void myormake(NODE *);
 int *livecall(NODE *);
 void prtreg(FILE *, NODE *);
 char *prcook(int);
+int myxasm(struct interpass *ip, NODE *p);
 
 void conput(FILE *, NODE *);
 

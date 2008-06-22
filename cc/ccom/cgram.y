@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.205 2008/06/20 13:19:03 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.206 2008/06/22 15:25:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1563,10 +1563,10 @@ xcmop(NODE *out, NODE *in, NODE *str)
 		/* D out-list sanity check */
 		for (p = out; p->n_op == CM; p = p->n_left) {
 			q = p->n_right;
-			if (q->n_name[0] != '=')
+			if (q->n_name[0] != '=' && q->n_name[0] != '+')
 				uerror("output missing =");
 		}
-		if (p->n_name[0] != '=')
+		if (p->n_name[0] != '=' && p->n_name[0] != '+')
 			uerror("output missing =");
 		if (in == NIL)
 			p = out;

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.15 2008/06/19 07:32:44 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.16 2008/06/22 15:25:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1503,4 +1503,13 @@ int
 features(int mask)
 {
 	return ((fset & mask) == mask);
+}
+/*
+ * Do something target-dependent for xasm arguments.
+ * Supposed to find target-specific constraints and rewrite them.
+ */
+int
+myxasm(struct interpass *ip, NODE *p)
+{
+	return 0;
 }

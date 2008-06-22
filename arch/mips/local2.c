@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.19 2008/04/15 10:24:51 gmcgarry Exp $	 */
+/*	$Id: local2.c,v 1.20 2008/06/22 15:24:59 ragge Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1317,4 +1317,13 @@ mflags(char *str)
 		nargregs = MIPS_N32_NARGREGS;
 	}
 #endif
+}
+/*
+ * Do something target-dependent for xasm arguments.
+ * Supposed to find target-specific constraints and rewrite them.
+ */
+int
+myxasm(struct interpass *ip, NODE *p)
+{
+	return 0;
 }

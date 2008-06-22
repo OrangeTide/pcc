@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.28 2008/04/14 03:44:37 gmcgarry Exp $    */
+/*      $Id: local2.c,v 1.29 2008/06/22 15:24:59 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1485,3 +1485,12 @@ deflab(int label)
 	printf(LABFMT ":\n", label);
 }
 
+/*
+ * Do something target-dependent for xasm arguments.
+ * Supposed to find target-specific constraints and rewrite them.
+ */
+int
+myxasm(struct interpass *ip, NODE *p)
+{
+	return 0;
+}

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.37 2008/02/10 19:25:43 ragge Exp $	*/
+/*	$Id: local2.c,v 1.38 2008/06/22 15:24:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -652,4 +652,13 @@ lastcall(NODE *p)
 void
 mflags(char *str)
 {
+}
+/*
+ * Do something target-dependent for xasm arguments.
+ * Supposed to find target-specific constraints and rewrite them.
+ */
+int
+myxasm(struct interpass *ip, NODE *p)
+{
+	return 0;
 }
