@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.76 2008/06/23 07:44:49 ragge Exp $	*/
+/*	$Id: scan.l,v 1.77 2008/06/23 12:58:23 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -69,10 +69,10 @@ FILE *yyget_in  (void);
 FILE *yyget_out  (void);
 int yyget_leng  (void);
 char *yyget_text  (void);
-void yyset_in (FILE *  in_str );
-void yyset_out (FILE *  out_str );
+void yyset_in (FILE *);
+void yyset_out (FILE *);
 int yyget_debug  (void);
-void yyset_debug (int  bdebug );
+void yyset_debug (int);
 int yylex_destroy  (void);
 extern int yyget_lineno (void);
 extern void yyset_lineno (int);
