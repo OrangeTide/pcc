@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.105 2008/06/22 10:35:41 ragge Exp $	*/
+/*	$Id: cc.c,v 1.106 2008/06/23 12:56:31 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -706,7 +706,9 @@ nocom:
 			av[j++] = "-shared";
 #ifndef os_sunos
 		} else {
+#ifndef os_darwin
 			av[j++] = "-d";
+#endif
 			av[j++] = "-e";
 			av[j++] = STARTLABEL;
 #endif
