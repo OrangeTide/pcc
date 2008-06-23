@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.83 2008/06/09 10:43:02 gmcgarry Exp $	*/
+/*	$Id: cpp.c,v 1.84 2008/06/23 08:31:23 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -1219,6 +1219,8 @@ expdef(vp, rp, gotwarn)
 			}
 			if (c == EXPAND)
 				instr = 0;
+			if (c == 0)
+				error("eof in macro");
 		}
 		while (args[i] < stringbuf &&
 		    (stringbuf[-1] == ' ' || stringbuf[-1] == '\t'))
