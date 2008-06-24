@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.103 2008/06/22 15:24:59 ragge Exp $	*/
+/*	$Id: local2.c,v 1.104 2008/06/24 19:35:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1126,18 +1126,15 @@ myxasm(struct interpass *ip, NODE *p)
 	NODE *in = 0, *ut = 0;
 	char *w;
 	int reg;
+	int cw;
 
-	w = p->n_name;
-	if (*w == '=') {
-		w++;
+	cw = xasmcode(p->n_name);
+	if (cw & (XASMASG|XASMINOUT))
 		ut = p->n_left;
-	} else if (*w == '+') {
-		w++;
-		in = ut = p->n_left;
-	} else
+	if ((cw & XASMASG) == 0)
 		in = p->n_left;
 
-	switch (w[0]) {
+	switch (XASMVAL(cw)) {
 	case 'D': reg = EDI; break;
 	case 'S': reg = ESI; break;
 	case 'a': reg = EAX; break;
@@ -1147,7 +1144,9 @@ myxasm(struct interpass *ip, NODE *p)
 	default:
 		return 0;
 	}
-	w[0] = 'r'; /* now reg */
+	for (w = p->n_name; *w; w++)
+		;
+	w[-1] = 'r'; /* now reg */
 	p->n_label = CLASSA;
 
 	if (in && ut)
