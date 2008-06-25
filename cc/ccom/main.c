@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.83 2008/06/20 12:50:34 gmcgarry Exp $	*/
+/*	$Id: main.c,v 1.84 2008/06/25 12:00:10 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -291,20 +291,21 @@ main(int argc, char *argv[])
 		argc -= optind;
 		argv += optind;
 
-		if (argc != 0) {
+		if (argc > 0 && strcmp(argv[0], "-") != 0) {
 			if (freopen(argv[0], "r", stdin) == NULL) {
 				fprintf(stderr, "open input file '%s':",
 				    argv[0]);
 				perror(NULL);
 				exit(1);
 			}
-			if (argc != 1)
-				if (freopen(argv[1], "w", stdout) == NULL) {
-					fprintf(stderr, "open output file '%s':",
-					    argv[1]);
-					perror(NULL);
-					exit(1);
-				}
+		}
+		if (argc > 1 && strcmp(argv[1], "-") != 0) {
+			if (freopen(argv[1], "w", stdout) == NULL) {
+				fprintf(stderr, "open output file '%s':",
+				    argv[1]);
+				perror(NULL);
+				exit(1);
+			}
 		}
 
 	mkdope();
