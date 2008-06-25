@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.199 2008/06/20 13:19:03 ragge Exp $	*/
+/*	$Id: trees.c,v 1.200 2008/06/25 19:34:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -197,9 +197,11 @@ buildtree(int o, NODE *l, NODE *r)
 		case ER:
 		case LS:
 		case RS:
-			if( conval( l, o, r ) ) {
-				nfree(r);
-				return(l);
+			if (!ISPTR(l->n_type) && !ISPTR(r->n_type)) {
+				if( conval( l, o, r ) ) {
+					nfree(r);
+					return(l);
+				}
 			}
 			break;
 		}
@@ -2313,7 +2315,9 @@ send_passt(int type, ...)
 		break;
 	case IP_ASM:
 		if (blevel == 0) { /* outside function */
-			printf("\t%s\n", va_arg(ap, char *));
+			printf("\t");
+			printf(va_arg(ap, char *));
+			printf("\n");
 			va_end(ap);
 			defloc(NULL);
 			return;
