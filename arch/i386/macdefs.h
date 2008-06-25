@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.57 2008/06/25 01:29:18 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.58 2008/06/25 19:33:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -303,6 +303,16 @@ int COLORMAP(int c, int *r);
 #define	SSECTION	SLOCAL1
 #define	STLS		SLOCAL2
 
+/*
+ * Extended assembler macros.
+ */
+void targarg(char *w, void *arg);
+#define	XASM_TARGARG(w, ary)	\
+	(w[1] == 'b' || w[1] == 'h' ? w++, targarg(w, ary), 1 : 0)
+
+/*
+ * builtins.
+ */
 #define TARGET_BUILTINS							\
 	{ "__builtin_frame_address", i386_builtin_frame_address },	\
 	{ "__builtin_return_address", i386_builtin_return_address },
@@ -312,4 +322,3 @@ struct node;
 NODE *i386_builtin_frame_address(NODE *f, NODE *a);
 NODE *i386_builtin_return_address(NODE *f, NODE *a);
 #undef NODE
-

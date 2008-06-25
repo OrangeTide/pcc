@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.104 2008/06/24 19:35:56 ragge Exp $	*/
+/*	$Id: local2.c,v 1.105 2008/06/25 19:33:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1161,4 +1161,23 @@ myxasm(struct interpass *ip, NODE *p)
 		DLIST_INSERT_BEFORE(ip, ip2, qelem);
 	}
 	return 1;
+}
+
+void
+targarg(char *w, void *arg)
+{
+	NODE **ary = arg;
+	NODE *p, *q;
+
+	p = ary[(int)w[1]-'0']->n_left;
+	if (optype(p->n_op) != LTYPE)
+		comperr("bad xarg op %d", p->n_op);
+	q = tcopy(p);
+	if (q->n_op == REG) {
+		regno(q) = regno(q)*2+8;
+		if (*w == 'h')
+			regno(q)++;
+	}
+	adrput(stdout, q);
+	tfree(q);
 }
