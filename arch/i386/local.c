@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.81 2008/06/25 11:47:05 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.82 2008/06/25 11:57:03 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -982,7 +982,7 @@ defzero(struct symtab *sp)
 }
 
 static char *
-section2string(const char *name, int len)
+section2string(char *name, int len)
 {
 	char *s;
 	int n;
