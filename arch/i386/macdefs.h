@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.56 2008/03/20 14:19:46 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.57 2008/06/25 01:29:18 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -302,3 +302,14 @@ int COLORMAP(int c, int *r);
  */
 #define	SSECTION	SLOCAL1
 #define	STLS		SLOCAL2
+
+#define TARGET_BUILTINS							\
+	{ "__builtin_frame_address", i386_builtin_frame_address },	\
+	{ "__builtin_return_address", i386_builtin_return_address },
+
+#define NODE struct node
+struct node;
+NODE *i386_builtin_frame_address(NODE *f, NODE *a);
+NODE *i386_builtin_return_address(NODE *f, NODE *a);
+#undef NODE
+
