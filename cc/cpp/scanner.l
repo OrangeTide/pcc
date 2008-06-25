@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.40 2008/05/11 16:55:03 ragge Exp $   */
+/*	$Id: scanner.l,v 1.41 2008/06/25 19:36:49 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -184,7 +184,12 @@ WS	[\t ]
 				return NUMBER;
 			}
 
-[1-9][0-9]*		{ if (slow && !YYSTATE) return IDENT; scale = 10; goto num; }
+[0-9][0-9]*		{
+				if (slow && !YYSTATE)
+					return IDENT;
+				scale = yytext[0] == '0' ? 8 : 10;
+				goto num;
+			}
 
 0[xX]{H}+{IS}?		{	scale = 16;
 			num:	if (YYSTATE == IFR) 
