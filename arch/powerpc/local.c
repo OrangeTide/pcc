@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.14 2008/06/23 12:54:53 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.15 2008/06/25 12:07:31 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1472,11 +1472,11 @@ powerpc_builtin_return_address(NODE *f, NODE *a)
 	tfree(f);
 	tfree(a);
 
-	f = block(REG, NIL, NIL, PTR+VOID, 0, MKSUE(PTR+VOID));
+	f = block(REG, NIL, NIL, PTR+VOID, 0, MKSUE(VOID));
 	regno(f) = SPREG;
 
 	do {
-		f = buildtree(UMUL, f, NIL);
+		f = block(UMUL, f, NIL, PTR+VOID, 0, MKSUE(VOID));
 	} while (i++ < nframes);
 
 	f = block(PLUS, f, bcon(8), INCREF(PTR+VOID), 0, MKSUE(VOID));
@@ -1485,5 +1485,38 @@ powerpc_builtin_return_address(NODE *f, NODE *a)
 	return f;
 bad:
         uerror("bad argument to __builtin_return_address");
+        return bcon(0);
+}
+
+NODE *
+powerpc_builtin_frame_address(NODE *f, NODE *a)
+{
+	int nframes;
+	int i = 0;
+
+	if (a == NULL || a->n_op != ICON)
+		goto bad;
+
+	nframes = a->n_lval;
+
+	tfree(f);
+	tfree(a);
+
+	if (nframes == 0) {
+		f = block(REG, NIL, NIL, PTR+VOID, 0, MKSUE(VOID));
+		regno(f) = FPREG;
+	} else {
+		f = block(REG, NIL, NIL, PTR+VOID, 0, MKSUE(VOID));
+		regno(f) = SPREG;
+		do {
+			f = block(UMUL, f, NIL, PTR+VOID, 0, MKSUE(VOID));
+		} while (i++ < nframes);
+		f = block(PLUS, f, bcon(24), INCREF(PTR+VOID), 0, MKSUE(VOID));
+		f = buildtree(UMUL, f, NIL);
+	}
+
+	return f;
+bad:
+        uerror("bad argument to __builtin_frame_address");
         return bcon(0);
 }
