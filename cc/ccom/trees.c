@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.200 2008/06/25 19:34:32 ragge Exp $	*/
+/*	$Id: trees.c,v 1.201 2008/06/27 04:37:19 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2316,7 +2316,7 @@ send_passt(int type, ...)
 	case IP_ASM:
 		if (blevel == 0) { /* outside function */
 			printf("\t");
-			printf(va_arg(ap, char *));
+			printf("%s", va_arg(ap, char *));
 			printf("\n");
 			va_end(ap);
 			defloc(NULL);
