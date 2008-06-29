@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.230 2008/06/29 13:45:10 ragge Exp $	*/
+/*	$Id: reader.c,v 1.231 2008/06/29 14:28:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1261,6 +1261,13 @@ again:
 
 	cw = xasmcode(p->n_name);
 	switch (XASMVAL(cw)) {
+	case 'p':
+		/* pointer */
+		/* just make register of it */
+		p->n_name = tmpstrdup(p->n_name);
+		c = strchr(p->n_name, XASMVAL(cw)); /* cannot fail */
+		*c = 'r';
+		/* FALLTHROUGH */
 	case 'r': /* general reg */
 		/* set register class */
 		p->n_label = gclass(p->n_left->n_type);
@@ -1310,8 +1317,7 @@ again:
 		if (p->n_left->n_op == ICON)
 			break;
 		p->n_name = tmpstrdup(p->n_name);
-		for (c = p->n_name; *c != 'i' && *c != 'n'; c++)
-			;
+		c = strchr(p->n_name, XASMVAL(cw)); /* cannot fail */
 		if (c[1]) {
 			c[0] = c[1], c[1] = 0;
 			goto again;
