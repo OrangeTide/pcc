@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.80 2008/04/20 09:41:38 ragge Exp $	*/
+/*	$Id: common.c,v 1.81 2008/06/29 13:45:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -616,6 +616,18 @@ tmpvsprintf(char *fmt, va_list ap)
 	}
 	tmpleft -= len+1;
 	return tmp;
+}
+
+/*
+ * Duplicate a string onto the temporary heap.
+ */
+char *
+tmpstrdup(char *str)
+{
+	int len;
+
+	len = strlen(str) + 1;
+	return memcpy(tmpalloc(len), str, len);
 }
 
 void
