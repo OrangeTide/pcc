@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.180 2008/06/25 19:33:21 ragge Exp $	*/
+/*	$Id: regs.c,v 1.181 2008/06/30 08:21:37 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1127,8 +1127,8 @@ xasmionize(NODE *p, void *arg)
 		return; /* dummy end marker */
 
 	cw = xasmcode(p->n_name);
-	if (XASMVAL(cw) == 'n')
-		return; /* numeric constant, no flow control */
+	if (XASMVAL(cw) == 'n' || XASMVAL(cw) == 'm')
+		return; /* no flow analysis */
 	p = p->n_left;
 	b = regno(p);
 	if (XASMISOUT(cw)) {
