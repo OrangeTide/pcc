@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.42 2008/06/29 12:54:03 ragge Exp $   */
+/*	$Id: scanner.l,v 1.43 2008/06/30 07:17:59 gmcgarry Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -201,7 +201,7 @@ WS	[\t ]
 '(\\.|[^\\'])+'		{
 				if (YYSTATE || slow) {
 					yylval.node.op = NUMBER;
-					yylval.node.nd_val = charcon(yytext);
+					yylval.node.nd_val = charcon((usch *)yytext);
 					return (NUMBER);
 				}
 				if (tflag)
