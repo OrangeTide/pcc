@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.208 2008/06/24 19:32:15 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.209 2008/07/01 12:26:25 stefan Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -857,6 +857,7 @@ cnstr:		   string { $$ = xasmop($1, bcon(0)); }
                 ;
 
 label:		   C_NAME ':' { deflabel($1); reached = 1; }
+		|  C_TYPENAME ':' { deflabel($1); reached = 1; }
 		|  C_CASE e ':' { addcase($2); reached = 1; }
 		|  C_DEFAULT ':' { reached = 1; adddef(); flostat |= FDEF; }
 		;
