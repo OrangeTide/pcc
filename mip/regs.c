@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.181 2008/06/30 08:21:37 ragge Exp $	*/
+/*	$Id: regs.c,v 1.182 2008/07/02 01:33:16 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -879,6 +879,7 @@ setxarg(NODE *p)
 			LIVEADD(i);
 		}
 		break;
+	case 'i':
 	case 'm':
 	case 'n':
 		break;
