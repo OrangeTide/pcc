@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.36 2008/04/20 01:47:24 gmcgarry Exp $	*/
+/*	$Id: cpp.h,v 1.37 2008/07/02 01:12:41 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -44,7 +44,7 @@ extern	int	trulvl;
 extern	int	flslvl;
 extern	int	elflvl;
 extern	int	elslvl;
-extern	int	tflag, Cflag;
+extern	int	tflag, Cflag, Pflag;
 extern	int	Mflag, dMflag;
 extern	usch	*Mfile;
 extern	int	ofd;

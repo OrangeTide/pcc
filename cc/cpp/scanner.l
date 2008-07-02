@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.43 2008/06/30 07:17:59 gmcgarry Exp $   */
+/*	$Id: scanner.l,v 1.44 2008/07/02 01:12:41 gmcgarry Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -497,7 +497,7 @@ prtline()
 			s = sheap("%s: %s\n", Mfile, ifiles->fname);
 			write(ofd, s, strlen((char *)s));
 		}
-	} else
+	} else if (!Pflag)
 		putstr(sheap("# %d \"%s\"\n", ifiles->lineno, ifiles->fname));
 	stringbuf = os;
 }

@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.84 2008/06/23 08:31:23 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.85 2008/07/02 01:12:41 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -110,7 +110,7 @@ int dflag;	/* debug printouts */
 int ofd;
 usch outbuf[CPPBUF];
 int obufp, istty, inmac;
-int Cflag, Mflag, dMflag;
+int Cflag, Mflag, dMflag, Pflag;
 usch *Mfile;
 struct initar *initar;
 int readmac;
@@ -182,7 +182,7 @@ main(int argc, char **argv)
 	struct symtab *nl;
 	register int ch;
 
-	while ((ch = getopt(argc, argv, "CD:I:MS:U:d:i:tvV?")) != -1)
+	while ((ch = getopt(argc, argv, "CD:I:MPS:U:d:i:tvV?")) != -1)
 		switch (ch) {
 		case 'C': /* Do not discard comments */
 			Cflag++;
@@ -202,6 +202,10 @@ main(int argc, char **argv)
 
 		case 'M': /* Generate dependencies for make */
 			Mflag++;
+			break;
+
+		case 'P': /* Inhibit generation of line numbers */
+			Pflag++;
 			break;
 
 		case 'S':
