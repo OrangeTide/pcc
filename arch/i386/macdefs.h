@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.60 2008/06/30 11:51:56 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.61 2008/07/05 15:13:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -318,7 +318,7 @@ int COLORMAP(int c, int *r);
  */
 void targarg(char *w, void *arg);
 #define	XASM_TARGARG(w, ary)	\
-	(w[1] == 'b' || w[1] == 'h' || w[1] == 'w' ? \
+	(w[1] == 'b' || w[1] == 'h' || w[1] == 'w' || w[1] == 'k' ? \
 	w++, targarg(w, ary), 1 : 0)
 
 /*
