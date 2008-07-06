@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.86 2008/07/05 15:10:47 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.87 2008/07/06 17:14:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -749,7 +749,8 @@ define()
 					break;
 			if (i == narg) {
 #ifdef GCC_VARI
-				if (gccvari && strcmp(yytext, gccvari) == 0) {
+				if (gccvari &&
+				    strcmp(yytext, (char *)gccvari) == 0) {
 					savch(VARG);
 					savch(WARN);
 					if (mkstr)
