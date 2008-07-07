@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.211 2008/07/07 09:03:11 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.212 2008/07/07 11:13:40 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2647,6 +2647,7 @@ void
 sspend()
 {
 	NODE *p, *q;
+	TWORD t;
 	int tmpnr = 0;
 	int lab;
 
@@ -2655,13 +2656,15 @@ sspend()
 		retlab = getlab();
 	}
 
-	if (DECREF(cftnsp->stype) != VOID && !ISSOU(DECREF(cftnsp->stype))) {
-		p = tempnode(0, DECREF(cftnsp->stype),
-		    cftnsp->sdf, cftnsp->ssue);
+	t = DECREF(cftnsp->stype);
+	if (t == BOOL)
+		t = BOOL_TYPE;
+
+	if (t != VOID && !ISSOU(t)) {
+		p = tempnode(0, t, cftnsp->sdf, cftnsp->ssue);
 		tmpnr = regno(p);
-		q = block(REG, NIL, NIL, DECREF(cftnsp->stype),
-		    cftnsp->sdf, cftnsp->ssue);
-		q->n_rval = RETREG(DECREF(cftnsp->stype));
+		q = block(REG, NIL, NIL, t, cftnsp->sdf, cftnsp->ssue);
+		q->n_rval = RETREG(t);
 		ecomp(buildtree(ASSIGN, p, q));
 	}
 
@@ -2689,12 +2692,10 @@ sspend()
 
 	plabel(lab);
 
-	if (DECREF(cftnsp->stype) != VOID && !ISSOU(DECREF(cftnsp->stype))) {
-		p = tempnode(tmpnr, DECREF(cftnsp->stype),
-		    cftnsp->sdf, cftnsp->ssue);
-		q = block(REG, NIL, NIL, DECREF(cftnsp->stype),
-		    cftnsp->sdf, cftnsp->ssue);
-		q->n_rval = RETREG(DECREF(cftnsp->stype));
+	if (t != VOID && !ISSOU(t)) {
+		p = tempnode(tmpnr, t, cftnsp->sdf, cftnsp->ssue);
+		q = block(REG, NIL, NIL, t, cftnsp->sdf, cftnsp->ssue);
+		q->n_rval = RETREG(t);
 		ecomp(buildtree(ASSIGN, q, p));
 	}
 }
