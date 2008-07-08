@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.212 2008/07/07 11:13:40 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.213 2008/07/08 07:59:27 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2236,10 +2236,6 @@ incomp:					uerror("incompatible types for arg %d",
 			goto skip; /* Anything assigned a zero */
 
 		if ((type & ~BTMASK) == (arrt & ~BTMASK)) {
-			/* do not complain for intermixed char/uchar */
-			if ((BTYPE(type) == CHAR || BTYPE(type) == UCHAR) &&
-			    (BTYPE(arrt) == CHAR || BTYPE(arrt) == UCHAR))
-				goto skip;
 			/* do not complain for pointers with signedness */
 			if (!Wpointer_sign &&
 			    DEUNSIGN(BTYPE(type)) == DEUNSIGN(BTYPE(arrt)))
