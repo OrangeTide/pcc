@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.107 2008/07/05 15:09:05 ragge Exp $	*/
+/*	$Id: cc.c,v 1.108 2008/07/08 07:27:28 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -225,6 +225,7 @@ struct Wflags {
 	{ "-Werror", 0 },
 	{ "-Wshadow", 0 },
 	{ "-Wno-shadow", NEGATIVE },
+	{ "-Wpointer-sign", INWALL },
 	{ "-Wno-pointer-sign", NEGATIVE },
 	{ "-Wsign-compare", 0 },
 	{ "-Wno-sign-compare", NEGATIVE },
@@ -575,10 +576,9 @@ main(int argc, char *argv[])
 			av[na++] = "-t";
 		for(pv=ptemp; pv <pvt; pv++)
 			av[na++] = *pv;
-		if (!nostdinc) {
+		if (!nostdinc)
 			av[na++] = "-S", av[na++] = STDINC;
-			av[na++] = "-I" PCCINCDIR;
-		}
+		av[na++] = "-I" PCCINCDIR;
 		if (idirafter) {
 			av[na++] = "-I";
 			av[na++] = idirafter;
