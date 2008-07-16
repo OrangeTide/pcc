@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.15 2008/06/25 12:07:31 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.16 2008/07/16 10:14:19 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -886,7 +886,7 @@ inwstring(struct symtab *sp)
 	NODE *p;
 
 	defloc(sp);
-	p = bcon(0);
+	p = xbcon(0, NULL, WCHAR_TYPE);
 	do {
 		if (*s++ == '\\')
 			p->n_lval = esccon(&s);
