@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.213 2008/07/08 07:59:27 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.214 2008/07/16 10:17:19 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2191,6 +2191,10 @@ doacall(NODE *f, NODE *a)
 				type = INCREF(type);
 			else
 				type += (PTR-ARY);
+		} else if (ISPTR(type) && !ISARY(DECREF(type)) &&
+		    ISPTR(arrt) && ISARY(DECREF(arrt))) {
+			type += (ARY-PTR);
+			type = INCREF(type);
 		}
 
 		/* Check structs */
