@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.108 2008/07/08 07:27:28 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.109 2008/07/18 02:17:09 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -327,7 +327,15 @@ main(int argc, char *argv[])
 					flist[nf++] = argv[i];
 					sspflag++;
 				} else if (strcmp(argv[i],
+				    "-fstack-protector-all") == 0) {
+					flist[nf++] = argv[i];
+					sspflag++;
+				} else if (strcmp(argv[i],
 				    "-fno-stack-protector") == 0) {
+					flist[nf++] = argv[i];
+					sspflag = 0;
+				} else if (strcmp(argv[i],
+				    "-fno-stack-protector-all") == 0) {
 					flist[nf++] = argv[i];
 					sspflag = 0;
 				}

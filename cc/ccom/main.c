@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.84 2008/06/25 12:00:10 gmcgarry Exp $	*/
+/*	$Id: main.c,v 1.85 2008/07/18 02:17:09 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -146,6 +146,8 @@ fflags(char *str)
 	else if (strcmp(str, "unsigned-char") == 0)
 		funsigned_char = flagval;
 	else if (strcmp(str, "stack-protector") == 0)
+		sspflag = flagval;
+	else if (strcmp(str, "stack-protector-all") == 0)
 		sspflag = flagval;
 	else {
 		fprintf(stderr, "unrecognised option '%s'\n", str);
