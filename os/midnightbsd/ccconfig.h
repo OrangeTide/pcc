@@ -1,4 +1,4 @@
-/* $Id: ccconfig.h,v 1.3 2008/07/18 03:55:49 gmcgarry Exp $ */
+/* $Id: ccconfig.h,v 1.4 2008/07/18 06:53:48 gmcgarry Exp $ */
 /*-
  * Copyright (c) 2007, 2008
  *	Thorsten Glaser <tg@mirbsd.de>
@@ -80,6 +80,7 @@
 	LIBDIR "crtend.o",			\
 	LIBDIR "crtn.o",			\
 	NULL					\
+}
 
 #define LIBCLIBS		{		\
 	"-lc",					\
