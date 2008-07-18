@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.110 2008/07/18 03:29:17 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.111 2008/07/18 03:54:40 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -195,6 +195,10 @@ char *crt0file_profile = CRT0FILE_PROFILE;
 #ifdef STARTFILES
 char *startfiles[] = STARTFILES;
 char *endfiles[] = ENDFILES;
+#endif
+#ifdef STARTFILES_T
+char *startfiles_T[] = STARTFILES_T;
+char *endfiles_T[] = ENDFILES_T;
 #endif
 #ifdef STARTFILES_S
 char *startfiles_S[] = STARTFILES_S;
@@ -759,10 +763,18 @@ nocom:
 					av[j++] = crt0file;
 #endif
 				}
-#ifdef STARTFILES
-				for (i = 0; startfiles[i]; i++)
-					av[j++] = startfiles[i];
+#ifdef STARTFILES_T
+				if (Bstatic) {
+					for (i = 0; startfiles_T[i]; i++)
+						av[j++] = startfiles_T[i];
+				} else
 #endif
+				{
+#ifdef STARTFILES
+					for (i = 0; startfiles[i]; i++)
+						av[j++] = startfiles[i];
+#endif
+				}
 			}
 		}
 		i = 0;
@@ -799,12 +811,20 @@ nocom:
 		} else 
 #endif
 		{
-#ifdef STARTFILES
 			if (!nostartfiles) {
-				for (i = 0; endfiles[i]; i++)
-					av[j++] = endfiles[i];
-			}
+#ifdef STARTFILES_T
+				if (Bstatic) {
+					for (i = 0; endfiles_T[i]; i++)
+						av[j++] = endfiles_T[i];
+				} else
 #endif
+				{
+#ifdef STARTFILES
+					for (i = 0; endfiles[i]; i++)
+						av[j++] = endfiles[i];
+#endif
+				}
+			}
 		}
 		av[j++] = 0;
 		eflag |= callsys(ld, av);
