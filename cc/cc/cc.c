@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.109 2008/07/18 02:17:09 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.110 2008/07/18 03:29:17 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -739,12 +739,13 @@ nocom:
 			av[j++] = "-o";
 			av[j++] = outfile;
 		}
-		if (shared) {
 #ifdef STARTFILES_S
+		if (shared) {
 			for (i = 0; startfiles_S[i]; i++)
 				av[j++] = startfiles_S[i];
+		} else
 #endif
-		} else {
+		{
 			if (!nostartfiles) {
 #ifdef CRT0FILE_PROFILE
 				if (pgflag)
@@ -791,12 +792,13 @@ nocom:
 					av[j++] = libclibs[i];
 			}
 		}
-		if (shared) {
 #ifdef STARTFILES_S
+		if (shared) {
 			for (i = 0; endfiles_S[i]; i++)
 				av[j++] = endfiles_S[i];
+		} else 
 #endif
-		} else {
+		{
 #ifdef STARTFILES
 			if (!nostartfiles) {
 				for (i = 0; endfiles[i]; i++)
