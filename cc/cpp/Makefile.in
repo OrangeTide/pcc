@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.20 2008/06/05 05:17:29 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.21 2008/07/18 14:00:38 gmcgarry Exp $
 #
 # Makefile.in for cpp
 #
@@ -17,8 +17,8 @@ datarootdir = @datarootdir@
 mandir = @mandir@
 strip = @strip@
 CC = @CC@
-CFLAGS = @CFLAGS@ $(XFL)
-CPPFLAGS = @CPPFLAGS@ -I${srcdir} -I${top_builddir} -I${builddir}  -I${MIPDIR} -I${MDIR}
+CFLAGS = @CFLAGS@ @ADD_CFLAGS@
+CPPFLAGS = @CPPFLAGS@ ${XFL} -I${srcdir} -I${top_builddir} -I${builddir} -I${MIPDIR} -I${MDIR}
 LIBS = @LIBS@
 LDFLAGS = @LDFLAGS@
 LEX = @LEX@

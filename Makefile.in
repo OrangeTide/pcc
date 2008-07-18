@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.5 2008/04/21 14:41:44 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.6 2008/07/18 14:00:38 gmcgarry Exp $
 #
 # Makefile.in for top-level of pcc.
 #
@@ -6,7 +6,7 @@
 @SET_MAKE@
 VPATH=@srcdir@
 CC=@CC@
-CFLAGS=@CFLAGS@
+CFLAGS=@CFLAGS@ @ADD_CFLAGS@
 LDFLAGS=@LDFLAGS@
 CPPFLAGS=@CPPFLAGS@
 YACC=@YACC@
