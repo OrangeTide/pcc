@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.111 2008/07/18 03:54:40 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.112 2008/07/19 02:02:05 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -628,7 +628,8 @@ main(int argc, char *argv[])
 			av[na++] = "-g";
 #ifdef os_darwin
 		/* darwin always wants PIC compilation */
-		av[na++] = "-k";
+		if (!Bstatic)
+			av[na++] = "-k";
 #else
 		if (kflag)
 			av[na++] = "-k";
@@ -735,8 +736,13 @@ nocom:
 				for (i = 0; dynlinker[i]; i++)
 					av[j++] = dynlinker[i];
 #endif
-			} else
+			} else {
+#ifdef os_darwin
+				av[j++] = "-static";
+#else
 				av[j++] = "-Bstatic";
+#endif
+			}
 		}
 #endif
 		if (outfile) {
