@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.112 2008/07/19 02:02:05 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.113 2008/07/19 03:34:51 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -682,6 +682,10 @@ main(int argc, char *argv[])
 		av[na++] = as;
 #if defined(os_sunos) && defined(mach_sparc64)
 		av[na++] = "-m64";
+#endif
+#if defined(os_darwin)
+		if (Bstatic)
+			av[na++] = "-static";
 #endif
 		if (vflag)
 			av[na++] = "-v";
