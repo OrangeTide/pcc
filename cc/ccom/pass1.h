@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.147 2008/07/28 10:04:24 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.148 2008/07/28 16:16:05 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -86,14 +86,14 @@ extern	char *scnames(int);
 #define	NSTYPES		05
 #define	SMASK		07
 
-#define SSET		00010
-#define SREF		00020
-#define SNOCREAT	00040
-#define STEMP		00100
-#define	SDYNARRAY	00200
-#define	SINLINE		00400
-#define	STNODE		01000
-#define	SASG		04000
+/* #define SSET		00010 */
+/* #define SREF		00020 */
+#define SNOCREAT	00040	/* don't create a symbol in lookup() */
+#define STEMP		00100	/* Allocate symtab from temp or perm mem */
+#define	SDYNARRAY	00200	/* symbol is dynamic array on stack */
+#define	SINLINE		00400	/* function is of type inline */
+#define	STNODE		01000	/* symbol shall be a temporary node */
+#define	SASG		04000	/* symbol is assigned to already */
 #define	SLOCAL1		010000
 #define	SLOCAL2		020000
 #define	SLOCAL3		040000
