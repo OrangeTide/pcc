@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.214 2008/07/16 10:17:19 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.215 2008/07/28 10:04:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -139,6 +139,7 @@ int ddebug = 0;
 void
 defid(NODE *q, int class)
 {
+	extern int fun_inline;
 	struct symtab *p;
 	TWORD type, qual;
 	TWORD stp, stq;
@@ -318,7 +319,11 @@ defid(NODE *q, int class)
 	case REGISTER:
 		if (blevel == slev)
 			goto redec;
-		;  /* mismatch.. */
+		break;  /* mismatch.. */
+	case SNULL:
+		if (fun_inline && ISFTN(type))
+			return;
+		break;
 	}
 
 	mismatch:
@@ -401,6 +406,11 @@ redec:			uerror("redeclaration of %s", p->sname);
 		if (class == MOU)
 			rpole->rstr = 0;
 		break;
+	case SNULL:
+		if (fun_inline) {
+			p->slevel = 1;
+			p->soffset = getlab();
+		}
 	}
 
 #ifdef STABS
@@ -2418,8 +2428,12 @@ uclass(int class)
 int
 fixclass(int class, TWORD type)
 {
+	extern int fun_inline;
+
 	/* first, fix null class */
 	if (class == SNULL) {
+		if (fun_inline && ISFTN(type))
+			return SNULL;
 		if (rpole)
 			class = rpole->rsou == STNAME ? MOS : MOU;
 		else if (blevel == 0)
@@ -2698,4 +2712,13 @@ sspend()
 		q->n_rval = RETREG(t);
 		ecomp(buildtree(ASSIGN, q, p));
 	}
+}
+
+/*
+ * Allocate on the permanent heap for inlines, otherwise temporary heap.
+ */
+void *
+inlalloc(int size)
+{
+	return isinlining ?  permalloc(size) : tmpalloc(size);
 }

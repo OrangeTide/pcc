@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.146 2008/06/25 11:50:11 gmcgarry Exp $	*/
+/*	$Id: pass1.h,v 1.147 2008/07/28 10:04:24 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -329,6 +329,7 @@ int fldchk(int);
 int nncon(NODE *);
 void cunput(char);
 NODE *nametree(struct symtab *sp);
+void *inlalloc(int size);
 
 
 #ifdef GCC_COMPAT

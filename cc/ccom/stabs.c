@@ -1,4 +1,4 @@
-/*	$Id: stabs.c,v 1.23 2008/03/26 20:03:19 ragge Exp $	*/
+/*	$Id: stabs.c,v 1.24 2008/07/28 10:04:24 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -308,6 +308,7 @@ printtype(struct symtab *s, char *ostr, int len)
 void
 stabs_newsym(struct symtab *s)
 {
+	extern int fun_inline;
 	char *sname;
 	char ostr[MAXPSTR];
 	int suesize;
@@ -358,7 +359,10 @@ stabs_newsym(struct symtab *s)
 		cprint(savestabs, "\t.stabs \"%s:r%s\",%d,0,%d,%d\n", sname, ostr,
 		    N_RSYM, 1, s->soffset);
 		break;
-
+	case SNULL:
+		if (fun_inline)
+			break;
+		/* FALLTHROUGH */
 	default:
 		cerror("fix stab_newsym; class %d", s->sclass);
 	}
@@ -388,6 +392,9 @@ cprint(int p2, char *fmt, ...)
 	extern int inftn;
 	va_list ap;  
 	char *str;
+
+	if (isinlining)
+		return; /* XXX do not save any inline functions currently */
 
 	va_start(ap, fmt);
 	if (p2) {
