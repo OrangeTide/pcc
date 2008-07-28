@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.212 2008/07/28 11:30:28 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.213 2008/07/28 14:33:24 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -204,7 +204,7 @@ struct savbc {
 		parameter_type_list parameter_list addrlbl
 		declaration_specifiers pointer direct_abstract_declarator
 		specifier_qualifier_list merge_specifiers nocon_e
-		identifier_list arg_param_list arg_declaration arg_dcl_list
+		identifier_list arg_param_list
 		designator_list designator xasm oplist oper cnstr funtype
 %type <strp>	string C_STRING
 %type <rp>	str_head
