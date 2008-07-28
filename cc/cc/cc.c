@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.115 2008/07/28 14:45:00 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.116 2008/07/28 16:23:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -485,6 +485,8 @@ main(int argc, char *argv[])
 #ifndef os_win32
 					nostdlib = 1;
 #endif
+				} else if (strncmp(argv[i], "-std", 4) == 0) {
+					/* ignore gcc -std= */;
 				} else
 					goto passa;
 				break;
