@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.149 2008/07/29 13:13:08 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.150 2008/07/29 13:36:19 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -326,7 +326,7 @@ int nncon(NODE *);
 void cunput(char);
 NODE *nametree(struct symtab *sp);
 void *inlalloc(int size);
-
+void fldty(struct symtab *p);
 
 #ifdef GCC_COMPAT
 void gcc_init(void);
