@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.148 2008/07/28 16:16:05 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.149 2008/07/29 13:13:08 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -195,10 +195,6 @@ extern	OFFSZ inoff;
 
 extern	int reached;
 extern	int isinlining;
-
-/* 	tunnel to buildtree for name id's */
-
-extern	struct symtab *spname;
 
 extern	int sdebug, idebug, pdebug;
 

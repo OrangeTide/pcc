@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.217 2008/07/28 16:16:05 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.218 2008/07/29 13:13:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -71,7 +71,6 @@
 
 #include "cgram.h"
 
-struct symtab *spname;
 struct symtab *cftnsp;
 int arglistcnt, dimfuncnt;	/* statistics */
 int symtabcnt, suedefcnt;	/* statistics */
