@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.28 2008/06/30 11:51:56 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.29 2008/07/29 13:25:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -110,6 +110,7 @@ efcode()
 void
 bfcode(struct symtab **sp, int cnt)
 {
+	struct symtab *sp2;
 	extern int gotnr;
 	NODE *n, *p;
 	int i;
@@ -135,9 +136,9 @@ bfcode(struct symtab **sp, int cnt)
 		if (sp[i]->stype == STRTY || sp[i]->stype == UNIONTY ||
 		    cisreg(sp[i]->stype) == 0)
 			continue;
-		spname = sp[i];
+		sp2 = sp[i];
 		n = tempnode(0, sp[i]->stype, sp[i]->sdf, sp[i]->ssue);
-		n = buildtree(ASSIGN, n, buildtree(NAME, 0, 0));
+		n = buildtree(ASSIGN, n, nametree(sp2));
 		sp[i]->soffset = regno(n->n_left);
 		sp[i]->sflags |= STNODE;
 		ecomp(n);

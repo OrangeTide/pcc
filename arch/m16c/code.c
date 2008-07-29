@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.19 2008/01/01 17:31:00 ragge Exp $	*/
+/*	$Id: code.c,v 1.20 2008/07/29 13:25:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -101,8 +101,7 @@ argmove(struct symtab *s, int regno)
 	s->sclass = AUTO;
 	s->soffset = NOOFFSET;
 	oalloc(s, &autooff);
-	spname = s;
-	p = buildtree(NAME, NIL, NIL);
+	p = nametree(s);
 	r = bcon(0);
 	r->n_op = REG;
 	r->n_rval = regno;
