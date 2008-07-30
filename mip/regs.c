@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.183 2008/07/05 15:13:55 ragge Exp $	*/
+/*	$Id: regs.c,v 1.184 2008/07/30 15:41:05 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -868,6 +868,10 @@ setxarg(NODE *p)
 		ut = 1;
 
 	switch (XASMVAL(cw)) {
+	case 'g':
+		if (p->n_left->n_op != REG && p->n_left->n_op != TEMP)
+			break;
+		/* FALLTHROUGH */
 	case 'r':
 		i = regno(p->n_left);
 		if (ut) {
@@ -1144,6 +1148,10 @@ xasmionize(NODE *p, void *arg)
 	if (XASMVAL(cw) == 'n' || XASMVAL(cw) == 'm')
 		return; /* no flow analysis */
 	p = p->n_left;
+
+	if (XASMVAL(cw) == 'g' && p->n_op != TEMP && p->n_op != REG)
+		return; /* no flow analysis */
+
 	b = regno(p);
 	if (XASMVAL(cw) == 'r' && p->n_op == TEMP) {
 		if (!innotspill(b)) {
