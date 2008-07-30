@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.232 2008/06/30 08:21:37 ragge Exp $	*/
+/*	$Id: reader.c,v 1.233 2008/07/30 09:47:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1209,6 +1209,10 @@ rspecial(struct optab *q, int what)
 	return -1;
 }
 
+#ifndef XASM_NUMCONV
+#define	XASM_NUMCONV(x,y,x)	0
+#endif
+
 /*
  * change numeric argument redirections to the correct node type after 
  * cleaning up the other nodes.
@@ -1227,6 +1231,10 @@ delnums(NODE *p, void *arg)
 		return; /* not numeric */
 	if ((q = listarg(r, p->n_name[0] - '0', &cnt)) == NIL)
 		comperr("bad delnums");
+
+	/* target may have opinions whether to do this conversion */
+	if (XASM_NUMCONV(ip, p, q))
+		return;
 
 	/* Delete number by adding move-to/from-temp.  Later on */
 	/* the temps may be rewritten to other LTYPEs */
