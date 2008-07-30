@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.218 2008/07/29 13:13:08 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.219 2008/07/30 08:36:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -718,6 +718,12 @@ enumref(char *name)
 	NODE *p;
 
 	sp = lookup(name, STAGNAME);
+	/*
+	 * 6.7.2.3 Clause 2:
+	 * "A type specifier of the form 'enum identifier' without an
+	 *  enumerator list shall only appear after the type it specifies
+	 *  is complete."
+	 */
 	if (sp->sclass != ENAME)
 		uerror("enum %s undeclared", name);
 
