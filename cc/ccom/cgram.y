@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.215 2008/07/29 13:13:08 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.216 2008/07/30 08:22:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1336,7 +1336,7 @@ init_declarator(NODE *tn, NODE *p, int assign)
 	} else {
 		if (assign)
 			uerror("cannot initialise function");
-		defid(typ, typ->n_sp->sflags & SINLINE ? class : uclass(class));
+		defid(typ, uclass(class));
 	}
 	nfree(p);
 	return typ->n_sp;
