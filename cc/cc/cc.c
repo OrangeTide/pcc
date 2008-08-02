@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.116 2008/07/28 16:23:40 ragge Exp $	*/
+/*	$Id: cc.c,v 1.117 2008/08/02 08:54:08 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -834,14 +834,14 @@ nocom:
 					av[j++] = Bprefix(libclibs[i]);
 			}
 		}
+		if (!nostartfiles) {
 #ifdef STARTFILES_S
-		if (shared) {
-			for (i = 0; endfiles_S[i]; i++)
-				av[j++] = Bprefix(endfiles_S[i]);
-		} else 
+			if (shared) {
+				for (i = 0; endfiles_S[i]; i++)
+					av[j++] = Bprefix(endfiles_S[i]);
+			} else 
 #endif
-		{
-			if (!nostartfiles) {
+			{
 #ifdef STARTFILES_T
 				if (Bstatic) {
 					for (i = 0; endfiles_T[i]; i++)
