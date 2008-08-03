@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.203 2008/07/29 13:13:08 ragge Exp $	*/
+/*	$Id: trees.c,v 1.204 2008/08/03 20:49:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1582,6 +1582,8 @@ doszof(NODE *p)
 	df = p->n_df;
 	ty = p->n_type;
 	while (ISARY(ty)) {
+		if (df->ddim == NOOFFSET)
+			uerror("sizeof of incomplete type");
 		rv = buildtree(MUL, rv, df->ddim >= 0 ? bcon(df->ddim) :
 		    tempnode(-df->ddim, INT, 0, MKSUE(INT)));
 		df++;
