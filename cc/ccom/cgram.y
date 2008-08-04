@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.219 2008/08/04 19:35:56 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.220 2008/08/04 20:45:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1166,14 +1166,15 @@ addcase(NODE *p)
 		return;
 	}
 
-	val = p->n_lval;
-	p = makety(p, swpole->type, 0, 0, MKSUE(swpole->type));
-	if (p->n_op != ICON)
-		cerror("could not cast case value to type of switch "
-		       "expression");
-	if (p->n_lval != val)
-		werror("case expression truncated");
-
+	if (DEUNSIGN(swpole->type) != DEUNSIGN(p->n_type)) {
+		val = p->n_lval;
+		p = makety(p, swpole->type, 0, 0, MKSUE(swpole->type));
+		if (p->n_op != ICON)
+			cerror("could not cast case value to type of switch "
+			       "expression");
+		if (p->n_lval != val)
+			werror("case expression truncated");
+	}
 	sw->sval = p->n_lval;
 	tfree(p);
 	put = &swpole->ents;
