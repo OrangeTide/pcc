@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.44 2008/08/03 20:49:25 ragge Exp $	*/
+/*	$Id: init.c,v 1.45 2008/08/07 15:08:58 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -641,7 +641,7 @@ endinit(void)
 				sym.sclass = fsz < 0 ? FIELD | -fsz : 0;
 				r = xbcon(0, &sym, INT);
 				p = block(STREF, p, r, INT, 0, MKSUE(INT));
-				ecode(buildtree(ASSIGN, stref(p), il->n));
+				ecomp(buildtree(ASSIGN, stref(p), il->n));
 				if (fsz < 0)
 					fsz = -fsz;
 
