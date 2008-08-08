@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.234 2008/07/30 15:41:05 ragge Exp $	*/
+/*	$Id: reader.c,v 1.235 2008/08/08 12:24:16 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1210,7 +1210,7 @@ rspecial(struct optab *q, int what)
 }
 
 #ifndef XASM_NUMCONV
-#define	XASM_NUMCONV(x,y,x)	0
+#define	XASM_NUMCONV(x,y,z)	0
 #endif
 
 /*
