@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.88 2008/07/29 09:10:14 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.89 2008/08/08 23:18:18 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -85,6 +85,9 @@
 
 #ifdef HAVE_ALLOCA_H
 #include <alloca.h>
+#endif
+#ifdef HAVE_MALLOC_H
+#include <malloc.h>
 #endif
 
 #include "compat.h"
