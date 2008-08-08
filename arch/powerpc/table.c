@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.14 2008/04/10 01:34:16 gmcgarry Exp $	*/
+/*	$Id: table.c,v 1.15 2008/08/08 12:51:15 gmcgarry Exp $	*/
 /*-
  * Copyright (c) 2007 Gregory McGarry <g.mcgarry@ieee.org>
  *
@@ -1489,12 +1489,6 @@ struct optab table[] = {
 		NAREG|NASL|NSPECIAL,	RESC1,
 		"	xori A1,AL,AR\n", },
 
-{ ER,	INAREG|FORCC,
-	SAREG,	TWORD|TPOINT|TSHORT|TUSHORT|TCHAR|TUCHAR,
-	SPCON,	TANY,
-		NAREG|NASL|NSPECIAL,	RESC1|RESCC,
-		"	xori. A1,AL,AR\n", },
-
 { ER,	INBREG,
 	SBREG,	TLONGLONG|TULONGLONG,
 	SBREG,	TLONGLONG|TULONGLONG,
@@ -1507,12 +1501,6 @@ struct optab table[] = {
 	SPCON,	TANY,
 		NBREG|NBSL,	RESC1,
 		"	xori A1,AL,AR" COM "64-bit xor with constant\n" },
-
-{ ER,	INBREG|FORCC,
-	SBREG,	TLONGLONG|TULONGLONG,
-	SPCON,	TANY,
-		NBREG|NBSL,	RESC1|RESCC,
-		"	xori. A1,AL,AR" COM "64-bit xor with constant\n" },
 
 /*
  * Jumps.
