@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.16 2008/07/16 10:14:19 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.17 2008/08/08 12:28:35 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1292,6 +1292,10 @@ static int destructor;
 int
 mypragma(char **ary)
 {
+	if (strcmp(ary[1], "tls") == 0) {
+		uerror("thread-local storage not supported for this target");
+		return 1;
+	}
 	if (strcmp(ary[1], "constructor") == 0 || strcmp(ary[1], "init") == 0) {
 		constructor = 1;
 		return 1;
@@ -1519,4 +1523,9 @@ powerpc_builtin_frame_address(NODE *f, NODE *a)
 bad:
         uerror("bad argument to __builtin_frame_address");
         return bcon(0);
+}
+
+void
+pass1_lastchance(struct interpass *ip)
+{
 }
