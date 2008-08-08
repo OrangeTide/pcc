@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.18 2008/07/29 13:25:58 ragge Exp $    */
+/*      $Id: code.c,v 1.19 2008/08/08 12:38:38 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -440,7 +440,7 @@ ejobcode(int flag )
 {
 #define OSB(x) __STRING(x)
 #define OS OSB(TARGOS)
-	printf("\t.ident \"%s (%s)\"\n", PACKAGE_STRING, OS);
+	printf("\t.ident \"PCC: %s (%s)\"\n", PACKAGE_STRING, OS);
 }
 
 /*
