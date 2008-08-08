@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.44 2008/07/02 01:12:41 gmcgarry Exp $   */
+/*	$Id: scanner.l,v 1.45 2008/08/08 17:35:25 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -88,7 +88,7 @@ yyinput(char *b, int m)
 }
 #undef YY_INPUT
 #undef YY_BUF_SIZE
-#define	YY_BUF_SIZE 32768
+#define	YY_BUF_SIZE (8*65536)
 #define YY_INPUT(b,r,m) (r = yyinput(b, m))
 #ifdef HAVE_CPP_VARARG_MACRO_GCC
 #define fprintf(x, ...) error(__VA_ARGS__)
