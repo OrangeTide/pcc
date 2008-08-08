@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.18 2008/07/25 23:18:26 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.19 2008/08/08 23:16:27 gmcgarry Exp $
 #
 # Makefile.in for the cc part of pcc.
 #
@@ -33,7 +33,7 @@ INSTALL = @INSTALL@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 
 OBJS=cc.o compat.o
-DEST=@BINPREFIX@pcc
+DEST=@BINPREFIX@pcc$(EXEEXT)
 
 MIPDIR=${top_srcdir}/mip
 MDIR=${top_srcdir}/arch/$(TARGMACH)

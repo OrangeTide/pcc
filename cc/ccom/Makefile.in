@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.23 2008/07/25 23:18:26 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.24 2008/08/08 23:16:27 gmcgarry Exp $
 #
 # Makefile.in for ccom
 #
@@ -39,7 +39,7 @@ OBJS2=match.o reader.o optim2.o regs.o local2.o order.o table.o
 
 OBJS=$(OBJS1) $(OBJS2) compat.o common.o main.o external.o
 
-DEST=@BINPREFIX@ccom
+DEST=@BINPREFIX@ccom$(EXEEXT)
 
 all: ${DEST}
 

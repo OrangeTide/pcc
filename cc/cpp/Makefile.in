@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.22 2008/07/25 23:18:26 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.23 2008/08/08 23:16:28 gmcgarry Exp $
 #
 # Makefile.in for cpp
 #
@@ -29,7 +29,7 @@ TARGMACH = @targmach@
 
 OBJS=cpp.o cpy.o scanner.o compat.o
 HEADERS=cpp.h
-DEST=@BINPREFIX@cpp
+DEST=@BINPREFIX@cpp$(EXEEXT)
 
 MIPDIR=$(top_srcdir)/mip
 MDIR=$(top_srcdir)/arch/$(TARGMACH)
