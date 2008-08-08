@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.5 2008/05/11 16:55:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.6 2008/08/08 12:55:41 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -642,3 +642,7 @@ fixdef(struct symtab *sp)
 {
 }
 
+void
+pass1_lastchance(struct interpass *ip)
+{
+}

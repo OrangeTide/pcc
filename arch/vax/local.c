@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.6 2008/01/01 17:31:01 ragge Exp $	*/
+/*	$Id: local.c,v 1.7 2008/08/08 12:55:41 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -503,3 +503,7 @@ fixdef(struct symtab *sp)
 {
 }
 
+void
+pass1_lastchance(struct interpass *ip)
+{
+}
