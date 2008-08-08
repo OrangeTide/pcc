@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.11 2008/02/10 10:03:58 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.12 2008/08/08 17:31:43 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -51,6 +51,9 @@ static struct kw {
 	{ "__asm__", NULL, C_ASM },
 	{ "__inline__", NULL, C_FUNSPEC },
 	{ "__thread", NULL, 0 },
+	{ "__FUNCTION__", NULL, 0 },
+	{ "__volatile", NULL, 0 },
+	{ "__volatile__", NULL, 0 },
 	{ NULL, NULL, 0 },
 };
 
@@ -96,6 +99,17 @@ gcc_keyword(char *str, NODE **n)
 		while (tw > tlbuf)
 			cunput(*--tw);
 		return -1;
+	case 7: /* __FUNCTION__ */
+		if (cftnsp == NULL) {
+			uerror("__FUNCTION__ outside function");
+			yylval.strp = "";
+		} else
+			yylval.strp = cftnsp->sname; /* XXX - not C99 */
+		return C_STRING;
+	case 8: /* __volatile */
+	case 9: /* __volatile__ */
+		*n = block(QUALIFIER, NIL, NIL, VOL, 0, 0);
+		return C_QUALIFIER;
 	}
 	cerror("gcc_keyword");
 	return 0;
