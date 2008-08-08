@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.204 2008/08/03 20:49:25 ragge Exp $	*/
+/*	$Id: trees.c,v 1.205 2008/08/08 12:26:45 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2305,6 +2305,7 @@ send_passt(int type, ...)
 		cerror("bad send_passt type %d", type);
 	}
 	va_end(ap);
+	pass1_lastchance(ip); /* target-specific info */
 	if (isinlining)
 		inline_addarg(ip);
 	else
