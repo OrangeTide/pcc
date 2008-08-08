@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.221 2008/08/03 20:49:25 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.222 2008/08/08 17:30:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -407,6 +407,8 @@ redec:			uerror("redeclaration of %s", p->sname);
 		break;
 
 	case MOU:
+		rpole->rstr = 0;
+		/* FALLTHROUGH */
 	case MOS:
 		oalloc(p, &rpole->rstr);
 		if (class == MOU)
@@ -2504,7 +2506,7 @@ fixclass(int class, TWORD type)
 		}
 
 	if (class & FIELD) {
-		if (rpole && rpole->rsou != STNAME)
+		if (rpole && rpole->rsou != STNAME && rpole->rsou != UNAME)
 			uerror("illegal use of field");
 		return(class);
 	}
@@ -2614,7 +2616,7 @@ getsymtab(char *name, int flags)
 int
 fldchk(int sz)
 {
-	if (rpole->rsou != STNAME)
+	if (rpole->rsou != STNAME && rpole->rsou != UNAME)
 		uerror("field outside of structure");
 	if (sz < 0 || sz >= FIELD) {
 		uerror("illegal field size");
