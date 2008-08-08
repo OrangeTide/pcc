@@ -24,7 +24,7 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $Id: compat.c,v 1.6 2008/06/21 23:34:11 gmcgarry Exp $
+ * $Id: compat.c,v 1.7 2008/08/08 23:19:28 gmcgarry Exp $
  */
 
 /*-
@@ -264,7 +264,7 @@ basename(char *path)
 }
 #endif
 
-#ifndef HAVE_MKSTEMP
+#if !defined(HAVE_MKSTEMP) && !defined(WIN32)
 int
 mkstemp(char *path)
 {
@@ -674,7 +674,9 @@ fmtint(char *buffer, size_t *currlen, size_t maxlen,
 	int signvalue = 0, place = 0, caps = 0;
 	int spadlen = 0; /* amount to space pad */
 	int zpadlen = 0; /* amount to zero pad */
-  
+
+#define PADMAX(x,y)	((x) > (y) ? (x) : (y))
+
 	if (max < 0)
 		max = 0;
 
@@ -703,13 +705,13 @@ fmtint(char *buffer, size_t *currlen, size_t maxlen,
 	convert[place] = 0;
 
 	zpadlen = max - place;
-	spadlen = min - MAX (max, place) - (signvalue ? 1 : 0);
+	spadlen = min - PADMAX(max, place) - (signvalue ? 1 : 0);
 	if (zpadlen < 0)
 		zpadlen = 0;
 	if (spadlen < 0)
 		spadlen = 0;
 	if (flags & DP_F_ZERO) {
-		zpadlen = MAX(zpadlen, spadlen);
+		zpadlen = PADMAX(zpadlen, spadlen);
 		spadlen = 0;
 	}
 	if (flags & DP_F_MINUS) 
