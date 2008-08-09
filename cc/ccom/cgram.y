@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.222 2008/08/08 17:33:24 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.223 2008/08/09 11:33:41 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -173,6 +173,7 @@ static NODE *xasmop(char *str, NODE *p);
 static int maxstlen(char *str);
 static char *stradd(char *old, char *new);
 static NODE *biop(int op, NODE *l, NODE *r);
+static void flend(void);
 
 /*
  * State for saving current switch state (when nested switches).
