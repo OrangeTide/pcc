@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.122 2008/08/10 13:51:40 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.123 2008/08/10 14:50:54 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -269,6 +269,14 @@ main(int argc, char *argv[])
 				error("unrecognized option `-%c'", argv[i][1]);
 				break;
 #endif
+
+			case '-': /* double -'s */
+				if (strcmp(argv[i], "--version") == 0)
+					printf("%s\n", VERSSTR);
+				else
+					error("unrecognized option %s",
+						argv[i]);
+				break;
 
 			case 'B': /* other search paths for binaries */
 				Bflag = &argv[i][2];
