@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.86 2008/08/08 12:48:57 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.87 2008/08/11 01:28:34 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1044,11 +1044,20 @@ ninval(CONSZ off, int fsz, NODE *p)
 	case LDOUBLE:
 		u.i[2] = 0;
 		u.l = (long double)p->n_dcon;
+#if defined(HOST_BIG_ENDIAN)
+		/* XXX probably broken on most hosts */
+		printf("\t.long\t0x%x,0x%x,0x%x\n", u.i[2], u.i[1], u.i[0]);
+#else
 		printf("\t.long\t0x%x,0x%x,0x%x\n", u.i[0], u.i[1], u.i[2]);
+#endif
 		break;
 	case DOUBLE:
 		u.d = (double)p->n_dcon;
+#if defined(HOST_BIG_ENDIAN)
+		printf("\t.long\t0x%x,0x%x\n", u.i[1], u.i[0]);
+#else
 		printf("\t.long\t0x%x,0x%x\n", u.i[0], u.i[1]);
+#endif
 		break;
 	case FLOAT:
 		u.f = (float)p->n_dcon;
