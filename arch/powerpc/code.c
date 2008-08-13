@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.18 2008/08/08 12:29:35 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.19 2008/08/13 23:00:22 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -559,8 +559,9 @@ ejobcode(int flag )
 #endif
 
 #ifndef os_darwin
-#define OSB(x) __STRING(x)
-#define OS OSB(TARGOS)
+#define _MKSTR(x) #x
+#define MKSTR(x) _MKSTR(x) 
+#define OS MKSTR(TARGOS)
         printf("\t.ident \"PCC: %s (%s)\"\n", PACKAGE_STRING, OS);
 #endif
 
