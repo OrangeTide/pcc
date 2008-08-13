@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.222 2008/08/08 17:30:53 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.223 2008/08/13 22:56:33 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -782,6 +782,9 @@ dclstruct(struct rstack *r)
 	int al, sa, sz, coff;
 	TWORD temp;
 
+	if (pragma_allpacked && !pragma_packed)
+		pragma_packed = pragma_allpacked;
+
 	if (r->rsym == NULL) {
 		sue = permalloc(sizeof(struct suedef));
 		suedefcnt++;
@@ -792,10 +795,6 @@ dclstruct(struct rstack *r)
 	if (sue->suealign == 0)  /* suealign == 0 is undeclared struct */
 		sue->suealign = ALSTRUCT;
 
-#ifdef PCC_DEBUG
-	if (ddebug)
-		printf("dclstruct(%s)\n", r->rsym ? r->rsym->sname : "??");
-#endif
 	temp = r->rsou == STNAME ? STRTY : UNIONTY;
 	al = ALSTRUCT;
 
@@ -829,10 +828,20 @@ dclstruct(struct rstack *r)
 		 */
 		SETOFF(al, sa);
 	}
-	SETOFF(rpole->rstr, al);
+
+	if (!pragma_packed && !pragma_aligned)
+		SETOFF(rpole->rstr, al);
 
 	sue->suesize = rpole->rstr;
 	sue->suealign = al;
+
+#ifdef PCC_DEBUG
+	if (ddebug) {
+		printf("dclstruct(%s): size=%d, align=%d\n",
+		    r->rsym ? r->rsym->sname : "??",
+		    sue->suesize, sue->suealign);
+	}
+#endif
 
 	pragma_packed = pragma_aligned = 0;
 
