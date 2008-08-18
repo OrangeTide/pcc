@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.46 2008/08/16 15:27:27 ragge Exp $   */
+/*	$Id: scanner.l,v 1.47 2008/08/18 14:09:33 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -318,6 +318,14 @@ L?\"(\\.|[^\\"])*\"	{ PRTOUT(STRING); }
 			}
 
 .			{
+				if (contr) {
+					while (input() != '\n')
+						;
+					unput('\n');
+					BEGIN 0;
+					contr = 0;
+					goto yy;
+				}
 				if (YYSTATE || slow)
 					return yytext[0];
 				if (yytext[0] == 6) { /* PRAGS */
@@ -332,6 +340,7 @@ L?\"(\\.|[^\\"])*\"	{ PRTOUT(STRING); }
 				} else {
 					PRTOUT(yytext[0]);
 				}
+				yy:;
 			}
 
 %%
