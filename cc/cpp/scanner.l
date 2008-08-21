@@ -1,5 +1,5 @@
 %{
-/*	$Id: scanner.l,v 1.47 2008/08/18 14:09:33 ragge Exp $   */
+/*	$Id: scanner.l,v 1.48 2008/08/21 16:32:40 ragge Exp $   */
 
 /*
  * Copyright (c) 2004 Anders Magnusson. All rights reserved.
@@ -795,6 +795,10 @@ storepb(void)
 				getcmnt();
 				stringbuf = g;
 				continue;
+			} else if (c == '/') {
+				while ((c = input()) && c != '\n')
+					;
+				break;
 			}
 			unput(c);
 			c = '/';
