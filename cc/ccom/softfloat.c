@@ -1,4 +1,4 @@
-/*	$Id: softfloat.c,v 1.1 2008/09/04 09:41:33 ragge Exp $	*/
+/*	$Id: softfloat.c,v 1.2 2008/09/12 16:27:26 ragge Exp $	*/
 
 /*
  * Copyright (c) 2008 Anders Magnusson. All rights reserved.
@@ -255,14 +255,14 @@ floatcon(char *s)
 	exp = 0;
 	mant = 0;
 #define ADDTO(sum, val) sum = sum * 10 + val - '0'
-	for (; *s >= '0' && *s <= '9'; p++) {
+	for (; *s >= '0' && *s <= '9'; s++) {
 		if (mant<MAXMANT)
 			ADDTO(mant, *s);
 		else
 			exp++;
 	}
 	if (*s == '.') {
-		for (s++; *s >= '0' && *s <= '9'; p++) {
+		for (s++; *s >= '0' && *s <= '9'; s++) {
 			if (mant<MAXMANT) {
 				ADDTO(mant, *s);
 				exp--;
@@ -278,7 +278,7 @@ floatcon(char *s)
 		else if (*s=='-')
 			sign = 1, s++;
 
-		for (; *s >= '0' && *s <= '9'; p++)
+		for (; *s >= '0' && *s <= '9'; s++)
 			ADDTO(eexp, *s);
 		if (sign)
 			eexp = -eexp;
