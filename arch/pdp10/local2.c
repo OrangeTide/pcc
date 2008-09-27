@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.98 2008/06/22 15:24:59 ragge Exp $	*/
+/*	$Id: local2.c,v 1.99 2008/09/27 07:35:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -858,7 +858,7 @@ shtemp(NODE *p)
 }
 
 int
-shumul(NODE *p)
+shumul(NODE *p, int order)
 {
 	register int o;
 
@@ -914,7 +914,7 @@ shumul(NODE *p)
 		return( 0);
 	}
 #endif
-	return( 0 );
+	return( SRNOPE );
 }
 
 void

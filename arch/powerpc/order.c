@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.6 2008/04/10 01:34:16 gmcgarry Exp $	*/
+/*	$Id: order.c,v 1.7 2008/09/27 07:35:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -114,14 +114,16 @@ myormake(NODE *q)
  * Shape matches for UMUL.  Cooperates with offstar().
  */
 int
-shumul(NODE *p)
+shumul(NODE *p, int shape)
 {
 
 	if (x2debug)
 		printf("shumul(%p)\n", p);
 
 	/* Turns currently anything into OREG on x86 */
-	return SOREG;
+	if (shape & SOREG)
+		return SROREG;
+	return SRNOPE;
 }
 
 /*
