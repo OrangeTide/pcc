@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.1 2008/09/27 07:37:42 ragge Exp $	*/
+/*	$Id: code.c,v 1.2 2008/09/28 20:39:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -55,11 +55,11 @@ defloc(struct symtab *sp)
 		t = DECREF(t);
 	if (sp->sclass == EXTDEF)
 		printf("	.globl %s\n", exname(sp->soname));
+	if (ISFTN(sp->stype) || talign(sp->stype, sp->ssue) > ALCHAR)
+		printf(".even\n");
 	if (sp->slevel == 0) {
 		printf("%s:\n", exname(sp->soname));
 	} else {
-		if (talign(sp->stype, sp->ssue) > ALCHAR)
-			printf(".even\n");
 		printf(LABFMT ":\n", sp->soffset);
 	}
 }

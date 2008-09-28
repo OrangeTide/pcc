@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.1 2008/09/27 07:37:42 ragge Exp $	*/
+/*	$Id: local.c,v 1.2 2008/09/28 20:39:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -438,7 +438,7 @@ zbits(OFFSZ off, int fsz)
 		}
 	}
 	if (fsz >= SZCHAR) {
-		printf("\t.zero %d\n", fsz/SZCHAR);
+		printf(".=.+%o\n", fsz/SZCHAR);
 		fsz -= (fsz/SZCHAR) * SZCHAR;
 	}
 	if (fsz) {

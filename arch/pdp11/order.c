@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.1 2008/09/27 07:37:42 ragge Exp $	*/
+/*	$Id: order.c,v 1.2 2008/09/28 20:39:18 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -150,16 +150,33 @@ nspecial(struct optab *q)
 			return s;
 		}
 		break;
+
 	case DIV:
-		if (q->visit == INAREG) {
+		if (q->visit == INAREG && q->ltype == TUNSIGNED) {
 			static struct rspecial s[] = {
-			   { NRES, R0 }, { NEVER, R0 }, { NEVER, R1 }, { 0 } };
+			   { NLEFT, R0 }, { NRIGHT, R1 }, { NRES, R0 }, { 0 } };
+			return s;
+		} else if (q->visit == INAREG) {
+			static struct rspecial s[] = {
+			    { NRES, R0 }, { 0 } };
 			return s;
 		} else if (q->visit == INBREG) {
 			static struct rspecial s[] = { { NRES, R01 }, { 0 } };
 			return s;
 		}
 		break;
+
+	case MOD:
+		if (q->visit == INAREG && q->ltype == TUNSIGNED) {
+			static struct rspecial s[] = {
+			   { NLEFT, R0 }, { NRIGHT, R1 }, { NRES, R0 }, { 0 } };
+			return s;
+		} else if (q->visit == INBREG) {
+			static struct rspecial s[] = { { NRES, R01 }, { 0 } };
+			return s;
+		}
+		break;
+
 	case SCONV:
 		if (q->lshape == SAREG) {
 			static struct rspecial s[] = {
