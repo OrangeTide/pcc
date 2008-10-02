@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.236 2008/09/27 07:34:35 ragge Exp $	*/
+/*	$Id: reader.c,v 1.237 2008/10/02 06:50:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -749,7 +749,8 @@ gencode(NODE *p, int cookie)
 
 	if (p->n_op == ASSIGN &&
 	    p->n_left->n_op == REG && p->n_right->n_op == REG &&
-	    p->n_left->n_rval == p->n_right->n_rval){
+	    p->n_left->n_rval == p->n_right->n_rval &&
+	    (q->visit & FORCC) == 0) { /* XXX should check if necessary */
 		/* do not emit anything */
 		CDEBUG(("gencode(%p) assign nothing\n", p));
 		rewrite(p, q->rewrite, cookie);
