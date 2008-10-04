@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.1 2008/09/27 07:37:42 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.2 2008/10/04 08:43:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -232,3 +232,5 @@ int COLORMAP(int c, int *r);
 
 /* A bunch of specials to make life easier for pdp11 */
 #define	SANDSCON	(MAXSPECIAL+1)
+#define	SINCB		(MAXSPECIAL+2)	/* post-increment */
+#define	SINCW		(MAXSPECIAL+3)	/* post-increment */
