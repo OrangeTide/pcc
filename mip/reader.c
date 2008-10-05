@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.237 2008/10/02 06:50:41 ragge Exp $	*/
+/*	$Id: reader.c,v 1.238 2008/10/05 08:06:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -82,7 +82,7 @@ int p2autooff, p2maxautooff;
 
 NODE *nodepole;
 FILE *prfil;
-static struct interpass prepole;
+struct interpass prepole;
 
 void saveip(struct interpass *ip);
 void deltemp(NODE *p);
@@ -149,7 +149,7 @@ isuseless(NODE *n)
 /*
  * Delete statements with no meaning (like a+b; or 513.4;)
  */
-static NODE *
+NODE *
 deluseless(NODE *p)
 {
 	struct interpass *ip;

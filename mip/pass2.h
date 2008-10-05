@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.111 2008/09/27 07:34:35 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.112 2008/10/05 08:06:52 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -280,6 +280,7 @@ void canon(NODE *);
 void mycanon(NODE *);
 void oreg2(NODE *p);
 int shumul(NODE *p, int);
+NODE *deluseless(NODE *p);
 
 void conput(FILE *, NODE *);
 
