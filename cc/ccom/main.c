@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.88 2008/08/13 22:56:33 gmcgarry Exp $	*/
+/*	$Id: main.c,v 1.89 2008/10/05 08:07:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -53,7 +53,7 @@ int funsigned_char = 1;
 int funsigned_char = 0;
 #endif
 int sspflag;
-int xssaflag, xtailcallflag, xtemps, xdeljumps;
+int xssaflag, xtailcallflag, xtemps, xdeljumps, xdce;
 
 int e2debug, t2debug, f2debug, b2debug;
 
@@ -281,6 +281,8 @@ main(int argc, char *argv[])
 				xtemps++;
 			else if (strcmp(optarg, "deljumps") == 0)
 				xdeljumps++;
+			else if (strcmp(optarg, "dce") == 0)
+				xdce++;
 			else
 				usage();
 			break;
