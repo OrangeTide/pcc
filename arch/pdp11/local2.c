@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.3 2008/10/04 08:43:17 ragge Exp $	*/
+/*	$Id: local2.c,v 1.4 2008/10/05 15:51:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -763,7 +763,8 @@ lastcall(NODE *p)
 	if (p->n_type == FLOAT || p->n_type == DOUBLE ||
 	    p->n_type == STRTY || p->n_type == UNIONTY)
 		op->n_flags |= NLOCAL1;	/* Does not use stack slot */
-
+	else
+		op->n_flags &= ~NLOCAL1;
 	op->n_qual = size; /* XXX */
 }
 
