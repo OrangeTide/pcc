@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.38 2008/06/22 15:24:59 ragge Exp $	*/
+/*	$Id: local2.c,v 1.39 2008/10/09 12:46:01 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -305,7 +305,7 @@ canaddr(NODE *p)
 	int o = p->n_op;
 
 	if (o==NAME || o==REG || o==ICON || o==OREG ||
-	    (o==UMUL && shumul(p->n_left) == SRDIR))
+	    (o==UMUL && shumul(p->n_left, SOREG) == SRDIR))
 		return(1);
 	return(0);
 }
@@ -326,7 +326,7 @@ flshape(NODE *p)
 
 	if (o == OREG || o == REG || o == NAME)
 		return SRDIR; /* Direct match */
-	if (o == UMUL && shumul(p->n_left))
+	if (o == UMUL && shumul(p->n_left, SOREG))
 		return SROREG; /* Convert into oreg */
 	return SRREG; /* put it into a register */
 }

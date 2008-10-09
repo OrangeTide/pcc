@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.28 2007/11/17 00:19:43 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.29 2008/10/09 12:46:01 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -133,7 +133,7 @@ typedef long long OFFSZ;
 
 #define	shltype(o, p) \
 	((o) == REG || (o) == NAME || (o) == ICON || \
-	 (o) == OREG || ((o) == UMUL && shumul((p)->n_left)))
+	 (o) == OREG || ((o) == UMUL && shumul((p)->n_left, SOREG)))
 
 #undef	SPECIAL_INTEGERS
 
