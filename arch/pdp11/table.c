@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.3 2008/10/04 08:43:17 ragge Exp $	*/
+/*	$Id: table.c,v 1.4 2008/10/18 13:07:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -619,8 +619,8 @@ struct optab table[] = {
 
 /* set status bits */
 { AND,	FORCC,
-	ARONS|ICON,	TWORD|TPOINT,
-	ARONS|ICON,	TWORD|TPOINT,
+	ARONS|SCON,	TWORD|TPOINT,
+	ARONS|SCON,	TWORD|TPOINT,
 		0,	RESCC,
 		"bit	AR,AL\n", },
 
@@ -645,9 +645,9 @@ struct optab table[] = {
 		"bis	AR,AL\nbis	UR,UL\n", },
 
 /* OR with int */
-{ OR,	INAREG|FORCC,
-	SAREG,			TWORD,
-	SCON|SAREG|SOREG|SNAME,	TWORD,
+{ OR,	FOREFF|INAREG|FORCC,
+	ARONS,		TWORD,
+	ARONS|SCON,	TWORD,
 		0,	RLEFT|RESCC,
 		"bis	AR,AL\n", },
 
