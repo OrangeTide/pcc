@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.85 2008/10/05 15:55:31 ragge Exp $   */
+/*      $Id: match.c,v 1.86 2008/10/18 13:05:43 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -546,7 +546,7 @@ findops(NODE *p, int cookie)
 	for (i = 0; ixp[i] >= 0; i++) {
 		q = &table[ixp[i]];
 
-		F2DEBUG(("findop: ixp %d\n", ixp[i]));
+		F2DEBUG(("findop: ixp %d str %s\n", ixp[i], q->cstring));
 		if (!acceptable(q))		/* target-dependent filter */
 			continue;
 
