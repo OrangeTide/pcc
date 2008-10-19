@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.2 2008/09/28 20:39:18 ragge Exp $	*/
+/*	$Id: local.c,v 1.3 2008/10/19 15:25:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -228,6 +228,8 @@ clocal(NODE *p)
 
 	case CBRANCH:
 		l = p->n_left;
+		if (coptype(l->n_op) != BITYPE)
+			break;
 		if (l->n_left->n_op != SCONV || l->n_right->n_op != ICON)
 			break;
 		if ((r = l->n_left->n_left)->n_type > INT)

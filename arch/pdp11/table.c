@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.4 2008/10/18 13:07:25 ragge Exp $	*/
+/*	$Id: table.c,v 1.5 2008/10/19 15:25:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -770,6 +770,18 @@ struct optab table[] = {
 	SANY,	TANY,
 		0,	RNULL,
 		"clr	ZA(sp)\n", },
+
+{ FUNARG,	FOREFF,
+	SARGSUB,	TWORD|TPOINT,
+	SANY,		TWORD|TPOINT,
+		0,	RNULL,
+		"ZB", },
+
+{ FUNARG,	FOREFF,
+	SARGINC,	TWORD|TPOINT,
+	SANY,		TWORD|TPOINT,
+		0,	RNULL,
+		"ZH", },
 
 { FUNARG,	FOREFF,
 	SCON|SAREG|SNAME|SOREG,	TWORD|TPOINT,
