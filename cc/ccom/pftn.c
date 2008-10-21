@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.224 2008/08/26 13:39:51 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.225 2008/10/21 09:35:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -756,7 +756,6 @@ bstruct(char *name, int soru)
 			} else
 				uerror("%s redeclared", name);
 		}
-		sp->ssue->suealign = ALSTRUCT;
 	} else
 		sp = NULL;
 
@@ -789,14 +788,24 @@ dclstruct(struct rstack *r)
 		sue = permalloc(sizeof(struct suedef));
 		suedefcnt++;
 		sue->suesize = 0;
-		sue->suealign = ALSTRUCT;
 	} else
 		sue = r->rsym->ssue;
+#ifndef ALSTRUCT
+	if (sue->suealign != 0)
+		cerror("dclstruct");
+	/* Calculate largest alignment of struct elements */
+	/* Should be combined with the stuff below */
+	for (al = 1, sp = r->rb; sp; sp = sp->snext)
+		if ((sa = talign(sp->stype, sp->ssue)) > al)
+			al = sa;
+	sue->suealign = al;
+#else
 	if (sue->suealign == 0)  /* suealign == 0 is undeclared struct */
 		sue->suealign = ALSTRUCT;
+	al = ALSTRUCT;
+#endif
 
 	temp = r->rsou == STNAME ? STRTY : UNIONTY;
-	al = ALSTRUCT;
 
 	coff = 0;
 	if (pragma_packed || pragma_aligned)

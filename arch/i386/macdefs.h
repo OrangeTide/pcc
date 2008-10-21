@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.63 2008/08/08 12:48:57 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.64 2008/10/21 09:35:47 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -65,7 +65,7 @@
 #define ALLONGLONG	32
 #define ALSHORT		16
 #define ALPOINT		32
-#define ALSTRUCT	32
+#undef ALSTRUCT		/* Not defined if ELF ABI */
 #define ALSTACK		32 
 
 /*
