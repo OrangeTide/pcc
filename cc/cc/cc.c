@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.128 2008/10/25 20:55:35 ragge Exp $	*/
+/*	$Id: cc.c,v 1.129 2008/10/25 21:03:31 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -893,7 +893,7 @@ nocom:
 #ifdef STARTFILES_T
 				if (Bstatic) {
 					for (i = 0; startfiles_T[i]; i++)
-						av[j++] = Bprefix(listartfiles_T[i]);
+						av[j++] = Bprefix(startfiles_T[i]);
 				} else
 #endif
 				{
