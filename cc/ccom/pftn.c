@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.225 2008/10/21 09:35:47 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.226 2008/10/25 09:15:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -786,8 +786,8 @@ dclstruct(struct rstack *r)
 
 	if (r->rsym == NULL) {
 		sue = permalloc(sizeof(struct suedef));
+		memset(sue, 0, sizeof(struct suedef));
 		suedefcnt++;
-		sue->suesize = 0;
 	} else
 		sue = r->rsym->ssue;
 #ifndef ALSTRUCT
