@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.87 2008/10/25 09:08:39 ragge Exp $   */
+/*      $Id: match.c,v 1.88 2008/10/26 12:06:58 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -600,6 +600,9 @@ findops(NODE *p, int cookie)
 
 #ifdef mach_pdp11
 	if (cookie == FORCC && p->n_op != AND)	/* XXX - fix */
+		cookie = INREGS;
+#else
+	if (cookie == FORCC)
 		cookie = INREGS;
 #endif
 
