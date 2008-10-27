@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.153 2008/09/04 09:41:33 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.154 2008/10/27 21:41:24 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -195,6 +195,7 @@ extern	OFFSZ inoff;
 
 extern	int reached;
 extern	int isinlining;
+extern	int xinline;
 
 extern	int sdebug, idebug, pdebug;
 
@@ -266,6 +267,7 @@ void inline_end(void);
 void inline_addarg(struct interpass *);
 void inline_ref(struct symtab *);
 void inline_prtout(void);
+NODE *inlinetree(struct symtab *, NODE *);
 void ftnarg(NODE *);
 struct rstack *bstruct(char *, int);
 void moedef(char *);

@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.18 2008/01/06 15:07:06 ragge Exp $	*/
+/*	$Id: inline.c,v 1.19 2008/10/27 21:41:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -207,4 +207,69 @@ inline_prtout()
 	if (gotone)
 		inline_prtout();
 	recovernodes--;
+}
+
+#ifdef notyet
+static void
+printip(struct interpass *pole)
+{
+	static char *foo[] = {
+	   0, "NODE", "PROLOG", "STKOFF", "EPILOG", "DEFLAB", "DEFNAM", "ASM" };
+	struct interpass *ip;
+	struct interpass_prolog *ipplg, *epplg;
+
+	DLIST_FOREACH(ip, pole, qelem) {
+		if (ip->type > MAXIP)
+			printf("IP(%d) (%p): ", ip->type, ip);
+		else
+			printf("%s (%p): ", foo[ip->type], ip);
+		switch (ip->type) {
+		case IP_NODE: printf("\n");
+#ifdef PCC_DEBUG
+			fwalk(ip->ip_node, eprint, 0); break;
+#endif
+		case IP_PROLOG:
+			ipplg = (struct interpass_prolog *)ip;
+			printf("%s %s regs %x autos %d mintemp %d minlbl %d\n",
+			    ipplg->ipp_name, ipplg->ipp_vis ? "(local)" : "",
+			    ipplg->ipp_regs, ipplg->ipp_autos, ipplg->ip_tmpnum,
+			    ipplg->ip_lblnum);
+			break;
+		case IP_EPILOG:
+			epplg = (struct interpass_prolog *)ip;
+			printf("%s %s regs %x autos %d mintemp %d minlbl %d\n",
+			    epplg->ipp_name, epplg->ipp_vis ? "(local)" : "",
+			    epplg->ipp_regs, epplg->ipp_autos, epplg->ip_tmpnum,
+			    epplg->ip_lblnum);
+			break;
+		case IP_DEFLAB: printf(LABFMT "\n", ip->ip_lbl); break;
+		case IP_DEFNAM: printf("\n"); break;
+		case IP_ASM: printf("%s\n", ip->ip_asm); break;
+		default:
+			break;
+		}
+	}
+}
+#endif
+
+/*
+ * Inline a function. Returns the return value.
+ */
+NODE *
+inlinetree(struct symtab *sp, NODE *ap)
+{
+#ifdef notyet
+	struct istat *is = findfun(sp);
+
+	/*
+	 * First handle arguments.  We currently do not inline anything if:
+	 * - function has varargs
+	 * - function args are volatile
+	 * - Any variables are on stack instead of temps
+	 * XXX - these checks are not yet performed.
+	 */
+	printip(&is->shead);
+#endif
+	cerror("intr");
+	return NIL;
 }
