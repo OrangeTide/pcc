@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.31 2008/04/12 17:16:27 ragge Exp $	*/
+/*	$Id: optim.c,v 1.32 2008/10/27 21:13:20 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -333,7 +333,21 @@ again:	o = p->n_op;
 		p->n_op = revrel[p->n_op - EQ ];
 		break;
 
+#ifdef notyet
+	case ASSIGN:
+		/* Simple test to avoid two branches */
+		if (RO(p) != NE)
+			break;
+		q = p->n_right;
+		if (RCON(q) && RV(q) == 0 && LO(q) == AND &&
+		    RCON(q->n_left) && (i = ispow2(RV(q->n_left))) &&
+		    q->n_left->n_type == INT) {
+			q->n_op = RS;
+			RV(q) = i;
 		}
+		break;
+#endif
+	}
 
 	return(p);
 	}
