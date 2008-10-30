@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.211 2008/10/27 15:41:16 ragge Exp $	*/
+/*	$Id: trees.c,v 1.212 2008/10/30 16:37:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -732,6 +732,7 @@ conval(NODE *p, int o, NODE *q)
  * we check that this integer is in fact a constant zero...
  * in the case of ASSIGN, any assignment of pointer to integer is illegal
  * this falls out, because the LHS is never 0.
+ * XXX - check for COMOPs in assignment RHS?
  */
 void
 chkpun(NODE *p)
