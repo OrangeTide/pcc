@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.229 2008/11/01 08:29:38 mickey Exp $	*/
+/*	$Id: pftn.c,v 1.230 2008/11/01 15:07:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1232,7 +1232,6 @@ oalloc(struct symtab *p, int *poff )
 
 	if (p->sclass != REGISTER) {
 	/* in case we are allocating stack space for register arguments */
-printf("off %d", off);
 		if (p->soffset == NOOFFSET)
 			p->soffset = off;
 		else if(off != p->soffset)
