@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.228 2008/10/29 21:43:05 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.229 2008/11/01 08:29:38 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -470,7 +470,7 @@ ftnend()
 		efcode(); /* struct return handled here */
 		c = cftnsp->soname;
 		SETOFF(maxautooff, ALCHAR);
-		send_passt(IP_EPILOG, 0, maxautooff/SZCHAR, c,
+		send_passt(IP_EPILOG, maxautooff/SZCHAR, c,
 		    cftnsp->stype, cftnsp->sclass == EXTDEF, retlab, tvaloff);
 	}
 
@@ -719,7 +719,7 @@ enumdcl(struct symtab *sp)
 }
 
 /*
- * Handle reference to an enum
+ * Handle reference to an enum
  */
 NODE *
 enumref(char *name)
@@ -1232,6 +1232,7 @@ oalloc(struct symtab *p, int *poff )
 
 	if (p->sclass != REGISTER) {
 	/* in case we are allocating stack space for register arguments */
+printf("off %d", off);
 		if (p->soffset == NOOFFSET)
 			p->soffset = off;
 		else if(off != p->soffset)

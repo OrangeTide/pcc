@@ -1,4 +1,4 @@
-/*	$Id: stabs.c,v 1.24 2008/07/28 10:04:24 ragge Exp $	*/
+/*	$Id: stabs.c,v 1.25 2008/11/01 08:29:38 mickey Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -44,6 +44,7 @@
 
 #define	STABHASH	256
 #define	INTNUM		1	/* internal number of type "int" */
+#undef BIT2BYTE /* from external.h */
 #define	BIT2BYTE(x)	((x)/SZCHAR)
 
 #ifndef STABLBL

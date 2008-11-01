@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.154 2008/10/27 21:41:24 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.155 2008/11/01 08:29:38 mickey Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -37,10 +37,16 @@
 
 #include <sys/types.h>
 #include <stdarg.h>
+#include <string.h>
 #ifdef HAVE_STDINT_H
 #include <stdint.h>
 #endif
 
+#ifndef MKEXT
+#include "external.h"
+#else
+typedef unsigned int bittype; /* XXX - for basicblock */
+#endif
 #include "manifest.h"
 
 #include "protos.h"

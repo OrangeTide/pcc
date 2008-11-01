@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.54 2008/06/19 12:51:48 gmcgarry Exp $	*/
+/*	$Id: optim2.c,v 1.55 2008/11/01 08:29:38 mickey Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -234,8 +234,12 @@ optimize(struct interpass *ipole)
 	}
 
 #ifdef PCC_DEBUG
-	if (epp->ipp_regs != 0)
-		comperr("register error");
+	{
+		int i;
+		for (i = NIPPREGS; i--; )
+			if (epp->ipp_regs[i] != 0)
+				comperr("register error");
+	}
 #endif
 
 	myoptim(ipole);
@@ -969,6 +973,7 @@ printip(struct interpass *pole)
 	   0, "NODE", "PROLOG", "STKOFF", "EPILOG", "DEFLAB", "DEFNAM", "ASM" };
 	struct interpass *ip;
 	struct interpass_prolog *ipplg, *epplg;
+	unsigned i;
 
 	DLIST_FOREACH(ip, pole, qelem) {
 		if (ip->type > MAXIP)
@@ -982,17 +987,23 @@ printip(struct interpass *pole)
 #endif
 		case IP_PROLOG:
 			ipplg = (struct interpass_prolog *)ip;
-			printf("%s %s regs %x autos %d mintemp %d minlbl %d\n",
-			    ipplg->ipp_name, ipplg->ipp_vis ? "(local)" : "",
-			    ipplg->ipp_regs, ipplg->ipp_autos, ipplg->ip_tmpnum,
-			    ipplg->ip_lblnum);
+			printf("%s %s regs",
+			    ipplg->ipp_name, ipplg->ipp_vis ? "(local)" : "");
+			for (i = 0; i < NIPPREGS; i++)
+				printf("%s0x%x", i? ":" : " ",
+				    ipplg->ipp_regs[i]);
+			printf(" autos %d mintemp %d minlbl %d\n",
+			    ipplg->ipp_autos, ipplg->ip_tmpnum, ipplg->ip_lblnum);
 			break;
 		case IP_EPILOG:
 			epplg = (struct interpass_prolog *)ip;
-			printf("%s %s regs %x autos %d mintemp %d minlbl %d\n",
-			    epplg->ipp_name, epplg->ipp_vis ? "(local)" : "",
-			    epplg->ipp_regs, epplg->ipp_autos, epplg->ip_tmpnum,
-			    epplg->ip_lblnum);
+			printf("%s %s regs",
+			    epplg->ipp_name, epplg->ipp_vis ? "(local)" : "");
+			for (i = 0; i < NIPPREGS; i++)
+				printf("%s0x%x", i? ":" : " ",
+				    epplg->ipp_regs[i]);
+			printf(" autos %d mintemp %d minlbl %d\n",
+			    epplg->ipp_autos, epplg->ip_tmpnum, epplg->ip_lblnum);
 			break;
 		case IP_DEFLAB: printf(LABFMT "\n", ip->ip_lbl); break;
 		case IP_DEFNAM: printf("\n"); break;

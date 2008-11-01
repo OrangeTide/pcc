@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.226 2008/10/30 16:37:25 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.227 2008/11/01 08:29:38 mickey Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1402,7 +1402,7 @@ fundef(NODE *tp, NODE *p)
 	defid(p, class);
 	prolab = getlab();
 	c = cftnsp->soname;
-	send_passt(IP_PROLOG, -1, -1, c, cftnsp->stype,
+	send_passt(IP_PROLOG, -1, c, cftnsp->stype,
 	    cftnsp->sclass == EXTDEF, prolab, ctval);
 	blevel++;
 #ifdef STABS

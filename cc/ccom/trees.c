@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.212 2008/10/30 16:37:25 ragge Exp $	*/
+/*	$Id: trees.c,v 1.213 2008/11/01 08:29:38 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -70,6 +70,7 @@
 # include "pass2.h"
 
 # include <stdarg.h>
+# include <strings.h>
 
 static void chkpun(NODE *p);
 static int opact(NODE *p);
@@ -2315,7 +2316,8 @@ send_passt(int type, ...)
 	case IP_PROLOG:
 		inftn = type == IP_PROLOG ? 1 : 0;
 		ipp = (struct interpass_prolog *)ip;
-		ipp->ipp_regs = va_arg(ap, int);
+		memset(ipp->ipp_regs, (type == IP_PROLOG)? -1 : 0,
+		    sizeof(ipp->ipp_regs));
 		ipp->ipp_autos = va_arg(ap, int);
 		ipp->ipp_name = va_arg(ap, char *);
 		ipp->ipp_type = va_arg(ap, TWORD);

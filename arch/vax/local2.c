@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.8 2008/09/27 07:35:23 ragge Exp $	*/
+/*	$Id: local2.c,v 1.9 2008/11/01 08:29:37 mickey Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -51,7 +51,7 @@ prologue(struct interpass_prolog *ipp)
 		printf("	.globl %s\n", ipp->ipp_name);
 	printf("	.align 4\n");
 	printf("%s:\n", ipp->ipp_name);
-	printf("	.word 0x%x\n", ipp->ipp_regs);
+	printf("	.word 0x%x\n", ipp->ipp_regs[0]);
 	if (p2maxautooff)
 		printf("	subl2 $%d,%%sp\n", p2maxautooff);
 }

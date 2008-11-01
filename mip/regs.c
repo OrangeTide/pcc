@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.189 2008/10/25 09:05:19 ragge Exp $	*/
+/*	$Id: regs.c,v 1.190 2008/11/01 08:29:38 mickey Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -51,7 +51,6 @@
  * "Iterated Register Coalescing", ACM Transactions, No 3, May 1996.
  */
 
-#define	BIT2BYTE(bits) ((((bits)+NUMBITS-1)/NUMBITS)*(NUMBITS/8))
 #define	BITALLOC(ptr,all,sz) { \
 	int sz__s = BIT2BYTE(sz); ptr = all(sz__s); memset(ptr, 0, sz__s); }
 
@@ -2680,12 +2679,12 @@ onlyperm: /* XXX - should not have to redo all */
 	}
 
 	/* fill in regs to save */
-	ipp->ipp_regs = 0;
+	memset(ipp->ipp_regs, 0, sizeof(ipp->ipp_regs));
 	for (i = 0; i < NPERMREG-1; i++) {
 		NODE *p;
 
 		if (nsavregs[i]) {
-			ipp->ipp_regs |= (1 << permregs[i]);
+			BITSET(ipp->ipp_regs, permregs[i]);
 			continue; /* Spilled */
 		}
 		if (nblock[i+tempmin].r_color == permregs[i])
@@ -2726,6 +2725,6 @@ onlyperm: /* XXX - should not have to redo all */
 		ip = ipnode(p);
 		DLIST_INSERT_BEFORE(ipole->qelem.q_back, ip, qelem);
 	}
-	epp->ipp_regs = ipp->ipp_regs;
+	memcpy(epp->ipp_regs, ipp->ipp_regs, sizeof(epp->ipp_regs));
 	/* Done! */
 }

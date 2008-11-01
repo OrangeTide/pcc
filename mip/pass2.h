@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.113 2008/10/05 15:55:31 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.114 2008/11/01 08:29:38 mickey Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -34,13 +34,14 @@
  */
 #include <sys/types.h>
 
-#include "manifest.h"
-#include "protos.h"
 #ifndef MKEXT
 #include "external.h"
 #else
-typedef int bittype; /* XXX - for basicblock */
+typedef unsigned int bittype; /* XXX - for basicblock */
+#define	BIT2BYTE(a)	(((a) + 31) / 32)
 #endif
+#include "manifest.h"
+#include "protos.h"
 
 /* cookies, used as arguments to codgen */
 #define FOREFF	01		/* compute for effects only */

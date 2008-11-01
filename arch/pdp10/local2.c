@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.99 2008/09/27 07:35:23 ragge Exp $	*/
+/*	$Id: local2.c,v 1.100 2008/11/01 08:29:37 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -62,13 +62,14 @@ prologue(struct interpass_prolog *ipp)
 	printf("	push %s,%s\n",rnames[STKREG], rnames[FPREG]);
 	printf("	move %s,%s\n", rnames[FPREG],rnames[STKREG]);
 
-	for (i = ipp->ipp_regs, j = 0; i ; i >>= 1, j++) {
+	for (i = ipp->ipp_regs[0], j = 0; i ; i >>= 1, j++) {
 		if (i & 1)
 			regoff[j] = addto++;
 	}
 	if (addto)
 		printf("	addi %s,0%o\n", rnames[STKREG], addto);
-	for (i = ipp->ipp_regs, j = 0; i ; i >>= 1, j++) {
+
+	for (i = ipp->ipp_regs[0], j = 0; i ; i >>= 1, j++) {
 		if (i & 1)
 			printf("	movem %s,%d(%s)\n",
 			    rnames[j], regoff[j], rnames[STKREG]);
@@ -82,7 +83,7 @@ eoftn(struct interpass_prolog *ipp)
 
 	if (ipp->ipp_ip.ip_lbl == 0)
 		return; /* no code needs to be generated */
-	for (i = ipp->ipp_regs, j = 0; i ; i >>= 1, j++) {
+	for (i = ipp->ipp_regs[0], j = 0; i ; i >>= 1, j++) {
 		if (i & 1)
 			printf("	move %s,%d(%s)\n",
 			    rnames[j], regoff[j], rnames[STKREG]);

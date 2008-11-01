@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.20 2008/06/22 15:24:59 ragge Exp $	 */
+/*	$Id: local2.c,v 1.21 2008/11/01 08:29:37 mickey Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -68,7 +68,7 @@ offcalc(struct interpass_prolog * ipp)
 
 	addto = p2maxautooff;
 
-	for (i = ipp->ipp_regs, j = 0; i; i >>= 1, j++) {
+	for (i = ipp->ipp_regs[0], j = 0; i; i >>= 1, j++) {
 		if (i & 1) {
 			addto += SZINT / SZCHAR;
 			regoff[j] = addto;
@@ -131,7 +131,7 @@ prologue(struct interpass_prolog * ipp)
 	if (addto)
 		printf("\tsubu %s,%s,%d\n", rnames[SP], rnames[SP], addto);
 
-	for (i = ipp->ipp_regs, j = 0; i; i >>= 1, j++)
+	for (i = ipp->ipp_regs[0], j = 0; i; i >>= 1, j++)
 		if (i & 1)
 			fprintf(stdout, "\tsw %s,-%d(%s) # save permanent\n",
 				rnames[j], regoff[j], rnames[FP]);
@@ -150,7 +150,7 @@ eoftn(struct interpass_prolog * ipp)
 		return;		/* no code needs to be generated */
 
 	/* return from function code */
-	for (i = ipp->ipp_regs, j = 0; i; i >>= 1, j++) {
+	for (i = ipp->ipp_regs[0], j = 0; i; i >>= 1, j++) {
 		if (i & 1)
 			fprintf(stdout, "\tlw %s,-%d(%s)\n\tnop\n",
 				rnames[j], regoff[j], rnames[FP]);
