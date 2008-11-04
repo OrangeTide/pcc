@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.32 2008/08/13 23:00:22 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.33 2008/11/04 21:26:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -162,6 +162,8 @@ bfcode(struct symtab **sp, int cnt)
 	for (i = 0; i < cnt; i++) {
 		if (sp[i]->stype == STRTY || sp[i]->stype == UNIONTY ||
 		    cisreg(sp[i]->stype) == 0)
+			continue;
+		if (cqual(sp[i]->stype, sp[i]->squal) & VOL)
 			continue;
 		sp2 = sp[i];
 		n = tempnode(0, sp[i]->stype, sp[i]->sdf, sp[i]->ssue);
