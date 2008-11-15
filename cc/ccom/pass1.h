@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.155 2008/11/01 08:29:38 mickey Exp $	*/
+/*	$Id: pass1.h,v 1.156 2008/11/15 14:02:39 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -253,7 +253,7 @@ extern	NODE
 	*clocal(NODE *),
 	*ccopy(NODE *),
 	*tempnode(int, TWORD, union dimfun *, struct suedef *),
-	*doacall(NODE *, NODE *);
+	*doacall(struct symtab *, NODE *, NODE *);
 NODE	*intprom(NODE *);
 OFFSZ	tsize(TWORD, union dimfun *, struct suedef *),
 	psize(NODE *);
@@ -273,7 +273,8 @@ void inline_end(void);
 void inline_addarg(struct interpass *);
 void inline_ref(struct symtab *);
 void inline_prtout(void);
-NODE *inlinetree(struct symtab *, NODE *);
+void inline_args(struct symtab **, int);
+NODE *inlinetree(struct symtab *, NODE *, NODE *);
 void ftnarg(NODE *);
 struct rstack *bstruct(char *, int);
 void moedef(char *);

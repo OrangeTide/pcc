@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.90 2008/10/27 21:41:24 ragge Exp $	*/
+/*	$Id: main.c,v 1.91 2008/11/15 14:02:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -174,13 +174,13 @@ main(int argc, char *argv[])
 				switch (*optarg++) {
 				case 'd': ++ddebug; break; /* declarations */
 				case 'i': ++idebug; break; /* initializations */
-				case 'b': ++bdebug; break;
-				case 't': ++tdebug; break;
+				case 'b': ++bdebug; break; /* buildtree */
+				case 't': ++tdebug; break; /* type match */
 				case 'e': ++edebug; break; /* pass1 exit */
 				case 'x': ++xdebug; break; /* MD code */
-				case 's': ++sdebug; break;
-				case 'n': ++nflag; break;
-				case 'o': ++oflag; break;
+				case 's': ++sdebug; break; /* inline */
+				case 'n': ++nflag; break;  /* node alloc */
+				case 'o': ++oflag; break;  /* optim */
 				case 'p': ++pdebug; break; /* prototype */
 				default:
 					fprintf(stderr, "unknown X flag '%c'\n",
