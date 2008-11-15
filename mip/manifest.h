@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.82 2008/11/01 08:29:38 mickey Exp $	*/
+/*	$Id: manifest.h,v 1.83 2008/11/15 13:49:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -230,6 +230,12 @@ void yyaccpt(void);
 #define	SLIST_FIRST(h)	((h)->q_forw)
 #define	SLIST_FOREACH(v,h,f) \
 	for ((v) = (h)->q_forw; (v) != NULL; (v) = (v)->f.q_forw)
+#define	SLIST_INSERT_FIRST(h,e,f) {		\
+	if ((h)->q_last == &(h)->q_forw)	\
+		(h)->q_last = &(e)->f.q_forw;	\
+	(e)->f.q_forw = (h)->q_forw;		\
+	(h)->q_forw = (e);			\
+}
 #define	SLIST_INSERT_LAST(h,e,f) {	\
 	(e)->f.q_forw = NULL;		\
 	*(h)->q_last = (e);		\
