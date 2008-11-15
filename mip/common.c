@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.81 2008/06/29 13:45:10 ragge Exp $	*/
+/*	$Id: common.c,v 1.82 2008/11/15 13:50:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -156,13 +156,10 @@ static int usednodes;
 NODE *
 talloc()
 {
-	extern int inlnodecnt, recovernodes;
 	register NODE *p;
 
 	usednodes++;
 
-	if (recovernodes)
-		inlnodecnt++;
 	if (freelink != NULL) {
 		p = freelink;
 		freelink = p->next;
@@ -236,9 +233,6 @@ tfree(NODE *p)
 NODE *
 nfree(NODE *p)
 {
-#ifndef LANG_F77
-	extern int inlnodecnt, recovernodes;
-#endif
 	NODE *l;
 #ifdef PCC_DEBUG_NODES
 	NODE *q;
@@ -265,10 +259,6 @@ nfree(NODE *p)
 	p->next = freelink;
 	freelink = p;
 	usednodes--;
-#ifndef LANG_F77
-	if (recovernodes)
-		inlnodecnt--;
-#endif
 	return l;
 }
 #endif
