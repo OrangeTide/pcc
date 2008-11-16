@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.83 2008/11/16 13:30:16 ragge Exp $	*/
+/*	$Id: common.c,v 1.84 2008/11/16 21:17:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -541,7 +541,7 @@ tmpalloc(int size)
 		return (char *)rv + ROUNDUP(sizeof(char *));
 	}
 	if (size <= 0)
-		cerror("tmpalloc2");
+		cerror("tmpalloc2: %d", size);
 //fprintf(stderr, "tmpalloc: tmppole %p tmpleft %d size %d ", tmppole, tmpleft, size);
 	size = ROUNDUP(size);
 	if (tmpleft < size) {
