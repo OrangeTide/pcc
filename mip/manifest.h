@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.83 2008/11/15 13:49:44 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.84 2008/11/16 11:52:41 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -281,7 +281,7 @@ struct interpass_prolog {
 #endif
 };
 #else
-struct interpass;
+struct interpass { int dummy; };
 struct interpass_prolog;
 #endif /* !MKEXT */
 
