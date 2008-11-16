@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.115 2008/11/01 08:29:37 mickey Exp $	*/
+/*	$Id: local2.c,v 1.116 2008/11/16 13:30:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -870,7 +870,7 @@ cbgen(int o, int lab)
 }
 
 static void
-fixcalls(NODE *p)
+fixcalls(NODE *p, void *arg)
 {
 	/* Prepare for struct return by allocating bounce space on stack */
 	switch (p->n_op) {
@@ -934,7 +934,7 @@ myreader(struct interpass *ipole)
 	DLIST_FOREACH(ip, ipole, qelem) {
 		if (ip->type != IP_NODE)
 			continue;
-		walkf(ip->ip_node, fixcalls);
+		walkf(ip->ip_node, fixcalls, 0);
 		storefloat(ip, ip->ip_node);
 	}
 	if (stkpos > p2autooff)
@@ -949,7 +949,7 @@ myreader(struct interpass *ipole)
  * Remove some PCONVs after OREGs are created.
  */
 static void
-pconv2(NODE *p)
+pconv2(NODE *p, void *arg)
 {
 	NODE *q;
 
@@ -974,7 +974,7 @@ pconv2(NODE *p)
 void
 mycanon(NODE *p)
 {
-	walkf(p, pconv2);
+	walkf(p, pconv2, 0);
 }
 
 void

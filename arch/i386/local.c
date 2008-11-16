@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.87 2008/08/11 01:28:34 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.88 2008/11/16 13:30:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -649,7 +649,7 @@ clocal(NODE *p)
  * Change CALL references to either direct (static) or PLT.
  */
 static void
-fixnames(NODE *p)
+fixnames(NODE *p, void *arg)
 {
 #if !defined(PECOFFABI)
 
@@ -720,7 +720,7 @@ myp2tree(NODE *p)
 	struct symtab *sp;
 
 	if (kflag)
-		walkf(p, fixnames); /* XXX walkf not needed */
+		walkf(p, fixnames, 0); /* XXX walkf not needed */
 	if (p->n_op != FCON)
 		return;
 
