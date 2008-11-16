@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.21 2008/11/01 08:29:37 mickey Exp $	 */
+/*	$Id: local2.c,v 1.22 2008/11/16 13:36:15 ragge Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1005,7 +1005,7 @@ calcstacksize(NODE *p)
  * offset changed to point to the correct bytes in memory.
  */
 static void
-offchg(NODE *p)
+offchg(NODE *p, void *arg)
 {
 	NODE *l;
 
@@ -1052,7 +1052,7 @@ offchg(NODE *p)
  * Remove some PCONVs after OREGs are created.
  */
 static void
-pconv2(NODE * p)
+pconv2(NODE * p, void *arg)
 {
 	NODE *q;
 
@@ -1077,7 +1077,7 @@ pconv2(NODE * p)
 void
 mycanon(NODE * p)
 {
-	walkf(p, pconv2);
+	walkf(p, pconv2, 0);
 }
 
 void
@@ -1098,7 +1098,7 @@ myoptim(struct interpass * ipole)
 		if (ip->type != IP_NODE)
 			continue;
 		if (bigendian)
-			walkf(ip->ip_node, offchg);
+			walkf(ip->ip_node, offchg, 0);
 #if 0
 		walkf(ip->ip_node, calcstacksize);
 #endif

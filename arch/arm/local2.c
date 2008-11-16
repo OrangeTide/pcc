@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.31 2008/11/01 08:29:37 mickey Exp $    */
+/*      $Id: local2.c,v 1.32 2008/11/16 13:36:15 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1063,7 +1063,7 @@ flshlab(void)
 }
 
 static void
-prtaddr(NODE *p)
+prtaddr(NODE *p, void *arg)
 {
 	NODE *l = p->n_left;
 	struct addrsymb *el;
@@ -1144,7 +1144,7 @@ myreader(struct interpass *ipole)
 		case IP_NODE:
 			lineno = ip->lineno;
 			ipbase = ip;
-			walkf(ip->ip_node, prtaddr);
+			walkf(ip->ip_node, prtaddr, 0);
 			break;
 		case IP_EPILOG:
 			ipbase = ip;
@@ -1163,7 +1163,7 @@ myreader(struct interpass *ipole)
  * Remove some PCONVs after OREGs are created.
  */
 static void
-pconv2(NODE *p)
+pconv2(NODE *p, void *arg)
 {
 	NODE *q;
 
@@ -1188,7 +1188,7 @@ pconv2(NODE *p)
 void
 mycanon(NODE *p)
 {
-	walkf(p, pconv2);
+	walkf(p, pconv2, 0);
 }
 
 void

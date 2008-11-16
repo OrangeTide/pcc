@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.9 2008/11/01 08:29:37 mickey Exp $	*/
+/*	$Id: local2.c,v 1.10 2008/11/16 13:36:15 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -883,7 +883,7 @@ cbgen(int o, int lab)
 }
 
 static void
-optim2(NODE *p)
+optim2(NODE *p, void *arg)
 {
 	/* do local tree transformations and optimizations */
 
@@ -930,7 +930,7 @@ myreader(struct interpass *ipole)
 	DLIST_FOREACH(ip, ipole, qelem) {
 		if (ip->type != IP_NODE)
 			continue;
-		walkf(ip->ip_node, optim2);
+		walkf(ip->ip_node, optim2, 0);
 	}
 }
 
