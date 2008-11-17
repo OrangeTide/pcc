@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.116 2008/11/16 13:30:16 ragge Exp $	*/
+/*	$Id: local2.c,v 1.117 2008/11/17 21:20:49 pantzer Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1120,6 +1120,18 @@ lastcall(NODE *p)
 	if (kflag)
 		size -= 4;
 #endif
+
+	
+#if defined(MACHOABI)
+	int newsize = (size + 15) & ~15;	/* stack alignment */
+	int align = newsize-size;
+
+	if (align != 0)
+		printf("	subl $%d,%%esp\n", align);
+
+	size=newsize;
+#endif
+	
 	op->n_qual = size; /* XXX */
 }
 

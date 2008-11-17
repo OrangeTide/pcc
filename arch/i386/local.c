@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.88 2008/11/16 13:30:16 ragge Exp $	*/
+/*	$Id: local.c,v 1.89 2008/11/17 21:20:49 pantzer Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -422,6 +422,19 @@ clocal(NODE *p)
 		    tempnode(gotnr, INT, 0, MKSUE(INT)));
 		p->n_op -= (UCALL-CALL);
 #endif
+	
+	/* FALLTHROUGH */
+#if defined(MACHOABI)
+	case CALL:
+	case STCALL:
+		if (p->n_type == VOID)
+			break;
+
+		r = tempnode(0, p->n_type, p->n_df, p->n_sue);
+		l = tcopy(r);
+		p = buildtree(COMOP, buildtree(ASSIGN, r, p), l);
+#endif
+			
 		break;
 
 	case CBRANCH:
