@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.85 2008/11/16 13:30:16 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.86 2008/11/18 16:21:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -316,6 +316,13 @@ void send_passt(int type, ...);
  * External declarations, typedefs and the like
  */
 
+/* used for memory allocation */
+typedef struct mark {
+	void *tmsav;
+	void *tasav;
+	int elem;
+} MARK;
+
 /* memory management stuff */
 void *permalloc(int size);
 void *tmpcalloc(int size);
@@ -323,7 +330,8 @@ void *tmpalloc(int size);
 void tmpfree(void);
 char *newstring(char *, int len);
 char *tmpstrdup(char *str);
-
+void markset(struct mark *m);
+void markfree(struct mark *m);
 
 /* command-line processing */
 void mflags(char *);

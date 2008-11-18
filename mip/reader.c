@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.244 2008/11/16 21:17:41 ragge Exp $	*/
+/*	$Id: reader.c,v 1.245 2008/11/18 16:21:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -311,6 +311,7 @@ pass2_compile(struct interpass *ip)
 {
 	struct p2env *p2e = &p2env;
 	int *addrp;
+	MARK mark;
 
 	if (ip->type == IP_PROLOG) {
 		memset(p2e, 0, sizeof(struct p2env));
@@ -344,9 +345,7 @@ pass2_compile(struct interpass *ip)
 	 * - second, do the actual conversions, in case of not xtemps
 	 *   convert all temporaries to stack references.
 	 */
-#ifdef notyet
-	TMPMARK();
-#endif
+	markset(&mark);
 	if (p2e->epp->ip_tmpnum != p2e->ipp->ip_tmpnum) {
 		addrp = tmpcalloc(sizeof(int) *
 		    (p2e->epp->ip_tmpnum - p2e->ipp->ip_tmpnum));
@@ -363,10 +362,7 @@ pass2_compile(struct interpass *ip)
 		if (ip->type == IP_NODE)
 			walkf(ip->ip_node, deltemp, addrp);
 	}
-
-#ifdef notyet
-	TMPFREE();
-#endif
+	markfree(&mark);
 
 #ifdef PCC_DEBUG
 	if (e2debug) {
