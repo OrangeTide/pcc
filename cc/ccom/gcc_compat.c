@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.13 2008/08/10 14:48:16 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.14 2008/11/22 10:53:53 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -55,6 +55,8 @@ static struct kw {
 /* 8 */	{ "__volatile", NULL, 0 },
 /* 9 */	{ "__volatile__", NULL, 0 },
 /* 10 */{ "__restrict", NULL, -1 },
+/* 11 */{ "__typeof__", NULL, C_TYPEOF },
+/* 12 */{ "typeof", NULL, C_TYPEOF },
 	{ NULL, NULL, 0 },
 };
 
