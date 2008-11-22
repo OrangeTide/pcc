@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.32 2008/11/16 13:36:15 ragge Exp $    */
+/*      $Id: local2.c,v 1.33 2008/11/22 16:12:24 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -324,7 +324,7 @@ static void
 twollcomp(NODE *p)
 {
 	int o = p->n_op;
-	int s = getlab();
+	int s = getlab2();
 	int e = p->n_label;
 	int cb1, cb2;
 

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.10 2008/11/16 13:36:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.11 2008/11/22 16:12:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -204,7 +204,7 @@ zzzcode( p, c ) register NODE *p; {
 
 	case 'N':  /* logical ops, turned into 0-1 */
 		/* use register given by register 1 */
-		cbgen( 0, m=getlab());
+		cbgen( 0, m=getlab2());
 		deflab( p->n_label );
 		printf( "	clrl	%s\n", rnames[getlr( p, '1' )->n_rval] );
 		deflab( m );

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.39 2008/10/09 12:46:01 ragge Exp $	*/
+/*	$Id: local2.c,v 1.40 2008/11/22 16:12:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -69,8 +69,8 @@ prologue(struct interpass_prolog *ipp)
 #endif
 
 	/* non-optimized code, jump to epilogue for code generation */
-	ftlab1 = getlab();
-	ftlab2 = getlab();
+	ftlab1 = getlab2();
+	ftlab2 = getlab2();
 	printf("	jmp.w " LABFMT "\n", ftlab1);
 	deflab(ftlab2);
 }
@@ -185,7 +185,7 @@ static void
 twollcomp(NODE *p)
 {
 	int o = p->n_op;
-	int s = getlab();
+	int s = getlab2();
 	int e = p->n_label;
 	int cb1, cb2;
 

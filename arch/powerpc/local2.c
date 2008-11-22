@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.19 2008/11/16 13:36:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.20 2008/11/22 16:12:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -253,7 +253,7 @@ static void
 twollcomp(NODE *p)
 {
 	int o = p->n_op;
-	int s = getlab();
+	int s = getlab2();
 	int e = p->n_label;
 	int cb1, cb2;
 
@@ -609,13 +609,13 @@ ftou(NODE *p)
 {
 	static int lab = 0;
 	NODE *l = p->n_left;
-	int lab1 = getlab();
-	int lab2 = getlab();
+	int lab1 = getlab2();
+	int lab2 = getlab2();
 
 	printf(COM "start conversion of float/(l)double to unsigned\n");
 
 	if (lab == 0) {
-		lab = getlab();
+		lab = getlab2();
 		expand(p, 0, "\t.data\n");
 		printf(LABFMT ":\t.long 0x41e00000\n\t.long 0\n", lab);
 		expand(p, 0, "\t.text\n");
@@ -714,12 +714,12 @@ itof(NODE *p)
 	printf(COM "start conversion (u)int to float/(l)double\n");
 
 	if (labi == 0 && l->n_type == INT) {
-		labi = getlab();
+		labi = getlab2();
 		expand(p, 0, "\t.data\n");
 		printf(LABFMT ":\t.long 0x43300000\n\t.long 0x80000000\n", labi);
 		expand(p, 0, "\t.text\n");
 	} else if (labu == 0 && l->n_type == UNSIGNED) {
-		labu = getlab();
+		labu = getlab2();
 		expand(p, 0, "\t.data\n");
 		printf(LABFMT ":\t.long 0x43300000\n\t.long 0x00000000\n", labu);
 		expand(p, 0, "\t.text\n");

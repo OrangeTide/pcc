@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.101 2008/11/16 13:36:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.102 2008/11/22 16:12:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -99,13 +99,13 @@ prologue(int regs, int autos)
 {
 	int i, addto;
 
-	offlab = getlab();
+	offlab = getlab2();
 	if (regs < 0 || autos < 0) {
 		/*
 		 * non-optimized code, jump to epilogue for code generation.
 		 */
-		ftlab1 = getlab();
-		ftlab2 = getlab();
+		ftlab1 = getlab2();
+		ftlab2 = getlab2();
 		printf("	jrst L%d\n", ftlab1);
 		printf("L%d:\n", ftlab2);
 	} else {
@@ -333,7 +333,7 @@ twollcomp(NODE *p)
 	/* Special strategy for equal/not equal */
 	if (o == EQ || o == NE) {
 		if (o == EQ)
-			m = getlab();
+			m = getlab2();
 		printf("	came ");
 		upput(getlr(p, 'L'), SZLONG);
 		putchar(',');
@@ -376,7 +376,7 @@ twollcomp(NODE *p)
 	adrput(stdout, getlr(p, 'R'));
 	if (iscon)
 		putchar(']');
-	printf("\n	jrst L%d\n", m = getlab());
+	printf("\n	jrst L%d\n", m = getlab2());
 
 	/* Test lowword. Only works with pdp10 format for longlongs */
 	printf("	cam%c%c ", o == GT || o == GE ? 'l' : 'g',
