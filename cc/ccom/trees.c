@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.216 2008/11/20 21:19:09 ragge Exp $	*/
+/*	$Id: trees.c,v 1.217 2008/11/22 16:07:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2509,3 +2509,14 @@ cqual(TWORD t, TWORD q)
 		q <<= TSHIFT;
 	return q & (CON|VOL);
 }
+
+int crslab = 10;
+/*
+ * Return a number for internal labels.
+ */
+int
+getlab(void)
+{
+	return crslab++;
+}
+
