@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.22 2008/11/23 18:52:39 ragge Exp $	*/
+/*	$Id: inline.c,v 1.23 2008/11/23 19:07:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -203,6 +203,7 @@ puto(struct istat *w)
 	int lbloff = 0;
 
 	/* Copy the saved function and print it out */
+	ipp = 0; /* XXX data flow analysis */
 	DLIST_FOREACH(ip, &w->shead, qelem) {
 		switch (ip->type) {
 		case IP_EPILOG:
