@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.59 2008/11/22 20:13:50 pantzer Exp $	*/
+/*	$Id: optim2.c,v 1.60 2008/11/23 16:29:20 pantzer Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -620,6 +620,9 @@ dominators(struct p2env *p2e, struct bblockinfo *bbinfo)
 		bb = bbinfo->arr[h];
 		p = s = bbinfo->arr[bb->dfparent];
 		SLIST_FOREACH(cnode, &bb->parents, cfgelem) {
+			if (cnode->bblock->dfnum ==0)
+				continue; /* Ignore unreachable code */
+
 			if (cnode->bblock->dfnum <= bb->dfnum) 
 				sprime = cnode->bblock;
 			else 
