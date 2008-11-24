@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.93 2008/08/18 20:50:43 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.94 2008/11/24 07:13:09 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -186,6 +186,12 @@ main(int argc, char **argv)
 	struct symtab *nl;
 	register int ch;
 
+#ifdef TIMING
+	struct timeval t1, t2;
+
+	(void)gettimeofday(&t1, NULL);
+#endif
+
 	while ((ch = getopt(argc, argv, "CD:I:MPS:U:d:i:tvV?")) != -1)
 		switch (ch) {
 		case 'C': /* Do not discard comments */
@@ -315,6 +321,17 @@ main(int argc, char **argv)
 
 	flbuf();
 	close(ofd);
+#ifdef TIMING
+	(void)gettimeofday(&t2, NULL);
+	t2.tv_sec -= t1.tv_sec;
+	t2.tv_usec -= t1.tv_usec;
+	if (t2.tv_usec < 0) {
+		t2.tv_usec += 1000000;
+		t2.tv_sec -= 1;
+	}
+	fprintf(stderr, "cpp total time: %ld s %ld us\n",
+	     t2.tv_sec, t2.tv_usec);
+#endif
 	return 0;
 }
 
