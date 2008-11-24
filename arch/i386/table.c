@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.109 2008/10/26 10:28:49 ragge Exp $	*/
+/*	$Id: table.c,v 1.110 2008/11/24 14:52:02 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -598,6 +598,12 @@ struct optab table[] = {
 		NAREG|NASL,	RESC1,
 		"	leal CR(AL),A1\n", },
 
+{ PLUS,		INAREG|FOREFF,
+	SAREG|SNAME|SOREG,	TSHORT|TUSHORT,
+	SONE,	TANY,
+		0,	RLEFT,
+		"	incw AL\n", },
+
 { PLUS,		INCH|FOREFF,
 	SHCH|SNAME|SOREG,	TCHAR|TUCHAR,
 	SONE,	TANY,
@@ -615,6 +621,12 @@ struct optab table[] = {
 	SONE,			TANY,
 		0,	RLEFT,
 		"	decl AL\n", },
+
+{ MINUS,	INAREG|FOREFF,
+	SAREG|SNAME|SOREG,	TSHORT|TUSHORT,
+	SONE,			TANY,
+		0,	RLEFT,
+		"	decw AL\n", },
 
 { MINUS,	INCH|FOREFF,
 	SHCH|SNAME|SOREG,	TCHAR|TUCHAR,
