@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.88 2008/10/26 12:06:58 ragge Exp $   */
+/*      $Id: match.c,v 1.89 2008/11/26 17:31:40 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1214,10 +1214,10 @@ treecmp(NODE *p1, NODE *p2)
 		break;
 
 	case NAME:
+	case ICON:
 		if (strcmp(p1->n_name, p2->n_name))
 			return 0;
 		/* FALLTHROUGH */
-	case ICON:
 		if (p1->n_lval != p2->n_lval)
 			return 0;
 		break;
