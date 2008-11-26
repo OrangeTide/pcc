@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.33 2008/11/04 21:26:31 ragge Exp $	*/
+/*	$Id: code.c,v 1.34 2008/11/26 21:16:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -148,12 +148,32 @@ bfcode(struct symtab **sp, int cnt)
 #endif
 
 	if (kflag) {
-		/* Put ebx in temporary */
-		n = block(REG, NIL, NIL, INT, 0, MKSUE(INT));
-		n->n_rval = EBX;
+#define	STL	100
+		char *str = inlalloc(STL);
+#if !defined(MACHOABI)
+		int l = getlab();
+#endif
+
+		/* Generate extended assembler for PIC prolog */
 		p = tempnode(0, INT, 0, MKSUE(INT));
 		gotnr = regno(p);
-		ecomp(buildtree(ASSIGN, p, n));
+		p = block(XARG, p, NIL, INT, 0, MKSUE(INT));
+		p->n_name = "=g";
+		p = block(XASM, p, bcon(0), INT, 0, MKSUE(INT));
+#if defined(MACHOABI)
+		if (snprintf(str, STL, "call L%s$pb\nL%s$pb:\n\tpopl %%0\n",
+		    cftnsp->sname, cftnsp->sname)
+			cerror("bfcode");
+#else
+		if (snprintf(str, STL,
+		    "call " LABFMT "\n" LABFMT ":\n	popl %%0\n"
+		    "	addl $_GLOBAL_OFFSET_TABLE_+[.-" LABFMT "], %%0\n",
+		    l, l, l) >= STL)
+			cerror("bfcode");
+#endif
+		p->n_name = str;
+		p->n_right->n_type = STRTY;
+		ecomp(p);
 	}
 	if (xtemps == 0)
 		return;
