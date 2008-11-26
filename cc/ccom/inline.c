@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.23 2008/11/23 19:07:58 ragge Exp $	*/
+/*	$Id: inline.c,v 1.24 2008/11/26 21:01:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -375,6 +375,11 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 			is->flags |= REFD; /* if static inline, emit */
 		return NIL;
 	}
+
+#ifdef mach_i386
+	if (kflag)
+		return NIL; /* XXX cannot handle hidden ebx arg */
+#endif
 
 	stksz = stkoff = 0;
 	/* emit jumps to surround inline function */
