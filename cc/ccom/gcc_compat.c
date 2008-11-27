@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.14 2008/11/22 10:53:53 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.15 2008/11/27 21:03:41 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -57,6 +57,7 @@ static struct kw {
 /* 10 */{ "__restrict", NULL, -1 },
 /* 11 */{ "__typeof__", NULL, C_TYPEOF },
 /* 12 */{ "typeof", NULL, C_TYPEOF },
+/* 13 */{ "__extension__", NULL, -1 },
 	{ NULL, NULL, 0 },
 };
 
