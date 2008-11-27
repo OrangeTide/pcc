@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.6 2008/02/20 01:19:15 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.7 2008/11/27 05:32:48 mickey Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -39,7 +39,9 @@
 #define STARTFILES { "/usr/lib/crtbegin.o", NULL }
 #define	ENDFILES { "/usr/lib/crtend.o", NULL }
 
-#if defined(mach_i386)
+#if defined(mach_amd64)
+#define	CPPMDADD { "-D__amd64__", NULL, }
+#elif defined(mach_i386)
 #define	CPPMDADD { "-D__i386__", NULL, }
 #elif defined(mach_vax)
 #define CPPMDADD { "-D__vax__", NULL, } 
