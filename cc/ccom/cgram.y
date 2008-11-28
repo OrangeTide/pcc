@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.230 2008/11/22 10:53:53 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.231 2008/11/28 16:36:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -584,6 +584,15 @@ struct_declarator: declarator {
 				nfree($1);
 			} else
 				uerror("illegal declarator");
+		}
+		| /* unnamed member */ {
+			NODE *p = $<nodep>0;
+			char *c = permalloc(10);
+
+			if (p->n_type != STRTY && p->n_type != UNIONTY)
+				uerror("bad unnamed member type");
+			snprintf(c, 10, "*%dFAKE", getlab());
+			soumemb(p, c, 0);
 		}
 		;
 

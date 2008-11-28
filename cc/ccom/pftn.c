@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.232 2008/11/20 21:19:09 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.233 2008/11/28 16:36:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -915,7 +915,7 @@ soumemb(NODE *n, char *name, int class)
  
 	lsp = NULL;
 	for (sp = rpole->rb; sp != NULL; lsp = sp, sp = sp->snext)
-		if (sp->sname == name)
+		if (*name != '*' && sp->sname == name)
 			uerror("redeclaration of %s", name);
 
 	sp = getsymtab(name, SMOSNAME);
