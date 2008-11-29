@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.231 2008/11/28 16:36:06 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.232 2008/11/29 10:28:04 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -619,6 +619,7 @@ init_declarator:   declarator { init_declarator($<nodep>0, $1, 0); }
 			endinit();
 			xnf = NULL;
 		}
+ /*COMPAT_GCC*/	|  xnfdeclarator '=' begbr '}' { endinit(); xnf = NULL; }
 		|  xnfdeclarator '=' addrlbl { simpleinit($1, $3); xnf = NULL; }
 		;
 
