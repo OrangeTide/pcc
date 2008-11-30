@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.23 2008/11/22 16:12:25 ragge Exp $	 */
+/*	$Id: local2.c,v 1.24 2008/11/30 21:00:24 ragge Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -793,7 +793,7 @@ flshape(NODE * p)
 
 	if (o == OREG || o == REG || o == NAME)
 		return SRDIR;	/* Direct match */
-	if (o == UMUL && shumul(p->n_left))
+	if (o == UMUL && shumul(p->n_left, SOREG))
 		return SROREG;	/* Convert into oreg */
 	return SRREG;		/* put it into a register */
 }

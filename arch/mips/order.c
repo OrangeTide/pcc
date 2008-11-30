@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.11 2008/09/27 07:35:23 ragge Exp $	*/
+/*	$Id: order.c,v 1.12 2008/11/30 21:00:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -81,7 +81,7 @@ myormake(NODE * q)
  * Shape matches for UMUL.  Cooperates with offstar().
  */
 int
-shumul(NODE *p, int order)
+shumul(NODE *p, int shape)
 {
 	if (x2debug)
 		printf("shumul(%p)\n", p);
