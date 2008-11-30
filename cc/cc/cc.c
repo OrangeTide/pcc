@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.129 2008/10/25 21:03:31 ragge Exp $	*/
+/*	$Id: cc.c,v 1.130 2008/11/30 21:17:44 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -297,9 +297,10 @@ main(int argc, char *argv[])
 #endif
 
 			case '-': /* double -'s */
-				if (strcmp(argv[i], "--version") == 0)
+				if (strcmp(argv[i], "--version") == 0) {
 					printf("%s\n", VERSSTR);
-				else if (strcmp(argv[i], "--param") == 0)
+					return 0;
+				} else if (strcmp(argv[i], "--param") == 0)
 					/* NOTHING YET */;
 				else
 					error("unrecognized option %s", argv[i]);
