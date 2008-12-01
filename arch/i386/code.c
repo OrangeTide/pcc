@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.35 2008/11/29 23:58:04 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.36 2008/12/01 07:16:51 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -162,7 +162,7 @@ bfcode(struct symtab **sp, int cnt)
 		p = block(XASM, p, bcon(0), INT, 0, MKSUE(INT));
 #if defined(MACHOABI)
 		if (snprintf(str, STL, "call L%s$pb\nL%s$pb:\n\tpopl %%0\n",
-		    cftnsp->sname, cftnsp->sname))
+		    cftnsp->sname, cftnsp->sname) >= STL)
 			cerror("bfcode");
 #else
 		if (snprintf(str, STL,
