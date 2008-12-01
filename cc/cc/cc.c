@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.130 2008/11/30 21:17:44 ragge Exp $	*/
+/*	$Id: cc.c,v 1.131 2008/12/01 07:42:00 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -830,7 +830,7 @@ nocom:
 		if (vflag)
 			av[j++] = "-v";
 #endif
-#if !defined(os_sunos) && !defined(os_win32)
+#if !defined(os_sunos) && !defined(os_win32) && !defined(os_darwin)
 		av[j++] = "-X";
 #endif
 		if (shared) {
@@ -1088,8 +1088,7 @@ setsuf(char *s, char ch)
 int
 callsys(char *f, char *v[])
 {
-	char *s;
-	int t, status = 0;
+	int t;
 	char cmd[MAX_PATH];
 	int len;
 	STARTUPINFO si;
