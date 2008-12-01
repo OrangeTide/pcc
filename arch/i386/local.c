@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.91 2008/11/29 22:06:44 ragge Exp $	*/
+/*	$Id: local.c,v 1.92 2008/12/01 07:43:20 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1363,7 +1363,7 @@ bad:
  *  Postfix external functions with the arguments size.
  */
 static void
-mangle(NODE *p)
+mangle(NODE *p, void *arg)
 {
 	NODE *l, *r;
 	TWORD t;
@@ -1424,6 +1424,6 @@ pass1_lastchance(struct interpass *ip)
 	}
 
 	if (ip->type == IP_NODE)
-                walkf(ip->ip_node, mangle);
+                walkf(ip->ip_node, mangle, 0);
 #endif
 }
