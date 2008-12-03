@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.24 2008/11/30 21:00:24 ragge Exp $	 */
+/*	$Id: local2.c,v 1.25 2008/12/03 22:23:38 gmcgarry Exp $	 */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -979,7 +979,7 @@ myreader(struct interpass * ipole)
 static int stacksize;
 
 static void
-calcstacksize(NODE *p)
+calcstacksize(NODE *p, void *arg)
 {
 	int sz;
 
@@ -1100,7 +1100,7 @@ myoptim(struct interpass * ipole)
 		if (bigendian)
 			walkf(ip->ip_node, offchg, 0);
 #if 0
-		walkf(ip->ip_node, calcstacksize);
+		walkf(ip->ip_node, calcstacksize, 0);
 #endif
 	}
 }
