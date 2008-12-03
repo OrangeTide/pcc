@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.86 2008/11/22 16:07:35 ragge Exp $	*/
+/*	$Id: common.c,v 1.87 2008/12/03 07:10:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -623,7 +623,8 @@ tmpvsprintf(char *fmt, va_list ap)
 			cerror("bad tmpsprintf len");
 	}
 //else printf("\n");
-	uselem += (ROUNDUP(len)/ELEMSZ);
+	uselem += (ROUNDUP(len+1)/ELEMSZ);
+//printf("len %d asz %d strlen(tmp) %ld\n", len, asz, strlen(tmp));
 	return tmp;
 }
 
