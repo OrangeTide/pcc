@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.247 2008/11/26 17:32:44 ragge Exp $	*/
+/*	$Id: reader.c,v 1.248 2008/12/03 07:08:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -191,7 +191,10 @@ stkarg(int tnr, int *soff)
 	struct interpass *ip;
 	NODE *p;
 
-	ip = DLIST_NEXT((struct interpass *)p2e->ipp, qelem); /* first DEFLAB */
+	ip = DLIST_NEXT((struct interpass *)p2e->ipp, qelem);
+	while (ip->type != IP_DEFLAB) /* search for first DEFLAB */
+		ip = DLIST_NEXT(ip, qelem);
+
 	ip = DLIST_NEXT(ip, qelem); /* first NODE */
 
 	for (; ip->type != IP_DEFLAB; ip = DLIST_NEXT(ip, qelem)) {
