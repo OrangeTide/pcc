@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.94 2008/11/24 07:13:09 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.95 2008/12/07 20:12:05 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -915,7 +915,7 @@ xerror(usch *s)
  * store a character into the "define" buffer.
  */
 void
-savch(c)
+savch(int c)
 {
 	if (stringbuf-sbf < SBSIZE) {
 		*stringbuf++ = c;
@@ -1229,9 +1229,7 @@ def:		default:
  * result is written on top of heap
  */
 void
-expdef(vp, rp, gotwarn)
-	usch *vp;
-	struct recur *rp;
+expdef(usch *vp, struct recur *rp, int gotwarn)
 {
 	usch **args, *sptr, *ap, *bp, *sp;
 	int narg, c, i, plev, snuff, instr;
