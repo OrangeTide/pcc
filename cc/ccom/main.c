@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.92 2008/11/29 09:52:06 ragge Exp $	*/
+/*	$Id: main.c,v 1.93 2008/12/08 21:39:50 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -370,6 +370,11 @@ main(int argc, char *argv[])
 
 	if (!nerrors)
 		lcommprint();
+
+#ifdef STABS
+	if (gflag)
+		stabs_efile(argc ? argv[0] : "");
+#endif
 
 	ejobcode( nerrors ? 1 : 0 );
 

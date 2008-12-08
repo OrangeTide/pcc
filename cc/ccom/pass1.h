@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.160 2008/12/08 21:10:45 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.161 2008/12/08 21:39:50 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -382,6 +382,7 @@ struct suedef *gcc_type_attrib(NODE *);
 #ifdef STABS
 void stabs_init(void);
 void stabs_file(char *);
+void stabs_efile(char *);
 void stabs_line(int);
 void stabs_rbrac(int);
 void stabs_lbrac(int);
