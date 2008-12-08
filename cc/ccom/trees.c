@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.219 2008/12/01 07:14:40 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.220 2008/12/08 21:10:45 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2421,6 +2421,8 @@ copst(int op)
 	SNAM(RSEQ,>>=)
 	SNAM(INCR,++)
 	SNAM(DECR,--)
+	SNAM(STRING,STRING)
+	SNAM(SZOF,SIZEOF)
 	default:
 		cerror("bad copst %d", op);
 	}

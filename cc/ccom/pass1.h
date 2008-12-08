@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.159 2008/12/08 07:20:54 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.160 2008/12/08 21:10:45 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -414,7 +414,7 @@ void stabs_struct(struct symtab *, struct suedef *);
 #define	OROR		(MAXOP+12)
 #define	NOT		(MAXOP+13)
 #define	CAST		(MAXOP+14)
-/* #define	STRING		(MAXOP+15) */
+#define	STRING		(MAXOP+15)
 
 /* The following must be in the same order as their NOASG counterparts */
 #define	PLUSEQ		(MAXOP+16)
@@ -432,6 +432,9 @@ void stabs_struct(struct symtab *, struct suedef *);
 
 #define INCR		(MAXOP+26)
 #define DECR		(MAXOP+27)
+#define SZOF		(MAXOP+28)
+
+
 /*
  * The following types are only used in pass1.
  */
