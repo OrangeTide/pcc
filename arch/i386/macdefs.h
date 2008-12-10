@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.65 2008/10/25 09:09:11 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.66 2008/12/10 16:52:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -67,6 +67,7 @@
 #define ALPOINT		32
 #undef ALSTRUCT		/* Not defined if ELF ABI */
 #define ALSTACK		32 
+#define	ALMAX		128	/* not yet supported type */
 
 /*
  * Min/max values.
