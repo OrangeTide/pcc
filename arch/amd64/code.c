@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.1 2008/11/27 05:25:15 mickey Exp $	*/
+/*	$Id: code.c,v 1.2 2008/12/10 17:59:30 mickey Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -69,8 +69,8 @@ defloc(struct symtab *sp)
 	lastloc = s;
 	while (ISARY(t))
 		t = DECREF(t);
-	if (t > UCHAR)
-		printf("	.align %d\n", t > USHORT ? 4 : 2);
+	if (sp->ssue->suealign > ALCHAR)
+		printf("	.align %d\n", sp->ssue->suealign/ALCHAR);
 	if (sp->sclass == EXTDEF)
 		printf("	.globl %s\n", exname(sp->soname));
 	if (ISFTN(t))
