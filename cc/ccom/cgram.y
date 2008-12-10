@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.236 2008/12/08 21:10:45 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.237 2008/12/10 16:54:31 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -180,7 +180,6 @@ static int maxstlen(char *str);
 static char *stradd(char *old, char *new);
 static NODE *biop(int op, NODE *l, NODE *r);
 static void flend(void);
-static NODE *eve(NODE *);
 #ifdef GCC_COMPAT
 static NODE *tyof(NODE *);	/* COMPAT_GCC */
 static NODE *voidcon(void);	/* COMPAT_GCC */
