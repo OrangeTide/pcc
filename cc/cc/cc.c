@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.134 2008/12/10 22:13:32 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.135 2008/12/12 07:56:12 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -869,9 +869,9 @@ nocom:
 		}
 		if (outfile) {
 #ifdef MSLINKER
-#define	OUT	"/OUT:"
-			char *s = copy(OUT, i = strlen(outfile));
-			strlcat(s, outfile, sizeof(OUT) + i);
+#define	OUTSTR	"/OUT:"
+			char *s = copy(OUTSTR, i = strlen(outfile));
+			strlcat(s, outfile, sizeof(OUTSTR) + i);
 			av[j++] = s;
 #else
 			av[j++] = "-o";
