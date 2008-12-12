@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.238 2008/12/11 07:17:47 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.239 2008/12/12 20:38:41 pantzer Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -511,7 +511,7 @@ ftnend()
 }
 
 static struct symtab nulsym = {
-	{ NULL, 0, 0, 0, 0 }, "null", "null", INT, 0, NULL, NULL
+	NULL, 0, 0, 0, 0, "null", "null", INT, 0, NULL, NULL
 };
 
 void
