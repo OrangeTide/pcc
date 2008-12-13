@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.220 2008/12/08 21:10:45 ragge Exp $	*/
+/*	$Id: trees.c,v 1.221 2008/12/13 20:03:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -422,7 +422,7 @@ runtime:
 				TWORD t;
 				union dimfun *d;
 
-				if (l->n_sue != r->n_sue)
+				if (l->n_sue->sylnk != r->n_sue->sylnk)
 					uerror("assignment of different structures");
 
 				r = buildtree(ADDROF, r, NIL);
@@ -825,7 +825,7 @@ chkpun(NODE *p)
 		d1 = p->n_left->n_df;
 		d2 = p->n_right->n_df;
 		if (t1 == t2) {
-			if (p->n_left->n_sue != p->n_right->n_sue)
+			if (p->n_left->n_sue->sylnk != p->n_right->n_sue->sylnk)
 				werror("illegal structure pointer combination");
 			return;
 		}
