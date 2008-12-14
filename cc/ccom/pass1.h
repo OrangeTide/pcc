@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.164 2008/12/12 17:31:01 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.165 2008/12/14 17:19:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -133,6 +133,7 @@ struct suedef {
 	int	suealign;	/* Alignment of this struct */
 	int	suealigned;	/* Larger alignment requested */
 	int	suepacked;	/* Smaller alignment requested */
+	char *	suesection;	/* Section requested for this var/fun */
 };
 
 /*
