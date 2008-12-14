@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.221 2008/12/13 20:03:32 ragge Exp $	*/
+/*	$Id: trees.c,v 1.222 2008/12/14 14:10:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2435,6 +2435,7 @@ cdope(int op)
 	if (op <= MAXOP)
 		return dope[op];
 	switch (op) {
+	case STRING:
 	case QUALIFIER:
 	case CLASS:
 	case RB:
@@ -2475,6 +2476,7 @@ cdope(int op)
 	case DECR:
 		return BITYPE|ASGFLG;
 	}
+	cerror("cdope missing op %d", op);
 	return 0; /* XXX gcc */
 }
 
