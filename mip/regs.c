@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.197 2008/12/03 07:08:40 ragge Exp $	*/
+/*	$Id: regs.c,v 1.198 2008/12/14 18:26:02 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1216,6 +1216,10 @@ xasmionize(NODE *p, void *arg)
 	}
 }
 
+#ifndef XASMCONSTREGS
+#define	XASMCONSTREGS(x) (-1)
+#endif
+
 /*
  * Check that given constraints are valid.
  */
@@ -1235,8 +1239,9 @@ xasmconstr(NODE *p, void *arg)
 			addalledges(&ablock[i]);
 			return;
 		}
-
-	comperr("unsupported xasm constraint %s", p->n_name);
+	if ((i = XASMCONSTREGS(p->n_name)) < 0)
+		comperr("unsupported xasm constraint %s", p->n_name);
+	addalledges(&ablock[i]);
 }
 
 #define	RUP(x) (((x)+NUMBITS-1)/NUMBITS)
