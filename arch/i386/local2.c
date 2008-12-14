@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.119 2008/11/26 21:16:06 ragge Exp $	*/
+/*	$Id: local2.c,v 1.120 2008/12/14 18:26:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1253,3 +1253,35 @@ numconv(void *ip, void *p1, void *q1)
 		return 0;
 	}
 }
+
+static struct {
+	char *name; int num;
+} xcr[] = {
+	{ "eax", EAX },
+	{ "ebx", EBX },
+	{ "ecx", ECX },
+	{ "edx", EDX },
+	{ "ax", EAX },
+	{ "bx", EBX },
+	{ "cx", ECX },
+	{ "dx", EDX },
+	{ NULL, 0 },
+};
+
+/*
+ * Check for other names of the xasm constraints registers.
+ */
+
+/*
+ * Check for other names of the xasm constraints registers.
+ */
+int xasmconstregs(char *s)
+{
+	int i;
+
+	for (i = 0; xcr[i].name; i++)
+		if (strcmp(xcr[i].name, s) == 0)
+			return xcr[i].num;
+	return -1;
+}
+

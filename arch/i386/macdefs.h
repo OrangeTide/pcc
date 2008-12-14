@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.66 2008/12/10 16:52:17 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.67 2008/12/14 18:26:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -339,6 +339,8 @@ void targarg(char *w, void *arg);
 	w++, targarg(w, ary), 1 : 0)
 int numconv(void *ip, void *p, void *q);
 #define	XASM_NUMCONV(ip, p, q)	numconv(ip, p, q)
+int xasmconstregs(char *);
+#define	XASMCONSTREGS(x) xasmconstregs(x)
 
 /*
  * builtins.
