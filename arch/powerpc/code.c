@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.19 2008/08/13 23:00:22 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.20 2008/12/14 21:16:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -870,9 +870,12 @@ mrst_rec(int num, struct swents **p, int n, int *state, int lab)
 
 	int tbllabel = getlab();
 	struct symtab *strtbl = lookup("__switch_table", SLBLNAME|STEMP);
+	strtbl->sclass = STATIC;
+	strtbl->ssue = MKSUE(UCHAR);
+	strtbl->slevel = 1;
 	strtbl->soffset = tbllabel;
-	strtbl->sclass = ILABEL;
 	strtbl->stype = INCREF(UCHAR);
+	strtbl->squal = (CON >> TSHIFT);
 
 	t = block(NAME, NIL, NIL, UNSIGNED, 0, MKSUE(UNSIGNED));
 	t->n_sp = strtbl;

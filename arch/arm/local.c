@@ -1,4 +1,4 @@
-/*      $Id: local.c,v 1.19 2008/08/08 12:37:47 gmcgarry Exp $    */
+/*      $Id: local.c,v 1.20 2008/12/14 21:16:58 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -557,8 +557,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 	case UNSIGNED:
 		printf("\t.word 0x%x", (int)p->n_lval);
 		if ((q = p->n_sp) != NULL) {
-			if ((q->sclass == STATIC && q->slevel > 0) ||
-			    q->sclass == ILABEL) {
+			if ((q->sclass == STATIC && q->slevel > 0)) {
 				printf("+" LABFMT, q->soffset);
 			} else
 				printf("+%s", exname(q->soname));

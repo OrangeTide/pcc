@@ -1,4 +1,4 @@
-/*      $Id: local2.c,v 1.33 2008/11/22 16:12:24 ragge Exp $    */
+/*      $Id: local2.c,v 1.34 2008/12/14 21:16:58 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -868,7 +868,7 @@ conput(FILE *fp, NODE *p)
 #endif
 #ifdef notdef	/* ICON cannot ever use sp here */
 		/* If it does, it's a giant bug */
-		if (p->n_sp == NULL || (p->n_sp->sclass == ILABEL ||
+		if (p->n_sp == NULL || (
 		   (p->n_sp->sclass == STATIC && p->n_sp->slevel > 0)))
 			s = p->n_name;
 		else

@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.3 2008/10/19 15:25:25 ragge Exp $	*/
+/*	$Id: local.c,v 1.4 2008/12/14 21:16:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -88,9 +88,6 @@ clocal(NODE *p)
 
 		case EXTERN:
 		case EXTDEF:
-			break;
-
-		case ILABEL:
 			break;
 		}
 		break;
@@ -523,8 +520,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 	case UNSIGNED:
 		printf("%o", (int)(p->n_lval & 0177777));
 		if ((q = p->n_sp) != NULL) {
-			if ((q->sclass == STATIC && q->slevel > 0) ||
-			    q->sclass == ILABEL) {
+			if ((q->sclass == STATIC && q->slevel > 0)) {
 				printf("+" LABFMT, q->soffset);
 			} else {
 				printf("+%s", exname(q->soname));
