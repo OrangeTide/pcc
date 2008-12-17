@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.94 2008/12/13 20:03:32 ragge Exp $	*/
+/*	$Id: main.c,v 1.95 2008/12/17 15:59:24 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -351,6 +351,15 @@ main(int argc, char *argv[])
 	reached = 1;
 
 	bjobcode();
+#ifndef TARGET_STDARGS
+	{
+		NODE *p = block(NAME, NIL, NIL, PTR|CHAR, NULL, MKSUE(CHAR));
+		struct symtab *sp = lookup(addname("__builtin_va_list"), 0);
+		p->n_sp = sp;
+		defid(p, TYPEDEF);
+		nfree(p);
+	}
+#endif
 
 #ifdef STABS
 	if (gflag) {
