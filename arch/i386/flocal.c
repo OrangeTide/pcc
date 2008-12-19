@@ -1,4 +1,4 @@
-/*	$Id: flocal.c,v 1.15 2008/12/03 22:22:13 gmcgarry Exp $	*/
+/*	$Id: flocal.c,v 1.16 2008/12/19 20:26:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -34,7 +34,6 @@
  */
 #include <stdio.h>
 
-#include "ftypes.h"
 #include "defines.h"
 #include "defs.h"
 
