@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.7 2008/11/27 05:32:48 mickey Exp $	*/
+/*	$Id: ccconfig.h,v 1.8 2008/12/19 08:08:48 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -38,6 +38,10 @@
 #define CRT0FILE_PROFILE "/usr/lib/gcrt0.o"
 #define STARTFILES { "/usr/lib/crtbegin.o", NULL }
 #define	ENDFILES { "/usr/lib/crtend.o", NULL }
+
+#ifdef LANG_F77
+#define F77LIBLIST { "-L/usr/local/lib", "-lF77", "-lI77", "-lm", "-lc", NULL };
+#endif
 
 #if defined(mach_amd64)
 #define	CPPMDADD { "-D__amd64__", NULL, }

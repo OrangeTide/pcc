@@ -1,4 +1,4 @@
-/*	$Id: io.c,v 1.14 2008/05/12 20:08:48 ragge Exp $	*/
+/*	$Id: io.c,v 1.15 2008/12/19 08:08:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -224,7 +224,7 @@ setfmt(struct labelblock *lp)
 void
 startioctl()
 {
-register int i;
+unsigned int i;
 
 inioctl = YES;
 nioctl = 0;
@@ -238,7 +238,7 @@ for(i = 1 ; i<=NIOS ; ++i)
 void
 endioctl()
 {
-int i;
+unsigned int i;
 bigptr p;
 
 inioctl = NO;
@@ -329,13 +329,13 @@ for(i = 1 ; i<=NIOS ; ++i)
 int
 iocname()
 {
-register int i;
+unsigned int i;
 int found, mask;
 
 found = 0;
 mask = M(iostmt);
 for(i = 1 ; i <= NIOS ; ++i) {
-	if(toklen==strlen(ioc[i].iocname) && eqn(toklen, token, ioc[i].iocname)) {
+	if(toklen==(int)strlen(ioc[i].iocname) && eqn(toklen, token, ioc[i].iocname)) {
 		if(ioc[i].iotype & mask)
 			return(i);
 		else	found = i;
