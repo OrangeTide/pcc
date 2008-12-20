@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.46 2008/11/29 10:28:04 ragge Exp $	*/
+/*	$Id: init.c,v 1.47 2008/12/20 14:15:27 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -149,9 +149,18 @@ struct llist {
 	CONSZ begsz;	/* bit offset of this entry */
 	struct ilist *il;
 };
-static SLIST_HEAD(, llist) lpole;
+static SLIST_HEAD(llh, llist) lpole;
 static CONSZ basesz;
 static int numents; /* # of array entries allocated */
+
+static struct initctx {
+	struct initctx *prev;
+	struct instk *pstk;
+	struct symtab *psym;
+	struct llh lpole;
+	CONSZ basesz;
+	int numents;
+} *inilnk;
 
 static struct ilist *
 getil(struct ilist *next, CONSZ b, int sz, NODE *n)
@@ -212,6 +221,7 @@ setll(OFFSZ off)
 void
 beginit(struct symtab *sp)
 {
+	struct initctx *ict;
 	struct instk *is = &pbase;
 
 #ifdef PCC_DEBUG
@@ -219,6 +229,22 @@ beginit(struct symtab *sp)
 		printf("beginit(), sclass %s\n", scnames(sp->sclass));
 #endif
 
+	if (pstk) {
+#ifdef PCC_DEBUG
+		if (idebug)
+			printf("beginit: saving ctx pstk %p\n", pstk);
+#endif
+		/* save old context */
+		ict = tmpalloc(sizeof(struct initctx));
+		ict->prev = inilnk;
+		inilnk = ict;
+		ict->pstk = pstk;
+		ict->psym = csym;
+		ict->lpole = lpole;
+		ict->basesz = basesz;
+		ict->numents = numents;
+		is = tmpalloc(sizeof(struct instk));
+	}
 	csym = sp;
 
 	numents = 0; /* no entries in array list */
@@ -661,6 +687,19 @@ endinit(void)
 		clearbf(lastoff, tbit-lastoff);
 	} else
 		zbits(lastoff, tbit-lastoff);
+	if (inilnk) {
+		struct initctx *ict = inilnk;
+		pstk = ict->pstk;
+		csym = ict->psym;
+		lpole = ict->lpole;
+		basesz = ict->basesz;
+		numents = ict->numents;
+		inilnk = inilnk->prev;
+#ifdef PCC_DEBUG
+		if (idebug)
+			printf("endinit: restoring ctx pstk %p\n", pstk);
+#endif
+	}
 }
 
 /*
