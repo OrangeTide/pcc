@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.13 2008/12/20 21:26:31 sgk Exp $	*/
+/*	$Id: f77.c,v 1.14 2008/12/21 03:39:24 sgk Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -817,7 +817,6 @@ errorx(char *fmt, ...)
 	if (debugflag)
 		abort();
 	done(1);
-	exit(1);
 }
 
 
@@ -835,5 +834,4 @@ fatal1(char *fmt, ...)
 	if (debugflag)
 		abort();
 	done(1);
-	exit(1);
 }
