@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.94 2008/12/14 21:16:58 ragge Exp $	*/
+/*	$Id: local.c,v 1.95 2008/12/23 06:51:21 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1274,6 +1274,9 @@ fixdef(struct symtab *sp)
 	if ((constructor || destructor) && (sp->sclass != PARAM)) {
 #if defined(ELFABI)
 		printf("\t.section .%ctors,\"aw\",@progbits\n",
+		    constructor ? 'c' : 'd');
+#elif defined(PECOFFABI)
+		printf("\t.section .%ctors,\"w\"\n",
 		    constructor ? 'c' : 'd');
 #elif defined(MACHOABI)
 		if (kflag) {
