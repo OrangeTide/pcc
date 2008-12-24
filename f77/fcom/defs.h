@@ -1,4 +1,4 @@
-/*	$Id: defs.h,v 1.21 2008/12/19 08:08:48 ragge Exp $	*/
+/*	$Id: defs.h,v 1.22 2008/12/24 17:40:41 sgk Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -66,6 +66,7 @@ extern int mflag, tflag;
 
 extern flag profileflag;
 extern flag optimflag;
+extern flag quietflag;
 extern flag nowarnflag;
 extern flag ftn66flag;
 extern flag shiftcase;

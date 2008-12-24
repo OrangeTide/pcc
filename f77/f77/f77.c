@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.15 2008/12/21 17:34:40 sgk Exp $	*/
+/*	$Id: f77.c,v 1.16 2008/12/24 17:40:41 sgk Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -179,6 +179,14 @@ main(int argc, char **argv)
 				break;
 
 			case 'w': /* F66 warn or no warn */
+				addarg(ffary, &ffmax, s-1);
+				break;
+
+			case 'q':
+				/*
+				 * Suppress printing of procedure names during
+				 * compilation.
+				 */
 				addarg(ffary, &ffmax, s-1);
 				break;
 

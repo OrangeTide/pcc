@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.12 2008/12/19 08:08:48 ragge Exp $	*/
+/*	$Id: main.c,v 1.13 2008/12/24 17:40:41 sgk Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -56,7 +56,7 @@ LOCAL int nch   = 0;
 static void
 usage(void)
 {
-	fprintf(stderr, "usage: fcom [w:UuOdpC1I:Z:]\n");
+	fprintf(stderr, "usage: fcom [qw:UuOdpC1I:Z:]\n");
 	exit(1);
 }
 
@@ -79,8 +79,12 @@ main(int argc, char **argv)
 
 #define DONE(c)	{ retcode = c; goto finis; }
 
-	while ((ch = getopt(argc, argv, "w:UuOdpC1I:Z:X:")) != -1)
+	while ((ch = getopt(argc, argv, "qw:UuOdpC1I:Z:X:")) != -1)
 		switch (ch) {
+		case 'q':
+			quietflag = YES;
+			break;
+
 		case 'w':
 			if(optarg[0]=='6' && optarg[1]=='6') {
 				ftn66flag = YES;
@@ -193,7 +197,8 @@ main(int argc, char **argv)
 	if (argc > 0) {
 		if (inilex(copys(argv[0])))
 			DONE(1);
-		fprintf(diagfile, "%s:\n", argv[0]);
+		if (!quietflag)
+			fprintf(diagfile, "%s:\n", argv[0]);
 		if (argc != 1)
 			if (freopen(argv[1], "w", stdout) == NULL) {
 				fprintf(stderr, "open output file '%s':",
