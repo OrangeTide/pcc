@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.16 2008/12/24 17:40:41 sgk Exp $	*/
+/*	$Id: f77.c,v 1.17 2008/12/24 19:05:01 sgk Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -124,7 +124,7 @@ int await(int);
 void rmf(char *), doload(char *[], char *[]), doasm(char *);
 void clf(FILEP *p);
 static int callsys(char f[], char *v[]);
-void errorx(char *fmt, ...);
+static void errorx(char *fmt, ...);
 
 
 static void
@@ -807,7 +807,7 @@ return(YES);
 }
 
 
-void
+static void
 errorx(char *fmt, ...)
 {
 	va_list ap;
