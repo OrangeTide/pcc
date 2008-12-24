@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.18 2008/12/24 19:36:06 sgk Exp $	*/
+/*	$Id: f77.c,v 1.19 2008/12/24 19:40:16 sgk Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -122,7 +122,6 @@ int dotchar(char *), unreadable(char *), sys(char *), dofort(char *);
 int nodup(char *), dopass2(void);
 int await(int);
 void rmf(char *), doload(char *[], char *[]), doasm(char *);
-void clf(FILEP *p);
 static int callsys(char f[], char *v[]);
 static void errorx(char *fmt, ...);
 
@@ -682,20 +681,6 @@ unreadable(char *s)
 		loadflag = NO;
 		return(YES);
 	}
-}
-
-
-void
-clf(p)
-FILEP *p;
-{
-if(p!=NULL && *p!=NULL && *p!=stdout)
-	{
-	if(ferror(*p))
-		fatal1("writing error");
-	fclose(*p);
-	}
-*p = NULL;
 }
 
 
