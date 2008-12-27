@@ -1,4 +1,4 @@
-/*	$Id: f77.c,v 1.20 2008/12/25 00:06:59 sgk Exp $	*/
+/*	$Id: f77.c,v 1.21 2008/12/27 00:36:39 sgk Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -50,7 +50,6 @@ char xxxvers[] = "FORTRAN 77 DRIVER, VERSION 1.11,   28 JULY 1978\n";
 
 typedef FILE *FILEP;
 typedef int flag;
-typedef void *ptr;
 #define	YES 1
 #define NO 0
 
