@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.27 2008/11/23 19:49:58 pantzer Exp $
+#	$Id: Makefile.in,v 1.28 2009/01/05 17:07:57 ragge Exp $
 #
 # Makefile.in for ccom
 #
@@ -7,13 +7,13 @@ srcdir=@srcdir@
 top_srcdir=@top_srcdir@
 builddir=@builddir@
 top_builddir=@top_builddir@
-XFL=-DPCC_DEBUG -DGCC_COMPAT
+XFL=-DPCC_DEBUG
 CC = @CC@
 EXEEXT = @EXEEXT@
 CC_FOR_BUILD = @CC_FOR_BUILD@
 _CFLAGS = @CFLAGS@
 CFLAGS = $(_CFLAGS) @ADD_CFLAGS@
-CPPFLAGS = @CPPFLAGS@ ${XFL} -Dos_${TARGOS} -I${srcdir} -I${builddir} -I${top_builddir} \
+CPPFLAGS = @ADD_CPPFLAGS@ ${XFL} -Dos_${TARGOS} -I${srcdir} -I${builddir} -I${top_builddir} \
 	-I${MIPDIR} -I${MDIR} -Dmach_${TARGMACH} -I${top_srcdir}/os/${TARGOS} 
 LIBS = @LIBS@
 LDFLAGS = @LDFLAGS@
