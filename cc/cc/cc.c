@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.136 2008/12/22 02:04:11 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.137 2009/01/05 14:18:34 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -360,6 +360,15 @@ main(int argc, char *argv[])
 						t = u;
 					}
 					aslist[nas++] = t;
+				} else if (strncmp(argv[i], "-Wc,", 4) == 0) {
+					/* options to ccom */
+					t = &argv[i][4];
+					while ((u = strchr(t, ','))) {
+						*u++ = 0;
+						wlist[nw++] = t;
+						t = u;
+					}
+					wlist[nw++] = t;
 				} else if (strncmp(argv[i], "-Wp,", 4) == 0) {
 					/* preprocessor */
 					if (!strncmp(argv[i], "-Wp,-C", 6))
