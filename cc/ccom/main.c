@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.95 2008/12/17 15:59:24 ragge Exp $	*/
+/*	$Id: main.c,v 1.96 2009/01/05 23:18:22 pantzer Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -43,7 +43,7 @@ int lflag, odebug, rdebug, s2debug, udebug, x2debug;
 #if !defined(MULTIPASS) || defined(PASST)
 int iTflag, oTflag;
 #endif
-int xdebug, sdebug, gflag, c2debug, pdebug;
+int xdebug, sdebug, gflag, c2debug, pdebug, g2debug;
 int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration, Wpointer_sign, Wshadow,
 	Wsign_compare, Wunknown_pragmas, Wunreachable_code;
@@ -255,6 +255,9 @@ main(int argc, char *argv[])
 					++udebug;
 					break;
 				case 'x': ++x2debug; break;
+				case 'g':  /* print flow graphs */
+					++g2debug;
+					break;
 				case 'n': ++nflag; break;
 				default:
 					fprintf(stderr, "unknown Z flag '%c'\n",
