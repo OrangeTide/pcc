@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.241 2008/12/14 17:19:50 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.242 2009/01/06 12:57:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2370,7 +2370,7 @@ incomp:					uerror("incompatible types for arg %d",
 skip:		if (ISSTR(BTYPE(arrt))) {
 			MKTY(apole->node, arrt, 0, al[1].sue)
 		} else {
-			MKTY(apole->node, arrt, 0, 0)
+			MKTY(apole->node, arrt, 0, MKSUE(BTYPE(arrt)))
 		}
 
 out:		al++;
