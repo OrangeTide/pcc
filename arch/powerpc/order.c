@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.7 2008/09/27 07:35:23 ragge Exp $	*/
+/*	$Id: order.c,v 1.8 2009/01/07 11:44:03 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -316,7 +316,6 @@ nspecial(struct optab *q)
 			if (q->visit & SAREG) {
 				static struct rspecial s[] = {
 					{ NEVER, R0 },
-//					{ NRES, R3 }, // hack - i don't know why
 					{ 0 } };
 				return s;
 			}
