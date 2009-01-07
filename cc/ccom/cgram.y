@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.243 2008/12/31 20:03:39 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.244 2009/01/07 10:14:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -580,9 +580,13 @@ struct_dcl_list:   struct_declaration
 		;
 
 struct_declaration:
-		   specifier_qualifier_list struct_declarator_list ';' {
+		   specifier_qualifier_list struct_declarator_list optsemi {
 			nfree($1);
 		}
+		;
+
+optsemi:	   ';' { }
+		|  optsemi ';' { werror("extra ; in struct"); }
 		;
 
 specifier_qualifier_list:
