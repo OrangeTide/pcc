@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.25 2008/11/28 15:23:57 ragge Exp $	*/
+/*	$Id: inline.c,v 1.26 2009/01/07 14:21:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -359,7 +359,7 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 	extern int crslab, tvaloff;
 	struct istat *is = findfun(sp);
 	struct interpass *ip, *ipf, *ipl;
-	int lmin, stksz, L0, L1, L2;
+	int lmin, stksz, l0, l1, l2;
 	OFFSZ stkoff;
 	NODE *p, *rp;
 
@@ -385,10 +385,10 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 
 	stksz = stkoff = 0;
 	/* emit jumps to surround inline function */
-	branch(L0 = getlab());
-	plabel(L1 = getlab());
-	L2 = getlab();
-	SDEBUG(("branch labels %d,%d,%d\n", L0, L1, L2));
+	branch(l0 = getlab());
+	plabel(l1 = getlab());
+	l2 = getlab();
+	SDEBUG(("branch labels %d,%d,%d\n", l0, l1, l2));
 
 	ipf = DLIST_NEXT(&is->shead, qelem); /* prolog */
 	ipl = DLIST_PREV(&is->shead, qelem); /* epilog */
@@ -455,10 +455,10 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 	SDEBUG(("last label %d to %d\n", ip->ip_lbl, ip->ip_lbl + lmin));
 	send_passt(IP_DEFLAB, ip->ip_lbl + lmin);
 
-	branch(L2);
-	plabel(L0);
+	branch(l2);
+	plabel(l0);
 
-	rp = block(GOTO, bcon(L1), NIL, INT, 0, MKSUE(INT));
+	rp = block(GOTO, bcon(l1), NIL, INT, 0, MKSUE(INT));
 	if (is->retval)
 		p = tempnode(is->retval + toff, DECREF(sp->stype),
 		    sp->sdf, sp->ssue);
