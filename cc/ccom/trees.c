@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.223 2008/12/14 21:15:24 ragge Exp $	*/
+/*	$Id: trees.c,v 1.224 2009/01/07 20:52:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2422,6 +2422,7 @@ copst(int op)
 	SNAM(DECR,--)
 	SNAM(STRING,STRING)
 	SNAM(SZOF,SIZEOF)
+	SNAM(ATTRIB,ATTRIBUTE)
 	default:
 		cerror("bad copst %d", op);
 	}
@@ -2434,6 +2435,8 @@ cdope(int op)
 	if (op <= MAXOP)
 		return dope[op];
 	switch (op) {
+	case CLOP:
+	case ATTRIB:
 	case STRING:
 	case QUALIFIER:
 	case CLASS:

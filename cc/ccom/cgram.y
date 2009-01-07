@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.246 2009/01/07 15:35:17 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.247 2009/01/07 20:52:02 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -267,9 +267,9 @@ declaration_specifiers:
 		;
 
 merge_attribs:	   type_sq { $$ = $1; }
-		|  type_sq merge_attribs { $1->n_left = $2; $$ = $1; }
+		|  type_sq merge_attribs { $$ = cmop($2, $1); }
 		|  cf_spec { $$ = $1; }
-		|  cf_spec merge_attribs { $1->n_left = $2; $$ = $1; }
+		|  cf_spec merge_attribs { $$ = cmop($2, $1); }
 		;
 
 type_sq:	   C_TYPE { $$ = $1; }
@@ -281,7 +281,7 @@ type_sq:	   C_TYPE { $$ = $1; }
 		|  struct_dcl { $$ = $1; }
 		|  enum_dcl { $$ = $1; }
 		|  C_QUALIFIER { $$ = $1; }
-		|  attribute_specifier { tfree($1); $$ = biop(FLD, 0, 0); }
+		|  attribute_specifier { tfree($1); $$ = biop(ATTRIB, 0, 0); }
 		|  typeof { $$ = $1; }
 		;
 
@@ -593,7 +593,7 @@ specifier_qualifier_list:
 		   merge_specifiers { $$ = typenode($1); }
 		;
 
-merge_specifiers:  type_sq merge_specifiers { $1->n_left = $2;$$ = $1; }
+merge_specifiers:  type_sq merge_specifiers { $$ = cmop($2, $1); }
 		|  type_sq { $$ = $1; }
 		;
 
