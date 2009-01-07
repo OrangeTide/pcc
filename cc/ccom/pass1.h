@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.166 2008/12/14 21:15:24 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.167 2009/01/07 15:35:17 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -424,6 +424,7 @@ void stabs_struct(struct symtab *, struct suedef *);
 #define INCR		(MAXOP+26)
 #define DECR		(MAXOP+27)
 #define SZOF		(MAXOP+28)
+#define CLOP		(MAXOP+29)
 
 
 /*
