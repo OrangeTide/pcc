@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.37 2008/07/02 01:12:41 gmcgarry Exp $	*/
+/*	$Id: cpp.h,v 1.38 2009/01/08 23:18:19 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -55,8 +55,11 @@ extern	int	ofd;
 
 /* buffer used internally */
 #ifndef CPPBUF
-#ifdef __pdp11__
+#if defined(__pdp11__)
 #define CPPBUF  BUFSIZ
+#elif defined(WIN32)
+/* winxp seems to fail > 26608 bytes */
+#define CPPBUF	16384
 #else
 #define CPPBUF	65536
 #endif
