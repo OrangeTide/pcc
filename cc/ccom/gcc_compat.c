@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.23 2009/01/10 14:50:16 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.24 2009/01/10 15:42:02 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -76,6 +76,7 @@ static struct kw {
 /* 13 */{ "__extension__", NULL, -1 },
 /* 14 */{ "__signed__", NULL, 0 },
 /* 15 */{ "__attribute__", NULL, 0 },
+/* 16 */{ "__attribute", NULL, 0 },
 	{ NULL, NULL, 0 },
 };
 
@@ -135,6 +136,7 @@ gcc_keyword(char *str, NODE **n)
 		*n = block(QUALIFIER, NIL, NIL, VOL, 0, 0);
 		return C_QUALIFIER;
 	case 15: /* __attribute__ */
+	case 16: /* __attribute */
 		inattr = 1;
 		parlvl = parbal;
 		return C_ATTRIBUTE;
