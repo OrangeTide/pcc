@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.47 2008/12/20 14:15:27 ragge Exp $	*/
+/*	$Id: init.c,v 1.48 2009/01/10 14:50:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -255,7 +255,7 @@ beginit(struct symtab *sp)
 	SLIST_INIT(&lpole);
 
 	/* first element */
-	is->in_lnk = ISSOU(sp->stype) ? sp->ssue->sylnk : NULL;
+	is->in_lnk = ISSOU(sp->stype) ? sp->ssue->suem : NULL;
 	is->in_n = 0;
 	is->in_t = sp->stype;
 	is->in_sym = sp;
@@ -303,7 +303,7 @@ stkpush(void)
 	is->in_n = 0;
 	if (pstk == NULL) {
 		/* stack empty */
-		is->in_lnk = ISSOU(sp->stype) ? sp->ssue->sylnk : NULL;
+		is->in_lnk = ISSOU(sp->stype) ? sp->ssue->suem : NULL;
 		is->in_t = sp->stype;
 		is->in_sym = sp;
 		is->in_df = sp->sdf;
@@ -312,13 +312,13 @@ stkpush(void)
 		if (sq == NULL) {
 			uerror("excess of initializing elements");
 		} else {
-			is->in_lnk = ISSOU(sq->stype) ? sq->ssue->sylnk : 0;
+			is->in_lnk = ISSOU(sq->stype) ? sq->ssue->suem : 0;
 			is->in_t = sq->stype;
 			is->in_sym = sq;
 			is->in_df = sq->sdf;
 		}
 	} else if (ISARY(t)) {
-		is->in_lnk = ISSOU(DECREF(t)) ? pstk->in_sym->ssue->sylnk : 0;
+		is->in_lnk = ISSOU(DECREF(t)) ? pstk->in_sym->ssue->suem : 0;
 		is->in_t = DECREF(t);
 		is->in_sym = sp;
 		if (pstk->in_df->ddim != NOOFFSET &&
@@ -820,7 +820,7 @@ desinit(NODE *p)
 		pstk = pstk->in_prev; /* Empty stack */
 
 	if (ISSOU(pstk->in_t))
-		pstk->in_lnk = pstk->in_sym->ssue->sylnk;
+		pstk->in_lnk = pstk->in_sym->ssue->suem;
 
 	mkstack(p);	/* Setup for assignment */
 
