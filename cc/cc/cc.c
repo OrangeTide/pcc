@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.140 2009/01/08 23:45:12 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.141 2009/01/10 09:49:51 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -704,7 +704,7 @@ main(int argc, char *argv[])
 		av[na++] = clist[i];
 		if (!Eflag && !Mflag)
 			av[na++] = tmp4;
-		if (Eflag && outfile)
+		if ((Eflag || Mflag) && outfile)
 			 ermfile = av[na++] = outfile;
 		av[na++]=0;
 		if (callsys(passp, av)) {
