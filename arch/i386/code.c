@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.38 2008/12/14 17:20:58 ragge Exp $	*/
+/*	$Id: code.c,v 1.39 2009/01/14 21:11:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -45,7 +45,7 @@ defloc(struct symtab *sp)
 	static char *loctbl[] = { "text", "data", "const_data" };
 #endif
 	TWORD t;
-	int s;
+	int s, al;
 
 	if (sp == NULL) {
 		lastloc = -1;
@@ -60,8 +60,14 @@ defloc(struct symtab *sp)
 		nextsect = ".tdata";
 	}
 #endif
-	if (sp->ssue->suesection)
-		nextsect = sp->ssue->suesection;
+#ifdef GCC_COMPAT
+	{
+		struct gcc_attrib *ga;
+
+		if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_SECTION)) != NULL)
+			nextsect = ga->a1.sarg;
+	}
+#endif
 	if (nextsect) {
 		printf("	.section %s\n", nextsect);
 		nextsect = NULL;
@@ -71,8 +77,9 @@ defloc(struct symtab *sp)
 	lastloc = s;
 	while (ISARY(t))
 		t = DECREF(t);
-	if (sp->ssue->suealign > ALCHAR)
-		printf("	.align %d\n", sp->ssue->suealign/ALCHAR);
+	al = ISFTN(t) ? ALINT : talign(t, sp->ssue);
+	if (al > ALCHAR)
+		printf("	.align %d\n", al/ALCHAR);
 	if (sp->sclass == EXTDEF)
 		printf("	.globl %s\n", exname(sp->soname));
 #if defined(ELFABI)
@@ -140,7 +147,8 @@ bfcode(struct symtab **sp, int cnt)
 		for (i = 0; i < cnt; i++) {
 			TWORD t = sp[i]->stype;
 			if (t == STRTY || t == UNIONTY)
-				argstacksize += sp[i]->ssue->suesize;
+				argstacksize +=
+				    tsize(t, sp[i]->sdf, sp[i]->ssue);
 			else
 				argstacksize += szty(t) * SZINT / SZCHAR;
 		}
