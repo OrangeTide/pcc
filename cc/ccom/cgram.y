@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.249 2009/01/14 21:10:01 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.250 2009/01/17 09:16:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -333,29 +333,31 @@ declarator:	   pointer direct_declarator attr_var {
 /*
  * Return an UMUL node type linked list of indirections.
  */
-pointer:	   '*' { $$ = bdty(UMUL, NIL); $$->n_right = $$; }
-		|  '*' type_qualifier_list {
-			$$ = bdty(UMUL, NIL);
-			$$->n_qual = $2;
-			$$->n_right = $$;
-		}
-		|  '*' pointer {
-			$$ = bdty(UMUL, $2);
-			$$->n_right = $2->n_right;
-		}
-		|  '*' type_qualifier_list pointer {
-			$$ = bdty(UMUL, $3);
-			$$->n_qual = $2;
-			$$->n_right = $3->n_right;
-		}
-		;
+pointer:           '*' type_qualifier_list {
+                        $$ = bdty(UMUL, NIL);
+                        $$->n_qual = $2;
+                        $$->n_right = $$;
+                }
+                |  '*' type_qualifier_list pointer {
+                        $$ = bdty(UMUL, $3);
+                        $$->n_qual = $2;
+                        $$->n_right = $3->n_right;
+                }
+                ;
 
 type_qualifier_list:
-		   C_QUALIFIER { $$ = $1->n_type; nfree($1); }
-		|  type_qualifier_list C_QUALIFIER {
-			$$ = $1 | $2->n_type; nfree($2);
+                  type_qualifier_list C_QUALIFIER {
+                        $$ = $1 | $2->n_type; nfree($2);
+                }
+		| attr_spec_list { 
+			if (attrwarn)
+				werror("unhandled type_qualifier_list attribute");
+			tfree($1);
+			$$ = 0;
 		}
-		;
+		| { $$ = 0; }
+                ;
+
 
 /*
  * Sets up a function declarator. The call node will have its parameters
