@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.1 2008/11/27 05:25:15 mickey Exp $	*/
+/*	$Id: order.c,v 1.2 2009/01/20 12:16:58 mickey Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -224,9 +224,11 @@ nspecial(struct optab *q)
 		break;
 	case LS:
 	case RS:
-		static struct rspecial s[] = {
-			{ NRIGHT, CL }, { NOLEFT, RCX }, { 0 } };
-		return s;
+		{
+			static struct rspecial s[] = {
+				{ NRIGHT, CL }, { NOLEFT, RCX }, { 0 } };
+			return s;
+		}
 		break;
 
 	default:
