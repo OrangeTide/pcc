@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.29 2008/10/09 12:46:01 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.30 2009/01/24 21:43:49 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -95,7 +95,6 @@
 /* Default char is unsigned */
 #define TARGET_STDARGS
 #define	CHAR_UNSIGNED
-#define WCHAR_TYPE	INT	/* what used to store wchar_t */
 #define	BOOL_TYPE	INT
 
 /*

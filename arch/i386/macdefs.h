@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.67 2008/12/14 18:26:43 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.68 2009/01/24 21:43:49 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -91,11 +91,6 @@
 /* Default char is signed */
 #undef	CHAR_UNSIGNED
 #define	BOOL_TYPE	CHAR	/* what used to store _Bool */
-#if defined(os_mirbsd) || defined(os_win32)
-#define WCHAR_TYPE	USHORT	/* ISO 10646 16-bit Unicode */
-#else
-#define	WCHAR_TYPE	INT	/* what used to store wchar_t */
-#endif
 
 /*
  * Use large-enough types.
@@ -292,7 +287,9 @@ int COLORMAP(int c, int *r);
 			 x == LONGLONG || x == ULONGLONG ? EAXEDX : \
 			 x == FLOAT || x == DOUBLE || x == LDOUBLE ? 31 : EAX)
 
-//#define R2REGS	1	/* permit double indexing */
+#if 0
+#define R2REGS	1	/* permit double indexing */
+#endif
 
 /* XXX - to die */
 #define FPREG	EBP	/* frame pointer */

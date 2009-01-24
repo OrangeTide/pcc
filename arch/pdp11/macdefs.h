@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.3 2008/10/19 15:25:25 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.4 2009/01/24 21:43:49 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -90,7 +90,6 @@
 /* Default char is signed */
 #undef	CHAR_UNSIGNED
 #define	BOOL_TYPE	CHAR	/* what used to store _Bool */
-#define	WCHAR_TYPE	INT	/* what used to store wchar_t */
 
 /*
  * Use large-enough types.

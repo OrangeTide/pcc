@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.3 2009/01/20 12:16:58 mickey Exp $	*/
+/*	$Id: macdefs.h,v 1.4 2009/01/24 21:43:48 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -92,11 +92,6 @@
 /* Default char is signed */
 #undef	CHAR_UNSIGNED
 #define	BOOL_TYPE	CHAR	/* what used to store _Bool */
-#if defined(os_mirbsd) || defined(os_win32)
-#define WCHAR_TYPE	USHORT	/* ISO 10646 16-bit Unicode */
-#else
-#define	WCHAR_TYPE	INT	/* what used to store wchar_t */
-#endif
 
 /*
  * Use large-enough types.
