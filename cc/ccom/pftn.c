@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.246 2009/01/24 13:35:03 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.247 2009/01/26 22:32:39 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1840,10 +1840,13 @@ tymerge(NODE *typ, NODE *idp)
 		idp->n_op = NAME;
 	}
 
+#ifdef GCC_COMPAT
 	if (sue && sue->suega) {
 		idp->n_sue = sueget(idp->n_sue);
 		idp->n_sue->suega = sue->suega;
 	}
+#endif
+
 //if (idp && idp->n_sue) { printf("residp ");
 //	GETSUE(sue, idp->n_sue) dump_attr(sue->suega); }
 

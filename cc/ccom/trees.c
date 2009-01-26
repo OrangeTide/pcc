@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.227 2009/01/24 13:35:03 ragge Exp $	*/
+/*	$Id: trees.c,v 1.228 2009/01/26 22:32:39 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2217,9 +2217,9 @@ p2tree(NODE *p)
 	case NAME:
 	case ICON:
 		if ((q = p->n_sp) != NULL) {
-			if ((q->sclass == STATIC && q->slevel > 0) ||
+			if ((q->sclass == STATIC && q->slevel > 0)
 #ifdef GCC_COMPAT
-			    q->sflags == SLBLNAME
+			    || q->sflags == SLBLNAME
 #endif
 			    ) {
 				p->n_name = sptostr(q);
