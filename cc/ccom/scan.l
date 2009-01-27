@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.83 2008/12/31 15:46:20 ragge Exp $	*/
+/*	$Id: scan.l,v 1.84 2009/01/27 17:12:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -34,7 +34,7 @@ L			[a-zA-Z_]
 H			[a-fA-F0-9]
 E			[Ee][+-]?{D}+
 P			[Pp][+-]?{D}+
-FS			(f|F|l|L)
+FS			(f|F|l|L|i|I)
 IS			(u|U|l|L)*
 
 %{
@@ -93,8 +93,7 @@ extern void yyset_lineno (int);
 "break"			{ return(C_BREAK); }
 "case"			{ return(C_CASE); }
 "char"			{ 	return resw(CHAR, C_TYPE); }
-"_Complex"		{ yylval.nodep = mkty((TWORD)COMPLEX, 0, MKSUE(DOUBLE));
-			  notype=1; return(C_TYPE); }
+"_Complex"		{ 	return resw(COMPLEX, C_TYPE); }
 "const"			{ 	return resw(CON, C_QUALIFIER); }
 "continue"		{ return(C_CONTINUE); }
 "default"		{ return(C_DEFAULT); }
@@ -107,6 +106,7 @@ extern void yyset_lineno (int);
 "for"			{ return(C_FOR); }
 "goto"			{ return(C_GOTO); }
 "if"			{ return(C_IF); }
+"_Imaginary"		{ 	return resw(IMAG, C_TYPE); }
 "inline"		{ return(C_FUNSPEC); }
 "int"			{ 	return resw(INT, C_TYPE); }
 "long"			{ 	return resw(LONG, C_TYPE); }
@@ -266,11 +266,32 @@ f2(char *str)
 {
 	TWORD tw;
 	NODE *p;
-	double dc;
+	long double dc;
 	char *eptr;
+	int imag = 0;
 
-	dc = strtod(str, &eptr); /* XXX - avoid strtod() */
-	tw = (*eptr == 'f' || *eptr == 'F' ? FLOAT : DOUBLE);
+	dc = strtold(str, &eptr); /* XXX - avoid strtod() */
+	tw = DOUBLE;
+	for (; *eptr; eptr++) {
+		switch (*eptr) {
+		case 'f':
+		case 'F':
+			tw = FLOAT;
+			break;
+		case 'l':
+		case 'L':
+			tw = LDOUBLE;
+			break;
+		case 'i':
+		case 'I':
+			imag = 1;
+			break;
+		}
+	}
+#ifndef NO_COMPLEX
+	if (imag)
+		tw += (FIMAG-FLOAT);
+#endif
 	p = block(FCON, NIL, NIL, tw, 0, MKSUE(tw));
 	p->n_dcon = dc;
 	return p;

@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.96 2009/01/05 23:18:22 pantzer Exp $	*/
+/*	$Id: main.c,v 1.97 2009/01/27 17:12:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -75,6 +75,9 @@ struct suedef btdims[32] = {
 	[FCOMPLEX] = { .suesize = SZFLOAT * 2, .suealign = ALFLOAT },
 	[COMPLEX] = { .suesize = SZDOUBLE * 2, .suealign = ALDOUBLE },
 	[LCOMPLEX] = { .suesize = SZLDOUBLE * 2, .suealign = ALLDOUBLE },
+	[FIMAG] = { .suesize = SZFLOAT, .suealign = ALFLOAT },
+	[IMAG] = { .suesize = SZDOUBLE, .suealign = ALDOUBLE },
+	[LIMAG] = { .suesize = SZLDOUBLE, .suealign = ALLDOUBLE },
 };
 char *prgname;
 

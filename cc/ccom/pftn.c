@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.247 2009/01/26 22:32:39 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.248 2009/01/27 17:12:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1557,7 +1557,7 @@ lcommprint(void)
  * 	DOUBLE, STRTY, UNIONTY.
  */
 struct typctx {
-	int class, qual, sig, uns, cmplx, err;
+	int class, qual, sig, uns, cmplx, imag, err;
 	TWORD type;
 	NODE *saved, *prea, *posta;
 };
@@ -1666,6 +1666,9 @@ typwalk(NODE *p, void *arg)
 		case COMPLEX:
 			tc->cmplx = 1;
 			break;
+		case IMAG:
+			tc->imag = 1;
+			break;
 		default:
 			cerror("typenode");
 		}
@@ -1687,22 +1690,16 @@ typenode(NODE *p)
 	if (tc.err)
 		goto bad;
 
-	if (tc.cmplx) {
-		if (tc.sig || tc.uns)
+	if (tc.cmplx || tc.imag) {
+		if (tc.type == 0)
+			tc.type = DOUBLE;
+		if ((tc.cmplx && tc.imag) || tc.sig || tc.uns ||
+		    !ISFTY(tc.type))
 			goto bad;
-		switch (tc.type) {
-		case FLOAT:
-			tc.type = FCOMPLEX;
-			break;
-		case DOUBLE:
-			tc.type = COMPLEX;
-			break;
-		case LDOUBLE:
-			tc.type = LCOMPLEX;
-			break;
-		default:
-			goto bad;
-		}
+		if (tc.cmplx)
+			tc.type += (FCOMPLEX-FLOAT);
+		else
+			tc.type += (FIMAG-FLOAT);
 	}
 
 	if (tc.saved && tc.type)

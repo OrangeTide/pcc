@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.172 2009/01/24 15:51:07 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.173 2009/01/27 17:12:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -486,7 +486,14 @@ void stabs_struct(struct symtab *, struct suedef *);
 #define	FCOMPLEX	(MAXTYPES+3)
 #define	COMPLEX		(MAXTYPES+4)
 #define	LCOMPLEX	(MAXTYPES+5)
-#define	ENUMTY		(MAXTYPES+6)
+#define	FIMAG		(MAXTYPES+6)
+#define	IMAG		(MAXTYPES+7)
+#define	LIMAG		(MAXTYPES+8)
+#define	ENUMTY		(MAXTYPES+9)
+
+#define	ISFTY(x)	((x) >= FLOAT && (x) <= LDOUBLE)
+#define	ISCTY(x)	((x) >= FCOMPLEX && (x) <= LCOMPLEX)
+#define	ISITY(x)	((x) >= FIMAG && (x) <= LIMAG)
 
 #define coptype(o)	(cdope(o)&TYFLG)
 #define clogop(o)	(cdope(o)&LOGFLG)
