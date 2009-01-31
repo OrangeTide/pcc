@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.95 2008/12/07 20:12:05 gmcgarry Exp $	*/
+/*	$Id: cpp.c,v 1.96 2009/01/31 20:37:14 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -883,6 +883,7 @@ xwarning(usch *s)
 {
 	usch *t;
 	usch *sb = stringbuf;
+	int dummy;
 
 	flbuf();
 	savch(0);
@@ -890,8 +891,8 @@ xwarning(usch *s)
 		t = sheap("%s:%d: warning: ", ifiles->fname, ifiles->lineno);
 		write (2, t, strlen((char *)t));
 	}
-	write (2, s, strlen((char *)s));
-	write (2, "\n", 1);
+	dummy = write (2, s, strlen((char *)s));
+	dummy = write (2, "\n", 1);
 	stringbuf = sb;
 }
 
@@ -899,15 +900,16 @@ void
 xerror(usch *s)
 {
 	usch *t;
+	int dummy;
 
 	flbuf();
 	savch(0);
 	if (ifiles != NULL) {
 		t = sheap("%s:%d: error: ", ifiles->fname, ifiles->lineno);
-		write (2, t, strlen((char *)t));
+		dummy = write (2, t, strlen((char *)t));
 	}
-	write (2, s, strlen((char *)s));
-	write (2, "\n", 1);
+	dummy = write (2, s, strlen((char *)s));
+	dummy = write (2, "\n", 1);
 	exit(1);
 }
 

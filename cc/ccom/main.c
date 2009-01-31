@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.97 2009/01/27 17:12:03 ragge Exp $	*/
+/*	$Id: main.c,v 1.98 2009/01/31 20:37:14 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -110,10 +110,11 @@ static void
 segvcatch(int a)
 {
 	char buf[1024];
+	int dummy;
 
 	snprintf(buf, sizeof buf, "%sinternal compiler error: %s, line %d\n",
 	    nerrors ? "" : "major ", ftitle, lineno);
-	write(STDERR_FILENO, buf, strlen(buf));
+	dummy = write(STDERR_FILENO, buf, strlen(buf));
 	_exit(1);
 }
 
