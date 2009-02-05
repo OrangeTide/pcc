@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.248 2009/01/27 17:12:03 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.249 2009/02/05 19:23:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1717,6 +1717,19 @@ typenode(NODE *p)
 		tc.type = UCHAR;
 
 #ifdef GCC_COMPAT
+	if (pragma_packed|pragma_allpacked|pragma_aligned) {
+		extern NODE *bdty(int op, ...);
+
+		/* Deal with relevant pragmas */
+		if (pragma_aligned)
+			tc.posta = bdty(CALL, bdty(NAME, "aligned"),
+			    bcon(pragma_aligned));
+		if (pragma_packed || pragma_allpacked) {
+			q = bdty(NAME, "packed");
+			tc.posta = (tc.posta == NIL ? q : cmop(p, q));
+		}
+		pragma_aligned = pragma_packed = 0;
+	}
 	if (tc.posta) {
 		/* Can only occur for TYPEDEF, STRUCT or UNION */
 		if (tc.saved == NULL)
