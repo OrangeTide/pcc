@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.252 2009/01/26 22:32:39 gmcgarry Exp $	*/
+/*	$Id: cgram.y,v 1.253 2009/02/07 10:46:38 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -155,7 +155,7 @@ static int attrwarn = 0;
 
 #define	NORETYP	SNOCREAT /* no return type, save in unused field in symtab */
 
-static NODE *bdty(int op, ...);
+       NODE *bdty(int op, ...);
 static void fend(void);
 static void fundef(NODE *tp, NODE *p);
 static void olddecl(NODE *p, NODE *a);
@@ -1147,7 +1147,7 @@ mkty(TWORD t, union dimfun *d, struct suedef *sue)
 	return block(TYPE, NIL, NIL, t, d, sue);
 }
 
-static NODE *
+NODE *
 bdty(int op, ...)
 {
 	va_list ap;
