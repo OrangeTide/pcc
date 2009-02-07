@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.49 2009/01/27 17:12:03 ragge Exp $	*/
+/*	$Id: init.c,v 1.50 2009/02/07 10:45:44 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -842,8 +842,15 @@ desinit(NODE *p)
 static void
 strcvt(NODE *p)
 {
+	NODE *q = p;
 	char *s;
 	int i;
+
+	/* XXX targets may have rewritten tree with umuls etc */
+	while (coptype(p->n_op) == UTYPE)
+		p = p->n_left;
+	if (p->n_op != NAME)
+		cerror("strcvt");
 
 	for (s = p->n_sp->sname; *s != 0; ) {
 		if (*s++ == '\\') {
@@ -852,7 +859,7 @@ strcvt(NODE *p)
 			i = (unsigned char)s[-1];
 		asginit(bcon(i));
 	} 
-	tfree(p);
+	tfree(q);
 }
 
 /*
