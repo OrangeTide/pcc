@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.20 2008/12/02 21:39:16 gmcgarry Exp $    */
+/*      $Id: code.c,v 1.21 2009/02/08 16:07:52 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -48,6 +48,7 @@ defloc(struct symtab *sp)
 {
 	extern char *nextsect;
 	static char *loctbl[] = { "text", "data", "section .rodata" };
+	char *n;
 	TWORD t;
 	int s;
 
@@ -68,16 +69,17 @@ defloc(struct symtab *sp)
 		t = DECREF(t);
 	if (t > UCHAR)
 		printf("\t.align %d\n", t > USHORT ? 4 : 2);
+	n = sp->soname ? sp->soname : exname(sp->sname);
 #ifdef USE_GAS
 	if (ISFTN(t))
-		printf("\t.type %s,%%function\n", exname(sp->soname));
+		printf("\t.type %s,%%function\n", n);
 #endif
 	if (sp->sclass == EXTDEF)
-		printf("\t.global %s\n", exname(sp->soname));
+		printf("\t.global %s\n", n);
 	if (ISFTN(t))
 		return;
 	if (sp->slevel == 0)
-		printf("%s:\n", exname(sp->soname));
+		printf("%s:\n", n);
 	else
 		printf(LABFMT ":\n", sp->soffset);
 }
