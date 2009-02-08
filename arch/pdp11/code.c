@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.2 2008/09/28 20:39:18 ragge Exp $	*/
+/*	$Id: code.c,v 1.3 2009/02/08 16:41:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -40,6 +40,7 @@ defloc(struct symtab *sp)
 {
 	static char *loctbl[] = { "text", "data", "data" };
 	TWORD t;
+	char *n;
 	int s;
 
 	if (sp == NULL) {
@@ -53,12 +54,13 @@ defloc(struct symtab *sp)
 	lastloc = s;
 	while (ISARY(t))
 		t = DECREF(t);
+	n = sp->soname ? sp->soname : exname(sp->sname);
 	if (sp->sclass == EXTDEF)
-		printf("	.globl %s\n", exname(sp->soname));
+		printf("	.globl %s\n", n);
 	if (ISFTN(sp->stype) || talign(sp->stype, sp->ssue) > ALCHAR)
 		printf(".even\n");
 	if (sp->slevel == 0) {
-		printf("%s:\n", exname(sp->soname));
+		printf("%s:\n", n);
 	} else {
 		printf(LABFMT ":\n", sp->soffset);
 	}
