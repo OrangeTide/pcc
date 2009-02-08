@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.85 2009/02/01 07:59:16 ragge Exp $	*/
+/*	$Id: scan.l,v 1.86 2009/02/08 22:14:16 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -270,7 +270,11 @@ f2(char *str)
 	char *eptr;
 	int imag = 0;
 
+#ifdef HAVE_STRTOLD
 	dc = strtold(str, &eptr); /* XXX - avoid strtod() */
+#else
+	dc = strtod(str, &eptr); /* XXX - avoid strtod() */
+#endif
 	tw = DOUBLE;
 	for (; *eptr; eptr++) {
 		switch (*eptr) {
