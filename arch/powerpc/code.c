@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.20 2008/12/14 21:16:58 ragge Exp $	*/
+/*	$Id: code.c,v 1.21 2009/02/08 16:48:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -55,6 +55,7 @@ defloc(struct symtab *sp)
 	static char *loctbl[] = { "text", "data", "const_data" };
 #endif
 	TWORD t;
+	char *name;
 	int s, n;
 
 	if (sp == NULL) {
@@ -73,10 +74,11 @@ defloc(struct symtab *sp)
 		cerror("defalign: n != 2^i");
 	printf("	.p2align %d\n", n);
 
+	name = sp->soname ? sp->soname : exname(sp->sname);
 	if (sp->sclass == EXTDEF)
-		printf("	.globl %s\n", exname(sp->soname));
+		printf("	.globl %s\n", name);
 	if (sp->slevel == 0)
-		printf("%s:\n", exname(sp->soname));
+		printf("%s:\n", name);
 	else
 		printf(LABFMT ":\n", sp->soffset);
 }
