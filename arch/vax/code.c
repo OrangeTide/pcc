@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.7 2008/01/01 17:31:01 ragge Exp $	*/
+/*	$Id: code.c,v 1.8 2009/02/08 16:55:08 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -158,12 +158,14 @@ aoend(){
 
 void
 defnam( p ) register struct symtab *p; {
-	/* define the current location as the name p->soname */
+	/* define the current location as the name p->sname */
+	char *n;
 
+	n = p->soname ? p->soname : exname(p->sname);
 	if( p->sclass == EXTDEF ){
-		printf( "	.globl	%s\n", exname( p->soname ) );
+		printf( "	.globl	%s\n", n );
 		}
-	printf( "%s:\n", exname( p->soname ) );
+	printf( "%s:\n", n );
 
 	}
 

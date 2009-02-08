@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.8 2008/12/14 21:16:58 ragge Exp $	*/
+/*	$Id: local.c,v 1.9 2009/02/08 16:55:08 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -385,7 +385,7 @@ void
 commdec( struct symtab *q ){ /* make a common declaration for id, if reasonable */
 	OFFSZ off;
 
-	printf( "	.comm	%s,", exname( q->soname ) );
+	printf( "	.comm	%s,", q->soname ? q->soname : exname( q->sname ) );
 	off = tsize( q->stype, q->sdf, q->ssue );
 	printf( CONFMT, off/SZCHAR );
 	printf( "\n" );
@@ -400,7 +400,7 @@ lcommdec(struct symtab *q)
 	off = tsize(q->stype, q->sdf, q->ssue);
 	off = (off+(SZCHAR-1))/SZCHAR;
 	if (q->slevel == 0)
-		printf("	.lcomm %s,0%o\n", exname(q->soname), off);
+		printf("	.lcomm %s,0%o\n", q->soname ? q->soname : exname(q->sname), off);
 	else
 		printf("	.lcomm " LABFMT ",0%o\n", q->soffset, off);
 }
@@ -454,7 +454,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 			if ((q->sclass == STATIC && q->slevel > 0)) {
 				printf("+" LABFMT, q->soffset);
 			} else
-				printf("+%s", exname(q->soname));
+				printf("+%s", q->soname ? q->soname : exname(q->sname));
 		}
 		printf("\n");
 		break;
