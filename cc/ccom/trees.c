@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.229 2009/01/27 17:12:03 ragge Exp $	*/
+/*	$Id: trees.c,v 1.230 2009/02/08 15:59:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2209,7 +2209,8 @@ p2tree(NODE *p)
 			if ((q->sclass == STATIC && q->slevel > 0)) {
 				printf(LABFMT, q->soffset);
 			} else
-				printf("%s\n", exname(q->soname));
+				printf("%s\n",
+				    q->soname ? q->soname : exname(q->sname));
 		} else
 			printf("\n");
 		break;
@@ -2275,15 +2276,10 @@ p2tree(NODE *p)
 #endif
 			    ) {
 				p->n_name = sptostr(q);
-			} else if (!kflag) {
-				char *name = exname(q->soname);
-				int n = strlen(name) + 1;
-				char *cp = inlalloc(n);
-
-				strlcpy(cp, name, n);
-				p->n_name = cp;
-			} else
-				p->n_name = q->soname;
+			} else {
+				if ((p->n_name = q->soname) == NULL)
+					p->n_name = addname(exname(q->sname));
+			}
 		} else
 			p->n_name = "";
 		break;
