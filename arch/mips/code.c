@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.15 2008/11/30 21:00:24 ragge Exp $	*/
+/*	$Id: code.c,v 1.16 2009/02/08 16:37:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -45,6 +45,7 @@ defloc(struct symtab *sp)
 	static char *loctbl[] = { "text", "data", "section .rodata" };
 	static int lastloc = -1;
 	TWORD t;
+	char *n;
 	int s;
 
 	if (sp == NULL) {
@@ -59,15 +60,16 @@ defloc(struct symtab *sp)
 	if (s != lastloc)
 		printf("	.%s\n", loctbl[s]);
 	printf("	.p2align %d\n", ispow2(talign(t, sp->ssue)));
+	n = sp->soname ? sp->soname : sp->sname;
 	if (sp->sclass == EXTDEF)
-		printf("	.globl %s\n", sp->soname);
+		printf("	.globl %s\n", n);
 	if (sp->slevel == 0) {
 #ifdef USE_GAS
-		printf("\t.type %s,@object\n", sp->soname);
-		printf("\t.size %s," CONFMT "\n", sp->soname,
+		printf("\t.type %s,@object\n", n);
+		printf("\t.size %s," CONFMT "\n", n,
 		    tsize(sp->stype, sp->sdf, sp->ssue));
 #endif
-		printf("%s:\n", sp->soname);
+		printf("%s:\n", n);
 	} else
 		printf(LABFMT ":\n", sp->soffset);
 }
