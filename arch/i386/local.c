@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.96 2009/02/08 16:01:26 ragge Exp $	*/
+/*	$Id: local.c,v 1.97 2009/02/08 18:51:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -208,7 +208,8 @@ picstatic(NODE *p)
 	struct symtab *sp;
 	char buf2[64];
 
-	snprintf(buf2, 64, "-L%s$pb", cftnsp->soname);
+	snprintf(buf2, 64, "-L%s$pb",
+	    cftnsp->soname ? cftnsp->soname : cftnsp->sname);
 
 	if (p->n_sp->slevel > 0) {
 		char buf1[64];
