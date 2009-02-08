@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.50 2009/02/07 10:45:44 ragge Exp $	*/
+/*	$Id: init.c,v 1.51 2009/02/08 15:57:26 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -846,11 +846,11 @@ strcvt(NODE *p)
 	char *s;
 	int i;
 
-	/* XXX targets may have rewritten tree with umuls etc */
-	while (coptype(p->n_op) == UTYPE)
-		p = p->n_left;
-	if (p->n_op != NAME)
-		cerror("strcvt");
+#ifdef mach_arm
+	/* XXX */
+	if (p->n_op == UMUL && p->n_left->n_op == ADDROF)
+		p = p->n_left->n_left;
+#endif
 
 	for (s = p->n_sp->sname; *s != 0; ) {
 		if (*s++ == '\\') {
