@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.97 2009/02/08 18:51:04 ragge Exp $	*/
+/*	$Id: local.c,v 1.98 2009/02/09 20:29:45 pantzer Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -141,10 +141,10 @@ picext(NODE *p)
 	if ((name = cftnsp->soname) == NULL)
 		name = cftnsp->sname;
 	if ((pspn = p->n_sp->soname) == NULL)
-		pspn = p->n_sp->sname;
+		pspn = exname(p->n_sp->sname);
 	if (p->n_sp->sclass == EXTDEF) {
 		snprintf(buf2, 64, "-L%s$pb", name);
-		sp = picsymtab("", exname(pspn), buf2);
+		sp = picsymtab("", pspn, buf2);
 	} else {
 		snprintf(buf2, 64, "$non_lazy_ptr-L%s$pb", name);
 		sp = picsymtab("L", pspn, buf2);

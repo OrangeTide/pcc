@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.41 2009/02/08 16:01:26 ragge Exp $	*/
+/*	$Id: code.c,v 1.42 2009/02/09 20:29:45 pantzer Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -245,7 +245,7 @@ ejobcode(int flag )
 		DLIST_FOREACH(p, &stublist, link) {
 			printf("\t.section __IMPORT,__jump_table,symbol_stubs,self_modifying_code+pure_instructions,5\n");
 			printf("L%s$stub:\n", p->name);
-			printf("\t.indirect_symbol %s\n", exname(p->name));
+			printf("\t.indirect_symbol %s\n", p->name);
 			printf("\thlt ; hlt ; hlt ; hlt ; hlt\n");
 			printf("\t.subsections_via_symbols\n");
 		}
@@ -253,7 +253,7 @@ ejobcode(int flag )
 		printf("\t.section __IMPORT,__pointers,non_lazy_symbol_pointers\n");
 		DLIST_FOREACH(p, &nlplist, link) {
 			printf("L%s$non_lazy_ptr:\n", p->name);
-			printf("\t.indirect_symbol %s\n", exname(p->name));
+			printf("\t.indirect_symbol %s\n", p->name);
 			printf("\t.long 0\n");
 	        }
 
