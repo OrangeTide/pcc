@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.28 2009/02/09 17:21:23 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.29 2009/02/09 19:43:48 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -338,7 +338,6 @@ gcc_tcattrfix(NODE *p, NODE *q)
 			/* Must repack struct */
 			/* XXX - aligned types inside? */
 			coff = 0;
-printf("gap->ga[i].a1.iarg %d\n", gap->ga[i].a1.iarg);
 			for (sp = sue->suem; sp; sp = sp->snext) {
 				if (sp->sclass & FIELD)
 					sz = sp->sclass&FLDSIZ;
