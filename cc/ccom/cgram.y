@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.254 2009/02/08 15:59:55 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.255 2009/02/09 17:21:23 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -589,7 +589,7 @@ attr_var:	   {
 
 			p = pragma_aligned ? bdty(CALL, bdty(NAME, "aligned"),
 			    bcon(pragma_aligned)) : NIL;
-			if (pragma_packed || pragma_allpacked) {
+			if (pragma_packed) {
 				q = bdty(NAME, "packed");
 				p = (p == NIL ? q : cmop(p, q));
 			}
