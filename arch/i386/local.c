@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.99 2009/02/09 21:41:20 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.100 2009/02/11 21:35:27 pantzer Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -849,6 +849,25 @@ spalloc(NODE *t, NODE *p, OFFSZ off)
 	sp->n_lval = 0;
 	sp->n_rval = STKREG;
 	ecomp(buildtree(MINUSEQ, sp, p));
+
+#ifdef MACHOABI	
+	/* align to 16 bytes */
+	sp = block(REG, NIL, NIL, p->n_type, 0, MKSUE(INT));
+	sp->n_lval = 0;
+	sp->n_rval = STKREG;
+	ecomp(buildtree(PLUSEQ, sp, bcon(15)));
+	
+	sp = block(REG, NIL, NIL, p->n_type, 0, MKSUE(INT));
+	sp->n_lval = 0;
+	sp->n_rval = STKREG;
+	ecomp(buildtree(RSEQ, sp, bcon(4)));
+	
+	sp = block(REG, NIL, NIL, p->n_type, 0, MKSUE(INT));
+	sp->n_lval = 0;
+	sp->n_rval = STKREG;
+	ecomp(buildtree(LSEQ, sp, bcon(4)));
+#endif
+	
 
 	/* save the address of sp */
 	sp = block(REG, NIL, NIL, PTR+INT, t->n_df, t->n_sue);
