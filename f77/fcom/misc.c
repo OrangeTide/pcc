@@ -1,4 +1,4 @@
-/*	$Id: misc.c,v 1.16 2008/05/12 20:07:47 ragge Exp $	*/
+/*	$Id: misc.c,v 1.17 2009/02/11 15:58:55 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -350,7 +350,7 @@ return(lp);
 int
 newlabel()
 {
-return( ++lastlabno );
+return( lastlabno++ );
 }
 
 
