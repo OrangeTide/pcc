@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.120 2008/12/14 18:26:43 ragge Exp $	*/
+/*	$Id: local2.c,v 1.121 2009/02/12 22:12:41 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -342,7 +342,7 @@ starg(NODE *p)
 	expand(p, 0, "	pushl A1\n");
 #if defined(MACHOABI)
 	fprintf(fp, "	call L%s$stub\n", EXPREFIX "memcpy");
-	addstub(&stublist, "memcpy");
+	addstub(&stublist, EXPREFIX "memcpy");
 #else
 	fprintf(fp, "	call %s\n", EXPREFIX "memcpy");
 #endif
@@ -540,7 +540,7 @@ zzzcode(NODE *p, int c)
 		expand(p, INAREG, "\tleal AL,%eax\n\tpushl %eax\n");
 #if defined(MACHOABI)
 		printf("\tcall L%s$stub\n", EXPREFIX "memcpy");
-		addstub(&stublist, "memcpy");
+		addstub(&stublist, EXPREFIX "memcpy");
 #else
 		printf("\tcall %s\n", EXPREFIX "memcpy");
 #endif
