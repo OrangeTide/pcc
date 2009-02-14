@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.42 2009/02/09 20:29:45 pantzer Exp $	*/
+/*	$Id: code.c,v 1.43 2009/02/14 02:31:51 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -84,8 +84,9 @@ defloc(struct symtab *sp)
 	al = ISFTN(t) ? ALINT : talign(t, sp->ssue);
 	if (al > ALCHAR)
 		printf("	.align %d\n", al/ALCHAR);
-	if ((name = sp->soname) == NULL)
-		name = exname(sp->sname);
+	if (weak || sp->sclass == EXTDEF || sp->slevel == 0)
+		if ((name = sp->soname) == NULL)
+			name = exname(sp->sname);
 	if (weak)
 		printf("	.weak %s\n", name);
 	else if (sp->sclass == EXTDEF)
