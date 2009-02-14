@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.21 2009/01/07 11:44:03 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.22 2009/02/14 20:15:53 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -128,7 +128,7 @@ prologue(struct interpass_prolog *ipp)
 	printf("\tmr %s,%s\n", rnames[FPREG], rnames[R1]);
 #endif
 	/* create the new stack frame */
-	if (addto > 65535) {
+	if (addto > 32767) {
 		printf("\tlis %s,%d\n", rnames[R0], (-addto) >> 16);
 		printf("\tori %s,%s,%d\n", rnames[R0],
 		    rnames[R0], (-addto) & 0xffff);
