@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.8 2009/02/05 23:07:44 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.9 2009/02/14 06:59:27 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -41,7 +41,9 @@
 #define CRT0FILE PCCLIBDIR "crt1.o"
 #define CRT0FILE_PROFILE PCCLIBDIR "gcrt1.o"
 #define STARTFILES { NULL }
-#define	ENDFILES { NULL }
+#define ENDFILES { NULL }
+#define STARTFILES_S { LIBDIR "dylib1.o" }
+#define ENDFILES_S { NULL }
 #define LIBCLIBS { "-lSystem", "-lpcc", NULL }
 #define LIBCLIBS_PROFILE { "-lSystem_profile", "-lpcc", NULL }
 #define STARTLABEL "start"
