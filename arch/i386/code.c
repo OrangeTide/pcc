@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.45 2009/02/14 05:15:58 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.46 2009/02/14 22:29:29 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -40,7 +40,7 @@ defloc(struct symtab *sp)
 {
 	extern char *nextsect;
 	int weak = 0;
-	char *name;
+	char *name = NULL;
 #if defined(ELFABI) || defined(PECOFFABI)
 	static char *loctbl[] = { "text", "data", "section .rodata" };
 #elif defined(MACHOABI)
@@ -84,7 +84,7 @@ defloc(struct symtab *sp)
 	al = ISFTN(t) ? ALINT : talign(t, sp->ssue);
 	if (al > ALCHAR)
 		printf("	.align %d\n", al/ALCHAR);
-	if (weak || sp->sclass == EXTDEF || sp->slevel == 0)
+	if (weak || sp->sclass == EXTDEF || sp->slevel == 0 || ISFTN(t))
 		if ((name = sp->soname) == NULL)
 			name = exname(sp->sname);
 	if (weak)
