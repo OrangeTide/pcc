@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.251 2009/02/09 17:21:24 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.252 2009/02/19 10:56:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -966,7 +966,7 @@ soumemb(NODE *n, char *name, int class)
 	 * "...such a structure shall not be a member of a structure
 	 *  or an element of an array."
 	 */
-	if (rpole->rsou == STNAME && sp->ssue->suem) {
+	if (rpole->rsou == STNAME && sp->ssue->suem && !ISPTR(sp->stype)) {
 		struct symtab *lnk;
 
 		for (lnk = sp->ssue->suem; lnk->snext; lnk = lnk->snext)
