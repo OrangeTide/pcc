@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.112 2009/02/19 21:48:17 gmcgarry Exp $	*/
+/*	$Id: table.c,v 1.113 2009/02/20 07:13:56 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -399,6 +399,12 @@ struct optab table[] = {
 /*
  * Subroutine calls.
  */
+
+{ UCALL,	FOREFF,
+	SCON,	TANY,
+	SANY,	TANY,
+		0,	0,
+		"	call CL\n", },
 
 { CALL,		FOREFF,
 	SCON,	TANY,
