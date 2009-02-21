@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.120 2009/01/05 23:18:22 pantzer Exp $	*/
+/*	$Id: pass2.h,v 1.121 2009/02/21 21:33:47 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -344,12 +344,51 @@ extern	int Oflag;
 #define PUTCHAR(x) putchar(x)
 #endif
 
+extern	int dope[];	/* a vector containing operator information */
+extern	char *opst[];	/* a vector containing names for ops */
+
+#ifdef PCC_DEBUG
+
+static inline int
+optype(int o)
+{
+	if (o >= MAXOP+1)
+		cerror("optype");
+	return (dope[o]&TYFLG);
+}
+
+static inline int
+asgop(int o)
+{
+	if (o >= MAXOP+1)
+		cerror("asgop");
+	return (dope[o]&ASGFLG);
+}
+
+static inline int
+logop(int o)
+{
+	if (o >= MAXOP+1)
+		cerror("logop");
+	return (dope[o]&LOGFLG);
+}
+
+static inline int
+callop(int o)
+{
+	if (o >= MAXOP+1)
+		cerror("callop");
+	return (dope[o]&CALLFLG);
+}
+
+#else
+
 #define optype(o)	(dope[o]&TYFLG)
 #define asgop(o)	(dope[o]&ASGFLG) 
 #define logop(o)	(dope[o]&LOGFLG)
 #define callop(o)	(dope[o]&CALLFLG)
-extern	int dope[];	/* a vector containing operator information */
-extern	char *opst[];	/* a vector containing names for ops */
+
+#endif
 
 	/* macros for doing double indexing */
 #define R2PACK(x,y,z)	(0200*((x)+1)+y+040000*z)
