@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.146 2009/02/19 10:43:18 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.147 2009/02/21 21:42:29 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -158,6 +158,7 @@ int	nf;
 int	nw;
 int	sspflag;
 int	Cflag;
+int	Pflag;
 int	Vflag;
 int	dflag;
 int	pflag;
@@ -376,6 +377,8 @@ main(int argc, char *argv[])
 						Cflag++;
 					else if (!strncmp(argv[i], "-Wp,-V", 6))
 						Vflag++;
+					else if (!strncmp(argv[i], "-Wp,-P", 6))
+						Pflag++;
 				} else if (strcmp(argv[i], "-Wall") == 0) {
 					Wallflag = 1;
 				} else if (strcmp(argv[i], "-WW") == 0) {
@@ -691,6 +694,8 @@ main(int argc, char *argv[])
 			av[na++] = "-M";
 		if (Vflag)
 			av[na++] = "-V";
+		if (Pflag)
+			av[na++] = "-P";
 		if (dflag)
 			av[na++] = alist;
 		for (j = 0; cppadd[j]; j++)
