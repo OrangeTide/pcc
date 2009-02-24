@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.252 2009/02/19 10:56:50 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.253 2009/02/24 11:06:10 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1606,7 +1606,7 @@ typwalk(NODE *p, void *arg)
 				tc->posta = p->n_left;
 			}
 #endif
-			tc->saved = tcopy(p);
+			tc->saved = ccopy(p);
 			break;
 		}
 
