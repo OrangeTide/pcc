@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.46 2009/02/14 22:29:29 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.47 2009/03/10 22:22:19 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -163,9 +163,9 @@ bfcode(struct symtab **sp, int cnt)
 				argstacksize += szty(t) * SZINT / SZCHAR;
 		}
 		if ((name = cftnsp->soname) == NULL)
-			name = cftnsp->sname; /* XXX exname() ? */
+			name = exname(cftnsp->sname);
 		snprintf(buf, 256, "%s@%d", name, argstacksize);
-		cftnsp->soname = addname(name);
+		cftnsp->soname = addname(buf);
 	}
 #endif
 
