@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.29 2009/02/09 19:43:48 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.30 2009/03/14 15:04:42 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -323,8 +323,10 @@ gcc_tcattrfix(NODE *p, NODE *q)
 
 	gap = gcc_attr_parse(q);
 	sue = p->n_sue;
-	if (sue->suega)
-		cerror("gcc_tcattrfix");
+	if (sue->suega) {
+		if (p->n_sp == NULL)
+			cerror("gcc_tcattrfix");
+	}
 
 	/* must know about align first */
 	for (i = 0; i < gap->num; i++)
