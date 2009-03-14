@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.63 2009/01/05 23:18:22 pantzer Exp $	*/
+/*	$Id: optim2.c,v 1.64 2009/03/14 22:21:18 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1038,7 +1038,8 @@ removephi(struct p2env *p2e, struct labelinfo *labinfo,struct bblockinfo *bbinfo
 	int newlabel;
 	
 	DLIST_FOREACH(bb, &p2e->bblocks, bbelem) {		
-		SLIST_FOREACH(phi,&bb->phi,phielem) { // Look at only one, notice break at end
+		SLIST_FOREACH(phi,&bb->phi,phielem) {
+			/* Look at only one, notice break at end */
 			i=0;
 			
 			SLIST_FOREACH(cfgn, &bb->parents, cfgelem) { 
@@ -1075,7 +1076,7 @@ removephi(struct p2env *p2e, struct labelinfo *labinfo,struct bblockinfo *bbinfo
 					
 					ip = tmpalloc(sizeof(struct interpass));
 					ip->type = IP_DEFLAB;
-					// Line number?? ip->lineno;
+					/* Line number?? ip->lineno; */
 					ip->ip_lbl = newlabel;
 					DLIST_INSERT_BEFORE((bb->first), ip, qelem);
 					

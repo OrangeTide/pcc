@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.89 2008/11/26 17:31:40 ragge Exp $   */
+/*      $Id: match.c,v 1.90 2009/03/14 22:21:18 gmcgarry Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -269,8 +269,10 @@ expand(NODE *p, int cookie, char *cp)
 {
 	CONSZ val;
 
-//printf("expand\n");
-//fwalk(p, e2print, 0);
+#if 0
+	printf("expand\n");
+	fwalk(p, e2print, 0);
+#endif
 
 	for( ; *cp; ++cp ){
 		switch( *cp ){

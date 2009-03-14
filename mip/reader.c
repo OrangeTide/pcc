@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.249 2009/02/11 15:53:57 ragge Exp $	*/
+/*	$Id: reader.c,v 1.250 2009/03/14 22:21:18 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -662,7 +662,9 @@ again:	switch (o = p->n_op) {
 
 	case XARG:
 		/* generate code for correct class here */
-//		geninsn(p->n_left, 1 << p->n_label);
+#if 0
+		geninsn(p->n_left, 1 << p->n_label);
+#endif
 		break;
 
 	default:
