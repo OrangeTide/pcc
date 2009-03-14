@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.230 2009/02/08 15:59:55 ragge Exp $	*/
+/*	$Id: trees.c,v 1.231 2009/03/14 14:31:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2014,8 +2014,11 @@ rmcops(NODE *p)
 			r = tempnode(tval, p->n_type, p->n_df, p->n_sue);
 			*p = *r;
 			nfree(r);
-		} else
+		} else {
 			p->n_op = ICON;
+			p->n_lval = 0;
+			p->n_sp = NULL;
+		}
 		break;
 
 	case ULE:
