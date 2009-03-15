@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.255 2009/02/09 17:21:23 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.256 2009/03/15 10:06:14 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -860,7 +860,7 @@ statement:	   e ';' { ecomp(eve($1)); symclear(blevel); }
 					cftnod = tempnode(0, p->n_type,
 					    p->n_df, p->n_sue);
 				ecomp(buildtree(ASSIGN,
-				    tcopy(cftnod), p->n_right));
+				    ccopy(cftnod), p->n_right));
 			}
 			tfree(p->n_left);
 			nfree(p);

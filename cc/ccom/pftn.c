@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.254 2009/03/06 00:27:11 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.255 2009/03/15 10:06:14 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1791,7 +1791,7 @@ tymerge(NODE *typ, NODE *idp)
 
 	if (typ->n_op == CM) {
 		/* has attributes */
-		gcs = tcopy(typ->n_right);
+		gcs = ccopy(typ->n_right);
 		typ = typ->n_left;
 	} else
 		gcs = NULL;
@@ -2135,7 +2135,7 @@ builtin_va_arg(NODE *f, NODE *a)
 		goto bad;
 
 	/* create a copy to a temp node of current ap */
-	p = tcopy(a->n_left);
+	p = ccopy(a->n_left);
 	q = tempnode(0, p->n_type, p->n_df, p->n_sue);
 	nodnum = regno(q);
 	rv = buildtree(ASSIGN, q, p);
