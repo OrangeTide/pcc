@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.113 2009/02/20 07:13:56 gmcgarry Exp $	*/
+/*	$Id: table.c,v 1.114 2009/03/15 04:33:09 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -570,6 +570,12 @@ struct optab table[] = {
 { PLUS,		INLL|FOREFF,
 	SHLL,		TLL,
 	SHLL|SNAME|SOREG,	TLL,
+		0,	RLEFT,
+		"	addl AR,AL\n	adcl UR,UL\n", },
+
+{ PLUS,		INLL|FOREFF,
+	SHLL|SNAME|SOREG,	TLL,
+	SCON,			TLL,
 		0,	RLEFT,
 		"	addl AR,AL\n	adcl UR,UL\n", },
 
