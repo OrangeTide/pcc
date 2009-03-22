@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.122 2009/02/14 05:14:31 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.123 2009/03/22 01:42:14 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1286,6 +1286,13 @@ static struct {
 int xasmconstregs(char *s)
 {
 	int i;
+
+	if (strncmp(s, "st", 2) == 0) {
+		int off =0;
+		if (s[2] == '(' && s[4] == ')')
+			off = s[3] = '0';
+		return ESIEDI + 1 + off;
+	}
 
 	for (i = 0; xcr[i].name; i++)
 		if (strcmp(xcr[i].name, s) == 0)
