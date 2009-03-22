@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.101 2009/02/14 05:15:58 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.102 2009/03/22 01:40:12 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1210,8 +1210,10 @@ defzero(struct symtab *sp)
 		    sp->soname ? sp->soname : exname(sp->sname), off);
 	else
 		printf(LABFMT ",0%o", sp->soffset, off);
+#if !defined(PECOFFABI)
 	if (sp->sclass != STATIC)
 		printf(",%d", al);
+#endif
 	printf("\n");
 }
 
