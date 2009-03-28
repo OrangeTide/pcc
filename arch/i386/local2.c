@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.125 2009/03/28 07:12:17 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.126 2009/03/28 22:41:34 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1300,7 +1300,7 @@ int xasmconstregs(char *s)
 	if (strncmp(s, "st", 2) == 0) {
 		int off =0;
 		if (s[2] == '(' && s[4] == ')')
-			off = s[3] = '0';
+			off = s[3] - '0';
 		return ESIEDI + 1 + off;
 	}
 
