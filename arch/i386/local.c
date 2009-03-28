@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.103 2009/03/28 06:04:47 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.104 2009/03/28 22:33:26 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1457,6 +1457,8 @@ mangle(NODE *p, void *arg)
 		return;
 
 	l = p->n_left;
+	if (l->n_op == TEMP)
+		return;
 	if (l->n_op == ADDROF)
 		l = l->n_left;
 	if (l->n_sp == NULL)
