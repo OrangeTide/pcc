@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.256 2009/03/29 02:44:37 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.257 2009/03/29 16:35:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -116,8 +116,8 @@ static int nparams;
 
 /* defines used for getting things off of the initialization stack */
 
-static NODE *arrstk[10];
-static int arrstkp;
+NODE *arrstk[10];
+int arrstkp;
 static int intcompare;
 static NODE *parlink;
 
