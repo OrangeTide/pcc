@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.255 2009/03/15 10:06:14 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.256 2009/03/29 02:44:37 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2193,6 +2193,7 @@ static struct bitable {
 	{ "__builtin_constant_p", builtin_constant_p },
 #ifndef TARGET_STDARGS
 	{ "__builtin_stdarg_start", builtin_stdarg_start },
+	{ "__builtin_va_start", builtin_stdarg_start },
 	{ "__builtin_va_arg", builtin_va_arg },
 	{ "__builtin_va_end", builtin_va_end },
 	{ "__builtin_va_copy", builtin_va_copy },
