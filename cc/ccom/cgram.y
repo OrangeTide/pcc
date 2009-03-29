@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.257 2009/03/29 16:35:05 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.258 2009/03/29 19:30:05 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -469,7 +469,7 @@ abstract_declarator:
 			}
 		}
 		|  abstract_declarator '[' ']' attr_var {
-			$$ = bdty(LB, $1, bcon(NOOFFSET));
+			$$ = biop(LB, $1, bcon(NOOFFSET));
 			if ($4) {
 				if (attrwarn)
 					werror("unhandled abstract_declarator2 attribute");
