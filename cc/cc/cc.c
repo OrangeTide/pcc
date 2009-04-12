@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.150 2009/03/14 22:10:50 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.151 2009/04/12 11:18:11 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -989,7 +989,7 @@ nocom:
 			if (j >= MAXAV)
 				error("Too many ld options");
 		}
-#ifndef MACHOABI
+#if !defined(os_darwin) && !defined(os_sunos)
 		/* darwin assembler doesn't want -g */
 		if (gflag)
 			av[j++] = "-g";
