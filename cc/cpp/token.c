@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.15 2009/03/12 20:19:43 ragge Exp $	*/
+/*	$Id: token.c,v 1.16 2009/04/14 23:22:46 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -81,7 +81,13 @@ static int state;
 #define	BEGIN state =
 #define	YYSTATE	state
 
+#ifdef YYTEXT_POINTER
+static char buf[CPPBUF];
+char *yytext = buf;
+#else
 char yytext[CPPBUF];
+#endif
+
 static int owasnl, wasnl = 1;
 
 static void
