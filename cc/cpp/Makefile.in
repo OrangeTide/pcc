@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.25 2009/04/12 11:18:12 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.26 2009/04/18 08:03:57 ragge Exp $
 #
 # Makefile.in for cpp
 #
@@ -28,7 +28,7 @@ INSTALL = @INSTALL@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 TARGMACH = @targmach@
 
-OBJS=cpp.o cpy.o scanner.o compat.o
+OBJS=cpp.o cpy.o token.o compat.o
 HEADERS=cpp.h
 DEST=@BINPREFIX@cpp$(EXEEXT)
 
