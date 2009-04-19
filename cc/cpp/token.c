@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.16 2009/04/14 23:22:46 gmcgarry Exp $	*/
+/*	$Id: token.c,v 1.17 2009/04/19 09:15:47 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -213,7 +213,7 @@ ppnum:		for (;;) {
 num:			if (YYSTATE == IFR)
 				cvtdig(scale);
 			PRTOUT(NUMBER);
-		} else if (yytext[0] == '0' && isdigit(yytext[1])) {
+		} else if (yytext[0] == '0' && isdigit((int)yytext[1])) {
 			scale = 8; goto num;
 		} else if (haspmd) {
 			PRTOUT(FPOINT);
