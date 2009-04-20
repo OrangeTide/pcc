@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.38 2009/01/08 23:18:19 gmcgarry Exp $	*/
+/*	$Id: cpp.h,v 1.39 2009/04/20 17:04:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -65,7 +65,7 @@ extern	int	ofd;
 #endif
 #endif
 
-#define	NAMEMAX	64 /* max len of identifier */
+#define	NAMEMAX	CPPBUF	/* currently pushbackbuffer */
 
 /* definition for include file info */
 struct includ {
