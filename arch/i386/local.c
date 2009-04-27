@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.104 2009/03/28 22:33:26 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.105 2009/04/27 22:50:00 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -235,7 +235,6 @@ picstatic(NODE *p)
 		char buf1[32];
 		snprintf(buf1, 32, LABFMT, (int)p->n_sp->soffset);
 		sp = picsymtab("", buf1, buf2);
-		sp->sflags |= SNOUNDERSCORE;
 	} else  {
 		char *name;
 		if ((name = p->n_sp->soname) == NULL)
@@ -1099,13 +1098,8 @@ ninval(CONSZ off, int fsz, NODE *p)
 			} else {
 				char *name;
 				if ((name = q->soname) == NULL)
-					name = q->sname;
-#if defined(MACHOABI)
-				if ((q->sflags & SNOUNDERSCORE) != 0)
-					printf("+%s", name);
-				else
-#endif
-					printf("+%s", exname(name));
+					name = exname(q->sname);
+				printf("+%s", name);
 			}
 		}
 		printf("\n");

@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.68 2009/01/24 21:43:49 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.69 2009/04/27 22:50:00 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -311,7 +311,6 @@ int COLORMAP(int c, int *r);
  */
 #define	SSECTION	SLOCAL1
 #define	STLS		SLOCAL2
-#define	SNOUNDERSCORE	SLOCAL3
 #define SSTDCALL	SLOCAL2	
 #define SDLLINDIRECT	SLOCAL3
 
