@@ -1,4 +1,4 @@
-/*      $Id: local.c,v 1.21 2009/02/08 16:07:53 ragge Exp $    */
+/*      $Id: local.c,v 1.22 2009/05/07 02:34:09 gmcgarry Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -424,28 +424,6 @@ instring(struct symtab *sp)
 	fwrite(str, 1, s - str, stdout);
 	printf("\\0\"\n");
 }
-
-/*
- * Print out a wide string by calling ninval().
- */
-void
-inwstring(struct symtab *sp)
-{
-	char *s = sp->sname;
-	NODE *p;
-
-	defloc(sp);
-	p = bcon(0);
-	do {
-		if (*s++ == '\\')
-			p->n_lval = esccon(&s);
-		else
-			p->n_lval = (unsigned char)s[-1];
-		ninval(0, (MKSUE(WCHAR_TYPE))->suesize, p);
-	} while (s[-1] != 0);
-	nfree(p);
-}
-
 
 static int inbits = 0, inval = 0;
 

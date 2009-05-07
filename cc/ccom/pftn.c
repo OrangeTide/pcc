@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.258 2009/04/08 22:43:47 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.259 2009/05/07 02:34:13 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1185,6 +1185,27 @@ strend(int wide, char *str)
 	p = block(NAME, NIL, NIL, sp->stype, sp->sdf, sp->ssue);
 	p->n_sp = sp;
 	return(clocal(p));
+}
+
+/*
+ * Print out a wide string by calling ninval().
+ */
+void
+inwstring(struct symtab *sp)
+{
+	char *s = sp->sname;
+	NODE *p;
+
+	defloc(sp);
+	p = xbcon(0, NULL, WCHAR_TYPE);
+	do {
+		if (*s++ == '\\')
+			p->n_lval = esccon(&s);
+		else
+			p->n_lval = (unsigned char)s[-1];
+		ninval(0, (MKSUE(WCHAR_TYPE))->suesize, p);
+	} while (s[-1] != 0);
+	nfree(p);
 }
 
 /*
