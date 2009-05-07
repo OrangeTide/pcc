@@ -1,4 +1,4 @@
-/*	$Id: softfloat.c,v 1.2 2008/09/12 16:27:26 ragge Exp $	*/
+/*	$Id: softfloat.c,v 1.3 2009/05/07 22:46:28 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2008 Anders Magnusson. All rights reserved.
@@ -196,6 +196,48 @@ int
 soft_isz(SF sf)
 {
 	return (DEXP(sf) == 0);
+}
+
+int
+soft_cmp_eq(SF x1, SF x2)
+{
+	cerror("soft_cmp_eq");
+	return 0;
+}
+
+int
+soft_cmp_ne(SF x1, SF x2)
+{
+	cerror("soft_cmp_ne");
+	return 0;
+}
+
+int
+soft_cmp_le(SF x1, SF x2)
+{
+	cerror("soft_cmp_le");
+	return 0;
+}
+
+int
+soft_cmp_lt(SF x1, SF x2)
+{
+	cerror("soft_cmp_lt");
+	return 0;
+}
+
+int
+soft_cmp_ge(SF x1, SF x2)
+{
+	cerror("soft_cmp_ge");
+	return 0;
+}
+
+int
+soft_cmp_gt(SF x1, SF x2)
+{
+	cerror("soft_cmp_gt");
+	return 0;
 }
 
 /*
