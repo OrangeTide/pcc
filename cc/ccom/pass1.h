@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.176 2009/05/13 19:13:51 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.177 2009/05/16 12:11:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -338,6 +338,9 @@ void pass1_lastchance(struct interpass *);
 void fldty(struct symtab *p);
 int getlab(void);
 struct suedef *sueget(struct suedef *p);
+void complinit(void);
+NODE *structref(NODE *p, int f, char *name);
+NODE *cxop(int op, NODE *l, NODE *r);
 
 
 #ifdef SOFTFLOAT
@@ -410,6 +413,7 @@ enum {	GCC_ATYP_NONE,
 
 	/* other stuff */
 	GCC_ATYP_BOUNDED,	/* OpenBSD extra boundary checks */
+	ATTR_COMPLEX,		/* Internal definition of complex */
 
 	GCC_ATYP_MAX
 };
