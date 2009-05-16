@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.15 2009/01/21 08:39:05 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.16 2009/05/16 07:54:45 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -41,11 +41,23 @@
 /* host-dependent */
 #define CRT0FILE LIBDIR "crt0.o"
 #define CRT0FILE_PROFILE LIBDIR "gcrt0.o"
+
+#if TARGOSVER == 1
+#define STARTFILES { LIBDIR "crtbegin.o", NULL }
+#define	ENDFILES { LIBDIR "crtend.o", NULL }
+#else
 #define STARTFILES { LIBDIR "crti.o", LIBDIR "crtbegin.o", NULL }
 #define	ENDFILES { LIBDIR "crtend.o", LIBDIR "crtn.o", NULL }
+#endif
+
 /* shared libraries linker files */
+#if TARGOSVER == 1
+#define STARTFILES_S { LIBDIR "crtbeginS.o", NULL }
+#define	ENDFILES_S { LIBDIR "crtendS.o", NULL }
+#else
 #define STARTFILES_S { LIBDIR "crti.o", LIBDIR "crtbeginS.o", NULL }
 #define	ENDFILES_S { LIBDIR "crtendS.o", LIBDIR "crtn.o", NULL }
+#endif
 
 #ifdef LANG_F77
 #define F77LIBLIST { "-L/usr/local/lib", "-lF77", "-lI77", "-lm", "-lc", NULL };
