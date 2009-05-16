@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.151 2009/04/12 11:18:11 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.152 2009/05/16 07:47:34 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -1234,8 +1234,9 @@ callsys(char *f, char *v[])
 {
 	int t, status = 0;
 	pid_t p;
-	char *s, *a = NULL;
-	size_t len = 0;
+	char *s;
+	char * volatile a = NULL;
+	volatile size_t len;
 
 	if (vflag) {
 		fprintf(stderr, "%s ", f);
