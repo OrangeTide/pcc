@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.126 2009/03/28 22:41:34 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.127 2009/05/19 04:22:17 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -380,22 +380,22 @@ fcomp(NODE *p)
 	
 	switch (p->n_op) {
 	case EQ:
-		expand(p, 0, "	andb $64,%ah\n	jne LC\n");
+		expand(p, 0, "	andb $69,%ah\n	xorb $64,%ah\n	je LC\n");
 		break;
 	case NE:
-		expand(p, 0, "	andb $64,%ah\n	je LC\n");
+		expand(p, 0, "	andb $69,%ah\n	xorb $64,%ah\n	jne LC\n");
 		break;
 	case LE:
-		expand(p, 0, "	andb $65,%ah\n	cmpb $1,%ah\n	jne LC\n");
+		expand(p, 0, "	andb $69,%ah\n	xorb $1,%ah\n	jne LC\n");
 		break;
 	case LT:
-		expand(p, 0, "	andb $65,%ah\n	je LC\n");
+		expand(p, 0, "	andb $69,%ah\n	je LC\n");
 		break;
 	case GT:
 		expand(p, 0, "	andb $1,%ah\n	jne LC\n");
 		break;
 	case GE:
-		expand(p, 0, "	andb $65,%ah\n	jne LC\n");
+		expand(p, 0, "	andb $69,%ah\n	jne LC\n");
 		break;
 	default:
 		comperr("fcomp op %d\n", p->n_op);
