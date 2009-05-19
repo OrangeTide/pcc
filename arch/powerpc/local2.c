@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.23 2009/05/15 06:28:11 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.24 2009/05/19 22:55:29 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -147,8 +147,8 @@ prologue(struct interpass_prolog *ipp)
 		printf("\tbl _GLOBAL_OFFSET_TABLE_@local-4\n");
 		printf("\tmflr %s\n", rnames[GOTREG]);
 #elif defined(MACHOABI)
-		printf("\tbcl 20,31,L%s$pb\n", ipp->ipp_name);
-		printf("L%s$pb:\n", ipp->ipp_name);
+		printf("\tbcl 20,31,L%s$pb\n", ipp->ipp_name + 1);
+		printf("L%s$pb:\n", ipp->ipp_name + 1);
 		printf("\tmflr %s\n", rnames[GOTREG]);
 #endif
 	}

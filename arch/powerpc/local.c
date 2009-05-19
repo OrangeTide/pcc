@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.24 2009/05/15 06:28:11 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.25 2009/05/19 22:55:29 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -110,7 +110,7 @@ picext(NODE *p)
 	NODE *r;
 	char *fname;
 
-	fname = cftnsp->soname ? cftnsp->soname : exname(cftnsp->sname);
+	fname = cftnsp->soname ? cftnsp->soname : cftnsp->sname;
 
 	if (p->n_sp->sclass == EXTDEF) {
 		snprintf(buf2, 64, "-L%s$pb", fname);
@@ -175,7 +175,7 @@ picstatic(NODE *p)
 	NODE *r;
 
 	snprintf(buf2, 64, "-L%s$pb",
-	    cftnsp->soname ? cftnsp->soname : exname(cftnsp->sname));
+	    cftnsp->soname ? cftnsp->soname : cftnsp->sname);
 
 	if (p->n_sp->slevel > 0) {
 		char buf1[64];
