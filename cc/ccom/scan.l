@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.87 2009/05/07 02:34:13 gmcgarry Exp $	*/
+/*	$Id: scan.l,v 1.88 2009/05/19 19:25:55 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -34,7 +34,7 @@ L			[a-zA-Z_]
 H			[a-fA-F0-9]
 E			[Ee][+-]?{D}+
 P			[Pp][+-]?{D}+
-FS			(f|F|l|L|i|I)
+FS			(f|F|l|L)?i?
 IS			(u|U|l|L)*
 UL			({L}|\\u{H}{H}{H}{H}|\\U{H}{H}{H}{H}{H}{H}{H}{H})
 

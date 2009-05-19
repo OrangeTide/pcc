@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.234 2009/05/07 22:46:28 gmcgarry Exp $	*/
+/*	$Id: trees.c,v 1.235 2009/05/19 19:25:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2531,6 +2531,10 @@ copst(int op)
 	SNAM(STRING,STRING)
 	SNAM(SZOF,SIZEOF)
 	SNAM(ATTRIB,ATTRIBUTE)
+#ifdef GCC_COMPAT
+	SNAM(XREAL,__real__)
+	SNAM(XIMAG,__imag__)
+#endif
 	default:
 		cerror("bad copst %d", op);
 	}
@@ -2558,6 +2562,8 @@ cdope(int op)
 	case COLON:
 	case LB:
 		return BITYPE;
+	case XIMAG:
+	case XREAL:
 	case ATTRIB:
 		return UTYPE;
 	case ANDAND:
