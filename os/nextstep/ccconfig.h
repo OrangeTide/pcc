@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.1 2008/06/21 23:38:05 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.2 2009/05/19 05:15:37 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -40,7 +40,6 @@
 	"-D__NeXT__",		\
 	"-I" LIBDIR "ansi",	\
 	"-I" LIBDIR "bsd",	\
-	"-I" INCLUDEDIR "pcc",	\
 	NULL			\
 }
 #define	DYNLINKER { NULL }

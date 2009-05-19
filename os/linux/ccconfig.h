@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.12 2009/03/17 07:50:44 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.13 2009/05/19 05:15:37 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -36,7 +36,7 @@
 #endif
 
 /* common cpp predefines */
-#define	CPPADD	{ "-D__linux__", "-D__ELF__", "-I" INCLUDEDIR "/pcc", NULL, }
+#define	CPPADD	{ "-D__linux__", "-D__ELF__", NULL, }
 
 #define	DYNLINKER { "-dynamic-linker", "/lib/ld-linux.so.2", NULL }
 

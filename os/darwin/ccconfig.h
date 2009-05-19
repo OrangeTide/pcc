@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.10 2009/02/14 11:41:43 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.11 2009/05/19 05:15:36 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -36,7 +36,7 @@
 #endif
 
 /* common cpp predefines */
-#define	CPPADD	{ "-D__Darwin__", "-D__APPLE__", "-I" INCLUDEDIR "/pcc", NULL }
+#define	CPPADD	{ "-D__Darwin__", "-D__APPLE__", NULL }
 #define	DYNLINKER { NULL }
 #define CRT0FILE PCCLIBDIR "crt1.o"
 #define CRT0FILE_PROFILE PCCLIBDIR "gcrt1.o"
