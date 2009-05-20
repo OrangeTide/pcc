@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.53 2009/05/19 19:25:55 ragge Exp $	*/
+/*	$Id: init.c,v 1.54 2009/05/20 00:51:40 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -952,7 +952,7 @@ prtstk(struct instk *in)
 void
 simpleinit(struct symtab *sp, NODE *p)
 {
-	NODE *q, *r, *nt;;
+	NODE *q, *r, *nt;
 	TWORD t;
 	int sz;
 
