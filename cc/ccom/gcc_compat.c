@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.32 2009/05/19 19:25:55 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.33 2009/05/21 14:07:06 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -329,7 +329,7 @@ gcc_tcattrfix(NODE *p, NODE *q)
 	struct suedef *sue;
 	gcc_ap_t *gap;
 	int align = 0;
-	int i, sz, coff;
+	int i, sz, coff, csz;
 
 	gap = gcc_attr_parse(q);
 	sue = p->n_sue;
@@ -349,7 +349,7 @@ gcc_tcattrfix(NODE *p, NODE *q)
 		case GCC_ATYP_PACKED:
 			/* Must repack struct */
 			/* XXX - aligned types inside? */
-			coff = 0;
+			coff = csz = 0;
 			for (sp = sue->suem; sp; sp = sp->snext) {
 				if (sp->sclass & FIELD)
 					sz = sp->sclass&FLDSIZ;
@@ -357,12 +357,13 @@ gcc_tcattrfix(NODE *p, NODE *q)
 					sz = tsize(sp->stype, sp->sdf, sp->ssue);
 				SETOFF(sz, gap->ga[i].a1.iarg);
 				sp->soffset = coff;
-				if (p->n_type == STRTY)
-					coff += sz;
-				else if (sz > coff)
-					coff = sz;
+				coff += sz;
+				if (coff > csz)
+					csz = coff;
+				if (p->n_type == UNIONTY)
+					coff = 0;
 			}
-			sue->suesize = coff;
+			sue->suesize = csz;
 			sue->suealign = gap->ga[i].a1.iarg;
 			break;
 
