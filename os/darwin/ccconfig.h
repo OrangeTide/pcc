@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.11 2009/05/19 05:15:36 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.12 2009/05/21 09:35:00 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -56,6 +56,8 @@ ld -arch ppc -weak_reference_mismatches non-weak -o a.out -lcrt1.o -lcrt2.o -L/u
 #define	CPPMDADD { "-D__i386__", "-D__LITTLE_ENDIAN__", NULL }
 #elif defined(mach_powerpc)
 #define	CPPMDADD { "-D__ppc__", "-D__BIG_ENDIAN__", NULL }
+#elif defined(mach_amd64)
+#define	CPPMDADD { "-D__x86_64__", "-D__LITTLE_ENDIAN__", NULL }
 #else
 #error defines for arch missing
 #endif

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.2 2009/01/20 12:16:58 mickey Exp $	*/
+/*	$Id: local2.c,v 1.3 2009/05/21 09:34:59 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -225,6 +225,7 @@ tlen(NODE *p)
 		}
 }
 
+#if 0
 /*
  * Emit code to compare two longlong numbers.
  */
@@ -270,6 +271,7 @@ twollcomp(NODE *p)
 	cbgen(p->n_op, e);
 	deflab(s);
 }
+#endif
 
 int
 fldexpand(NODE *p, int cookie, char **cp)
@@ -442,9 +444,8 @@ argsiz(NODE *p)
 void
 zzzcode(NODE *p, int c)
 {
-	NODE *r, *l;
+	NODE *l;
 	int pr, lr, s;
-	char *ch;
 
 	switch (c) {
 	case 'A': /* swap st0 and st1 if right is evaluated second */
@@ -901,7 +902,6 @@ myoptim(struct interpass *ip)
 void
 rmove(int s, int d, TWORD t)
 {
-	int sl, sh, dl, dh;
 
 	switch (t) {
 	case LONG:
