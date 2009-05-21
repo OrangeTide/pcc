@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.235 2009/05/19 19:25:55 ragge Exp $	*/
+/*	$Id: trees.c,v 1.236 2009/05/21 11:07:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -268,11 +268,10 @@ buildtree(int o, NODE *l, NODE *r)
 				l->n_lval = FLOAT_GT(l->n_dcon, r->n_dcon);
 				break;
 			}
-			l->n_op = ICON;
-			l->n_type = INT;
-			l->n_sue = MKSUE(INT);
 			nfree(r);
-			return l;
+			r = bcon(l->n_lval);
+			nfree(l);
+			return r;
 		}
 	}
 runtime:
