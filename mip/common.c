@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.89 2009/03/14 22:21:18 gmcgarry Exp $	*/
+/*	$Id: common.c,v 1.90 2009/05/21 10:27:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -422,12 +422,12 @@ tprint(FILE *fp, TWORD t, TWORD q)
 		"void",
 		"signed", /* pass1 */
 		"bool", /* pass1 */
-		"fcomplex", /* pass1 */
-		"dcomplex", /* pass1 */
-		"lcomplex", /* pass1 */
 		"fimag", /* pass1 */
 		"dimag", /* pass1 */
 		"limag", /* pass1 */
+		"fcomplex", /* pass1 */
+		"dcomplex", /* pass1 */
+		"lcomplex", /* pass1 */
 		"enumty", /* pass1 */
 		"?", "?"
 		};
