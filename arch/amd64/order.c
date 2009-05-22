@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.3 2009/05/22 08:18:02 ragge Exp $	*/
+/*	$Id: order.c,v 1.4 2009/05/22 12:19:59 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -256,7 +256,8 @@ setorder(NODE *p)
 int *
 livecall(NODE *p)
 {
-cerror("livecall");
+	static int r[] = { R09, R08, RCX, RDX, RSI, RDI, -1 };
+	return r;
 #if 0
 	static int r[] = { EAX, EBX, -1 };
 	int off = 1;
@@ -269,7 +270,6 @@ cerror("livecall");
 
 	return kflag ? &r[off] : &r[2];
 #endif
-return 0;
 }
 
 /*
