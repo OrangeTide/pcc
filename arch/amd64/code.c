@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.4 2009/05/21 09:34:59 gmcgarry Exp $	*/
+/*	$Id: code.c,v 1.5 2009/05/22 08:18:02 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -97,7 +97,7 @@ efcode()
 		return;
 	/* Create struct assignment */
 	q = block(OREG, NIL, NIL, PTR+STRTY, 0, cftnsp->ssue);
-	q->n_rval = EBP;
+	q->n_rval = RBP;
 	q->n_lval = 8; /* return buffer offset */
 	q = buildtree(UMUL, q, NIL);
 	p = block(REG, NIL, NIL, PTR+STRTY, 0, cftnsp->ssue);
@@ -126,7 +126,7 @@ bfcode(struct symtab **sp, int cnt)
 	if (kflag) {
 		/* Put ebx in temporary */
 		n = block(REG, NIL, NIL, INT, 0, MKSUE(INT));
-		n->n_rval = EBX;
+		n->n_rval = RBX;
 		p = tempnode(0, INT, 0, MKSUE(INT));
 		gotnr = regno(p);
 		ecomp(buildtree(ASSIGN, p, n));
@@ -252,7 +252,7 @@ funcode(NODE *p)
 		return p;
 	/* Create an ASSIGN node for ebx */
 	l = block(REG, NIL, NIL, INT, 0, MKSUE(INT));
-	l->n_rval = EBX;
+	l->n_rval = RBX;
 	l = buildtree(ASSIGN, l, tempnode(gotnr, INT, 0, MKSUE(INT)));
 	if (p->n_right->n_op != CM) {
 		p->n_right = block(CM, l, p->n_right, INT, 0, MKSUE(INT));

@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.3 2009/05/07 02:34:08 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.4 2009/05/22 08:18:02 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -317,7 +317,7 @@ clocal(NODE *p)
 			break;
 		/* Change to CALL node with ebx as argument */
 		l = block(REG, NIL, NIL, INT, 0, MKSUE(INT));
-		l->n_rval = EBX;
+		l->n_rval = RBX;
 		p->n_right = buildtree(ASSIGN, l,
 		    tempnode(gotnr, INT, 0, MKSUE(INT)));
 		p->n_op -= (UCALL-CALL);
