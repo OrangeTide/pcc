@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.5 2009/05/22 12:19:59 ragge Exp $	*/
+/*	$Id: local2.c,v 1.6 2009/05/22 14:39:35 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -451,8 +451,8 @@ argsiz(NODE *p)
 void
 zzzcode(NODE *p, int c)
 {
-//	NODE *l;
-//	int pr, lr, s;
+	NODE *l;
+	int pr, lr /*, s */;
 
 	switch (c) {
 #if 0
@@ -497,21 +497,20 @@ zzzcode(NODE *p, int c)
 	case 'J': /* convert unsigned long long to floating point */
 		ulltofp(p);
 		break;
+#endif
 
 	case 'M': /* Output sconv move, if needed */
 		l = getlr(p, 'L');
 		/* XXX fixneed: regnum */
 		pr = DECRA(p->n_reg, 0);
 		lr = DECRA(l->n_reg, 0);
-		if ((pr == AL && lr == EAX) || (pr == BL && lr == EBX) ||
-		    (pr == CL && lr == ECX) || (pr == DL && lr == EDX))
-			;
-		else
-			printf("	movb %%%cl,%s\n",
-			    rnames[lr][2], rnames[pr]);
+		if (pr == lr)
+			break;
+		printf("	movb %s,%s\n", rbyte[lr], rbyte[pr]);
 		l->n_rval = l->n_reg = p->n_reg; /* XXX - not pretty */
 		break;
 
+#if 0
 	case 'N': /* output extended reg name */
 		printf("%s", rnames[getlr(p, '1')->n_rval]);
 		break;

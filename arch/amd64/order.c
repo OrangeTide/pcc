@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.4 2009/05/22 12:19:59 ragge Exp $	*/
+/*	$Id: order.c,v 1.5 2009/05/22 14:39:35 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -152,9 +152,16 @@ setuni(NODE *p, int cookie)
 struct rspecial *
 nspecial(struct optab *q)
 {
-cerror("nspecial");
-#if 0
 	switch (q->op) {
+	case SCONV:
+		if ((q->ltype & TINT) &&
+		    q->rtype == (TLONGLONG|TULONGLONG|TLONG|TULONG)) {
+			static struct rspecial s[] = { 
+				{ NLEFT, RAX }, { NRES, RAX }, { 0 } };
+			return s;
+		}
+		break;
+#if 0
 	case OPLOG:
 		{
 			static struct rspecial s[] = { { NEVER, EAX }, { 0 } };
@@ -224,11 +231,12 @@ cerror("nspecial");
 			return s;
 		}
 		break;
+#endif
 	case LS:
 	case RS:
 		{
 			static struct rspecial s[] = {
-				{ NRIGHT, CL }, { NOLEFT, RCX }, { 0 } };
+				{ NRIGHT, RCX }, { NOLEFT, RCX }, { 0 } };
 			return s;
 		}
 		break;
@@ -237,7 +245,6 @@ cerror("nspecial");
 		break;
 	}
 	comperr("nspecial entry %d", q - table);
-#endif
 	return 0; /* XXX gcc */
 }
 
