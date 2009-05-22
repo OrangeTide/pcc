@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.64 2009/03/14 22:21:18 gmcgarry Exp $	*/
+/*	$Id: optim2.c,v 1.65 2009/05/22 08:41:02 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1189,8 +1189,8 @@ printip(struct interpass *pole)
 			printf("%s %s regs",
 			    ipplg->ipp_name, ipplg->ipp_vis ? "(local)" : "");
 			for (i = 0; i < NIPPREGS; i++)
-				printf("%s0x%x", i? ":" : " ",
-				    ipplg->ipp_regs[i]);
+				printf("%s0x%lx", i? ":" : " ",
+				    (long)ipplg->ipp_regs[i]);
 			printf(" autos %d mintemp %d minlbl %d\n",
 			    ipplg->ipp_autos, ipplg->ip_tmpnum, ipplg->ip_lblnum);
 			break;
@@ -1199,8 +1199,8 @@ printip(struct interpass *pole)
 			printf("%s %s regs",
 			    epplg->ipp_name, epplg->ipp_vis ? "(local)" : "");
 			for (i = 0; i < NIPPREGS; i++)
-				printf("%s0x%x", i? ":" : " ",
-				    epplg->ipp_regs[i]);
+				printf("%s0x%lx", i? ":" : " ",
+				    (long)epplg->ipp_regs[i]);
 			printf(" autos %d mintemp %d minlbl %d\n",
 			    epplg->ipp_autos, epplg->ip_tmpnum, epplg->ip_lblnum);
 			break;
