@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.5 2009/05/24 13:20:13 ragge Exp $	*/
+/*	$Id: table.c,v 1.6 2009/05/24 19:20:52 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -879,14 +879,14 @@ struct optab table[] = {
  * DIV/MOD/MUL 
  */
 { DIV,	INAREG,
-	SAREG,			TLONG|TLONGLONG,
+	SAREG,			TLONG,
 	SAREG|SNAME|SOREG,	TLL,
 		NSPECIAL,	RDEST,
 		"	cltd\n	idivq AR\n", },
 
 { DIV,	INAREG,
-	SAREG,			TULONG|TULONGLONG|TPOINT,
-	SAREG|SNAME|SOREG,	TULONG|TULONGLONG|TPOINT,
+	SAREG,			TULONG|TPOINT,
+	SAREG|SNAME|SOREG,	TULONG|TPOINT,
 		NSPECIAL,	RDEST,
 		"	xorq %rdx,%rdx\n	divq AR\n", },
 
@@ -921,14 +921,14 @@ struct optab table[] = {
 		"	divsZf AR,AL\n", },
 
 { MOD,	INAREG,
-	SAREG,			TLONG|TLONGLONG,
-	SAREG|SNAME|SOREG,	TLONG|TLONGLONG,
+	SAREG,			TLONG,
+	SAREG|SNAME|SOREG,	TLONG,
 		NAREG|NSPECIAL,	RESC1,
 		"	cltd\n	idivq AR\n", },
 
 { MOD,	INAREG,
 	SAREG,			TLL|TPOINT,
-	SAREG|SNAME|SOREG,	TULONG|TULONGLONG|TPOINT,
+	SAREG|SNAME|SOREG,	TULONG|TPOINT,
 		NAREG|NSPECIAL,	RESC1,
 		"	xorq %rdx,%rdx\n	divq AR\n", },
 
@@ -1240,7 +1240,7 @@ struct optab table[] = {
 	SBREG|SNAME|SOREG,	TDOUBLE|TFLOAT,
 	SBREG,			TDOUBLE|TFLOAT,
 		NBREG,	RESC1,
-		"	xorpZf A1,A1\n	subsZf AR,A1\n", },
+		"	xorpZf A1,A1\n	subsZf AL,A1\n", },
 
 { COMPL,	INAREG,
 	SAREG,	TLL,
