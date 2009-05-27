@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.201 2009/05/16 07:53:15 gmcgarry Exp $	*/
+/*	$Id: regs.c,v 1.202 2009/05/27 19:11:49 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -769,6 +769,18 @@ addalledges(REGW *e)
 			RRDEBUG(("%d ", i+j+tempmin));
 			k &= ~(1 << j);
 		}
+#if NUMBITS > 32 /* XXX hack for LP64 */
+		k = (live[i/NUMBITS] >> 32);
+		while (k) {
+			j = ffs(k)-1;
+			if (i+j+32 < MAXREGS)
+				AddEdge(&ablock[i+j+32], e);
+			else
+				AddEdge(&nblock[i+j+tempmin-MAXREGS+32], e);
+			RRDEBUG(("%d ", i+j+tempmin+32));
+			k &= ~(1 << j);
+		}
+#endif
 	}
 	RDEBUG(("done\n"));
 	/* short-lived temps */
