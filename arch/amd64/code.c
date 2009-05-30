@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.9 2009/05/24 19:20:52 ragge Exp $	*/
+/*	$Id: code.c,v 1.10 2009/05/30 15:35:16 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -32,7 +32,7 @@
 
 static int nsse, ngpr, nrsp;
 enum { INTEGER = 1, INTMEM, SSE, SSEMEM, X87, STRREG, STRMEM };
-static const int argregsi[] = { RDI, RSI, RDX, RCX, R09, R08 };
+static const int argregsi[] = { RDI, RSI, RDX, RCX, R08, R09 };
 
 int lastloc = -1;
 
