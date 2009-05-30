@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.202 2009/05/27 19:11:49 ragge Exp $	*/
+/*	$Id: regs.c,v 1.203 2009/05/30 08:48:21 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -758,16 +758,16 @@ addalledges(REGW *e)
 	/* First add to long-lived temps and hard regs */
 	RDEBUG(("addalledges longlived "));
 	for (i = 0; i < xbits; i += NUMBITS) {
-		if ((k = live[i/NUMBITS]) == 0)
-			continue;
-		while (k) {
-			j = ffs(k)-1;
-			if (i+j < MAXREGS)
-				AddEdge(&ablock[i+j], e);
-			else
-				AddEdge(&nblock[i+j+tempmin-MAXREGS], e);
-			RRDEBUG(("%d ", i+j+tempmin));
-			k &= ~(1 << j);
+		if ((k = live[i/NUMBITS])) {
+			while (k) {
+				j = ffs(k)-1;
+				if (i+j < MAXREGS)
+					AddEdge(&ablock[i+j], e);
+				else
+					AddEdge(&nblock[i+j+tempmin-MAXREGS],e);
+				RRDEBUG(("%d ", i+j+tempmin));
+				k &= ~(1 << j);
+			}
 		}
 #if NUMBITS > 32 /* XXX hack for LP64 */
 		k = (live[i/NUMBITS] >> 32);
