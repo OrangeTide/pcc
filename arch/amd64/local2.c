@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.11 2009/05/30 08:50:34 ragge Exp $	*/
+/*	$Id: local2.c,v 1.12 2009/05/30 13:20:10 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -953,6 +953,14 @@ special(NODE *p, int shape)
 		     p->n_lval == 0 || (p->n_lval >> 32) != 0)
 			break;
 		return SRDIR;
+	case SCON32:
+		if (o != ICON || p->n_name[0])
+			break;
+		if (p->n_lval < MIN_INT || p->n_lval > MAX_INT)
+			break;
+		return SRDIR;
+	default:
+		cerror("special: %x\n", shape);
 	}
 	return SRNOPE;
 }
