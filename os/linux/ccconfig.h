@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.13 2009/05/19 05:15:37 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.14 2009/05/31 07:37:15 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -55,6 +55,8 @@
 #define	CPPMDADD { "-D__i386__", NULL, }
 #elif defined(mach_powerpc)
 #define	CPPMDADD { "-D__ppc__", NULL, }
+#elif defined(mach_amd64)
+#define CPPMDADD { "-D__x86_64__", NULL, }
 #else
 #error defines for arch missing
 #endif
