@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.99 2009/05/16 12:11:14 ragge Exp $	*/
+/*	$Id: main.c,v 1.100 2009/06/06 19:25:04 pantzer Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -349,6 +349,7 @@ main(int argc, char *argv[])
 
 	mkdope();
 	signal(SIGSEGV, segvcatch);
+	signal(SIGBUS, segvcatch);
 	fregs = FREGS;	/* number of free registers */
 	lineno = 1;
 #ifdef GCC_COMPAT
