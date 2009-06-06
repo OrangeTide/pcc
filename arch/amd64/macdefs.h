@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.7 2009/05/30 13:20:10 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.8 2009/06/06 12:39:10 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -66,7 +66,7 @@
 #define ALFLOAT		32
 #define ALDOUBLE	64
 #define ALLDOUBLE	128
-#define ALSTRUCT	128
+/* #undef ALSTRUCT	amd64 struct alignment is member defined */
 #define ALSTACK		64
 #define ALMAX		128 
 
