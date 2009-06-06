@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.66 2009/06/06 11:16:35 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.67 2009/06/06 19:19:55 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -86,12 +86,12 @@ static void do_cse(struct p2env* p2e) ;
 
 /* Walk the complete set, performing a function on each node. 
  * if type is given, apply function on only that type */
-void WalkAll(struct p2env* p2env, void (*f) (NODE*, void*), void* arg, int type) ;
+void WalkAll(struct p2env* p2e, void (*f) (NODE*, void*), void* arg, int type) ;
 
 void BBLiveDead(struct basicblock* bblock, int what, unsigned int variable) ;
 
 /* Fill the live/dead code */
-void LiveDead(struct p2env* p2env, int what, unsigned int variable) ;
+void LiveDead(struct p2env* p2e, int what, unsigned int variable) ;
 
 #ifdef PCC_DEBUG
 void printflowdiagram(struct p2env *,struct labelinfo *labinfo,struct bblockinfo *bbinfo,char *);
