@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.178 2009/05/19 19:25:55 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.179 2009/06/11 16:56:47 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -291,7 +291,7 @@ void branch(int);
 void cbranch(NODE *, NODE *);
 void extdec(struct symtab *);
 void defzero(struct symtab *);
-int falloc(struct symtab *, int, int, NODE *);
+int falloc(struct symtab *, int, NODE *);
 TWORD ctype(TWORD);  
 void ninval(CONSZ, int, NODE *);
 void infld(CONSZ, int, CONSZ);
