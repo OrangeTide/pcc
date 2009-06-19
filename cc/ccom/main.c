@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.100 2009/06/06 19:25:04 pantzer Exp $	*/
+/*	$Id: main.c,v 1.101 2009/06/19 10:45:52 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -359,7 +359,7 @@ main(int argc, char *argv[])
 	reached = 1;
 
 	bjobcode();
-#ifndef TARGET_STDARGS
+#ifndef TARGET_VALIST
 	{
 		NODE *p = block(NAME, NIL, NIL, PTR|CHAR, NULL, MKSUE(CHAR));
 		struct symtab *sp = lookup(addname("__builtin_va_list"), 0);
