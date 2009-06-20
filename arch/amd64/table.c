@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.9 2009/06/11 16:57:43 ragge Exp $	*/
+/*	$Id: table.c,v 1.10 2009/06/20 07:21:26 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1029,18 +1029,13 @@ struct optab table[] = {
 	SANY,	TANY,
 	SOREG,	TFLOAT|TDOUBLE,
 		NBREG|NBSL,	RESC1,
-		"	movsZf AL,AR\n", },
+		"	movsZf AL,A1\n", },
 
 /*
  * Logical/branching operators
  */
 
 /* Comparisions, take care of everything */
-{ OPLOG,	FORCC,
-	SCON32,			TANY,
-	SAREG|SOREG|SNAME,	TLL|TPOINT,
-		0, 	RESCC,
-		"	cmpq AR,AL\n", },
 
 { OPLOG,	FORCC,
 	SAREG,			TLL|TPOINT,
