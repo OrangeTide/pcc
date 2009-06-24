@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.10 2009/06/20 07:21:26 ragge Exp $	*/
+/*	$Id: table.c,v 1.11 2009/06/24 17:29:56 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -474,7 +474,7 @@ struct optab table[] = {
 	SBREG,			TDOUBLE|TFLOAT,
 	SBREG|SNAME|SOREG,	TDOUBLE|TFLOAT,
 		0,	RLEFT,
-		"	subsZf AL,AR\n", },
+		"	subsZf AR,AL\n", },
 
 /* Simple r/m->reg ops */
 /* m/r |= r */
