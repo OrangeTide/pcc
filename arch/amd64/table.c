@@ -1,7 +1,7 @@
-/*	$Id: table.c,v 1.11 2009/06/24 17:29:56 ragge Exp $	*/
+/*	$Id: table.c,v 1.12 2009/07/06 12:14:17 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
- * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
+ * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -247,7 +247,7 @@ struct optab table[] = {
 	SBREG|SOREG|SNAME,	TFLOAT|TDOUBLE,
 	SAREG,			TUNSIGNED|TLONG,
 		NAREG,		RESC1,
-		"	cvttsZg2siq AL,A1\n", },
+		"	cvttsZg2siq AL,Z8\n", },
 
 /* convert float/double to  unsigned long */
 { SCONV,	INAREG,

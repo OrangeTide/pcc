@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.13 2009/06/11 16:57:43 ragge Exp $	*/
+/*	$Id: local2.c,v 1.14 2009/07/06 12:14:17 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -377,6 +377,7 @@ zzzcode(NODE *p, int c)
 {
 	NODE *l;
 	int pr, lr, s;
+	char **rt;
 
 	switch (c) {
 #if 0
@@ -497,9 +498,12 @@ zzzcode(NODE *p, int c)
 		printf("%c", s);
 		}
 		break;
-	case '1': /* special reg name printout */
+
+	case '8': /* special reg name printout (64-bit) */
+	case '1': /* special reg name printout (32-bit) */
 		l = getlr(p, '1');
-		printf("%s", rlong[l->n_rval]);
+		rt = c == '8' ? rnames : rlong;
+		printf("%s", rt[l->n_rval]);
 		break;
 
 	case 'g':
