@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.14 2009/06/21 08:10:31 ragge Exp $	*/
+/*	$Id: code.c,v 1.15 2009/07/08 08:23:23 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -210,10 +210,12 @@ bfcode(struct symtab **s, int cnt)
 	if (cftnsp->sdf == NULL || cftnsp->sdf->dfun == NULL)
 		return; /* no prototype */
 	al = cftnsp->sdf->dfun;
+
 	for (; al->type != TELLIPSIS; al++) {
 		if (al->type == TNULL)
 			return;
-		if (al->type == STRTY || ISARY(al->type))
+		if (BTYPE(al->type) == STRTY || BTYPE(al->type) == UNIONTY ||
+		    ISARY(al->type))
 			al++;
 	}
 
