@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.14 2009/07/06 12:14:17 ragge Exp $	*/
+/*	$Id: local2.c,v 1.15 2009/07/08 14:12:28 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -986,7 +986,7 @@ mflags(char *str)
 int
 myxasm(struct interpass *ip, NODE *p)
 {
-cerror("myxasm");
+	return 0;
 #if 0
 	struct interpass *ip2;
 	NODE *in = 0, *ut = 0;
