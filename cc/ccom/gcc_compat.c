@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.33 2009/05/21 14:07:06 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.34 2009/07/11 15:52:29 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -172,6 +172,7 @@ struct atax {
 	[GCC_ATYP_SENTINEL] =	{ A_0ARG|A_1ARG, "sentinel" },
 	[GCC_ATYP_WEAK] =	{ A_0ARG, "weak" },
 	[GCC_ATYP_FORMATARG] =	{ A_1ARG, "format_arg" },
+	[GCC_ATYP_GNU_INLINE] =	{ A_0ARG, "gnu_inline" },
 };
 
 static int
