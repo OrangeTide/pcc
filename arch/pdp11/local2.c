@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.7 2008/11/22 16:12:25 ragge Exp $	*/
+/*	$Id: local2.c,v 1.8 2009/07/29 12:34:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -593,7 +593,7 @@ fixops(NODE *p, void *arg)
 	case EQ:
 	case NE: /* Hack not to clear bits if FORCC */
 		if (p->n_left->n_op == AND)
-			fixops(p->n_left); /* Convert an extra time */
+			fixops(p->n_left, 0); /* Convert an extra time */
 		break;
 	}
 }
