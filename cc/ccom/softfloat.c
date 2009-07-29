@@ -1,4 +1,4 @@
-/*	$Id: softfloat.c,v 1.3 2009/05/07 22:46:28 gmcgarry Exp $	*/
+/*	$Id: softfloat.c,v 1.4 2009/07/29 12:32:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2008 Anders Magnusson. All rights reserved.
@@ -28,7 +28,6 @@
 
 #ifdef SOFTFLOAT
 
-#include "manifest.h"
 #include "pass1.h"
 
 
@@ -316,7 +315,7 @@ floatcon(char *s)
 		int eexp = 0, sign = 0;
 		s++;
 		if (*s == '+')
-			p++;
+			s++;
 		else if (*s=='-')
 			sign = 1, s++;
 
