@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.19 2009/08/01 15:53:06 ragge Exp $	*/
+/*	$Id: token.c,v 1.20 2009/08/04 19:23:44 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -880,16 +880,22 @@ elsestmt(void)
 }
 
 static void
+skpln(void)
+{
+	/* just ignore the rest of the line */
+	while (inch() != '\n')
+		;
+	unch('\n');
+	flslvl++;
+}
+
+static void
 ifdefstmt(void)		 
 { 
 	int t;
 
 	if (flslvl) {
-		/* just ignore the rest of the line */
-		while (inch() != '\n')
-			;
-		unch('\n');
-		flslvl++;
+		skpln();
 		return;
 	}
 	do
@@ -897,10 +903,11 @@ ifdefstmt(void)
 	while (t == WSPACE);
 	if (t != IDENT)
 		error("bad ifdef");
-	if (flslvl == 0 && lookup((usch *)yytext, FIND) != 0)
-		trulvl++;
-	else
+	if (lookup((usch *)yytext, FIND) == 0) {
+		putch('\n');
 		flslvl++;
+	} else
+		trulvl++;
 	chknl(0);
 }
 
@@ -909,15 +916,20 @@ ifndefstmt(void)
 { 
 	int t;
 
+	if (flslvl) {
+		skpln();
+		return;
+	}
 	do
 		t = sloscan();
 	while (t == WSPACE);
 	if (t != IDENT)
 		error("bad ifndef");
-	if (flslvl == 0 && lookup((usch *)yytext, FIND) == 0)
-		trulvl++;
-	else
+	if (lookup((usch *)yytext, FIND) != 0) {
+		putch('\n');
 		flslvl++;
+	} else
+		trulvl++;
 	chknl(0);
 }
 
@@ -942,10 +954,11 @@ static void
 ifstmt(void)
 {
 	if (flslvl == 0) {
-		if (yyparse())
-			++trulvl;
-		else
+		if (yyparse() == 0) {
+			putch('\n');
 			++flslvl;
+		} else
+			++trulvl;
 	} else
 		++flslvl;
 }
@@ -964,8 +977,10 @@ elifstmt(void)
 			if (yyparse()) {
 				++trulvl;
 				prtline();
-			} else
+			} else {
+				putch('\n');
 				++flslvl;
+			}
 		}
 	} else if (trulvl) {
 		++flslvl;
