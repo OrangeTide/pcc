@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.22 2009/08/07 19:45:09 ragge Exp $	*/
+/*	$Id: token.c,v 1.23 2009/08/08 07:41:23 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -252,6 +252,8 @@ str:			PUTCH(ch);
 
 		case '\'': /* character literal */
 con:			PUTCH(ch);
+			if (tflag)
+				continue; /* character constants ignored */
 			while ((ch = NXTCH()) != '\'') {
 				PUTCH(ch);
 				if (ch == '\\') {
