@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.203 2009/05/30 08:48:21 ragge Exp $	*/
+/*	$Id: regs.c,v 1.204 2009/08/09 17:42:04 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -909,9 +909,13 @@ setxarg(NODE *p)
 		ut = 1;
 
 	switch (XASMVAL(cw)) {
+	case 'm':
 	case 'g':
-		if (p->n_left->n_op != REG && p->n_left->n_op != TEMP)
+		/* must find all TEMPs/REGs and set them live */
+		if (p->n_left->n_op != REG && p->n_left->n_op != TEMP) {
+			insnwalk(p->n_left);
 			break;
+		}
 		/* FALLTHROUGH */
 	case 'r':
 		i = regno(p->n_left);
@@ -924,8 +928,9 @@ setxarg(NODE *p)
 			LIVEADD(i);
 		}
 		break;
+
+
 	case 'i':
-	case 'm':
 	case 'n':
 		break;
 	default:
