@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.24 2009/08/09 14:41:49 ragge Exp $	*/
+/*	$Id: token.c,v 1.25 2009/08/09 16:45:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -939,8 +939,10 @@ endifstmt(void)
 {
 	if (flslvl) {
 		flslvl--;
-		if (flslvl == 0)
+		if (flslvl == 0) {
+			putch('\n');
 			prtline();
+		}
 	} else if (trulvl)
 		trulvl--;
 	else
