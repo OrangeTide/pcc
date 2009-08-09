@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.264 2009/06/11 16:56:47 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.265 2009/08/09 11:55:26 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -511,17 +511,23 @@ abstract_declarator:
 			}
 		}
 		|  '(' ')' { $$ = bdty(UCALL, bdty(NAME, NULL)); }
-		|  '(' parameter_type_list ')' {
-			$$ = bdty(CALL, bdty(NAME, NULL), $2);
+		|  '(' ib2 parameter_type_list ')' {
+			$$ = bdty(CALL, bdty(NAME, NULL), $3);
+			if (--blevel > 0)
+				symclear(blevel);
 		}
 		|  abstract_declarator '(' ')' {
 			$$ = bdty(UCALL, $1);
 		}
-		|  abstract_declarator '(' parameter_type_list ')' {
-			$$ = bdty(CALL, $1, $3);
+		|  abstract_declarator '(' ib2 parameter_type_list ')' {
+			$$ = bdty(CALL, $1, $4);
+			if (--blevel > 0)
+				symclear(blevel);
 		}
 		;
 
+ib2:		  { blevel++; }
+		;
 /*
  * K&R arg declaration, between ) and {
  */
