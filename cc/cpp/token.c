@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.23 2009/08/08 07:41:23 ragge Exp $	*/
+/*	$Id: token.c,v 1.24 2009/08/09 14:41:49 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -218,10 +218,10 @@ run:				ch = NXTCH();
 
 		case '\"': /* strings */
 str:			PUTCH(ch);
-			while ((ch = NXTCH()) != '\"') {
+			while ((ch = inch()) != '\"') {
 				PUTCH(ch);
 				if (ch == '\\') {
-					ch = NXTCH();
+					ch = inch();
 					PUTCH(ch);
 				}
 				if (ch < 0)
@@ -604,7 +604,6 @@ again:	switch (c = inpch()) {
 	case '\\': /* continued lines */
 msdos:		if ((c = inpch()) == '\n') {
 			ifiles->lineno++;
-			putch('\n');
 			goto again;
 		} else if (c == '\r')
 			goto msdos;
