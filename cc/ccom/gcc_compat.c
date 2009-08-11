@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.34 2009/07/11 15:52:29 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.35 2009/08/11 14:49:04 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -279,7 +279,7 @@ gcc_attribs(NODE *p, void *arg)
 		break;
 	case GCC_ATYP_PACKED:
 		if (narg == 0)
-			gap->ga[num].a1.iarg = ALCHAR;
+			gap->ga[num].a1.iarg = 1; /* bitwise align */
 		else
 			gap->ga[num].a1.iarg *= SZCHAR;
 		break;
@@ -364,6 +364,7 @@ gcc_tcattrfix(NODE *p, NODE *q)
 				if (p->n_type == UNIONTY)
 					coff = 0;
 			}
+			SETOFF(csz, SZCHAR);
 			sue->suesize = csz;
 			sue->suealign = gap->ga[i].a1.iarg;
 			break;
