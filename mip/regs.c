@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.205 2009/08/09 19:42:48 ragge Exp $	*/
+/*	$Id: regs.c,v 1.206 2009/08/13 08:01:28 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2384,7 +2384,7 @@ temparg(struct interpass *ipole, REGW *w)
 			continue; /* arg in register */
 		if (w != &nblock[regno(p->n_left)])
 			continue;
-		w->r_color = p->n_right->n_lval;
+		w->r_color = (int)p->n_right->n_lval;
 		tfree(p);
 		/* Cannot DLIST_REMOVE here, would break basic blocks */
 		/* Make it a nothing instead */

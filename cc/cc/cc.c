@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.153 2009/05/19 05:15:35 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.154 2009/08/13 08:01:26 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -254,6 +254,8 @@ struct Wflags {
 #define	INWALL		1
 #define	NEGATIVE	2
 } Wflags[] = {
+	{ "-Wtruncate", 0 },
+	{ "-Wno-truncate", NEGATIVE },
 	{ "-Werror", 0 },
 	{ "-Wshadow", 0 },
 	{ "-Wno-shadow", NEGATIVE },

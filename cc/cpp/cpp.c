@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.99 2009/08/11 15:39:28 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.100 2009/08/13 08:01:27 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -455,7 +455,7 @@ line()
 
 	if ((c = yylex()) != NUMBER)
 		goto bad;
-	ifiles->lineno = yylval.node.nd_val - 1;
+	ifiles->lineno = (int)(yylval.node.nd_val - 1);
 
 	if ((c = yylex()) == '\n')
 		return;
@@ -931,7 +931,7 @@ void
 savch(int c)
 {
 	if (stringbuf-sbf < SBSIZE) {
-		*stringbuf++ = c;
+		*stringbuf++ = (usch)c;
 	} else {
 		stringbuf = sbf; /* need space to write error message */
 		error("Too much defining");
@@ -1029,7 +1029,7 @@ struct recur *rp;
 		nl = 0;
 		do {
 			c = cinput();
-			*stringbuf++ = c;
+			*stringbuf++ = (usch)c;
 			if (c == WARN) {
 				gotwarn++;
 				if (rp == NULL)
@@ -1498,7 +1498,7 @@ flbuf()
 void
 putch(int ch)
 {
-	outbuf[obufp++] = ch;
+	outbuf[obufp++] = (usch)ch;
 	if (obufp == CPPBUF || (istty && ch == '\n'))
 		flbuf();
 }
@@ -1530,7 +1530,8 @@ num2str(int num)
 	if (num < 0)
 		num = -num, m = 1;
 	do {
-		*b++ = num % 10 + '0', num /= 10;
+		*b++ = (usch)(num % 10 + '0');
+		num /= 10;
 	} while (num);
 	if (m)
 		*b++ = '-';

@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.127 2009/05/19 04:22:17 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.128 2009/08/13 08:01:25 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -696,7 +696,7 @@ adrcon(CONSZ val)
 void
 conput(FILE *fp, NODE *p)
 {
-	int val = p->n_lval;
+	int val = (int)p->n_lval;
 
 	switch (p->n_op) {
 	case ICON:
@@ -1265,7 +1265,7 @@ numconv(void *ip, void *p1, void *q1)
 	case 'c':
 	case 'd':
 		p->n_name = tmpcalloc(2);
-		p->n_name[0] = XASMVAL(cw);
+		p->n_name[0] = (char)XASMVAL(cw);
 		return 1;
 	default:
 		return 0;

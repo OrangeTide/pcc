@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.87 2008/12/04 07:28:55 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.88 2009/08/13 08:01:28 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -182,7 +182,7 @@ extern int iTflag, oTflag, kflag;
 extern int sflag, nflag, gflag, pflag;
 extern int Wstrict_prototypes, Wmissing_prototypes, Wimplicit_int,
 	Wimplicit_function_declaration, Wpointer_sign, Wshadow,
-	Wsign_compare, Wunknown_pragmas, Wunreachable_code;
+	Wsign_compare, Wunknown_pragmas, Wunreachable_code, Wtruncate;
 extern int funsigned_char;
 extern int sspflag;
 extern int xssaflag, xtailcallflag, xtemps, xdeljumps, xdce;

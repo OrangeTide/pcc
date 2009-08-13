@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.35 2009/08/11 14:49:04 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.36 2009/08/13 08:01:26 gmcgarry Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -200,7 +200,7 @@ setaarg(int str, union gcc_aarg *aa, NODE *p)
 		aa->sarg = (char *)p->n_sp;
 		nfree(p);
 	} else
-		aa->iarg = icons(eve(p));
+		aa->iarg = (int)icons(eve(p));
 }
 
 /*
@@ -355,7 +355,7 @@ gcc_tcattrfix(NODE *p, NODE *q)
 				if (sp->sclass & FIELD)
 					sz = sp->sclass&FLDSIZ;
 				else
-					sz = tsize(sp->stype, sp->sdf, sp->ssue);
+					sz = (int)tsize(sp->stype, sp->sdf, sp->ssue);
 				SETOFF(sz, gap->ga[i].a1.iarg);
 				sp->soffset = coff;
 				coff += sz;

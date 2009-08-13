@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.30 2009/07/11 15:52:29 ragge Exp $	*/
+/*	$Id: inline.c,v 1.31 2009/08/13 08:01:26 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -168,10 +168,10 @@ inline_end()
 	}
 	if (pro == EXTDEF) {
 		opro = cifun->sp->sclass;
-		cifun->sp->sclass = pro;
+		cifun->sp->sclass = (char)pro;
 		cifun->flags |= REFD;
 		inline_prtout();
-		cifun->sp->sclass = opro;
+		cifun->sp->sclass = (char)opro;
 	}
 }
 
@@ -395,7 +395,7 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 	}
 #endif
 
-	stksz = stkoff = 0;
+	stkoff = stksz = 0;
 	/* emit jumps to surround inline function */
 	branch(l0 = getlab());
 	plabel(l1 = getlab());
