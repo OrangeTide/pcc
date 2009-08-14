@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.128 2009/08/13 08:01:25 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.129 2009/08/14 18:38:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -462,6 +462,24 @@ zzzcode(NODE *p, int c)
 		}
 		break;
 
+	case 'B': { /* packed bitfield ops */
+		int sz, off;
+
+		l = p->n_left;
+		sz = UPKFSZ(l->n_rval);
+		off = UPKFOFF(l->n_rval);
+		if (sz + off <= SZINT)
+			break;
+		/* lower already printed */
+		expand(p, INAREG, "	movl AR,A1\n");
+		expand(p, INAREG, "	andl $M,UL\n");
+		printf("	sarl $%d,", SZINT-off);
+		expand(p, INAREG, "A1\n");
+		expand(p, INAREG, "	andl $N,A1\n");
+		expand(p, INAREG, "	orl A1,UL\n");
+		}
+		break;
+
 	case 'C':  /* remove from stack after subroutine call */
 		if (p->n_left->n_flags & FSTDCALL)
 			break;
@@ -727,6 +745,9 @@ insput(NODE *p)
 void
 upput(NODE *p, int size)
 {
+
+	if (p->n_op == FLD)
+		p = p->n_left;
 
 	size /= SZCHAR;
 	switch (p->n_op) {
