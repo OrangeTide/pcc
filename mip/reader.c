@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.251 2009/08/13 08:01:28 gmcgarry Exp $	*/
+/*	$Id: reader.c,v 1.252 2009/08/15 07:03:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1004,6 +1004,11 @@ e2print(NODE *p, int down, int *a, int *b)
 
 	fprintf(prfil, "%p) %s", p, opst[p->n_op] );
 	switch( p->n_op ) { /* special cases */
+
+	case FLD:
+		fprintf(prfil, " sz=%d, shift=%d",
+		    UPKFSZ(p->n_rval), UPKFOFF(p->n_rval));
+		break;
 
 	case REG:
 		fprintf(prfil, " %s", rnames[p->n_rval] );
