@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.100 2009/08/13 08:01:27 gmcgarry Exp $	*/
+/*	$Id: cpp.c,v 1.101 2009/08/15 08:24:22 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -492,6 +492,7 @@ bad:	error("bad line directive");
 void
 include()
 {
+	struct symtab *nl;
 	struct incs *w;
 	usch *osp;
 	usch *fn, *safefn;
@@ -501,7 +502,17 @@ include()
 		return;
 	osp = stringbuf;
 
-	if ((c = yylex()) != STRING && c != '<')
+	while ((c = sloscan()) == WSPACE)
+		;
+	if (c == IDENT) {
+		/* sloscan() will not expand idents */
+		if ((nl = lookup((usch *)yytext, FIND)) == NULL)
+			goto bad;
+		unpstr(gotident(nl));
+		stringbuf = osp;
+		c = yylex();
+	}
+	if (c != STRING && c != '<')
 		goto bad;
 
 	if (c == '<') {
