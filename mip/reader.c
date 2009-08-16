@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.252 2009/08/15 07:03:43 ragge Exp $	*/
+/*	$Id: reader.c,v 1.253 2009/08/16 15:54:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -811,8 +811,13 @@ genxasm(NODE *p)
 				; /* handled by target */
 			else if (w[1] < '0' || w[1] > (n + '0'))
 				uerror("bad xasm arg number %c", w[1]);
-			else
-				adrput(stdout, nary[(int)w[1]-'0']->n_left);
+			else {
+				if (w[1] == (n + '0'))
+					q = nary[(int)w[1]-'0' - 1]; /* XXX */
+				else
+					q = nary[(int)w[1]-'0'];
+				adrput(stdout, q->n_left);
+			}
 			w++;
 		} else if (*w == '\\') { /* Always 3-digit octal */
 			int num = *++w - '0';
