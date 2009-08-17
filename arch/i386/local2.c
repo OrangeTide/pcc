@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.130 2009/08/16 07:39:57 ragge Exp $	*/
+/*	$Id: local2.c,v 1.131 2009/08/17 16:36:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1277,7 +1277,10 @@ targarg(char *w, void *arg)
 	NODE **ary = arg;
 	NODE *p, *q;
 
-	p = ary[(int)w[1]-'0']->n_left;
+	if (ary[(int)w[1]-'0'] == 0)
+		p = ary[(int)w[1]-'0'-1]->n_left; /* XXX */
+	else
+		p = ary[(int)w[1]-'0']->n_left;
 	if (optype(p->n_op) != LTYPE)
 		comperr("bad xarg op %d", p->n_op);
 	q = tcopy(p);
