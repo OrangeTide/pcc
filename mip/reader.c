@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.253 2009/08/16 15:54:37 ragge Exp $	*/
+/*	$Id: reader.c,v 1.254 2009/08/17 19:22:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -790,7 +790,7 @@ genxasm(NODE *p)
 	if (p->n_left->n_op != ICON || p->n_left->n_type != STRTY) {
 		for (q = p->n_left; q->n_op == CM; q = q->n_left)
 			n++;
-		nary = tmpalloc(sizeof(NODE *)*n);
+		nary = tmpcalloc(sizeof(NODE *)*(n+1));
 		o = n;
 		for (q = p->n_left; q->n_op == CM; q = q->n_left) {
 			gencode(q->n_right->n_left, INREGS);
