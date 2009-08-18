@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.266 2009/08/13 08:01:27 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.267 2009/08/18 19:06:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2084,9 +2084,15 @@ builtin_constant_p(NODE *f, NODE *a)
 	int isconst = (a != NULL && a->n_op == ICON);
 
 	tfree(f);
-	tfree(a);
+	if (a && a->n_op == COMOP && a->n_left->n_op == GOTO) {
+		tfree(a->n_right);
+		a->n_right = bcon(0);
+	} else {
+		tfree(a);
+		a = bcon(isconst);
+	}
 
-	return bcon(isconst);
+	return a;
 }
 
 /*
