@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.70 2009/08/13 08:01:28 gmcgarry Exp $	*/
+/*	$Id: optim2.c,v 1.71 2009/08/18 08:42:25 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1683,11 +1683,12 @@ static void add_labels(struct p2env* p2e)
         	if (ip->type == IP_NODE && ip->ip_node->n_op == CBRANCH) {
 			struct interpass *n = DLIST_NEXT(ip, qelem);
 			if (n && n->type != IP_DEFLAB) {
+				struct interpass* lab;
 				int newlabel=getlab2() ;
 
 				BDEBUG(("add_label L%d\n", newlabel));
 
-				struct interpass* lab = tmpalloc(sizeof(struct interpass));
+				lab = tmpalloc(sizeof(struct interpass));
 				lab->type = IP_DEFLAB;
 				/* Line number?? ip->lineno; */
 				lab->ip_lbl = newlabel;
