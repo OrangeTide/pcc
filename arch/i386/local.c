@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.108 2009/08/13 16:34:56 ragge Exp $	*/
+/*	$Id: local.c,v 1.109 2009/08/20 19:20:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -541,6 +541,8 @@ clocal(NODE *p)
 		break;
 		
 	case SCONV:
+		if (p->n_left->n_op == COMOP)
+			break;  /* may propagate wrong type later */
 		l = p->n_left;
 
 		if (p->n_type == l->n_type) {
