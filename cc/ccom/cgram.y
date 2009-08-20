@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.266 2009/08/16 19:45:14 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.267 2009/08/20 19:19:17 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1146,11 +1146,8 @@ term:		   term C_INCOP {  $$ = biop($2, $1, bcon(1)); }
 			/* XXX - check recursive ({ }) statements */
 			branch(($2)+2);
 			plabel($2);
-			$$ = biop(COMOP,
+			$$ = buildtree(COMOP,
 			    biop(GOTO, bcon(($2)+1), NIL), eve($4));
-			$$->n_type = $4->n_type; /* XXX type checking ? */
-			$$->n_sue = $4->n_sue; /* XXX type checking ? */
-			$$->n_df = $4->n_df; /* XXX type checking ? */
 			flend();
 		}
 		;
