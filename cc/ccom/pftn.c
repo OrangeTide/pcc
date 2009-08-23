@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.269 2009/08/20 19:19:42 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.270 2009/08/23 09:37:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -11,8 +11,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -267,6 +265,15 @@ defid(NODE *ap, int class)
 		printf("	previous class: %s\n", scnames(scl));
 #endif
 
+#ifdef GCC_COMPAT
+	/* Its allowed to add attributes to existing declarations */
+	if (ap != q) {
+		p->ssue = sueget(p->ssue);
+                p->ssue->suega = gcc_attr_parse(ap->n_right);
+                ap->n_right = bcon(0);
+        }
+#endif
+
 	if (class & FIELD)
 		return;
 	switch(class) {
@@ -336,6 +343,15 @@ defid(NODE *ap, int class)
 		case USTATIC:
 			p->sclass = STATIC;
 			goto done;
+		case SNULL:
+			/*
+			 * Handle redeclarations of inlined functions.
+			 * This is allowed if the previous declaration is of
+			 * type gnu_inline.
+			 */
+			if (gcc_get_attr(p->ssue, GCC_ATYP_GNU_INLINE))
+				goto done;
+			break;
 		}
 		break;
 
