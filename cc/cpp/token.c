@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.27 2009/08/13 16:59:01 ragge Exp $	*/
+/*	$Id: token.c,v 1.28 2009/08/23 12:23:13 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -103,7 +103,7 @@ char yytext[CPPBUF];
 #define	C_2	8		/* for yylex() tokenizing */
 static char spechr[256] = {
 	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	C_SPEC,	0,	0,	C_SPEC,	0,	0,
+	0,	0,	C_SPEC,	0,	0,	0,	0,	0,
 	0,	0,	0,	0,	0,	0,	0,	0,
 	0,	0,	0,	0,	0,	0,	0,	0,
 
