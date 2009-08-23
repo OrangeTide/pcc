@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.88 2009/05/19 19:25:55 ragge Exp $	*/
+/*	$Id: scan.l,v 1.89 2009/08/23 17:06:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -284,6 +284,7 @@ f2(char *str)
 		case 'f':
 		case 'F':
 			tw = FLOAT;
+			dc = (float)dc;
 			break;
 		case 'l':
 		case 'L':
@@ -295,6 +296,8 @@ f2(char *str)
 			break;
 		}
 	}
+	if (tw == DOUBLE)
+		dc = (double)dc;
 #ifndef NO_COMPLEX
 	if (imag)
 		tw += (FIMAG-FLOAT);
