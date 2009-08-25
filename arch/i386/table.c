@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.116 2009/08/14 18:38:09 ragge Exp $	*/
+/*	$Id: table.c,v 1.117 2009/08/25 19:17:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -85,12 +85,12 @@ struct optab table[] = {
 		0,	RLEFT,
 		"", },
 
-/* convert double <-> float. nothing to do here */
+/* convert between float/double/long double. */
 { SCONV,	INFL,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 		0,	RLEFT,
-		"", },
+		"ZI", },
 
 /* convert pointers to pointers. */
 { SCONV,	ININT,
