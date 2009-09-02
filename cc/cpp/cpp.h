@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.40 2009/08/01 15:53:06 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.41 2009/09/02 09:39:53 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -150,4 +150,3 @@ void xerror(usch *);
 void expmac(struct recur *);
 int cinput(void);
 void getcmnt(void);
-void storepb(void);
