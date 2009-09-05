@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.254 2009/08/17 19:22:00 ragge Exp $	*/
+/*	$Id: reader.c,v 1.255 2009/09/05 10:26:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1508,7 +1508,7 @@ again:
 	case 'r': /* general reg */
 		/* set register class */
 		p->n_label = gclass(p->n_left->n_type);
-		if (p->n_left->n_op == REG || p->n_left->n_op == TEMP)
+		if (p->n_left->n_op == REG)
 			break;
 		q = p->n_left;
 		r = (cw & XASMINOUT ? tcopy(q) : q);
