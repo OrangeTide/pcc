@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.270 2009/08/23 09:37:11 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.271 2009/09/05 11:41:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2331,24 +2331,29 @@ static struct bitable {
 static void
 alprint(union arglist *al, int in)
 {
+	TWORD t;
 	int i = 0, j;
 
 	for (; al->type != TNULL; al++) {
 		for (j = in; j > 0; j--)
 			printf("  ");
 		printf("arg %d: ", i++);
-		tprint(stdout, al->type, 0);
-		if (ISARY(al->type)) {
-			al++;
-			printf(" dim %d\n", al->df->ddim);
-		} else if (BTYPE(al->type) == STRTY ||
-		    BTYPE(al->type) == UNIONTY) {
+		t = al->type;
+		tprint(stdout, t, 0);
+		while (t > BTMASK) {
+			if (ISARY(t)) {
+				al++;
+				printf(" dim %d ", al->df->ddim);
+			} else if (ISFTN(t)) {
+				al++;
+				alprint(al->df->dfun, in+1);
+			}
+			t = DECREF(t);
+		}
+		if (ISSTR(t)) {
 			al++;
 			printf(" (size %d align %d)", al->sue->suesize,
 			    al->sue->suealign);
-		} else if (ISFTN(DECREF(al->type))) {
-			al++;
-			alprint(al->df->dfun, in+1);
 		}
 		printf("\n");
 	}
