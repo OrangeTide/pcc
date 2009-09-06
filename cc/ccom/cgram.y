@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.269 2009/09/05 11:39:30 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.270 2009/09/06 16:41:07 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1492,9 +1492,18 @@ init_declarator(NODE *tn, NODE *p, int assign, NODE *a)
 		} else
 			nidcl(p, class);
 	} else {
+		extern NODE *parlink;
 		if (assign)
 			uerror("cannot initialise function");
 		defid(p, uclass(class));
+		if (parlink) {
+			union arglist *al;
+			TWORD t;
+
+			/* dynamic sized arrays in prototypes */
+			tfree(parlink); /* Free delayed tree */
+			parlink = NIL;
+		}
 	}
 	tfree(p);
 	return typ->n_sp;

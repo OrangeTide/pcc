@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.271 2009/09/05 11:41:08 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.272 2009/09/06 16:41:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -117,7 +117,7 @@ static int nparams;
 NODE *arrstk[10];
 int arrstkp;
 static int intcompare;
-static NODE *parlink;
+NODE *parlink;
 
 void fixtype(NODE *p, int class);
 int fixclass(int class, TWORD type);
@@ -432,15 +432,16 @@ redec:			uerror("redeclaration of %s", p->sname);
 			oalloc(p, &autooff);
 		break;
 	case PARAM:
-		if (ISARY(p->stype)) {
-			/* remove array type on parameters before oalloc */
-			p->stype += (PTR-ARY);
-			p->sdf++;
-		}
-		if (arrstkp)
+		if (arrstkp) {
 			dynalloc(p, &argoff);
-		else
+		} else {
+			if (ISARY(p->stype)) {
+			/* remove array type on parameters before oalloc */
+				p->stype += (PTR-ARY);
+				p->sdf++;
+			}
 			oalloc(p, &argoff);
+		}
 		break;
 		
 	case STATIC:
@@ -2634,7 +2635,9 @@ chk2(TWORD type, union dimfun *dsym, union dimfun *ddef)
 			/* may be declared without dimension */
 			if (dsym->ddim == NOOFFSET)
 				dsym->ddim = ddef->ddim;
-			if (ddef->ddim != NOOFFSET && dsym->ddim != ddef->ddim)
+			if (dsym->ddim < 0 && ddef->ddim < 0)
+				; /* dynamic arrays as arguments */
+			else if (ddef->ddim > 0 && dsym->ddim != ddef->ddim)
 				return 1;
 			dsym++, ddef++;
 			break;
