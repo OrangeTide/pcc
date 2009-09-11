@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.272 2009/09/09 17:05:45 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.273 2009/09/11 09:39:31 mickey Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1492,9 +1492,6 @@ init_declarator(NODE *tn, NODE *p, int assign, NODE *a)
 			uerror("cannot initialise function");
 		defid(p, uclass(class));
 		if (parlink) {
-			union arglist *al;
-			TWORD t;
-
 			/* dynamic sized arrays in prototypes */
 			tfree(parlink); /* Free delayed tree */
 			parlink = NIL;
