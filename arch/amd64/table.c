@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.13 2009/10/30 15:19:27 ragge Exp $	*/
+/*	$Id: table.c,v 1.14 2009/10/30 15:34:50 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -226,7 +226,7 @@ struct optab table[] = {
 	SAREG|SOREG|SNAME,	TUNSIGNED,
 	SBREG,			TFLOAT|TDOUBLE,
 		NAREG|NBREG,	RESC2,
-		"	movl AL,A1\n	cvtsi2sZfq A1,A2\n", },
+		"	movl AL,Z1\n	cvtsi2sZfq A1,A2\n", },
 
 /* convert unsigned long to float/double */
 { SCONV,	INBREG,
