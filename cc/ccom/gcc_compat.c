@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.36 2009/08/13 08:01:26 gmcgarry Exp $     */
+/*      $Id: gcc_compat.c,v 1.37 2009/10/30 14:19:42 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -63,6 +63,7 @@ static struct kw {
 /* 16 */{ "__attribute", NULL, 0 },
 /* 17 */{ "__real__", NULL, 0 },
 /* 18 */{ "__imag__", NULL, 0 },
+/* 19 */{ "__builtin_offsetof", NULL, PCC_OFFSETOF },
 	{ NULL, NULL, 0 },
 };
 
