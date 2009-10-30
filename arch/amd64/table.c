@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.12 2009/07/06 12:14:17 ragge Exp $	*/
+/*	$Id: table.c,v 1.13 2009/10/30 15:19:27 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -1217,7 +1217,7 @@ struct optab table[] = {
 
 { OPLTYPE,	INBREG,
 	SANY,		TFLOAT|TDOUBLE,
-	SOREG|SNAME,	TFLOAT|TDOUBLE,
+	SOREG|SNAME|SBREG,	TFLOAT|TDOUBLE,
 		NBREG,	RESC1,
 		"	movsZf AL,A1\n", },
 
