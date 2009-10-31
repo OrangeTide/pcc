@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.37 2009/10/30 14:19:42 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.38 2009/10/31 14:43:34 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -67,13 +67,49 @@ static struct kw {
 	{ NULL, NULL, 0 },
 };
 
+/* g77 stuff */
+#if SZFLOAT == SZLONG
+#define G77_INTEGER LONG
+#define G77_UINTEGER ULONG
+#elif SZFLOAT == SZINT
+#define G77_INTEGER INT
+#define G77_UINTEGER UNSIGNED
+#else
+#error fix g77 stuff
+#endif
+#if SZFLOAT*2 == SZLONG
+#define G77_LONGINT LONG
+#define G77_ULONGINT ULONG
+#elif SZFLOAT*2 == SZLONGLONG
+#define G77_LONGINT LONGLONG
+#define G77_ULONGINT ULONGLONG
+#else
+#error fix g77 long stuff
+#endif
+
+static TWORD g77t[] = { G77_INTEGER, G77_UINTEGER, G77_LONGINT, G77_ULONGINT };
+static char *g77n[] = { "__g77_integer", "__g77_uinteger",
+	"__g77_longint", "__g77_ulongint" };
+
 void
 gcc_init()
 {
 	struct kw *kwp;
+	NODE *p;
+	TWORD t;
+	int i;
 
 	for (kwp = kw; kwp->name; kwp++)
 		kwp->ptr = addname(kwp->name);
+
+	for (i = 0; i < 4; i++) {
+		t = ctype(g77t[i]);
+		p = block(NAME, NIL, NIL, t, NULL, MKSUE(t));
+		struct symtab *sp = lookup(addname(g77n[i]), 0);
+		p->n_sp = sp;
+		defid(p, TYPEDEF);
+		nfree(p);
+	}
 
 }
 
