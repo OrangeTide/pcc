@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.39 2009/12/13 13:48:59 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.40 2009/12/13 14:45:24 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -237,8 +237,6 @@ amatch(char *s)
 static void
 setaarg(int str, union gcc_aarg *aa, NODE *p)
 {
-printf("setaarg:\n");
-fwalk(p, eprint, 0);
 	if (str) {
 		if (((str & (A1_STR|A2_STR|A3_STR)) && p->n_op != STRING) ||
 		    ((str & (A1_NAME|A2_NAME|A3_NAME)) && p->n_op != NAME))
@@ -260,8 +258,6 @@ gcc_attribs(NODE *p, void *arg)
 	char *name = NULL;
 	int num, cw, attr, narg;
 
-printf("gcc_attribs\n");
-fwalk(p, eprint, 0);
 	if (p->n_op == NAME) {
 		name = (char *)p->n_sp;
 	} else if (p->n_op == CALL || p->n_op == UCALL) {
