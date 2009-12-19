@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.15 2009/07/08 08:23:23 ragge Exp $	*/
+/*	$Id: code.c,v 1.16 2009/12/19 13:52:56 mickey Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -112,10 +112,11 @@ defloc(struct symtab *sp)
 			name = exname(sp->sname);
 	if (weak)
 		printf("        .weak %s\n", name);
-	else if (sp->sclass == EXTDEF)
-		printf("	.globl %s\n", name);
-	if (ISFTN(t))
-		printf("\t.type %s,@function\n", name);
+	else if (sp->sclass == EXTDEF) {
+		printf("\t.globl %s\n", name);
+		printf("\t.type %s,@%s\n", name,
+		    ISFTN(t)? "function" : "object");
+	}
 	if (sp->slevel == 0)
 		printf("%s:\n", name);
 	else

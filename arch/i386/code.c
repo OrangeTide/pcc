@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.48 2009/08/13 16:34:56 ragge Exp $	*/
+/*	$Id: code.c,v 1.49 2009/12/19 13:52:56 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -73,7 +73,7 @@ defloc(struct symtab *sp)
 	}
 #endif
 	if (nextsect) {
-		printf("	.section %s\n", nextsect);
+		printf("	.section %s,\"wa\",@progbits\n", nextsect);
 		nextsect = NULL;
 		s = -1;
 	} else if (s != lastloc)
@@ -89,12 +89,13 @@ defloc(struct symtab *sp)
 			name = exname(sp->sname);
 	if (weak)
 		printf("	.weak %s\n", name);
-	else if (sp->sclass == EXTDEF)
+	else if (sp->sclass == EXTDEF) {
 		printf("	.globl %s\n", name);
 #if defined(ELFABI)
-	if (ISFTN(t))
-		printf("\t.type %s,@function\n", name);
+		printf("\t.type %s,@%s\n", name,
+		    ISFTN(t)? "function" : "object");
 #endif
+	}
 	if (sp->slevel == 0)
 		printf("%s:\n", name);
 	else
