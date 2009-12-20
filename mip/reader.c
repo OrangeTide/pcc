@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.256 2009/11/14 16:04:16 ragge Exp $	*/
+/*	$Id: reader.c,v 1.257 2009/12/20 14:33:08 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -742,7 +742,7 @@ rewrite(NODE *p, int dorewrite, int cookie)
 	p->n_lval = 0;
 	p->n_name = "";
 
-	if (o == ASSIGN) {
+	if (o == ASSIGN || o == STASG) {
 		/* special rewrite care */
 		int reg = DECRA(p->n_reg, 0);
 #define	TL(x) (TBLIDX(x->n_su) || x->n_op == REG)
