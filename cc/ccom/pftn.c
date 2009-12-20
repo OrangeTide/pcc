@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.272 2009/09/06 16:41:07 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.273 2009/12/20 14:39:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1136,7 +1136,7 @@ tsize(TWORD ty, union dimfun *d, struct suedef *sue)
 	if (ty == VOID)
 		sz = SZCHAR;
 #endif
-	if (ty != STRTY && ty != UNIONTY) {
+	if (!ISSOU(BTYPE(ty))) {
 		if (sz == 0) {
 			uerror("unknown size");
 			return(SZINT);
