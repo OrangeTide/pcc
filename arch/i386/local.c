@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.111 2009/09/16 08:29:17 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.112 2009/12/20 14:37:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1116,7 +1116,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 		break;
 	case INT:
 	case UNSIGNED:
-		printf("\t.long 0x%x", (int)p->n_lval);
+		printf("\t.long %d", (int)p->n_lval);
 		if ((q = p->n_sp) != NULL) {
 			if ((q->sclass == STATIC && q->slevel > 0)) {
 				printf("+" LABFMT, q->soffset);
@@ -1152,7 +1152,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 		/* XXX probably broken on most hosts */
 		printf("\t.long\t0x%x,0x%x,0x%x\n", u.i[2], u.i[1], u.i[0]);
 #else
-		printf("\t.long\t0x%x,0x%x,0x%x\n", u.i[0], u.i[1], u.i[2]);
+		printf("\t.long\t%d,%d,%d\n", u.i[0], u.i[1], u.i[2] & 0177777);
 #endif
 		break;
 	case DOUBLE:
@@ -1160,12 +1160,12 @@ ninval(CONSZ off, int fsz, NODE *p)
 #if defined(HOST_BIG_ENDIAN)
 		printf("\t.long\t0x%x,0x%x\n", u.i[1], u.i[0]);
 #else
-		printf("\t.long\t0x%x,0x%x\n", u.i[0], u.i[1]);
+		printf("\t.long\t%d,%d\n", u.i[0], u.i[1]);
 #endif
 		break;
 	case FLOAT:
 		u.f = (float)p->n_dcon;
-		printf("\t.long\t0x%x\n", u.i[0]);
+		printf("\t.long\t%d\n", u.i[0]);
 		break;
 	default:
 		cerror("ninval");
