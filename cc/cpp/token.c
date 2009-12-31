@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.29 2009/12/31 11:46:13 ragge Exp $	*/
+/*	$Id: token.c,v 1.30 2009/12/31 13:17:28 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -739,7 +739,7 @@ prtline()
 			write(ofd, s, strlen((char *)s));
 		}
 	} else if (!Pflag)
-		putstr(sheap("# %d \"%s\"\n", ifiles->lineno, ifiles->fname));
+		putstr(sheap("\n# %d \"%s\"\n", ifiles->lineno, ifiles->fname));
 	stringbuf = os;
 }
 
