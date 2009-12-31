@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.41 2009/12/20 15:34:07 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.42 2009/12/31 13:05:49 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -215,6 +215,7 @@ struct atax {
 	[GCC_ATYP_FORMATARG] =	{ A_1ARG, "format_arg" },
 	[GCC_ATYP_GNU_INLINE] =	{ A_0ARG, "gnu_inline" },
 	[GCC_ATYP_MALLOC] =	{ A_0ARG, "malloc" },
+	[GCC_ATYP_NOTHROW] =	{ A_0ARG, "nothrow" },
 };
 
 static int
