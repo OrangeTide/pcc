@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.183 2009/12/31 13:05:49 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.184 2010/01/05 15:23:51 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -406,6 +406,9 @@ enum {	GCC_ATYP_NONE,
 	GCC_ATYP_UNUSED,
 	GCC_ATYP_DEPRECATED,
 	GCC_ATYP_MAYALIAS,
+
+	/* variable attributes */
+	GCC_ATYP_MODE,
 
 	/* function attributes */
 	GCC_ATYP_NORETURN,
