@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.155 2009/11/14 16:26:10 ragge Exp $	*/
+/*	$Id: cc.c,v 1.156 2010/01/07 05:17:59 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -686,11 +686,13 @@ main(int argc, char *argv[])
 		av[na++] = "-D__PCC__=" MKS(PCC_MAJOR);
 		av[na++] = "-D__PCC_MINOR__=" MKS(PCC_MINOR);
 		av[na++] = "-D__PCC_MINORMINOR__=" MKS(PCC_MINORMINOR);
+#ifndef os_win32
 #ifdef GCC_COMPAT
 		av[na++] = "-D__GNUC__=4";
 		av[na++] = "-D__GNUC_MINOR__=3";
 		av[na++] = "-D__GNUC_PATCHLEVEL__=1";
 		av[na++] = "-D__GNUC_STDC_INLINE__=1";
+#endif
 #endif
 		if (ascpp)
 			av[na++] = "-D__ASSEMBLER__";
