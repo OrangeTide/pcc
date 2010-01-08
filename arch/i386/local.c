@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.112 2009/12/20 14:37:10 ragge Exp $	*/
+/*	$Id: local.c,v 1.113 2010/01/08 07:07:32 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -359,7 +359,10 @@ clocal(NODE *p)
 {
 
 	register struct symtab *q;
-	register NODE *r, *l, *s, *n;
+	register NODE *r, *l;
+#if defined(os_openbsd)
+	register NODE *s, *n;
+#endif
 	register int o;
 	register int m;
 	TWORD t;
