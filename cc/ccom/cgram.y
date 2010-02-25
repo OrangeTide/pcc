@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.275 2009/12/20 20:36:06 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.276 2010/02/25 17:43:49 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -718,6 +718,10 @@ struct_declarator: declarator attr_var {
 		/* always preceeded by attributes */
 xnfdeclarator:	   declarator attr_var {
 			$$ = xnf = init_declarator($<nodep>0, $1, 1, $2);
+		}
+		|  declarator C_ASM '(' string ')' {
+			pragma_renamed = newstring($4, strlen($4));
+			$$ = xnf = init_declarator($<nodep>0, $1, 1, NULL);
 		}
 		;
 
