@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.44 2010/01/07 04:57:53 gmcgarry Exp $     */
+/*      $Id: gcc_compat.c,v 1.45 2010/02/25 16:27:16 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -219,6 +219,8 @@ struct atax {
 	[GCC_ATYP_MALLOC] =	{ A_0ARG, "malloc" },
 	[GCC_ATYP_NOTHROW] =	{ A_0ARG, "nothrow" },
 	[GCC_ATYP_MODE] =	{ A_1ARG|A1_NAME, "mode" },
+	[GCC_ATYP_CONST] =	{ A_0ARG, "const" },
+	[GCC_ATYP_PURE] =	{ A_0ARG, "pure" },
 #else
 	{ 0, NULL },
 	{ A_0ARG|A_1ARG, "aligned" },
@@ -238,6 +240,8 @@ struct atax {
 	{ A_0ARG, "gnu_inline" },
 	{ A_0ARG, "malloc" },
 	{ A_0ARG, "nothrow" },
+	{ A_0ARG, "const" },
+	{ A_0ARG, "pure" },
 	{ A_3ARG|A_MANY|A1_STR, "bounded" },
 	{ 0, NULL },	/* ATTR_COMPLEX */
 #endif
