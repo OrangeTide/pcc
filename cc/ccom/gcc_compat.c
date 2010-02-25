@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.45 2010/02/25 16:27:16 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.46 2010/02/25 16:33:49 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -362,6 +362,8 @@ gcc_attribs(NODE *p, void *arg)
 	case GCC_ATYP_MODE:
 		if (strcmp(gap->ga[num].a1.sarg, "__SI__") == 0) {
 			gap->ga[num].a1.iarg = INT;
+		} else if (strcmp(gap->ga[num].a1.sarg, "__QI__") == 0) {
+			gap->ga[num].a1.iarg = CHAR;
 		} else if (strcmp(gap->ga[num].a1.sarg, "__HI__") == 0) {
 			gap->ga[num].a1.iarg = SHORT;
 		} else if (strcmp(gap->ga[num].a1.sarg, "__DI__") == 0) {
