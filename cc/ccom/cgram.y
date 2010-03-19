@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.276 2010/02/25 17:43:49 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.277 2010/03/19 09:07:32 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -730,13 +730,13 @@ xnfdeclarator:	   declarator attr_var {
  * Returns nothing.
  */
 init_declarator:   declarator attr_var { init_declarator($<nodep>0, $1, 0, $2);}
-		|  declarator C_ASM '(' string ')' {
+		|  declarator C_ASM '(' string ')' attr_var {
 #ifdef GCC_COMPAT
 			pragma_renamed = newstring($4, strlen($4));
-			init_declarator($<nodep>0, $1, 0, NULL);
+			init_declarator($<nodep>0, $1, 0, $6);
 #else
 			werror("gcc extension");
-			init_declarator($<nodep>0, $1, 0, NULL);
+			init_declarator($<nodep>0, $1, 0, $6);
 #endif
 		}
 		|  xnfdeclarator '=' e { simpleinit($1, eve($3)); xnf = NULL; }
