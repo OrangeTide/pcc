@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.90 2009/03/14 22:21:18 gmcgarry Exp $   */
+/*      $Id: match.c,v 1.91 2010/03/27 23:46:12 mickey Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -69,7 +69,7 @@
 void setclass(int tmp, int class);
 int getclass(int tmp);
 
-int s2debug = 0;
+int s2debug;
 
 extern char *ltyp[], *rtyp[];
 

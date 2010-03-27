@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.257 2009/12/20 14:33:08 ragge Exp $	*/
+/*	$Id: reader.c,v 1.258 2010/03/27 23:46:12 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -74,8 +74,7 @@
 /*	some storage declarations */
 int nrecur;
 int lflag;
-int x2debug;
-int udebug = 0;
+int x2debug, udebug, odebug;
 int thisline;
 int fregs;
 int p2autooff, p2maxautooff;
@@ -536,10 +535,7 @@ prcook(int cookie)
 	}
 	return buf;
 }
-
 #endif
-
-int odebug = 0;
 
 int
 geninsn(NODE *p, int cookie)

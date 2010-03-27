@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.32 2008/10/27 21:13:20 ragge Exp $	*/
+/*	$Id: optim.c,v 1.33 2010/03/27 23:46:11 mickey Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -42,8 +42,6 @@
 # define LCON(p) (p->n_left->n_op==ICON)
 # define LO(p) p->n_left->n_op
 # define LV(p) p->n_left->n_lval
-
-int oflag = 0;
 
 /* remove left node */
 static NODE *

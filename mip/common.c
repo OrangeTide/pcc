@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.91 2009/06/14 11:44:56 ragge Exp $	*/
+/*	$Id: common.c,v 1.92 2010/03/27 23:46:12 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -70,7 +70,7 @@
 # endif
 
 int nerrors = 0;  /* number of errors */
-char *ftitle;
+extern char *ftitle;
 int lineno;
 
 int warniserr = 0;

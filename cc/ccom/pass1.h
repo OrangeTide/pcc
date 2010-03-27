@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.185 2010/02/25 16:27:16 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.186 2010/03/27 23:46:11 mickey Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -184,6 +184,7 @@ int mygenswitch(int, TWORD, struct swents **, int);
 extern	int blevel;
 extern	int instruct, got_type;
 extern	int oldstyle;
+extern	int oflag;
 
 extern	int lineno, nerrors;
 
