@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.135 2009/12/13 13:14:31 ragge Exp $	*/
+/*	$Id: local2.c,v 1.136 2010/03/31 13:04:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -583,7 +583,6 @@ zzzcode(NODE *p, int c)
                 break;
 
 	case 'P': /* push hidden argument on stack */
-		r = (NODE *)p->n_sue;
 		printf("\tleal -%d(%%ebp),", stkpos);
 		adrput(stdout, getlr(p, '1'));
 		printf("\n\tpushl ");
