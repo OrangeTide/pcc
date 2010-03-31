@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.239 2009/08/25 19:16:40 ragge Exp $	*/
+/*	$Id: trees.c,v 1.240 2010/03/31 10:26:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -673,6 +673,25 @@ nametree(struct symtab *sp)
 		p->n_sp = NULL;
 	}
 	return clocal(p);
+}
+
+/*
+ * Cast a node to another type.
+ * Just a nicer interface to buildtree.
+ * Returns the new tree.
+ */
+NODE *
+cast(NODE *p, TWORD t, TWORD u)
+{
+	NODE *q;
+
+	q = block(NAME, NIL, NIL, t, 0, MKSUE(BTYPE(t)));
+	q->n_qual = u;
+	q = buildtree(CAST, q, p);
+	p = q->n_right;
+	nfree(q->n_left);
+	nfree(q);
+	return p;
 }
 
 /*
