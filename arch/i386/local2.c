@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.136 2010/03/31 13:04:54 ragge Exp $	*/
+/*	$Id: local2.c,v 1.137 2010/04/01 08:44:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -474,7 +474,7 @@ fcast(NODE *p)
 void
 zzzcode(NODE *p, int c)
 {
-	NODE *r, *l;
+	NODE *l;
 	int pr, lr, s;
 	char *ch;
 
