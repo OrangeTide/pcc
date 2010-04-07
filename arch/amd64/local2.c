@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.15 2009/07/08 14:12:28 ragge Exp $	*/
+/*	$Id: local2.c,v 1.16 2010/04/07 14:45:49 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -393,8 +393,6 @@ zzzcode(NODE *p, int c)
 
 	case 'C':  /* remove from stack after subroutine call */
 		pr = p->n_qual;
-		if (p->n_op == STCALL || p->n_op == USTCALL)
-			pr += 4; /* XXX */
 		if (p->n_op == UCALL)
 			return; /* XXX remove ZC from UCALL */
 		if (pr)
@@ -430,6 +428,13 @@ zzzcode(NODE *p, int c)
 	case 'N': /* output extended reg name */
 		printf("%s", rnames[getlr(p, '1')->n_rval]);
 		break;
+#endif
+
+	case 'P': /* Put hidden argument in rdi */
+		printf("\tleaq -%d(%%rbp),%%rdi\n", stkpos);
+		break;
+
+#if 0
 
 	case 'S': /* emit eventual move after cast from longlong */
 		pr = DECRA(p->n_reg, 0);
