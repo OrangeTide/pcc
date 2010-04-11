@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.189 2010/04/11 09:58:47 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.190 2010/04/11 15:01:04 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -348,6 +348,7 @@ NODE *cxelem(int op, NODE *p);
 NODE *cxconj(NODE *p);
 NODE *cxret(NODE *p, NODE *q);
 NODE *cast(NODE *p, TWORD t, TWORD q);
+NODE *builtin_check(NODE *f, NODE *a);
 
 
 #ifdef SOFTFLOAT
