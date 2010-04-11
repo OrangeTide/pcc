@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.11 2010/04/11 09:59:25 ragge Exp $	*/
+/*	$Id: local.c,v 1.12 2010/04/11 12:26:52 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -970,7 +970,8 @@ defzero(struct symtab *sp)
 #ifdef GCC_COMPAT
 	{
 		struct gcc_attrib *ga;
-		if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_VISIBILITY)) != NULL)
+		if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_VISIBILITY)) &&
+		    strcmp(ga->a1.sarg, "default"))
 			printf("\t.%s %s\n", ga->a1.sarg, name);
 	}
 #endif
