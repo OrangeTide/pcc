@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.50 2010/04/11 08:28:06 ragge Exp $	*/
+/*	$Id: code.c,v 1.51 2010/04/11 12:32:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -82,7 +82,9 @@ defloc(struct symtab *sp)
 			printf("\t.align 4\n\t.long\t%s\n", name);
 			lastloc = -1;
 		}
-
+		if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_VISIBILITY)) &&
+		    strcmp(ga->a1.sarg, "default"))
+			printf("\t.%s %s\n", ga->a1.sarg, name);
 	}
 #endif
 	if (nextsect) {
