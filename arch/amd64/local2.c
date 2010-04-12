@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.16 2010/04/07 14:45:49 ragge Exp $	*/
+/*	$Id: local2.c,v 1.17 2010/04/12 16:27:09 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -606,16 +606,16 @@ adrcon(CONSZ val)
 void
 conput(FILE *fp, NODE *p)
 {
-	int val = p->n_lval;
+	long val = p->n_lval;
 
 	switch (p->n_op) {
 	case ICON:
 		if (p->n_name[0] != '\0') {
 			fprintf(fp, "%s", p->n_name);
 			if (val)
-				fprintf(fp, "+%d", val);
+				fprintf(fp, "+%ld", val);
 		} else
-			fprintf(fp, "%d", val);
+			fprintf(fp, "%ld", val);
 		return;
 
 	default:
@@ -633,6 +633,7 @@ insput(NODE *p)
 /*
  * Write out the upper address, like the upper register of a 2-register
  * reference, or the next memory location.
+ * XXX - not needed on amd64
  */
 void
 upput(NODE *p, int size)
@@ -684,7 +685,7 @@ adrput(FILE *io, NODE *p)
 		if (p->n_name[0])
 			printf("%s%s", p->n_name, p->n_lval ? "+" : "");
 		if (p->n_lval)
-			fprintf(io, "%d", (int)p->n_lval);
+			fprintf(io, "%lld", p->n_lval);
 		if (R2TEST(r)) {
 			fprintf(io, "(%s,%s,8)", rnames[R2UPK1(r)],
 			    rnames[R2UPK2(r)]);
