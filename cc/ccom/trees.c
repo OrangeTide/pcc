@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.240 2010/03/31 10:26:09 ragge Exp $	*/
+/*	$Id: trees.c,v 1.241 2010/04/18 13:22:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -676,7 +676,7 @@ nametree(struct symtab *sp)
 }
 
 /*
- * Cast a node to another type.
+ * Cast a node to another type by inserting a cast.
  * Just a nicer interface to buildtree.
  * Returns the new tree.
  */
@@ -692,6 +692,23 @@ cast(NODE *p, TWORD t, TWORD u)
 	nfree(q->n_left);
 	nfree(q);
 	return p;
+}
+
+/*
+ * Cast and complain if necessary by not inserining a cast.
+ */
+NODE *
+ccast(NODE *p, TWORD t, TWORD u, union dimfun *df, struct suedef *sue)
+{
+	NODE *q;
+
+	/* let buildtree do typechecking (and casting) */ 
+	q = block(NAME, NIL, NIL, t, df, sue);
+	p = buildtree(ASSIGN, q, p);
+	nfree(p->n_left);
+	q = optim(p->n_right);
+	nfree(p);
+	return q;
 }
 
 /*
