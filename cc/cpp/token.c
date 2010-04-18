@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.32 2010/03/24 08:23:17 ragge Exp $	*/
+/*	$Id: token.c,v 1.33 2010/04/18 16:42:32 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -109,7 +109,7 @@ static char spechr[256] = {
 	0,	0,	0,	0,	0,	0,	0,	0,
 
 	0,	C_2,	C_SPEC,	0,	0,	0,	C_2,	C_SPEC,
-	0,	0,	0,	C_2,	0,	C_2,	0,	C_SPEC,
+	0,	0,	0,	C_2,	0,	C_2,	0,	C_SPEC|C_2,
 	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,
 	C_I,	C_I,	0,	0,	C_2,	C_2,	C_2,	C_SPEC,
 
@@ -399,8 +399,10 @@ chlit:
 			int c, wrn;
 			extern int readmac;
 
-			if (Cflag && !flslvl && readmac)
+			if (Cflag && !flslvl && readmac) {
+				unch(ch);
 				return CMNT;
+			}
 
 			wrn = 0;
 		more:	while ((c = inch()) && c != '*') {
@@ -537,6 +539,20 @@ yylex()
 		if (ch == c2)
 			badop("");
 		break;
+
+	case '/':
+		if (Cflag == 0 || c2 != '*')
+			break;
+		/* Found comment that need to be skipped */
+		for (;;) {
+			ch = inpch();
+		c1:	if (ch != '*')
+				continue;
+			if ((ch = inpch()) == '/')
+				break;
+			goto c1;
+		}
+		return yylex();
 
 	case NUMBER:
 		if (yytext[0] == '\'') {
