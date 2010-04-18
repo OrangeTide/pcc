@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.190 2010/04/11 15:01:04 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.191 2010/04/18 13:25:18 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -348,6 +348,8 @@ NODE *cxelem(int op, NODE *p);
 NODE *cxconj(NODE *p);
 NODE *cxret(NODE *p, NODE *q);
 NODE *cast(NODE *p, TWORD t, TWORD q);
+NODE *ccast(NODE *p, TWORD t, TWORD u, union dimfun *df, struct suedef *sue);
+
 NODE *builtin_check(NODE *f, NODE *a);
 
 
