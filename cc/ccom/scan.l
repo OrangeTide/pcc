@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.89 2009/08/23 17:06:28 ragge Exp $	*/
+/*	$Id: scan.l,v 1.90 2010/04/19 14:24:06 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -370,7 +370,7 @@ esccon(char **sptr)
 	case '\"': val = '\"'; break;
 	case 'x': val = strtoul(wr, &wr, 16); break;
 	/* ISO/IEC 9099:1999 (E) 6.4.3 */
-	case 'U'|0x80:
+	case 'U'|(char)0x80:
 		esccon_warn = 0;
 		/* FALLTHROUGH */
 	case 'U':
