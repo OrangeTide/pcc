@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.103 2010/02/25 15:49:00 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.104 2010/04/20 19:43:52 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -622,6 +622,7 @@ getcmnt(void)
 	int c;
 
 	savstr((usch *)yytext);
+	savch(cinput()); /* Lost * */
 	for (;;) {
 		c = cinput();
 		if (c == '*') {
