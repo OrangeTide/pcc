@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.33 2010/04/18 16:42:32 ragge Exp $	*/
+/*	$Id: token.c,v 1.34 2010/04/20 11:20:20 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -401,6 +401,7 @@ chlit:
 
 			if (Cflag && !flslvl && readmac) {
 				unch(ch);
+				yytext[yyp] = 0;
 				return CMNT;
 			}
 
