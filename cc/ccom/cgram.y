@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.279 2010/04/23 14:35:18 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.280 2010/04/23 15:01:02 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1169,8 +1169,10 @@ term:		   term C_INCOP {  $$ = biop($2, $1, bcon(1)); }
 			beginit(&S);
 			tfree($3);
 			desinit(p); /* Sets upp correct place on stack */
+			p = bcon(0);
 			$$ = bcon(0);
-			$$->n_lval = scalinit($$)/SZCHAR;
+			$$->n_lval = scalinit(p)/SZCHAR;
+			nfree(p); /* XXX should not free here but init.c */
 			endictx();
 		}
 		|  C_ICON { $$ = $1; }
