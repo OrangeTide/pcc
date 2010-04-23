@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.56 2009/10/30 14:19:42 ragge Exp $	*/
+/*	$Id: init.c,v 1.57 2010/04/23 14:35:18 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -321,7 +321,7 @@ stkpush(void)
 		is->in_lnk = ISSOU(DECREF(t)) ? pstk->in_sym->ssue->suem : 0;
 		is->in_t = DECREF(t);
 		is->in_sym = sp;
-		if (pstk->in_df->ddim != NOOFFSET &&
+		if (pstk->in_df->ddim != NOOFFSET && pstk->in_df->ddim &&
 		    pstk->in_n >= pstk->in_df->ddim) {
 			werror("excess of initializing elements");
 			pstk->in_n--;
@@ -780,8 +780,11 @@ mkstack(NODE *p)
 {
 
 #ifdef PCC_DEBUG
-	if (idebug)
+	if (idebug) {
 		printf("mkstack: %p\n", p);
+		if (idebug > 1 && p)
+			fwalk(p, eprint, 0);
+	}
 #endif
 
 	if (p == NULL)
