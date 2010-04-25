@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.277 2010/04/11 15:01:04 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.278 2010/04/25 07:58:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2303,7 +2303,12 @@ incomp:					uerror("incompatible types for arg %d",
 		/* Check for struct/union compatibility */
 		if (type == arrt) {
 			if (ISSOU(BTYPE(type))) {
-				if (apole->node->n_sue->suem == al[1].sue->suem)
+				struct suedef *s1, *s2;
+
+				GETSUE(s1, apole->node->n_sue);
+				GETSUE(s2, al[1].sue);
+
+				if (s1->suem == s2->suem)
 					goto out;
 			} else
 				goto out;
