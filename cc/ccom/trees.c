@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.243 2010/04/22 19:17:39 ragge Exp $	*/
+/*	$Id: trees.c,v 1.244 2010/04/25 07:59:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -392,8 +392,6 @@ runtime:
 				uerror("struct or union required");
 				break;
 			}
-
-#define	GETSUE(x, y)	for (x = y; x->suep; x = x->suep)
 
 			/* find type sue */
 			GETSUE(sue, l->n_sue);
