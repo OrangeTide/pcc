@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.138 2010/04/28 14:53:54 ragge Exp $	*/
+/*	$Id: local2.c,v 1.139 2010/04/30 12:54:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -506,6 +506,8 @@ zzzcode(NODE *p, int c)
 		pr = p->n_qual;
 		if (p->n_op == STCALL || p->n_op == USTCALL)
 			pr += 4;
+		if (p->n_flags & FFPPOP)
+			printf("	fstp	%%st(0)\n");
 		if (p->n_op == UCALL)
 			return; /* XXX remove ZC from UCALL */
 		if (pr)

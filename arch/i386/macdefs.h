@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.70 2009/09/16 08:29:17 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.71 2010/04/30 12:54:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -326,6 +326,7 @@ int COLORMAP(int c, int *r);
  * i386-specific node flags.
  */
 #define FSTDCALL	0x01
+#define FFPPOP		0x02
 
 /*
  * i386-specific interpass stuff.

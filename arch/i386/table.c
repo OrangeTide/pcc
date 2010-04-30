@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.118 2009/12/20 14:36:17 ragge Exp $	*/
+/*	$Id: table.c,v 1.119 2010/04/30 12:54:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -404,7 +404,7 @@ struct optab table[] = {
 	SCON,	TANY,
 	SANY,	TANY,
 		0,	0,
-		"	call CL\n", },
+		"	call CL\nZC", },
 
 { CALL,		FOREFF,
 	SCON,	TANY,
@@ -416,7 +416,7 @@ struct optab table[] = {
 	SCON,	TANY,
 	SAREG,	TWORD|TPOINT,
 		0,	0,
-		"	call CL\n", },
+		"	call CL\nZC", },
 
 { CALL,	INAREG,
 	SCON,	TANY,
@@ -428,7 +428,7 @@ struct optab table[] = {
 	SCON,	TANY,
 	SAREG,	TSHORT|TUSHORT|TWORD|TPOINT,
 		NAREG|NASL,	RESC1,	/* should be 0 */
-		"	call CL\n", },
+		"	call CL\nZC", },
 
 { CALL,	INBREG,
 	SCON,	TANY,
@@ -440,7 +440,7 @@ struct optab table[] = {
 	SCON,	TANY,
 	SBREG,	TCHAR|TUCHAR,
 		NBREG,	RESC1,	/* should be 0 */
-		"	call CL\n", },
+		"	call CL\nZC", },
 
 { CALL,		INCREG,
 	SCON,	TANY,
@@ -452,7 +452,7 @@ struct optab table[] = {
 	SCON,	TANY,
 	SCREG,	TANY,
 		NCREG|NCSL,	RESC1,	/* should be 0 */
-		"	call CL\n", },
+		"	call CL\nZC", },
 
 { CALL,	INDREG,
 	SCON,	TANY,
