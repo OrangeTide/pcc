@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.32 2009/08/23 09:37:11 ragge Exp $	*/
+/*	$Id: inline.c,v 1.33 2010/04/30 11:21:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -78,6 +78,8 @@ tcnt(NODE *p, void *arg)
 	if (nlabs > 1 && (p->n_op == REG || p->n_op == OREG) &&
 	    regno(p) == FPREG)
 		SLIST_FIRST(&ipole)->flags &= ~CANINL; /* no stack refs */
+	if (p->n_op == NAME || p->n_op == ICON)
+		p->n_sp = NULL; /* let symtabs be freed for inline funcs */
 	if (nflag)
 		printf("locking node %p\n", p);
 }
