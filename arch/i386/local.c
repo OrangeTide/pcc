@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.118 2010/05/02 07:18:17 ragge Exp $	*/
+/*	$Id: local.c,v 1.119 2010/05/02 12:50:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1502,9 +1502,7 @@ mangle(NODE *p)
 	    p->n_op != UCALL && p->n_op != USTCALL)
 		return;
 
-	p->n_flags = 0; /* Fixed for ST(U)CALL in p2tree */
-	if (ISFTY(p->n_type))
-		p->n_flags |= FFPPOP;
+	p->n_flags = 0;
 
 	l = p->n_left;
 	if (l->n_op == TEMP)
@@ -1551,6 +1549,11 @@ mangle(NODE *p)
 void
 pass1_lastchance(struct interpass *ip)
 {
+	if (ip->type == IP_NODE &&
+	    (ip->ip_node->n_op == CALL || ip->ip_node->n_op == UCALL) &&
+	    ISFTY(ip->ip_node->n_type))
+		ip->ip_node->n_flags = FFPPOP;
+ 
 	if (ip->type == IP_EPILOG) {
 		struct interpass_prolog *ipp = (struct interpass_prolog *)ip;
 		ipp->ipp_argstacksize = argstacksize;
