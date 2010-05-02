@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.117 2010/05/01 12:41:56 ragge Exp $	*/
+/*	$Id: local.c,v 1.118 2010/05/02 07:18:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -148,7 +148,7 @@ picext(NODE *p)
 	if (gcc_get_attr(p->n_sp->ssue, GCC_ATYP_STDCALL) != NULL)
 		p->n_sp->sflags |= SSTDCALL;
 #endif
-	sp->sflags = p->n_sp->sflags & (FSTDCALL|FFPPOP);
+	sp->sflags = p->n_sp->sflags & SSTDCALL;
 	r = xbcon(0, sp, INT);
 	q = buildtree(PLUS, q, r);
 	q = block(UMUL, q, 0, PTR|VOID, 0, MKSUE(VOID));
