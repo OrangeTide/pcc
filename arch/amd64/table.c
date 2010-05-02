@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.15 2010/04/07 14:45:49 ragge Exp $	*/
+/*	$Id: table.c,v 1.16 2010/05/02 17:05:26 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -534,11 +534,13 @@ struct optab table[] = {
 		"	Ob AR,AL\n", },
 
 /* m/r |= const */
+#ifdef notdef	/* amd64 lacks immediate 64-bit simple ops */
 { OPSIMP,	INAREG|FOREFF|FORCC,
 	SAREG|SNAME|SOREG,	TLL|TPOINT,
 	SCON,	TANY,
 		0,	RLEFT|RESCC,
 		"	Oq AR,AL\n", },
+#endif
 
 { OPSIMP,	INAREG|FOREFF|FORCC,
 	SAREG|SNAME|SOREG,	TWORD,
