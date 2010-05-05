@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.57 2010/04/23 14:35:18 ragge Exp $	*/
+/*	$Id: init.c,v 1.58 2010/05/05 11:43:19 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -248,9 +248,13 @@ beginit(struct symtab *sp)
 	csym = sp;
 
 	numents = 0; /* no entries in array list */
-	if (ISARY(sp->stype))
+	if (ISARY(sp->stype)) {
 		basesz = tsize(DECREF(sp->stype), sp->sdf+1, sp->ssue);
-	else
+		if (basesz == 0) {
+			uerror("array has incomplete type");
+			basesz = SZINT;
+		}
+	} else
 		basesz = tsize(DECREF(sp->stype), sp->sdf, sp->ssue);
 	SLIST_INIT(&lpole);
 
@@ -912,6 +916,8 @@ asginit(NODE *p)
 				pstk->in_fl = 1; /* simulate ilbrace */
 
 			strcvt(p);
+			if (csym->sdf->ddim == NOOFFSET)
+				asginit(bcon(0)); /* Null-term arrays */
 			if (g == 0)
 				irbrace();
 			return;
