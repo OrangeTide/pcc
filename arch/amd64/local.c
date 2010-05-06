@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.12 2010/04/11 12:26:52 ragge Exp $	*/
+/*	$Id: local.c,v 1.13 2010/05/06 10:19:49 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -357,7 +357,6 @@ clocal(NODE *p)
 		/* Remove redundant PCONV's. Be careful */
 		l = p->n_left;
 		if (l->n_op == ICON) {
-			l->n_lval = (unsigned)l->n_lval;
 			goto delp;
 		}
 		if (l->n_type < LONG) {
