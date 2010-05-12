@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.122 2009/06/06 11:16:35 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.123 2010/05/12 17:01:21 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -517,6 +517,8 @@ struct phiinfo {
 struct p2env {
 	struct interpass ipole;			/* all statements */
 	struct interpass_prolog *ipp, *epp;	/* quick references */
+	struct bblockinfo bbinfo;
+	struct labelinfo labinfo;
 	struct basicblock bblocks;
 	int nbblocks;
 };
