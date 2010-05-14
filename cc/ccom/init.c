@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.58 2010/05/05 11:43:19 ragge Exp $	*/
+/*	$Id: init.c,v 1.59 2010/05/14 11:58:38 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -916,7 +916,7 @@ asginit(NODE *p)
 				pstk->in_fl = 1; /* simulate ilbrace */
 
 			strcvt(p);
-			if (csym->sdf->ddim == NOOFFSET)
+			if (ISARY(csym->stype) && csym->sdf->ddim == NOOFFSET)
 				asginit(bcon(0)); /* Null-term arrays */
 			if (g == 0)
 				irbrace();
