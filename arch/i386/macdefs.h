@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.72 2010/04/30 19:59:10 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.73 2010/05/14 11:49:19 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -351,8 +351,8 @@ int xasmconstregs(char *);
  * builtins.
  */
 #define TARGET_BUILTINS							\
-	{ "__builtin_frame_address", i386_builtin_frame_address },	\
-	{ "__builtin_return_address", i386_builtin_return_address },
+	{ "__builtin_frame_address", i386_builtin_frame_address, -1 },	\
+	{ "__builtin_return_address", i386_builtin_return_address, -1 },
 
 #define NODE struct node
 struct node;
