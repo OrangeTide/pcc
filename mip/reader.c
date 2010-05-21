@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.259 2010/05/01 11:43:16 ragge Exp $	*/
+/*	$Id: reader.c,v 1.260 2010/05/21 16:10:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -319,6 +319,7 @@ deluseless(NODE *p)
 void
 pass2_compile(struct interpass *ip)
 {
+	void deljumps(struct p2env *);
 	struct p2env *p2e = &p2env;
 	int *addrp;
 	MARK mark;
@@ -399,6 +400,9 @@ pass2_compile(struct interpass *ip)
 
 	optimize(p2e);
 	ngenregs(p2e);
+
+	if (xssaflag && xtemps && xdeljumps)
+		deljumps(p2e);
 
 	DLIST_FOREACH(ip, &p2e->ipole, qelem)
 		emit(ip);
