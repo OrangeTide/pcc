@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.123 2010/05/12 17:01:21 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.124 2010/05/21 16:08:28 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -457,8 +457,7 @@ struct basicblock {
 	bittype *Aphi;
 	SLIST_HEAD(, phiinfo) phi;
 
-	bittype *vin, *vout, *vgen, *vkill ;
-	bittype *exin, *exout ;
+	bittype *gen, *killed, *in, *out;	/* Liveness analysis */
 
 	struct interpass *first; /* first element of basic block */
 	struct interpass *last;  /* last element of basic block */
