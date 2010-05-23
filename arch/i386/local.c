@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.119 2010/05/02 12:50:00 ragge Exp $	*/
+/*	$Id: local.c,v 1.120 2010/05/23 09:41:01 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -97,6 +97,7 @@ picsymtab(char *p, char *s, char *s2)
 	strlcpy(sp->soname, p, len);
 	strlcat(sp->soname, s, len);
 	strlcat(sp->soname, s2, len);
+	sp->ssue = NULL;
 	sp->sclass = EXTERN;
 	sp->sflags = sp->slevel = 0;
 	return sp;
