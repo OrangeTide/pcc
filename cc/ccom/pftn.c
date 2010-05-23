@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.279 2010/05/08 15:47:45 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.280 2010/05/23 19:52:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2739,10 +2739,10 @@ sspstart()
 	q = clocal(q);
 
 	p = block(NAME, NIL, NIL, INT, 0, MKSUE(INT));
+	p->n_qual = VOL >> TSHIFT;
 	p->n_sp = lookup(stack_chk_canary, SNORMAL);
 	defid(p, AUTO);
 	p = clocal(p);
-
 	ecomp(buildtree(ASSIGN, p, q));
 }
 
