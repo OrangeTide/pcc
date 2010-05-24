@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.77 2010/05/21 16:08:28 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.78 2010/05/24 05:11:07 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -73,6 +73,7 @@ void renamevar(struct p2env *p2e,struct basicblock *bblock);
 void removephi(struct p2env *p2e);
 void remunreach(struct p2env *);
 static void liveanal(struct p2env *p2e);
+static void printip2(struct interpass *);
 
 /* create "proper" basic blocks, add labels where needed (so bblocks have labels) */
 /* run before bb generate */
@@ -755,7 +756,6 @@ bblocks_build(struct p2env *p2e)
 	}
 
 	if (b2debug) {
-		static void printip2(struct interpass *);
 		DLIST_FOREACH(bb, &p2e->bblocks, bbelem) {
 			printf("bblock %d\n", bb->bbnum);
 			for (ip = bb->first; ip != bb->last;
