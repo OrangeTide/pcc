@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.120 2010/05/23 09:41:01 ragge Exp $	*/
+/*	$Id: local.c,v 1.121 2010/05/27 19:45:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1497,7 +1497,8 @@ mangle(NODE *p)
 			 if (p->n_sp->sflags & SSTDCALL)
 				p->n_flags = FSTDCALL;
 		}
-	}
+	} else if (p->n_op == TEMP)
+		p->n_flags = 0; /* STDCALL fun ptr not allowed */
 
 	if (p->n_op != CALL && p->n_op != STCALL &&
 	    p->n_op != UCALL && p->n_op != USTCALL)
