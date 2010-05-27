@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.245 2010/05/05 12:26:58 ragge Exp $	*/
+/*	$Id: trees.c,v 1.246 2010/05/27 09:41:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2456,6 +2456,8 @@ p2tree(NODE *p)
 		p->n_stsize = (int)((tsize(STRTY, p->n_left->n_df,
 		    p->n_left->n_sue)+SZCHAR-1)/SZCHAR);
 		p->n_stalign = talign(STRTY,p->n_left->n_sue)/SZCHAR;
+		if (p->n_stalign == 0)
+			p->n_stalign = 1; /* At least char for packed structs */
 		break;
 
 	case XARG:
