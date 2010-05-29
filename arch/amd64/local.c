@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.13 2010/05/06 10:19:49 ragge Exp $	*/
+/*	$Id: local.c,v 1.14 2010/05/29 13:52:08 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -672,8 +672,8 @@ cendarg()
 int
 cisreg(TWORD t)
 {
-	if (t == FLOAT || t == DOUBLE || t == LDOUBLE)
-		return 0; /* not yet */
+	if (t == LDOUBLE)
+		return 0;
 	return 1;
 }
 
