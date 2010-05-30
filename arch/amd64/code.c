@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.21 2010/04/21 13:26:29 ragge Exp $	*/
+/*	$Id: code.c,v 1.22 2010/05/30 19:00:04 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -651,6 +651,22 @@ funcode(NODE *p)
 			ngpr++;
 	}
 	listf(p->n_right, argput);
+
+	/* Check if there are varargs */
+	if (nsse || l->n_df == NULL || l->n_df->dfun == NULL) {
+		; /* Need RAX */
+	} else {
+		union arglist *al = l->n_df->dfun;
+
+		for (; al->type != TELLIPSIS; al++) {
+			if (al->type == TNULL)
+				return p; /* No need */
+			if (BTYPE(al->type) == STRTY ||
+			    BTYPE(al->type) == UNIONTY ||
+			    ISARY(al->type))
+				al++;
+		}
+	}
 
 	/* Always emit number of SSE regs used */
 	l = movtoreg(bcon(nsse), RAX);
