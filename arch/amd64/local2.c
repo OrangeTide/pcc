@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.17 2010/04/12 16:27:09 ragge Exp $	*/
+/*	$Id: local2.c,v 1.18 2010/05/30 15:32:45 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -687,8 +687,13 @@ adrput(FILE *io, NODE *p)
 		if (p->n_lval)
 			fprintf(io, "%lld", p->n_lval);
 		if (R2TEST(r)) {
-			fprintf(io, "(%s,%s,8)", rnames[R2UPK1(r)],
-			    rnames[R2UPK2(r)]);
+			int r1 = R2UPK1(r);
+			int r2 = R2UPK2(r);
+			int sh = R2UPK3(r);
+
+			fprintf(io, "(%s,%s,%d)", 
+			    r1 == MAXREGS ? "" : rnames[r1],
+			    r2 == MAXREGS ? "" : rnames[r2], sh);
 		} else
 			fprintf(io, "(%s)", rnames[p->n_rval]);
 		return;
