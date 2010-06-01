@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.282 2010/06/01 11:20:09 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.283 2010/06/01 11:36:10 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1077,6 +1077,11 @@ e:		   e ',' e { $$ = biop(COMOP, $1, $3); }
 		|  e '?' e ':' e {
 			$$=biop(QUEST, $1, biop(COLON, $3, $5));
 		}
+		|  e '?' ':' e {
+			NODE *p = tempnode(0, $1->n_type, $1->n_df, $1->n_sue);
+			$$ = biop(COLON, ccopy(p), $4);
+			$$=biop(QUEST, biop(ASSIGN, p, $1), $$);
+		}
 		|  e C_OROR e { $$ = biop($2, $1, $3); }
 		|  e C_ANDAND e { $$ = biop($2, $1, $3); }
 		|  e '|' e { $$ = biop(OR, $1, $3); }
@@ -2087,6 +2092,7 @@ eve(NODE *p)
 	case TYPE:
 	case ICON:
 	case FCON:
+	case TEMP:
 		return p;
 
 	case CLOP:
