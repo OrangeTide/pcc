@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.194 2010/05/15 15:58:33 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.195 2010/06/02 10:39:51 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -485,6 +485,17 @@ void stabs_struct(struct symtab *, struct suedef *);
 /* to make character constants into character connstants */
 /* this is a macro to defend against cross-compilers, etc. */
 #define CHARCAST(x) (char)(x)
+#endif
+
+/* sometimes int is smaller than pointers */
+#if SZPOINT(CHAR) <= SZINT
+#define INTPTR  INT
+#elif SZPOINT(CHAR) <= SZLONG
+#define INTPTR  LONG
+#elif SZPOINT(CHAR) <= SZLONGLONG
+#define INTPTR  LONGLONG
+#else
+#error int size unknown
 #endif
 
 /*

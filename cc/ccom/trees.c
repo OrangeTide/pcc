@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.247 2010/06/02 10:34:33 ragge Exp $	*/
+/*	$Id: trees.c,v 1.248 2010/06/02 10:39:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -143,17 +143,6 @@ static char *tnames[] = {
 
 int bdebug = 0;
 extern int negrel[];
-
-/* sometimes int is smaller than pointers */
-#if SZPOINT(CHAR) <= SZINT
-#define	INTPTR	INT
-#elif SZPOINT(CHAR) <= SZLONG
-#define INTPTR	LONG
-#elif SZPOINT(CHAR) <= SZLONGLONG
-#define INTPTR	LONGLONG
-#else
-#error int size unknown
-#endif
 
 NODE *
 buildtree(int o, NODE *l, NODE *r)
