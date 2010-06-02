@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.246 2010/05/27 09:41:26 ragge Exp $	*/
+/*	$Id: trees.c,v 1.247 2010/06/02 10:34:33 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2666,10 +2666,10 @@ cdope(int op)
 	case QUALIFIER:
 	case CLASS:
 	case RB:
-	case DOT:
 	case ELLIPSIS:
 	case TYPE:
 		return LTYPE;
+	case DOT:
 	case SZOF:
 	case COMOP:
 	case QUEST:
