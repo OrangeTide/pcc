@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.285 2010/06/02 20:12:33 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.286 2010/06/03 08:01:59 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -191,6 +191,7 @@ static void oldargs(NODE *p);
 static void bfix(int a);
 static void uawarn(NODE *p, char *s);
 static int con_e(NODE *p);
+static void dainit(NODE *d, NODE *a);
 
 
 
