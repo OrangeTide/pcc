@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.287 2010/06/03 15:04:03 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.288 2010/06/03 19:45:51 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -397,13 +397,14 @@ declarator:	   '*' declarator { $$ = bdty(UMUL, $2); }
 
 incblev:	   {
 			++blevel;
+			$$ = 0;
 			if (blevel == 1) {
 				ctval = tvaloff;
 				argoff = ARGINIT;
-				$$ = Wshadow;
-				Wshadow = 0;
 			} else if (blevel == 2)
 				$$ = argoff;
+			$$ = ($$ << 1) | Wshadow;
+			Wshadow = 0;
 		}
 		;
 
@@ -2108,9 +2109,9 @@ eve(NODE *p)
 void
 bfix(int a)
 {
-        if (blevel == 1) {
-                Wshadow = a;
-        } else if (blevel == 2)
+	Wshadow = a & 1;
+	a = a >> 1;
+        if (blevel == 2)
                 argoff = a;
         blevel--;
 }
