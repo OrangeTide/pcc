@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.16 2010/05/02 17:05:26 ragge Exp $	*/
+/*	$Id: table.c,v 1.17 2010/06/04 06:48:53 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -1084,12 +1084,6 @@ struct optab table[] = {
 { OPLOG,	FORCC,
 	SBREG,			TDOUBLE|TFLOAT,
 	SBREG|SNAME|SOREG,	TDOUBLE|TFLOAT,
-		0,	 	RESCC,
-		"	ucomisZg AR,AL\n	jp LC\n", },
-
-{ OPLOG,	FORCC,
-	SBREG|SNAME|SOREG,	TDOUBLE|TFLOAT,
-	SBREG,			TDOUBLE|TFLOAT,
 		0,	 	RESCC,
 		"	ucomisZg AR,AL\n	jp LC\n", },
 
