@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.92 2010/05/14 11:47:09 ragge Exp $   */
+/*      $Id: match.c,v 1.93 2010/06/04 05:58:31 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1212,6 +1212,7 @@ treecmp(NODE *p1, NODE *p2)
 		return 0;
 
 	switch (p1->n_op) {
+	case SCONV:
 	case UMUL:
 		return treecmp(p1->n_left, p2->n_left);
 
@@ -1240,8 +1241,12 @@ treecmp(NODE *p1, NODE *p2)
 		if (p1->n_rval != p2->n_rval)
 			return 0;
 		break;
+	case LS:
+	case RS:
 	case PLUS:
 	case MINUS:
+	case MUL:
+	case DIV:
 		if (treecmp(p1->n_left, p2->n_left) == 0 ||
 		    treecmp(p1->n_right, p2->n_right) == 0)
 			return 0;
