@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.124 2010/05/21 16:08:28 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.125 2010/06/04 07:18:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -441,8 +441,8 @@ void optimize(struct p2env *);
 
 struct basicblock {
 	DLIST_ENTRY(basicblock) bbelem;
-	SLIST_HEAD(, cfgnode) children; /* CFG - children to this node */
 	SLIST_HEAD(, cfgnode) parents; /* CFG - parents to this node */
+	struct cfgnode *ch[2];		/* Child 1 (and 2) */
 	int bbnum;	/* this basic block number */
 	unsigned int dfnum; /* DFS-number */
 	unsigned int dfparent; /* Parent in DFS */
