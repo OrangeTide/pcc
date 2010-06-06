@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.35 2010/06/05 11:47:17 ragge Exp $	*/
+/*	$Id: token.c,v 1.36 2010/06/06 20:10:31 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -294,6 +294,16 @@ con:			PUTCH(ch);
 			do {
 				yytext[i++] = (usch)ch;
 				ch = NXTCH();
+				if (ch == '\\') {
+					ch = NXTCH();
+					if (ch != '\n') {
+						unch('\n');
+						ch = '\\';
+					} else {
+						ifiles->lineno++;
+						ch = NXTCH();
+					}
+				}
 				if (ch < 0)
 					return;
 			} while (spechr[ch] & C_ID);
