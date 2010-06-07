@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.36 2010/06/06 20:10:31 ragge Exp $	*/
+/*	$Id: token.c,v 1.37 2010/06/07 07:10:35 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -116,7 +116,7 @@ static char spechr[256] = {
 	0,	C_I,	C_I,	C_I,	C_I,	C_I|C_EP, C_I,	C_I,
 	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,
 	C_I|C_EP, C_I,	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,
-	C_I,	C_I,	C_I,	0,	0,	0,	0,	C_I,
+	C_I,	C_I,	C_I,	0,	C_I,	0,	0,	C_I,
 
 	0,	C_I,	C_I,	C_I,	C_I,	C_I|C_EP, C_I,	C_I,
 	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,	C_I,
@@ -205,6 +205,15 @@ xloop:		if (ch == -1)
 				goto xloop;
 			PUTCH('?');
 			break;
+
+		case '\\':
+			if ((ch = NXTCH()) == '\n') {
+				ifiles->lineno++;
+				continue;
+			} else {
+				PUTCH('\\');
+			}
+			goto xloop;
 
 		case '\n': /* newlines, for pp directives */
 			ifiles->lineno++;
