@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.16 2010/06/09 06:03:02 ragge Exp $	*/
+/*	$Id: local.c,v 1.17 2010/06/09 09:27:45 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1054,7 +1054,23 @@ fixdef(struct symtab *sp)
 		sp->sflags |= STLS;
 	gottls = 0;
 #endif
-	if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_ALIAS)) != NULL) {
+#ifdef HAVE_WEAKREF
+	/* not many as'es have this directive */
+	if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_WEAKREF)) != NULL) {
+		char *wr = ga->a1.sarg;
+		char *sn = sp->soname ? sp->soname : sp->sname;
+		if (wr == NULL) {
+			if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_ALIAS))) {
+				wr = ga->a1.sarg;
+			}
+		}
+		if (wr == NULL)
+			printf("\t.weak %s\n", sn);
+		else
+			printf("\t.weakref %s,%s\n", sn, wr);
+	} else
+#endif
+	       if ((ga = gcc_get_attr(sp->ssue, GCC_ATYP_ALIAS)) != NULL) {
 		char *an = ga->a1.sarg;
 		char *sn = sp->soname ? sp->soname : sp->sname;
 		char *v;
