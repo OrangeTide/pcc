@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.280 2010/05/23 19:52:04 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.281 2010/06/09 09:26:55 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -481,6 +481,15 @@ redec:			uerror("redeclaration of %s", p->sname);
 
 done:
 	fixdef(p);	/* Leave last word to target */
+#ifndef HAVE_WEAKREF
+	{
+		struct gcc_attrib *ga;
+
+		/* Refer renamed function */
+		if ((ga = gcc_get_attr(p->ssue, GCC_ATYP_WEAKREF)))
+			p->soname = ga->a1.sarg;
+	}
+#endif
 #ifdef PCC_DEBUG
 	if (ddebug)
 		printf( "	sdf, ssue, offset: %p, %p, %d\n",
