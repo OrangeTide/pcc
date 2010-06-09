@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.52 2010/04/28 14:53:54 ragge Exp $	*/
+/*	$Id: code.c,v 1.53 2010/06/09 13:58:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -87,6 +87,18 @@ defloc(struct symtab *sp)
 			printf("\t.%s %s\n", ga->a1.sarg, name);
 	}
 #endif
+	if (kflag && !ISFTN(t)) {
+		/* Must place aggregates with pointers in relocatable memory */
+		TWORD t2 = t;
+
+		while (ISARY(t2))
+			t2 = DECREF(t2);
+		if (t2 > LDOUBLE) {
+			/* put in reloc memory */
+			printf("\t.section .data.rel.local,\"aw\",@progbits\n");
+			s = lastloc = -1;
+		}
+	}
 	if (nextsect) {
 		printf("	.section %s,\"wa\",@progbits\n", nextsect);
 		nextsect = NULL;
