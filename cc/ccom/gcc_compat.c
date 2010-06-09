@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.55 2010/06/09 08:09:10 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.56 2010/06/09 17:39:17 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -240,9 +240,7 @@ struct atax {
 	CS(GCC_ATYP_ALIAS)	{ A_1ARG|A1_STR, "alias" },
 	CS(GCC_ATYP_WEAKREF)	{ A_0ARG|A_1ARG|A1_STR, "weakref" },
 
-
-
-	CS(GCC_ATYP_BOUNDED)	{ A_3ARG|A_MANY|A1_STR, "bounded" },
+	CS(GCC_ATYP_BOUNDED)	{ A_3ARG|A_MANY|A1_NAME, "bounded" },
 	CS(ATTR_COMPLEX)	{ 0, NULL },
 };
 
