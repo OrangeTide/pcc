@@ -1,4 +1,4 @@
-/*	$Id: builtins.c,v 1.5 2010/04/30 13:13:21 ragge Exp $	*/
+/*	$Id: builtins.c,v 1.6 2010/06/09 14:24:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -252,6 +252,8 @@ builtin_unimp(NODE *f, NODE *a)
 		n += 10;
 
 	f->n_sp = lookup(n, SNORMAL);
+	f->n_sp->sclass = EXTERN;
+	f = clocal(f);
 	return buildtree(CALL, f, a);
 }
 
