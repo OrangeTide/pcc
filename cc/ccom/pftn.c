@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.281 2010/06/09 09:26:55 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.282 2010/06/10 16:34:57 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1751,11 +1751,7 @@ typenode(NODE *p)
 		tc.type = UCHAR;
 
 #ifdef GCC_COMPAT
-	if (pragma_allpacked && tc.saved && ISSOU(tc.saved->n_type)) {
-		/* Only relevant for structs and unions */
-		q = bdty(CALL, bdty(NAME, "packed"), bcon(pragma_allpacked));
-		tc.posta = (tc.posta == NIL ? q : cmop(tc.posta, q));
-	} else if (pragma_packed) {
+	if (pragma_packed) {
 		q = bdty(CALL, bdty(NAME, "packed"), bcon(pragma_packed));
 		tc.posta = (tc.posta == NIL ? q : cmop(tc.posta, q));
 	}

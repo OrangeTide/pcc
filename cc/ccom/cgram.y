@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.288 2010/06/03 19:45:51 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.289 2010/06/10 16:34:57 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -613,7 +613,16 @@ moe:		   C_NAME {  moedef($1); }
 		|  C_TYPENAME '=' e { enummer = con_e($3); moedef($1); }
 		;
 
-struct_dcl:	   str_head '{' struct_dcl_list '}' { $$ = dclstruct($1); }
+struct_dcl:	   str_head '{' struct_dcl_list '}' {
+			NODE *p;
+
+			$$ = dclstruct($1);
+			if (pragma_allpacked) {
+				p = bdty(CALL, bdty(NAME, "packed"),
+				    bcon(pragma_allpacked));
+				$$ = cmop(biop(ATTRIB, p, 0), $$);
+			}
+		}
 		|  C_STRUCT attr_var C_NAME {  $$ = rstruct($3,$1);
 			if ($2) {
 				if (attrwarn)
