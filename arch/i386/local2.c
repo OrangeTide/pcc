@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.140 2010/06/09 14:35:50 ragge Exp $	*/
+/*	$Id: local2.c,v 1.141 2010/06/12 14:56:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -529,6 +529,11 @@ zzzcode(NODE *p, int c)
 
 	case 'G': /* Floating point compare */
 		fcomp(p);
+		break;
+
+	case 'H': /* assign of longlong between regs */
+		rmove(DECRA(p->n_right->n_reg, 0),
+		    DECRA(p->n_left->n_reg, 0), LONGLONG);
 		break;
 
 	case 'I': /* float casts */
