@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.282 2010/06/10 16:34:57 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.283 2010/06/12 19:39:09 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -269,6 +269,9 @@ defid(NODE *ap, int class)
 		p->ssue = sueget(p->ssue);
                 p->ssue->suega = gcc_attr_parse(ap->n_right);
                 ap->n_right = bcon(0);
+		if (pragma_renamed)
+			p->soname = pragma_renamed;
+		pragma_renamed = NULL;
         }
 #endif
 
