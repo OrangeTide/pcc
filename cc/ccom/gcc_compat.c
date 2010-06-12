@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.56 2010/06/09 17:39:17 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.57 2010/06/12 15:22:59 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -127,6 +127,9 @@ gcc_keyword(char *str, NODE **n)
 	char tlbuf[TLLEN], *tw;
 	struct kw *kwp;
 	int i;
+
+	if (inattr)
+		return 0;
 
 	for (i = 0, kwp = kw; kwp->name; kwp++, i++)
 		if (str == kwp->ptr)
