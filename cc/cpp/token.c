@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.38 2010/06/12 15:45:31 ragge Exp $	*/
+/*	$Id: token.c,v 1.39 2010/06/13 19:16:31 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -65,7 +65,7 @@ static void ifstmt(void);
 static void cpperror(void);
 static void pragmastmt(void);
 static void undefstmt(void);
-static void cpperror(void);
+static void cppwarning(void);
 static void elifstmt(void);
 static void badop(const char *);
 static int chktg(void);
@@ -1078,6 +1078,32 @@ cpperror(void)
 }
 
 static void
+cppwarning(void)
+{
+	usch *cp;
+	int c;
+
+	if (flslvl)
+		return;
+	c = sloscan();
+	if (c != WSPACE && c != '\n')
+		error("bad warning");
+
+	/* svinp() add an unwanted \n */
+	cp = stringbuf;
+	while ((c = inch()) && c != '\n')
+		savch(c);
+	savch(0);
+
+	if (flslvl)
+		stringbuf = cp;
+	else
+		warning("#warning %s", cp);
+
+	unch('\n');
+}
+
+static void
 undefstmt(void)
 {
 	struct symtab *np;
@@ -1161,6 +1187,7 @@ static struct {
 	{ "else", elsestmt },
 	{ "endif", endifstmt },
 	{ "error", cpperror },
+	{ "warning", cppwarning },
 	{ "define", define },
 	{ "undef", undefstmt },
 	{ "line", line },
