@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.33 2010/04/30 11:21:22 ragge Exp $	*/
+/*	$Id: inline.c,v 1.34 2010/06/13 15:26:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -389,7 +389,7 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 
 	if ((is->flags & CANINL) == 0 || xinline == 0) {
 		if (is->sp->sclass == STATIC || is->sp->sclass == USTATIC)
-			is->flags |= REFD; /* if static inline, emit */
+			inline_ref(sp);
 		return NIL;
 	}
 
