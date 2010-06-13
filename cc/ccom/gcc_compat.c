@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.57 2010/06/12 15:22:59 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.58 2010/06/13 07:42:02 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -64,6 +64,7 @@ static struct kw {
 /* 17 */{ "__real__", NULL, 0 },
 /* 18 */{ "__imag__", NULL, 0 },
 /* 19 */{ "__builtin_offsetof", NULL, PCC_OFFSETOF },
+/* 20 */{ "__PRETTY_FUNCTION__", NULL, 0 },
 	{ NULL, NULL, 0 },
 };
 
@@ -153,8 +154,9 @@ gcc_keyword(char *str, NODE **n)
 			cunput(*--tw);
 		return -1;
 	case 7: /* __FUNCTION__ */
+	case 20: /* __PRETTY_FUNCTION__ */
 		if (cftnsp == NULL) {
-			uerror("__FUNCTION__ outside function");
+			uerror("%s outside function", kwp->name);
 			yylval.strp = "";
 		} else
 			yylval.strp = cftnsp->sname; /* XXX - not C99 */
