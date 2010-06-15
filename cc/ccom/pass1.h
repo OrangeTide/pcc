@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.198 2010/06/09 08:09:10 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.199 2010/06/15 19:39:43 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -439,6 +439,7 @@ enum {	GCC_ATYP_NONE,
 	GCC_ATYP_NOINLINE,
 	GCC_ATYP_ALIAS,
 	GCC_ATYP_WEAKREF,
+	GCC_ATYP_ALLOCSZ,
 
 	/* other stuff */
 	GCC_ATYP_BOUNDED,	/* OpenBSD extra boundary checks */
