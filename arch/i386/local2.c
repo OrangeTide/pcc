@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.141 2010/06/12 14:56:39 ragge Exp $	*/
+/*	$Id: local2.c,v 1.142 2010/06/15 07:23:37 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -579,8 +579,13 @@ zzzcode(NODE *p, int c)
 		else if (p->n_op == RS) ch = "ashr";
 		else if (p->n_op == LS) ch = "ashl";
 		else ch = 0, comperr("ZO");
+#ifdef ELFABI
 		printf("\tcall " EXPREFIX "__%sdi3%s\n\taddl $%d,%s\n",
 			ch, (kflag ? "@PLT" : ""), pr, rnames[ESP]);
+#else
+		printf("\tcall " EXPREFIX "__%sdi3\n\taddl $%d,%s\n",
+			ch, pr, rnames[ESP]);
+#endif
                 break;
 
 	case 'P': /* push hidden argument on stack */
