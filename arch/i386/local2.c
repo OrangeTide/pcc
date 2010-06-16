@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.142 2010/06/15 07:23:37 gmcgarry Exp $	*/
+/*	$Id: local2.c,v 1.143 2010/06/16 11:19:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -336,8 +336,8 @@ starg(NODE *p)
 {
 	FILE *fp = stdout;
 
-	fprintf(fp, "	subl $%d,%%esp\n", p->n_stsize);
 #if defined(MACHOABI)
+	fprintf(fp, "	subl $%d,%%esp\n", p->n_stsize);
 	fprintf(fp, "	subl $4,%%esp\n");
 	fprintf(fp, "	pushl $%d\n", p->n_stsize);
 	expand(p, 0, "	pushl AL\n");
@@ -351,6 +351,7 @@ starg(NODE *p)
 	}
 	fprintf(fp, "	addl $16,%%esp\n");
 #else
+	fprintf(fp, "	subl $%d,%%esp\n", (p->n_stsize+3) & ~3);
 	fprintf(fp, "	pushl $%d\n", p->n_stsize);
 	expand(p, 0, "	pushl AL\n");
 	expand(p, 0, "	leal 8(%esp),A1\n");
@@ -441,7 +442,7 @@ argsiz(NODE *p)
 	if (t == LDOUBLE)
 		return 12;
 	if (t == STRTY || t == UNIONTY)
-		return p->n_stsize;
+		return (p->n_stsize+3) & ~3;
 	comperr("argsiz");
 	return 0;
 }
