@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.61 2010/06/16 06:59:22 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.62 2010/06/16 07:46:49 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -130,6 +130,10 @@ gcc_keyword(char *str, NODE **n)
 	char tlbuf[TLLEN], *tw;
 	struct kw *kwp;
 	int i;
+
+	/* XXX hack, should pass everything in expressions */
+	if (str == kw[21].ptr)
+		return kw[21].rv;
 
 	if (inattr)
 		return 0;
