@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.199 2010/06/15 19:39:43 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.200 2010/06/16 19:41:40 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -327,6 +327,7 @@ struct symtab *enumhd(char *);
 NODE *enumdcl(struct symtab *);
 NODE *enumref(char *);
 CONSZ icons(NODE *);
+CONSZ valcast(CONSZ v, TWORD t);
 int mypragma(char **);
 void fixdef(struct symtab *);
 int cqual(TWORD, TWORD);
