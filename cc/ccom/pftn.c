@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.283 2010/06/12 19:39:09 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.284 2010/06/19 07:37:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -652,7 +652,8 @@ done:	cendarg();
 	plabel(prolab); /* after prolog, used in optimization */
 	retlab = getlab();
 	bfcode(parr, nparams);
-	if (fun_inline && xinline)
+	if (fun_inline &&
+	    (xinline || gcc_get_attr(cftnsp->ssue, GCC_ATYP_ALW_INL)))
 		inline_args(parr, nparams);
 	plabel(getlab()); /* used when spilling */
 	if (parlink)
