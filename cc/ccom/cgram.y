@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.292 2010/06/19 15:17:42 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.293 2010/06/19 15:43:45 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -344,13 +344,7 @@ declarator:	   '*' declarator { $$ = bdty(UMUL, $2); }
 				$$ = cmop($$, $2);
 		}
 		|  C_NAME { $$ = bdty(NAME, $1); }
-		|  '(' attr_spec_list declarator ')' {
-			$$ = $3;
-			if (attrwarn)
-				werror("unhandled declarator attribute");
-			tfree($2);
-
-		}
+		|  '(' attr_spec_list declarator ')' { $$ = cmop($3, $2); }
 		|  '(' declarator ')' { $$ = $2; }
 		|  declarator '[' nocon_e ']' {
 			if ((blevel == 0 || rpole != NULL) && !nncon($3))
@@ -378,7 +372,10 @@ declarator:	   '*' declarator { $$ = bdty(UMUL, $2); }
 		|  declarator '[' ']' { $$ = biop(LB, $1, bcon(NOOFFSET)); }
 		|  declarator '[' '*' ']' { $$ = biop(LB, $1, bcon(NOOFFSET)); }
 		|  declarator '(' incblev parameter_type_list ')' {
-			$$ = bdty(CALL, $1, $4);
+			if ($1->n_op == CM) {
+				$1->n_left = bdty(CALL, $1->n_left, $4);
+			} else
+				$$ = bdty(CALL, $1, $4);
 			bfix($3);
 			if (blevel > 0)
 				symclear(blevel);
