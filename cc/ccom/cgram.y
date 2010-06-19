@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.291 2010/06/19 07:37:22 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.292 2010/06/19 15:17:42 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -337,11 +337,11 @@ attribute:	   {
 declarator:	   '*' declarator { $$ = bdty(UMUL, $2); }
 		|  '*' type_qualifier_list declarator {
 			$$ = bdty(UMUL, $3);
-			if ($2->n_op == QUALIFIER)
+			if ($2->n_op == QUALIFIER) {
 				$$->n_qual = $2->n_type;
-			else
-				werror("FIXME: attributes discarding qualifiers");
-			tfree($2);
+				tfree($2);
+			} else
+				$$ = cmop($$, $2);
 		}
 		|  C_NAME { $$ = bdty(NAME, $1); }
 		|  '(' attr_spec_list declarator ')' {
