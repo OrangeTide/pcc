@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.250 2010/06/19 07:34:58 ragge Exp $	*/
+/*	$Id: trees.c,v 1.251 2010/06/21 19:12:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -882,7 +882,7 @@ valcast(CONSZ v, TWORD t)
 	CONSZ r;
 
 	if (t < CHAR || t > ULONGLONG)
-		cerror("valcast");
+		return v; /* cannot cast */
 
 	if (t >= LONGLONG)
 		return v; /* already largest */
