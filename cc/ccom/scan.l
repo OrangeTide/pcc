@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.91 2010/05/21 19:37:32 ragge Exp $	*/
+/*	$Id: scan.l,v 1.92 2010/06/22 16:18:19 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -68,7 +68,7 @@ static int resw(TWORD, int);
 /* Hack to avoid unnecessary warnings */
 FILE *yyget_in  (void);
 FILE *yyget_out  (void);
-int yyget_leng  (void);
+yy_size_t yyget_leng  (void);
 char *yyget_text  (void);
 void yyset_in (FILE *);
 void yyset_out (FILE *);
