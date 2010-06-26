@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.285 2010/06/19 15:17:41 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.286 2010/06/26 12:08:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -973,7 +973,12 @@ soumemb(NODE *n, char *name, int class)
 		rpole->rb = sp;
 	else
 		lsp->snext = sp;
-	n->n_sp = sp;
+#ifdef GCC_COMPAT
+	if (n->n_op == CM)
+		n->n_left->n_sp = sp;
+	else
+#endif
+		n->n_sp = sp;
 	if ((class & FIELD) == 0)
 		class = rpole->rsou == STNAME ? MOS : MOU;
 	defid(n, class);
