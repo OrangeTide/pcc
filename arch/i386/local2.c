@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.143 2010/06/16 11:19:37 ragge Exp $	*/
+/*	$Id: local2.c,v 1.144 2010/06/26 09:33:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -543,6 +543,10 @@ zzzcode(NODE *p, int c)
 
 	case 'J': /* convert unsigned long long to floating point */
 		ulltofp(p);
+		break;
+
+	case 'K': /* Load longlong reg into another reg */
+		rmove(regno(p), DECRA(p->n_reg, 0), LONGLONG);
 		break;
 
 	case 'M': /* Output sconv move, if needed */
@@ -1157,8 +1161,8 @@ rmove(int s, int d, TWORD t)
 		    memcmp(rnames[d]+3, rnames[dh]+1, 3) != 0)
 			comperr("rmove dest error");
 #define	SW(x,y) { int i = x; x = y; y = i; }
-		if (sl == dh || sh == dl) {
-			/* Swap if moving to itself */
+		if (sh == dl) {
+			/* Swap if overwriting */
 			SW(sl, sh);
 			SW(dl, dh);
 		}
