@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.158 2010/06/06 08:35:45 ragge Exp $	*/
+/*	$Id: cc.c,v 1.159 2010/06/27 17:03:43 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -818,8 +818,10 @@ main(int argc, char *argv[])
 			av[na++] = wlist[j];
 		for (j = 0; j < nf; j++)
 			av[na++] = flist[j];
+#if !defined(os_sunos) && !defined(mach_i386)
 		if (vflag)
 			av[na++] = "-v";
+#endif
 		if (pgflag)
 			av[na++] = "-p";
 		if (gflag)
@@ -828,6 +830,11 @@ main(int argc, char *argv[])
 		/* darwin always wants PIC compilation */
 		if (!Bstatic)
 			av[na++] = "-k";
+#elif defined(os_sunos) && defined(mach_i386)
+		if (kflag) {
+			av[na++] = "-K";
+			av[na++] = "pic";
+		}
 #else
 		if (kflag)
 			av[na++] = "-k";
