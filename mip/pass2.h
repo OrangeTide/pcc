@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.125 2010/06/04 07:18:46 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.126 2010/07/03 15:51:07 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -41,7 +41,6 @@ typedef unsigned int bittype; /* XXX - for basicblock */
 #define	BIT2BYTE(a)	(((a) + 31) / 32)
 #endif
 #include "manifest.h"
-#include "protos.h"
 
 /* cookies, used as arguments to codgen */
 #define FOREFF	01		/* compute for effects only */
@@ -291,8 +290,22 @@ void oreg2(NODE *p, void *);
 int shumul(NODE *p, int);
 NODE *deluseless(NODE *p);
 int getlab2(void);
-
+int tshape(NODE *, int);
 void conput(FILE *, NODE *);
+int shtemp(NODE *p);
+int ttype(TWORD t, int tword);
+void expand(NODE *, int, char *);
+void hopcode(int, int);
+void adrcon(CONSZ);
+void zzzcode(NODE *, int);
+void insput(NODE *);
+void upput(NODE *, int);
+int tlen(NODE *p);
+int setbin(NODE *);
+int notoff(TWORD, int, CONSZ, char *);
+int fldexpand(NODE *, int, char **);
+void p2tree(NODE *p); 
+int flshape(NODE *p);
 
 extern	char *rnames[];
 extern	int rstatus[];

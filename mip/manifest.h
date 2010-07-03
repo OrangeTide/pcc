@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.88 2009/08/13 08:01:28 gmcgarry Exp $	*/
+/*	$Id: manifest.h,v 1.89 2010/07/03 15:51:07 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -358,7 +358,8 @@ NODE *listarg(NODE *p, int n, int *cnt);
 void cerror(char *s, ...);
 void werror(char *s, ...);
 void uerror(char *s, ...);
-
+void mkdope(void);
+void tcheck(void);
 
 extern	int nerrors;		/* number of errors seen so far */
 extern	int warniserr;		/* treat warnings as errors */
