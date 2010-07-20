@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.286 2010/06/26 12:08:36 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.287 2010/07/20 14:41:01 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1015,7 +1015,6 @@ soumemb(NODE *n, char *name, int class)
 /*
  * error printing routine in parser
  */
-void yyerror(char *s);
 void
 yyerror(char *s)
 {

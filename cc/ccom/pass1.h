@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.202 2010/07/03 15:51:07 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.203 2010/07/20 14:41:01 mickey Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -366,10 +366,10 @@ void ecode(NODE *p);
 void bccode(void);
 void ftnend(void);
 void dclargs(void);
-
+int yylex(void);
+void yyerror(char *);
 
 NODE *builtin_check(NODE *f, NODE *a);
-
 
 #ifdef SOFTFLOAT
 typedef struct softfloat SF;
