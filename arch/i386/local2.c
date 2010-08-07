@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.144 2010/06/26 09:33:59 ragge Exp $	*/
+/*	$Id: local2.c,v 1.145 2010/08/07 09:00:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -608,7 +608,6 @@ zzzcode(NODE *p, int c)
 		 * XXX should not need esi/edi if not rep movsX.
 		 * XXX can save one insn if src ptr in reg.
 		 */
-		expand(p, INAREG, "	movl AR,%esi\n");
 		switch (p->n_stsize) {
 		case 1:
 			expand(p, INAREG, "	movb (%esi),%cl\n");
