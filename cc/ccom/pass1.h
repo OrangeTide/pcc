@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.204 2010/08/11 14:08:44 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.205 2010/08/11 14:39:48 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -359,14 +359,10 @@ void ecode(NODE *p);
 void bccode(void);
 void ftnend(void);
 void dclargs(void);
-<<<<<<< pass1.h
 int suemeq(struct attr *s1, struct attr *s2);
 struct symtab *strmemb(struct attr *ap);
-
-=======
 int yylex(void);
 void yyerror(char *);
->>>>>>> 1.203
 
 NODE *builtin_check(NODE *f, NODE *a);
 
