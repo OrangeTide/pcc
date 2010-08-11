@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.93 2010/06/24 19:33:48 ragge Exp $	*/
+/*	$Id: scan.l,v 1.94 2010/08/11 14:08:44 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -245,11 +245,12 @@ resw(TWORD t, int rv)
 		return rv;
 
 	case C_QUALIFIER:
-		yylval.nodep = block(QUALIFIER, NIL, NIL, t, 0, 0);
+		yylval.nodep = block(QUALIFIER, NIL, NIL, 0, 0, 0);
+		yylval.nodep->n_qual = t;
 		return rv;
 
 	case C_TYPE:
-		yylval.nodep = mkty(t, 0, MKSUE(t));
+		yylval.nodep = mkty(t, 0, MKAP(t));
 		notype=1;
 		return(rv);
 
@@ -302,7 +303,7 @@ f2(char *str)
 	if (imag)
 		tw += (FIMAG-FLOAT);
 #endif
-	p = block(FCON, NIL, NIL, tw, 0, MKSUE(tw));
+	p = block(FCON, NIL, NIL, tw, 0, MKAP(tw));
 	p->n_dcon = dc;
 	return p;
 }
