@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.252 2010/08/11 14:08:44 ragge Exp $	*/
+/*	$Id: trees.c,v 1.253 2010/08/12 06:39:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -512,12 +512,6 @@ runtime:
 			p->n_type = DECREF(p->n_type);
 			p->n_df = l->n_df+1; /* add one for prototypes */
 			p->n_ap = l->n_ap;
-			if (l->n_op == ADDROF && l->n_left->n_op == NAME &&
-			    l->n_left->n_sp != NULL && l->n_left->n_sp != NULL &&
-			    (l->n_left->n_sp->sclass == FORTRAN ||
-			    l->n_left->n_sp->sclass == UFORTRAN)) {
-				p->n_op += (FORTCALL-CALL);
-			}
 			if (p->n_type == STRTY || p->n_type == UNIONTY) {
 				/* function returning structure */
 				/*  make function really return ptr to str., with * */

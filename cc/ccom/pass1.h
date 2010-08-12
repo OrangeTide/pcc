@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.205 2010/08/11 14:39:48 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.206 2010/08/12 06:39:22 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -68,10 +68,10 @@ typedef unsigned int bittype; /* XXX - for basicblock */
 #define MOU		11
 #define UNAME		12
 #define TYPEDEF		13
-#define FORTRAN		14
+/* #define FORTRAN		14 */
 #define ENAME		15
 #define MOE		16
-#define UFORTRAN 	17
+/* #define UFORTRAN 	17 */
 #define USTATIC		18
 
 	/* field size is ORed in */
