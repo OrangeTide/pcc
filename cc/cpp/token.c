@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.39 2010/06/13 19:16:31 ragge Exp $	*/
+/*	$Id: token.c,v 1.40 2010/08/29 16:53:38 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -224,6 +224,15 @@ run:				ch = NXTCH();
 			if (ch == '#') {
 				ppdir();
 				continue;
+			} else if (ch == '%') {
+				ch = NXTCH();
+				if (ch == ':') {
+					ppdir();
+					continue;
+				} else {
+					unch(ch);
+					ch = '%';
+				}
 			}
 			goto xloop;
 
