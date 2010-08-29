@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.64 2010/08/11 14:08:44 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.65 2010/08/29 13:57:22 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -421,6 +421,8 @@ gcc_attr_parse(NODE *p)
 {
 	struct attr a;
 
+	if (p == NIL)
+		return NULL;
 	a.next = NULL;
 	flist(p, gcc_attribs, &a);
 	tfree(p);
