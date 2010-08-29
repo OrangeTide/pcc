@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.253 2010/08/12 06:39:22 ragge Exp $	*/
+/*	$Id: trees.c,v 1.254 2010/08/29 13:58:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -962,7 +962,7 @@ chkpun(NODE *p)
 			t1 = DECREF(t1);
 			t2 = DECREF(t2);
 		}
-		if (Wpointer_sign)
+		if (DEUNSIGN(t1) != DEUNSIGN(t2) || Wpointer_sign)
 			werror("illegal pointer combination");
 	}
 }
@@ -1855,8 +1855,10 @@ eprint(NODE *p, int down, int *a, int *b)
 		printf("id '%s', ", p->n_name);
 	if (ty == LTYPE) {
 		printf(CONFMT, p->n_lval);
-		printf(", %d, ", (p->n_op != NAME && p->n_op != ICON) ?
-		    p->n_rval : 0);
+		if (p->n_op == NAME || p->n_op == ICON)
+			printf(", %p, ", p->n_sp);
+		else
+			printf(", %d, ", p->n_rval);
 	}
 	tprint(stdout, p->n_type, p->n_qual);
 	printf( ", %p, ", p->n_df);
@@ -2634,6 +2636,7 @@ copst(int op)
 	SNAM(STRING,STRING)
 	SNAM(SZOF,SIZEOF)
 	SNAM(ATTRIB,ATTRIBUTE)
+	SNAM(TYMERGE,TYMERGE)
 #ifdef GCC_COMPAT
 	SNAM(XREAL,__real__)
 	SNAM(XIMAG,__imag__)
@@ -2664,6 +2667,7 @@ cdope(int op)
 	case QUEST:
 	case COLON:
 	case LB:
+	case TYMERGE:
 		return BITYPE;
 	case XIMAG:
 	case XREAL:
