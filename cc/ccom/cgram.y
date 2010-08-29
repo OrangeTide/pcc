@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.299 2010/08/29 19:26:36 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.300 2010/08/29 19:55:07 faceless Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1617,6 +1617,9 @@ fundef(NODE *tp, NODE *p)
 
 	if (fun_inline) {
 		/* special syntax for inline functions */
+		if (! strcmp(s->sname,"main")) 
+			uerror("cannot inline main()");
+
 		s->sflags |= SINLINE;
 		inline_start(s);
 		if (class == EXTERN)
