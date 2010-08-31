@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.159 2010/06/27 17:03:43 ragge Exp $	*/
+/*	$Id: cc.c,v 1.160 2010/08/31 17:28:11 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -302,6 +302,15 @@ struct Wflags {
 #endif
 #else
 #error WCHAR_TYPE not defined or invalid
+#endif
+
+#ifdef GCC_COMPAT
+#ifndef REGISTER_PREFIX
+#define REGISTER_PREFIX ""
+#endif
+#ifndef USER_LABEL_PREFIX
+#define USER_LABEL_PREFIX ""
+#endif
 #endif
 
 int
@@ -738,6 +747,14 @@ main(int argc, char *argv[])
 			av[na++] = "-V";
 		if (Pflag)
 			av[na++] = "-P";
+		if (Oflag)
+			av[na++] = "-D__OPTIMIZE__";
+#ifdef GCC_COMPAT
+		av[na++] = "-D__REGISTER_PREFIX__=" REGISTER_PREFIX;
+		av[na++] = "-D__USER_LABEL_PREFIX__=" USER_LABEL_PREFIX;
+		if (Oflag)
+			av[na++] = "-D__OPTIMIZE__";
+#endif
 		if (dflag)
 			av[na++] = alist;
 		for (j = 0; cppadd[j]; j++)
