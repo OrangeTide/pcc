@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.300 2010/08/29 19:55:07 faceless Exp $	*/
+/*	$Id: cgram.y,v 1.301 2010/09/04 11:58:47 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -72,8 +72,11 @@
  */
 
 /*
- * At last count, there were 3 shift/reduce and no reduce/reduce conflicts
- * Two was funct_idn and the third was "dangling else".
+ * At last count, there were 4 shift/reduce and no reduce/reduce conflicts
+ * Three are accounted for;
+ * One is "dangling else"
+ * One is in attribute parsing
+ * One is in ({ }) parsing
  */
 
 /*

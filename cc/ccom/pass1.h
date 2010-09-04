@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.207 2010/08/29 13:58:50 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.208 2010/09/04 11:58:47 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -118,6 +118,9 @@ struct gcc_attr_pack;
  * Dimension/prototype information.
  * 	ddim > 0 holds the dimension of an array.
  *	ddim < 0 is a dynamic array and refers to a tempnode.
+ *	...unless:
+ *		ddim == NOOFFSET, an array without dimenston, "[]"
+ *		ddim == -1, dynamic array while building before defid.
  */
 union dimfun {
 	int	ddim;		/* Dimension of an array */
