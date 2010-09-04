@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.302 2010/09/04 19:22:33 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.303 2010/09/04 19:40:53 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -924,8 +924,8 @@ cnstr:		   string { $$ = xasmop($1, bcon(0)); }
 		|  cnstr ',' string { $$ = cmop($1, xasmop($3, bcon(0))); }
                 ;
 
-label:		   C_NAME ':' { deflabel($1); reached = 1; }
-		|  C_TYPENAME ':' { deflabel($1); reached = 1; }
+label:		   C_NAME ':' attr_var { deflabel($1, $3); reached = 1; }
+		|  C_TYPENAME ':' attr_var { deflabel($1, $3); reached = 1; }
 		|  C_CASE e ':' { addcase(eve($2)); reached = 1; }
 /* COMPAT_GCC */|  C_CASE e C_ELLIPSIS e ':' {
 #ifdef GCC_COMPAT

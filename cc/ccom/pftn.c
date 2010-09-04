@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.293 2010/09/04 19:22:33 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.294 2010/09/04 19:40:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2598,10 +2598,11 @@ gotolabel(char *name)
  * Sets a label for gotos.
  */
 void
-deflabel(char *name)
+deflabel(char *name, NODE *p)
 {
 	struct symtab *s = lookup(name, SLBLNAME);
 
+	s->sap = gcc_attr_parse(p);
 	if (s->soffset > 0)
 		uerror("label '%s' redefined", name);
 	if (s->soffset == 0)
