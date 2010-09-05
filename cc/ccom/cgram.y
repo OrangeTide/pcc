@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.304 2010/09/05 08:16:55 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.305 2010/09/05 09:19:07 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -350,6 +350,12 @@ declarator:	   '*' declarator { $$ = bdty(UMUL, $2); }
 		}
 		|  '(' declarator ')' { $$ = $2; }
 		|  declarator '[' e ']' { $$ = biop(LB, $1, $3); }
+		|  declarator '[' C_CLASS e ']' {
+			if ($3->n_type != STATIC)
+				uerror("bad class keyword");
+			tfree($3); /* XXX - handle */
+			$$ = biop(LB, $1, $4);
+		}
 		|  declarator '[' ']' { $$ = biop(LB, $1, bcon(NOOFFSET)); }
 		|  declarator '[' '*' ']' { $$ = biop(LB, $1, bcon(NOOFFSET)); }
 		|  declarator '(' parameter_type_list ')' {
