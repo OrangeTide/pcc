@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.306 2010/09/07 05:36:58 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.307 2010/09/08 16:28:59 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1581,6 +1581,7 @@ fundef(NODE *tp, NODE *p)
 	 * parameter declaration. While doing that, also change
 	 * non-constant array sizes to unknown.
 	 */
+	ctval = tvaloff;
 	for (q = p; q->n_left->n_op != NAME; q = q->n_left) {
 		if (coptype(q->n_op) == LTYPE)
 			break;
@@ -1592,7 +1593,6 @@ fundef(NODE *tp, NODE *p)
 		p = bdty(UCALL, p);
 	} else if (q->n_op == CALL) {
 		blevel = 1;
-		ctval = tvaloff;
 		argoff = ARGINIT;
 		if (oldstyle == 0)
 			q->n_right = listfw(q->n_right, funargs);
