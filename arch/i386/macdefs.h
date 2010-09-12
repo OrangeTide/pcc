@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.73 2010/05/14 11:49:19 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.74 2010/09/12 07:08:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -356,8 +356,8 @@ int xasmconstregs(char *);
 
 #define NODE struct node
 struct node;
-NODE *i386_builtin_frame_address(NODE *f, NODE *a);
-NODE *i386_builtin_return_address(NODE *f, NODE *a);
+NODE *i386_builtin_frame_address(NODE *f, NODE *a, unsigned int);
+NODE *i386_builtin_return_address(NODE *f, NODE *a, unsigned int);
 #undef NODE
 
 #if defined(MACHOABI)
