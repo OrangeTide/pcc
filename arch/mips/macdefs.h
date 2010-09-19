@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.10 2009/01/24 21:43:49 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.11 2010/09/19 14:05:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -344,7 +344,7 @@ extern int nargregs;
 	{ "__builtin_va_copy", mips_builtin_va_copy },
 
 struct node;
-struct node *mips_builtin_stdarg_start(struct node *f, struct node *a);
-struct node *mips_builtin_va_arg(struct node *f, struct node *a);
-struct node *mips_builtin_va_end(struct node *f, struct node *a);
-struct node *mips_builtin_va_copy(struct node *f, struct node *a);
+struct node *mips_builtin_stdarg_start(struct node *f, struct node *a, unsigned int);
+struct node *mips_builtin_va_arg(struct node *f, struct node *a, unsigned int);
+struct node *mips_builtin_va_end(struct node *f, struct node *a, unsigned int);
+struct node *mips_builtin_va_copy(struct node *f, struct node *a, unsigned int);
