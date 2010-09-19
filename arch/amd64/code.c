@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.24 2010/09/19 15:33:47 ragge Exp $	*/
+/*	$Id: code.c,v 1.25 2010/09/19 20:55:15 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -516,6 +516,7 @@ movtomem(NODE *p, int off, int reg)
 	NODE *r, *l;
 
 	s.stype = p->n_type;
+	s.squal = 0;
 	s.sdf = p->n_df;
 	s.sap = p->n_ap;
 	s.soffset = off;
@@ -581,7 +582,13 @@ argput(NODE *p)
 		nfree(q);
 		break;
 	case X87:
-		cerror("no long double yet");
+		q = talloc();
+		*q = *p;
+		r = nrsp;
+		nrsp += SZLDOUBLE;
+		q = movtomem(q, r, STKREG);
+		*p = *q;
+		nfree(q);
 		break;
 
 	case INTMEM:
