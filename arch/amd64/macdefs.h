@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.10 2010/04/18 19:34:14 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.11 2010/09/19 15:33:47 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -282,10 +282,10 @@ int numconv(void *ip, void *p, void *q);
 
 #define NODE struct node
 struct node;
-NODE *amd64_builtin_stdarg_start(NODE *f, NODE *a);
-NODE *amd64_builtin_va_arg(NODE *f, NODE *a);
-NODE *amd64_builtin_va_end(NODE *f, NODE *a);
-NODE *amd64_builtin_va_copy(NODE *f, NODE *a);
-NODE *i386_builtin_frame_address(NODE *f, NODE *a);
-NODE *i386_builtin_return_address(NODE *f, NODE *a);
+NODE *amd64_builtin_stdarg_start(NODE *f, NODE *a, unsigned int);
+NODE *amd64_builtin_va_arg(NODE *f, NODE *a, unsigned int);
+NODE *amd64_builtin_va_end(NODE *f, NODE *a, unsigned int);
+NODE *amd64_builtin_va_copy(NODE *f, NODE *a, unsigned int);
+NODE *i386_builtin_frame_address(NODE *f, NODE *a, unsigned int);
+NODE *i386_builtin_return_address(NODE *f, NODE *a, unsigned int);
 #undef NODE

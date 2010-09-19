@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.18 2010/08/11 14:51:13 ragge Exp $	*/
+/*	$Id: local.c,v 1.19 2010/09/19 15:33:47 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1097,7 +1097,7 @@ fixdef(struct symtab *sp)
 }
 
 NODE *
-i386_builtin_return_address(NODE *f, NODE *a)
+i386_builtin_return_address(NODE *f, NODE *a, TWORD t)
 {
 	int nframes;
 
@@ -1125,7 +1125,7 @@ bad:
 }
 
 NODE *
-i386_builtin_frame_address(NODE *f, NODE *a)
+i386_builtin_frame_address(NODE *f, NODE *a, TWORD t)
 {
 	int nframes;
 
