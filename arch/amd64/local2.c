@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.19 2010/09/19 20:55:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.20 2010/09/20 17:01:48 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -420,7 +420,6 @@ zzzcode(NODE *p, int c)
 	char **rt;
 
 	switch (c) {
-#if 0
 	case 'A': /* swap st0 and st1 if right is evaluated second */
 		if ((p->n_su & DORIGHT) == 0) {
 			if (logop(p->n_op))
@@ -429,7 +428,6 @@ zzzcode(NODE *p, int c)
 				printf("r");
 		}
 		break;
-#endif
 
 	case 'C':  /* remove from stack after subroutine call */
 		pr = p->n_qual;
