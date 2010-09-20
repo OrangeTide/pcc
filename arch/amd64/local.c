@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.19 2010/09/19 15:33:47 ragge Exp $	*/
+/*	$Id: local.c,v 1.20 2010/09/20 20:01:02 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -713,8 +713,9 @@ spalloc(NODE *t, NODE *p, OFFSZ off)
 {
 	NODE *sp;
 
-cerror("spalloc");
-	p = buildtree(MUL, p, bcon(off/SZCHAR)); /* XXX word alignment? */
+	p = buildtree(MUL, p, bcon(off/SZCHAR));
+	p = buildtree(PLUS, p, bcon(30));
+	p = buildtree(AND, p, xbcon(-16, NULL, LONG));
 
 	/* sub the size from sp */
 	sp = block(REG, NIL, NIL, p->n_type, 0, MKAP(INT));
