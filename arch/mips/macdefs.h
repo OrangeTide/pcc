@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.11 2010/09/19 14:05:58 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.12 2010/09/21 05:43:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -338,10 +338,10 @@ extern int nargregs;
 
 #define TARGET_STDARGS
 #define TARGET_BUILTINS						\
-	{ "__builtin_stdarg_start", mips_builtin_stdarg_start },	\
-	{ "__builtin_va_arg", mips_builtin_va_arg },		\
-	{ "__builtin_va_end", mips_builtin_va_end },		\
-	{ "__builtin_va_copy", mips_builtin_va_copy },
+	{ "__builtin_stdarg_start", mips_builtin_stdarg_start, 2 },	\
+	{ "__builtin_va_arg", mips_builtin_va_arg, 2 },		\
+	{ "__builtin_va_end", mips_builtin_va_end, 1 },		\
+	{ "__builtin_va_copy", mips_builtin_va_copy, 2 },
 
 struct node;
 struct node *mips_builtin_stdarg_start(struct node *f, struct node *a, unsigned int);
