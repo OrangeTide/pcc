@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.296 2010/09/12 08:18:47 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.297 2010/09/27 13:15:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -3012,8 +3012,8 @@ cxasg(NODE *l, NODE *r)
 {
 	TWORD tl, tr;
 
-	tl = strmemb(l->n_ap)->stype;
-	tr = strmemb(r->n_ap)->stype;
+	tl = strattr(l->n_ap) ? strmemb(l->n_ap)->stype : 0;
+	tr = strattr(r->n_ap) ? strmemb(r->n_ap)->stype : 0;
 
 	if (ANYCX(l) && ANYCX(r) && tl != tr) {
 		/* different types in structs */
