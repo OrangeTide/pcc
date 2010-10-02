@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.20 2010/09/20 20:01:02 ragge Exp $	*/
+/*	$Id: local.c,v 1.21 2010/10/02 09:45:20 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -548,24 +548,6 @@ clocal(NODE *p)
 		    CHAR, 0, MKAP(CHAR));
 		break;
 
-	case STASG: /* Early conversion to memcpy */
-		l = buildtree(ADDROF, p->n_left, NIL);
-		r = p->n_right;
-		o = tsize(p->n_type, p->n_df, p->n_ap)/SZCHAR;
-#define  cmop(x,y) block(CM, x, y, INT, 0, MKAP(INT))
-		r = cmop(cmop(l, r), bcon(o));
-
-		q = lookup(addname("memcpy"), 0);
-		if (q->stype == UNDEF) {
-			p->n_op = NAME;
-			p->n_sp = q;
-			p->n_type = FTN|INT;
-			defid(p, EXTERN);
-		}
-		nfree(p);
-		p = doacall(q, nametree(q), r);
-
-		break;
 	}
 #ifdef PCC_DEBUG
 	if (xdebug) {
