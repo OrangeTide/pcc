@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.26 2010/10/02 09:45:20 ragge Exp $	*/
+/*	$Id: code.c,v 1.27 2010/10/02 10:25:02 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -598,10 +598,12 @@ argput(NODE *p)
 
 	case STRREG: /* Struct in registers */
 		/* Cast to long pointer and move to the registers */
+		/* XXX can overrun struct size */
 		ssz = tsize(p->n_type, p->n_df, p->n_ap);
 
 		if (ssz <= SZLONG) {
 			q = cast(p->n_left, LONG+PTR, 0);
+			nfree(p);
 			q = buildtree(UMUL, q, NIL);
 			p = movtoreg(q, argregsi[ngpr++]);
 		} else if (ssz <= SZLONG*2) {
@@ -611,6 +613,7 @@ argput(NODE *p)
 			q1 = ccopy(qt);
 			q2 = ccopy(qt);
 			ql = buildtree(ASSIGN, qt, cast(p->n_left,LONG+PTR, 0));
+			nfree(p);
 			qr = movtoreg(buildtree(UMUL, q1, NIL),
 			    argregsi[ngpr++]);
 			ql = buildtree(COMOP, ql, qr);
