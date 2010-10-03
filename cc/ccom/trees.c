@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.257 2010/09/05 10:20:10 ragge Exp $	*/
+/*	$Id: trees.c,v 1.258 2010/10/03 09:42:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1094,7 +1094,34 @@ xbcon(CONSZ val, struct symtab *sp, TWORD type)
 NODE *
 bpsize(NODE *p)
 {
-	return(offcon(psize(p), p->n_type, p->n_df, p->n_ap));
+	int isdyn(struct symtab *sp);
+	struct attr *ap;
+	struct symtab s;
+	NODE *q, *r;
+	TWORD t;
+
+	s.stype = DECREF(p->n_type);
+	s.sdf = p->n_df;
+	if (isdyn(&s)) {
+		q = bcon(1);
+		for (t = s.stype; t > BTMASK; t = DECREF(t)) {
+			if (ISPTR(t))
+				return buildtree(MUL, q, bcon(SZPOINT(t)));
+			if (ISARY(t)) {
+				if (s.sdf->ddim < 0)
+					r = tempnode(-s.sdf->ddim,
+					     INT, 0, MKAP(INT));
+				else
+					r = bcon(s.sdf->ddim/SZCHAR);
+				q = buildtree(MUL, q, r);
+				s.sdf++;
+			}
+		}
+		ap = attr_find(p->n_ap, ATTR_BASETYP);
+		p = buildtree(MUL, q, bcon(ap->atypsz/SZCHAR));
+	} else
+		p = (offcon(psize(p), p->n_type, p->n_df, p->n_ap));
+	return p;
 }
 
 /*

@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.297 2010/09/27 13:15:26 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.298 2010/10/03 09:42:22 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1112,6 +1112,8 @@ tsize(TWORD ty, union dimfun *d, struct attr *apl)
 		case ARY:
 			if (d->ddim == NOOFFSET)
 				return 0;
+			if (d->ddim < 0)
+				cerror("tsize: dynarray");
 			mult *= d->ddim;
 			d++;
 			continue;
