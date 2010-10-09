@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.35 2010/08/11 14:08:44 ragge Exp $	*/
+/*	$Id: optim.c,v 1.36 2010/10/09 13:22:10 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -129,6 +129,12 @@ again:	o = p->n_op;
 		return q;
 
 	case UMUL:
+		if (LO(p) == ADDROF) {
+			q = p->n_left->n_left;
+			nfree(p->n_left);
+			nfree(p);
+			return q;
+		}
 		if( LO(p) != ICON ) break;
 		LO(p) = NAME;
 		goto setuleft;
