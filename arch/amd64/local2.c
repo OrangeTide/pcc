@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.23 2010/10/16 09:29:32 ragge Exp $	*/
+/*	$Id: local2.c,v 1.24 2010/10/16 12:38:06 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -997,8 +997,6 @@ myxasm(struct interpass *ip, NODE *p)
 void
 targarg(char *w, void *arg)
 {
-cerror("targarg");
-#if 0
 	NODE **ary = arg;
 	NODE *p, *q;
 
@@ -1010,6 +1008,7 @@ cerror("targarg");
 		if (*w == 'k') {
 			q->n_type = INT;
 		} else if (*w != 'w') {
+			cerror("targarg"); /* XXX ??? */
 			if (q->n_type > UCHAR) {
 				regno(q) = regno(q)*2+8;
 				if (*w == 'h')
@@ -1021,7 +1020,6 @@ cerror("targarg");
 	}
 	adrput(stdout, q);
 	tfree(q);
-#endif
 }
 
 /*

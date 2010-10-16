@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.27 2010/10/02 10:25:02 ragge Exp $	*/
+/*	$Id: code.c,v 1.28 2010/10/16 12:38:06 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -76,6 +76,10 @@ defloc(struct symtab *sp)
 	if (sp == NULL) {
 		lastloc = -1;
 		return;
+	}
+	if (kflag) {
+		loctbl[DATA] = "section .data.rel.rw,\"aw\",@progbits";
+		loctbl[RDATA] = "section .data.rel.ro,\"aw\",@progbits";
 	}
 	t = sp->stype;
 	s = ISFTN(t) ? PROG : ISCON(cqual(t, sp->squal)) ? RDATA : DATA;

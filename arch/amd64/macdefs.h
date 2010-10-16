@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.12 2010/09/19 20:55:15 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.13 2010/10/16 12:38:07 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -244,23 +244,8 @@ int COLORMAP(int c, int *r);
 /*
  * i386-specific symbol table flags.
  */
-#define	SSECTION	SLOCAL1
+#define SBEENHERE	SLOCAL1
 #define	STLS		SLOCAL2
-#define	SNOUNDERSCORE	SLOCAL3
-#define SSTDCALL	SLOCAL2	
-#define SDLLINDIRECT	SLOCAL3
-
-/*
- * i386-specific node flags.
- */
-#define FSTDCALL	0x01
-
-/*
- * i386-specific interpass stuff.
- */
-
-#define TARGET_IPP_MEMBERS			\
-	int ipp_argstacksize;
 
 /*
  * Extended assembler macros.
