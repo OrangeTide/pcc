@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.22 2010/10/09 13:04:09 ragge Exp $	*/
+/*	$Id: local2.c,v 1.23 2010/10/16 09:29:32 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -585,9 +585,9 @@ adrput(FILE *io, NODE *p)
 
 	case NAME:
 		if (p->n_name[0] != '\0') {
-			fprintf(io, "%s(%%rip)", p->n_name);
 			if (p->n_lval != 0)
-				fprintf(io, "+" CONFMT, p->n_lval);
+				fprintf(io, CONFMT "+", p->n_lval);
+			fprintf(io, "%s(%%rip)", p->n_name);
 		} else
 			fprintf(io, CONFMT, p->n_lval);
 		return;
