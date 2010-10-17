@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.308 2010/09/21 17:02:39 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.309 2010/10/17 13:37:53 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -613,9 +613,10 @@ struct_declarator: declarator attr_var {
 
 			$1 = aryfix($1);
 			p = tymerge($<nodep>0, tymfix($1));
+			if ($2)
+				p->n_ap = attr_add(p->n_ap, gcc_attr_parse($2));
 			soumemb(p, (char *)$1->n_sp, 0);
 			tfree(p);
-			uawarn($2, "struct_declarator");
 		}
 		|  ':' e {
 			int ie = con_e($2);
