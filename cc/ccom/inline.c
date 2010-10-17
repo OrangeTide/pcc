@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.36 2010/08/11 14:08:44 ragge Exp $	*/
+/*	$Id: inline.c,v 1.37 2010/10/17 20:13:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -380,7 +380,7 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 	OFFSZ stkoff;
 	NODE *p, *rp;
 
-	if (is == NULL) {
+	if (is == NULL || nerrors) {
 		inline_ref(sp); /* prototype of not yet declared inline ftn */
 		return NIL;
 	}
