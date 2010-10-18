@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.29 2010/10/17 09:00:04 ragge Exp $	*/
+/*	$Id: code.c,v 1.30 2010/10/18 17:37:08 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -237,6 +237,18 @@ bfcode(struct symtab **s, int cnt)
 			sp->soffset = regno(p);
 			sp->sflags |= STNODE;
 			ecomp(buildtree(ASSIGN, p, r));
+			break;
+
+		case SSEMEM:
+			sp->soffset = nrsp;
+			nrsp += SZDOUBLE;
+			if (xtemps) {
+				p = tempnode(0, sp->stype, sp->sdf, sp->sap);
+				p = buildtree(ASSIGN, p, nametree(sp));
+				sp->soffset = regno(p->n_left);
+				sp->sflags |= STNODE;
+				ecomp(p);
+			}
 			break;
 
 		case INTMEM:
@@ -590,6 +602,12 @@ argput(NODE *p)
 	case X87:
 		r = nrsp;
 		nrsp += SZLDOUBLE;
+		p = movtomem(p, r, STKREG);
+		break;
+
+	case SSEMEM:
+		r = nrsp;
+		nrsp += SZDOUBLE;
 		p = movtomem(p, r, STKREG);
 		break;
 
