@@ -1,4 +1,4 @@
-/*	$Id: builtins.c,v 1.10 2010/09/12 08:27:36 ragge Exp $	*/
+/*	$Id: builtins.c,v 1.11 2010/10/18 05:35:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -157,6 +157,22 @@ builtin_abs(NODE *f, NODE *a, TWORD rt)
 	}
 
 	return p;
+}
+
+/*
+ * Get size of object, if possible.
+ * Currently does nothing,
+ */
+static NODE *
+builtin_object_size(NODE *f, NODE *a, TWORD rt)
+{
+	int v = icons(a->n_right);
+	if (v < 0 || v > 3)
+		uerror("arg2 must be between 0 and 3");
+	tfree(a->n_left);
+	nfree(a);
+	tfree(f);
+	return xbcon(v < 2 ? -1 : 0, NULL, rt);
 }
 
 #ifndef TARGET_STDARGS
@@ -394,6 +410,7 @@ static const struct bitable {
 	{ "__builtin_nanf", builtin_nanf, 1, nant },
 	{ "__builtin_nan", builtin_nan, 1, nant },
 	{ "__builtin_nanl", builtin_nanl, 1, nant },
+	{ "__builtin_object_size", builtin_object_size, 2, memsett, SIZET },
 	{ "__builtin_strcmp", builtin_unimp, 2, strcmpt, INT },
 	{ "__builtin_strchr", builtin_unimp, 2, strchrt, CHAR|PTR },
 	{ "__builtin_strrchr", builtin_unimp, 2, strchrt, CHAR|PTR },
