@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.10 2010/10/09 13:03:10 ragge Exp $	*/
+/*	$Id: order.c,v 1.11 2010/10/19 17:04:45 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -57,7 +57,7 @@ findls(NODE *p, int check)
 		p = p->n_left; /* Ignore pointless SCONVs here */
 	if (p->n_op != LS || p->n_right->n_op != ICON)
 		return 0;
-	if ((c = p->n_right->n_lval) != 2 && c != 4 && c != 8)
+	if ((c = p->n_right->n_lval) != 1 && c != 2 && c != 3)
 		return 0;
 	if (check == 1 && p->n_left->n_op != REG)
 		return 0;
