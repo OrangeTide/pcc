@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.30 2010/10/18 17:37:08 ragge Exp $	*/
+/*	$Id: code.c,v 1.31 2010/10/19 20:14:16 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -266,6 +266,11 @@ bfcode(struct symtab **s, int cnt)
 		case STRMEM: /* Struct in memory */
 			sp->soffset = nrsp;
 			nrsp += tsize(sp->stype, sp->sdf, sp->sap);
+			break;
+
+		case X87: /* long double args */
+			sp->soffset = nrsp;
+			nrsp += SZLDOUBLE;
 			break;
 
 		case STRREG: /* Struct in register */
