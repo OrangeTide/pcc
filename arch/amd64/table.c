@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.24 2010/10/19 16:24:48 ragge Exp $	*/
+/*	$Id: table.c,v 1.25 2010/10/19 19:49:46 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -351,6 +351,17 @@ struct optab table[] = {
 		NBREG|NBSL,	RESC1,	/* should be 0 */
 		"	call CL\nZC", },
 
+{ CALL, INCREG,
+	SCON,	TANY,
+	SCREG,	TANY,
+		NCREG|NCSL,	RESC1,	/* should be 0 */
+		"	call CL\nZC", },
+
+{ UCALL,	INCREG,
+	SCON,	TANY,
+	SCREG,	TANY,
+		NCREG|NCSL,	RESC1,	/* should be 0 */
+		"	call CL\nZC", },
 
 
 { CALL,		FOREFF,
@@ -387,6 +398,18 @@ struct optab table[] = {
 	SAREG,	TANY,
 	SANY,	TANY,
 		NBREG|NBSL,	RESC1,	/* should be 0 */
+		"	call *AL\nZC", },
+
+{ CALL,		INCREG,
+	SAREG,	TANY,
+	SANY,	TANY,
+		NCREG|NCSL,	RESC1,	/* should be 0 */
+		"	call *AL\nZC", },
+
+{ UCALL,	INCREG,
+	SAREG,	TANY,
+	SANY,	TANY,
+		NCREG|NCSL,	RESC1,	/* should be 0 */
 		"	call *AL\nZC", },
 
 /* struct return */
