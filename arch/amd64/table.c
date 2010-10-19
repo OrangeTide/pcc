@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.26 2010/10/19 20:05:54 ragge Exp $	*/
+/*	$Id: table.c,v 1.27 2010/10/19 20:19:33 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -307,6 +307,20 @@ struct optab table[] = {
 		NBREG,		RESC1,
 		"\tsubq $4,%rsp\n\tfstps (%rsp)\n"
 		"\tmovss (%rsp),A1\n\taddq $4,%rsp\n", },
+
+/* convert int (in memory) to long double */
+{ SCONV,	INCREG,
+	SOREG|SNAME,	TWORD,
+	SCREG,	 TLDOUBLE,
+		NCREG,	RESC1,
+		"	fildl AL\n", },
+
+/* convert int (in register) to double */
+{ SCONV,	INCREG,
+	SAREG,	TWORD,
+	SAREG,	TLDOUBLE,
+		NTEMP|NCREG,	RESC1,
+		"	pushl AL\n	fildl (%esp)\n	addl $4,%esp\n", },
 
 
 /* slut sconv */
