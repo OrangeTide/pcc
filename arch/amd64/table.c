@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.25 2010/10/19 19:49:46 ragge Exp $	*/
+/*	$Id: table.c,v 1.26 2010/10/19 20:05:54 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -1149,6 +1149,12 @@ struct optab table[] = {
 	SOREG,	TFLOAT|TDOUBLE,
 		NBREG|NBSL,	RESC1,
 		"	movsZf AL,A1\n", },
+
+{ UMUL,	INCREG,
+	SANY,	TANY,
+	SOREG,	TLDOUBLE,
+		NCREG|NCSL,	RESC1,
+		"	fldt AL\n", },
 
 /*
  * Logical/branching operators
