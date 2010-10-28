@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.31 2010/10/19 20:14:16 ragge Exp $	*/
+/*	$Id: code.c,v 1.32 2010/10/28 20:07:30 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -569,9 +569,10 @@ argtyp(TWORD t, union dimfun *df, struct attr *ap)
 	} else if (t == LDOUBLE) {
 		cl = X87; /* XXX */
 	} else if (t == STRTY || t == UNIONTY) {
-		/* XXX no SSEOP handling */
-		if ((tsize(t, df, ap) > 2*SZLONG) ||
-		    (attr_find(ap, GCC_ATYP_PACKED) != NULL))
+		int sz = tsize(t, df, ap);
+
+		if (sz > 2*SZLONG || ((sz+SZLONG)/SZLONG)+ngpr > 6 ||
+		    attr_find(ap, GCC_ATYP_PACKED) != NULL)
 			cl = STRMEM;
 		else
 			cl = STRREG;
