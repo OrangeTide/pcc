@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.28 2010/10/26 20:30:00 ragge Exp $	*/
+/*	$Id: table.c,v 1.29 2010/10/30 09:48:51 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -256,13 +256,6 @@ struct optab table[] = {
 		NAREG,		RESC1,
 		"	cvttsZg2siq AL,Z8\n", },
 
-/* convert float/double to  unsigned long */
-{ SCONV,	INAREG,
-	SBREG|SOREG|SNAME,	TFLOAT|TDOUBLE,
-	SAREG,			TULONG,
-		NAREG,		RESC1,
-		"FIXME!\n", },
-
 /* convert float to double */
 { SCONV,	INBREG,
 	SBREG|SNAME|SOREG,	TFLOAT,
@@ -335,6 +328,13 @@ struct optab table[] = {
 		"	fadds (%rsp)\n"
 		"	addq $8,%rsp\n"
 		"1:\n", },
+
+/* convert float/double to  unsigned long */
+{ SCONV,	INAREG,
+	SBREG,		TFLOAT|TDOUBLE,
+	SAREG,		TULONG,
+		(NAREG*2)|NBREG,	RESC1,
+		"Zb\n", },
 
 /* long double to unsigned long */
 { SCONV,	INAREG,
@@ -1136,7 +1136,7 @@ struct optab table[] = {
 { MUL,	INAREG,
 	SAREG,			TCHAR|TUCHAR,
 	SAREG|SNAME|SOREG,	TCHAR|TUCHAR,
-		NSPECIAL,	RDEST,
+		NSPECIAL,	RLEFT,
 		"	imulb AR\n", },
 
 { MUL,	INBREG,
