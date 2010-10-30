@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.30 2010/10/30 10:13:24 ragge Exp $	*/
+/*	$Id: table.c,v 1.31 2010/10/30 10:20:58 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -344,6 +344,21 @@ struct optab table[] = {
 	SAREG,			TULONG,
 		NAREG,	RESC1,
 		"ZB", },
+
+/* ldouble -> long  XXX merge with int */
+{ SCONV,	INAREG,
+	SCREG,	TLDOUBLE,
+	SAREG,	TLONG,
+		NAREG,	RESC1,
+		"	subl $16,%esp\n"
+		"	fnstcw (%esp)\n"
+		"	fnstcw 4(%esp)\n"
+		"	movb $12,1(%esp)\n"
+		"	fldcw (%esp)\n"
+		"	fistpll 8(%esp)\n"
+		"	movl 8(%esp),A1\n"
+		"	fldcw 4(%esp)\n"
+		"	addl $16,%esp\n", },
 
 /* ldouble -> (u)int */
 { SCONV,	INAREG,
