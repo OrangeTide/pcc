@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.29 2010/10/30 09:48:51 ragge Exp $	*/
+/*	$Id: table.c,v 1.30 2010/10/30 10:13:24 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -287,6 +287,7 @@ struct optab table[] = {
 		"\tsubq $8,%rsp\n\tmovsd AL,(%rsp)\n"
 		"\tfldl (%rsp)\n\taddq $8,%rsp\n", },
 
+/* ldouble -> double */
 { SCONV,	INBREG,
 	SCREG,	TLDOUBLE,
 	SBREG,	TDOUBLE,
@@ -294,6 +295,7 @@ struct optab table[] = {
 		"\tsubq $8,%rsp\n\tfstpl (%rsp)\n"
 		"\tmovsd (%rsp),A1\n\taddq $8,%rsp\n", },
 
+/* ldouble -> float */
 { SCONV,	INBREG,
 	SCREG,	TLDOUBLE,
 	SBREG,	TFLOAT,
@@ -342,6 +344,22 @@ struct optab table[] = {
 	SAREG,			TULONG,
 		NAREG,	RESC1,
 		"ZB", },
+
+/* ldouble -> (u)int */
+{ SCONV,	INAREG,
+	SCREG,	TLDOUBLE,
+	SAREG,	TINT|TUNSIGNED,
+		NAREG,	RESC1,
+		"	subl $16,%esp\n"
+		"	fnstcw (%esp)\n"
+		"	fnstcw 4(%esp)\n"
+		"	movb $12,1(%esp)\n"
+		"	fldcw (%esp)\n"
+		"	fistpl 8(%esp)\n"
+		"	movl 8(%esp),A1\n"
+		"	fldcw 4(%esp)\n"
+		"	addl $16,%esp\n", },
+
 
 /* slut sconv */
 
