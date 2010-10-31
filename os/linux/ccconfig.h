@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.16 2009/09/17 02:58:22 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.17 2010/10/31 18:18:13 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -61,6 +61,9 @@
 #elif defined(mach_amd64)
 #define CPPMDADD { "-D__x86_64__", NULL, }
 #define	DYNLINKER { "-dynamic-linker", "/lib64/ld-linux-x86-64.so.2", NULL }
+#elif defined(mach_mips)
+#define CPPMDADD { "-D__mips__", NULL, }
+#define DYNLINKER { "-dynamic-linker", "/lib/ld.so.1", NULL }
 #else
 #error defines for arch missing
 #endif
