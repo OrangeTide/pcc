@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.33 2010/10/31 18:14:52 ragge Exp $	*/
+/*	$Id: code.c,v 1.34 2010/11/02 19:37:58 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -181,11 +181,8 @@ efcode()
 	sp = lookup(addname("memcpy"), 0);
 	if (sp->stype == UNDEF) {
 		sp->sap = MKAP(VOID);
-		p = talloc();
-		p->n_op = NAME;
+		p = block(NAME, NIL, NIL, VOID|FTN|(PTR<<TSHIFT), 0, sp->sap);
 		p->n_sp = sp;
-		p->n_ap = sp->sap;
-		p->n_type = VOID|FTN|(PTR<<TSHIFT);
 		defid(p, EXTERN);
 		nfree(p);
 	}
