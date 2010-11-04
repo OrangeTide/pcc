@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.23 2010/10/19 20:06:52 ragge Exp $	*/
+/*	$Id: local.c,v 1.24 2010/11/04 17:39:41 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -318,6 +318,15 @@ clocal(NODE *p)
 		nfree(l);
 		break;
 
+	case UCALL:
+	case USTCALL:
+		/* For now, always clear eax */
+		l = block(REG, NIL, NIL, INT, 0, MKAP(INT));
+		regno(l) = RAX;
+		p->n_right = clocal(buildtree(ASSIGN, l, bcon(0)));
+		p->n_op -= (UCALL-CALL);
+
+		/* FALLTHROUGH */
 	case CALL:
 	case STCALL:
 		if (p->n_type == VOID)
@@ -328,15 +337,6 @@ clocal(NODE *p)
 		r = buildtree(ASSIGN, r, p);
 		p = tempnode(m, r->n_type, r->n_df, r->n_ap);
 		p = buildtree(COMOP, r, p);
-		break;
-
-	case UCALL:
-	case USTCALL:
-		/* For now, always clear eax */
-		l = block(REG, NIL, NIL, INT, 0, MKAP(INT));
-		regno(l) = RAX;
-		p->n_right = clocal(buildtree(ASSIGN, l, bcon(0)));
-		p->n_op -= (UCALL-CALL);
 		break;
 
 	case CBRANCH:
