@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.263 2010/10/10 09:31:48 ragge Exp $	*/
+/*	$Id: reader.c,v 1.264 2010/11/05 15:52:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -203,10 +203,13 @@ stkarg(int tnr, int *soff)
 		p = ip->ip_node;
 		if (p->n_op == XASM)
 			continue; /* XXX - hack for x86 PIC */
-#ifdef PCC_DEBUG
+#ifdef notdef
 		if (p->n_op != ASSIGN || p->n_left->n_op != TEMP)
 			comperr("temparg");
 #endif
+		if (p->n_op != ASSIGN || p->n_left->n_op != TEMP)
+			continue; /* unknown tree */
+
 		if (p->n_right->n_op != OREG && p->n_right->n_op != UMUL)
 			continue; /* arg in register */
 		if (tnr != regno(p->n_left))
