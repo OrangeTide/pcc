@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.105 2010/06/08 16:38:31 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.106 2010/11/05 15:54:01 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -1494,7 +1494,7 @@ expdef(const usch *vp, struct recur *rp, int gotwarn)
 				DPRINT(("expand arg %d string %s\n", *sp, ap));
 				bp = ap = stringbuf;
 				savch(NOEXP);
-				expmac(NULL);
+				expmac(rp->next);
 				savch(EXPAND);
 				savch('\0');
 			}
