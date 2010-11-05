@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.34 2010/11/02 19:51:03 ragge Exp $	*/
+/*	$Id: table.c,v 1.35 2010/11/05 15:55:51 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -998,11 +998,11 @@ struct optab table[] = {
 	SAREG|SCON,	TCHAR|TUCHAR,
 		NAREG*2,	RDEST,
 		"	movb AR,A2\n"
-		"	movzbl A2,A1\n"
+		"	movzbl A2,ZN\n"
 		"	andl $N,AL\n"
-		"	sall $H,A1\n"
-		"	andl $M,A1\n"
-		"	orl A1,AL\n"
+		"	sall $H,ZN\n"
+		"	andl $M,ZN\n"
+		"	orl ZN,AL\n"
 		"F	movb AR,AD\n"
 		"FZE", },
 

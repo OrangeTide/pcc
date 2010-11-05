@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.26 2010/10/30 09:48:51 ragge Exp $	*/
+/*	$Id: local2.c,v 1.27 2010/11/05 15:55:51 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -469,6 +469,10 @@ zzzcode(NODE *p, int c)
 			break;
 		printf("	movb %s,%s\n", rbyte[lr], rbyte[pr]);
 		l->n_rval = l->n_reg = p->n_reg; /* XXX - not pretty */
+		break;
+
+	case 'N': /* output long reg name */
+		printf("%s", rlong[getlr(p, '1')->n_rval]);
 		break;
 
 	case 'P': /* Put hidden argument in rdi */
