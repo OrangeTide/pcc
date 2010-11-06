@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.27 2010/11/05 15:55:51 ragge Exp $	*/
+/*	$Id: local2.c,v 1.28 2010/11/06 10:40:43 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -493,6 +493,15 @@ zzzcode(NODE *p, int c)
 		printf("%c", s);
 		}
 		break;
+
+	case 'U': { /* output branch insn for ucomi */
+		static char *fpcb[] = { "jz", "jnz", "jbe", "jc", "jnc", "ja" };
+		if (p->n_op < EQ || p->n_op > GT)
+			comperr("bad fp branch");
+		printf("	%s ", fpcb[p->n_op - EQ]);
+		expand(p, 0, "LC\n");
+		break;
+		}
 
 	case '8': /* special reg name printout (64-bit) */
 	case '1': /* special reg name printout (32-bit) */
