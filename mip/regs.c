@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.213 2010/11/05 15:52:52 ragge Exp $	*/
+/*	$Id: regs.c,v 1.214 2010/11/07 20:20:18 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -945,6 +945,10 @@ setxarg(NODE *p)
 	if (XASMISOUT(cw))
 		ut = 1;
 
+#ifdef MYSETXARG
+	MYSETXARG;
+#endif
+
 	switch (XASMVAL(cw)) {
 	case 'm':
 	case 'g':
@@ -965,7 +969,6 @@ setxarg(NODE *p)
 		}
 		addalledges(&rw[i]);
 		break;
-
 
 	case 'i':
 	case 'n':
