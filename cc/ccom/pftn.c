@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.298 2010/10/03 09:42:22 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.299 2010/11/07 13:36:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -374,7 +374,7 @@ defid(NODE *q, int class)
 	p->soffset = NOOFFSET;
 	if (q->n_ap == NULL)
 		cerror("q->n_ap == NULL");
-	p->sap = q->n_ap;
+	p->sap = attr_add(q->n_ap, p->sap);
 
 	/* copy dimensions */
 	p->sdf = q->n_df;
