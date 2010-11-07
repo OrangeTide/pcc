@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.36 2010/11/04 21:12:05 ragge Exp $	*/
+/*	$Id: code.c,v 1.37 2010/11/07 13:39:30 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -205,6 +205,7 @@ bfcode(struct symtab **s, int cnt)
 	union arglist *al;
 	struct symtab *sp;
 	NODE *p, *r;
+	TWORD t;
 	int i, rno, typ;
 
 	/* recalculate the arg offset and create TEMP moves */
@@ -306,11 +307,14 @@ bfcode(struct symtab **s, int cnt)
 	al = cftnsp->sdf->dfun;
 
 	for (; al->type != TELLIPSIS; al++) {
-		if (al->type == TNULL)
+		t = al->type;
+		if (t == TNULL)
 			return;
-		if (BTYPE(al->type) == STRTY || BTYPE(al->type) == UNIONTY ||
-		    ISARY(al->type))
+		if (BTYPE(t) == STRTY || BTYPE(t) == UNIONTY)
 			al++;
+		for (; t > BTMASK; t = DECREF(t))
+			if (ISARY(t) || ISFTN(t))
+				al++;
 	}
 
 	/* fix stack offset */
