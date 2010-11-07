@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.146 2010/09/19 13:38:44 ragge Exp $	*/
+/*	$Id: local2.c,v 1.147 2010/11/07 20:24:36 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1367,11 +1367,8 @@ myxasm(struct interpass *ip, NODE *p)
 		return 1;
 
 	case 'A': reg = EAXEDX; break;
-	case 'q': /* XXX let it be CLASSA as for now */
-		p->n_name = tmpstrdup(p->n_name);
-		w = strchr(p->n_name, 'q');
-		*w = 'r';
-		return 0;
+	case 'q': /* Handle in MYSETXARG */
+		return 1;
 
 	case 'I':
 	case 'J':
