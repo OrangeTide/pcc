@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.161 2010/10/18 18:55:31 ragge Exp $	*/
+/*	$Id: cc.c,v 1.162 2010/11/07 14:12:52 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -529,7 +529,11 @@ main(int argc, char *argv[])
 					/* NOTHING YET */;
 				else if (strcmp(argv[i], "-pedantic") == 0)
 					/* NOTHING YET */;
-				else
+				else if (strcmp(argv[i],
+				    "-print-prog-name=ld") == 0) {
+					printf("%s\n", LINKER);
+					return 0;
+				} else
 					errorx(1, "unknown option %s", argv[i]);
 				break;
 
