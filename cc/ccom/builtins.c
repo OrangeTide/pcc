@@ -1,4 +1,4 @@
-/*	$Id: builtins.c,v 1.13 2010/10/28 20:06:25 ragge Exp $	*/
+/*	$Id: builtins.c,v 1.14 2010/11/07 15:03:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -169,10 +169,11 @@ builtin_object_size(NODE *f, NODE *a, TWORD rt)
 	int v = icons(a->n_right);
 	if (v < 0 || v > 3)
 		uerror("arg2 must be between 0 and 3");
-	tfree(a->n_left);
-	nfree(a);
+
 	tfree(f);
-	return xbcon(v < 2 ? -1 : 0, NULL, rt);
+	f = buildtree(COMOP, a->n_left, xbcon(v < 2 ? -1 : 0, NULL, rt));
+	nfree(a);
+	return f;
 }
 
 #ifndef TARGET_STDARGS
