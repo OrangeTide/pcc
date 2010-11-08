@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.126 2010/07/03 15:51:07 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.127 2010/11/08 11:02:21 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -177,6 +177,7 @@ typedef unsigned int bittype; /* XXX - for basicblock */
 #define	NFCOUNT		0x0c000000
 #define	NGSL		0x10000000	/* Above 16 bit */
 #define	NGSR		0x20000000	/* Above 16 bit */
+#undef	NGREG	/* XXX - linux exposes NGREG to public */
 #define	NGREG		0x40000000	/* Above 16 bit */
 #define	NGCOUNT		0xc0000000
 
