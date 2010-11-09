@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.30 2010/11/08 19:34:30 ragge Exp $	*/
+/*	$Id: local2.c,v 1.31 2010/11/09 17:25:00 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1028,7 +1028,7 @@ myxasm(struct interpass *ip, NODE *p)
 	if ((cw & XASMASG) == 0)
 		in = p->n_left;
 
-	switch (XASMVAL(cw)) {
+	switch (c = XASMVAL(cw)) {
 	case 'D': reg = RDI; break;
 	case 'S': reg = RSI; break;
 	case 'a': reg = RAX; break;
@@ -1039,7 +1039,7 @@ myxasm(struct interpass *ip, NODE *p)
 	case 't':
 	case 'u':
 		p->n_name = tmpstrdup(p->n_name);
-		w = strchr(p->n_name, XASMVAL(cw));
+		w = strchr(p->n_name, c);
 		*w = 'r'; /* now reg */
 		return 1;
 
