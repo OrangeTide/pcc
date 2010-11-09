@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.18 2010/11/08 07:08:13 ragge Exp $	*/
+/*	$Id: ccconfig.h,v 1.19 2010/11/09 08:40:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -57,7 +57,9 @@
 #elif defined(mach_amd64)
 #define CPPMDADD { "-D__x86_64__", NULL, }
 #define	DYNLINKER { "-dynamic-linker", "/lib64/ld-linux-x86-64.so.2", NULL }
+#ifndef LIBDIR
 #define	LIBDIR "/usr/lib64/"
+#endif
 #elif defined(mach_mips)
 #define CPPMDADD { "-D__mips__", NULL, }
 #define DYNLINKER { "-dynamic-linker", "/lib/ld.so.1", NULL }
