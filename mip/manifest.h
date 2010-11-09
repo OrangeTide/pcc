@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.89 2010/07/03 15:51:07 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.90 2010/11/09 21:10:31 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -138,9 +138,9 @@
 /*
  * Pack and unpack field descriptors (size and offset)
  */
-#define PKFIELD(s,o)	(((o)<<6)| (s))
-#define UPKFSZ(v)	((v)&077)
-#define UPKFOFF(v)	((v)>>6)
+#define PKFIELD(s,o)	(((o)<<7)| (s))
+#define UPKFSZ(v)	((v)&0177)
+#define UPKFOFF(v)	((v)>>7)
 
 /*
  * Operator information

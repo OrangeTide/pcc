@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.209 2010/09/04 19:40:53 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.210 2010/11/09 21:10:31 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -75,8 +75,8 @@ typedef unsigned int bittype; /* XXX - for basicblock */
 #define USTATIC		18
 
 	/* field size is ORed in */
-#define FIELD		0100
-#define FLDSIZ		077
+#define FIELD		0200
+#define FLDSIZ		0177
 extern	char *scnames(int);
 
 /*
