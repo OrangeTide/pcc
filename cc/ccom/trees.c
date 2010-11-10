@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.259 2010/10/13 19:55:17 ragge Exp $	*/
+/*	$Id: trees.c,v 1.260 2010/11/10 19:34:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1231,6 +1231,8 @@ oconvert(p) register NODE *p; {
 		return( p );
 
 	case MINUS:
+		p->n_type = INTPTR;
+		p->n_ap = MKAP(INTPTR);
 		return(  clocal( block( PVCONV,
 			p, bpsize(p->n_left), INT, 0, MKAP(INT))));
 		}
