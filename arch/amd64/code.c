@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.38 2010/11/08 18:08:08 ragge Exp $	*/
+/*	$Id: code.c,v 1.39 2010/11/11 19:47:10 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -541,7 +541,7 @@ amd64_builtin_va_arg(NODE *f, NODE *a, TWORD t)
 		f->n_df = dp->n_df;
 		f = clocal(f);
 		r = buildtree(CALL, f, ccopy(ap));
-	} else if (ISSOU(dp->n_type)) {
+	} else if (ISSOU(dp->n_type) || dp->n_type == LDOUBLE) {
 		/* put a reference directly to the stack */
 		int sz = tsize(dp->n_type, dp->n_df, dp->n_ap);
 		int al = talign(dp->n_type, dp->n_ap);
