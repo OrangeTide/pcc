@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.36 2010/11/06 10:40:43 ragge Exp $	*/
+/*	$Id: table.c,v 1.37 2010/11/11 20:50:19 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -315,8 +315,10 @@ struct optab table[] = {
 	SAREG,	TWORD,
 	SCREG,	TLDOUBLE,
 		NCREG,	RESC1,
-		"	pushl AL\n	fildl (%rsp)\n	addl $4,%rsp\n", },
-
+		"	subq $4,%rsp\n"
+		"	movl AL,(%rsp)\n"
+		"	fildl (%rsp)\n"
+		"	addq $4,%rsp\n", },
 
 /* unsigned long (in reg) to long double */
 { SCONV,	INCREG,
