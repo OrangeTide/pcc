@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.31 2010/11/09 17:25:00 ragge Exp $	*/
+/*	$Id: local2.c,v 1.32 2010/11/11 19:45:53 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -255,8 +255,7 @@ fldexpand(NODE *p, int cookie, char **cp)
 		break;
 	case 'M':
 	case 'N':
-		val = (CONSZ)1 << UPKFSZ(p->n_rval);
-		--val;
+		val = (((((CONSZ)1 << (UPKFSZ(p->n_rval)-1))-1)<<1)|1);
 		val <<= UPKFOFF(p->n_rval);
 		if (p->n_type > UNSIGNED)
 			printf("0x%llx", (**cp == 'M' ? val : ~val));
@@ -859,8 +858,11 @@ rmove(int s, int d, TWORD t)
 		printf("	movsd %s,%s\n", rnames[s], rnames[d]);
 		break;
 	case LDOUBLE:
+#ifdef notdef
 		/* a=b()*c(); will generate this */
+		/* XXX can it fail anyway? */
 		comperr("bad float rmove: %d %d", s, d);
+#endif
 		break;
 	default:
 		printf("	movq %s,%s\n", rnames[s], rnames[d]);
