@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.27 2010/11/17 19:54:24 ragge Exp $	*/
+/*	$Id: local.c,v 1.28 2010/11/18 18:12:10 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -651,8 +651,29 @@ clocal(NODE *p)
 void
 myp2tree(NODE *p)
 {
-	struct symtab *sp;
+	struct symtab *sp, sps;
+	static int dblxor, fltxor;
 
+	if (p->n_op == UMINUS && (p->n_type == FLOAT || p->n_type == DOUBLE)) {
+		/* Store xor code for sign change */
+		if (dblxor == 0) {
+			dblxor = getlab();
+			fltxor = getlab();
+			sps.stype = LDOUBLE;
+			sps.squal = CON >> TSHIFT;
+			sps.sflags = sps.sclass = 0;
+			sps.sname = sps.soname = "";
+			sps.slevel = 1;
+			sps.sap = MKAP(LDOUBLE); /* alignment */
+			sps.soffset = dblxor;
+			defloc(&sps);
+			printf("\t.long 0,0x80000000,0,0\n");
+			printf(LABFMT ":\n", fltxor);
+			printf("\t.long 0x80000000,0,0,0\n");
+		}
+		p->n_label = p->n_type == FLOAT ? fltxor : dblxor;
+		return;
+	}
 	if (p->n_op != FCON)
 		return;
 

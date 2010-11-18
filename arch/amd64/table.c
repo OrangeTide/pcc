@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.37 2010/11/11 20:50:19 ragge Exp $	*/
+/*	$Id: table.c,v 1.38 2010/11/18 18:12:10 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -1491,10 +1491,10 @@ struct optab table[] = {
 		"	negb AL\n", },
 
 { UMINUS,	INBREG,
-	SBREG|SNAME|SOREG,	TDOUBLE|TFLOAT,
-	SBREG,			TDOUBLE|TFLOAT,
-		NBREG,	RESC1,
-		"	xorpZf A1,A1\n	subsZf AL,A1\n", },
+	SBREG,		TDOUBLE|TFLOAT,
+	SBREG,		TDOUBLE|TFLOAT,
+		0,	RLEFT,
+		"	xorpZf LC,AL\n", },
 
 { UMINUS,	INCREG,
 	SCREG,	TLDOUBLE,
