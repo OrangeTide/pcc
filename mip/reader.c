@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.264 2010/11/05 15:52:52 ragge Exp $	*/
+/*	$Id: reader.c,v 1.265 2010/11/24 17:36:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -564,7 +564,7 @@ again:	switch (o = p->n_op) {
 	case UGT:
 		p1 = p->n_left;
 		p2 = p->n_right;
-		if (p2->n_op == ICON && p2->n_lval == 0 &&
+		if (p2->n_op == ICON && p2->n_lval == 0 && *p2->n_name == 0 &&
 		    (dope[p1->n_op] & (FLOFLG|DIVFLG|SIMPFLG|SHFFLG))) {
 #ifdef mach_pdp11 /* XXX all targets? */
 			if ((rv = geninsn(p1, FORCC|QUIET)) != FFAIL)
