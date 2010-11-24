@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.28 2010/11/18 18:12:10 ragge Exp $	*/
+/*	$Id: local.c,v 1.29 2010/11/24 18:00:00 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -578,7 +578,10 @@ clocal(NODE *p)
 			nfree(p);
 			return l;
 		} else if (l->n_op == FCON) {
-			l->n_lval = l->n_dcon;
+			if (p->n_type == BOOL)
+				l->n_lval = l->n_dcon != 0.0;
+			else
+				l->n_lval = l->n_dcon;
 			l->n_sp = NULL;
 			l->n_op = ICON;
 			l->n_type = m;

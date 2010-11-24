@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.300 2010/11/18 17:19:24 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.301 2010/11/24 18:00:00 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1759,7 +1759,7 @@ typenode(NODE *p)
 	if ((q = tc.saved) == NULL) {
 		TWORD t;
 		if ((t = BTYPE(tc.type)) > LDOUBLE && t != VOID &&
-		    !(t >= FIMAG && t <= LIMAG))
+		    t != BOOL && !(t >= FIMAG && t <= LIMAG))
 			cerror("typenode2 t %x", tc.type);
 		if (t == UNDEF) {
 			t = INT;

@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.95 2010/11/07 13:36:14 ragge Exp $	*/
+/*	$Id: scan.l,v 1.96 2010/11/24 18:00:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -91,7 +91,7 @@ extern void yyset_lineno (int);
 			}
 "asm"			{ return(C_ASM); }
 "auto"			{ 	return resw(AUTO, C_CLASS); }
-"_Bool"			{ 	return resw(BOOL_TYPE, C_TYPE); }
+"_Bool"			{ 	return resw(BOOL, C_TYPE); }
 "break"			{ return(C_BREAK); }
 "case"			{ return(C_CASE); }
 "char"			{ 	return resw(CHAR, C_TYPE); }
