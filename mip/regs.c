@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.214 2010/11/07 20:20:18 ragge Exp $	*/
+/*	$Id: regs.c,v 1.215 2010/11/24 17:34:42 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2617,8 +2617,13 @@ if (p->n_reg == -1) goto foo;
 	} else {
 foo:		fprintf(fp, "REG ");
 		if (p->n_reg != -1) {
-			for (i = 0; i < n+1; i++)
-				fprintf(fp, "%s ", rnames[DECRA(p->n_reg, i)]);
+			for (i = 0; i < n+1; i++) {
+				int r = DECRA(p->n_reg, i);
+				if (r >= MAXREGS)
+					fprintf(fp, "<badreg> ");
+				else
+					fprintf(fp, "%s ", rnames[r]);
+			}
 		} else
 			fprintf(fp, "<undef>");
 	}
