@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.10 2009/09/19 23:49:43 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.11 2010/11/26 17:06:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -390,12 +390,12 @@ void addstub(struct stub *list, char *name);
 
 #define NODE struct node
 struct node;
-NODE *powerpc_builtin_stdarg_start(NODE *f, NODE *a);
-NODE *powerpc_builtin_va_arg(NODE *f, NODE *a);
-NODE *powerpc_builtin_va_end(NODE *f, NODE *a);
-NODE *powerpc_builtin_va_copy(NODE *f, NODE *a);
-NODE *powerpc_builtin_frame_address(NODE *f, NODE *a);
-NODE *powerpc_builtin_return_address(NODE *f, NODE *a);
+NODE *powerpc_builtin_stdarg_start(NODE *f, NODE *a, unsigned int);
+NODE *powerpc_builtin_va_arg(NODE *f, NODE *a, unsigned int);
+NODE *powerpc_builtin_va_end(NODE *f, NODE *a, unsigned int);
+NODE *powerpc_builtin_va_copy(NODE *f, NODE *a, unsigned int);
+NODE *powerpc_builtin_frame_address(NODE *f, NODE *a, unsigned int);
+NODE *powerpc_builtin_return_address(NODE *f, NODE *a, unsigned int);
 #undef NODE
 
 #define NARGREGS	8
