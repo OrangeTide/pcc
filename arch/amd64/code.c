@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.41 2010/11/24 18:00:00 ragge Exp $	*/
+/*	$Id: code.c,v 1.42 2010/11/27 21:12:47 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -668,6 +668,11 @@ argtyp(TWORD t, union dimfun *df, struct attr *ap)
 	return cl;
 }
 
+/*
+ * Do the "hard work" in assigning correct destination for arguments.
+ * Also convert arguments < INT to inte (default argument promotions).
+ * XXX - should be dome elsewhere.
+ */
 static NODE *
 argput(NODE *p)
 {
@@ -689,6 +694,8 @@ argput(NODE *p)
 			r = XMM0 + nsse++;
 		else
 			r = argregsi[ngpr++];
+		if (p->n_type < INT)
+			p = cast(p, INT, 0);
 		p = movtoreg(p, r);
 		break;
 
