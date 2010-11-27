@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.32 2010/11/11 19:45:53 ragge Exp $	*/
+/*	$Id: local2.c,v 1.33 2010/11/27 16:04:29 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -207,36 +207,13 @@ static void
 fcomp(NODE *p)	
 {
 
-	if (p->n_left->n_op == REG) {
-		if (p->n_su & DORIGHT)
-			expand(p, 0, "	fxch\n");
-		expand(p, 0, "	fucompp\n");	/* emit compare insn  */
-	} else
+	if (p->n_left->n_op != REG)
 		comperr("bad compare %p\n", p);
-	expand(p, 0, "	fnstsw %ax\n"); /* move status reg to ax */
-	
-	switch (p->n_op) {
-	case EQ:
-		expand(p, 0, "	andb $69,%ah\n	xorb $64,%ah\n	je LC\n");
-		break;
-	case NE:
-		expand(p, 0, "	andb $69,%ah\n	xorb $64,%ah\n	jne LC\n");
-		break;
-	case LE:
-		expand(p, 0, "	andb $69,%ah\n	xorb $1,%ah\n	jne LC\n");
-		break;
-	case LT:
-		expand(p, 0, "	andb $69,%ah\n	je LC\n");
-		break;
-	case GT:
-		expand(p, 0, "	andb $1,%ah\n	jne LC\n");
-		break;
-	case GE:
-		expand(p, 0, "	andb $69,%ah\n	jne LC\n");
-		break;
-	default:
-		comperr("fcomp op %d\n", p->n_op);
-	}
+	if ((p->n_su & DORIGHT) == 0)
+		expand(p, 0, "	fxch\n");
+	expand(p, 0, "	fucomip %st(1),%st\n");	/* emit compare insn  */
+	expand(p, 0, "	fstp %st(0)\n");	/* pop fromstack */
+	zzzcode(p, 'U');
 }
 
 int
@@ -497,8 +474,14 @@ zzzcode(NODE *p, int c)
 		static char *fpcb[] = { "jz", "jnz", "jbe", "jc", "jnc", "ja" };
 		if (p->n_op < EQ || p->n_op > GT)
 			comperr("bad fp branch");
+		if (p->n_op == NE || p->n_op == GT || p->n_op == GE)
+			expand(p, 0, "	jp LC\n");
+		else if (p->n_op == EQ)
+			printf("\tjp 1f\n");
 		printf("	%s ", fpcb[p->n_op - EQ]);
 		expand(p, 0, "LC\n");
+		if (p->n_op == EQ)
+			printf("1:\n");
 		break;
 		}
 

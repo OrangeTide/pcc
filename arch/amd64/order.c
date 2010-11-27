@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.12 2010/10/30 09:48:51 ragge Exp $	*/
+/*	$Id: order.c,v 1.13 2010/11/27 16:04:29 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -281,12 +281,6 @@ nspecial(struct optab *q)
 				{ NRIGHT, RSI }, { NOLEFT, RSI },
 				{ NOLEFT, RCX }, { NORIGHT, RCX },
 				{ NEVER, RCX }, { 0 } };
-			return s;
-		}
-
-	case OPLOG:
-		{
-			static struct rspecial s[] = { { NEVER, RAX }, { 0 } };
 			return s;
 		}
 
