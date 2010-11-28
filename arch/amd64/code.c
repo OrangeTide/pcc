@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.42 2010/11/27 21:12:47 ragge Exp $	*/
+/*	$Id: code.c,v 1.43 2010/11/28 09:32:21 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -694,7 +694,7 @@ argput(NODE *p)
 			r = XMM0 + nsse++;
 		else
 			r = argregsi[ngpr++];
-		if (p->n_type < INT)
+		if (p->n_type < INT || p->n_type == BOOL)
 			p = cast(p, INT, 0);
 		p = movtoreg(p, r);
 		break;
