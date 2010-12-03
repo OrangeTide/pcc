@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.33 2010/11/27 16:04:29 ragge Exp $	*/
+/*	$Id: local2.c,v 1.34 2010/12/03 08:49:10 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1021,18 +1021,16 @@ myxasm(struct interpass *ip, NODE *p)
 	case 'c': reg = RCX; break;
 	case 'd': reg = RDX; break;
 
+	case 'q':
 	case 't':
 	case 'u':
 		p->n_name = tmpstrdup(p->n_name);
 		w = strchr(p->n_name, c);
 		*w = 'r'; /* now reg */
-		return 1;
+		return c == 'q' ? 0 : 1;
 
 	case 'A': 
 		uerror("unsupported xasm constraint 'A'");
-
-	case 'q': /* Handle in MYSETXARG */
-		return 1;
 
 	case 'I':
 	case 'J':
