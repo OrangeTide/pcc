@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.124 2010/09/12 07:08:16 ragge Exp $	*/
+/*	$Id: local.c,v 1.125 2010/12/03 08:05:12 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -589,7 +589,8 @@ clocal(NODE *p)
 			if (!ISPTR(m)) /* Pointers don't need to be conv'd */
 			    switch (m) {
 			case BOOL:
-				l->n_lval = l->n_lval != 0;
+				l->n_lval = nncon(l) ? (l->n_lval != 0) : 1;
+				l->n_sp = NULL;
 				break;
 			case CHAR:
 				l->n_lval = (char)val;
