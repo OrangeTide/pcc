@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.311 2010/11/06 16:06:38 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.312 2010/12/03 20:50:41 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1106,7 +1106,8 @@ term:		   term C_INCOP {  $$ = biop($2, $1, bcon(1)); }
 				$$ = $5;
 			}
 			$$ = biop(ADDROF, $$, NIL);
-			$3 = block(NAME, NIL, NIL, INTPTR, 0, MKAP(INTPTR));
+			$3 = block(NAME, NIL, NIL, ENUNSIGN(INTPTR), 0,
+			    MKAP(ENUNSIGN(INTPTR)));
 			$$ = biop(CAST, $3, $$);
 		}
 		|  C_ICON { $$ = $1; }
