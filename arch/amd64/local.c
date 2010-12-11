@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.31 2010/12/11 14:25:37 ragge Exp $	*/
+/*	$Id: local.c,v 1.32 2010/12/11 14:27:41 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -837,7 +837,11 @@ zbits(OFFSZ off, int fsz)
 		}
 	}
 	if (fsz >= SZCHAR) {
+#ifdef MACHOABI
+		printf("\t.space %d\n", fsz/SZCHAR);
+#else
 		printf("\t.zero %d\n", fsz/SZCHAR);
+#endif
 		fsz -= (fsz/SZCHAR) * SZCHAR;
 	}
 	if (fsz) {
