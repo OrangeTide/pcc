@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.109 2010/12/18 11:38:47 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.110 2010/12/18 16:07:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -1493,7 +1493,8 @@ expdef(const usch *vp, struct recur *rp, int gotwarn)
 					}
 					cunput(' ');
 				}
-				cunput(*bp);
+				if (!snuff || (*bp != EXPAND && *bp != NOEXP))
+					cunput(*bp);
 				if ((*bp == '\'' || *bp == '"')
 				     && bp[-1] != '\\' && snuff) {
 					instr ^= 1;
