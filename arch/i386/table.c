@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.123 2010/08/07 09:00:22 ragge Exp $	*/
+/*	$Id: table.c,v 1.124 2010/12/19 09:28:31 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1314,23 +1314,8 @@ struct optab table[] = {
 { OPLOG,	FORCC,
 	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
 	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
-		NSPECIAL, 	0,
+		0, 	RNOP,
 		"ZG", },
-
-{ OPLOG,	FORCC,
-	SOREG|SNAME,	TDOUBLE|TFLOAT,
-	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
-		NSPECIAL, 	0,
-		"ZG", },
-
-#if 0
-/* Ppro and later only */
-{ OPLOG,	FORCC,
-	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
-	SDREG,	TLDOUBLE|TDOUBLE|TFLOAT,
-		0, 	RESCC,
-		"ZA	fucomip %st,%st(1)\n", },
-#endif
 
 { OPLOG,	FORCC,
 	SANY,	TANY,
