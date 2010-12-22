@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.32 2010/12/11 14:27:41 ragge Exp $	*/
+/*	$Id: local.c,v 1.33 2010/12/22 14:28:45 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -884,24 +884,27 @@ ninval(CONSZ off, int fsz, NODE *p)
 {
 	union { float f; double d; long double l; int i[3]; } u;
 	struct symtab *q;
-	NODE st;
+	NODE st, *op = NIL;
 	TWORD t;
-	int rel = 0;
 
 	if (coptype(p->n_op) != LTYPE) {
 		ininval = 1;
-		p = optim(ccopy(p));
+		op = p = optim(ccopy(p));
 		ininval = 0;
-		rel = 1;
 	}
+
+	while (p->n_op == PCONV)
+		p = p->n_left;
 
 	t = p->n_type;
 
 	if (kflag && p->n_op == NAME && ISPTR(t) && ISFTN(DECREF(t))) {
 		/* functions as initializers will be NAME here */
-		st = *p;
-		st.n_op = ICON;
-		p = &st;
+		if (op == NIL) {
+			st = *p;
+			p = &st;
+		}
+		p->n_op = ICON;
 	}
 
 	if (t > BTMASK)
@@ -975,8 +978,8 @@ ninval(CONSZ off, int fsz, NODE *p)
 	default:
 		cerror("ninval");
 	}
-	if (rel)
-		tfree(p);
+	if (op)
+		tfree(op);
 }
 
 /* make a name look like an external name in the local machine */
