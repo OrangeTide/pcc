@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.314 2010/12/21 14:18:07 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.315 2010/12/25 11:34:20 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -2069,6 +2069,8 @@ eve(NODE *p)
 	case PLUS:
 	case MINUS:
 	case ASSIGN:
+	case EQ:
+	case NE:
 #ifndef NO_COMPLEX
 		p1 = eve(p1);
 		p2 = eve(p2);
@@ -2088,8 +2090,6 @@ eve(NODE *p)
 	case GE:
 	case LT:
 	case LE:
-	case EQ:
-	case NE:
 	case RS:
 	case LS:
 	case RSEQ:

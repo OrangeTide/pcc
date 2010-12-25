@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.302 2010/11/26 06:44:34 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.303 2010/12/25 11:34:20 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -3055,6 +3055,14 @@ cxop(int op, NODE *l, NODE *r)
 	q = cxstore(mxtyp);
 
 	switch (op) {
+	case NE:
+	case EQ:
+		tfree(q);
+		p = buildtree(op, comop(p, real_l), real_r);
+		q = buildtree(op, imag_l, imag_r);
+		p = buildtree(op == EQ ? ANDAND : OROR, p, q);
+		return p;
+
 	case PLUS:
 	case MINUS:
 		p = comop(p, buildtree(ASSIGN, structref(ccopy(q), DOT, real), 
@@ -3100,6 +3108,8 @@ cxop(int op, NODE *l, NODE *r)
 		tfree(imag_r);
 		tfree(imag_l);
 		break;
+	default:
+		cerror("bad complex op %d", op);
 	}
 	return comop(p, q);
 }
