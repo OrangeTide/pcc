@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.304 2010/12/26 17:29:07 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.305 2010/12/26 19:45:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -978,7 +978,8 @@ soumemb(NODE *n, char *name, int class)
 	if ((lsp = strmemb(sp->sap)) != NULL) {
 		for (; lsp->snext; lsp = lsp->snext)
 			;
-		if (ISARY(lsp->stype) && lsp->sdf->ddim == NOOFFSET)
+		if (ISARY(lsp->stype) && lsp->snext &&
+		    lsp->sdf->ddim == NOOFFSET)
 			uerror("incomplete struct in struct");
 	}
 }
