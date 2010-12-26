@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.46 2010/12/25 19:14:45 ragge Exp $	*/
+/*	$Id: code.c,v 1.47 2010/12/26 17:26:03 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -689,9 +689,9 @@ argtyp(TWORD t, union dimfun *df, struct attr *ap)
 
 	if (t <= ULONG || ISPTR(t) || t == BOOL) {
 		cl = ngpr < 6 ? INTEGER : INTMEM;
-	} else if (t == FLOAT || t == DOUBLE) {
+	} else if (t == FLOAT || t == DOUBLE || t == FIMAG || t == IMAG) {
 		cl = nsse < 8 ? SSE : SSEMEM;
-	} else if (t == LDOUBLE) {
+	} else if (t == LDOUBLE || t == LIMAG) {
 		cl = X87; /* XXX */
 	} else if (t == STRTY || t == UNIONTY) {
 		int sz = tsize(t, df, ap);

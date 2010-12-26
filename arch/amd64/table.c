@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.41 2010/12/04 19:42:22 ragge Exp $	*/
+/*	$Id: table.c,v 1.42 2010/12/26 17:26:03 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -220,6 +220,25 @@ struct optab table[] = {
  *
  * Types smaller than int are casted to int/(unsigned).
  */
+/* no casts */
+{ SCONV,	INBREG,
+	SBREG,	TFLOAT,
+	SBREG,	TFLOAT,
+		0,	RLEFT,
+		"", },
+
+{ SCONV,	INBREG,
+	SBREG,	TDOUBLE,
+	SBREG,	TDOUBLE,
+		0,	RLEFT,
+		"", },
+
+{ SCONV,	INCREG,
+	SCREG,	TLDOUBLE,
+	SCREG,	TLDOUBLE,
+		0,	RLEFT,
+		"", },
+
 
 /* convert int/long to float/double */
 { SCONV,	INBREG,
