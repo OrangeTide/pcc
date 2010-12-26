@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.264 2010/12/21 14:13:58 ragge Exp $	*/
+/*	$Id: trees.c,v 1.265 2010/12/26 17:29:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2491,6 +2491,10 @@ p2tree(NODE *p)
 	int ty;
 
 	myp2tree(p);  /* local action can be taken here */
+
+	/* Fix left imaginary types */
+	if (ISITY(BTYPE(p->n_type)))
+		MODTYPE(p->n_type, p->n_type - (FIMAG-FLOAT));
 
 	ty = coptype(p->n_op);
 
