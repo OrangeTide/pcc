@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.34 2010/12/26 17:26:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.35 2010/12/27 14:42:44 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1045,6 +1045,7 @@ int tbss;
 void
 defzero(struct symtab *sp)
 {
+	TWORD t;
 	int off;
 	char *name;
 
@@ -1052,7 +1053,13 @@ defzero(struct symtab *sp)
 		if (sp->sclass == EXTERN)
 			sp->sclass = EXTDEF;
 		tbss = 1;
-		simpleinit(sp, bcon(0));
+		for (t = sp->stype; ISARY(t); t = DECREF(t))
+			;
+		if (t == STRTY || t == UNIONTY) {
+			beginit(sp);
+			endinit();
+		} else
+			simpleinit(sp, bcon(0));
 		return;
 	}
 
