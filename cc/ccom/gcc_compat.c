@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.66 2010/11/17 19:48:26 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.67 2010/12/27 18:45:32 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -327,6 +327,8 @@ gcc_attribs(NODE *p, void *arg)
 		name = (char *)p->n_sp;
 	} else if (p->n_op == CALL || p->n_op == UCALL) {
 		name = (char *)p->n_left->n_sp;
+	} else if (p->n_op == ICON && p->n_type == STRTY) {
+		return;
 	} else
 		cerror("bad variable attribute");
 
