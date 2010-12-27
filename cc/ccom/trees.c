@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.265 2010/12/26 17:29:07 ragge Exp $	*/
+/*	$Id: trees.c,v 1.266 2010/12/27 11:17:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -496,6 +496,15 @@ runtime:
 			p->n_op = UMUL;
 			p->n_left = l;
 			p->n_right = NIL;
+			break;
+
+		case QUEST: /* fixup types of : */
+			if (r->n_left->n_type != p->n_type)
+				r->n_left = makety(r->n_left, p->n_type,
+				    p->n_qual, p->n_df, p->n_ap);
+			if (r->n_right->n_type != p->n_type)
+				r->n_right = makety(r->n_right, p->n_type,
+				    p->n_qual, p->n_df, p->n_ap);
 			break;
 
 		case COLON:
@@ -1728,6 +1737,7 @@ opact(NODE *p)
 		else break;
 
 	case QUEST:
+		return( TYPR+OTHER );
 	case COMOP:
 		return( TYPR );
 
