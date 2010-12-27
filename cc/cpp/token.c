@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.40 2010/08/29 16:53:38 ragge Exp $	*/
+/*	$Id: token.c,v 1.41 2010/12/27 18:13:10 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -756,12 +756,12 @@ pushfile(const usch *file, const usch *fn, int idx, void *incs)
 		ic->infil = -1;
 		*ic->maxread = 0;
 		prinit(initar, ic);
+		initar = NULL;
 		if (dMflag)
 			write(ofd, ic->buffer, strlen((char *)ic->buffer));
 		fastscan();
 		prtline();
 		ic->infil = oin;
-		initar = NULL;
 	}
 
 	otrulvl = trulvl;
