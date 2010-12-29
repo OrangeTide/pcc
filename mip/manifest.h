@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.90 2010/11/09 21:10:31 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.91 2010/12/29 17:42:49 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -77,7 +77,7 @@
 #define	LDOUBLE		14
 #define	STRTY		15
 #define	UNIONTY		16
-/* #define	ENUMTY		17 */
+#define	XTYPE		17	/* Extended target-specific type */
 /* #define	MOETY		18 */	/* member of enum */
 #define	VOID		19
 
