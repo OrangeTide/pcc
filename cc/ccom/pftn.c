@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.306 2010/12/29 15:25:35 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.307 2010/12/29 17:40:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -367,18 +367,18 @@ defid(NODE *q, int class)
 	if(ddebug)
 		printf("	new entry made\n");
 #endif
-	p->stype = type;
-	if ((ap = attr_find(q->n_ap, GCC_ATYP_MODE))) {
-		int u = ISUNSIGNED(p->stype);
-		p->stype = u ? ENUNSIGN(ap->iarg(0)) : ap->iarg(0);
-		if (p->stype != XTYPE) {
+	if (type < BTMASK && (ap = attr_find(q->n_ap, GCC_ATYP_MODE))) {
+		int u = ISUNSIGNED(type);
+		type = u ? ENUNSIGN(ap->iarg(0)) : ap->iarg(0);
+		if (type != XTYPE) {
 			for (ap = q->n_ap;
 			    ap->next->atype != ATTR_BASETYP; ap = ap->next)
 				;
-			ap->next = MKAP(p->stype);
+			ap->next = MKAP(type);
 		} else
 			uerror("fix XTYPE basetyp");
 	}
+	p->stype = type;
 	p->squal = qual;
 	p->sclass = (char)class;
 	p->slevel = (char)blevel;
