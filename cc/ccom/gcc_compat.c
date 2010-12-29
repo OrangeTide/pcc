@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.67 2010/12/27 18:45:32 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.68 2010/12/29 15:25:35 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -278,6 +278,9 @@ struct atax mods[] = {
 	{ LONGLONG, "DI" },
 	{ FLOAT, "SF" },
 	{ DOUBLE, "DF" },
+#ifdef TARGET_MODS
+	TARGET_MODS
+#endif
 };
 #define	ATSZ	(sizeof(mods)/sizeof(mods[0]))
 
@@ -398,7 +401,7 @@ gcc_attribs(NODE *p, void *arg)
 	case GCC_ATYP_MODE:
 		if ((i = amatch(ap->aa[0].sarg, mods, ATSZ)) == 0)
 			werror("unknown mode arg %s", ap->aa[0].sarg);
-		ap->aa[0].iarg = mods[i].typ;
+		ap->aa[0].iarg = ctype(mods[i].typ);
 		break;
 
 	case GCC_ATYP_VISIBILITY:
