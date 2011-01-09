@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.68 2010/12/29 15:25:35 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.69 2011/01/09 21:18:02 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -309,7 +309,10 @@ setaarg(int str, union aarg *aa, NODE *p)
 		if (((str & (A1_STR|A2_STR|A3_STR)) && p->n_op != STRING) ||
 		    ((str & (A1_NAME|A2_NAME|A3_NAME)) && p->n_op != NAME))
 			uerror("bad arg to attribute");
-		aa->sarg = p->n_op == STRING ? p->n_name : (char *)p->n_sp;
+		if (p->n_op == STRING) {
+			aa->sarg = newstring(p->n_name, strlen(p->n_name)+1);
+		} else
+			aa->sarg = (char *)p->n_sp;
 		nfree(p);
 	} else
 		aa->iarg = (int)icons(eve(p));
