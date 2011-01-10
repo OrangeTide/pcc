@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.124 2010/12/19 09:28:31 ragge Exp $	*/
+/*	$Id: table.c,v 1.125 2011/01/10 21:04:45 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1039,6 +1039,14 @@ struct optab table[] = {
 		"ZB"
 		"F	movl AR,AD\n"
 		"FZE", },
+
+
+{ ASSIGN,	FOREFF|INCREG,
+	SFLD,	TLL,
+	SCREG,	TLL,
+		NCREG,	RDEST,
+		"ZL", },
+
 
 { ASSIGN,	INDREG|FOREFF,
 	SHFL,	TFLOAT|TDOUBLE|TLDOUBLE,
