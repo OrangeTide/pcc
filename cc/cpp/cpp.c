@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.114 2011/01/11 09:59:48 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.115 2011/01/11 11:01:01 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -218,7 +218,7 @@ main(int argc, char **argv)
 	/* create a complete macro for pragma */
 	pragloc = lookup((const usch *)"_Pragma", ENTER);
 	savch(0);
-	savstr("_Pragma(");
+	savstr((const usch *)"_Pragma(");
 	savch(0);
 	savch(WARN);
 	savch(')');
