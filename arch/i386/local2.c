@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.149 2011/01/10 21:04:45 ragge Exp $	*/
+/*	$Id: local2.c,v 1.150 2011/01/11 07:26:45 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1423,10 +1423,13 @@ myxasm(struct interpass *ip, NODE *p)
 	default:
 		return 0;
 	}
-	p->n_name = tmpstrdup(p->n_name);
-	for (w = p->n_name; *w; w++)
-		;
-	w[-1] = 'r'; /* now reg */
+	/* If there are requested either memory or register, delete memory */
+	w = p->n_name = tmpstrdup(p->n_name);
+	if (*w == '=')
+		w++;
+	*w++ = 'r';
+	*w = 0;
+
 	t = p->n_left->n_type;
 	if (reg == EAXEDX) {
 		p->n_label = CLASSC;
