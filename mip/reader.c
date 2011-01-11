@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.266 2010/12/04 19:17:17 ragge Exp $	*/
+/*	$Id: reader.c,v 1.267 2011/01/11 12:48:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1602,7 +1602,7 @@ fixxasm(struct p2env *p2e)
 int
 xasmcode(char *s)
 {
-	int cw = 0;
+	int cw = 0, nm = 0;
 
 	while (*s) {
 		switch ((int)*s) {
@@ -1613,8 +1613,12 @@ xasmcode(char *s)
 			if ((*s >= 'a' && *s <= 'z') ||
 			    (*s >= 'A' && *s <= 'Z') ||
 			    (*s >= '0' && *s <= '9')) {
-				cw |= *s;
-				return cw;
+				if (nm == 0)
+					cw |= *s;
+				else
+					cw |= (*s << ((nm + 1) * 8));
+				nm++;
+				break;
 			}
 			uerror("bad xasm constraint %c", *s);
 		}

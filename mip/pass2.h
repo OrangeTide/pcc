@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.127 2010/11/08 11:02:21 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.128 2011/01/11 12:48:23 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -325,7 +325,9 @@ extern int regK[];
 #define	CLASSG	7
 
 /* used when parsing xasm codes */
-#define	XASMVAL(x)	((x) & 0377)	/* get val from codeword */
+#define	XASMVAL(x)	((x) & 0377)		/* get val from codeword */
+#define	XASMVAL1(x)	(((x) >> 16) & 0377)	/* get val from codeword */
+#define	XASMVAL2(x)	(((x) >> 24) & 0377)	/* get val from codeword */
 #define	XASMASG		0x100	/* = */
 #define	XASMCONSTR	0x200	/* & */
 #define	XASMINOUT	0x400	/* + */
