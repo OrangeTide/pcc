@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.165 2011/01/09 21:10:15 ragge Exp $	*/
+/*	$Id: cc.c,v 1.166 2011/01/12 06:46:01 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -749,7 +749,7 @@ main(int argc, char *argv[])
 		av[na++] = "-D__GNUC_MINOR__=3";
 		av[na++] = "-D__GNUC_PATCHLEVEL__=1";
 		av[na++] = "-D__GNUC_STDC_INLINE__=1";
-		av[na++] = "-D__VERSION__=" VERSSTR;
+		av[na++] = "-D__VERSION__=" MKS(VERSSTR);
 #endif
 #endif
 		if (ascpp)
