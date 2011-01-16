@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.39 2011/01/11 12:49:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.40 2011/01/16 20:26:33 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -335,8 +335,7 @@ ldtoul(NODE *p)
 	E("	movl $0x5f000000,(%rsp)\n"); /* More than long can have */
 	E("	flds (%rsp)\n");
 	if (p->n_left->n_op == REG) {
-		E("	movq AL,(%rsp)\n");
-		E("	fldt (%rsp)\n");
+		E("	fxch\n");
 	} else
 		E("	fldt AL\n");
 	E("	fucomi %st(1), %st\n");
