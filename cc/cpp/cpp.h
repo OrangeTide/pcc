@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.45 2011/01/11 09:59:48 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.46 2011/01/16 11:55:54 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -31,11 +31,7 @@
 #include "config.h"
 
 typedef unsigned char usch;
-#ifdef YYTEXT_POINTER
-extern char *yytext;
-#else
-extern char yytext[];
-#endif
+extern usch yytext[];
 extern usch *stringbuf;
 
 extern	int	trulvl;
@@ -73,8 +69,7 @@ extern	int	ofd;
 #define WARN	1	/* SOH, not legal char */
 #define CONC	2	/* STX, not legal char */
 #define SNUFF	3	/* ETX, not legal char */
-#define NEX	4	/* EOT, not legal char */
-#define EXP	5	/* ENQ, not legal char */
+#define	EBLOCK	4	/* EOT, not legal char */
 
 /* Used in macro expansion */
 #define RECMAX	250			/* max # of recursive macros */
