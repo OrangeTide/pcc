@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.266 2010/12/27 11:17:48 ragge Exp $	*/
+/*	$Id: trees.c,v 1.267 2011/01/16 20:35:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2578,20 +2578,18 @@ delvoid(NODE *p, void *arg)
 	if (BTYPE(p->n_type) == BOOL) {
 		if (p->n_op == SCONV && p->n_type == BOOL) {
 			/* create a jump and a set */
-			NODE *q, *r, *s;
-			int l, val;
+			NODE *r;
+			int l, l2;
 
-			q = talloc();
-			*q = *p;
-			q->n_type = BOOL_TYPE;
 			r = tempnode(0, BOOL_TYPE, NULL, MKAP(BOOL_TYPE));
-			val = regno(r);
-			s = tempnode(val, BOOL_TYPE, NULL, MKAP(BOOL_TYPE));
-			*p = *s;
-			q = buildtree(ASSIGN, r, q);
-			cbranch(buildtree(EQ, q, bcon(0)), bcon(l = getlab()));
-			ecode(buildtree(ASSIGN, s, bcon(1)));
+			cbranch(buildtree(EQ, p->n_left, bcon(0)),
+			    bcon(l = getlab()));
+			*p = *r;
+			ecode(buildtree(ASSIGN, tcopy(r), bcon(1)));
+			branch(l2 = getlab());
 			plabel(l);
+			ecode(buildtree(ASSIGN, r, bcon(0)));
+			plabel(l2);
 		} else
 			p->n_type = (p->n_type & ~BTMASK) | BOOL_TYPE;
 	}
