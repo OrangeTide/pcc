@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.6 2009/05/07 02:34:11 gmcgarry Exp $	*/
+/*	$Id: local.c,v 1.7 2011/01/21 21:47:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -639,7 +639,7 @@ defzero(struct symtab *sp)
  * Give target the opportunity of handling pragmas.
  */
 int
-mypragma(char **ary)
+mypragma(char *str)
 {
 	return 0;
 }

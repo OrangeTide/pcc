@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.9 2009/02/08 16:55:08 ragge Exp $	*/
+/*	$Id: local.c,v 1.10 2011/01/21 21:47:59 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -492,9 +492,10 @@ ninval(CONSZ off, int fsz, NODE *p)
  * Give target the opportunity of handling pragmas.
  */
 int
-mypragma(char **ary)
+mypragma(char *str)
 {
-	return 0; }
+	return 0;
+}
 
 /*
  * Called when a identifier has been declared, to give target last word.
