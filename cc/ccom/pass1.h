@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.211 2010/11/17 19:48:26 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.212 2011/01/21 21:46:12 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -322,7 +322,8 @@ NODE *enumdcl(struct symtab *);
 NODE *enumref(char *);
 CONSZ icons(NODE *);
 CONSZ valcast(CONSZ v, TWORD t);
-int mypragma(char **);
+int mypragma(char *);
+char *pragtok(char *sin);
 void fixdef(struct symtab *);
 int cqual(TWORD, TWORD);
 void defloc(struct symtab *);
@@ -465,6 +466,7 @@ enum {	ATTR_NONE,
 	GCC_ATYP_ALLOCSZ,
 	GCC_ATYP_ALW_INL,
 	GCC_ATYP_TLSMODEL,
+	GCC_ATYP_ALIASWEAK,
 
 	/* other stuff */
 	GCC_ATYP_BOUNDED,	/* OpenBSD extra boundary checks */
