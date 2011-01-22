@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.307 2010/12/29 17:40:21 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.308 2011/01/22 22:08:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2196,16 +2196,12 @@ doacall(struct symtab *sp, NODE *f, NODE *a)
 		/*
 		 * Handle non-prototype declarations.
 		 */
-		if (Wimplicit_function_declaration) {
-			if (f->n_sp != NULL) {
-				if (strncmp(f->n_sp->sname,
-				    "__builtin", 9) != 0)
-					werror("no prototype for function "
-					    "'%s()'", f->n_sp->sname);
-			} else {
-				werror("no prototype for function pointer");
-			}
-		}
+		if (f->n_op == NAME && f->n_sp != NULL) {
+			if (strncmp(f->n_sp->sname, "__builtin", 9) != 0)
+				warner(Wmissing_prototypes, f->n_sp->sname);
+		} else
+			warner(Wmissing_prototypes, "<pointer>");
+
 		/* floats must be cast to double */
 		if (a == NULL)
 			goto build;
@@ -2352,9 +2348,11 @@ incomp:					uerror("incompatible types for arg %d",
 
 		if ((type & ~BTMASK) == (arrt & ~BTMASK)) {
 			/* do not complain for pointers with signedness */
-			if (!Wpointer_sign &&
-			    DEUNSIGN(BTYPE(type)) == DEUNSIGN(BTYPE(arrt)))
+			if ((DEUNSIGN(BTYPE(type)) == DEUNSIGN(BTYPE(arrt))) &&
+			    (BTYPE(type) != BTYPE(arrt))) {
+				warner(Wpointer_sign, NULL);
 				goto skip;
+			}
 		}
 
 		werror("implicit conversion of argument %d due to prototype",

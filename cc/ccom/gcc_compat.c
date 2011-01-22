@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.70 2011/01/21 21:46:12 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.71 2011/01/22 22:08:23 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -481,6 +481,54 @@ gcc_tcattrfix(NODE *p)
 	ap = attr_find(p->n_ap, ATTR_BASETYP);
 	ap->atypsz = csz;
 	ap->aalign = al;
+}
+
+/*
+ * gcc-specific pragmas.
+ */
+int
+pragmas_gcc(char *t)
+{
+	int ign, warn, err, i, u;
+	extern bittype warnary[], werrary[];
+	extern char *flagstr[], *pragstore;
+	int eat(int);
+
+	if (strcmp((t = pragtok(NULL)), "diagnostic") == 0) {
+		ign = warn = err = 0;
+		if (strcmp((t = pragtok(NULL)), "ignored") == 0)
+			ign = 1;
+		else if (strcmp(t, "warning") == 0)
+			warn = 1;
+		else if (strcmp(t, "error") == 0)
+			err = 1;
+		else
+			return 1;
+		if (eat('\"') || eat('-'))
+			return 1;
+		for (t = pragstore; *t && *t != '\"'; t++)
+			;
+		u = *t;
+		*t = 0;
+		for (i = 0; i < NUMW; i++) {
+			if (strcmp(flagstr[i], pragstore+1) != 0)
+				continue;
+			if (err) {
+				BITSET(warnary, i);
+				BITSET(werrary, i);
+			} else if (warn) {
+				BITSET(warnary, i);
+				BITCLEAR(werrary, i);
+			} else {
+				BITCLEAR(warnary, i);
+				BITCLEAR(werrary, i);
+			}
+			return 0;
+		}
+		*t = u;
+	}
+	werror("gcc pragma unsupported");
+	return 0;
 }
 
 #ifdef PCC_DEBUG

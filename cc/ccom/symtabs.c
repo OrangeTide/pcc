@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.18 2008/06/19 08:05:00 gmcgarry Exp $	*/
+/*	$Id: symtabs.c,v 1.19 2011/01/22 22:08:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -349,8 +349,7 @@ hide(struct symtab *sym)
 	new->snext = tmpsyms[typ];
 	tmpsyms[typ] = new;
 
-	if (Wshadow)
-		werror("declaration of '%s' shadows previous", sym->sname);
+	warner(Wshadow, sym->sname, sym->slevel ? "local" : "global");
 
 #ifdef PCC_DEBUG
 	if (ddebug)
