@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.71 2011/01/22 22:08:23 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.72 2011/01/24 14:51:52 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -279,6 +279,10 @@ struct atax mods[] = {
 	{ LONGLONG, "DI" },
 	{ FLOAT, "SF" },
 	{ DOUBLE, "DF" },
+	{ LDOUBLE, "XF" },
+	{ FCOMPLEX, "SC" },
+	{ COMPLEX, "DC" },
+	{ LCOMPLEX, "XC" },
 #ifdef TARGET_MODS
 	TARGET_MODS
 #endif
@@ -526,8 +530,12 @@ pragmas_gcc(char *t)
 			return 0;
 		}
 		*t = u;
-	}
-	werror("gcc pragma unsupported");
+	} else if (strcmp(t, "poison") == 0) {
+		/* currently ignore */;
+	} else if (strcmp(t, "visibility") == 0) {
+		/* currently ignore */;
+	} else
+		werror("gcc pragma unsupported");
 	return 0;
 }
 
