@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.117 2011/01/16 14:09:12 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.118 2011/01/24 14:52:59 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -823,7 +823,7 @@ id:			savstr((usch *)yytext);
 		savch(VARG);
 	} else
 		savch(narg < 0 ? OBJCT : narg);
-	if (redef) {
+	if (redef && ifiles->idx != SYSINC) {
 		if (cmprepl(np->value, stringbuf-1))
 			error("%s redefined\nprevious define: %s:%d",
 			    np->namep, np->file, np->line);
