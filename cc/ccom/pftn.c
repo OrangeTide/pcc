@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.308 2011/01/22 22:08:23 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.309 2011/01/24 17:49:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -279,6 +279,9 @@ defid(NODE *q, int class)
 	switch(class) {
 
 	case EXTERN:
+		if (pragma_renamed)
+			p->soname = pragma_renamed;
+		pragma_renamed = NULL;
 		switch( scl ){
 		case STATIC:
 		case USTATIC:
