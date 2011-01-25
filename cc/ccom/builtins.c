@@ -1,4 +1,4 @@
-/*	$Id: builtins.c,v 1.16 2011/01/24 20:51:34 ragge Exp $	*/
+/*	$Id: builtins.c,v 1.17 2011/01/25 19:02:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -84,17 +84,16 @@ hasgoto(NODE *p)
 static NODE *
 builtin_constant_p(NODE *f, NODE *a, TWORD rt)
 {
-	int isconst = (a->n_op == ICON);
+	void putjops(NODE *p, void *arg);
+	int isconst;
 
 	tfree(f);
-	if (hasgoto(a)) {
-		a = buildtree(COMOP, a, bcon(0));
-	} else {
-		tfree(a);
-		a = bcon(isconst);
-	}
-
-	return a;
+	walkf(a, putjops, 0);
+	for (f = a; f->n_op == COMOP; f = f->n_right)
+		;
+	isconst = nncon(f);
+	tfree(a);
+	return bcon(isconst);
 }
 
 /*

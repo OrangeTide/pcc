@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.268 2011/01/22 22:08:23 ragge Exp $	*/
+/*	$Id: trees.c,v 1.269 2011/01/25 19:02:41 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -77,7 +77,7 @@ static int opact(NODE *p);
 static int moditype(TWORD);
 static NODE *strargs(NODE *);
 static void rmcops(NODE *p);
-static void putjops(NODE *, void *);
+void putjops(NODE *, void *);
 static struct symtab *findmember(struct symtab *, char *);
 int inftn; /* currently between epilog/prolog */
 
@@ -595,7 +595,7 @@ findmember(struct symtab *sp, char *s)
  * Check if there will be a lost label destination inside of a ?:
  * It cannot be reached so just print it out.
  */
-static void
+void
 putjops(NODE *p, void *arg)
 {
 	if (p->n_op == COMOP && p->n_left->n_op == GOTO)
@@ -2640,6 +2640,14 @@ send_passt(int type, ...)
 	int sz;
 
 	va_start(ap, type);
+	if (cftnsp == NULL) {
+#ifdef notyet
+		cerror("no function");
+#endif
+		if (type == IP_NODE)
+			tfree(va_arg(ap, NODE *));
+		return;
+	}
 	if (type == IP_PROLOG || type == IP_EPILOG)
 		sz = sizeof(struct interpass_prolog);
 	else
