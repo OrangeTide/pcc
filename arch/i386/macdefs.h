@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.75 2010/11/07 20:24:36 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.76 2011/01/25 14:49:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -138,6 +138,7 @@ typedef long long OFFSZ;
 #define ENUMSIZE(high,low) INT	/* enums are always stored in full int */
 
 #define FINDMOPS	/* i386 has instructions that modifies memory */
+#define	CC_DIV_0	/* division by zero is safe in the compiler */
 
 /* Definitions mostly used in pass2 */
 
