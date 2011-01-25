@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.316 2011/01/22 22:08:23 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.317 2011/01/25 19:00:04 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -728,6 +728,11 @@ designator:	   '[' e ']' {
 			}
 			$$ = biop(LB, NIL, bcon(ie));
 		}
+		|  C_STROP C_TYPENAME {
+			if ($1 != DOT)
+				uerror("invalid designator");
+			$$ = bdty(NAME, $2);
+		}
 		|  C_STROP C_NAME {
 			if ($1 != DOT)
 				uerror("invalid designator");
@@ -1096,6 +1101,11 @@ term:		   term C_INCOP {  $$ = biop($2, $1, bcon(1)); }
 			tfree($4);
 		}
 		| '(' cast_type ')' clbrace init_list optcomma '}' {
+			endinit();
+			$$ = bdty(NAME, $4);
+			$$->n_op = CLOP;
+		}
+		| '(' cast_type ')' clbrace '}' {
 			endinit();
 			$$ = bdty(NAME, $4);
 			$$->n_op = CLOP;
