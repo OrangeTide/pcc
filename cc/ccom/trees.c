@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.270 2011/01/26 12:25:22 ragge Exp $	*/
+/*	$Id: trees.c,v 1.271 2011/01/26 18:11:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -163,6 +163,19 @@ buildtree(int o, NODE *l, NODE *r)
 	opty = coptype(o);
 
 	/* check for constants */
+
+	if (o == ANDAND || o == OROR || o == NOT) {
+		if (l->n_op == FCON) {
+			p = bcon(!FLOAT_ISZERO(l->n_dcon));
+			nfree(l);
+			l = p;
+		}
+		if (o != NOT && r->n_op == FCON) {
+			p = bcon(!FLOAT_ISZERO(r->n_dcon));
+			nfree(r);
+			r = p;
+		}
+	}
 
 	if( opty == UTYPE && l->n_op == ICON ){
 
