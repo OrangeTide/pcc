@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.43 2011/01/16 16:54:12 ragge Exp $	*/
+/*	$Id: table.c,v 1.44 2011/01/26 12:58:32 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -1101,7 +1101,7 @@ struct optab table[] = {
 	SNAME|SOREG,	TLDOUBLE,
 	SHFL,	TLDOUBLE,
 		0,	RDEST,
-		"	fst AL\n", },
+		"	fstpt AL\n	fldt AL\n", }, /* XXX */
 
 { ASSIGN,	FOREFF,
 	SNAME|SOREG,	TLDOUBLE,
