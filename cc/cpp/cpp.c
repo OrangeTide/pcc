@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.120 2011/01/27 13:57:07 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.121 2011/01/27 18:03:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -1088,7 +1088,7 @@ kfind(struct symtab *sp)
 		}
 		IMP("END1");
 		cunput(WARN);
-		for (cbp = (usch *)sp->value-1; *cbp; cbp--)
+		for (cbp = sp->value-1; *cbp; cbp--)
 			cunput(*cbp);
 		insblock(addmac(sp));
 		IMP("ENDX");
