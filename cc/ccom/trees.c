@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.271 2011/01/26 18:11:27 ragge Exp $	*/
+/*	$Id: trees.c,v 1.272 2011/01/27 17:33:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1070,10 +1070,12 @@ stref(NODE *p)
 	}
 #endif
 
+#if 0
 	if (dsc & FIELD) {  /* make fields look like ints */
 		off = (off/ALINT)*ALINT;
 		ap = MKAP(INT);
 	}
+#endif
 	if (off != 0) {
 		p = block(PLUS, p, offcon(off, t, d, ap), t, d, ap);
 		p->n_qual = q;
@@ -1087,7 +1089,7 @@ stref(NODE *p)
 	if (dsc & FIELD) {
 		p = block(FLD, p, NIL, s->stype, 0, s->sap);
 		p->n_qual = q;
-		p->n_rval = PKFIELD(dsc&FLDSIZ, s->soffset%ALINT);
+		p->n_rval = PKFIELD(dsc&FLDSIZ, s->soffset%talign(s->stype, ap));
 	}
 
 	p = clocal(p);
