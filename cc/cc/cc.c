@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.167 2011/01/24 14:54:12 ragge Exp $	*/
+/*	$Id: cc.c,v 1.168 2011/01/27 12:35:07 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -1090,16 +1090,16 @@ nocom:
 			av[j++] = "-lpthread";
 		if (!nostdlib) {
 #ifdef MSLINKER
-#define	DL	"/LIBPATH:"
+#define	LFLAG	"/LIBPATH:"
 #else
-#define	DL	"-L"
+#define	LFLAG	"-L"
 #endif
-			char *s = copy(DL, i = strlen(pcclibdir));
-			strlcat(s, pcclibdir, sizeof(DL) + i);
+			char *s = copy(LFLAG, i = strlen(pcclibdir));
+			strlcat(s, pcclibdir, sizeof(LFLAG) + i);
 			av[j++] = s;
 #ifdef os_win32
-			s = copy(DL, i = strlen(libdir));
-			strlcat(s, libdir, sizeof(DL) + i);
+			s = copy(LFLAG, i = strlen(libdir));
+			strlcat(s, libdir, sizeof(LFLAG) + i);
 			av[j++] = s;
 #endif
 			if (pgflag) {
