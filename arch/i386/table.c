@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.126 2011/01/26 12:55:12 ragge Exp $	*/
+/*	$Id: table.c,v 1.127 2011/01/28 21:22:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -760,9 +760,9 @@ struct optab table[] = {
  */
 /* (u)longlong left shift is emulated */
 { LS,	INCREG,
-	SCREG|SNAME|SOREG|SCON, TLL,
-	SAREG|SNAME|SOREG|SCON, TINT, /* will be int */
-		NSPECIAL|NCREG|NCSL|NCSR,	RESC1,
+	SCREG,	TLL,
+	SHCH,	TCHAR|TUCHAR,
+		NSPECIAL,	RLEFT,
 		"ZO", },
 
 /* r/m <<= r */
@@ -807,9 +807,9 @@ struct optab table[] = {
 
 /* (u)longlong right shift is emulated */
 { RS,	INCREG,
-	SCREG|SNAME|SOREG|SCON, TLL,
-	SAREG|SNAME|SOREG|SCON, TINT, /* will be int */
-		NSPECIAL|NCREG|NCSL|NCSR,	RESC1,
+	SCREG,	TLL,
+	SHCH,	TCHAR|TUCHAR,
+		NSPECIAL,	RLEFT,
 		"ZO", },
 
 { RS,	INAREG|FOREFF,
