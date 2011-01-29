@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.39 2011/01/24 16:08:07 ragge Exp $	*/
+/*	$Id: local.c,v 1.40 2011/01/29 14:53:08 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -520,7 +520,7 @@ clocal(NODE *p)
 		}
 
 		if (DEUNSIGN(p->n_type) == INT && DEUNSIGN(l->n_type) == INT &&
-		    coptype(l->n_op) == BITYPE) {
+		    coptype(l->n_op) == BITYPE && l->n_op != COMOP) {
 			l->n_type = p->n_type;
 			nfree(p);
 			return l;
@@ -902,7 +902,8 @@ ninval(CONSZ off, int fsz, NODE *p)
 
 	t = p->n_type;
 
-	if (kflag && p->n_op == NAME && ISPTR(t) && ISFTN(DECREF(t))) {
+	if (kflag && p->n_op == NAME && ISPTR(t) &&
+	    (ISFTN(DECREF(t)) || ISSOU(BTYPE(t)))) {
 		/* functions as initializers will be NAME here */
 		if (op == NIL) {
 			st = *p;
@@ -914,8 +915,17 @@ ninval(CONSZ off, int fsz, NODE *p)
 	if (t > BTMASK)
 		t = LONG; /* pointer */
 
-	if (p->n_op != ICON && p->n_op != FCON)
+	if (p->n_op == COMOP) {
+		NODE *r = p->n_right;
+		tfree(p->n_left);
+		nfree(p);
+		p = r;
+	}
+
+	if (p->n_op != ICON && p->n_op != FCON) {
+fwalk(p, eprint, 0);
 		cerror("ninval: init node not constant");
+	}
 
 	if (p->n_op == ICON && p->n_sp != NULL && DEUNSIGN(t) != LONG)
 		uerror("element not constant");
