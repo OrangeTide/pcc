@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.127 2011/01/28 21:22:16 ragge Exp $	*/
+/*	$Id: table.c,v 1.128 2011/01/29 09:55:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1204,9 +1204,9 @@ struct optab table[] = {
 
 /* (u)longlong mul is emulated */
 { MUL,	INCREG,
-	SCREG|SNAME|SOREG|SCON, TLL,
-	SCREG|SNAME|SOREG|SCON, TLL,
-		NSPECIAL|NCREG|NCSL|NCSR,	RESC1,
+	SCREG,	TLL,
+	SCREG,	TLL,
+		NSPECIAL,	RLEFT,
 		"ZO", },
 
 { MUL,	INAREG,
