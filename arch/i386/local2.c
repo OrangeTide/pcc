@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.151 2011/01/28 21:22:16 ragge Exp $	*/
+/*	$Id: local2.c,v 1.152 2011/01/29 09:15:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -998,6 +998,13 @@ fixcalls(NODE *p, void *arg)
 	case USTCALL:
 		if (p->n_stsize+p2autooff > stkpos)
 			stkpos = p->n_stsize+p2autooff;
+		break;
+	case LS:
+	case RS:
+		if (p->n_type != LONGLONG && p->n_type != ULONGLONG)
+			break;
+		if (p->n_right->n_op == ICON) /* constants must be char */
+			p->n_right->n_type = CHAR;
 		break;
 	}
 }
