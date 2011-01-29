@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.48 2011/01/21 21:49:39 ragge Exp $	*/
+/*	$Id: code.c,v 1.49 2011/01/29 14:55:33 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -590,7 +590,7 @@ amd64_builtin_va_arg(NODE *f, NODE *a, TWORD t)
 		}
 		f->n_type = f->n_sp->stype = INCREF(dp->n_type) + (FTN-PTR);
 		f->n_ap = dp->n_ap;
-		f->n_df = dp->n_df;
+		f->n_df = /* dp->n_df */ NULL;
 		f = clocal(f);
 		r = buildtree(CALL, f, ccopy(ap));
 	} else if (ISSOU(dp->n_type) || dp->n_type == LDOUBLE) {
