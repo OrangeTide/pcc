@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.168 2011/01/27 12:35:07 ragge Exp $	*/
+/*	$Id: cc.c,v 1.169 2011/01/29 10:39:33 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -359,9 +359,10 @@ main(int argc, char *argv[])
 				if (strcmp(argv[i], "--version") == 0) {
 					printf("%s\n", VERSSTR);
 					return 0;
-				} else if (strcmp(argv[i], "--param") == 0)
+				} else if (strcmp(argv[i], "--param") == 0) {
 					/* NOTHING YET */;
-				else
+					i++; /* ignore arg */
+				} else
 					goto passa;
 				break;
 
@@ -516,6 +517,13 @@ main(int argc, char *argv[])
 				}
 #endif
 				mlist[nm++] = argv[i];
+				if (argv[i][2] == 0) {
+					/* separate second arg */
+					/* give also to linker */
+					llist[nl++] = argv[i++];
+					mlist[nm++] = argv[i];
+					llist[nl++] = argv[i];
+				}
 				break;
 
 			case 'n': /* handle -n flags */
