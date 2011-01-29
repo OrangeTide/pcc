@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.121 2011/01/27 18:03:16 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.122 2011/01/29 13:51:04 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -1035,6 +1035,8 @@ insblock(int bnr)
 				savch(EBLOCK), savch(bptr[i]);
 		}
 		savstr((const usch *)yytext);
+		if (c == '\n')
+			(void)cinput();
 	}
 	savch(0);
 	cunput(WARN);
