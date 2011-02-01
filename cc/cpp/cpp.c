@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.122 2011/01/29 13:51:04 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.123 2011/02/01 15:50:55 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -1534,9 +1534,9 @@ exparg(int lvl)
 	DPRINT(("%d:exparg\n", lvl));
 	IMP("EXPARG");
 
+	readmac++;
 rescan:
 	anychange = 0;
-	readmac++;
 	while ((c = sloscan()) != WARN) {
 		DDPRINT(("%d:exparg swdata %d\n", lvl, c));
 		IMP("EA0");
