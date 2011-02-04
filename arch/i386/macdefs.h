@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.76 2011/01/25 14:49:05 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.77 2011/02/04 15:08:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -348,7 +348,7 @@ int numconv(void *ip, void *p, void *q);
 int xasmconstregs(char *);
 #define	XASMCONSTREGS(x) xasmconstregs(x)
 #define	MYSETXARG if (XASMVAL(cw) == 'q') {	\
-	cw = 'r'; addalledges(&ablock[ESI]); addalledges(&ablock[EDI]); }
+	c = 'r'; addalledges(&ablock[ESI]); addalledges(&ablock[EDI]); }
 
 /*
  * builtins.
