@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.45 2011/01/29 13:48:48 ragge Exp $	*/
+/*	$Id: token.c,v 1.46 2011/02/04 07:27:01 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -470,6 +470,8 @@ chlit:
 		more:	while ((c = inch()) && c != '*') {
 				if (c == '\n')
 					putch(c), ifiles->lineno++;
+				else if (c == EBLOCK)
+					(void)inch();
 				else if (c == 1) /* WARN */
 					wrn = 1;
 			}
