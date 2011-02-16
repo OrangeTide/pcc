@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.101 2011/01/30 09:52:02 ragge Exp $	*/
+/*	$Id: scan.l,v 1.102 2011/02/16 18:50:42 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -366,6 +366,10 @@ fhexcon(char *c)
 		cerror("fhexcon2");
 	c++;
 	ed += strtol(c, &ep, 10);
+
+	/* avoid looping in vain. Idea from Fred J. Tydeman */
+	if (ed > 32769) ed = 32769;
+	if (ed < -32769) ed = -32769;
 
 	while (ed > 0)
 		d *= 2, ed--;
