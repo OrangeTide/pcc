@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.128 2011/02/16 17:21:21 ragge Exp $	*/
+/*	$Id: local.c,v 1.129 2011/02/17 13:42:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -486,6 +486,8 @@ clocal(NODE *p)
 			
 		break;
 
+#ifdef notyet
+	/* XXX breaks sometimes */
 	case CBRANCH:
 		l = p->n_left;
 
@@ -510,6 +512,7 @@ clocal(NODE *p)
 		nfree(l->n_left);
 		nfree(l);
 		break;
+#endif
 
 	case PCONV:
 		/* Remove redundant PCONV's. Be careful */
