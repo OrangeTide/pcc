@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.46 2011/02/04 07:27:01 ragge Exp $	*/
+/*	$Id: token.c,v 1.47 2011/02/18 21:28:18 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -291,7 +291,16 @@ str:			PUTCH(ch);
 		case '5': case '6': case '7': case '8': case '9':
 			do {
 				PUTCH(ch);
-				ch = NXTCH();
+nxt:				ch = NXTCH();
+				if (ch == '\\') {
+					ch = NXTCH();
+					if (ch == '\n') {
+						goto nxt;
+					} else {
+						unch(ch);
+						ch = '\\';
+					}
+				}
 				if (spechr[ch] & C_EP) {
 					PUTCH(ch);
 					ch = NXTCH();
