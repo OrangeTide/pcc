@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.40 2011/01/16 20:26:33 ragge Exp $	*/
+/*	$Id: local2.c,v 1.41 2011/02/18 16:52:37 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -371,15 +371,18 @@ ldtoul(NODE *p)
 static void     
 fdtoul(NODE *p) 
 {
-	E("	movabsq $0x43e0000000000000,A1\n");
+	if (p->n_left->n_type == FLOAT)
+		E("	movabsq $0x5f000000,A1\n");
+	else
+		E("	movabsq $0x43e0000000000000,A1\n");
 	E("	movd A1,A3\n");
-	E("	ucomisd A3,AL\n");
+	E("	ucomisZg A3,AL\n");
 	E("	jae 2f\n");
-	E("	cvttsd2siq AL,A1\n");
+	E("	cvttsZg2siq AL,A1\n");
 	E("	jmp 3f\n");
 	E("2:\n");
-	E("	subsd A3,AL\n");
-	E("	cvttsd2siq AL,A1\n");
+	E("	subsZg A3,AL\n");
+	E("	cvttsZg2siq AL,A1\n");
 	E("	movabsq $0x8000000000000000,A2\n");
 	E("	xorq A2,A1\n");
 	E("3:\n");
