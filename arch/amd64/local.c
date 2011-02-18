@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.40 2011/01/29 14:53:08 ragge Exp $	*/
+/*	$Id: local.c,v 1.41 2011/02/18 17:45:04 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -492,7 +492,7 @@ clocal(NODE *p)
 		/* Float conversions may need extra casts */
 		if (p->n_type == FLOAT || p->n_type == DOUBLE ||
 		    p->n_type == LDOUBLE) {
-			if (l->n_type < INT) {
+			if (l->n_type < INT || l->n_type == BOOL) {
 				p->n_left = block(SCONV, l, NIL,
 				    ISUNSIGNED(l->n_type) ? UNSIGNED : INT,
 				    l->n_df, l->n_ap);
