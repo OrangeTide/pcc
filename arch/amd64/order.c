@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.13 2010/11/27 16:04:29 ragge Exp $	*/
+/*	$Id: order.c,v 1.14 2011/02/18 17:08:31 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -256,7 +256,13 @@ nspecial(struct optab *q)
 		break;
 
 	case MOD:
-		{
+		if (q->ltype & TUCHAR) {
+			static struct rspecial s[] = {
+				{ NEVER, RAX },
+				{ NLEFT, RAX }, { NRES, RAX },
+				{ NORIGHT, RAX }, { 0 } };
+			return s;
+		} else {
 			static struct rspecial s[] = {
 				{ NEVER, RAX }, { NEVER, RDX },
 				{ NLEFT, RAX }, { NRES, RDX },

@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.44 2011/01/26 12:58:32 ragge Exp $	*/
+/*	$Id: table.c,v 1.45 2011/02/18 17:08:31 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -1219,7 +1219,7 @@ struct optab table[] = {
 	SAREG,			TUCHAR,
 	SAREG|SNAME|SOREG,	TUCHAR,
 		NAREG|NSPECIAL,	RESC1,
-		"	xorb %ah,%ah\n	divb AR\n", },
+		"	xorb %ah,%ah\n	divb AR\n	movb %ah,%al\n", },
 
 { MUL,	INAREG,
 	SAREG,				TLL|TPOINT,
