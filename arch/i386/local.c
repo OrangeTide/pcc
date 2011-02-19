@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.129 2011/02/17 13:42:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.130 2011/02/19 10:02:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -31,6 +31,7 @@
 
 /*	this file contains code which is dependent on the target machine */
 
+#ifdef notyet
 /*
  * Check if a constant is too large for a type.
  */
@@ -57,6 +58,7 @@ toolarge(TWORD t, CONSZ con)
 	}
 	return 0;
 }
+#endif
 
 #if defined(MACHOABI)
 
