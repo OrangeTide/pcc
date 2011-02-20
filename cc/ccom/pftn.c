@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.310 2011/01/29 14:50:49 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.311 2011/02/20 10:19:07 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1796,10 +1796,10 @@ typenode(NODE *p)
 		/* Can only occur for TYPEDEF, STRUCT or UNION */
 		if (tc.saved == NULL)
 			cerror("typenode");
-		gcc_tcattrfix(q);
 	}
 	if (tc.pre)
 		q->n_ap = attr_add(q->n_ap, tc.pre);
+	gcc_tcattrfix(q);
 #endif
 	return q;
 
