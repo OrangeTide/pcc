@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.46 2011/01/16 11:55:54 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.47 2011/02/21 08:00:42 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -72,11 +72,12 @@ extern	int	ofd;
 #define	EBLOCK	4	/* EOT, not legal char */
 
 /* Used in macro expansion */
-#define RECMAX	250			/* max # of recursive macros */
+#define RECMAX	10000			/* max # of recursive macros */
 extern struct symtab *norep[RECMAX];
 extern int norepptr;
-extern unsigned char bptr[RECMAX];
+extern unsigned short bptr[RECMAX];
 extern int bidx;
+#define	MKB(l,h)	(l+((h)<<8))
 
 /* quick checks for some characters */
 #define C_SPEC	001
