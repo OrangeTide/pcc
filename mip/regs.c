@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.216 2011/02/04 15:08:58 ragge Exp $	*/
+/*	$Id: regs.c,v 1.216.2.1 2011/02/22 18:38:08 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1254,7 +1254,7 @@ xasmionize(NODE *p, void *arg)
 		return; /* dummy end marker */
 
 	cw = xasmcode(p->n_name);
-	if (XASMVAL(cw) == 'n' || XASMVAL(cw) == 'm')
+	if (XASMVAL(cw) == 'n' /* || XASMVAL(cw) == 'm' */)
 		return; /* no flow analysis */
 	p = p->n_left;
 
@@ -1264,6 +1264,14 @@ xasmionize(NODE *p, void *arg)
 	b = regno(p);
 	if (XASMVAL(cw) == 'r' && p->n_op == TEMP)
 		addnotspill(b);
+	if (XASMVAL(cw) == 'm') {
+		if (p->n_op == UMUL && p->n_left->n_op == TEMP) {
+			p = p->n_left;
+			b = regno(p);
+			addnotspill(b);
+		} else
+			return;
+	}
 #define	MKTOFF(r)	((r) - tempmin + MAXREGS)
 	if (XASMISOUT(cw)) {
 		if (p->n_op == TEMP) {
