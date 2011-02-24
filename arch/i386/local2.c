@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.154 2011/02/04 15:08:58 ragge Exp $	*/
+/*	$Id: local2.c,v 1.155 2011/02/24 22:10:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1567,6 +1567,8 @@ static struct {
 	{ "ebx", EBX },
 	{ "ecx", ECX },
 	{ "edx", EDX },
+	{ "esi", ESI },
+	{ "edi", EDI },
 	{ "ax", EAX },
 	{ "bx", EBX },
 	{ "cx", ECX },
