@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.47 2011/02/21 08:00:42 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.47.2.1 2011/02/26 06:36:40 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -51,17 +51,19 @@ extern	int	ofd;
 #ifndef CPPBUF
 #if defined(__pdp11__)
 #define CPPBUF  BUFSIZ
+#define	BUF_STACK
 #elif defined(WIN32)
 /* winxp seems to fail > 26608 bytes */
 #define CPPBUF	16384
 #else
-#define CPPBUF	65536
+#define CPPBUF	(65536*2)
 #endif
 #endif
 
 #define	MAXARGS	128	/* Max # of args to a macro. Should be enouth */
 
 #define	NAMEMAX	CPPBUF	/* currently pushbackbuffer */
+#define	BBUFSZ	(NAMEMAX+CPPBUF+1)
 
 #define GCCARG	0xfd	/* has gcc varargs that may be replaced with 0 */
 #define VARG	0xfe	/* has varargs */
@@ -103,7 +105,11 @@ struct includ {
 	int idx;
 	void *incs;
 	const usch *fn;
-	usch bbuf[NAMEMAX+CPPBUF+1];
+#ifdef BUF_STACK
+	usch bbuf[BBUFSZ];
+#else
+	usch *bbuf;
+#endif
 } *ifiles;
 
 /* Symbol table entry  */
