@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.154.2.1 2011/02/24 22:15:51 ragge Exp $	*/
+/*	$Id: local2.c,v 1.154.2.2 2011/02/26 07:17:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -405,7 +405,7 @@ starg(NODE *p)
 	expand(p, 0, "	pushl AL\n");
 	expand(p, 0, "	leal 8(%esp),A1\n");
 	expand(p, 0, "	pushl A1\n");
-	fprintf(fp, "	call %s\n", EXPREFIX "memcpy");
+	fprintf(fp, "	call %s%s\n", EXPREFIX "memcpy", kflag ? "@PLT" : "");
 	fprintf(fp, "	addl $12,%%esp\n");
 #endif
 }
