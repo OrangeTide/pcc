@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.130 2011/02/19 10:02:26 ragge Exp $	*/
+/*	$Id: local.c,v 1.131 2011/02/27 21:04:44 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -576,7 +576,8 @@ clocal(NODE *p)
 		}
 
 		if (DEUNSIGN(p->n_type) == INT && DEUNSIGN(l->n_type) == INT &&
-		    coptype(l->n_op) == BITYPE) {
+		    coptype(l->n_op) == BITYPE && l->n_op != COMOP &&
+		    l->n_op != QUEST) {
 			l->n_type = p->n_type;
 			nfree(p);
 			return l;
