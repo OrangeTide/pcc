@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.36 2010/10/09 13:22:10 ragge Exp $	*/
+/*	$Id: optim.c,v 1.37 2011/03/01 17:38:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -140,6 +140,9 @@ again:	o = p->n_op;
 		goto setuleft;
 
 	case RS:
+		if (LCON(p) && RCON(p) && conval(p->n_left, o, p->n_right))
+			goto zapright;
+
 		ap = attr_find(p->n_ap, ATTR_BASETYP);
 
 		if (LO(p) == RS && RCON(p->n_left) && RCON(p) &&
@@ -183,6 +186,9 @@ again:	o = p->n_op;
 		break;
 
 	case LS:
+		if (LCON(p) && RCON(p) && conval(p->n_left, o, p->n_right))
+			goto zapright;
+
 		ap = attr_find(p->n_ap, ATTR_BASETYP);
 
 		if (LO(p) == LS && RCON(p->n_left) && RCON(p)) {
