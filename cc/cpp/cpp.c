@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.124 2011/02/21 08:00:42 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.125 2011/03/01 18:24:07 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -1072,6 +1072,8 @@ delwarn(void)
 	while ((c = sloscan()) != WARN) {
 		if (c == EBLOCK) {
 			sss();
+		} else if (c == '\n') {
+			putch(cinput());
 		} else
 			savstr(yytext);
 	}
