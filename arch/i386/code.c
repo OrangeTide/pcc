@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.56 2010/08/11 14:36:27 ragge Exp $	*/
+/*	$Id: code.c,v 1.56.2.1 2011/03/01 17:33:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -121,6 +121,16 @@ defloc(struct symtab *sp)
 		    ISFTN(t)? "function" : "object");
 #endif
 	}
+#if defined(ELFABI)
+	if (!ISFTN(t)) {
+		if (sp->slevel == 0)
+			printf("\t.size %s,%d\n", name,
+			    (int)tsize(t, sp->sdf, sp->sap)/SZCHAR);
+		else
+			printf("\t.size " LABFMT ",%d\n", sp->soffset,
+			    (int)tsize(t, sp->sdf, sp->sap)/SZCHAR);
+	}
+#endif
 	if (sp->slevel == 0)
 		printf("%s:\n", name);
 	else
