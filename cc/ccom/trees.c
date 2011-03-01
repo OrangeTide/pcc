@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.272 2011/01/27 17:33:54 ragge Exp $	*/
+/*	$Id: trees.c,v 1.272.2.1 2011/03/01 17:39:28 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -752,7 +752,7 @@ conval(NODE *p, int o, NODE *q)
 	val = q->n_lval;
 
 	/* make both sides same type */
-	if (tl < TMASK && tr < TMASK) {
+	if (tl < BTMASK && tr < BTMASK) {
 		td = tl > tr ? tl : tr;
 		if (td < INT)
 			td = INT;
