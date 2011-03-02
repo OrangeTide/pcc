@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.41.2.1 2011/02/21 21:21:34 ragge Exp $	*/
+/*	$Id: local.c,v 1.41.2.2 2011/03/02 17:40:07 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -412,6 +412,7 @@ clocal(NODE *p)
 		p = buildtree(COMOP, buildtree(ASSIGN, r, p), l);
 		break;
 
+#ifdef notyet
 	case CBRANCH:
 		l = p->n_left;
 
@@ -438,6 +439,7 @@ clocal(NODE *p)
 			}
 		}
 		break;
+#endif
 
 	case PCONV:
 		/* Remove redundant PCONV's. Be careful */
