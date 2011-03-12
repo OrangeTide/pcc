@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.125 2011/03/01 18:24:07 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.126 2011/03/12 07:18:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -53,7 +53,7 @@
 #include "cpp.h"
 #include "y.tab.h"
 
-#define	SBSIZE	600000
+#define	SBSIZE	1000000
 
 static usch	sbf[SBSIZE];
 /* C command */
