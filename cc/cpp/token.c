@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.49 2011/02/26 06:32:07 ragge Exp $	*/
+/*	$Id: token.c,v 1.50 2011/03/12 17:06:45 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -236,7 +236,7 @@ cppcmt:				if (Cflag) { PUTCH(ch); } else { PUTCH(' '); }
 			goto xloop;
 
 		case '\n': /* newlines, for pp directives */
-			ifiles->lineno++;
+run2:			ifiles->lineno++;
 			do {
 				PUTCH(ch);
 run:				ch = NXTCH();
@@ -253,6 +253,13 @@ run:				ch = NXTCH();
 					ch = '/';
 				}
 			} while (ch == ' ' || ch == '\t');
+			if (ch == '\\') {
+				ch = NXTCH();
+				if (ch == '\n')
+					goto run2;
+				unch(ch);
+				ch = '\\';
+			}
 			if (ch == '#') {
 				ppdir();
 				continue;
