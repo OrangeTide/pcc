@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.268 2011/01/27 19:20:56 ragge Exp $	*/
+/*	$Id: reader.c,v 1.269 2011/03/15 17:20:52 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1614,6 +1614,7 @@ xasmcode(char *s)
 		case '=': cw |= XASMASG; break;
 		case '&': cw |= XASMCONSTR; break;
 		case '+': cw |= XASMINOUT; break;
+		case '%': break;
 		default:
 			if ((*s >= 'a' && *s <= 'z') ||
 			    (*s >= 'A' && *s <= 'Z') ||
