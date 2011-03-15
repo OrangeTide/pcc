@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.172 2011/02/25 05:08:09 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.173 2011/03/15 19:21:52 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -124,7 +124,7 @@
 #define MAXFIL 10000
 #define MAXLIB 10000
 #define MAXAV  10000
-#define MAXOPT 100
+#define MAXOPT 200
 char	*tmp3;
 char	*tmp4;
 char	*outfile, *ermfile;
