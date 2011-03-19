@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.52 2011/03/19 09:15:18 ragge Exp $	*/
+/*	$Id: token.c,v 1.53 2011/03/19 09:31:32 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -279,14 +279,20 @@ run:				ch = NXTCH();
 
 		case '\"': /* strings */
 str:			PUTCH(ch);
-			while ((ch = inch()) != '\"') {
-					PUTCH(ch);
+			while ((ch = NXTCH()) != '\"') {
+				if (ch == '\n')
+					goto xloop;
 				if (ch == '\\') {
-					ch = inch();
-					PUTCH(ch);
-				}
+					if ((ch = NXTCH()) != '\n') {
+						PUTCH('\\');
+						PUTCH(ch);
+					} else
+						nnl++;
+					continue;
+                                }
 				if (ch < 0)
 					return;
+				PUTCH(ch);
 			}
 			PUTCH(ch);
 			break;
