@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.175 2011/03/24 19:47:14 ragge Exp $	*/
+/*	$Id: cc.c,v 1.176 2011/03/26 06:25:19 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -1253,7 +1253,7 @@ static void
 add_prefix(const char *prefix)
 {
 	file_prefixes = realloc(file_prefixes,
-	    sizeof(*file_prefixes) * file_prefixes_cnt);
+	    sizeof(*file_prefixes) * (file_prefixes_cnt + 1));
 	if (file_prefixes == NULL) {
 		error("malloc failed");
 		exit(1);
