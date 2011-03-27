@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.320 2011/03/01 18:08:03 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.321 2011/03/27 19:12:09 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -550,8 +550,7 @@ struct_dcl:	   str_head '{' struct_dcl_list '}' {
 			if (pragma_allpacked) {
 				p = bdty(CALL, bdty(NAME, "packed"),
 				    bcon(pragma_allpacked));
-				$$ = cmop(biop(ATTRIB, p, 0), $$);
-			}
+				$$->n_ap = attr_add($$->n_ap,gcc_attr_parse(p)); }
 		}
 		|  C_STRUCT attr_var C_NAME { 
 			$$ = rstruct($3,$1);
