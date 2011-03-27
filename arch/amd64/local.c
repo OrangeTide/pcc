@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.43 2011/03/02 17:37:31 ragge Exp $	*/
+/*	$Id: local.c,v 1.44 2011/03/27 15:03:20 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1081,6 +1081,19 @@ defzero(struct symtab *sp)
 		name = exname(sp->sname);
 	off = tsize(sp->stype, sp->sdf, sp->sap);
 	off = (off+(SZCHAR-1))/SZCHAR;
+	if (attr_find(sp->sap, GCC_ATYP_SECTION)) {
+		/* let the "other" code handle sections */
+		if (sp->sclass != STATIC)
+			printf("        .globl %s\n", name);
+		defloc(sp);
+#ifdef MACHOABI
+		printf("\t.space %d\n", off);
+#else
+		printf("\t.zero %d\n", off);
+#endif
+		return;
+	}
+
 #ifdef GCC_COMPAT
 	{
 		struct attr *ga;
