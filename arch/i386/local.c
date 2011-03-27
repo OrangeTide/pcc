@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.133 2011/03/27 14:59:21 ragge Exp $	*/
+/*	$Id: local.c,v 1.134 2011/03/27 15:14:13 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -524,7 +524,7 @@ clocal(NODE *p)
 			goto delp;
 		}
 		if (l->n_type < INT || l->n_type == LONGLONG || 
-		    l->n_type == ULONGLONG) {
+		    l->n_type == ULONGLONG || l->n_type == BOOL) {
 			/* float etc? */
 			p->n_left = block(SCONV, l, NIL,
 			    UNSIGNED, 0, MKAP(UNSIGNED));
