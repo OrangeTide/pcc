@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.131 2011/02/27 21:04:44 ragge Exp $	*/
+/*	$Id: local.c,v 1.132 2011/03/27 14:57:51 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1068,6 +1068,7 @@ ninval(CONSZ off, int fsz, NODE *p)
 #endif
 	TWORD t;
 	int i;
+fwalk(p, eprint, 0);
 
 	t = p->n_type;
 	if (t > BTMASK)
@@ -1253,6 +1254,19 @@ defzero(struct symtab *sp)
 	al = talign(sp->stype, sp->sap)/SZCHAR;
 	off = (int)tsize(sp->stype, sp->sdf, sp->sap);
 	off = (off+(SZCHAR-1))/SZCHAR;
+	if (attr_find(sp->sap, GCC_ATYP_SECTION)) {
+		/* let the "other" code handle sections */
+		if (sp->sclass != STATIC)
+			printf("	.globl %s\n", name);
+		defloc(sp);
+#ifdef os_darwin
+		printf("\t.space %d\n", off);
+#else
+		printf("\t.zero %d\n", off);
+#endif
+		return;
+	}
+
 #ifdef GCC_COMPAT
 	{
 		struct attr *ap;
