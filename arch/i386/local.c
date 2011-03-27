@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.132 2011/03/27 14:57:51 ragge Exp $	*/
+/*	$Id: local.c,v 1.133 2011/03/27 14:59:21 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1068,7 +1068,6 @@ ninval(CONSZ off, int fsz, NODE *p)
 #endif
 	TWORD t;
 	int i;
-fwalk(p, eprint, 0);
 
 	t = p->n_type;
 	if (t > BTMASK)
