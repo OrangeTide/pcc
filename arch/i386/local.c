@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.134 2011/03/27 15:14:13 ragge Exp $	*/
+/*	$Id: local.c,v 1.135 2011/03/27 19:16:06 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -118,7 +118,7 @@ import(NODE *p)
 
 	sp = picsymtab("__imp_", name, "");
 	q = xbcon(0, sp, PTR+VOID);
-	q = block(UMUL, q, 0, PTR|VOID, 0, MKSUE(VOID));
+	q = block(UMUL, q, 0, PTR|VOID, 0, MKAP(VOID));
 	q = block(UMUL, q, 0, p->n_type, p->n_df, p->n_sue);
 	q->n_sp = p->n_sp; /* for init */
 	nfree(p);
