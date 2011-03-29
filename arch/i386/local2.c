@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.156 2011/02/26 07:14:38 ragge Exp $	*/
+/*	$Id: local2.c,v 1.157 2011/03/29 17:12:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1458,8 +1458,13 @@ myxasm(struct interpass *ip, NODE *p)
 	case 'L':
 	case 'M':
 	case 'N':
-		if (p->n_left->n_op != ICON)
+		if (p->n_left->n_op != ICON) {
+			if ((c = XASMVAL1(cw)) != 0) {
+				p->n_name++;
+				return 0; /* Try again */
+			}
 			uerror("xasm arg not constant");
+		}
 		v = p->n_left->n_lval;
 		if ((c == 'K' && v < -128) ||
 		    (c == 'L' && v != 0xff && v != 0xffff) ||
