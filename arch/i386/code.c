@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.58 2011/03/01 08:20:10 ragge Exp $	*/
+/*	$Id: code.c,v 1.59 2011/03/29 20:11:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -46,6 +46,8 @@ defloc(struct symtab *sp)
 	static char *loctbl[] = { "text", "data", "section .rodata" };
 #elif defined(MACHOABI)
 	static char *loctbl[] = { "text", "data", "const_data" };
+#elif defined(AOUTABI)
+	static char *loctbl[] = { "text", "data", "data" };
 #endif
 	TWORD t;
 	int s, al;

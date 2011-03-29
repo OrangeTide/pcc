@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.157 2011/03/29 17:12:14 ragge Exp $	*/
+/*	$Id: local2.c,v 1.158 2011/03/29 20:11:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -30,7 +30,7 @@
 # include <ctype.h>
 # include <string.h>
 
-#if defined(PECOFFABI) || defined(MACHOABI)
+#if defined(PECOFFABI) || defined(MACHOABI) || defined(AOUTABI)
 #define EXPREFIX	"_"
 #else
 #define EXPREFIX	""
