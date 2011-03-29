@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.135 2011/03/27 19:16:06 ragge Exp $	*/
+/*	$Id: local.c,v 1.136 2011/03/29 18:06:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -119,7 +119,7 @@ import(NODE *p)
 	sp = picsymtab("__imp_", name, "");
 	q = xbcon(0, sp, PTR+VOID);
 	q = block(UMUL, q, 0, PTR|VOID, 0, MKAP(VOID));
-	q = block(UMUL, q, 0, p->n_type, p->n_df, p->n_sue);
+	q = block(UMUL, q, 0, p->n_type, p->n_df, p->n_ap);
 	q->n_sp = p->n_sp; /* for init */
 	nfree(p);
 
@@ -1554,13 +1554,13 @@ mangle(NODE *p)
 				    r->n_op == CM; r = r->n_left) {
 					t = r->n_type;
 					if (t == STRTY || t == UNIONTY)
-						size += r->n_sue->suesize;
+						size += tsize(t, r->n_df, r->n_ap);
 					else
 						size += szty(t) * SZINT / SZCHAR;
 				}
 				t = r->n_type;
 				if (t == STRTY || t == UNIONTY)
-					size += r->n_sue->suesize; /* XXX */
+					size += tsize(t, r->n_df, r->n_ap);
 				else
 					size += szty(t) * SZINT / SZCHAR;
 			}
