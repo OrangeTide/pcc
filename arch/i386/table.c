@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.129 2011/03/30 17:10:40 ragge Exp $	*/
+/*	$Id: table.c,v 1.130 2011/03/30 20:09:49 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -274,8 +274,8 @@ struct optab table[] = {
 	SOREG|SNAME|SAREG,	TUWORD,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 		NDREG,	RESC1,
-		"	pushl AL\n"
 		"	pushl $0\n"
+		"	pushl AL\n"
 		"	fildq (%esp)\n"
 		"	addl $8,%esp\n", },
 
@@ -363,7 +363,7 @@ struct optab table[] = {
 		"	subl $4,%esp\n	fistpl (%esp)\n	popl A1\n", },
 #endif
 
-/* convert float/double to (u)int. XXX should use NTEMP here */
+/* convert float/double to int. XXX should use NTEMP here */
 { SCONV,	INAREG,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 	SAREG,	TWORD,
