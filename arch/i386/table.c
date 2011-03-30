@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.128 2011/01/29 09:55:29 ragge Exp $	*/
+/*	$Id: table.c,v 1.129 2011/03/30 17:10:40 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -255,19 +255,29 @@ struct optab table[] = {
 		NCSL|NCREG,	RESC1,
 		"	movl AL,A1\n	xorl U1,U1\n", },
 
-/* convert int (in memory) to double */
+/* convert signed int (in memory) to double */
 { SCONV,	INFL,
-	SOREG|SNAME,	TWORD,
+	SOREG|SNAME,	TSWORD,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
 		NDREG,	RESC1,
 		"	fildl AL\n", },
 
-/* convert int (in register) to double */
+/* convert signed int (in register) to double */
 { SCONV,	INFL,
-	SAREG,	TWORD,
+	SAREG,	TSWORD,
 	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
-		NTEMP|NDREG,	RESC1,
+		NDREG,	RESC1,
 		"	pushl AL\n	fildl (%esp)\n	addl $4,%esp\n", },
+
+/* convert unsigned int (reg&mem) to double */
+{ SCONV,       INFL,
+	SOREG|SNAME|SAREG,	TUWORD,
+	SHFL,	TLDOUBLE|TDOUBLE|TFLOAT,
+		NDREG,	RESC1,
+		"	pushl AL\n"
+		"	pushl $0\n"
+		"	fildq (%esp)\n"
+		"	addl $8,%esp\n", },
 
 /* long long to something */
 
