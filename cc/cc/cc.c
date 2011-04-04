@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.170.2.1 2011/03/15 19:25:36 ragge Exp $	*/
+/*	$Id: cc.c,v 1.170.2.1.2.1 2011/04/04 14:50:23 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -487,7 +487,10 @@ main(int argc, char *argv[])
 				break;
 
 			case 'g': /* create debug output */
-				gflag++;
+				if (argv[i][2] == '0')
+					gflag = 0;
+				else
+					gflag++;
 				break;
 
 			case 'i':
