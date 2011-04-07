@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.39 2011/02/26 11:24:11 ragge Exp $	*/
+/*	$Id: inline.c,v 1.40 2011/04/07 18:50:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -491,7 +491,7 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 	branch(l2);
 	plabel(l0);
 
-	rp = block(GOTO, bcon(l1), NIL, INT, 0, MKAP(INT));
+	rp = block(GOTO, bcon(l1), NIL, INT, 0, 0);
 	if (is->retval)
 		p = tempnode(is->retval + toff, DECREF(sp->stype),
 		    sp->sdf, sp->sap);

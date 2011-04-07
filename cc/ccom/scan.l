@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.102 2011/02/16 18:50:42 ragge Exp $	*/
+/*	$Id: scan.l,v 1.103 2011/04/07 18:50:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -251,7 +251,7 @@ resw(TWORD t, int rv)
 		return rv;
 
 	case C_TYPE:
-		yylval.nodep = mkty(t, 0, MKAP(t));
+		yylval.nodep = mkty(t, 0, 0);
 		notype=1;
 		return(rv);
 
@@ -313,7 +313,7 @@ f2(char *str)
 	dc = strtod(str, &eptr); /* XXX - avoid strtod() */
 #endif
 	dc = typround(dc, eptr, &tw);
-	p = block(FCON, NIL, NIL, tw, 0, MKAP(tw));
+	p = block(FCON, NIL, NIL, tw, 0, 0);
 	p->n_dcon = dc;
 	return p;
 }
@@ -376,7 +376,7 @@ fhexcon(char *c)
 	while (ed < 0)
 		d /= 2, ed++;
 	d = typround(d, ep, &tw);
-	p = block(FCON, NIL, NIL, tw, 0, MKAP(tw));
+	p = block(FCON, NIL, NIL, tw, 0, 0);
 	p->n_dcon = d;
 	return p;
 }

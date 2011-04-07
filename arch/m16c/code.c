@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.20 2008/07/29 13:25:58 ragge Exp $	*/
+/*	$Id: code.c,v 1.21 2011/04/07 18:50:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -76,16 +76,16 @@ efcode()
 	/* address of return struct is in eax */
 	/* create a call to memcpy() */
 	/* will get the result in eax */
-	p = block(REG, NIL, NIL, CHAR+PTR, 0, MKSUE(CHAR+PTR));
+	p = block(REG, NIL, NIL, CHAR+PTR, 0, 0);
 	p->n_rval = R0;
-	q = block(OREG, NIL, NIL, CHAR+PTR, 0, MKSUE(CHAR+PTR));
+	q = block(OREG, NIL, NIL, CHAR+PTR, 0, 0);
 	q->n_rval = FB;
 	q->n_lval = 8; /* return buffer offset */
-	p = block(CM, q, p, INT, 0, MKSUE(INT));
+	p = block(CM, q, p, INT, 0, 0);
 	sz = (tsize(STRTY, cftnsp->sdf, cftnsp->ssue)+SZCHAR-1)/SZCHAR;
-	p = block(CM, p, bcon(sz), INT, 0, MKSUE(INT));
+	p = block(CM, p, bcon(sz), INT, 0, 0);
 	p->n_right->n_name = "";
-	p = block(CALL, bcon(0), p, CHAR+PTR, 0, MKSUE(CHAR+PTR));
+	p = block(CALL, bcon(0), p, CHAR+PTR, 0, 0);
 	p->n_left->n_name = "memcpy";
 	send_passt(IP_NODE, p);
 }

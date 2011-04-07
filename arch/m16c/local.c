@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.15 2008/12/14 21:16:58 ragge Exp $	*/
+/*	$Id: local.c,v 1.16 2011/04/07 18:50:15 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -480,7 +480,7 @@ myp2tree(NODE *p)
 		/* Write float constants to memory */
 		sp = inlalloc(sizeof(struct symtab));
 		sp->sclass = STATIC;
-		sp->ssue = MKSUE(p->n_type);
+		sp->ssue = 0;
 		sp->slevel = 1; /* fake numeric label */
 		sp->soffset = getlab();
 		sp->sflags = 0;

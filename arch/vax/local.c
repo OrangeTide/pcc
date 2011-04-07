@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.10 2011/01/21 21:47:59 ragge Exp $	*/
+/*	$Id: local.c,v 1.11 2011/04/07 18:50:16 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -187,7 +187,7 @@ clocal(p) NODE *p; {
 	case FORCE:
 		p->n_op = ASSIGN;
 		p->n_right = p->n_left;
-		p->n_left = block(REG, NIL, NIL, p->n_type, 0, MKSUE(INT));
+		p->n_left = block(REG, NIL, NIL, p->n_type, 0, 0);
 		p->n_left->n_rval = p->n_left->n_type == BOOL ? 
 		    RETREG(CHAR) : RETREG(p->n_type);
 		break;
@@ -224,7 +224,7 @@ myp2tree(NODE *p)
 
 	sp = inlalloc(sizeof(struct symtab));
 	sp->sclass = STATIC;
-	sp->ssue = MKSUE(p->n_type);
+	sp->ssue = 0;
 	sp->slevel = 1; /* fake numeric label */
 	sp->soffset = getlab();
 	sp->sflags = 0;

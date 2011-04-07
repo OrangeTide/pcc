@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.62 2011/02/19 17:23:39 ragge Exp $	*/
+/*	$Id: init.c,v 1.63 2011/04/07 18:50:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -590,11 +590,11 @@ insbf(OFFSZ off, int fsz, int val)
 	sym.stype = typ;
 	sym.squal = 0;
 	sym.sdf = 0;
-	sym.sap = MKAP(typ);
+	sym.sap = NULL;
 	sym.soffset = (int)off;
 	sym.sclass = (char)(typ == INT ? FIELD | fsz : MOU);
 	r = xbcon(0, &sym, typ);
-	p = block(STREF, p, r, INT, 0, MKAP(INT));
+	p = block(STREF, p, r, INT, 0, 0);
 	ecode(buildtree(ASSIGN, stref(p), bcon(val)));
 }
 
@@ -684,7 +684,7 @@ endinit(void)
 				sym.soffset = (int)(ll->begsz + il->off);
 				sym.sclass = (char)(fsz < 0 ? FIELD | -fsz : 0);
 				r = xbcon(0, &sym, INT);
-				p = block(STREF, p, r, INT, 0, MKAP(INT));
+				p = block(STREF, p, r, INT, 0, 0);
 				ecomp(buildtree(ASSIGN, stref(p), il->n));
 				if (fsz < 0)
 					fsz = -fsz;
