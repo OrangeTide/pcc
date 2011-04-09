@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.63 2011/04/07 18:50:16 ragge Exp $	*/
+/*	$Id: init.c,v 1.64 2011/04/09 09:11:45 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -126,6 +126,7 @@ static struct instk {
 	int	in_fl;	/* flag which says if this level is controlled by {} */
 } *pstk, pbase;
 
+int doing_init;
 static struct symtab *csym;
 
 #ifdef PCC_DEBUG
@@ -268,6 +269,7 @@ beginit(struct symtab *sp)
 	is->in_fl = 0;
 	is->in_prev = NULL;
 	pstk = is;
+	doing_init = 1;
 }
 
 /*
@@ -709,6 +711,7 @@ endinit(void)
 		zbits(lastoff, tbit-lastoff);
 	
 	endictx();
+	doing_init = 0;
 }
 
 void
