@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.40 2011/04/07 18:50:16 ragge Exp $	*/
+/*	$Id: inline.c,v 1.41 2011/04/10 15:24:53 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -511,7 +511,9 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 void
 inline_args(struct symtab **sp, int nargs)
 {
+	union arglist *al;
 	struct istat *cf;
+	TWORD t;
 	int i;
 
 	SDEBUG(("inline_args\n"));
@@ -521,6 +523,20 @@ inline_args(struct symtab **sp, int nargs)
 	 * - function has varargs
 	 * - function args are volatile, checked if no temp node is asg'd.
 	 */
+	/* XXX - this is ugly, invent something better */
+	if (cf->sp->sdf->dfun == NULL)
+		return; /* no prototype */
+	for (al = cf->sp->sdf->dfun; al->type != TNULL; al++) {
+		t = al->type;
+		if (t == TELLIPSIS)
+			return; /* cannot inline */
+		if (ISSOU(BTYPE(t)))
+			al++;
+		for (; t > BTMASK; t = DECREF(t))
+			if (ISARY(t) || ISFTN(t))
+				al++;
+	}
+
 	if (nargs) {
 		for (i = 0; i < nargs; i++)
 			if ((sp[i]->sflags & STNODE) == 0)
