@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.42 2011/03/29 17:17:23 ragge Exp $	*/
+/*	$Id: local2.c,v 1.43 2011/04/11 20:16:33 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1027,6 +1027,8 @@ retry:	switch (c) {
 	case 'c': reg = RCX; break;
 	case 'd': reg = RDX; break;
 
+	case 'Q': reg = RDX; break; /* Always dx for now */
+
 	case 'x':
 	case 'q':
 	case 't':
@@ -1117,6 +1119,11 @@ targarg(char *w, void *arg, int n)
 	if (q->n_op == REG) {
 		if (*w == 'k') {
 			q->n_type = INT;
+		} else if (*w == 'h' || *w == 'b') {
+			/* Can do this only because we know dx is used */
+			printf("%%d%c", *w == 'h' ? 'h' : 'l');
+			tfree(q);
+			return;
 		} else if (*w != 'w') {
 			cerror("targarg"); /* XXX ??? */
 			if (q->n_type > UCHAR) {
