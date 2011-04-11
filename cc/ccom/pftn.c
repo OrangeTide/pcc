@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.312 2011/04/07 18:50:16 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.313 2011/04/11 17:33:26 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -410,7 +410,8 @@ defid(NODE *q, int class)
 		break;
 
 	case PARAM:
-		/* oalloc(p, &argoff); */
+		if (q->n_type != FARG)
+			oalloc(p, &argoff);
 		break;
 		
 	case STATIC:
