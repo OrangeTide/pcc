@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.275 2011/04/13 15:09:55 ragge Exp $	*/
+/*	$Id: trees.c,v 1.276 2011/04/13 16:55:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1924,7 +1924,8 @@ doszof(NODE *p)
 		df++;
 		ty = DECREF(ty);
 	}
-	rv = buildtree(MUL, rv, bcon(tsize(ty, p->n_df, p->n_ap)/SZCHAR));
+	rv = buildtree(MUL, rv, 
+	    xbcon(tsize(ty, p->n_df, p->n_ap)/SZCHAR, NULL, INTPTR));
 	tfree(p);
 	arrstkp = 0; /* XXX - may this fail? */
 	return rv;
