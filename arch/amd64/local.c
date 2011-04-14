@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.46 2011/04/09 12:50:14 ragge Exp $	*/
+/*	$Id: local.c,v 1.47 2011/04/14 17:01:16 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -445,7 +445,7 @@ clocal(NODE *p)
 		if (l->n_op == ICON) {
 			goto delp;
 		}
-		if (l->n_type < LONG) {
+		if (l->n_type < LONG || l->n_type == BOOL) {
 			/* float etc? */
 			p->n_left = block(SCONV, l, NIL, UNSIGNED, 0, 0);
 			break;
