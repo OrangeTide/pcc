@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.45 2011/02/18 17:08:31 ragge Exp $	*/
+/*	$Id: table.c,v 1.46 2011/04/14 16:29:43 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -417,7 +417,7 @@ struct optab table[] = {
 		"	fnstcw 4(%rsp)\n"
 		"	movb $12,1(%rsp)\n"
 		"	fldcw (%rsp)\n"
-		"	fistpl 8(%rsp)\n"
+		"	fistpq 8(%rsp)\n"
 		"	movl 8(%rsp),A1\n"
 		"	fldcw 4(%rsp)\n"
 		"	addq $16,%rsp\n", },
