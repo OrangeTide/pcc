@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.277 2011/04/17 08:15:16 ragge Exp $	*/
+/*	$Id: trees.c,v 1.278 2011/04/17 16:45:12 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1019,6 +1019,17 @@ chkpun(NODE *p)
 	}
 }
 
+static NODE *
+offplus(NODE *p, int off, TWORD t, TWORD q, union dimfun *d, struct attr *ap) {
+	if (off != 0) {
+		p = block(PLUS, p, offcon(off, t, d, ap), t, d, ap);
+		p->n_qual = q;
+		p = optim(p);
+	}
+
+	return buildtree(UMUL, p, NIL);
+}
+
 NODE *
 stref(NODE *p)
 {
@@ -1072,26 +1083,16 @@ stref(NODE *p)
 	}
 #endif
 
-#if 0
-	if (dsc & FIELD) {  /* make fields look like ints */
-		off = (off/ALINT)*ALINT;
-	}
-#endif
-	if (off != 0) {
-		p = block(PLUS, p, offcon(off, t, d, ap), t, d, ap);
-		p->n_qual = q;
-		p = optim(p);
-	}
-
-	p = buildtree(UMUL, p, NIL);
-
-	/* if field, build field info */
-
 	if (dsc & FIELD) {
-		p = block(FLD, p, NIL, s->stype, 0, s->sap);
+		TWORD ftyp = s->stype;
+		int fal = talign(ftyp, ap);
+		off = (off/fal)*fal;
+		p = offplus(p, off, t, q, d, ap);
+		p = block(FLD, p, NIL, ftyp, 0, s->sap);
 		p->n_qual = q;
-		p->n_rval = PKFIELD(dsc&FLDSIZ, s->soffset%talign(s->stype, ap));
-	}
+		p->n_rval = PKFIELD(dsc&FLDSIZ, s->soffset%fal);
+	} else
+		p = offplus(p, off, t, q, d, ap);
 
 	p = clocal(p);
 	return p;
