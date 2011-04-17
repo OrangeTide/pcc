@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.324 2011/04/16 20:24:04 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.325 2011/04/17 08:15:16 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -2120,6 +2120,16 @@ eve2:		r = buildtree(p->n_op, p1, eve(p2));
 	case INCR:
 	case DECR:
 		p1 = eve(p1);
+		if (p1->n_type >= FLOAT || p1->n_type <= LDOUBLE) {
+			/* ++/-- on floats isn't ((d+=1)-1) */
+			/* rewrite to (t=d,d++,t) */
+			/* XXX - side effects */
+			NODE *t = cstknode(p1->n_type, 0, 0);
+			r = buildtree(ASSIGN, ccopy(t), ccopy(p1));
+			r = buildtree(COMOP, r,buildtree(p->n_op, p1, eve(p2)));
+			r = buildtree(COMOP, r, t);
+			break;
+		}
 		if (p1->n_type != BOOL)
 			goto eve2;
 		/* Hey, fun.  ++ will always be 1, and -- will toggle result */

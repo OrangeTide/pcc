@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.276 2011/04/13 16:55:10 ragge Exp $	*/
+/*	$Id: trees.c,v 1.277 2011/04/17 08:15:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2185,7 +2185,7 @@ calc:		if (true < 0) {
 /*
  * Create a node for either TEMP or on-stack storage.
  */
-static NODE *
+NODE *
 cstknode(TWORD t, union dimfun *df, struct attr *ap)
 {
 	struct symtab *sp;
