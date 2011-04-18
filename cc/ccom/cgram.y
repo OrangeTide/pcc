@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.325 2011/04/17 08:15:16 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.326 2011/04/18 17:26:10 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -2120,7 +2120,7 @@ eve2:		r = buildtree(p->n_op, p1, eve(p2));
 	case INCR:
 	case DECR:
 		p1 = eve(p1);
-		if (p1->n_type >= FLOAT || p1->n_type <= LDOUBLE) {
+		if (p1->n_type >= FLOAT && p1->n_type <= LDOUBLE) {
 			/* ++/-- on floats isn't ((d+=1)-1) */
 			/* rewrite to (t=d,d++,t) */
 			/* XXX - side effects */
