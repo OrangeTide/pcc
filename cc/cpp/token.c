@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.53 2011/03/19 09:31:32 ragge Exp $	*/
+/*	$Id: token.c,v 1.54 2011/04/23 10:48:36 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -1197,6 +1197,8 @@ undefstmt(void)
 {
 	struct symtab *np;
 
+	if (flslvl)
+		return;
 	if (sloscan() != WSPACE || sloscan() != IDENT)
 		error("bad undef");
 	if (flslvl == 0 && (np = lookup((usch *)yytext, FIND)))
