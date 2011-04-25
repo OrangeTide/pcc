@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.158 2011/03/29 20:11:15 ragge Exp $	*/
+/*	$Id: local2.c,v 1.159 2011/04/25 18:20:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -400,13 +400,13 @@ starg(NODE *p)
 	}
 	fprintf(fp, "	addl $16,%%esp\n");
 #else
+	NODE *q = p->n_left;
+
 	fprintf(fp, "	subl $%d,%%esp\n", (p->n_stsize+3) & ~3);
-	fprintf(fp, "	pushl $%d\n", p->n_stsize);
-	expand(p, 0, "	pushl AL\n");
-	expand(p, 0, "	leal 8(%esp),A1\n");
-	expand(p, 0, "	pushl A1\n");
-	fprintf(fp, "	call %s%s\n", EXPREFIX "memcpy", kflag ? "@PLT" : "");
-	fprintf(fp, "	addl $12,%%esp\n");
+	p->n_left = mklnode(OREG, 0, ESP, INT);
+	zzzcode(p, 'Q');
+	tfree(p->n_left);
+	p->n_left = q;
 #endif
 }
 
