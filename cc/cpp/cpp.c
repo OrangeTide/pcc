@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.128 2011/03/27 13:12:36 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.129 2011/04/26 15:32:03 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -1002,6 +1002,10 @@ pragoper(void)
 	if (*s == 'L')
 		s++;
 	for (; *s; s++) {
+		if (*s == EBLOCK) {
+			s+=2;
+			continue;
+		}
 		if (*s == '\"')
 			continue;
 		if (*s == '\\' && (s[1] == '\"' || s[1] == '\\'))
