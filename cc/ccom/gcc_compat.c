@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.79 2011/04/25 14:53:35 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.80 2011/04/26 15:16:50 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -469,12 +469,13 @@ gcc_tcattrfix(NODE *p)
 {
 	struct symtab *sp;
 	struct attr *ap;
-	int sz, coff, csz, al, oal;
+	int sz, coff, csz, al, oal, mxal;
 
 	if ((ap = attr_find(p->n_ap, GCC_ATYP_PACKED)) == NULL)
 		return; /* nothing to fix */
 
 	al = ap->iarg(0);
+	mxal = 0;
 
 	/* Must repack struct */
 	coff = csz = 0;
@@ -482,6 +483,8 @@ gcc_tcattrfix(NODE *p)
 		oal = talign(sp->stype, sp->sap);
 		if (oal > al)
 			oal = al;
+		if (mxal < oal)
+			mxal = oal;
 		if (sp->sclass & FIELD)
 			sz = sp->sclass&FLDSIZ;
 		else
@@ -492,12 +495,13 @@ gcc_tcattrfix(NODE *p)
 		if (p->n_type == UNIONTY)
 			coff = 0;
 	}
-	SETOFF(csz, al); /* Roundup to whatever */
+	SETOFF(csz, mxal); /* Roundup to whatever */
 
 	ap = attr_find(p->n_ap, ATTR_STRUCT);
 	ap->amsize = csz;
 	ap = attr_find(p->n_ap, GCC_ATYP_ALIGNED);
-	ap->iarg(0) = al;
+	ap->iarg(0) = mxal;
+
 }
 
 /*
