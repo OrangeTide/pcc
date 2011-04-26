@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.217 2011/02/22 18:29:23 ragge Exp $	*/
+/*	$Id: regs.c,v 1.218 2011/04/26 15:23:08 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -606,8 +606,13 @@ static int
 adjSet(REGW *u, REGW *v)
 {
 	struct AdjSet *w;
-	REGW *t;
 
+#ifdef notdef
+	REGW *t;
+	/*
+	 * XXX - This will fail if the overlapping register is concatenated
+	 * and the other half will be assigned later.
+	 */
 	if (ONLIST(u) == &precolored) {
 		ADJL *a = ADJLIST(v);
 		/*
@@ -622,6 +627,8 @@ adjSet(REGW *u, REGW *v)
 				return 1;
 		}
 	}
+#endif
+
 #ifdef notdef
 	if (u > v)
 		t = v, v = u, u = t;
