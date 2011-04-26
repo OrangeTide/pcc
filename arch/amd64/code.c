@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.52 2011/04/19 17:19:02 ragge Exp $	*/
+/*	$Id: code.c,v 1.53 2011/04/26 20:17:34 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -115,6 +115,8 @@ defloc(struct symtab *sp)
 	varattrib(name, sp->sap);
 
 	if (nextsect) {
+		if (sectail == NULL)
+			sectail = "";
 		printf("	.section %s%s\n", nextsect, sectail);
 		sectail = nextsect = NULL;
 		s = -1;
