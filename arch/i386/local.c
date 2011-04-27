@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.141 2011/04/19 20:05:10 ragge Exp $	*/
+/*	$Id: local.c,v 1.142 2011/04/27 09:05:49 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -846,11 +846,19 @@ myp2tree(NODE *p)
 	ninval(0, tsize(sp->stype, sp->sdf, sp->sap), p);
 
 	if (kflag) {
+#if defined(ELFABI)
 		sp->sname = sp->soname = inlalloc(32);
 		snprintf(sp->sname, 32, LABFMT "@GOTOFF", (int)sp->soffset);
+#elif defined(MACHOABI)
+		char *s = cftnsp->soname ? cftnsp->soname : cftnsp->sname;
+		size_t len = strlen(s) + 40;
+		sp->sname = sp->soname = IALLOC(len);
+		snprintf(sp->soname, len, LABFMT "-L%s$pb", (int)sp->soffset, s);
+#endif
 		sp->sclass = EXTERN;
 		sp->sflags = sp->slevel = 0;
 	}
+
 	p->n_op = NAME;
 	p->n_lval = 0;
 	p->n_sp = sp;
