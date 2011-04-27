@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.218 2011/04/26 15:23:08 ragge Exp $	*/
+/*	$Id: regs.c,v 1.219 2011/04/27 19:40:45 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -606,13 +606,8 @@ static int
 adjSet(REGW *u, REGW *v)
 {
 	struct AdjSet *w;
-
-#ifdef notdef
 	REGW *t;
-	/*
-	 * XXX - This will fail if the overlapping register is concatenated
-	 * and the other half will be assigned later.
-	 */
+
 	if (ONLIST(u) == &precolored) {
 		ADJL *a = ADJLIST(v);
 		/*
@@ -627,15 +622,9 @@ adjSet(REGW *u, REGW *v)
 				return 1;
 		}
 	}
-#endif
 
-#ifdef notdef
-	if (u > v)
-		t = v, v = u, u = t;
-	w = edgehash[((intptr_t)u+(intptr_t)v) & (HASHSZ-1)];
-#else
 	w = edgehash[(u->nodnum+v->nodnum)& (HASHSZ-1)];
-#endif
+
 	for (; w; w = w->next) {
 		if ((u == w->u && v == w->v) || (u == w->v && v == w->u))
 			return 1;
@@ -644,23 +633,22 @@ adjSet(REGW *u, REGW *v)
 }
 
 /* Add a pair to adjset.  No check for dups */
-static void
+static int
 adjSetadd(REGW *u, REGW *v)
 {
 	struct AdjSet *w;
 	int x;
 
-#ifdef notdef
-	if (u > v)
-		t = v, v = u, u = t;
-	x = ((intptr_t)u+(intptr_t)v) & (HASHSZ-1);
-#else
 	x = (u->nodnum+v->nodnum)& (HASHSZ-1);
-#endif
+	for (w = edgehash[x]; w; w = w->next)
+		if ((u == w->u && v == w->v) || (u == w->v && v == w->u))
+			return 1;
+
 	w = tmpalloc(sizeof(struct AdjSet));
 	w->u = u, w->v = v;
 	w->next = edgehash[x];
 	edgehash[x] = w;
+	return 0;
 }
 
 /*
@@ -685,10 +673,8 @@ AddEdge(REGW *u, REGW *v)
 
 	if (u == v)
 		return;
-	if (adjSet(u, v))
+	if (adjSetadd(u, v))
 		return;
-
-	adjSetadd(u, v);
 
 #if 0
 	if (ONLIST(u) == &precolored || ONLIST(v) == &precolored)
