@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.279 2011/04/19 16:38:12 ragge Exp $	*/
+/*	$Id: trees.c,v 1.280 2011/04/28 16:21:46 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1418,6 +1418,9 @@ tymatch(NODE *p)
 
 	tl = l->n_type;
 	tr = r->n_type;
+
+	if (tl == BOOL) tl = BOOL_TYPE;
+	if (tr == BOOL) tr = BOOL_TYPE;
 
 	lu = ru = 0;
 	if (ISUNSIGNED(tl)) {
