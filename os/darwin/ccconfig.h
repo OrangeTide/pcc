@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.12 2009/05/21 09:35:00 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.13 2011/04/28 00:39:49 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -47,6 +47,10 @@
 #define LIBCLIBS { "-lSystem", "-lpcc", NULL }
 #define LIBCLIBS_PROFILE { "-lSystem_profile", "-lpcc", NULL }
 #define STARTLABEL "start"
+
+#ifdef LANG_F77
+#define F77LIBLIST { "-L" PCCLIBDIR, "-lF77", "-lI77", "-lm", "-lc", NULL };
+#endif
 
 /*
 ld -arch ppc -weak_reference_mismatches non-weak -o a.out -lcrt1.o -lcrt2.o -L/usr/lib/gcc/powerpc-apple-darwin8/4.0.1 hello_ppc.o -lgcc -lSystemStubs -lSystem

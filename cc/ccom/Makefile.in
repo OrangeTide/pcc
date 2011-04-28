@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.32 2010/04/11 15:01:04 ragge Exp $
+#	$Id: Makefile.in,v 1.33 2011/04/28 00:39:48 gmcgarry Exp $
 #
 # Makefile.in for ccom
 #
@@ -98,6 +98,7 @@ external.h external.c: ${MIPDIR}/mkext.c $(MDIR)/table.c
 
 trees.c: ../../mip/pass2.h external.h
 
+builtins.c: external.h
 inline.c: external.h
 init.c: external.h
 pftn.c: external.h
