@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.219 2011/04/27 19:40:45 ragge Exp $	*/
+/*	$Id: regs.c,v 1.220 2011/04/29 16:22:41 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1094,16 +1094,18 @@ insnwalk(NODE *p)
 			case NLEFT:
 				addalledges(&ablock[rc->num]);
 				ONLY(lr, moveadd);
-				break;
-			case NOLEFT:
-				addedge_r(p->n_left, &ablock[rc->num]);
+				if (optype(o) != BITYPE)
+					break;
+				/* FALLTHROUGH */
+			case NORIGHT:
+				addedge_r(p->n_right, &ablock[rc->num]);
 				break;
 			case NRIGHT:
 				addalledges(&ablock[rc->num]);
 				ONLY(rr, moveadd);
-				break;
-			case NORIGHT:
-				addedge_r(p->n_right, &ablock[rc->num]);
+				/* FALLTHROUGH */
+			case NOLEFT:
+				addedge_r(p->n_left, &ablock[rc->num]);
 				break;
 			case NEVER:
 				addalledges(&ablock[rc->num]);
