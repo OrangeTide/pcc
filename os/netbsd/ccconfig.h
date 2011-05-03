@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.17 2010/11/09 08:50:40 ragge Exp $	*/
+/*	$Id: ccconfig.h,v 1.18 2011/05/03 11:23:04 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -68,7 +68,8 @@
 
 #if defined(mach_amd64)
 #define CPPMDADD \
-	{ "-D__x86_64__", "-D__x86_64", "-D__amd64__", "-D__amd64", NULL, }
+	{ "-D__x86_64__", "-D__x86_64", "-D__amd64__", "-D__amd64", \
+	  "-D__LP64__", "-D_LP64", NULL, }
 #elif defined(mach_arm)
 #define	CPPMDADD { "-D__arm__", NULL, }
 #elif defined(mach_i386)
