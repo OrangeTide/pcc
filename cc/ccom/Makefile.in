@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.33 2011/04/28 00:39:48 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.34 2011/05/03 11:40:41 ragge Exp $
 #
 # Makefile.in for ccom
 #
@@ -92,7 +92,7 @@ compat.o: $(MIPDIR)/compat.c external.h
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c -o $@ $(MIPDIR)/compat.c
 
 external.h external.c: ${MIPDIR}/mkext.c $(MDIR)/table.c
-	$(CC_FOR_BUILD) $(DEFS) $(CPPFLAGS) $(CFLAGS) -DMKEXT -o mkext \
+	$(CC_FOR_BUILD) $(DEFS) $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -DMKEXT -o mkext \
 	${MIPDIR}/mkext.c $(MDIR)/table.c ${MIPDIR}/common.c
 	./mkext
 
