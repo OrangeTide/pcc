@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.128 2011/01/11 12:48:23 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.129 2011/05/04 18:02:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -226,6 +226,7 @@ struct rspecial {
 };
 
 struct p2env;
+#define	NRESC 4
 extern	NODE resc[];
 extern	int p2autooff, p2maxautooff;
 
@@ -307,6 +308,8 @@ int notoff(TWORD, int, CONSZ, char *);
 int fldexpand(NODE *, int, char **);
 void p2tree(NODE *p); 
 int flshape(NODE *p);
+int ncnt(int needs);
+
 
 extern	char *rnames[];
 extern	int rstatus[];
