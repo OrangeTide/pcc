@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.47 2011/04/14 17:01:16 ragge Exp $	*/
+/*	$Id: local.c,v 1.48 2011/05/08 20:46:37 plunky Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -33,6 +33,7 @@
 /*
  * Check if a constant is too large for a type.
  */
+#ifdef notyet
 static int
 toolarge(TWORD t, CONSZ con)
 {
@@ -58,6 +59,7 @@ toolarge(TWORD t, CONSZ con)
 	}
 	return 0;
 }
+#endif
 
 #define	IALLOC(sz)	(isinlining ? permalloc(sz) : tmpalloc(sz))
 
