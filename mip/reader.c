@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.271 2011/05/04 18:02:32 ragge Exp $	*/
+/*	$Id: reader.c,v 1.272 2011/05/10 20:20:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -859,6 +859,8 @@ allo(NODE *p, struct optab *q)
 		resc[i].n_rval = DECRA(p->n_reg, i);
 		resc[i].n_su = p->n_su; /* ??? */
 	}
+	if (i > NRESC)
+		comperr("allo: too many allocs");
 	if (q->needs & NTMASK) {
 		resc[i].n_op = OREG;
 		resc[i].n_lval = stktemp;
@@ -866,8 +868,6 @@ allo(NODE *p, struct optab *q)
 		resc[i].n_su = p->n_su; /* ??? */
 		resc[i].n_name = "";
 	}
-	if (i >= NRESC)
-		comperr("allo: too many allocs");
 }
 
 static void
