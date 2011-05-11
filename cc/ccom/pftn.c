@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.314 2011/05/04 14:06:53 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.315 2011/05/11 14:29:39 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1439,9 +1439,10 @@ dynalloc(struct symtab *p, int *poff)
 int
 falloc(struct symtab *p, int w, NODE *pty)
 {
-	int al,sz,type;
+	TWORD otype, type;
+	int al,sz;
 
-	type = p ? p->stype : pty->n_type;
+	otype = type = p ? p->stype : pty->n_type;
 
 	if (type == BOOL)
 		type = BOOL_TYPE;
@@ -1476,7 +1477,7 @@ falloc(struct symtab *p, int w, NODE *pty)
 
 	p->soffset = rpole->rstr;
 	rpole->rstr += w;
-	p->stype = type;
+	p->stype = otype;
 	fldty(p);
 	return(0);
 }
