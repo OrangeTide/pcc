@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.5 2009/01/24 21:43:49 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.6 2011/05/11 14:37:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -127,8 +127,6 @@ typedef long long OFFSZ;
 # ifndef FORT
 # define ONEPASS
 #endif
-
-# define ENUMSIZE(high,low) INT
 
 /*	VAX-11/780 Registers */
 

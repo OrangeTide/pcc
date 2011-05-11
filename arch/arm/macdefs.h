@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.12 2009/01/24 21:43:48 gmcgarry Exp $	*/
+/*	$Id: macdefs.h,v 1.13 2011/05/11 14:37:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -99,8 +99,6 @@ typedef long long OFFSZ;
 #define STAB_LINE_ABSOLUTE	/* S_LINE fields use absolute addresses */
 
 #undef	FIELDOPS		/* no bit-field instructions */
-
-#define ENUMSIZE(high,low) INT	/* enums are always stored in full int */
 
 /* Definitions mostly used in pass2 */
 
