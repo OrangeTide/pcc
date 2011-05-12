@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.317 2011/05/11 20:12:37 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.318 2011/05/12 17:21:58 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -263,16 +263,20 @@ defid(NODE *q, int class)
 
 	/*
 	 * Its allowed to add attributes to existing declarations.
-	 * Be care ful though not to trash existing attributes.
+	 * Be careful though not to trash existing attributes.
+	 * XXX - code below is probably not correct.
 	 */
 	if (p->sap && p->sap->atype <= ATTR_MAX) {
 		/* nothing special, just overwrite */
 		p->sap = q->n_ap;
 	} else {
-		for (ap = q->n_ap; ap; ap = ap->next) {
-			if (ap->atype > ATTR_MAX)
-				p->sap = attr_add(p->sap, attr_dup(ap, 3));
-		}
+		if (p->slevel == blevel) {
+			for (ap = q->n_ap; ap; ap = ap->next) {
+				if (ap->atype > ATTR_MAX)
+					p->sap = attr_add(p->sap, attr_dup(ap, 3));
+			}
+		} else
+			p->sap = q->n_ap;
 	}
 
 	if (class & FIELD)
