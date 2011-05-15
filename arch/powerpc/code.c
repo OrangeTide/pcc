@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.24 2011/04/07 18:50:16 ragge Exp $	*/
+/*	$Id: code.c,v 1.25 2011/05/15 17:08:35 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -608,16 +608,6 @@ bycode(int t, int i)
 	}
 }
 #endif
-
-/*
- * return the alignment of field of type t
- */
-int
-fldal(unsigned int t)
-{
-	uerror("fldal: illegal field type");
-	return(ALINT);
-}
 
 /* fix up type of field p */
 void
