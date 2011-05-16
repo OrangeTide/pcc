@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.129 2011/04/26 15:32:03 ragge Exp $	*/
+/*	$Id: cpp.c,v 1.130 2011/05/16 23:56:51 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -52,6 +52,10 @@
 #include "compat.h"
 #include "cpp.h"
 #include "y.tab.h"
+
+#ifndef S_ISDIR
+#define S_ISDIR(m)	(((m) & S_IFMT) == S_IFDIR)
+#endif
 
 #define	SBSIZE	1000000
 
