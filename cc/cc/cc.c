@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.178 2011/04/12 08:17:42 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.179 2011/05/16 23:23:05 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -73,6 +73,10 @@
 #include <windows.h>
 #include <process.h>
 #include <io.h>
+#define F_OK	0x00
+#define R_OK	0x04
+#define W_OK	0x02
+#define X_OK	R_OK
 #endif
 
 #include "compat.h"
