@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.327 2011/04/25 11:31:37 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.328 2011/05/17 00:07:53 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1097,8 +1097,9 @@ term:		   term C_INCOP {  $$ = biop($2, $1, bcon(1)); }
 			inattr = $<intval>2;
 		}
 		|  C_ALIGNOF xa '(' cast_type ')' {
+			int al;
 			TYMFIX($4);
-			int al = talign($4->n_type, $4->n_ap);
+			al = talign($4->n_type, $4->n_ap);
 			$$ = bcon(al/SZCHAR);
 			inattr = $<intval>2;
 			tfree($4);
