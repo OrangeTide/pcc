@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.130 2011/05/16 23:56:51 gmcgarry Exp $	*/
+/*	$Id: cpp.c,v 1.131 2011/05/17 01:49:12 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -316,11 +316,21 @@ addidir(char *idir, struct incs **ww)
 		return; /* ignore */
 	if (*ww != NULL) {
 		for (w = *ww; w->next; w = w->next) {
+#ifdef WIN32
+			if (strcmp(w->dir, idir) == 0)
+				return;
+#else
 			if (w->dev == st.st_dev && w->ino == st.st_ino)
 				return;
+#endif
 		}
+#ifdef WIN32
+		if (strcmp(w->dir, idir) == 0)
+			return;
+#else
 		if (w->dev == st.st_dev && w->ino == st.st_ino)
 			return;
+#endif
 		ww = &w->next;
 	}
 	if ((w = calloc(sizeof(struct incs), 1)) == NULL)
