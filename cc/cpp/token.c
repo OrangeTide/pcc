@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.55 2011/05/18 10:02:22 ragge Exp $	*/
+/*	$Id: token.c,v 1.56 2011/05/22 17:17:32 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -591,7 +591,8 @@ chlit:
 			if (isalpha(ch) || isdigit(ch) || ch == '_') {
 				yytext[yyp++] = (usch)ch;
 			} else {
-				unch(ch);
+				if (ch != -1)
+					unch(ch);
 				break;
 			}
 		}
