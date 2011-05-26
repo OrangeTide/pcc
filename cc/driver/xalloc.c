@@ -1,3 +1,5 @@
+/*	$Id: xalloc.c,v 1.2 2011/05/26 16:48:40 plunky Exp $	*/
+
 /*-
  * Copyright (c) 2011 Joerg Sonnenberger <joerg@NetBSD.org>.
  * All rights reserved.
