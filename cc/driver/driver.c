@@ -1,4 +1,4 @@
-/*	$Id: driver.c,v 1.2 2011/05/26 16:48:40 plunky Exp $	*/
+/*	$Id: driver.c,v 1.3 2011/05/26 16:49:44 plunky Exp $	*/
 
 /*-
  * Copyright (c) 2011 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -32,6 +32,7 @@
 #include <sys/wait.h>
 #include <assert.h>
 #include <errno.h>
+#include <signal.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
