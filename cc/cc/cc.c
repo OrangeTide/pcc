@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.180 2011/05/17 02:13:14 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.181 2011/05/27 07:26:25 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -1012,9 +1012,18 @@ main(int argc, char *argv[])
 #endif
 		if (kflag)
 			av[na++] = "-k";
+#ifdef os_darwin
+		av[na++] = "-arch";
+#if mach_amd64
+		av[na++] = amd64_i386 ? "i386" : "x86_64";
+#else
+		av[na++] = "i386";
+#endif
+#else
 #ifdef mach_amd64
 		if (amd64_i386)
 			av[na++] = "--32";
+#endif
 #endif
 		av[na++] = "-o";
 		if (outfile && cflag)
