@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.4 2011/04/27 09:12:30 gmcgarry Exp $
+#	$Id: Makefile.in,v 1.5 2011/05/27 11:03:39 plunky Exp $
 #
 # Makefile.in for top-level of pcc.
 #
@@ -13,7 +13,7 @@ YACC=@YACC@
 LEX=@LEX@
 
 ALL_SUBDIRS=	cc cpp ccom
-DIST_SUBDIRS=	$(ALL_SUBDIRS)
+DIST_SUBDIRS=	$(ALL_SUBDIRS) driver
 
 all install clean:
 	@for subdir in $(ALL_SUBDIRS); do \
