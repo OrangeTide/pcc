@@ -1,4 +1,4 @@
-/*	$Id: driver.c,v 1.4 2011/05/27 06:10:32 plunky Exp $	*/
+/*	$Id: driver.c,v 1.5 2011/05/27 06:12:56 plunky Exp $	*/
 
 /*-
  * Copyright (c) 2011 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -359,6 +359,7 @@ compile_input(const char *file, char *input, char **output,
 	int retval;
 
 	strlist_init(&args);
+	strlist_append_list(&args, &compiler_flags);
 	if (debug_mode)
 		strlist_append(&args, "-g");
 	if (pic_mode)
