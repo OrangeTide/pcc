@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.13 2011/05/11 14:37:14 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.14 2011/05/27 10:27:58 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -35,7 +35,7 @@
  * Machine-dependent defines for both passes.
  */
 
-#if TARGOS == netbsd
+#if defined(os_netbsd)
 #define USE_GAS
 #endif
 
