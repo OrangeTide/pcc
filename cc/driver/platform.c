@@ -1,4 +1,4 @@
-/*	$Id: platform.c,v 1.2 2011/05/26 16:48:40 plunky Exp $	*/
+/*	$Id: platform.c,v 1.3 2011/05/27 06:18:07 plunky Exp $	*/
 
 /*-
  * Copyright (c) 2011 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -32,6 +32,24 @@
 #include <string.h>
 
 #include "driver.h"
+
+#include "config.h"
+
+#ifndef PREPROCESSOR
+#define PREPROCESSOR	"cpp"
+#endif
+
+#ifndef COMPILER
+#define COMPILER	"ccom"
+#endif
+
+#ifndef ASSEMBLER
+#define ASSEMBLER	"as"
+#endif
+
+#ifndef LINKER
+#define LINKER		"ld"
+#endif
 
 enum architecture {
 	ARCH_ANY,
@@ -251,8 +269,8 @@ init_platform_specific(const char *os_name, const char *arch_name)
 		}
 	}
 
-	preprocessor = "cpp";
-	compiler = "ccom";
-	assembler = "as";
-	linker = "ld";
+	preprocessor = PREPROCESSOR;
+	compiler = COMPILER;
+	assembler = ASSEMBLER;
+	linker = LINKER;
 }
