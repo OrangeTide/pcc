@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.135 2011/05/09 20:11:11 ragge Exp $	*/
+/*	$Id: table.c,v 1.136 2011/05/29 13:36:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1043,53 +1043,6 @@ struct optab table[] = {
 	SHCH,		TCHAR|TUCHAR|TWORD,
 		0,	RDEST,
 		"	movb AR,AL\n", },
-
-{ ASSIGN,	FOREFF|INBREG,
-	SFLD,		TCHAR|TUCHAR,
-	SBREG|SCON,	TCHAR|TUCHAR,
-		NAREG|NBREG,	RDEST,
-		"	movb AR,A2\n"
-		"	movzbl A2,A1\n"
-		"	andl $N,AL\n"
-		"	sall $H,A1\n"
-		"	andl $M,A1\n"
-		"	orl A1,AL\n"
-		"F	movb AR,AD\n"
-		"FZE", },
-
-{ ASSIGN,	FOREFF|INAREG,
-	SFLD,		TSHORT|TUSHORT,
-	SAREG|SCON,	TSHORT|TUSHORT,
-		NAREG,	RDEST,
-		"	movw AR,A1\n"
-		"	movzwl A1,ZN\n"
-		"	andl $N,AL\n"
-		"	sall $H,ZN\n"
-		"	andl $M,ZN\n"
-		"	orl ZN,AL\n"
-		"F	movw AR,AD\n"
-		"FZE", },
-
-{ ASSIGN,	FOREFF|INAREG,
-	SFLD,		TWORD,
-	SAREG|SNAME|SOREG|SCON,	TWORD,
-		NAREG,	RDEST,
-		"	movl AR,A1\n"
-		"	andl $N,AL\n"
-		"	sall $H,A1\n"
-		"	andl $M,A1\n"
-		"	orl A1,AL\n"
-		"ZB"
-		"F	movl AR,AD\n"
-		"FZE", },
-
-
-{ ASSIGN,	FOREFF|INCREG,
-	SFLD,	TLL,
-	SCREG,	TLL,
-		NCREG,	RDEST,
-		"ZL", },
-
 
 { ASSIGN,	INDREG|FOREFF,
 	SHFL,	TFLOAT|TDOUBLE|TLDOUBLE,
