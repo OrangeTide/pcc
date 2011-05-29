@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.328 2011/05/17 00:07:53 gmcgarry Exp $	*/
+/*	$Id: cgram.y,v 1.329 2011/05/29 15:36:01 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -2196,7 +2196,7 @@ eve2:		r = buildtree(p->n_op, p1, eve(p2));
 int
 con_e(NODE *p)
 {
-	return icons(eve(p));
+	return icons(optim(eve(p)));
 }
 
 void
