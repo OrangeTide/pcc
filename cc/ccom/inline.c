@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.41 2011/04/10 15:24:53 ragge Exp $	*/
+/*	$Id: inline.c,v 1.42 2011/05/30 03:45:53 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -381,8 +381,7 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 	extern int crslab, tvaloff;
 	struct istat *is = findfun(sp);
 	struct interpass *ip, *ipf, *ipl;
-	int lmin, stksz, l0, l1, l2, gainl;
-	OFFSZ stkoff;
+	int lmin, l0, l1, l2, gainl;
 	NODE *p, *rp;
 
 	if (is == NULL || nerrors) {
@@ -416,7 +415,6 @@ inlinetree(struct symtab *sp, NODE *f, NODE *ap)
 	}
 #endif
 
-	stkoff = stksz = 0;
 	/* emit jumps to surround inline function */
 	branch(l0 = getlab());
 	plabel(l1 = getlab());

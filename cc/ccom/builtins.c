@@ -1,4 +1,4 @@
-/*	$Id: builtins.c,v 1.24 2011/04/12 07:39:01 gmcgarry Exp $	*/
+/*	$Id: builtins.c,v 1.25 2011/05/30 03:45:53 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -41,14 +41,12 @@
 static NODE *
 builtin_alloca(NODE *f, NODE *a, TWORD rt)
 {
-	struct symtab *sp;
 	NODE *t, *u;
 
 #ifdef notyet
 	if (xnobuiltins)
 		return NULL;
 #endif
-	sp = f->n_sp;
 
 	t = tempnode(0, VOID|PTR, 0, 0);
 	u = tempnode(regno(t), VOID|PTR, 0, 0);

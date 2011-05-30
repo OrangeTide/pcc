@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.38 2011/04/07 18:50:16 ragge Exp $	*/
+/*	$Id: optim.c,v 1.39 2011/05/30 03:45:53 gmcgarry Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -86,9 +86,7 @@ optim(NODE *p)
 	int o, ty;
 	NODE *sp, *q;
 	int i, sz;
-	TWORD t;
 
-	t = BTYPE(p->n_type);
 	if( oflag ) return(p);
 
 	ty = coptype(p->n_op);
