@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.57 2011/05/30 03:40:55 gmcgarry Exp $	*/
+/*	$Id: token.c,v 1.58 2011/05/30 04:24:06 gmcgarry Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -375,6 +375,7 @@ con:			PUTCH(ch);
 					ch = NXTCH();
 				goto xloop;
 			}
+			i = 0;
 			do {
 				yytext[i++] = (usch)ch;
 				ch = NXTCH();
