@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.329 2011/05/29 15:36:01 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.330 2011/05/30 17:31:30 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -689,7 +689,12 @@ init_declarator:   declarator attr_var { init_declarator($<nodep>0, $1, 0, $2);}
 			init_declarator($<nodep>0, $1, 0, $6);
 #endif
 		}
-		|  xnfdeclarator '=' e { simpleinit($1, eve($3)); xnf = NULL; }
+		|  xnfdeclarator '=' e { 
+			doing_init++;
+			simpleinit($1, eve($3));
+			doing_init--;
+			xnf = NULL;
+		}
 		|  xnfdeclarator '=' begbr init_list optcomma '}' {
 			endinit();
 			xnf = NULL;
