@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.40 2011/05/30 17:31:30 ragge Exp $	*/
+/*	$Id: optim.c,v 1.41 2011/05/31 15:28:11 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -112,7 +112,7 @@ again:	o = p->n_op;
 			return p;
 		if( LO(p) != NAME ) cerror( "& error" );
 
-		if( !andable(p->n_left) && !doing_init) return(p);
+		if( !andable(p->n_left) && !statinit) return(p);
 
 		LO(p) = ICON;
 
