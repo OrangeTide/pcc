@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.281 2011/05/29 13:14:04 ragge Exp $	*/
+/*	$Id: trees.c,v 1.282 2011/05/31 15:26:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2500,6 +2500,7 @@ rmfldops(NODE *p)
 			p->n_left = q;
 			p->n_op = UNASG p->n_op;
 
+			p = clocal(p);
 			q = clocal(block(AND, ccopy(t1),
 			    xbcon(~(msk << foff), 0, t), t, 0,0));
 			r = clocal(block(AND, p, xbcon(msk, 0, t), t, 0, 0));
