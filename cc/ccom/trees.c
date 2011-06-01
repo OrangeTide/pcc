@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.282 2011/05/31 15:26:25 ragge Exp $	*/
+/*	$Id: trees.c,v 1.283 2011/06/01 08:42:14 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -194,8 +194,11 @@ buildtree(int o, NODE *l, NODE *r)
 			l->n_dcon = FLOAT_NEG(l->n_dcon);
 			return(l);
 
-	} else if( o==QUEST && l->n_op==ICON ) {
+	} else if( o==QUEST &&
+	    (l->n_op==ICON || (l->n_op==NAME && ISARY(l->n_type)))) {
 		CONSZ c = l->n_lval;
+		if (l->n_op==NAME)
+			c = 1; /* will become constant later */
 		nfree(l);
 		if (c) {
 			walkf(r->n_right, putjops, 0);
