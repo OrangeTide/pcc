@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.319 2011/05/30 03:45:53 gmcgarry Exp $	*/
+/*	$Id: pftn.c,v 1.320 2011/06/01 17:34:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1115,6 +1115,9 @@ talign(unsigned int ty, struct attr *apl)
 	return a;
 }
 
+short sztable[] = { 0, 0, SZCHAR, SZCHAR, SZSHORT, SZSHORT, SZINT, SZINT,
+	SZLONG, SZLONG, SZLONGLONG, SZLONGLONG, SZFLOAT, SZDOUBLE, SZLDOUBLE };
+
 /* compute the size associated with type ty,
  *  dimoff d, and sizoff s */
 /* BETTER NOT BE CALLED WHEN t, d, and s REFER TO A BIT FIELD... */
@@ -1148,25 +1151,13 @@ tsize(TWORD ty, union dimfun *d, struct attr *apl)
 			}
 		}
 
-	ty = BTYPE(ty);
-	if (ty == VOID)
+	if ((ty = BTYPE(ty)) == VOID)
 		ty = CHAR;
-
-	if (ISUNSIGNED(ty))
-		ty = DEUNSIGN(ty);
-
-	switch (ty) {
-	case BOOL: sz = SZBOOL; break;
-	case CHAR: sz = SZCHAR; break;
-	case SHORT: sz = SZSHORT; break;
-	case INT: sz = SZINT; break;
-	case LONG: sz = SZLONG; break;
-	case LONGLONG: sz = SZLONGLONG; break;
-	case FLOAT: sz = SZFLOAT; break;
-	case DOUBLE: sz = SZDOUBLE; break;
-	case LDOUBLE: sz = SZLDOUBLE; break;
-	case STRTY:
-	case UNIONTY:
+	if (ty <= LDOUBLE)
+		sz = sztable[ty];
+	else if (ty == BOOL)
+		sz = SZBOOL;
+	else if (ISSOU(ty)) {
 		if ((ap = strattr(apl)) == NULL ||
 		    (ap2 = attr_find(apl, GCC_ATYP_ALIGNED)) == NULL ||
 		    (ap2->iarg(0) == 0)) {
@@ -1174,8 +1165,7 @@ tsize(TWORD ty, union dimfun *d, struct attr *apl)
 			sz = SZINT;
 		} else
 			sz = ap->amsize;
-		break;
-	default:
+	} else {
 		uerror("unknown type");
 		sz = SZINT;
 	}
