@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.220 2011/05/31 15:28:11 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.221 2011/06/01 17:39:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -362,7 +362,7 @@ int yylex(void);
 void yyerror(char *);
 int pragmas_gcc(char *t);
 NODE *cstknode(TWORD t, union dimfun *df, struct attr *ap);
-
+int concast(NODE *p, TWORD t);
 NODE *builtin_check(NODE *f, NODE *a);
 
 #ifdef SOFTFLOAT

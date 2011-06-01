@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.41 2011/05/31 15:28:11 ragge Exp $	*/
+/*	$Id: optim.c,v 1.42 2011/06/01 17:39:03 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -100,6 +100,12 @@ again:	o = p->n_op;
 	switch(o){
 
 	case SCONV:
+		if (concast(p->n_left, p->n_type)) {
+			q = p->n_left;
+			nfree(p);
+			return q;
+		}
+		/* FALLTHROUGH */
 	case PCONV:
 		return( clocal(p) );
 
