@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.67 2011/05/31 15:28:11 ragge Exp $	*/
+/*	$Id: init.c,v 1.68 2011/06/01 08:39:48 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -609,7 +609,7 @@ insbf(OFFSZ off, int fsz, int val)
 	sym.sclass = (char)(typ == INT ? FIELD | fsz : MOU);
 	r = xbcon(0, &sym, typ);
 	p = block(STREF, p, r, INT, 0, 0);
-	ecode(buildtree(ASSIGN, stref(p), bcon(val)));
+	ecomp(buildtree(ASSIGN, stref(p), bcon(val)));
 }
 
 /*
