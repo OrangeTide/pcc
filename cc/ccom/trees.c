@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.286 2011/06/02 15:29:54 ragge Exp $	*/
+/*	$Id: trees.c,v 1.287 2011/06/02 15:48:59 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1302,10 +1302,10 @@ convert(NODE *p, int f)
 		df++;
 		ty = DECREF(ty);
 	}
-	rv = clocal(block(PMCONV, rv, r, INT, 0, 0));
+	rv = clocal(MBLOCK(rv, r, INT, 0, 0));
 	rv = optim(rv);
 
-	r = block(PMCONV, q, rv, INT, 0, 0);
+	r = MBLOCK(q, rv, INT, 0, 0);
 	r = clocal(r);
 	/*
 	 * Indexing is only allowed with integer arguments, so insert
@@ -1360,8 +1360,7 @@ oconvert(p) register NODE *p; {
 	case MINUS:
 		p->n_type = INTPTR;
 		p->n_ap = NULL;
-		return(  clocal( block( PVCONV,
-			p, bpsize(p->n_left), INT, 0, 0)));
+		return(clocal(VBLOCK(p, bpsize(p->n_left), INT, 0, 0)));
 		}
 
 	cerror( "illegal oconvert: %d", p->n_op );
