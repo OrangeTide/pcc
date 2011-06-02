@@ -1,5 +1,5 @@
 %{
-/*	$Id: scan.l,v 1.106 2011/04/25 11:31:37 ragge Exp $	*/
+/*	$Id: scan.l,v 1.107 2011/06/02 15:29:54 ragge Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -55,7 +55,6 @@ static void control(int);
 static void pragma(void);
 int notype, parbal, inattr, parlvl, nodinit;
 static int resw(TWORD, int);
-extern int doing_init;
 
 #define	CPP_IDENT 	2
 #define	CPP_LINE 	3

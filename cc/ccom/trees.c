@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.285 2011/06/02 14:58:00 plunky Exp $	*/
+/*	$Id: trees.c,v 1.286 2011/06/02 15:29:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -144,6 +144,16 @@ static char *tnames[] = {
 
 int bdebug = 0;
 extern int negrel[];
+
+/* Have some defaults for most common targets */
+#ifndef WORD_ADDRESSED
+#define	offcon(o,t,d,ap) xbcon((o/SZCHAR), NULL, INTPTR)
+#define	VBLOCK(p,b,t,d,a) buildtree(DIV, p, b)
+#define	MBLOCK(p,b,t,d,a) buildtree(MUL, p, b)
+#else
+#define	VBLOCK(p,b,t,d,a) block(PVCONV, p, b, t, d, a)
+#define	MBLOCK(p,b,t,d,a) block(PMCONV, p, b, t, d, a)
+#endif
 
 NODE *
 buildtree(int o, NODE *l, NODE *r)

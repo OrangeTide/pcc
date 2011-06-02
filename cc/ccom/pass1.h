@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.221 2011/06/01 17:39:03 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.222 2011/06/02 15:29:54 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -219,7 +219,9 @@ extern	NODE
 	*strend(int gtype, char *),
 	*tymerge(NODE *, NODE *),
 	*stref(NODE *),
+#ifdef WORD_ADDRESSED
 	*offcon(OFFSZ, TWORD, union dimfun *, struct attr *),
+#endif
 	*bcon(int),
 	*xbcon(CONSZ, struct symtab *, TWORD),
 	*bpsize(NODE *),
