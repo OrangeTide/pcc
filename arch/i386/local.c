@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.145 2011/05/30 17:36:10 ragge Exp $	*/
+/*	$Id: local.c,v 1.146 2011/06/02 13:44:46 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1073,9 +1073,6 @@ ninval(CONSZ off, int fsz, NODE *p)
 {
 	union { float f; double d; long double l; int i[3]; } u;
 	struct symtab *q;
-#if defined(ELFABI) || defined(MACHOABI)
-	char *c;
-#endif
 	TWORD t;
 	int i;
 
