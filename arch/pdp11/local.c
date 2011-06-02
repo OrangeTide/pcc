@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.8 2011/04/07 18:50:16 ragge Exp $	*/
+/*	$Id: local.c,v 1.9 2011/06/02 15:41:27 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -11,8 +11,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -242,13 +240,6 @@ clocal(NODE *p)
 			p->n_left = buildtree(ADDROF, l, NIL);
 		break;
 
-	case PMCONV:
-	case PVCONV:
-		r = p;
-		p = buildtree(o == PMCONV ? MUL : DIV, p->n_left, p->n_right);
-		nfree(r);
-		break;
-
 	case FORCE:
 		/* put return value in return reg */
 		p->n_op = ASSIGN;
@@ -319,30 +310,6 @@ cisreg(TWORD t)
 	    t == LONGLONG || t == ULONGLONG)
 		return 0; /* not yet */
 	return 1;
-}
-
-/*
- * return a node, for structure references, which is suitable for
- * being added to a pointer of type t, in order to be off bits offset
- * into a structure
- * t, d, and s are the type, dimension offset, and sizeoffset
- * For pdp10, return the type-specific index number which calculation
- * is based on its size. For example, short a[3] would return 3.
- * Be careful about only handling first-level pointers, the following
- * indirections must be fullword.
- */
-NODE *
-offcon(OFFSZ off, TWORD t, union dimfun *d, struct suedef *sue)
-{
-	register NODE *p;
-
-	if (xdebug)
-		printf("offcon: OFFSZ %lld type %x dim %p siz %d\n",
-		    off, t, d, sue->suesize);
-
-	p = bcon(0);
-	p->n_lval = off/SZCHAR;	/* Default */
-	return(p);
 }
 
 /*

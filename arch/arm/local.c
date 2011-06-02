@@ -1,4 +1,4 @@
-/*      $Id: local.c,v 1.25 2011/04/07 18:50:15 ragge Exp $    */
+/*      $Id: local.c,v 1.26 2011/06/02 15:41:26 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -12,8 +12,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission
  *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -160,11 +158,6 @@ clocal(NODE *p)
                 p->n_left->n_rval = p->n_left->n_type == BOOL ? 
                     RETREG(BOOL_TYPE) : RETREG(p->n_type);
                 break;
-
-	case PMCONV:
-	case PVCONV:
-		nfree(p);
-		return buildtree(o == PMCONV ? MUL : DIV, p->n_left, p->n_right);
 
 	case SCONV:
 		l = p->n_left;
@@ -351,17 +344,6 @@ cisreg(TWORD t)
 	if (t == FLOAT || t == DOUBLE || t == LDOUBLE)
 		return 0; /* not yet */
 	return 1;
-}
-
-/*
- * Used for generating pointer offsets into structures and arrays.
- *
- * For a pointer of type 't', generate an the offset 'off'.
- */
-NODE *
-offcon(OFFSZ off, TWORD t, union dimfun *d, struct suedef *sue)
-{
-	return bcon(off/SZCHAR);
 }
 
 /*

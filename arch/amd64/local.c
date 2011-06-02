@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.52 2011/06/01 17:41:04 ragge Exp $	*/
+/*	$Id: local.c,v 1.53 2011/06/02 15:41:26 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -624,13 +624,6 @@ clocal(NODE *p)
 		p->n_left->n_type = INT;
 		break;
 
-	case PMCONV:
-	case PVCONV:
-		r = p;
-		p = buildtree(o == PMCONV ? MUL : DIV, p->n_left, p->n_right);
-		nfree(r);
-		break;
-
 	case FORCE:
 		/* put return value in return reg */
 		p->n_op = ASSIGN;
@@ -737,30 +730,6 @@ cisreg(TWORD t)
 	if (t == LDOUBLE)
 		return 0;
 	return 1;
-}
-
-/*
- * return a node, for structure references, which is suitable for
- * being added to a pointer of type t, in order to be off bits offset
- * into a structure
- * t, d, and s are the type, dimension offset, and sizeoffset
- * For pdp10, return the type-specific index number which calculation
- * is based on its size. For example, short a[3] would return 3.
- * Be careful about only handling first-level pointers, the following
- * indirections must be fullword.
- */
-NODE *
-offcon(OFFSZ off, TWORD t, union dimfun *d, struct attr *ap)
-{
-	register NODE *p;
-
-	if (xdebug)
-		printf("offcon: OFFSZ %lld type %x dim %p siz %d\n",
-		    off, t, d, (int)tsize(t, d, ap));
-
-	p = bcon(0);
-	p->n_lval = off/SZCHAR;	/* Default */
-	return(p);
 }
 
 /*
