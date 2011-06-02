@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.284 2011/06/01 17:39:03 ragge Exp $	*/
+/*	$Id: trees.c,v 1.285 2011/06/02 14:58:00 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1574,18 +1574,6 @@ tymatch(NODE *p)
 #endif
 
 	return(p);
-	}
-
-/*
- * Create a float const node of zero.
- */
-static NODE *
-fzero(TWORD t)
-{
-	NODE *p = block(FCON, NIL, NIL, t, 0, 0);
-
-	p->n_dcon = FLOAT_CAST(0, INT);
-	return p;
 }
 
 /*
