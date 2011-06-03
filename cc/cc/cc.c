@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.181 2011/05/27 07:26:25 gmcgarry Exp $	*/
+/*	$Id: cc.c,v 1.182 2011/06/03 15:34:00 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -116,13 +116,11 @@
 #define LINKER		"ld"
 #endif
 
-#define OS MKS(TARGOS)
-#define MACH MKS(TARGMACH)
 #ifndef PCCINCDIR
-#define PCCINCDIR	LIBDIR "pcc/" MACH "-" OS "/" PACKAGE_VERSION "/include"
+#define PCCINCDIR	LIBDIR "pcc/" TARGMACH "-" TARGOS "/" PACKAGE_VERSION "/include"
 #endif
 #ifndef PCCLIBDIR
-#define PCCLIBDIR	LIBDIR "pcc/" MACH "-" OS "/" PACKAGE_VERSION "/lib"
+#define PCCLIBDIR	LIBDIR "pcc/" TARGMACH "-" TARGOS "/" PACKAGE_VERSION "/lib"
 #endif
 
 #ifndef MULTIOSDIR

@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.23 2011/05/15 17:08:35 ragge Exp $    */
+/*      $Id: code.c,v 1.24 2011/06/03 15:34:00 plunky Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -437,10 +437,7 @@ bccode()
 void
 ejobcode(int flag )
 {
-#define _MKSTR(x) #x
-#define MKSTR(x) _MKSTR(x) 
-#define OS MKSTR(TARGOS)
-	printf("\t.ident \"PCC: %s (%s)\"\n", PACKAGE_STRING, OS);
+	printf("\t.ident \"PCC: %s\"\n", VERSSTR);
 }
 
 /*
