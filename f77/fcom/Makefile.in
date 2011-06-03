@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.14 2011/06/03 15:34:01 plunky Exp $
+#	$Id: Makefile.in,v 1.15 2011/06/03 15:56:08 plunky Exp $
 #
 # Makefile for the Fortran 77 command
 #  Running on the @targmach@
@@ -9,13 +9,10 @@ srcdir=@srcdir@
 top_srcdir=@top_srcdir@
 builddir=@builddir@
 top_builddir=@top_builddir@
-XFL=-DPCC_DEBUG  -Wall -Wmissing-prototypes -Wstrict-prototypes -Werror \
-	-Werror -Wshadow -Wsign-compare
-
 CC = @CC@
 CC_FOR_BUILD = @CC_FOR_BUILD@
 CFLAGS = @CFLAGS@ @ADD_CFLAGS@
-CPPFLAGS = @CPPFLAGS@ ${XFL} -DFCOM -DLANG_F77 -Dos_${TARGOS} \
+CPPFLAGS = @CPPFLAGS@ @ADD_CPPFLAGS@ -DFCOM -DLANG_F77 -Dos_${TARGOS} \
 	-I${srcdir} -I${builddir} -I${top_builddir} \
 	-I${MIPDIR} -I${MDIR} -Dmach_${TARGMACH} -I${top_srcdir}/os/${TARGOS}
 LIBS = @LIBS@

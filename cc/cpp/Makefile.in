@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.31 2011/06/03 15:42:45 plunky Exp $
+#	$Id: Makefile.in,v 1.32 2011/06/03 15:56:08 plunky Exp $
 #
 # Makefile.in for cpp
 #
@@ -7,8 +7,6 @@ srcdir=@srcdir@
 top_srcdir=@top_srcdir@
 builddir=@builddir@
 top_builddir=@top_builddir@
-XFL=-DPCC_DEBUG
-
 prefix = @prefix@
 exec_prefix = @exec_prefix@
 bindir = @bindir@
@@ -19,7 +17,7 @@ strip = @strip@
 CC = @CC@
 EXEEXT = @EXEEXT@
 CFLAGS = @CFLAGS@ @ADD_CFLAGS@
-CPPFLAGS = @CPPFLAGS@ @ADD_CPPFLAGS@ ${XFL} -I${srcdir} -I${top_builddir} -I${builddir} -I${MIPDIR} -I${MDIR}
+CPPFLAGS = @CPPFLAGS@ @ADD_CPPFLAGS@ -I${srcdir} -I${top_builddir} -I${builddir} -I${MIPDIR} -I${MDIR}
 LIBS = @LIBS@
 LDFLAGS = @LDFLAGS@
 LEX = @LEX@
