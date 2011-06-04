@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.18 2011/06/04 07:47:29 ragge Exp $	*/
+/*	$Id: local.c,v 1.19 2011/06/04 15:22:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -210,7 +210,7 @@ spalloc(NODE *t, NODE *p, OFFSZ off)
  * print out a constant node
  * mat be associated with a label
  */
-void
+int
 ninval(NODE *p)
 {
 	struct symtab *q;
@@ -219,7 +219,7 @@ ninval(NODE *p)
 	p = p->n_left;
 	t = p->n_type;
 	if (t > BTMASK)
-		t = INT; /* pointer */
+		t = p->n_type = INT; /* pointer */
 
 	switch (t) {
 	case LONGLONG:
@@ -242,8 +242,9 @@ ninval(NODE *p)
 		break;
 	default:
 		fwalk(p, eprint, 0);
-		cerror("ninval");
+		return 0;
 	}
+	return 1;
 }
 
 /*

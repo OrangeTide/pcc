@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.224 2011/06/04 07:47:30 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.225 2011/06/04 15:22:02 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -193,6 +193,8 @@ extern	int contlab;
 extern	int flostat;
 extern	int retlab;
 extern	int doing_init, statinit;
+extern	short sztable[];
+extern	char *astypnames[];
 
 /* pragma globals */
 extern int pragma_allpacked, pragma_packed, pragma_aligned;
@@ -283,7 +285,8 @@ void extdec(struct symtab *);
 void defzero(struct symtab *);
 int falloc(struct symtab *, int, NODE *);
 TWORD ctype(TWORD);  
-void ninval(CONSZ, int, NODE *);
+void inval(CONSZ, int, NODE *);
+int ninval(CONSZ, int, NODE *);
 void infld(CONSZ, int, CONSZ);
 void zbits(CONSZ, int);
 void instring(struct symtab *);

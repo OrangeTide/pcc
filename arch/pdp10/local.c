@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.75 2011/06/04 07:47:29 ragge Exp $	*/
+/*	$Id: local.c,v 1.76 2011/06/04 15:22:03 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -836,7 +836,7 @@ infld(CONSZ off, int fsz, CONSZ val)
  * off is bit offset from the beginning of the aggregate
  * fsz is the number of bits this is referring to
  */
-void
+int
 ninval(CONSZ off, int fsz, NODE *p)
 {
 	cerror("ninval");

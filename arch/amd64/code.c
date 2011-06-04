@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.56 2011/06/04 07:41:11 ragge Exp $	*/
+/*	$Id: code.c,v 1.57 2011/06/04 15:22:02 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -496,6 +496,10 @@ bjobcode()
 	struct rstack *rp;
 	NODE *p, *q;
 	char *c;
+
+	/* amd64 names for some asm constant printouts */
+	astypnames[INT] = astypnames[UNSIGNED] = "\t.long";
+	astypnames[LONG] = astypnames[ULONG] = "\t.quad";
 
 	gp_offset = addname("gp_offset");
 	fp_offset = addname("fp_offset");
