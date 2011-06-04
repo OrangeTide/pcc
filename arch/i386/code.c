@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.63 2011/06/04 07:41:11 ragge Exp $	*/
+/*	$Id: code.c,v 1.64 2011/06/04 20:26:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -362,6 +362,10 @@ ejobcode(int flag )
 void
 bjobcode()
 {
+#ifdef os_sunos
+	astypnames[SHORT] = astypnames[USHORT] = "\t.2byte";
+#endif
+	astypnames[INT] = astypnames[UNSIGNED] = "\t.long";
 #if defined(MACHOABI)
 	DLIST_INIT(&stublist, link);
 	DLIST_INIT(&nlplist, link);
