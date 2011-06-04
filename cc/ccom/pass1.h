@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.222 2011/06/02 15:29:54 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.223 2011/06/04 07:41:12 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -355,7 +355,6 @@ void eprint(NODE *, int, int *, int *);
 int uclass(int class);
 int notlval(NODE *);
 void ecode(NODE *p);
-void bccode(void);
 void ftnend(void);
 void dclargs(void);
 int suemeq(struct attr *s1, struct attr *s2);

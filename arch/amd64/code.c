@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.55 2011/06/03 15:34:00 plunky Exp $	*/
+/*	$Id: code.c,v 1.56 2011/06/04 07:41:11 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -394,15 +394,6 @@ bfcode(struct symtab **s, int cnt)
 	ecomp(p);
 }
 
-
-/*
- * by now, the automatics and register variables are allocated
- */
-void
-bccode()
-{
-	SETOFF(autooff, SZINT);
-}
 
 /* called just before final exit */
 /* flag is 1 if errors, 0 if none */

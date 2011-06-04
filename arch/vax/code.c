@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.9 2011/05/15 17:08:36 ragge Exp $	*/
+/*	$Id: code.c,v 1.10 2011/06/04 07:41:12 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -119,17 +119,6 @@ bfcode(struct symtab **a, int n)
 	for (i = 0; i < n; i++)
 		a[i]->soffset += SZPOINT(INT);
 }
-
-void
-bccode(){ /* called just before the first executable statment */
-		/* by now, the automatics and register variables are allocated */
-	SETOFF( autooff, SZINT );
-#if 0
-	/* set aside store area offset */
-	p2bbeg( autooff, regvar );
-	reg_use = (reg_use > regvar ? regvar : reg_use);
-#endif
-	}
 
 void
 ejobcode( flag ){

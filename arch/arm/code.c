@@ -1,4 +1,4 @@
-/*      $Id: code.c,v 1.24 2011/06/03 15:34:00 plunky Exp $    */
+/*      $Id: code.c,v 1.25 2011/06/04 07:41:11 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -418,17 +418,6 @@ efcode()
 	/* struct assignment */
 	p = buildtree(ASSIGN, p, q);
 	ecomp(p);
-}
-
-/*
- * Beginning-of-code: finished generating function prologue
- *
- * by now, the automatics and register variables are allocated
- */
-void
-bccode()
-{
-	SETOFF(autooff, SZINT);
 }
 
 /*

@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.62 2011/06/03 15:34:00 plunky Exp $	*/
+/*	$Id: code.c,v 1.63 2011/06/04 07:41:11 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -320,15 +320,6 @@ bfcode(struct symtab **sp, int cnt)
 	}
 }
 
-
-/*
- * by now, the automatics and register variables are allocated
- */
-void
-bccode()
-{
-	SETOFF(autooff, SZINT);
-}
 
 #if defined(MACHOABI)
 struct stub stublist;
