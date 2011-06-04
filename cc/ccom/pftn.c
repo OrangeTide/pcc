@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.320 2011/06/01 17:34:05 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.321 2011/06/04 07:47:30 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -611,7 +611,7 @@ dclargs()
 		}
 	}
 
-done:	cendarg();
+done:	autooff = AUTOINIT;
 
 	plabel(prolab); /* after prolog, used in optimization */
 	retlab = getlab();

@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.10 2011/06/02 15:41:27 ragge Exp $	*/
+/*	$Id: local.c,v 1.11 2011/06/04 07:47:29 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -367,15 +367,6 @@ int
 andable(NODE *p)
 {
 	return(1);  /* all names can have & taken on them */
-}
-
-/*
- * at the end of the arguments of a ftn, set the automatic offset
- */
-void
-cendarg()
-{
-	autooff = AUTOINIT;
 }
 
 /*

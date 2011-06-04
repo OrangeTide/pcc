@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.12 2011/06/02 15:41:27 ragge Exp $	*/
+/*	$Id: local.c,v 1.13 2011/06/04 07:47:30 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -245,11 +245,6 @@ andable(NODE *p)
 	return 0; /* Delay name reference to table, for PIC code generation */
 }
  
-void
-cendarg(){ /* at the end of the arguments of a ftn, set the automatic offset */
-	autooff = AUTOINIT;
-	}
-
 int
 cisreg( t ) TWORD t; { /* is an automatic variable of type t OK for a register variable */
 	return(1);	/* all are now */

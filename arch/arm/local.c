@@ -1,4 +1,4 @@
-/*      $Id: local.c,v 1.26 2011/06/02 15:41:26 ragge Exp $    */
+/*      $Id: local.c,v 1.27 2011/06/04 07:47:29 ragge Exp $    */
 /*
  * Copyright (c) 2007 Gregory McGarry (g.mcgarry@ieee.org).
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -322,17 +322,6 @@ andable(NODE *p)
 	if (ISFTN(p->n_type))
 		return 1;
 	return 0;
-}
-
-/*
- * Called just after function arguments are built.  Re-initialize the
- * offset of the arguments on the stack.
- * Is this necessary anymore?  bfcode() is called immediately after.
- */
-void
-cendarg()
-{
-	autooff = AUTOINIT;
 }
 
 /*
