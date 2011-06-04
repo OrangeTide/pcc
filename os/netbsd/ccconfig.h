@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.18 2011/05/03 11:23:04 ragge Exp $	*/
+/*	$Id: ccconfig.h,v 1.19 2011/06/04 19:27:26 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -88,5 +88,3 @@
 #else
 #error defines for arch missing
 #endif
-
-#define	STABS

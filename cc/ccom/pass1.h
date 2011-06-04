@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.225 2011/06/04 15:22:02 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.226 2011/06/04 19:27:25 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -48,8 +48,6 @@
 typedef unsigned int bittype; /* XXX - for basicblock */
 #endif
 #include "manifest.h"
-
-#include "ccconfig.h"
 
 /*
  * Storage classes

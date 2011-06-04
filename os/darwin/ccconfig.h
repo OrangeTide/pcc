@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.13 2011/04/28 00:39:49 gmcgarry Exp $	*/
+/*	$Id: ccconfig.h,v 1.14 2011/06/04 19:27:25 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -65,5 +65,3 @@ ld -arch ppc -weak_reference_mismatches non-weak -o a.out -lcrt1.o -lcrt2.o -L/u
 #else
 #error defines for arch missing
 #endif
-
-#define	STABS

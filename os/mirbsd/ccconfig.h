@@ -1,4 +1,4 @@
-/* $Id: ccconfig.h,v 1.7 2009/01/24 21:43:49 gmcgarry Exp $ */
+/* $Id: ccconfig.h,v 1.8 2011/06/04 19:27:26 plunky Exp $ */
 /*-
  * Copyright (c) 2007, 2008
  *	Thorsten Glaser <tg@mirbsd.de>
@@ -88,9 +88,6 @@
 /* C run-time startup */
 #define CRT0FILE		LIBDIR "crt0.o"
 #define STARTLABEL		"__start"
-
-/* debugging info */
-#define STABS
 
 /* === md part === */
 
