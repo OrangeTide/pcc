@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.32 2011/06/03 15:56:08 plunky Exp $
+#	$Id: Makefile.in,v 1.33 2011/06/04 07:57:43 plunky Exp $
 #
 # Makefile.in for cpp
 #
@@ -22,6 +22,7 @@ LIBS = @LIBS@
 LDFLAGS = @LDFLAGS@
 LEX = @LEX@
 YACC = @YACC@
+YFLAGS = @YFLAGS@
 INSTALL = @INSTALL@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 TARGMACH = @targmach@
