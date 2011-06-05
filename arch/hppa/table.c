@@ -1,3 +1,4 @@
+/*	$Id: table.c,v 1.15 2011/06/05 08:54:42 plunky Exp $	*/
 /*	$OpenBSD: table.c,v 1.2 2007/12/19 20:19:54 otto Exp $	*/
 
 /*

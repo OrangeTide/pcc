@@ -1,3 +1,5 @@
+/*	$Id: table.c,v 1.35 2011/06/05 08:54:42 plunky Exp $	*/
+
 #include "pass2.h"
 
 # define ANYSIGNED TINT|TLONG|TCHAR

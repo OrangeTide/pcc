@@ -1,3 +1,4 @@
+/*	$Id: local.c,v 1.33 2011/06/05 08:54:42 plunky Exp $	*/
 /*	$OpenBSD: local.c,v 1.2 2007/11/18 17:39:55 ragge Exp $	*/
 
 /*

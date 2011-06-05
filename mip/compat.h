@@ -1,3 +1,5 @@
+/*	$Id: compat.h,v 1.4 2011/06/05 08:54:43 plunky Exp $	*/
+
 /*
  * Just compatibility function prototypes.
  * Public domain.

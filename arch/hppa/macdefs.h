@@ -1,4 +1,4 @@
-/*	$OpenBSD$	*/
+/*	$Id: macdefs.h,v 1.17 2011/06/05 08:54:42 plunky Exp $	*/
 
 /*
  * Copyright (c) 2007 Michael Shalayeff

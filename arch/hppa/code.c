@@ -1,3 +1,4 @@
+/*	$Id: code.c,v 1.26 2011/06/05 08:54:42 plunky Exp $	*/
 /*	$OpenBSD: code.c,v 1.2 2007/11/22 15:06:43 stefan Exp $	*/
 
 /*

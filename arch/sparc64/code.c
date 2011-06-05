@@ -1,3 +1,5 @@
+/*	$Id: code.c,v 1.18 2011/06/05 08:54:42 plunky Exp $	*/
+
 /*
  * Copyright (c) 2008 David Crawshaw <david@zentus.com>
  * 

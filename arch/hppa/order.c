@@ -1,4 +1,4 @@
-/*	$OpenBSD$	*/
+/*	$Id: order.c,v 1.10 2011/06/05 08:54:42 plunky Exp $	*/
 
 /*
  * Copyright (c) 2007 Michael Shalayeff

@@ -1,3 +1,4 @@
+/*	$Id: mkext.c,v 1.50 2011/06/05 08:54:43 plunky Exp $	*/
 
 /*
  * Generate defines for the needed hardops.

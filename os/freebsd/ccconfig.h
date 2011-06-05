@@ -1,3 +1,5 @@
+/*	$Id: ccconfig.h,v 1.14 2011/06/05 08:54:43 plunky Exp $	*/
+
 /*-
  * Copyright (c) 2007 David O'Brien <obrien@FreeBSD.org>
  * Copyright (c) 2007 Ed Schouten <ed@fxq.nl>
