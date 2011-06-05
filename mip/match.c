@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.95 2011/06/05 10:19:25 ragge Exp $   */
+/*      $Id: match.c,v 1.96 2011/06/05 18:51:02 plunky Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -73,7 +73,9 @@ int s2debug;
 
 extern char *ltyp[], *rtyp[];
 
+#ifdef PCC_DEBUG
 static char *srtyp[] = { "SRNOPE", "SRDIR", "SROREG", "SRREG" };
+#endif
 
 /*
  * return true if shape is appropriate for the node p
