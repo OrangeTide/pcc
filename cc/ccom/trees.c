@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.287 2011/06/02 15:48:59 ragge Exp $	*/
+/*	$Id: trees.c,v 1.288 2011/06/05 10:19:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2426,7 +2426,7 @@ rmfldops(NODE *p)
 		fsz = UPKFSZ(p->n_rval);
 		foff = UPKFOFF(p->n_rval);
 		tsz = tsize(q->n_type, 0, 0);
-#ifndef RTOLBYTES
+#if TARGET_ENDIAN == TARGET_BE
 		foff = tsz - fsz - foff;
 #endif
 		q = clocal(block(LS, q, bcon(tsz-fsz-foff), p->n_type, 0, 0));
@@ -2447,7 +2447,7 @@ rmfldops(NODE *p)
 		foff = UPKFOFF(q->n_rval);
 		t = q->n_left->n_type;
 		tsz = tsize(t, 0, 0);
-#ifndef RTOLBYTES
+#if TARGET_ENDIAN == TARGET_BE
 		foff = tsz - fsz - foff;
 #endif
 		msk = (((1LL << (fsz-1))-1) << 1) | 1;

@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.70 2011/06/05 09:23:04 ragge Exp $	*/
+/*	$Id: init.c,v 1.71 2011/06/05 10:19:25 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -258,7 +258,7 @@ inval(CONSZ off, int fsz, NODE *p)
 
 #ifndef MYBFINIT
 
-#ifndef RTOLBYTES
+#if TARGET_ENDIAN != TARGET_LE
 #error big endian need private bitfield ops
 #endif
 

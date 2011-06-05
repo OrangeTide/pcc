@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.13 2011/05/11 14:37:14 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.14 2011/06/05 10:19:24 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -213,7 +213,7 @@ typedef long long OFFSZ;
 #define AUTOINIT	(12*8)	/* # bits above fp where automatics start */
 
 #undef	FIELDOPS		/* no bit-field instructions */
-#define RTOLBYTES 1		/* bytes are numbered right to left */
+#define TARGET_ENDIAN TARGET_LE
 
 /* XXX - to die */
 #define FPREG   FP	/* frame pointer */

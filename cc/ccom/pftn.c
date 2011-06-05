@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.321 2011/06/04 07:47:30 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.322 2011/06/05 10:19:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1241,7 +1241,7 @@ inwstring(struct symtab *sp)
 			p->n_lval = esccon(&s);
 		else
 			p->n_lval = (unsigned char)s[-1];
-		ninval(0, tsize(WCHAR_TYPE, NULL, NULL), p);
+		inval(0, tsize(WCHAR_TYPE, NULL, NULL), p);
 	} while (s[-1] != 0);
 	nfree(p);
 }
@@ -1303,7 +1303,7 @@ oalloc(struct symtab *p, int *poff )
 	if (p->sclass == PARAM && (p->stype == CHAR || p->stype == UCHAR ||
 	    p->stype == SHORT || p->stype == USHORT || p->stype == BOOL)) {
 		off = upoff(SZINT, ALINT, &noff);
-#ifndef RTOLBYTES
+#if TARGET_ENDIAN == TARGET_LE
 		off = noff - tsz;
 #endif
 	} else {

@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.6 2011/05/11 14:37:14 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.7 2011/06/05 10:19:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -120,7 +120,7 @@ typedef long long OFFSZ;
 #define FIELDOPS
 
 /* bytes are numbered from right to left */
-#define RTOLBYTES
+#define TARGET_ENDIAN TARGET_LE
 
 /* we want prtree included */
 # define STDPRTREE

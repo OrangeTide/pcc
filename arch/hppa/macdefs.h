@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.17 2011/06/05 08:54:42 plunky Exp $	*/
+/*	$Id: macdefs.h,v 1.18 2011/06/05 10:19:24 ragge Exp $	*/
 
 /*
  * Copyright (c) 2007 Michael Shalayeff
@@ -100,7 +100,7 @@ typedef long long OFFSZ;
 #undef	BACKTEMP	/* stack grows upwards */
 
 #define	FIELDOPS	/* have bit field ops */
-#define	LTORBYTES	/* big endian */
+#define TARGET_ENDIAN TARGET_BE
 
 #define	BYTEOFF(x)	((x)&03)
 #define	wdal(k)		(BYTEOFF(k)==0)

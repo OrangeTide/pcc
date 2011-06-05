@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.92 2011/01/22 22:08:54 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.93 2011/06/05 10:19:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -130,6 +130,12 @@
 		/* advance x to a multiple of y */
 #define NOFIT(x,y,z)	(((x)%(z) + (y)) > (z))
 		/* can y bits be added to x without overflowing z */
+
+/* Endianness.	Target is expected to TARGET_ENDIAN to one of these  */
+#define TARGET_LE	1
+#define TARGET_BE	2
+#define TARGET_PDP	3
+#define TARGET_ANY	4
 
 #ifndef SPECIAL_INTEGERS
 #define	ASGLVAL(lval, val)

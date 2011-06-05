@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.94 2011/05/04 18:02:32 ragge Exp $   */
+/*      $Id: match.c,v 1.95 2011/06/05 10:19:25 ragge Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -255,7 +255,7 @@ ttype(TWORD t, int tword)
 }
 
 #define FLDSZ(x)	UPKFSZ(x)
-#ifdef RTOLBYTES
+#if TARGET_ENDIAN == TARGET_LE
 #define	FLDSHF(x)	UPKFOFF(x)
 #else
 #define	FLDSHF(x)	(SZINT - FLDSZ(x) - UPKFOFF(x))
