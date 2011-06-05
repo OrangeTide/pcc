@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.19 2011/06/04 15:22:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.20 2011/06/05 10:29:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -245,34 +245,6 @@ ninval(NODE *p)
 		return 0;
 	}
 	return 1;
-}
-
-/*
- * print out an integer.
- */
-void
-inval(CONSZ word)
-{
-	word &= 0xffffffff;
-	printf("	.long 0x%llx\n", word);
-}
-
-/* output code to initialize a floating point value */
-/* the proper alignment has been obtained */
-void
-finval(NODE *p)
-{
-	switch (p->n_type) {
-	case LDOUBLE:
-		printf("\t.tfloat\t0t%.20Le\n", p->n_dcon);
-		break;
-	case DOUBLE:
-		printf("\t.dfloat\t0d%.20e\n", (double)p->n_dcon);
-		break;
-	case FLOAT:
-		printf("\t.ffloat\t0f%.20e\n", (float)p->n_dcon);
-		break;
-	}
 }
 
 /* make a name look like an external name in the local machine */

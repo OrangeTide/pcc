@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.11 2011/06/04 15:22:03 ragge Exp $	*/
+/*	$Id: local.c,v 1.12 2011/06/05 10:29:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -360,7 +360,7 @@ instring(struct symtab *sp)
 	printf("%s0\n", cnt ? "" : ".byte ");
 }
 
-static int inbits, inval;
+static int inbits, xinval;
 
 /*
  * set fsz bits in sequence to zero.
@@ -379,8 +379,8 @@ zbits(OFFSZ off, int fsz)
 			return;
 		} else {
 			fsz -= m;
-			printf("\t.byte %d\n", inval);
-			inval = inbits = 0;
+			printf("\t.byte %d\n", xinval);
+			xinval = inbits = 0;
 		}
 	}
 	if (fsz >= SZCHAR) {
@@ -388,7 +388,7 @@ zbits(OFFSZ off, int fsz)
 		fsz -= (fsz/SZCHAR) * SZCHAR;
 	}
 	if (fsz) {
-		inval = 0;
+		xinval = 0;
 		inbits = fsz;
 	}
 }
@@ -404,14 +404,14 @@ infld(CONSZ off, int fsz, CONSZ val)
 		    off, fsz, val, inbits);
 	val &= ((CONSZ)1 << fsz)-1;
 	while (fsz + inbits >= SZCHAR) {
-		inval |= (val << inbits);
-		printf("\t.byte %d\n", inval & 255);
+		xinval |= (val << inbits);
+		printf("\t.byte %d\n", xinval & 255);
 		fsz -= (SZCHAR - inbits);
 		val >>= (SZCHAR - inbits);
-		inval = inbits = 0;
+		xinval = inbits = 0;
 	}
 	if (fsz) {
-		inval |= (val << inbits);
+		xinval |= (val << inbits);
 		inbits += fsz;
 	}
 }
