@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.33 2011/06/04 07:57:43 plunky Exp $
+#	$Id: Makefile.in,v 1.34 2011/06/05 13:13:15 plunky Exp $
 #
 # Makefile.in for cpp
 #
@@ -37,7 +37,7 @@ MDIR=$(top_srcdir)/arch/$(TARGMACH)
 all: ${DEST}
 
 ${DEST}: $(OBJS) $(HEADERS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
+	$(CC) $(LDFLAGS) $(OBJS) -o $@
 
 .c.o:
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c $<

@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.10 2011/06/03 15:34:01 plunky Exp $
+#	$Id: Makefile.in,v 1.11 2011/06/05 13:13:15 plunky Exp $
 #
 # Makefile.in for the f77 frontend of pcc.
 #
@@ -37,7 +37,7 @@ FCOMDIR=${top_srcdir}/f77/fcom
 all: ${DEST}
 
 ${DEST}: $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
+	$(CC) $(LDFLAGS) $(OBJS) -o $@
 
 .c.o:
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c $<

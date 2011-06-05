@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.23 2011/06/03 15:34:00 plunky Exp $
+#	$Id: Makefile.in,v 1.24 2011/06/05 13:13:15 plunky Exp $
 #
 # Makefile.in for the cc part of pcc.
 #
@@ -45,7 +45,7 @@ MDIR=${top_srcdir}/arch/$(TARGMACH)
 all: ${DEST}
 
 ${DEST}: $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
+	$(CC) $(LDFLAGS) $(OBJS) -o $@
 
 .c.o:
 	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c $<
