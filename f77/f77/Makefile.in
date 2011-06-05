@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.14 2011/06/05 13:32:19 plunky Exp $
+#	$Id: Makefile.in,v 1.15 2011/06/05 16:45:01 plunky Exp $
 #
 # Makefile.in for the f77 frontend of pcc.
 #
@@ -23,7 +23,7 @@ CPPFLAGS = @CPPFLAGS@ @ADD_CPPFLAGS@ -DLANG_F77 \
 	-DLIBEXECDIR=\"${libexecdir}\" -DINCLUDEDIR=\"${includedir}\" \
 	-DPCCINCDIR=\"${PCCINCDIR}/\" -DPCCLIBDIR=\"${PCCLIBDIR}/\" \
 	-DLIBDIR=\"${F77LIBDIR}\" -Dmach_${TARGMACH} -Dos_${TARGOS} \
-	-I${FCOMDIR} -I${top_builddir} -I${top_srcdir}/os/${TARGOS} -I${MDIR} \
+	-I${FCOMDIR} -I${top_builddir} -I${top_srcdir}/os/${TARGOS} -I${MDIR}
 LIBS = @LIBS@
 LDFLAGS = @LDFLAGS@
 INSTALL = @INSTALL@
