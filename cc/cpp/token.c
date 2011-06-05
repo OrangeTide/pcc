@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.59 2011/06/03 15:42:45 plunky Exp $	*/
+/*	$Id: token.c,v 1.60 2011/06/05 08:43:50 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -81,7 +81,6 @@ extern void yyset_lineno (int);
 static int inch(void);
 
 int inif;
-extern int dflag;
 
 #define	PUTCH(ch) if (!flslvl) putch(ch)
 /* protection against recursion in #include */
@@ -191,8 +190,10 @@ fastscan(void)
 		ch = NXTCH();
 xloop:		if (ch == -1)
 			return;
+#ifdef PCC_DEBUG
 		if (dflag>1)
 			printf("fastscan ch %d (%c)\n", ch, ch > 31 ? ch : '@');
+#endif
 		if ((spechr[ch] & C_SPEC) == 0) {
 			PUTCH(ch);
 			continue;
