@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.38 2011/06/05 13:13:15 plunky Exp $
+#	$Id: Makefile.in,v 1.39 2011/06/05 13:32:19 plunky Exp $
 #
 # Makefile.in for ccom
 #
@@ -68,7 +68,7 @@ table.lo: $(MDIR)/table.c
 	$(CC_FOR_BUILD) $(CFLAGS) $(CPPFLAGS) -DMKEXT -c -o $@ $(MDIR)/table.c
 
 $(MKEXT): $(LOBJS)
-	$(CC_FOR_BUILD) $(LDFLAGS) -o $@ $(LOBJS)
+	$(CC_FOR_BUILD) $(LDFLAGS) -o $@ $(LOBJS) $(LIBS)
 
 external.c: $(MKEXT)
 	$(builddir)/$(MKEXT)
@@ -165,7 +165,7 @@ trees.o: $(srcdir)/trees.c
 #
 
 $(DEST): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
 
 install: $(DEST)
 	test -z "$(DESTDIR)$(libexecdir)" || mkdir -p "$(DESTDIR)$(libexecdir)"
