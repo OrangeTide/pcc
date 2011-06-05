@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.151 2011/06/04 20:26:38 ragge Exp $	*/
+/*	$Id: local.c,v 1.152 2011/06/05 09:23:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -919,66 +919,6 @@ instring(struct symtab *sp)
 	}
 	fwrite(str, 1, s - str, stdout);
 	printf("\\0\"\n");
-}
-
-static int inbits, xinval;
-
-/*
- * set fsz bits in sequence to zero.
- */
-void
-zbits(OFFSZ off, int fsz)
-{
-	int m;
-
-	if (idebug)
-		printf("zbits off %lld, fsz %d inbits %d\n", off, fsz, inbits);
-	if ((m = (inbits % SZCHAR))) {
-		m = SZCHAR - m;
-		if (fsz < m) {
-			inbits += fsz;
-			return;
-		} else {
-			fsz -= m;
-			printf("\t.byte %d\n", xinval);
-			xinval = inbits = 0;
-		}
-	}
-	if (fsz >= SZCHAR) {
-#ifdef os_darwin
-		printf("\t.space %d\n", fsz/SZCHAR);
-#else
- 		printf("\t.zero %d\n", fsz/SZCHAR);
-#endif
-		fsz -= (fsz/SZCHAR) * SZCHAR;
-	}
-	if (fsz) {
-		xinval = 0;
-		inbits = fsz;
-	}
-}
-
-/*
- * Initialize a bitfield.
- */
-void
-infld(CONSZ off, int fsz, CONSZ val)
-{
-	if (idebug)
-		printf("infld off %lld, fsz %d, val %lld inbits %d\n",
-		    off, fsz, val, inbits);
-	val &= ((CONSZ)1 << fsz)-1;
-	while (fsz + inbits >= SZCHAR) {
-		xinval |= (int)(val << inbits);
-		printf("\t.byte %d\n", xinval & 255);
-		fsz -= (SZCHAR - inbits);
-		val >>= (SZCHAR - inbits);
-		xinval = inbits = 0;
-	}
-	if (fsz) {
-		xinval |= (int)(val << inbits);
-		inbits += fsz;
-	}
 }
 
 /*

@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.226 2011/06/04 19:27:25 plunky Exp $	*/
+/*	$Id: pass1.h,v 1.227 2011/06/05 09:23:04 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -542,6 +542,9 @@ void stabs_struct(struct symtab *, struct attr *);
 #else
 #error int size unknown
 #endif
+
+/* Generate a bitmask from a given type size */
+#define SZMASK(y) ((((1LL << ((y)-1))-1) << 1) | 1)
 
 /*
  * C compiler first pass extra defines.
