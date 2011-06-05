@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.323 2011/06/05 17:21:17 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.324 2011/06/05 18:48:54 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -123,7 +123,9 @@ int isdyn(struct symtab *p);
 void inforce(OFFSZ n);
 void vfdalign(int n);
 static void ssave(struct symtab *);
+#ifdef PCC_DEBUG
 static void alprint(union arglist *al, int in);
+#endif
 static void lcommadd(struct symtab *sp);
 static NODE *mkcmplx(NODE *p, TWORD dt);
 extern int fun_inline;
