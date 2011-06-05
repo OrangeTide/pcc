@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.222 2011/05/04 18:02:32 ragge Exp $	*/
+/*	$Id: regs.c,v 1.223 2011/06/05 18:54:15 plunky Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1513,7 +1513,7 @@ LivenessAnalysis(struct p2env *p2e)
 {
 	struct basicblock *bb;
 	struct interpass *ip;
-	int i, bbnum;
+	int bbnum;
 
 	/*
 	 * generate the gen-killed sets for all basic blocks.
@@ -1534,8 +1534,10 @@ LivenessAnalysis(struct p2env *p2e)
 		}
 		memcpy(in[bbnum], gen[bbnum], BIT2BYTE(xbits));
 #ifdef PCC_DEBUG
-#define	PRTRG(x) printf("%d ", i < MAXREGS ? i : i + tempmin-MAXREGS)
+#define	PRTRG(x) printf("%d ", x < MAXREGS ? x : x + tempmin-MAXREGS)
 		if (rdebug) {
+			int i;
+
 			printf("basic block %d\ngen: ", bbnum);
 			for (i = 0; i < xbits; i++)
 				if (TESTBIT(gen[bbnum], i))
