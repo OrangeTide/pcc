@@ -1,16 +1,9 @@
-#	$Id: Makefile.in,v 1.5 2011/05/27 11:03:39 plunky Exp $
+#	$Id: Makefile.in,v 1.6 2011/06/05 13:04:57 plunky Exp $
 #
 # Makefile.in for top-level of pcc.
 #
 
 @SET_MAKE@
-VPATH=@srcdir@
-CC=@CC@
-CFLAGS=@CFLAGS@
-LDFLAGS=@LDFLAGS@
-CPPFLAGS=@CPPFLAGS@
-YACC=@YACC@
-LEX=@LEX@
 
 ALL_SUBDIRS=	cc cpp ccom
 DIST_SUBDIRS=	$(ALL_SUBDIRS) driver
