@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.32 2011/06/05 17:21:17 ragge Exp $	*/
+/*	$Id: local.c,v 1.33 2011/06/05 17:37:01 ragge Exp $	*/
 
 /*
  * Copyright (c) 2008 David Crawshaw <david@zentus.com>
@@ -222,6 +222,14 @@ exname(char *p)
 TWORD
 ctype(TWORD type)
 {
+	switch (BTYPE(type)) {
+	case LONGLONG:
+		MODTYPE(type,LONG);
+		break;
+	case ULONGLONG:
+		MODTYPE(type,ULONG);
+
+	}
 	return type;
 }
 
