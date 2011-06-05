@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.35 2011/06/05 13:32:19 plunky Exp $
+#	$Id: Makefile.in,v 1.36 2011/06/05 13:38:41 plunky Exp $
 #
 # Makefile.in for cpp
 #
@@ -94,7 +94,7 @@ install:
 		strip ${DESTDIR}${libexecdir}/${DEST} ;	\
 		echo strip ${DESTDIR}${libexecdir}/${DEST} ;	\
 	fi
-	test -z "${DESTDIR}$(mandir)/man1" || mkdir -p "${DESTDIR}$(mandir)/man1"       
+	test -z "${DESTDIR}$(mandir)/man1" || mkdir -p "${DESTDIR}$(mandir)/man1"
 	${INSTALL} $(srcdir)/cpp.1 ${DESTDIR}${mandir}/man1/$(DEST).1
 
 clean:

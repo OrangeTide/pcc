@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.17 2011/06/05 13:32:19 plunky Exp $
+#	$Id: Makefile.in,v 1.18 2011/06/05 13:38:41 plunky Exp $
 #
 # Makefile for the Fortran 77 command
 #  Running on the @targmach@
@@ -69,7 +69,7 @@ clean:
 distclean: clean
 	/bin/rm -f Makefile
 
-install: 
+install:
 	${INSTALL_PROGRAM} ${DEST} ${libexecdir}
 	@if [ ${strip} = yes ]; then            \
 		strip ${libexecdir}/${DEST} ;       \
