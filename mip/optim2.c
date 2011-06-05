@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.79 2010/06/04 07:18:46 ragge Exp $	*/
+/*	$Id: optim2.c,v 1.80 2011/06/05 18:08:41 plunky Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2058,7 +2058,7 @@ liveanal(struct p2env *p2e)
 	struct basicblock *bb;
 	struct interpass *ip;
 	bittype *saved;
-	int i, mintemp, again;
+	int mintemp, again;
 
 	xbits = p2e->epp->ip_tmpnum - p2e->ipp->ip_tmpnum + MAXREGS;
 	mintemp = p2e->ipp->ip_tmpnum;
@@ -2091,8 +2091,10 @@ liveanal(struct p2env *p2e)
 		}
 		memcpy(bb->in, bb->gen, BIT2BYTE(xbits));
 #ifdef PCC_DEBUG
-#define PRTRG(x) printf("%d ", i < MAXREGS ? i : i + p2e->ipp->ip_tmpnum-MAXREGS)
+#define PRTRG(x) printf("%d ", x < MAXREGS ? x : x + p2e->ipp->ip_tmpnum-MAXREGS)
 		if (b2debug > 1) {
+			int i;
+
 			printf("basic block %d\ngen: ", bb->bbnum);
 			for (i = 0; i < xbits; i++)
 				if (TESTBIT(bb->gen, i))
@@ -2129,6 +2131,8 @@ liveanal(struct p2env *p2e)
 #ifdef PCC_DEBUG
 	DLIST_FOREACH(bb, &p2e->bblocks, bbelem) {
 		if (b2debug) {
+			int i;
+
 			printf("all basic block %d\nin: ", bb->bbnum);
 			for (i = 0; i < xbits; i++)
 				if (TESTBIT(bb->in, i))
