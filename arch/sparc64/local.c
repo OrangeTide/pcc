@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.31 2011/06/05 16:22:52 ragge Exp $	*/
+/*	$Id: local.c,v 1.32 2011/06/05 17:21:17 ragge Exp $	*/
 
 /*
  * Copyright (c) 2008 David Crawshaw <david@zentus.com>
@@ -191,28 +191,6 @@ void
 spalloc(NODE *t, NODE *p, OFFSZ off)
 {
 	cerror("spalloc");
-}
-
-void
-instring(struct symtab *sp)
-{
-	char *s, *str;
-
-	defloc(sp);
-	str = sp->sname;
-
-	printf("\t.ascii \"");
-	for (s = str; *s != 0; ) {
-		if (*s++ == '\\')
-			esccon(&s);
-		if (s - str > 60) {
-			fwrite(str, 1, s - str, stdout);
-			printf("\"\n\t.ascii \"");
-			str = s;
-		}
-	}
-	fwrite(str, 1, s - str, stdout);
-	printf("\\0\"\n");
 }
 
 int

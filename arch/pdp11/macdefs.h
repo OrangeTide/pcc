@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.6 2011/06/05 10:19:24 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.7 2011/06/05 17:21:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -115,6 +115,7 @@ typedef long long OFFSZ;
 
 #undef	FIELDOPS		/* no bit-field instructions */
 #define TARGET_ENDIAN TARGET_LE /* XXX TARGET_PDP */
+#define	MYINSTRING
 
 /* Definitions mostly used in pass2 */
 

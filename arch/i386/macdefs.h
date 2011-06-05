@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.80 2011/06/05 10:19:24 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.81 2011/06/05 17:21:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -134,6 +134,7 @@ typedef long long OFFSZ;
 
 #undef	FIELDOPS		/* no bit-field instructions */
 #define TARGET_ENDIAN TARGET_LE
+#define	MYINSTRING
 
 #define FINDMOPS	/* i386 has instructions that modifies memory */
 #define	CC_DIV_0	/* division by zero is safe in the compiler */

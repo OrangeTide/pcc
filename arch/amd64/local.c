@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.56 2011/06/05 10:05:28 ragge Exp $	*/
+/*	$Id: local.c,v 1.57 2011/06/05 17:21:17 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -750,34 +750,6 @@ spalloc(NODE *t, NODE *p, OFFSZ off)
 	t->n_type = sp->n_type;
 	ecomp(buildtree(ASSIGN, t, sp)); /* Emit! */
 
-}
-
-/*
- * Print out a string of characters.
- * Assume that the assembler understands C-style escape
- * sequences.
- */
-void
-instring(struct symtab *sp)
-{
-	char *s, *str = sp->sname;
-
-	defloc(sp);
-
-	/* be kind to assemblers and avoid long strings */
-	printf("\t.ascii \"");
-	for (s = str; *s != 0; ) {
-		if (*s++ == '\\') {
-			(void)esccon(&s);
-		}
-		if (s - str > 60) {
-			fwrite(str, 1, s - str, stdout);
-			printf("\"\n\t.ascii \"");
-			str = s;
-		}
-	}
-	fwrite(str, 1, s - str, stdout);
-	printf("\\0\"\n");
 }
 
 /*

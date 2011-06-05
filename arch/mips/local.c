@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.29 2011/06/05 10:29:10 ragge Exp $	*/
+/*	$Id: local.c,v 1.30 2011/06/05 17:21:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -541,35 +541,6 @@ calldec(NODE *p, NODE *q)
 void
 extdec(struct symtab *q)
 {
-}
-
-/*
- * Print out a string of characters.
- * Assume that the assembler understands C-style escape
- * sequences.
- */
-void
-instring(struct symtab *sp)
-{
-	char *s, *str;
-
-	defloc(sp);
-	str = sp->sname;
-
-	/* be kind to assemblers and avoid long strings */
-	printf("\t.ascii \"");
-	for (s = str; *s != 0; ) {
-		if (*s++ == '\\') {
-			(void)esccon(&s);
-		}
-		if (s - str > 60) {
-			fwrite(str, 1, s - str, stdout);
-			printf("\"\n\t.ascii \"");
-			str = s;
-		}
-	}
-	fwrite(str, 1, s - str, stdout);
-	printf("\\0\"\n");
 }
 
 /* make a common declaration for id, if reasonable */
