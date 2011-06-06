@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.324 2011/06/05 18:48:54 plunky Exp $	*/
+/*	$Id: pftn.c,v 1.325 2011/06/06 11:14:42 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1336,7 +1336,7 @@ oalloc(struct symtab *p, int *poff )
 	if (p->sclass == PARAM && (p->stype == CHAR || p->stype == UCHAR ||
 	    p->stype == SHORT || p->stype == USHORT || p->stype == BOOL)) {
 		off = upoff(SZINT, ALINT, &noff);
-#if TARGET_ENDIAN == TARGET_LE
+#if TARGET_ENDIAN == TARGET_BE
 		off = noff - tsz;
 #endif
 	} else {
