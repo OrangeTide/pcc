@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.6 2011/06/05 13:09:04 plunky Exp $
+#	$Id: Makefile.in,v 1.7 2011/06/07 13:56:05 plunky Exp $
 #
 # Makefile.in for top-level of pcc.
 #
@@ -25,4 +25,4 @@ distclean:
 		    exec $(MAKE) $(MFLAGS) $@) || exit $$?; \
 		echo "<=== $$_nextdir_"; \
 	done
-	/bin/rm -f Makefile
+	rm -f Makefile

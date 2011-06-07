@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.18 2011/06/05 13:38:41 plunky Exp $
+#	$Id: Makefile.in,v 1.19 2011/06/07 13:56:06 plunky Exp $
 #
 # Makefile for the Fortran 77 command
 #  Running on the @targmach@
@@ -63,11 +63,11 @@ lex.o : tokdefs
 driver.o $(OBJS)  : defs.h defines.h ftypes.h
 
 clean:
-	/bin/rm -f $(OBJS) ${DEST} gram.in gram.[ch] tokdefs \
+	rm -f $(OBJS) ${DEST} gram.in gram.[ch] tokdefs \
 		mkext external.[ch]
 
 distclean: clean
-	/bin/rm -f Makefile
+	rm -f Makefile
 
 install:
 	${INSTALL_PROGRAM} ${DEST} ${libexecdir}

@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.36 2011/06/05 13:38:41 plunky Exp $
+#	$Id: Makefile.in,v 1.37 2011/06/07 13:56:05 plunky Exp $
 #
 # Makefile.in for cpp
 #
@@ -98,7 +98,7 @@ install:
 	${INSTALL} $(srcdir)/cpp.1 ${DESTDIR}${mandir}/man1/$(DEST).1
 
 clean:
-	/bin/rm -f $(OBJS) $(DEST) lex.yy.c y.tab.[ch] tests/run*
+	rm -f $(OBJS) $(DEST) lex.yy.c y.tab.[ch] tests/run*
 
 distclean: clean
-	/bin/rm -f Makefile
+	rm -f Makefile

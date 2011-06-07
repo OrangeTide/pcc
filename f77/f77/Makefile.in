@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.15 2011/06/05 16:45:01 plunky Exp $
+#	$Id: Makefile.in,v 1.16 2011/06/07 13:56:06 plunky Exp $
 #
 # Makefile.in for the f77 frontend of pcc.
 #
@@ -51,7 +51,7 @@ install:
 	fi
 
 clean:
-	/bin/rm -f  $(OBJS) ${DEST}
+	rm -f  $(OBJS) ${DEST}
 
 distclean: clean
-	/bin/rm -f  Makefile
+	rm -f  Makefile

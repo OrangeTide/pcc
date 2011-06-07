@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.4 2011/06/05 13:32:19 plunky Exp $
+#	$Id: Makefile.in,v 1.5 2011/06/07 13:56:05 plunky Exp $
 #
 # Makefile.in for the cc driver part of pcc.
 #
@@ -59,7 +59,7 @@ install:
 	fi
 
 clean:
-	/bin/rm -f  $(OBJS) ${DEST}
+	rm -f  $(OBJS) ${DEST}
 
 distclean: clean
-	/bin/rm -f  Makefile
+	rm -f  Makefile

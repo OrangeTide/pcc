@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.39 2011/06/05 13:32:19 plunky Exp $
+#	$Id: Makefile.in,v 1.40 2011/06/07 13:56:05 plunky Exp $
 #
 # Makefile.in for ccom
 #
@@ -178,8 +178,8 @@ install: $(DEST)
 	$(INSTALL) $(srcdir)/ccom.1 $(DESTDIR)$(mandir)/man1/$(DEST).1
 
 clean:
-	/bin/rm -f $(DEST) $(OBJS) $(MKEXT) $(LOBJS) $(LEX_OUTPUT_ROOT).c	\
+	rm -f $(DEST) $(OBJS) $(MKEXT) $(LOBJS) $(LEX_OUTPUT_ROOT).c	\
 	    scan.c y.tab.[ch] cgram.[ch] external.[ch]
 
 distclean: clean
-	/bin/rm -f Makefile
+	rm -f Makefile
