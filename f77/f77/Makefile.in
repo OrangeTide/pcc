@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.16 2011/06/07 13:56:06 plunky Exp $
+#	$Id: Makefile.in,v 1.17 2011/06/08 09:14:25 plunky Exp $
 #
 # Makefile.in for the f77 frontend of pcc.
 #
@@ -41,7 +41,7 @@ ${DEST}: $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $@ $(LIBS)
 
 .c.o:
-	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 install:
 	${INSTALL_PROGRAM} ${DEST} ${bindir}
