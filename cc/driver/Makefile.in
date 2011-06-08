@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.5 2011/06/07 13:56:05 plunky Exp $
+#	$Id: Makefile.in,v 1.6 2011/06/08 09:16:42 plunky Exp $
 #
 # Makefile.in for the cc driver part of pcc.
 #
@@ -48,7 +48,7 @@ ${DEST}: $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $@ $(LIBS)
 
 .c.o:
-	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 install:
 	test -z "${DESTDIR}$(bindir)" || mkdir -p "${DESTDIR}$(bindir)"
