@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.14 2009/02/09 15:59:48 ragge Exp $	*/
+/*	$Id: main.c,v 1.15 2011/06/10 13:37:56 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -46,6 +46,8 @@ int s2debug, udebug, x2debug, nflag, kflag, g2debug;
 int xdeljumps, xtemps, xssaflag, xdce;
 
 int mflag, tflag;
+
+char *ftitle = "<unknown>";
 
 #if 1 /* RAGGE */
 FILE *initfile, *sortfile;
@@ -348,6 +350,7 @@ dodata(char *file)
 	ovlen = 0;
 	totlen = 0;
 	nch = 0;
+	ftitle = file;
 
 	if( (sortfile = fopen(file, "r")) == NULL)
 		fatal1(file);
