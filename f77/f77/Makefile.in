@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.18 2011/06/11 08:11:37 plunky Exp $
+#	$Id: Makefile.in,v 1.19 2011/06/11 08:27:12 plunky Exp $
 #
 # Makefile.in for the f77 frontend of pcc.
 #
@@ -8,6 +8,7 @@ top_builddir=@top_builddir@
 prefix = @prefix@
 exec_prefix = @exec_prefix@
 bindir = @bindir@
+libdir = @libdir@
 libexecdir = @libexecdir@
 includedir = @includedir@
 strip = @strip@
