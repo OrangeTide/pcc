@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.186 2011/06/06 13:45:33 plunky Exp $	*/
+/*	$Id: cc.c,v 1.187 2011/06/19 14:32:17 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -866,7 +866,7 @@ main(int argc, char *argv[])
 		if (!nostdinc) {
 			av[na++] = "-S", av[na++] = cat(sysroot, altincdir);
 			av[na++] = "-S", av[na++] = cat(sysroot, incdir);
-			av[na++] = "-S", av[na++] = cat(sysroot, pccincdir);
+			av[na++] = "-S", av[na++] = pccincdir;
 		}
 		if (idirafter) {
 			av[na++] = "-I";
