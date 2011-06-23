@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.228 2011/06/23 13:38:23 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.229 2011/06/23 13:41:25 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -88,7 +88,7 @@ extern	char *scnames(int);
 #define	NSTYPES		05
 #define	SMASK		07
 
-/* #define SSET		00010 */
+#define	STLS		00010	/* Thread Local Support variable */
 /* #define SREF		00020 */
 #define SNOCREAT	00040	/* don't create a symbol in lookup() */
 #define STEMP		00100	/* Allocate symtab from temp or perm mem */

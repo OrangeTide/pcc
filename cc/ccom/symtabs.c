@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.20 2011/06/23 13:38:23 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.21 2011/06/23 13:41:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -50,6 +50,7 @@ int nametabs, namestrlen;
 static struct tree *firststr;
 int strtabs, strstrlen;
 static char *symtab_add(char *key, struct tree **, int *, int *);
+int lastloc = NOSEG;
 
 #define	P_BIT(key, bit) (key[bit >> 3] >> (bit & 7)) & 1
 #define	getree() permalloc(sizeof(struct tree))

@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.82 2011/06/23 13:39:26 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.83 2011/06/23 13:41:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -318,7 +318,6 @@ int COLORMAP(int c, int *r);
  * i386-specific symbol table flags.
  */
 #define	SSECTION	SLOCAL1
-#define	STLS		SLOCAL2
 #define SSTDCALL	SLOCAL2	
 #define SDLLINDIRECT	SLOCAL3
 
