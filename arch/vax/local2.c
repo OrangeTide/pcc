@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.11 2008/11/22 16:12:25 ragge Exp $	*/
+/*	$Id: local2.c,v 1.12 2011/06/23 13:48:23 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -47,11 +47,7 @@ static void acon(NODE *p);
 void
 prologue(struct interpass_prolog *ipp)
 {
-	if (ipp->ipp_vis)
-		printf("	.globl %s\n", ipp->ipp_name);
-	printf("	.align 4\n");
-	printf("%s:\n", ipp->ipp_name);
-	printf("	.word 0x%x\n", ipp->ipp_regs[0]);
+	printf("	.word 0x%lx\n", ipp->ipp_regs[0]);
 	if (p2maxautooff)
 		printf("	subl2 $%d,%%sp\n", p2maxautooff);
 }
@@ -328,9 +324,8 @@ zzzcode( p, c ) register NODE *p; {
 
 	case 'J': /* jump or ret? */
 		{
-			extern struct interpass_prolog *epp;
 			struct interpass *ip =
-			    DLIST_PREV((struct interpass *)epp, qelem);
+			    DLIST_PREV((struct interpass *)p2env.epp, qelem);
 			if (ip->type != IP_DEFLAB ||
 			    ip->ip_lbl != getlr(p, 'L')->n_lval)
 				expand(p, FOREFF, "jbr	LL");
