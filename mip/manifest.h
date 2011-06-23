@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.93 2011/06/05 10:19:25 ragge Exp $	*/
+/*	$Id: manifest.h,v 1.94 2011/06/23 13:38:23 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -166,16 +166,6 @@
 #define ASGOPFLG 020000
 
 #define SPFLG	040000
-
-/*
- * Location counters
- */
-#define PROG		0		/* (ro) program segment */
-#define DATA		1		/* (rw) data segment */
-#define RDATA		2		/* (ro) data segment */
-#define STRNG		3		/* (ro) string segment */
-#define	UDATA		4		/* (rw) uninitialized data */
-
 
 #define	regno(p)	((p)->n_rval)	/* register number */
 

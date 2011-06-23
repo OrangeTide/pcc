@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.42 2011/05/30 03:45:53 gmcgarry Exp $	*/
+/*	$Id: inline.c,v 1.43 2011/06/23 13:38:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -284,6 +284,7 @@ inline_prtout()
 	SLIST_FOREACH(w, &ipole, link) {
 		if ((w->flags & (REFD|WRITTEN)) == REFD &&
 		    !DLIST_ISEMPTY(&w->shead, qelem)) {
+			locctr(PROG, w->sp);
 			defloc(w->sp);
 			puto(w);
 			w->flags |= WRITTEN;

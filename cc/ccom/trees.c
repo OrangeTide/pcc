@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.288 2011/06/05 10:19:25 ragge Exp $	*/
+/*	$Id: trees.c,v 1.289 2011/06/23 13:38:23 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2825,8 +2825,10 @@ send_passt(int type, ...)
 		ip->ip_node = va_arg(ap, NODE *);
 		break;
 	case IP_EPILOG:
-		if (!isinlining)
+		if (!isinlining) {
+			locctr(PROG, cftnsp);
 			defloc(cftnsp);
+		}
 		/* FALLTHROUGH */
 	case IP_PROLOG:
 		inftn = type == IP_PROLOG ? 1 : 0;
@@ -2852,7 +2854,7 @@ send_passt(int type, ...)
 			printf("%s", va_arg(ap, char *));
 			printf("\n");
 			va_end(ap);
-			defloc(NULL);
+			locctr(NOSEG, NULL);
 			return;
 		}
 		ip->ip_asm = va_arg(ap, char *);
