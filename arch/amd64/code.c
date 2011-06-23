@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.58 2011/06/23 13:38:23 ragge Exp $	*/
+/*	$Id: code.c,v 1.59 2011/06/23 17:06:37 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -52,7 +52,6 @@ static const int argregsi[] = { RDI, RSI, RDX, RCX, R08, R09 };
 #define	VAOFA(x)	(x-SZINT-SZINT)
 #define	VARSA(x)	(x-SZINT-SZINT-SZPOINT(0))
 
-int lastloc = -1;
 static int stroffset;
 
 static int varneeds;
