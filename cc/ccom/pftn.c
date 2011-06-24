@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.326 2011/06/23 13:38:23 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.327 2011/06/24 13:01:57 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1581,11 +1581,6 @@ nidcl(NODE *p, int class)
 
 	defid(p, class);
 
-#ifdef GCC_COMPAT
-	if (p->n_op == CM)
-		cerror("nidcl CM");
-#endif
-
 	sp = p->n_sp;
 	/* check if forward decl */
 	if (ISARY(sp->stype) && sp->sdf->ddim == NOOFFSET)
@@ -1933,9 +1928,6 @@ tymerge(NODE *typ, NODE *idp)
 		fwalk(idp, eprint, 0);
 	}
 #endif
-
-	if (typ->n_op == CM || idp->n_op == CM)
-		cerror("tymerge CM");
 
 	if (typ->n_op != TYPE)
 		cerror("tymerge: arg 1");
