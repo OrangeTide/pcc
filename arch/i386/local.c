@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.153 2011/06/23 13:39:26 ragge Exp $	*/
+/*	$Id: local.c,v 1.154 2011/06/25 07:59:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -794,6 +794,7 @@ myp2tree(NODE *p)
 	sp->squal = (CON >> TSHIFT);
 	sp->sname = sp->soname = NULL;
 
+	locctr(DATA, sp);
 	defloc(sp);
 	ninval(0, tsize(sp->stype, sp->sdf, sp->sap), p);
 
