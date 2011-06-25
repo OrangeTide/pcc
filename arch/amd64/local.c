@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.58 2011/06/23 13:38:23 ragge Exp $	*/
+/*	$Id: local.c,v 1.59 2011/06/25 07:51:36 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -671,6 +671,7 @@ myp2tree(NODE *p)
 			sps.slevel = 1;
 			sps.sap = NULL;
 			sps.soffset = dblxor;
+			locctr(DATA, &sps);
 			defloc(&sps);
 			printf("\t.long 0,0x80000000,0,0\n");
 			printf(LABFMT ":\n", fltxor);
@@ -693,6 +694,7 @@ myp2tree(NODE *p)
 	sp->squal = (CON >> TSHIFT);
 	sp->sname = sp->soname = NULL;
 
+	locctr(DATA, sp);
 	defloc(sp);
 	ninval(0, tsize(sp->stype, sp->sdf, sp->sap), p);
 
