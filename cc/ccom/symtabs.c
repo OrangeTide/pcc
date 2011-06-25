@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.21 2011/06/23 13:41:25 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.22 2011/06/25 07:55:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -419,7 +419,8 @@ locctr(int seg, struct symtab *sp)
 void
 defalign(int al)
 {
-	printf("\t.align %d\n", al/ALCHAR);
+	if (al != ALCHAR)
+		printf("\t.align %d\n", al/ALCHAR);
 }
 #endif
 
