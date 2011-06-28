@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.12 2011/06/27 11:50:25 ragge Exp $	*/
+/*	$Id: code.c,v 1.13 2011/06/28 07:38:47 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -46,7 +46,7 @@ setseg(int seg, char *name)
 	case DATA:
 	case LDATA: name = ".data"; break;
 	case STRNG:
-	case RDATA: name = ".rodata"; break;
+	case RDATA: name = ".section .rodata"; break;
 	case UDATA: break;
 	case PICLDATA:
 	case PICDATA:
