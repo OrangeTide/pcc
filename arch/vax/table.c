@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.6 2011/06/27 17:54:14 ragge Exp $	*/
+/*	$Id: table.c,v 1.7 2011/06/28 09:33:31 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -184,6 +184,13 @@ struct optab  table[] = {
 		0,	RNULL,
 		"	extzv	H,S,AR,-(sp)\n", },
 #endif
+
+{ OPLOG,	FORCC,
+	SBREG|AWD,	TLONGLONG|TULONGLONG,
+	SBREG,		TLONGLONG|TULONGLONG,
+		0,	0,
+		"ZB", },
+
 
 { OPLOG,	FORCC,
 	SAREG|AWD,	TWORD,
@@ -429,6 +436,12 @@ struct optab  table[] = {
 		0,	RNULL,
 		"	HELP HELP HELP\n", },
 
+{ UMUL, INAREG,
+	SANY,	TPOINT|TWORD,
+	SOREG,	TPOINT|TWORD,
+		NAREG|NASL,	RESC1,
+		"	movl AL,A1\n", },
+
 #if 0
 { REG,	FORARG,
 	SANY,	TANY,
@@ -454,6 +467,12 @@ struct optab  table[] = {
 	SAREG|AWD,	TANY,
 		0,	RLEFT,
 		"", },
+
+{ OPLTYPE,	INBREG,
+	SANY,	TANY,
+	SCON|SOREG|SNAME,	TLONGLONG|TULONGLONG,
+		NBREG,	RESC1,
+		"	movq AL,A1\n", },
 
 { OPLTYPE,	INAREG|INAREG,
 	SANY,	TANY,
