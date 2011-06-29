@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.22 2011/06/25 07:55:10 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.23 2011/06/29 06:54:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -385,14 +385,14 @@ locctr(int seg, struct symtab *sp)
 			else if (sp->sclass == STATIC)
 				seg = LDATA;
 		}
-		if (kflag) {
-			if (seg == DATA) seg = PICDATA;
-			if (seg == RDATA) seg = PICRDATA;
-			if (seg == LDATA) seg = PICLDATA;
-		} else if (sp->sflags & STLS) {
+		if (sp->sflags & STLS) {
 			if (seg == DATA || seg == LDATA)
 				seg = TLSDATA;
 			if (seg == UDATA) seg = TLSUDATA;
+		} else if (kflag) {
+			if (seg == DATA) seg = PICDATA;
+			if (seg == RDATA) seg = PICRDATA;
+			if (seg == LDATA) seg = PICLDATA;
 		}
 		if (lastloc != seg)
 			setseg(seg, NULL);
