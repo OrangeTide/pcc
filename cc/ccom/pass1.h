@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.229 2011/06/23 13:41:25 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.230 2011/06/29 19:46:21 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -254,7 +254,6 @@ extern	NODE
 	*pconvert(NODE *),
 	*oconvert(NODE *),
 	*ptmatch(NODE *),
-	*tymatch(NODE *),
 	*makety(NODE *, TWORD, TWORD, union dimfun *, struct attr *),
 	*block(int, NODE *, NODE *, TWORD, union dimfun *, struct attr *),
 	*doszof(NODE *),
