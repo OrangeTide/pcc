@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.327 2011/06/24 13:01:57 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.328 2011/06/30 19:41:16 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1549,6 +1549,8 @@ commchk(struct symtab *sp)
 {
 	if ((sp->sflags & STLS) || attr_find(sp->sap, GCC_ATYP_SECTION)) {
 		/* TLS handled in data segment */
+		if (sp->sclass == EXTERN)
+			sp->sclass = EXTDEF;
 		beginit(sp);
 		endinit(1);
 	} else {
