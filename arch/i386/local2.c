@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.160 2011/05/29 13:36:48 ragge Exp $	*/
+/*	$Id: local2.c,v 1.161 2011/07/01 15:17:12 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -352,7 +352,7 @@ ulltofp(NODE *p)
 	expand(p, 0, "	addl $8,%esp\n");
 	expand(p, 0, "	cmpl $0,UL\n");
 	printf("	jge " LABFMT "\n", jmplab);
-	printf("	fldt " LABFMT "\n", loadlab);
+	printf("	fldt " LABFMT "%s\n", loadlab, kflag ? "@GOTOFF" : "");
 	printf("	faddp %%st,%%st(1)\n");
 	printf(LABFMT ":\n", jmplab);
 }
