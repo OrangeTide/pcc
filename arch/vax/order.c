@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.6 2011/06/28 09:33:31 ragge Exp $	*/
+/*	$Id: order.c,v 1.7 2011/07/02 15:11:59 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -610,6 +610,16 @@ nspecial(struct optab *q)
 		static struct rspecial s[] = {
 		    { NEVER, R0, }, { NEVER, R1, }, { NEVER, R2, },
 		    { NEVER, R3, }, { NEVER, R4, }, { NEVER, R5 } };
+		return s;
+		}
+	case MOD:
+	case MUL:
+	case DIV:
+		{
+		static struct rspecial s[] = {
+		    { NEVER, R0, }, { NEVER, R1, }, { NEVER, R2, },
+		    { NEVER, R3, }, { NEVER, R4, }, { NEVER, R5 },
+		    { NRES, XR0 }, };
 		return s;
 		}
 	default:

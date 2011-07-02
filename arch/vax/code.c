@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.13 2011/06/28 07:38:47 ragge Exp $	*/
+/*	$Id: code.c,v 1.14 2011/07/02 15:11:59 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -159,6 +159,8 @@ ejobcode( flag ){
 void
 bjobcode()
 {
+	astypnames[INT] = astypnames[UNSIGNED] = "\t.long";
+	astypnames[SHORT] = astypnames[USHORT] = "\t.word";
 }
 
 #if 0
