@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.7 2011/07/02 15:11:59 ragge Exp $	*/
+/*	$Id: order.c,v 1.8 2011/07/05 20:04:19 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -298,7 +298,6 @@ rallo( p, down ) NODE *p; {
 void
 offstar(NODE *p, int shape)
 {
-	NODE *r;
 
 	if (x2debug)
 		printf("offstar(%p)\n", p);
@@ -307,6 +306,7 @@ offstar(NODE *p, int shape)
 		return; /* Is already OREG */
 
 #if 0 /* notyet */
+	NODE *r;
 	r = p->n_right;
 	if( p->n_op == PLUS || p->n_op == MINUS ){
 		if( r->n_op == ICON ){

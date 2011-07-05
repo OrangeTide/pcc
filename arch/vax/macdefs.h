@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.7 2011/06/05 10:19:25 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.8 2011/07/05 20:04:19 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -239,8 +239,7 @@ extern int maxargs;
 #define NUMCLASS        2       /* highest number of reg classes used */
 
 /* size, in registers, needed to hold thing of type t */
-#define	szty(t)	(((t) == DOUBLE || (t) == LDOUBLE || (t) == FLOAT || \
-	(t) == LONGLONG || (t) == ULONGLONG) ? 2 : 1)
+#define	szty(t)	(((t) == DOUBLE || (t) == LONGLONG || (t) == ULONGLONG) ? 2 : 1)
 #define FPREG	FP	/* frame pointer */
 
 #define DECRA(x,y)      (((x) >> (y*6)) & 63)   /* decode encoded regs */
