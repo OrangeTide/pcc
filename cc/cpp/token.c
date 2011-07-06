@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.60 2011/06/05 08:43:50 plunky Exp $	*/
+/*	$Id: token.c,v 1.61 2011/07/06 16:01:23 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -997,14 +997,21 @@ chknl(int ignore)
 	while ((t = sloscan()) == WSPACE)
 		;
 	if (t != '\n') {
-		if (ignore) {
-			warning("newline expected, got \"%s\"", yytext);
-			/* ignore rest of line */
-			while ((t = sloscan()) && t != '\n')
-				;
+		if (t && t != (usch)-1) {
+			if (ignore) {
+				warning("newline expected, got \"%s\"", yytext);
+				/* ignore rest of line */
+				while ((t = sloscan()) && t != '\n')
+					;
+			}
+			else
+				error("newline expected, got \"%s\"", yytext);
+		} else {
+			if (ignore)
+				warning("no newline at end of file");
+			else
+				error("no newline at end of file");
 		}
-		else
-			error("newline expected, got \"%s\"", yytext);
 	}
 }
 
