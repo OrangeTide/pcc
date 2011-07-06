@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.155 2011/07/01 14:36:57 ragge Exp $	*/
+/*	$Id: local.c,v 1.156 2011/07/06 08:29:54 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -590,7 +590,7 @@ clocal(NODE *p)
 			 * and in that case the only compile-time conversion
 			 * possible is to int.
 			 */
-			if ((TMASK & l->n_type) == 0)
+			if ((TMASK & l->n_type) == 0 && l->n_sp == NULL)
 				cerror("SCONV ICON");
 			if (l->n_sp == 0) {
 				p->n_type = UNSIGNED;
