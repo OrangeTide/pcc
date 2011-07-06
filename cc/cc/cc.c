@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.187 2011/06/19 14:32:17 plunky Exp $	*/
+/*	$Id: cc.c,v 1.188 2011/07/06 08:09:09 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -700,9 +700,6 @@ main(int argc, char *argv[])
 #ifndef os_darwin
 				if (strcmp(argv[i], "-shared") == 0) {
 					shared = 1;
-#ifndef os_win32
-					nostdlib = 1;
-#endif
 				} else
 #endif
 				if (strcmp(argv[i], "-static") == 0) {
