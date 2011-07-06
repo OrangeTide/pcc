@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.135 2011/06/05 08:43:50 plunky Exp $	*/
+/*	$Id: cpp.c,v 1.136 2011/07/06 17:15:23 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -365,7 +365,7 @@ line()
 		p++;
 	c = strlen((char *)p);
 	if (llen < c) {
-		/* XXX may loose heap space */
+		/* XXX may lose heap space */
 		lbuf = stringbuf;
 		stringbuf += c;
 		llen = c;
@@ -484,7 +484,7 @@ include()
 			goto bad;
 		if (pushfile(nm, safefn, 0, NULL) == 0)
 			goto okret;
-		/* XXX may loose stringbuf space */
+		/* XXX may lose stringbuf space */
 	}
 
 	if (fsrch(safefn, 0, incdir[0]))
