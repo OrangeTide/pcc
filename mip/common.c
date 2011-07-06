@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.94 2011/07/06 17:15:23 plunky Exp $	*/
+/*	$Id: common.c,v 1.95 2011/07/06 20:15:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -482,7 +482,7 @@ tprint(FILE *fp, TWORD t, TWORD q)
 {
 	static char * tnames[] = {
 		"undef",
-		"farg",
+		"bool",
 		"char",
 		"uchar",
 		"short",
@@ -502,7 +502,7 @@ tprint(FILE *fp, TWORD t, TWORD q)
 		"moety",
 		"void",
 		"signed", /* pass1 */
-		"bool", /* pass1 */
+		"farg", /* pass1 */
 		"fimag", /* pass1 */
 		"dimag", /* pass1 */
 		"limag", /* pass1 */
@@ -781,4 +781,26 @@ listarg(NODE *p, int n, int *cnt)
 		r = n == 0 ? p : NIL;
 	}
 	return r;
+}
+
+/*
+ * Make a type unsigned, if possible.
+ */
+TWORD
+enunsign(TWORD t)
+{
+	if (BTYPE(t) >= CHAR && BTYPE(t) <= ULONGLONG)
+		t |= 1;
+	return t;
+}
+
+/*
+ * Make a type signed, if possible.
+ */
+TWORD
+deunsign(TWORD t)
+{
+	if (BTYPE(t) >= CHAR && BTYPE(t) <= ULONGLONG)
+		t &= ~1;
+	return t;
 }
