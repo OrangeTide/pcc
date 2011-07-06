@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.188 2011/07/06 08:09:09 plunky Exp $	*/
+/*	$Id: cc.c,v 1.189 2011/07/06 12:02:22 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -704,6 +704,8 @@ main(int argc, char *argv[])
 #endif
 				if (strcmp(argv[i], "-static") == 0) {
 					Bstatic = 1;
+				} else if (strcmp(argv[i], "-symbolic") == 0) {
+					llist[nl++] = "-Bsymbolic";
 				} else if (strncmp(argv[i], "-std", 4) == 0) {
 					/* ignore gcc -std= */;
 				} else
