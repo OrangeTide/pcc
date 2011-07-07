@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.331 2011/07/07 06:46:15 plunky Exp $	*/
+/*	$Id: pftn.c,v 1.332 2011/07/07 06:50:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1494,7 +1494,7 @@ falloc(struct symtab *p, int w, NODE *pty)
 
 	if (type == BOOL)
 		type = BOOL_TYPE;
-	if (type < CHAR || type > ULONGLONG) {
+	if (!ISINTEGER(type)) {
 		uerror("illegal field type");
 		type = INT;
 	}

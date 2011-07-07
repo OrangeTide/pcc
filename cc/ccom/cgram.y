@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.334 2011/07/06 16:58:51 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.335 2011/07/07 06:50:10 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1005,8 +1005,7 @@ switchpart:	   C_SWITCH  '('  e ')' {
 			savebc();
 			brklab = getlab();
 			$3 = eve($3);
-			if (($3->n_type != BOOL && $3->n_type > ULONGLONG) ||
-			    $3->n_type < CHAR) {
+			if (!ISINTEGER($3->n_type)) {
 				uerror("switch expression must have integer "
 				       "type");
 				t = INT;
