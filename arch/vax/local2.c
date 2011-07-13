@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.18 2011/07/05 20:04:19 ragge Exp $	*/
+/*	$Id: local2.c,v 1.19 2011/07/13 12:35:24 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -924,7 +924,8 @@ adrput(FILE *fp, NODE *p)
 			return;
 			}
 		if( r == AP ){  /* in the argument region */
-			if( p->n_lval <= 0 || p->n_name[0] != '\0' ) werror( "bad arg temp" );
+			if( p->n_lval <= 0 || p->n_name[0] != '\0' )
+				werror( "bad arg temp" );
 			printf( CONFMT, p->n_lval );
 			printf( "(%%ap)" );
 			return;
