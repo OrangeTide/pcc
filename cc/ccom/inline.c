@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.44 2011/07/14 08:57:43 ragge Exp $	*/
+/*	$Id: inline.c,v 1.45 2011/07/14 09:46:02 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -166,20 +166,22 @@ inline_start(struct symtab *sp)
 void
 inline_end()
 {
+	struct symtab *sp = cifun->sp;
 
 	SDEBUG(("inline_end()\n"));
 
 	if (sdebug)printip(&cifun->shead);
 	isinlining = 0;
 
-	if (attr_find(cifun->sp->sap, GCC_ATYP_GNU_INLINE) || xgcc) {
-		if (cifun->sp->sclass == EXTDEF)
-			cifun->sp->sclass = 0;
+	if (sp->sclass != STATIC &&
+	    (attr_find(sp->sap, GCC_ATYP_GNU_INLINE) || xgcc)) {
+		if (sp->sclass == EXTDEF)
+			sp->sclass = 0;
 		else
-			cifun->sp->sclass = EXTDEF;
+			sp->sclass = EXTDEF;
 	}
 
-	if (cifun->sp->sclass == EXTDEF) {
+	if (sp->sclass == EXTDEF) {
 		cifun->flags |= REFD;
 		inline_prtout();
 	}
