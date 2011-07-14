@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.189 2011/07/06 12:02:22 plunky Exp $	*/
+/*	$Id: cc.c,v 1.190 2011/07/14 09:06:50 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -195,7 +195,7 @@ int	nostartfiles, Bstatic, shared;
 int	nostdinc, nostdlib;
 int	onlyas;
 int	pthreads;
-int	xcflag;
+int	xcflag, xgcc;
 int 	ascpp;
 
 char	*passp = LIBEXECDIR PREPROCESSOR;
@@ -707,7 +707,10 @@ main(int argc, char *argv[])
 				} else if (strcmp(argv[i], "-symbolic") == 0) {
 					llist[nl++] = "-Bsymbolic";
 				} else if (strncmp(argv[i], "-std", 4) == 0) {
-					/* ignore gcc -std= */;
+					if (strcmp(&argv[i][5], "gnu99") == 0 ||
+					    strcmp(&argv[i][5], "gnu9x") == 0 ||
+					    strcmp(&argv[i][5], "gnu89") == 0)
+						xgcc = 1;
 				} else
 					goto passa;
 				break;
@@ -940,6 +943,8 @@ main(int argc, char *argv[])
 			av[na++] = "-xdeljumps";
 			av[na++] = "-xinline";
 		}
+		if (xgcc)
+			av[na++] = "-xgcc";
 		for (j = 0; j < xnum; j++)
 			av[na++] = xlist[j];
 		for (j = 0; j < nm; j++)
