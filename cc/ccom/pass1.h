@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.231 2011/07/06 20:15:38 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.232 2011/07/14 08:57:43 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -181,7 +181,7 @@ extern	OFFSZ inoff;
 
 extern	int reached;
 extern	int isinlining;
-extern	int xinline;
+extern	int xinline, xgcc;
 
 extern	int sdebug, idebug, pdebug;
 

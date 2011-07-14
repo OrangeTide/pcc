@@ -1,4 +1,4 @@
-/*	$Id: inline.c,v 1.43 2011/06/23 13:38:23 ragge Exp $	*/
+/*	$Id: inline.c,v 1.44 2011/07/14 08:57:43 ragge Exp $	*/
 /*
  * Copyright (c) 2003, 2008 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -172,7 +172,7 @@ inline_end()
 	if (sdebug)printip(&cifun->shead);
 	isinlining = 0;
 
-	if (attr_find(cifun->sp->sap, GCC_ATYP_GNU_INLINE)) {
+	if (attr_find(cifun->sp->sap, GCC_ATYP_GNU_INLINE) || xgcc) {
 		if (cifun->sp->sclass == EXTDEF)
 			cifun->sp->sclass = 0;
 		else
