@@ -1,4 +1,4 @@
-/*	$Id: builtins.c,v 1.27 2011/07/06 17:07:23 plunky Exp $	*/
+/*	$Id: builtins.c,v 1.28 2011/07/15 07:13:32 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -580,7 +580,7 @@ acnt(NODE *a, int narg, TWORD *tp)
 		if (tp == NULL)
 			continue;
 		q = a->n_right;
-		t = tp[narg-1];
+		t = ctype(tp[narg-1]);
 		if (q->n_type == t)
 			continue;
 		a->n_right = ccast(q, t, 0, NULL, 0);
@@ -590,7 +590,7 @@ acnt(NODE *a, int narg, TWORD *tp)
 	if (narg == 1 && tp != NULL) {
 		q = talloc();
 		*q = *a;
-		q = ccast(q, tp[0], 0, NULL, 0);
+		q = ccast(q, ctype(tp[0]), 0, NULL, 0);
 		*a = *q;
 		nfree(q);
 	}
