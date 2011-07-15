@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.9 2011/07/13 12:35:24 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.10 2011/07/15 16:04:56 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -106,7 +106,8 @@ typedef long long OFFSZ;
 #define BACKTEMP
 
 /* show field hardware support on VAX */
-#define FIELDOPS
+/* XXX notyet */
+#undef FIELDOPS
 
 /* bytes are numbered from right to left */
 #define TARGET_ENDIAN TARGET_LE
@@ -239,6 +240,8 @@ extern int maxargs;
 #define PCLASS(p)	(szty(p->n_type) == 2 ? SBREG : SAREG)
 #define RETREG(x)	(szty(x) == 2 ? XR0 : R0)
 #define GCLASS(x)	(x < XR0 ? CLASSA : CLASSB)
+int xasmconstregs(char *s);
+#define XASMCONSTREGS(x) xasmconstregs(x)
 int COLORMAP(int c, int *r);
 
 #define	SNCON		(MAXSPECIAL+1)	/* named constand */
