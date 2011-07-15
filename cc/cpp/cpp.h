@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.49 2011/06/05 08:43:50 plunky Exp $	*/
+/*	$Id: cpp.h,v 1.50 2011/07/15 10:52:59 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -147,6 +147,7 @@ struct nd {
 struct symtab *lookup(const usch *namep, int enterf);
 usch *gotident(struct symtab *nl);
 int slow;	/* scan slowly for new tokens */
+int defining;
 int submac(struct symtab *nl, int);
 int kfind(struct symtab *nl);
 int doexp(void);
