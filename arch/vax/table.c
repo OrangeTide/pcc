@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.13 2011/07/15 16:04:56 ragge Exp $	*/
+/*	$Id: table.c,v 1.14 2011/07/16 20:34:13 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -73,13 +73,25 @@ struct optab  table[] = {
 
 /* Handle conversions in C code */
 { SCONV,	INAREG,
-	SAREG|SBREG|AWD,	TANY,
+	SAREG|AWD,	TAREG,
+	SANY,		TANY,
+		NAREG|NASL,	RESC1|RESCC,
+		"ZG", },
+
+{ SCONV,	INAREG,
+	SBREG|AWD,	TBREG,
 	SANY,		TANY,
 		NAREG|NASL,	RESC1|RESCC,
 		"ZG", },
 
 { SCONV,	INBREG,
-	SAREG|SBREG|AWD,	TANY,
+	SBREG|AWD,	TBREG,
+	SANY,		TANY,
+		NBREG|NBSL,	RESC1|RESCC,
+		"ZG", },
+
+{ SCONV,	INBREG,
+	SAREG|AWD,	TAREG,
 	SANY,		TANY,
 		NBREG|NBSL,	RESC1|RESCC,
 		"ZG", },

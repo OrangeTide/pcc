@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.10 2011/07/15 16:04:56 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.11 2011/07/16 20:34:13 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -82,7 +82,7 @@
 /* Default char is signed */
 #undef  CHAR_UNSIGNED
 #define BOOL_TYPE       CHAR    /* what used to store _Bool */
-
+#define	HASP2ALIGN
 /*	size in which constants are converted */
 /*	should be long if feasable */
 
