@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.50 2011/07/15 10:52:59 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.51 2011/07/16 16:14:56 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -152,6 +152,7 @@ int submac(struct symtab *nl, int);
 int kfind(struct symtab *nl);
 int doexp(void);
 int donex(void);
+void ppdir(void);
 
 int pushfile(const usch *fname, const usch *fn, int idx, void *incs);
 void popfile(void);

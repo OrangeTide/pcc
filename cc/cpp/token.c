@@ -1,4 +1,4 @@
-/*	$Id: token.c,v 1.62 2011/07/15 10:52:59 ragge Exp $	*/
+/*	$Id: token.c,v 1.63 2011/07/16 16:14:56 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004,2009 Anders Magnusson. All rights reserved.
@@ -69,7 +69,6 @@ static void cppwarning(void);
 static void elifstmt(void);
 static void badop(const char *);
 static int chktg(void);
-static void ppdir(void);
 void  include(void);
 void  include_next(void);
 void  define(void);
