@@ -1,4 +1,4 @@
-/*	$Id: symtabs.c,v 1.23 2011/06/29 06:54:50 ragge Exp $	*/
+/*	$Id: symtabs.c,v 1.24 2011/07/16 20:34:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -419,8 +419,13 @@ locctr(int seg, struct symtab *sp)
 void
 defalign(int al)
 {
+#ifdef	HASP2ALIGN
+#define	P2ALIGN(x)	ispow2(x)
+#else
+#define	P2ALIGN(x)	(x)
+#endif
 	if (al != ALCHAR)
-		printf("\t.align %d\n", al/ALCHAR);
+		printf("\t.align %d\n", P2ALIGN(al/ALCHAR));
 }
 #endif
 
