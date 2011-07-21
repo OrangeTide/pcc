@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.332 2011/07/07 06:50:10 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.333 2011/07/21 09:09:10 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -934,6 +934,7 @@ dclstruct(struct rstack *r)
 
 	rpole = r->rnext;
 	n = mkty(r->rsou == STNAME ? STRTY : UNIONTY, 0, r->ap);
+	n->n_sp = r->rsym;
 
 	n->n_qual |= 1; /* definition place XXX used by attributes */
 	return n;
@@ -1867,6 +1868,8 @@ typenode(NODE *p)
 		/* Can only occur for TYPEDEF, STRUCT or UNION */
 		if (tc.saved == NULL)
 			cerror("typenode");
+		if (tc.saved->n_sp) /* trailer attributes for structs */
+			tc.saved->n_sp->sap = q->n_ap;
 	}
 	if (tc.pre)
 		q->n_ap = attr_add(q->n_ap, tc.pre);
