@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.23 2011/07/16 20:34:13 ragge Exp $	*/
+/*	$Id: local.c,v 1.24 2011/07/22 19:28:20 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -113,16 +113,6 @@ clocal(p) NODE *p; {
 			nfree(p);
 			p = r;
 		}
-		break;
-
-	case RS:
-	case RSEQ:
-		/* convert >> to << with negative shift count */
-		/* only if type of left operand is not unsigned */
-		if( ISUNSIGNED(p->n_left->n_type) ) break;
-		p->n_right = buildtree( UMINUS, p->n_right, NIL );
-		if( p->n_op == RS ) p->n_op = LS;
-		else p->n_op = LSEQ;
 		break;
 
 	case FORCE:

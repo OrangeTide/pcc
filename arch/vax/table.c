@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.15 2011/07/21 09:10:27 ragge Exp $	*/
+/*	$Id: table.c,v 1.16 2011/07/22 19:28:20 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -391,7 +391,7 @@ struct optab  table[] = {
 	SAREG|AWD,	TANYFIXED,
 	SAREG|AWD,	TANYFIXED,
 		NAREG|NASL|NASR,	RESC1|RESCC,
-		"	ashZL	AR,AL,A1\n", },
+		"	ashl	AR,AL,A1\n", },
 
 #if 0
 { INCR,	FOREFF,

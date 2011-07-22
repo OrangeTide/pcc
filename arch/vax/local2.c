@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.23 2011/07/15 16:04:56 ragge Exp $	*/
+/*	$Id: local2.c,v 1.24 2011/07/22 19:28:20 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -561,7 +561,9 @@ zzzcode(NODE *p, int c)
 		return;
 
 	case 'U':	/* 32 - n, for unsigned right shifts */
-		printf("$" CONFMT, 32 - p->n_right->n_lval );
+		m = p->n_left->n_type == UCHAR ? 8 :
+		    p->n_left->n_type == USHORT ? 16 : 32;
+		printf("$" CONFMT, m - p->n_right->n_lval);
 		return;
 
 	case 'T':	/* rounded structure length for arguments */
@@ -1177,6 +1179,20 @@ optim2(NODE *p, void *arg)
 			p->n_left = mklnode(ICON, 0, 0, FTN|p->n_type);
 			p->n_left->n_name = "__lshrdi3";
 			p->n_op = CALL;
+		} else if (p->n_type == INT) {
+			/* convert >> to << with negative shift count */
+			/* RS of char & short must use extv */
+			if (p->n_right->n_op == ICON) {
+				p->n_right->n_lval = -p->n_right->n_lval;
+			} else if (p->n_right->n_op == UMINUS) {
+				r = p->n_right->n_left;
+				nfree(p->n_right);
+				p->n_right = r;
+			} else {
+				p->n_right = mkunode(UMINUS, p->n_right,
+				    0, p->n_right->n_type);
+			}
+			p->n_op = LS;
 		}
 		break;
 
