@@ -1,4 +1,4 @@
-/*	$Id: ccconfig.h,v 1.19 2011/06/04 19:27:26 plunky Exp $	*/
+/*	$Id: ccconfig.h,v 1.20 2011/07/23 08:29:27 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
@@ -74,6 +74,8 @@
 #define	CPPMDADD { "-D__arm__", NULL, }
 #elif defined(mach_i386)
 #define	CPPMDADD { "-D__i386__", NULL, }
+#define	PCC_SIZE_TYPE		"unsigned int"
+#define	PCC_PTRDIFF_TYPE	"int"
 #elif defined(mach_mips)
 #define	CPPMDADD { "-D__mips__", NULL, }
 #elif defined(mach_pdp10)
@@ -87,4 +89,14 @@
 #define CPPMDADD { "-D__sparc64__", NULL, }
 #else
 #error defines for arch missing
+#endif
+
+#ifndef	PCC_WINT_TYPE
+#define	PCC_WINT_TYPE		"int"
+#endif
+#ifndef	PCC_SIZE_TYPE
+#define	PCC_SIZE_TYPE		"unsigned long"
+#endif
+#ifndef	PCC_PTRDIFF_TYPE
+#define	PCC_PTRDIFF_TYPE	"long"
 #endif
