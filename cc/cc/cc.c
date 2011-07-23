@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.191 2011/07/14 13:29:54 ragge Exp $	*/
+/*	$Id: cc.c,v 1.192 2011/07/23 08:28:37 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -322,6 +322,14 @@ struct Wflags {
 #ifndef USER_LABEL_PREFIX
 #define USER_LABEL_PREFIX ""
 #endif
+#endif
+
+#ifndef PCC_WINT_TYPE
+#define PCC_WINT_TYPE "unsigned int"
+#endif
+
+#ifndef PCC_SIZE_TYPE
+#define PCC_SIZE_TYPE "unsigned long"
 #endif
 
 #ifndef PCC_PTRDIFF_TYPE
@@ -843,8 +851,8 @@ main(int argc, char *argv[])
 		av[na++] = "-D__WCHAR_TYPE__=" WCT;
 		av[na++] = "-D__SIZEOF_WCHAR_T__=" MKS(WCHAR_SIZE);
 		av[na++] = "-D__WCHAR_MAX__=" WCM;
-		av[na++] = "-D__WINT_TYPE__=unsigned int";
-		av[na++] = "-D__SIZE_TYPE__=unsigned long";
+		av[na++] = "-D__WINT_TYPE__=" PCC_WINT_TYPE;
+		av[na++] = "-D__SIZE_TYPE__=" PCC_SIZE_TYPE;
 		av[na++] = "-D__PTRDIFF_TYPE__=" PCC_PTRDIFF_TYPE;
 		av[na++] = "-D__SIZEOF_WINT_T__=4";
 #ifdef os_darwin
