@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.80 2011/04/26 15:16:50 ragge Exp $     */
+/*      $Id: gcc_compat.c,v 1.81 2011/07/27 13:41:44 ragge Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -495,6 +495,8 @@ gcc_tcattrfix(NODE *p)
 		if (p->n_type == UNIONTY)
 			coff = 0;
 	}
+	if (mxal < ALCHAR)
+		mxal = ALCHAR; /* for bitfields */
 	SETOFF(csz, mxal); /* Roundup to whatever */
 
 	ap = attr_find(p->n_ap, ATTR_STRUCT);
