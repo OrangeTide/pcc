@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.193 2011/07/27 15:06:02 plunky Exp $	*/
+/*	$Id: cc.c,v 1.194 2011/07/27 17:24:45 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -267,6 +267,14 @@ struct Wflags {
 } Wflags[] = {
 	{ "-Wtruncate", 0 },
 	{ "-Wno-truncate", NEGATIVE },
+	{ "-Wstrict-prototypes", 0 },
+	{ "-Wno-strict-prototypes", NEGATIVE },
+	{ "-Wmissing-prototypes", 0 },
+	{ "-Wno-missing-prototypes", NEGATIVE },
+	{ "-Wimplicit-int", 0 },
+	{ "-Wno-implicit-int", NEGATIVE },
+	{ "-Wimplicit-function-declaration", 0 },
+	{ "-Wno-implicit-function-declaration", NEGATIVE },
 	{ "-Wshadow", 0 },
 	{ "-Wno-shadow", NEGATIVE },
 	{ "-Wpointer-sign", INWALL },
