@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.335 2011/07/07 06:50:10 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.336 2011/07/27 19:05:30 plunky Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -309,7 +309,7 @@ cf_spec:	   C_CLASS { $$ = $1; }
 			$$ = block(QUALIFIER, NIL, NIL, 0, 0, 0); }
 		;
 
-typeof:		   C_TYPEOF '(' term ')' { $$ = tyof(eve($3)); }
+typeof:		   C_TYPEOF '(' e ')' { $$ = tyof(eve($3)); }
 		|  C_TYPEOF '(' cast_type ')' { TYMFIX($3); $$ = tyof($3); }
 		;
 
