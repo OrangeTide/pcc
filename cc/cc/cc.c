@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.194 2011/07/27 17:24:45 plunky Exp $	*/
+/*	$Id: cc.c,v 1.195 2011/07/27 19:08:06 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -500,6 +500,8 @@ main(int argc, char *argv[])
 					kflag = F_PIC;
 				else if (strcmp(argv[i], "-fpic") == 0)
 					kflag = F_pic;
+				else if (strcmp(argv[i], "-ffreestanding") == 0)
+					flist[nf++] = argv[i];
 				else if (strcmp(argv[i],
 				    "-fsigned-char") == 0)
 					flist[nf++] = argv[i];
