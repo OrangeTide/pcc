@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.224 2011/07/13 12:11:07 ragge Exp $	*/
+/*	$Id: regs.c,v 1.225 2011/07/28 08:54:17 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -924,6 +924,24 @@ addedge_r(NODE *p, REGW *w)
 }
 
 /*
+ * delete early clobber liveness. Only interesting on regs.
+ */
+static void
+delcl(NODE *p)
+{
+	int cw;
+
+	if (p->n_op == ICON && p->n_type == STRTY)
+		return;
+	cw = xasmcode(p->n_name);
+	if ((cw & XASMCONSTR) == 0 || !XASMISOUT(cw))
+		return;
+	if (XASMVAL(cw) != 'r')
+		return;
+	LIVEDEL(regno(p->n_left));
+}
+
+/*
  * add/del parameter from live set.
  */
 static void
@@ -940,7 +958,7 @@ setxarg(NODE *p)
 	cw = xasmcode(p->n_name);
 	if (XASMISINP(cw))
 		in = 1;
-	if (XASMISOUT(cw))
+	if (XASMISOUT(cw) && !(cw & XASMCONSTR))
 		ut = 1;
 
 	c = XASMVAL(cw);
@@ -1679,6 +1697,7 @@ livagain:
 					flist(ip->ip_node->n_right,
 					    xasmconstr, 0);
 					listf(ip->ip_node->n_left, setxarg);
+					listf(ip->ip_node->n_left, delcl);
 				} else
 					insnwalk(ip->ip_node);
 			}
