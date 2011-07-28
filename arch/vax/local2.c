@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.25 2011/07/28 07:13:46 ragge Exp $	*/
+/*	$Id: local2.c,v 1.26 2011/07/28 19:41:39 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -647,7 +647,7 @@ void
 rmove( int rt,int  rs, TWORD t ){
 	printf( "	%s	%s,%s\n",
 		(t==FLOAT ? "movf" : (t==DOUBLE ? "movd" : "movl")),
-		rnames[rs], rnames[rt] );
+		rnames[rt], rnames[rs] );
 	}
 
 #if 0

@@ -1,4 +1,4 @@
-/*	$Id: order.c,v 1.8 2011/07/05 20:04:19 ragge Exp $	*/
+/*	$Id: order.c,v 1.9 2011/07/28 19:41:39 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -606,6 +606,7 @@ nspecial(struct optab *q)
 {
 	switch (q->op) {
 	case STARG:
+	case STASG:
 		{
 		static struct rspecial s[] = {
 		    { NEVER, R0, }, { NEVER, R1, }, { NEVER, R2, },
