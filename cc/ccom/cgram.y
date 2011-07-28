@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.336 2011/07/27 19:05:30 plunky Exp $	*/
+/*	$Id: cgram.y,v 1.337 2011/07/28 11:01:56 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -1627,6 +1627,11 @@ fundef(NODE *tp, NODE *p)
 	}
 
 	p = typ = tymerge(tp, p);
+#ifdef GCC_COMPAT
+	/* gcc seems to discard __builtin_ when declaring functions */
+	if (strncmp("__builtin_", (char *)typ->n_sp, 10) == 0)
+		typ->n_sp = (struct symtab *)((char *)typ->n_sp + 10);
+#endif
 	s = typ->n_sp = lookup((char *)typ->n_sp, 0); /* XXX */
 
 	oclass = s->sclass;
