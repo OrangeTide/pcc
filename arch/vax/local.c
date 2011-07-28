@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.24 2011/07/22 19:28:20 ragge Exp $	*/
+/*	$Id: local.c,v 1.25 2011/07/28 11:04:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -109,9 +109,7 @@ clocal(p) NODE *p; {
 			p->n_left->n_type = p->n_type;
 			p->n_left->n_df = p->n_df;
 			p->n_left->n_ap = p->n_ap;
-			r = p->n_left;
-			nfree(p);
-			p = r;
+			p = nfree(p);
 		}
 		break;
 
@@ -127,8 +125,7 @@ clocal(p) NODE *p; {
 		l = p->n_left;
 		ml = p->n_type;
 		if (ml == INT && l->n_type == UNSIGNED) {
-			nfree(p);
-			p = l;
+			p = nfree(p);
 			break;
 		}
 		if (l->n_op == ICON) {
@@ -139,8 +136,7 @@ clocal(p) NODE *p; {
 				break;
 			l->n_type = ml;
 			l->n_ap = 0;
-			nfree(p);
-			p = l;
+			p = nfree(p);
 			break;
 		}
 		break;

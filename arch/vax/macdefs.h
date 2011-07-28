@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.13 2011/07/28 07:14:19 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.14 2011/07/28 11:04:14 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -246,3 +246,21 @@ int xasmconstregs(char *s);
 int COLORMAP(int c, int *r);
 
 #define	SNCON		(MAXSPECIAL+1)	/* named constand */
+
+/*
+ * Builtins.
+ */
+#define TARGET_BUILTINS							\
+	{ "__builtin_frame_address", vax_builtin_frame_address, -1 },	\
+	{ "__builtin_return_address", vax_builtin_return_address, -1 },
+
+#define NODE struct node
+struct node;
+
+#define	TARGET_FFS		/* target-specific ffs */
+NODE *builtin_ffs(NODE *f, NODE *a, unsigned int t);
+
+NODE *vax_builtin_frame_address(NODE *f, NODE *a, unsigned int t);
+NODE *vax_builtin_return_address(NODE *f, NODE *a, unsigned int t);
+
+#undef NODE
