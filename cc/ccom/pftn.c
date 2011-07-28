@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.333 2011/07/21 09:09:10 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.334 2011/07/28 11:37:12 mickey Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2859,7 +2859,8 @@ sspend()
 	p->n_sp = lookup(stack_chk_fail, SNORMAL);
 	p = clocal(p);
 
-	ecomp(buildtree(UCALL, p, NIL));
+	q = eve(bdty(STRING, stradd("", cftnsp->sname), 0));
+	ecomp(buildtree(CALL, p, q));
 
 	plabel(lab);
 }
