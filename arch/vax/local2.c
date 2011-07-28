@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.24 2011/07/22 19:28:20 ragge Exp $	*/
+/*	$Id: local2.c,v 1.25 2011/07/28 07:13:46 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -233,8 +233,13 @@ sconv(NODE *p)
 	switch (o) {
 	case MLE:
 	case MLZ:
+		expand(p, INAREG|INBREG, "\tmovl\tAL,A1\n");
+		break;
+
 	case MVD:
-		expand(p, INAREG|INBREG, "\tmovZL\tAL,A1\n");
+		if (l->n_op == REG && regno(l) == regno(getlr(p, '1')))
+			break; /* unneccessary move */
+		expand(p, INAREG|INBREG, "\tmovZR\tAL,A1\n");
 		break;
 
 	case CSE:
