@@ -1,4 +1,4 @@
-/*	$Id: macdefs.h,v 1.12 2011/07/22 19:28:20 ragge Exp $	*/
+/*	$Id: macdefs.h,v 1.13 2011/07/28 07:14:19 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -111,7 +111,7 @@ typedef long long OFFSZ;
 
 /* bytes are numbered from right to left */
 #define TARGET_ENDIAN TARGET_LE
-#undef	UNALIGNED_ACCESS
+#define	UNALIGNED_ACCESS
 
 /* we want prtree included */
 # define STDPRTREE
