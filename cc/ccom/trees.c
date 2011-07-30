@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.293 2011/07/30 14:45:38 ragge Exp $	*/
+/*	$Id: trees.c,v 1.294 2011/07/30 15:13:34 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2446,6 +2446,7 @@ wrualfld(NODE *val, NODE *d, TWORD t, TWORD ct, int off, int fsz)
 		d = buildtree(UMUL, buildtree(PLUS, d, bcon(t2f)), 0);	
 		p = ccopy(d); 
 		p = TYPAND(p, xbcon(~(SZMASK(fsz) << off), 0, ct), ct);
+		val = makety(val, ct, 0, 0, 0);
 		q = TYPAND(val, xbcon(SZMASK(fsz), 0, ct), ct);
 		q = TYPLS(q, bcon(off), ct);   
 		p = TYPOR(p, q, ct);
