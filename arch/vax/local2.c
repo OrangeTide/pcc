@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.26 2011/07/28 19:41:39 ragge Exp $	*/
+/*	$Id: local2.c,v 1.27 2011/07/30 08:09:29 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -437,7 +437,7 @@ twollcomp(NODE *p)
 	}
 	if (p->n_op >= ULE)
 		cb1 += 4, cb2 += 4;
-	expand(p, 0, "	cmpl UR,UL\n");
+	expand(p, 0, "	cmpl UL,UR\n");
 	if (cb1) cbgen(cb1, s);
 	if (cb2) cbgen(cb2, e);
 	expand(p, 0, "	cmpl AL,AR\n");
