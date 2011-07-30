@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.292 2011/07/27 17:51:31 ragge Exp $	*/
+/*	$Id: trees.c,v 1.293 2011/07/30 14:45:38 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2827,6 +2827,32 @@ delvoid(NODE *p, void *arg)
 		
 }
 
+/*
+ * Change calls inside calls to separate statement.
+ */
+static NODE *
+deldcall(NODE *p, int split)
+{
+	NODE *q, *r;
+	int o = p->n_op;
+
+	if (cdope(o) & CALLFLG) {
+		if (split) {
+			q = cstknode(p->n_type, p->n_df, p->n_ap);
+			r = ccopy(q);
+			q = buildtree(ASSIGN, q, p);
+			ecode(q);
+			return r;
+		}
+		split++;
+	}
+	if (coptype(o) == BITYPE)
+		p->n_right = deldcall(p->n_right, split);
+	if (coptype(o) != LTYPE)
+		p->n_left = deldcall(p->n_left, split);
+	return p;
+}
+
 void
 ecode(NODE *p)	
 {
@@ -2848,6 +2874,7 @@ ecode(NODE *p)
 #endif
 	p = optim(p);
 	p = delasgop(p);
+	p = deldcall(p, 0);
 	walkf(p, delvoid, 0);
 #ifdef PCC_DEBUG
 	if (xdebug) {
