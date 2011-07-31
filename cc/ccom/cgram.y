@@ -1,4 +1,4 @@
-/*	$Id: cgram.y,v 1.338 2011/07/31 07:36:25 ragge Exp $	*/
+/*	$Id: cgram.y,v 1.339 2011/07/31 09:11:00 ragge Exp $	*/
 
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -2183,11 +2183,12 @@ eve2:		r = buildtree(p->n_op, p1, eve(p2));
 		}
 		/* FALLTHROUGH */
 #endif
-		if (p1->n_type != BOOL)
-			goto eve2;
-
-		r = buildtree(UNASG p->n_op, ccopy(p1), p2);
-		r = buildtree(ASSIGN, p1, r);
+		if (p1->n_type == BOOL) {
+			r = buildtree(UNASG p->n_op, ccopy(p1), p2);
+			r = buildtree(ASSIGN, p1, r);
+		} else {
+			r = buildtree(p->n_op, p1, p2);
+		}
 		break;
 
 	case STRING:
