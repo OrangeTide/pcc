@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.335 2011/07/28 14:11:26 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.336 2011/07/31 07:36:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -3187,7 +3187,7 @@ cxop(int op, NODE *l, NODE *r)
 		tfree(imag_l);
 		break;
 	default:
-		cerror("bad complex op %d", op);
+		uerror("illegal operator %s", copst(op));
 	}
 	return comop(p, q);
 }
