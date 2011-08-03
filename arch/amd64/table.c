@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.47 2011/05/29 13:43:06 ragge Exp $	*/
+/*	$Id: table.c,v 1.48 2011/08/03 19:19:22 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -575,6 +575,12 @@ struct optab table[] = {
 		NAREG|NASL,	RESC1,	/* should be 0 */
 		"ZP	call CL\nZC", },
 
+{ STCALL,	FOREFF,
+	SNAME|SAREG,	TANY,
+	SANY,	TANY,
+		NAREG|NASL,	0,	/* should be 0 */
+		"ZP	call *AL\nZC", },
+
 { STCALL,	INAREG,
 	SNAME|SAREG,	TANY,
 	SANY,	TANY,
@@ -1079,8 +1085,8 @@ struct optab table[] = {
 { STASG,	INAREG|FOREFF,
 	SOREG|SNAME,	TANY,
 	SAREG,		TPTRTO|TANY,
-		NSPECIAL,	RDEST,
-		"ZQ", },
+		NSPECIAL|NAREG,	RDEST,
+		"F	movq AR,A1\nZQF	movq A1,AR\n", },
 
 /*
  * DIV/MOD/MUL 
