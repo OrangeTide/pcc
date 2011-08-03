@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.232 2011/07/14 08:57:43 ragge Exp $	*/
+/*	$Id: pass1.h,v 1.233 2011/08/03 19:25:32 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -389,6 +389,7 @@ int pragmas_gcc(char *t);
 NODE *cstknode(TWORD t, union dimfun *df, struct attr *ap);
 int concast(NODE *p, TWORD t);
 NODE *builtin_check(NODE *f, NODE *a);
+NODE *rmpconv(NODE *);
 
 #ifdef SOFTFLOAT
 typedef struct softfloat SF;
