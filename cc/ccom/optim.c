@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.44 2011/07/14 17:03:10 ragge Exp $	*/
+/*	$Id: optim.c,v 1.45 2011/08/03 19:21:05 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -134,6 +134,13 @@ again:	o = p->n_op;
 		q = p->n_left;
 		nfree(p);
 		p = q;
+		break;
+
+	case NOT:
+	case UMINUS:
+	case COMPL:
+		if (LCON(p) && conval(p->n_left, o, p->n_left))
+			p = nfree(p);
 		break;
 
 	case UMUL:
@@ -286,6 +293,7 @@ again:	o = p->n_op;
 			p->n_left = sp;
 			sp->n_left = t1;
 			sp->n_right = t2;
+			sp->n_type = p->n_type;
 			p->n_right = t3;
 			}
 		if(o == PLUS && LO(p) == MINUS && RCON(p) && RCON(p->n_left) &&
