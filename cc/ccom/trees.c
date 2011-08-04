@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.295 2011/08/03 19:25:32 ragge Exp $	*/
+/*	$Id: trees.c,v 1.296 2011/08/04 15:54:37 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2867,6 +2867,8 @@ pprop(NODE *p, TWORD t)
 		t = INCREF(t);
 		break;
 	case ADDROF:
+		if (ISPTR(p->n_left->n_type) && !ISPTR(DECREF(t)))
+			break; /* not quite correct */
 		t = DECREF(t);
 		break;
 	case PCONV:
