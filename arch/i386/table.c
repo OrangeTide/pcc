@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.136 2011/05/29 13:36:48 ragge Exp $	*/
+/*	$Id: table.c,v 1.137 2011/08/06 15:11:48 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -299,7 +299,7 @@ struct optab table[] = {
 { SCONV,	INCH,
 	SHLL,	TLL,
 	SANY,	TCHAR|TUCHAR,
-		NBREG|NBSL,	RESC1,
+		NBREG|NBSL|NTEMP,	RESC1,
 		"ZS", },
 
 /* convert (u)long long to (u)short (mem->reg) */
@@ -313,7 +313,7 @@ struct optab table[] = {
 { SCONV,	INAREG,
 	SHLL|SOREG|SNAME,	TLL,
 	SAREG,	TSHORT|TUSHORT,
-		NAREG|NASL,	RESC1,
+		NAREG|NASL|NTEMP,	RESC1,
 		"ZS", },
 
 /* convert long long to int (mem->reg) */
@@ -327,7 +327,7 @@ struct optab table[] = {
 { SCONV,	INAREG,
 	SHLL|SOREG|SNAME,	TLL,
 	SAREG,	TWORD|TPOINT,
-		NAREG|NASL,	RESC1,
+		NAREG|NASL|NTEMP,	RESC1,
 		"ZS", },
 
 /* convert long long (in memory) to floating */
