@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.45 2011/08/03 19:21:05 ragge Exp $	*/
+/*	$Id: optim.c,v 1.46 2011/08/08 19:22:58 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -144,7 +144,8 @@ again:	o = p->n_op;
 		break;
 
 	case UMUL:
-		if (LO(p) == ADDROF) {
+		/* Do not discard ADDROF TEMP's */
+		if (LO(p) == ADDROF && LO(p->n_left) != TEMP) {
 			q = p->n_left->n_left;
 			nfree(p->n_left);
 			nfree(p);
