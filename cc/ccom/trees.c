@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.298 2011/08/08 19:22:58 ragge Exp $	*/
+/*	$Id: trees.c,v 1.299 2011/08/09 16:39:56 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -3042,6 +3042,12 @@ send_passt(int type, ...)
 	switch (type) {
 	case IP_NODE:
 		ip->ip_node = va_arg(ap, NODE *);
+		if (ip->ip_node->n_op == LABEL) {
+			NODE *p = ip->ip_node;
+			ip->ip_lbl = p->n_left->n_lval;
+			ip->type = IP_DEFLAB;
+			nfree(nfree(p));
+		}
 		break;
 	case IP_EPILOG:
 		if (!isinlining) {
@@ -3126,6 +3132,7 @@ copst(int op)
 	SNAM(SZOF,SIZEOF)
 	SNAM(ATTRIB,ATTRIBUTE)
 	SNAM(TYMERGE,TYMERGE)
+	SNAM(LABEL,LABEL)
 #ifdef GCC_COMPAT
 	SNAM(XREAL,__real__)
 	SNAM(XIMAG,__imag__)
@@ -3161,6 +3168,7 @@ cdope(int op)
 	case XIMAG:
 	case XREAL:
 	case ATTRIB:
+	case LABEL:
 		return UTYPE;
 	case ANDAND:
 	case OROR:
@@ -3222,7 +3230,7 @@ void
 plabel(int label)
 {
 	reached = 1; /* Will this always be correct? */
-	send_passt(IP_DEFLAB, label);
+	send_passt(IP_NODE, block(LABEL, bcon(label), NIL, 0, 0, 0));
 }
 
 /*
