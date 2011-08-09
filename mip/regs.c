@@ -1,4 +1,4 @@
-/*	$Id: regs.c,v 1.225 2011/07/28 08:54:17 ragge Exp $	*/
+/*	$Id: regs.c,v 1.226 2011/08/09 18:06:39 ragge Exp $	*/
 /*
  * Copyright (c) 2005 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1287,6 +1287,7 @@ xasmionize(NODE *p, void *arg)
 			p = p->n_left;
 			b = regno(p);
 			addnotspill(b);
+			cw &= ~(XASMASG|XASMINOUT);
 		} else
 			return;
 	}
