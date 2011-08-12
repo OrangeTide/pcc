@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.96 2011/07/10 17:31:52 ragge Exp $	*/
+/*	$Id: common.c,v 1.97 2011/08/12 19:28:30 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -151,7 +151,7 @@ werror(char *s, ...)
 bittype warnary[(NUMW/NUMBITS)+1], werrary[(NUMW/NUMBITS)+1];
 
 static char *warntxt[] = {
-	"conversion from '%s' to '%s' may alter its value",
+	"conversion from '%s' to '%s' may alter its value", /* Wtruncate */
 	"function declaration isn't a prototype", /* Wstrict_prototypes */
 	"no previous prototype for `%s'", /* Wmissing_prototypes */
 	"return type defaults to `int'", /* Wimplicit_int */
