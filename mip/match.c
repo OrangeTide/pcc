@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.96 2011/06/05 18:51:02 plunky Exp $   */
+/*      $Id: match.c,v 1.97 2011/08/12 19:20:24 plunky Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -577,7 +577,7 @@ findops(NODE *p, int cookie)
 
 		/* Help register assignment after SSA by preferring */
 		/* 2-op insns instead of 3-ops */
-		if (xssaflag && (q->rewrite & RLEFT) == 0 && shl == SRDIR)
+		if (xssa && (q->rewrite & RLEFT) == 0 && shl == SRDIR)
 			shl = SRREG;
 
 		if (q->needs & REWRITE)
@@ -1231,7 +1231,7 @@ treecmp(NODE *p1, NODE *p2)
 #ifdef notyet
 		/* SSA will put assignment in separate register */
 		/* Help out by accepting different regs here */
-		if (xssaflag)
+		if (xssa)
 			break;
 #endif
 	case REG:

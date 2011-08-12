@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.15 2011/06/10 13:37:56 plunky Exp $	*/
+/*	$Id: main.c,v 1.16 2011/08/12 19:20:24 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -43,7 +43,7 @@ void mkdope(void);
 
 int f2debug, e2debug, odebug, rdebug, b2debug, c2debug, t2debug;
 int s2debug, udebug, x2debug, nflag, kflag, g2debug;
-int xdeljumps, xtemps, xssaflag, xdce;
+int xdeljumps, xtemps, xssa, xdce;
 
 int mflag, tflag;
 

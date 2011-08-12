@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.111 2011/08/12 12:47:25 plunky Exp $	*/
+/*	$Id: main.c,v 1.112 2011/08/12 19:20:24 plunky Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -50,7 +50,7 @@ int funsigned_char = 1;
 int funsigned_char = 0;
 #endif
 int sspflag;
-int xssaflag, xtailcallflag, xtemps, xdeljumps, xdce, xinline, xccp, xgcc;
+int xssa, xtailcall, xtemps, xdeljumps, xdce, xinline, xccp, xgcc;
 int freestanding;
 int e2debug, t2debug, f2debug, b2debug;
 char *prgname;
@@ -83,9 +83,9 @@ xopt(char *s)
 	int rv = 0;
 
 	if (strcmp(optarg, "ssa") == 0)
-		xssaflag++;
+		xssa++;
 	else if (strcmp(optarg, "tailcall") == 0)
-		xtailcallflag++;
+		xtailcall++;
 	else if (strcmp(optarg, "temps") == 0)
 		xtemps++;
 	else if (strcmp(optarg, "deljumps") == 0)

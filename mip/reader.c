@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.274 2011/07/13 11:39:11 ragge Exp $	*/
+/*	$Id: reader.c,v 1.275 2011/08/12 19:20:24 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -411,7 +411,7 @@ pass2_compile(struct interpass *ip)
 	optimize(p2e);
 	ngenregs(p2e);
 
-	if (xssaflag && xtemps && xdeljumps)
+	if (xssa && xtemps && xdeljumps)
 		deljumps(p2e);
 
 	DLIST_FOREACH(ip, &p2e->ipole, qelem)
