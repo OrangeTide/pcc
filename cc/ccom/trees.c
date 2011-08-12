@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.299 2011/08/09 16:39:56 ragge Exp $	*/
+/*	$Id: trees.c,v 1.300 2011/08/12 13:24:05 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2861,6 +2861,7 @@ static NODE *
 pprop(NODE *p, TWORD t, struct attr *ap)
 {
 	int o = p->n_op;
+	TWORD t2;
 
 #ifdef PCC_DEBUG
 	if (p->n_op == TEMP && p->n_type != t &&
@@ -2876,12 +2877,16 @@ pprop(NODE *p, TWORD t, struct attr *ap)
 		t = INCREF(t);
 		break;
 	case ADDROF:
+		t2 = p->n_left->n_type;
 		if (p->n_left->n_op == TEMP) {
 			/* Will be converted to memory in pass2 */
-			p->n_left->n_type = DECREF(t);
+			if (!ISPTR(t2) && DECREF(t) != t2) 
+				; /* XXX cannot convert this */
+			else
+				p->n_left->n_type = DECREF(t);
 			return p;
 		}
-		if (ISPTR(p->n_left->n_type) && !ISPTR(DECREF(t)))
+		if (ISPTR(t2) && !ISPTR(DECREF(t)))
 			break; /* not quite correct */
 		t = DECREF(t);
 		break;
