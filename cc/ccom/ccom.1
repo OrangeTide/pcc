@@ -1,4 +1,4 @@
-.\"	$Id: ccom.1,v 1.13 2011/08/12 08:17:32 plunky Exp $
+.\"	$Id: ccom.1,v 1.14 2011/08/12 08:20:27 plunky Exp $
 .\"
 .\" Copyright (c) 2007 Jeremy C. Reed <reed@reedmedia.net>
 .\" Permission to use, copy, modify, and/or distribute this software for any
@@ -22,7 +22,7 @@
 .Nd C compiler
 .Sh SYNOPSIS
 .Nm
-.Op Fl gs
+.Op Fl gkps
 .Op Fl W Ar warnings
 .Op Fl X Ar flags
 .Op Fl x Ar settings
@@ -54,6 +54,8 @@ Enable debugging.
 .\" built into binary, explain stabs?
 .It Fl k
 Generate PIC code.
+.It Fl p
+Generate profiling code.
 .It Fl s
 Print statistics to standard error when complete.
 This includes:
