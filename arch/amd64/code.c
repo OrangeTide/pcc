@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.60 2011/08/03 19:15:42 ragge Exp $	*/
+/*	$Id: code.c,v 1.61 2011/08/12 15:33:58 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -310,11 +310,13 @@ bfcode(struct symtab **s, int cnt)
 		t = al->type;
 		if (t == TNULL)
 			return;
-		if (BTYPE(t) == STRTY || BTYPE(t) == UNIONTY)
+		if (ISSOU(BTYPE(t)))
 			al++;
-		for (; t > BTMASK; t = DECREF(t))
+		for (i = 0; t > BTMASK; t = DECREF(t))
 			if (ISARY(t) || ISFTN(t))
-				al++;
+				i++;
+		if (i)
+			al++;
 	}
 
 	/* fix stack offset */
