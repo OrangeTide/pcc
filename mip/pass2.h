@@ -1,4 +1,4 @@
-/*	$Id: pass2.h,v 1.129 2011/05/04 18:02:32 ragge Exp $	*/
+/*	$Id: pass2.h,v 1.130 2011/08/12 19:24:40 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -347,7 +347,7 @@ int offset(NODE *p, int);
 
 extern	int lineno;
 extern	int fldshf, fldsz;
-extern	int lflag, x2debug, udebug, e2debug, odebug;
+extern	int x2debug, udebug, e2debug, odebug;
 extern	int rdebug, t2debug, s2debug, b2debug, c2debug;
 extern	int g2debug;
 extern	int kflag;

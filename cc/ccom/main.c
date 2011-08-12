@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.112 2011/08/12 19:20:24 plunky Exp $	*/
+/*	$Id: main.c,v 1.113 2011/08/12 19:24:40 plunky Exp $	*/
 
 /*
  * Copyright (c) 2002 Anders Magnusson. All rights reserved.
@@ -39,7 +39,7 @@
 #include "pass2.h"
 
 int sflag, nflag, oflag, kflag, pflag;
-int lflag, odebug, rdebug, s2debug, udebug, x2debug;
+int odebug, rdebug, s2debug, udebug, x2debug;
 #if !defined(MULTIPASS) || defined(PASST)
 int iTflag, oTflag;
 #endif
@@ -146,7 +146,7 @@ main(int argc, char *argv[])
 
 	prgname = argv[0];
 
-	while ((ch = getopt(argc, argv, "OT:VW:X:Z:f:gklm:psvwx:")) != -1) {
+	while ((ch = getopt(argc, argv, "OT:VW:X:Z:f:gkm:psvwx:")) != -1) {
 		switch (ch) {
 #if !defined(MULTIPASS) || defined(PASS1)
 		case 'X':
@@ -233,10 +233,6 @@ main(int argc, char *argv[])
 
 		case 'k': /* PIC code */
 			++kflag;
-			break;
-
-		case 'l': /* Linenos */
-			++lflag;
 			break;
 
 		case 'm': /* Target-specific */
