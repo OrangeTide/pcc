@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.196 2011/08/13 08:21:45 plunky Exp $	*/
+/*	$Id: cc.c,v 1.197 2011/08/13 08:43:39 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -857,8 +857,6 @@ main(int argc, char *argv[])
 #ifdef GCC_COMPAT
 		av[na++] = "-D__REGISTER_PREFIX__=" REGISTER_PREFIX;
 		av[na++] = "-D__USER_LABEL_PREFIX__=" USER_LABEL_PREFIX;
-		if (Oflag)
-			av[na++] = "-D__OPTIMIZE__";
 #endif
 		if (dflag)
 			av[na++] = alist;
