@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.75 2011/08/03 19:25:32 ragge Exp $	*/
+/*	$Id: init.c,v 1.76 2011/08/14 07:32:39 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -223,8 +223,10 @@ inval(CONSZ off, int fsz, NODE *p)
 	CONSZ val;
 	TWORD t;
 
-	if (p->n_op != ICON && p->n_op != FCON)
+	if (p->n_op != ICON && p->n_op != FCON) {
 		uerror("constant required");
+		return;
+	}
 	if (p->n_type == BOOL) {
 		if ((U_CONSZ)p->n_lval > 1)
 			p->n_lval = 1;
