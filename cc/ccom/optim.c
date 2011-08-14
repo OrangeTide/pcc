@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.46 2011/08/08 19:22:58 ragge Exp $	*/
+/*	$Id: optim.c,v 1.47 2011/08/14 14:52:29 ragge Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -109,7 +109,8 @@ again:	o = p->n_op;
 		}
 		/* FALLTHROUGH */
 	case PCONV:
-		p = clocal(p);
+		if (p->n_type != VOID)
+			p = clocal(p);
 		break;
 
 	case FORTCALL:
