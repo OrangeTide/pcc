@@ -1,4 +1,4 @@
-/*	$Id: optim2.c,v 1.81 2011/08/12 19:20:24 plunky Exp $	*/
+/*	$Id: optim2.c,v 1.82 2011/08/16 06:14:16 ragge Exp $	*/
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -183,13 +183,13 @@ optimize(struct p2env *p2e)
 		 */
 
 #ifdef ENABLE_NEW
-		bblocks_build(p2e, &labinfo, &bbinfo);
+		bblocks_build(p2e);
 		BDEBUG(("Calling cfg_build\n"));
-		cfg_build(p2e, &labinfo);
+		cfg_build(p2e);
 
 		TraceSchedule(p2e);
 #ifdef PCC_DEBUG
-		printflowdiagram(p2e, &labinfo, &bbinfo,"sched_trace");
+		printflowdiagram(p2e, "sched_trace");
 
 		if (b2debug) {
 			printf("after tracesched\n");
