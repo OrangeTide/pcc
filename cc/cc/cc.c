@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.198 2011/08/14 15:07:02 ragge Exp $	*/
+/*	$Id: cc.c,v 1.199 2011/08/17 18:00:02 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -376,6 +376,7 @@ main(int argc, char *argv[])
 	altincdir = win32pathsubst(altincdir);
 	libdir = win32pathsubst(libdir);
 	pccincdir = win32pathsubst(pccincdir);
+	pxxincdir = win32pathsubst(pxxincdir);
 	pcclibdir = win32pathsubst(pcclibdir);
 	passp = win32pathsubst(passp);
 	pass0 = win32pathsubst(pass0);
