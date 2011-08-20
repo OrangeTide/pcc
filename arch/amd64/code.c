@@ -1,4 +1,4 @@
-/*	$Id: code.c,v 1.61 2011/08/12 15:33:58 ragge Exp $	*/
+/*	$Id: code.c,v 1.62 2011/08/20 12:54:27 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -855,6 +855,7 @@ funcode(NODE *p)
 {
 	NODE *l, *r;
 	TWORD t;
+	int i;
 
 	nsse = ngpr = nrsp = 0;
 	/* Check if hidden arg needed */
@@ -882,11 +883,13 @@ funcode(NODE *p)
 		for (; al->type != TELLIPSIS; al++) {
 			if ((t = al->type) == TNULL)
 				return p; /* No need */
-			if (BTYPE(t) == STRTY || BTYPE(t) == UNIONTY)
+			if (ISSOU(BTYPE(t)))
 				al++;
-			for (; t > BTMASK; t = DECREF(t))
+			for (i = 0; t > BTMASK; t = DECREF(t))
 				if (ISARY(t) || ISFTN(t))
-					al++;
+					i++;
+			if (i)
+				al++;
 		}
 	}
 
