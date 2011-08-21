@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.47 2011/08/21 09:07:48 ragge Exp $	*/
+/*	$Id: local2.c,v 1.48 2011/08/21 09:36:22 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -133,6 +133,8 @@ prologue(struct interpass_prolog *ipp)
 
 	if (xdeljumps)
 		needframe = chkframe(ipp);
+	else
+		needframe = 1;
 
 #ifdef LANG_F77
 	if (ipp->ipp_vis)
