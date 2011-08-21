@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.64 2011/08/20 10:47:35 ragge Exp $	*/
+/*	$Id: local.c,v 1.65 2011/08/21 09:32:46 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -535,6 +535,9 @@ myp2tree(NODE *p)
 		return;
 	}
 	if (p->n_op != FCON)
+		return;
+
+	if (FLOAT_ISZERO(p->n_dcon))
 		return;
 
 	/* XXX should let float constants follow */

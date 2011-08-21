@@ -1,4 +1,4 @@
-/*	$Id: table.c,v 1.48 2011/08/03 19:19:22 ragge Exp $	*/
+/*	$Id: table.c,v 1.49 2011/08/21 09:32:46 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2008 Anders Magnusson (ragge@ludd.ltu.se).
@@ -1447,6 +1447,20 @@ struct optab table[] = {
 	SOREG|SNAME,	TLDOUBLE,
 		NCREG,	RESC1,
 		"	fldt AL\n", },
+
+/* load float 0.0 */
+{ FCON,		INBREG,
+	SANY,		TFLOAT|TDOUBLE,
+	SANY,		TFLOAT|TDOUBLE,
+		NBREG,	RESC1,
+		"	xorpZf A1,A1\n", },
+
+{ FCON,		INCREG,
+	SANY,		TLDOUBLE,
+	SANY,		TLDOUBLE,
+		NCREG,	RESC1,
+		"	fldz\n", },
+
 
 /*
  * Negate a word.
