@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.201 2011/08/20 21:50:15 plunky Exp $	*/
+/*	$Id: cc.c,v 1.202 2011/08/24 19:02:47 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -611,6 +611,8 @@ main(int argc, char *argv[])
 					nostartfiles++;
 				} else if (strcmp(argv[i], "-nostartfiles") == 0)
 					nostartfiles = 1;
+				else if (strcmp(argv[i], "-nodefaultlibs") == 0)
+					nostdlib++;
 				else
 					goto passa;
 				break;
