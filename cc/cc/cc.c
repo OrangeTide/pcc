@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.203 2011/08/26 16:22:27 plunky Exp $	*/
+/*	$Id: cc.c,v 1.204 2011/08/26 20:00:50 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -526,7 +526,7 @@ main(int argc, char *argv[])
 				} else if (strcmp(argv[i],
 				    "-fno-signed-char") == 0) {
 					flist[nf++] = argv[i];
-					funsigned_char = 0;
+					funsigned_char = 1;
 				} else if (strcmp(argv[i],
 				    "-funsigned-char") == 0) {
 					flist[nf++] = argv[i];
@@ -534,7 +534,7 @@ main(int argc, char *argv[])
 				} else if (strcmp(argv[i],
 				    "-fno-unsigned-char") == 0) {
 					flist[nf++] = argv[i];
-					funsigned_char = 1;
+					funsigned_char = 0;
 				} else if (strcmp(argv[i],
 				    "-fstack-protector") == 0) {
 					flist[nf++] = argv[i];
