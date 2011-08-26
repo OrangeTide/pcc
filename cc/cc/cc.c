@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.202 2011/08/24 19:02:47 plunky Exp $	*/
+/*	$Id: cc.c,v 1.203 2011/08/26 16:22:27 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -669,10 +669,12 @@ main(int argc, char *argv[])
 				outfile = argv[++i];
 				break;
 			case 'O':
-				if (argv[i][2] == '0')
-					Oflag = 0;
-				else
+				if (argv[i][2] == '\0')
 					Oflag++;
+				else if (argv[i][3] == '\0' && isdigit((unsigned char)argv[i][2]))
+					Oflag = argv[i][2] - '0';
+				else
+					error("unknown option %s", argv[i]);
 				break;
 			case 'E':
 				Eflag++;
