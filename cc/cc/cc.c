@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.205 2011/08/26 20:47:07 plunky Exp $	*/
+/*	$Id: cc.c,v 1.206 2011/08/27 08:05:25 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -39,7 +39,8 @@
  * Brief description of its syntax:
  * - Files that end with .c are passed via cpp->ccom->as->ld
  * - Files that end with .i are passed via ccom->as->ld
- * - Files that end with .s are passed as->ld
+ * - Files that end with .S are passed via cpp->as->ld
+ * - Files that end with .s are passed via as->ld
  * - Files that end with .o are passed directly to ld
  * - Multiple files may be given on the command line.
  * - Unrecognized options are all sent directly to ld.
