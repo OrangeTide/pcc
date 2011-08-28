@@ -1,4 +1,4 @@
-.\"	$Id: cc.1,v 1.22 2011/08/26 20:47:07 plunky Exp $
+.\"	$Id: cc.1,v 1.23 2011/08/28 08:25:19 plunky Exp $
 .\"
 .\" Copyright (c) 2007 Jeremy C. Reed <reed@reedmedia.net>
 .\"
@@ -225,15 +225,15 @@ TODO
 .It Fl pg
 Enable profiling on the generated executable.
 .It Fl pthread
-Defines
-.Sy _PTHREADS
-preprocessor directive for
-.Xr cpp 1 .
-Uses
-.Sy \-lpthread
-for the
+Defines the
+.Dv _PTHREADS
+preprocessor identifier for
+.Xr cpp 1 , and
+adds
+.Fl lpthread
+to the
 .Xr ld 1
-linker.
+linker arguments.
 .It Fl S
 Stop after compilation by
 .Xr ccom 1 .
