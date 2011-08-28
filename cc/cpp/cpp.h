@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.51 2011/07/16 16:14:56 ragge Exp $	*/
+/*	$Id: cpp.h,v 1.52 2011/08/28 14:00:13 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -61,7 +61,7 @@ extern	int	ofd;
 #endif
 #endif
 
-#define	MAXARGS	128	/* Max # of args to a macro. Should be enouth */
+#define	MAXARGS	128	/* Max # of args to a macro. Should be enough */
 
 #define	NAMEMAX	CPPBUF	/* currently pushbackbuffer */
 #define	BBUFSZ	(NAMEMAX+CPPBUF+1)
