@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.206 2011/08/27 08:05:25 plunky Exp $	*/
+/*	$Id: cc.c,v 1.207 2011/08/28 08:52:01 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -709,7 +709,7 @@ main(int argc, char *argv[])
 			case 'I':
 			case 'U':
 				*pv++ = argv[i];
-				if (argv[i][2] == 0)
+				if (argv[i][2] == '\0')
 					*pv++ = argv[++i];
 				if (pv >= ptemp+MAXOPT) {
 					error("Too many DIU options");
