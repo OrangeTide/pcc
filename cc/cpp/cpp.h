@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.52 2011/08/28 14:00:13 plunky Exp $	*/
+/*	$Id: cpp.h,v 1.53 2011/08/30 20:12:21 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -153,6 +153,11 @@ int kfind(struct symtab *nl);
 int doexp(void);
 int donex(void);
 void ppdir(void);
+
+void define(void);
+void include(void);
+void include_next(void);
+void line(void);
 
 int pushfile(const usch *fname, const usch *fn, int idx, void *incs);
 void popfile(void);
