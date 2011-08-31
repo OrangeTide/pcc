@@ -1,4 +1,4 @@
-/*	$Id: cpp.c,v 1.143 2011/08/30 20:12:21 plunky Exp $	*/
+/*	$Id: cpp.c,v 1.144 2011/08/31 08:31:31 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -173,11 +173,18 @@ main(int argc, char **argv)
 			break;
 
 		case 'd':
-			if (optarg[0] == 'M') {
-				dMflag = 1;
-				Mflag = 1;
+			while (*optarg) {
+				switch(*optarg) {
+				case 'M': /* display macro definitions */
+					dMflag = 1;
+					Mflag = 1;
+					break;
+
+				default: /* ignore others */
+					break;
+				}
+				optarg++;
 			}
-			/* ignore others */
 			break;
 
 		case 'I':
