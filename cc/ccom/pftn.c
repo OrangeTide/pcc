@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.338 2011/08/12 19:21:38 plunky Exp $	*/
+/*	$Id: pftn.c,v 1.339 2011/08/31 18:02:24 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1216,7 +1216,7 @@ strend(int wide, char *str)
 		if (wide) {
 			sp->stype = WCHAR_TYPE+ARY;
 		} else {
-			if (funsigned_char) {
+			if (xuchar) {
 				sp->stype = UCHAR+ARY;
 			} else {
 				sp->stype = CHAR+ARY;
@@ -1834,7 +1834,7 @@ typenode(NODE *p)
 			tc.type = ENUNSIGN(tc.type);
 	}
 
-	if (funsigned_char && tc.type == CHAR && tc.sig == 0)
+	if (xuchar && tc.type == CHAR && tc.sig == 0)
 		tc.type = UCHAR;
 
 #ifdef GCC_COMPAT
