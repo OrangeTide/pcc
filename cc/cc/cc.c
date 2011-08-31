@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.207 2011/08/28 08:52:01 plunky Exp $	*/
+/*	$Id: cc.c,v 1.208 2011/08/31 10:40:49 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -842,9 +842,9 @@ main(int argc, char *argv[])
 		av[na++] = "-D__GNUC_MINOR__=3";
 		av[na++] = "-D__GNUC_PATCHLEVEL__=1";
 		if (xgnu89)
-			av[na++] = "-D__GNUC_GNU_INLINE__=1";
+			av[na++] = "-D__GNUC_GNU_INLINE__";
 		else
-			av[na++] = "-D__GNUC_STDC_INLINE__=1";
+			av[na++] = "-D__GNUC_STDC_INLINE__";
 #endif
 #endif
 		av[na++] = "-D__VERSION__=" MKS(VERSSTR);
@@ -858,7 +858,7 @@ main(int argc, char *argv[])
 		if (ascpp)
 			av[na++] = "-D__ASSEMBLER__";
 		if (sspflag)
-			av[na++] = "-D__SSP__=1";
+			av[na++] = "-D__SSP__";
 		if (pthreads)
 			av[na++] = "-D_PTHREADS";
 		if (Mflag)
