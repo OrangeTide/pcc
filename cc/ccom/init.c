@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.76 2011/08/14 07:32:39 ragge Exp $	*/
+/*	$Id: init.c,v 1.77 2011/09/02 15:35:34 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -402,7 +402,7 @@ beginit(struct symtab *sp)
 			basesz = SZINT;
 		}
 	} else
-		basesz = tsize(DECREF(sp->stype), sp->sdf, sp->sap);
+		basesz = tsize(sp->stype, sp->sdf, sp->sap);
 	SLIST_INIT(&lpole);
 
 	/* first element */
