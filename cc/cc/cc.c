@@ -1,4 +1,4 @@
-/*	$Id: cc.c,v 1.210 2011/08/31 18:27:09 plunky Exp $	*/
+/*	$Id: cc.c,v 1.211 2011/09/02 19:17:44 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -668,6 +668,8 @@ main(int argc, char *argv[])
 					Oflag++;
 				else if (argv[i][3] == '\0' && isdigit((unsigned char)argv[i][2]))
 					Oflag = argv[i][2] - '0';
+				else if (argv[i][3] == '\0' && argv[i][2] == 's')
+					Oflag = 1;	/* optimize for space only */
 				else
 					error("unknown option %s", argv[i]);
 				break;
