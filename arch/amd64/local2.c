@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.48 2011/08/21 09:36:22 ragge Exp $	*/
+/*	$Id: local2.c,v 1.49 2011/09/21 21:23:09 plunky Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -263,9 +263,9 @@ fcomp(NODE *p)
 	if (p->n_left->n_op != REG)
 		comperr("bad compare %p\n", p);
 	if ((p->n_su & DORIGHT) == 0)
-		expand(p, 0, "	fxch\n");
-	expand(p, 0, "	fucomip %st(1),%st\n");	/* emit compare insn  */
-	expand(p, 0, "	fstp %st(0)\n");	/* pop fromstack */
+		expand(p, 0, "\tfxch\n");
+	expand(p, 0, "\tfucomip %st(1),%st\n");	/* emit compare insn  */
+	expand(p, 0, "\tfstp %st(0)\n");	/* pop fromstack */
 	zzzcode(p, 'U');
 }
 
