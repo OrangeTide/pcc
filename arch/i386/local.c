@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.156 2011/07/06 08:29:54 ragge Exp $	*/
+/*	$Id: local.c,v 1.157 2011/09/23 18:19:35 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1104,8 +1104,6 @@ mypragma(char *str)
 		alias = tmpstrdup(a2);
 		return 1;
 	}
-	if (strcmp(str, "ident") == 0)
-		return 1; /* Just ignore */
 
 	return 0;
 }
