@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.20 2011/06/05 10:29:10 ragge Exp $	*/
+/*	$Id: local.c,v 1.21 2011/09/23 18:17:51 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -430,13 +430,15 @@ myp2tree(NODE *p)
 	}
 
 }
+
 /*
  * Give target the opportunity of handling pragmas.
  */
 int
 mypragma(char **ary)
 {
-	return 0; }
+	return 0;
+}
 
 /*
  * Called when a identifier has been declared, to give target last word.
