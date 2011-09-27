@@ -1,4 +1,4 @@
-/*	$Id: cpp.h,v 1.54 2011/09/27 08:22:55 plunky Exp $	*/
+/*	$Id: cpp.h,v 1.55 2011/09/27 08:34:59 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004,2010 Anders Magnusson (ragge@ludd.luth.se).
@@ -50,7 +50,7 @@ extern	int	ofd;
 
 /* buffer used internally */
 #ifndef CPPBUF
-#if defined(__pdp11__)
+#if defined(mach_pdp11)
 #define CPPBUF  BUFSIZ
 #define	BUF_STACK
 #elif defined(os_win32)
