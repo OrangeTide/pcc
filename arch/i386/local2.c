@@ -1,4 +1,4 @@
-/*	$Id: local2.c,v 1.163 2011/09/21 21:23:10 plunky Exp $	*/
+/*	$Id: local2.c,v 1.164 2011/11/13 22:35:18 gmcgarry Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -337,6 +337,7 @@ fcomp(NODE *p)
 static void
 ulltofp(NODE *p)
 {
+#ifdef ELFABI
 	static int loadlab;
 	int jmplab;
 
@@ -355,6 +356,9 @@ ulltofp(NODE *p)
 	printf("	fldt " LABFMT "%s\n", loadlab, kflag ? "@GOTOFF" : "");
 	printf("	faddp %%st,%%st(1)\n");
 	printf(LABFMT ":\n", jmplab);
+#else
+#error incomplete implementation
+#endif
 }
 
 static int
@@ -1197,7 +1201,6 @@ lastcall(NODE *p)
 	if (kflag)
 		size -= 4;
 #endif
-
 	
 #if defined(MACHOABI)
 	int newsize = (size + 15) & ~15;	/* stack alignment */
