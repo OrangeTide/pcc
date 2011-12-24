@@ -1,4 +1,4 @@
-/*	$Id: reader.c,v 1.276 2011/08/12 19:24:40 plunky Exp $	*/
+/*	$Id: reader.c,v 1.277 2011/12/24 10:59:04 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -724,8 +724,9 @@ ckmove(NODE *p, NODE *q)
 		return; /* no register */
 
 	/* do we have a need for special reg? */
-	if (t->needs & NSPECIAL)
-		reg = rspecial(t, p->n_left == q ? NLEFT : NRIGHT);
+	if ((t->needs & NSPECIAL) &&
+	    (reg = rspecial(t, p->n_left == q ? NLEFT : NRIGHT)) >= 0)
+		;
 	else
 		reg = DECRA(p->n_reg, 0);
 
