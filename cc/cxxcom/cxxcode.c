@@ -1,4 +1,4 @@
-/*	$Id: cxxcode.c,v 1.1 2012/01/01 16:20:54 ragge Exp $	*/
+/*	$Id: cxxcode.c,v 1.2 2012/01/01 18:03:35 ragge Exp $	*/
 /*
  * Copyright (c) 2011 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -573,7 +573,7 @@ cxxpcmp(struct symtab *sp, NODE *p)
 
 	if (!ISFTN(sp->stype) || p->n_df == NULL || sp->sdf == NULL)
 		return 0; /* no dimfun */
-	if ((a1 = sp->sdf->dfun) == NULL || (a1 = sp->sdf->dfun) == NULL)
+	if ((a1 = sp->sdf->dfun) == NULL || (a2 = p->n_df->dfun) == NULL)
 		return 0; /* no argument */
 
 	for (i = 0; ; i++) {
@@ -749,6 +749,7 @@ cxxmatchftn(NODE *f, NODE *a)
 
 	if ((ap = attr_find(f->n_ap, ATTR_STRUCT)) == NULL) {
 		uerror("undefined class");
+		sp = getsymtab(n, 0);
 	} else
 		sp = ap->amlist;
 	sp = sfind(n, sp);
