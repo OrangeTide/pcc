@@ -1,4 +1,4 @@
-/*	$Id: cxxcode.c,v 1.2 2012/01/01 18:03:35 ragge Exp $	*/
+/*	$Id: cxxcode.c,v 1.3 2012/01/04 19:04:08 ragge Exp $	*/
 /*
  * Copyright (c) 2011 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -396,6 +396,22 @@ pfind(NODE *p, struct symtab *sp)
 				return NULL;
 		}
 		sp = pfind(p->n_left, sp->sup);
+	}
+	return sp;
+}
+
+/*
+ * Declare a variable.
+ */
+struct symtab *
+cxxdeclvar(NODE *p)
+{
+	struct symtab *sp;
+
+	if (blevel && p->n_op == NAME) {
+		sp = p->n_sp = lookup((char *)p->n_sp, 0);
+	} else {
+		sp = cxxlookup(p, SNORMAL);
 	}
 	return sp;
 }
