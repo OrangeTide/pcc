@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.304 2011/08/14 14:52:29 ragge Exp $	*/
+/*	$Id: trees.c,v 1.305 2012/03/06 18:15:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -736,7 +736,7 @@ concast(NODE *p, TWORD t)
 		}
 		return 0;
 	}
-	if ((p->n_type & TMASK) || (t & TMASK)) /* no cast of pointers */
+	if (((p->n_type & TMASK) && t != BOOL) || (t & TMASK)) /* no pointers */
 		return 0;
 
 //printf("concast till %d\n", t);
