@@ -1,4 +1,4 @@
-#	$Id: Makefile.in,v 1.19 2011/06/11 08:27:12 plunky Exp $
+#	$Id: Makefile.in,v 1.20 2012/03/15 09:22:12 plunky Exp $
 #
 # Makefile.in for the f77 frontend of pcc.
 #
@@ -31,6 +31,7 @@ LIBS = @LIBS@
 LDFLAGS = @LDFLAGS@
 INSTALL = @INSTALL@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
 OBJS=f77.o
 DEST=@BINPREFIX@f77
 
