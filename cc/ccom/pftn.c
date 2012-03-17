@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.339 2011/08/31 18:02:24 plunky Exp $	*/
+/*	$Id: pftn.c,v 1.340 2012/03/17 16:51:25 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -1991,6 +1991,10 @@ arglist(NODE *n)
 		if (w->n_right->n_op == ELLIPSIS)
 			continue;
 		ty = w->n_right->n_type;
+		if (ty == ENUMTY) {
+			uerror("arg %d enum undeclared", cnt);
+			ty = w->n_right->n_type = INT;
+		}
 		if (BTYPE(ty) == STRTY || BTYPE(ty) == UNIONTY)
 			num++;
 		while (ISFTN(ty) == 0 && ISARY(ty) == 0 && ty > BTMASK)
@@ -2000,6 +2004,10 @@ arglist(NODE *n)
 	}
 	cnt++;
 	ty = w->n_type;
+	if (ty == ENUMTY) {
+		uerror("arg %d enum undeclared", cnt);
+		ty = w->n_type = INT;
+	}
 	if (BTYPE(ty) == STRTY || BTYPE(ty) == UNIONTY)
 		num++;
 	while (ISFTN(ty) == 0 && ISARY(ty) == 0 && ty > BTMASK)
