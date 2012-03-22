@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.1 2012/01/01 16:20:55 ragge Exp $	*/
+/*	$Id: optim.c,v 1.2 2012/03/22 18:04:41 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -85,7 +85,8 @@ optim(NODE *p)
 {
 	int o, ty;
 	NODE *sp, *q;
-	int i, sz;
+	OFFSZ sz;
+	int i;
 
 	if( oflag ) return(p);
 
