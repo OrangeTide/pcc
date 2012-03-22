@@ -1,4 +1,4 @@
-/*	$Id: pass1.h,v 1.236 2012/03/12 09:11:22 plunky Exp $	*/
+/*	$Id: pass1.h,v 1.237 2012/03/22 18:51:40 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -168,7 +168,6 @@ int mygenswitch(int, TWORD, struct swents **, int);
 extern	int blevel;
 extern	int instruct, got_type;
 extern	int oldstyle;
-extern	int oflag;
 
 extern	int lineno, nerrors;
 
@@ -182,8 +181,8 @@ extern	OFFSZ inoff;
 extern	int reached;
 extern	int isinlining;
 extern	int xinline, xgnu89, xgnu99;
-
-extern	int sdebug, idebug, pdebug;
+extern	int bdebug, ddebug, edebug, idebug, ndebug;
+extern	int odebug, pdebug, sdebug, tdebug, xdebug;
 
 /* various labels */
 extern	int brklab;

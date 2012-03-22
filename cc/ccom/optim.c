@@ -1,4 +1,4 @@
-/*	$Id: optim.c,v 1.48 2012/03/22 18:04:41 plunky Exp $	*/
+/*	$Id: optim.c,v 1.49 2012/03/22 18:51:40 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -88,8 +88,7 @@ optim(NODE *p)
 	OFFSZ sz;
 	int i;
 
-	if( oflag ) return(p);
-
+	if (odebug) return(p);
 
 	ty = coptype(p->n_op);
 	if( ty == LTYPE ) return(p);

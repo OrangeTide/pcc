@@ -1,4 +1,4 @@
-/*	$Id: pftn.c,v 1.1 2012/01/01 16:20:55 ragge Exp $	*/
+/*	$Id: pftn.c,v 1.2 2012/03/22 18:51:40 plunky Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -129,8 +129,6 @@ static void alprint(union arglist *al, int in);
 static void lcommadd(struct symtab *sp);
 static NODE *mkcmplx(NODE *p, TWORD dt);
 extern int fun_inline;
-
-int ddebug = 0;
 
 /*
  * Declaration of an identifier.  Handles redeclarations, hiding,
@@ -3021,9 +3019,9 @@ complinit()
 	struct rstack *rp;
 	NODE *p, *q;
 	char *n[] = { "0f", "0d", "0l" };
-	int i, odebug;
+	int i, d_debug;
 
-	odebug = ddebug;
+	d_debug = ddebug;
 	ddebug = 0;
 	real = addname("__real");
 	imag = addname("__imag");
@@ -3041,7 +3039,7 @@ complinit()
 		nfree(q);
 	}
 	nfree(p);
-	ddebug = odebug;
+	ddebug = d_debug;
 }
 
 /*

@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.1 2012/01/01 16:20:54 ragge Exp $	*/
+/*	$Id: init.c,v 1.2 2012/03/22 18:51:40 plunky Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -110,8 +110,6 @@
  * TO FIX:
  * - Alignment of structs on like i386 char members.
  */
-
-int idebug;
 
 /*
  * Struct used in array initialisation.

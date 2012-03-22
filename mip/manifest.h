@@ -1,4 +1,4 @@
-/*	$Id: manifest.h,v 1.98 2012/03/22 17:01:06 plunky Exp $	*/
+/*	$Id: manifest.h,v 1.99 2012/03/22 18:51:41 plunky Exp $	*/
 /*
  * Copyright(C) Caldera International Inc. 2001-2002. All rights reserved.
  *
@@ -172,10 +172,7 @@
 /*
  * 
  */
-extern int bdebug, tdebug, edebug;
-extern int ddebug, xdebug, f2debug;
-extern int kflag;
-extern int sflag, nflag, gflag, pflag;
+extern int gflag, kflag, pflag;
 extern int sspflag;
 extern int xssa, xtailcall, xtemps, xdeljumps, xdce;
 extern int xuchar;

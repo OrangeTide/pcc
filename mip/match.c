@@ -1,4 +1,4 @@
-/*      $Id: match.c,v 1.97 2011/08/12 19:20:24 plunky Exp $   */
+/*      $Id: match.c,v 1.98 2012/03/22 18:51:41 plunky Exp $   */
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -68,8 +68,6 @@
 
 void setclass(int tmp, int class);
 int getclass(int tmp);
-
-int s2debug;
 
 extern char *ltyp[], *rtyp[];
 
