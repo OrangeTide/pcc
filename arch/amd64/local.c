@@ -1,4 +1,4 @@
-/*	$Id: local.c,v 1.65 2011/08/21 09:32:46 ragge Exp $	*/
+/*	$Id: local.c,v 1.66 2012/03/23 17:03:09 ragge Exp $	*/
 /*
  * Copyright (c) 2008 Michael Shalayeff
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
@@ -537,8 +537,17 @@ myp2tree(NODE *p)
 	if (p->n_op != FCON)
 		return;
 
-	if (FLOAT_ISZERO(p->n_dcon))
-		return;
+#ifdef mach_amd64
+	{
+		/* Do not loose negative zeros */
+		long long *llp = (long long *)(&p->n_dcon);
+		short *ssp = (short *)&llp[1];
+		if (*llp == 0 && *ssp == 0)
+			return;
+	}
+#else
+#error fixme
+#endif
 
 	/* XXX should let float constants follow */
 	sp = IALLOC(sizeof(struct symtab));
