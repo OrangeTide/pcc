@@ -1,4 +1,4 @@
-/*	$Id: common.c,v 1.100 2012/03/22 18:51:40 plunky Exp $	*/
+/*	$Id: common.c,v 1.101 2012/03/26 16:52:17 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -247,7 +247,7 @@ warner(int type, ...)
 
 #ifndef MKEXT
 static NODE *freelink;
-static int usednodes;
+int usednodes;
 
 #ifndef LANG_F77
 NODE *
