@@ -1,4 +1,4 @@
-/*	$Id: init.c,v 1.78 2012/03/22 18:51:40 plunky Exp $	*/
+/*	$Id: init.c,v 1.79 2012/03/26 16:51:50 ragge Exp $	*/
 
 /*
  * Copyright (c) 2004, 2007 Anders Magnusson (ragge@ludd.ltu.se).
@@ -691,11 +691,8 @@ scalinit(NODE *p)
 		nfree(p);
 	} else
 		q = p;
-#ifndef WORD_ADDRESSED
-	if (csym->sclass != AUTO)
-		q = rmpconv(optim(rmpconv(q)));
-#endif
-	q = optim(q);
+
+	q = optloop(q);
 
 	woff = findoff();
 
@@ -1193,10 +1190,7 @@ simpleinit(struct symtab *sp, NODE *p)
 			break;
 		}
 #endif
-		p = optim(buildtree(ASSIGN, nt, p));
-#ifndef WORD_ADDRESSED
-		p = optim(rmpconv(p));
-#endif
+		p = optloop(buildtree(ASSIGN, nt, p));
 		q = p->n_right;
 		t = q->n_type;
 		sz = (int)tsize(t, q->n_df, q->n_ap);

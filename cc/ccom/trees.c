@@ -1,4 +1,4 @@
-/*	$Id: trees.c,v 1.306 2012/03/22 18:51:40 plunky Exp $	*/
+/*	$Id: trees.c,v 1.307 2012/03/26 16:51:50 ragge Exp $	*/
 /*
  * Copyright (c) 2003 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -2983,6 +2983,21 @@ rmpconv(NODE *p)
 	return q;
 }
 #endif
+
+NODE *
+optloop(NODE *p)
+{
+	extern int usednodes;
+	int n;
+
+	do {
+		n = usednodes;
+		p = rmpconv(p);
+		p = optim(p);
+	} while (n != usednodes);
+
+	return p;
+}
 
 void
 ecode(NODE *p)	
