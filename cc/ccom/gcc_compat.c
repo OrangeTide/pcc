@@ -1,4 +1,4 @@
-/*      $Id: gcc_compat.c,v 1.83 2012/03/22 18:04:41 plunky Exp $     */
+/*      $Id: gcc_compat.c,v 1.84 2012/03/29 12:47:50 plunky Exp $     */
 /*
  * Copyright (c) 2004 Anders Magnusson (ragge@ludd.luth.se).
  * All rights reserved.
@@ -553,6 +553,8 @@ pragmas_gcc(char *t)
 	} else if (strcmp(t, "poison") == 0) {
 		/* currently ignore */;
 	} else if (strcmp(t, "visibility") == 0) {
+		/* currently ignore */;
+	} else if (strcmp(t, "system_header") == 0) {
 		/* currently ignore */;
 	} else
 		werror("gcc pragma unsupported");
